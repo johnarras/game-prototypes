@@ -9,7 +9,7 @@
   "AncientName": "Athenae",
   "Population": 250000,
   "MapPixelX": 2276,
-  "MapPixelY": 2365,
+  "MapPixelZ": 2365,
   "BiomeTypeId": 1,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -29,5 +29,21 @@
       "TradeGoodId": 4
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

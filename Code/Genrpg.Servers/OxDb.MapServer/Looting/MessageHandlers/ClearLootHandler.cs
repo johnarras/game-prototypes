@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Looting.MessageHandlers
 {
     public class ClearLootHandler : BaseMapObjectServerMapMessageHandler<ClearLoot>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, ClearLoot message)
+        protected override async ValueTask InnerProcess(MapObject obj, ClearLoot message)
         {
             obj.AddMessage(message);
         }

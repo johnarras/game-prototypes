@@ -37,8 +37,12 @@ namespace OxDb.SharedGame.Crawler.States.Constants
         ReturnToSafety,
         GainStats,
         TeleportConfirmation,
-        TavernMain,
         LevelMap,
+
+
+        FindJunkPile,
+        SearchJunkPile,
+
 
         NpcMain,
         QuestDetail,
@@ -66,6 +70,8 @@ namespace OxDb.SharedGame.Crawler.States.Constants
 
         Vendor,
 
+        TavernMain,
+
         TrainingMain,
         TrainingLevelSelect,
         TrainingLevelMember,
@@ -77,6 +83,8 @@ namespace OxDb.SharedGame.Crawler.States.Constants
         EnterHouse,
 
         Temple,
+
+        ManaRegen,
 
         StartCombat,
         CombatFightRun,

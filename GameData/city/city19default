@@ -9,7 +9,7 @@
   "AncientName": "Lothal",
   "Population": 2500,
   "MapPixelX": 4476,
-  "MapPixelY": 3069,
+  "MapPixelZ": 3069,
   "BiomeTypeId": 9,
   "CultureTypeId": 8,
   "TradeGoodsProduced": [
@@ -29,5 +29,15 @@
       "TradeGoodId": 42
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 1
+    }
+  ]
 }

@@ -4,47 +4,26 @@
   "IdKey": 83,
   "Name": "Levitate",
   "Desc": "Lets you float over many traps.",
-  "PowerCost": 10.0,
-  "PowerPerLevel": 2.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 2.0,
+  "TierCost": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 6,
-  "RoleScalingTypeId": 6,
-  "RoleScalingTier": 2,
-  "PointCost": 3,
+  "RoleScalingTypeId": 8,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 2,
   "Effects": [
     {
       "EntityTypeId": 101,
       "EntityId": 4,
-      "MinQuantity": 1,
-      "MaxQuantity": 1,
-      "ElementTypeId": 2,
-      "Chance": 1.0
+      "ElementTypeId": 4,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      2008
+    ]
+  },
   "ItemEnchantWeight": 1.0
 }

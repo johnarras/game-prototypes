@@ -20,7 +20,7 @@ namespace OxDb.DataUtils.Importers.Purchasing
     /// </summary>
     public class StoreBundleSetSettingsImporter : BaseStoreOfferImporter<StoreBundleSetSettings, StoreBundleSet>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, StoreBundleSet current, int line, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, StoreBundleSetSettings settings, StoreBundleSet current, int line, string firstColumn, string[] headers, string[] rowWords)
         {
 
             if (firstColumn == StrUtils.NormalizeTypeName<StoreBundle>())

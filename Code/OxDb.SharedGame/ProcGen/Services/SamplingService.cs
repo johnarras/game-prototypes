@@ -4,35 +4,36 @@ using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 
 namespace OxDb.SharedGame.ProcGen.Services
 {
     public interface ISamplingService : IInitializable
     {
-        List<MyPoint2> PlanePoissonSample(SamplingData sd);
-        List<PointXZ> PlanePoissonSampleInteger(SamplingData sd);
+        SamplingResult PlanePoissonSample(SamplingData sd);
     }
     public class SamplingService : ISamplingService
     {
         private INoiseService _noiseService = null;
 
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
-        public List<MyPoint2> PlanePoissonSample(SamplingData sd)
+        private List<Point2I> PlanePoissonSampleInternal(SamplingData sd)
         {
-            List<MyPoint2> list = new List<MyPoint2>();
+            List<Point2I> list = new List<Point2I>();
             if (sd == null)
             {
                 return list;
             }
 
-            if (sd.XMin >= sd.XMax || sd.YMin >= sd.YMax)
+            if (sd.MinX >= sd.MaxX - 1 || sd.MinZ >= sd.MaxZ - 1)
             {
                 return list;
             }
@@ -54,8 +55,8 @@ namespace OxDb.SharedGame.ProcGen.Services
 
             float[,] noise = null;
 
-            int width = (int)(sd.XMax - sd.XMin + 1);
-            int height = (int)(sd.YMax - sd.YMin + 1);
+            int width = sd.MaxX - sd.MinX + 1;
+            int height = sd.MaxZ - sd.MinZ + 1;
             if (sd.NoiseAmp > 0 && sd.NoiseFreq > 0)
             {
                 float pers = RandUtils.FloatRange(0.2f, 0.6f, rand);
@@ -70,9 +71,9 @@ namespace OxDb.SharedGame.ProcGen.Services
 
             for (int i = 0; i < maxNumTimes && list.Count < sd.Count; i++)
             {
-                MyPoint2 newpt = new MyPoint2();
-                newpt.X = RandUtils.FloatRange(sd.XMin, sd.XMax, rand);
-                newpt.Y = RandUtils.FloatRange(sd.YMin, sd.YMax, rand);
+                Point2I newpt = new Point2I();
+                newpt.X = RandUtils.IntRange(sd.MinX, sd.MaxX, rand);
+                newpt.Z = RandUtils.IntRange(sd.MinZ, sd.MaxZ, rand);
 
                 double newDist = GeomUtils.GetMinDistance2(list, newpt);
 
@@ -80,8 +81,8 @@ namespace OxDb.SharedGame.ProcGen.Services
 
                 if (noise != null)
                 {
-                    int dx = MathUtil.Clamp(0, (int)(newpt.X - sd.XMin), width - 1);
-                    int dy = MathUtil.Clamp(0, (int)(newpt.Y - sd.YMin), height - 1);
+                    int dx = MathUtil.Clamp(0, (int)(newpt.X - sd.MinX), width - 1);
+                    int dy = MathUtil.Clamp(0, (int)(newpt.Z - sd.MinZ), height - 1);
                     currSeparation *= 1 + noise[dx, dy];
                     currSeparation = MathUtil.Clamp(sd.MinSeparation / 4, currSeparation, sd.MinSeparation * 2);
                 }
@@ -92,16 +93,88 @@ namespace OxDb.SharedGame.ProcGen.Services
                 }
             }
 
-
-
             return list;
         }
 
-        public List<PointXZ> PlanePoissonSampleInteger(SamplingData sd)
+        public SamplingResult PlanePoissonSample(SamplingData sd)
         {
-            List<MyPoint2> startPoints = PlanePoissonSample(sd);
+            List<Point2I> startPoints = PlanePoissonSampleInternal(sd);
 
-            return startPoints.ConvertAll<PointXZ>(e => new PointXZ((int)Math.Round(e.X), (int)Math.Round(e.Y))).ToList();
+            SamplingResult result = new SamplingResult()
+            {
+                MinX = sd.MinX,
+                MaxX = sd.MaxX,
+                MinZ = sd.MinZ,
+                MaxZ = sd.MaxZ,
+
+            };
+
+            int index = 0;
+            foreach (Point2I pt in startPoints)
+            {
+                result.Points.Add(new SampledPoint(pt.X, pt.Z, ++index));
+            }
+
+            if (sd.CreateIndexGrid)
+            {
+                CreateIndexGrid(result);
+            }
+
+            return result;
+        }
+
+        private void CreateIndexGrid(SamplingResult result)
+        {
+
+            if (result.Points.Count < 1)
+            {
+                return;
+            }
+
+            int width = result.MaxX - result.MinX + 1;
+            int height = result.MaxZ - result.MinZ + 1;
+
+            result.IndexGrid = new int[width, height];
+
+            float xmid = (result.MinX + result.MaxX) / 2.0f;
+            float zmid = (result.MinZ + result.MaxZ) / 2.0f;
+
+
+            foreach (SampledPoint sp in result.Points)
+            {
+                float dx = sp.X - xmid;
+                float dz = sp.Z - zmid;
+
+                sp.DistanceFromCenter = Math.Sqrt(dx * dx + dz * dz);
+            }
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int z = 0; z < height; z++)
+                {
+                    double minDistance = double.MaxValue;
+                    int closestPointIndex = -1;
+
+                    for (int i = 0; i < result.Points.Count; i++)
+                    {
+                        SampledPoint point = result.Points[i];
+
+                        double deltaX = x - point.X + result.MinX;
+                        double deltaZ = z - point.Z + result.MinZ;
+                        double distanceSq = (deltaX * deltaX) + (deltaZ * deltaZ);
+
+                        if (distanceSq < minDistance)
+                        {
+                            minDistance = distanceSq;
+                            closestPointIndex = i;
+                        }
+                    }
+
+                    result.IndexGrid[x, z] = closestPointIndex;
+                }
+            }
+
+            return;
         }
     }
 }

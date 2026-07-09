@@ -2,39 +2,18 @@
   "Id": "crawlerspell4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Whirlwind",
-  "Desc": "Hit one or more enemies in all groups within melee range.",
-  "StatBonusScaling": 1.0,
-  "MaxRange": 10,
-  "ReplacesCrawlerSpellId": 1,
-  "CombatActionId": 1,
-  "TargetTypeId": 10,
-  "RoleScalingTypeId": 1,
-  "RoleScalingTier": 2,
-  "PointCost": 10,
-  "Effects": [
-    {
-      "EntityTypeId": 38,
-      "EntityId": 1,
-      "ElementTypeId": 1,
-      "Chance": 1.0
-    }
-  ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    },
-    {
-      "RoleId": 10
-    }
-  ]
+  "Name": "Hide",
+  "Desc": "Meld into the shadows to allow next single target ability to crit.",
+  "MaxRange": 100,
+  "CombatActionId": 5,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 2,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
+  "Effects": [],
+  "Roles": {
+    "Bits": [
+      4
+    ]
+  }
 }

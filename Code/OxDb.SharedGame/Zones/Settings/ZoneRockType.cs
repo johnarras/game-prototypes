@@ -13,12 +13,8 @@ namespace OxDb.SharedGame.Zones.Settings
         public string Name { get; set; }
 
 
-        public MyColorF BaseColor { get; set; }
+        public MyColorF BaseColor { get; set; } = new MyColorF();
 
-        public ZoneRockType()
-        {
-            BaseColor = new MyColorF();
-        }
     }
 }
 

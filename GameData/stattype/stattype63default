@@ -5,6 +5,7 @@
   "Name": "Speed",
   "Abbrev": "",
   "Desc": "Lets you attack earlier during combat.",
+  "Icon": "Speed",
   "GenScalePct": 200,
   "IsCrawlerStat": true
 }

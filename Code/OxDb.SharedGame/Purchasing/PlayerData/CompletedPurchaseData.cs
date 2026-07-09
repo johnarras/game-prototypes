@@ -13,6 +13,7 @@ namespace OxDb.SharedGame.Purchasing.PlayerData
         [Key(2)] public DateTime Date { get; set; }
         [Key(3)] public string ReceiptHash { get; set; }
         [Key(4)] public string ReceiptData { get; set; }
+        [Key(5)] public override string VersionTag { get; set; }
     }
 }
 

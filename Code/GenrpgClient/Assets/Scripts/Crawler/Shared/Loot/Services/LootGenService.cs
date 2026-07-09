@@ -1,4 +1,4 @@
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.UI.Constants;
 using Assets.Scripts.UI.Interfaces;
 using OxDb.SharedCore.Effects.Entities;
@@ -16,7 +16,6 @@ using OxDb.SharedGame.Crawler.Loot.Constants;
 using OxDb.SharedGame.Crawler.Loot.Helpers;
 using OxDb.SharedGame.Crawler.Loot.Settings;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -92,7 +91,6 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
     {
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
-        private IClientRandom _rand = null;
         private IItemGenService _itemGenService = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private ICrawlerService _crawlerService = null;
@@ -135,7 +133,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
 
             List<LootRank> okRanks = new List<LootRank>();
 
-            while (expectedOffset < ranks.Count - 2 && _rand.Rand.NextDouble() < rankSettings.ExtraQualityChance)
+            while (expectedOffset < ranks.Count - 2 && _gs.Rand.NextDouble() < rankSettings.ExtraQualityChance)
             {
                 expectedOffset++;
             }
@@ -168,7 +166,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
             LootRank chosenRank = okRanks[0];
 
             int rankIndex = 0;
-            while (rankIndex < okRanks.Count - 1 && _rand.Rand.NextDouble() < rankSettings.ExtraQualityChance)
+            while (rankIndex < okRanks.Count - 1 && _gs.Rand.NextDouble() < rankSettings.ExtraQualityChance)
             {
                 rankIndex++;
             }
@@ -217,7 +215,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
 
                 List<ItemType> armorItems = okLootItems.Where(x => x.EquipSlotId > 0 && !weaponSlotIds.Contains(x.IdKey)).ToList();
 
-                bool armorItem = _rand.Rand.NextDouble() < rankSettings.ArmorChance;
+                bool armorItem = _gs.Rand.NextDouble() < rankSettings.ArmorChance;
 
                 List<ItemType> finalList = (armorItem ? armorItems : weaponItems);
 
@@ -226,7 +224,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                     return null;
                 }
 
-                itemType = finalList[_rand.Rand.Next() % finalList.Count];
+                itemType = finalList[_gs.Rand.Next() % finalList.Count];
             }
 
             EquipSlot finalSlot = _gameData.Get<EquipSlotSettings>(null).Get(itemType.EquipSlotId);
@@ -241,7 +239,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 return null;
             }
 
-            scalingTypeId = RandUtils.IntRange(1, LootConstants.MaxArmorScalingType, _rand.Rand);
+            scalingTypeId = RandUtils.IntRange(1, LootConstants.MaxArmorScalingType, _gs.Rand);
             scalingType = _gameData.Get<ScalingTypeSettings>(null).Get(scalingTypeId);
 
             if (scalingType == null)
@@ -279,7 +277,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
             }
 
 
-            string baseItemName = RandUtils.GetRandomElement(itemType.GetNames(), _rand.Rand)?.Name ?? "Armor";
+            string baseItemName = RandUtils.GetRandomElement(itemType.GetNames(), _gs.Rand)?.Name ?? "Armor";
 
             // Weapon damage is calculated dynamically as needed.
 
@@ -298,14 +296,14 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 x.IdKey <= StatConstants.PrimaryStatEnd && !usedStatTypeIds.Contains(x.IdKey)).ToList();
 
                 int statQuantity = (int)chosenRank.IdKey / 8;
-                if (_rand.Rand.NextDouble() < chosenRank.IdKey * 0.2f)
+                if (_gs.Rand.NextDouble() < chosenRank.IdKey * 0.2f)
                 {
                     statQuantity++;
                 }
                 for (int i = 0; i < statQuantity && okStats.Count > 0; i++)
                 {
 
-                    StatType okStat = okStats[_rand.Rand.Next() % okStats.Count];
+                    StatType okStat = okStats[_gs.Rand.Next() % okStats.Count];
                     usedStatTypeIds.Add(okStat.IdKey);
                     okStats.Remove(okStat);
                 }
@@ -326,7 +324,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 foreach (long statTypeId in usedStatTypeIds)
                 {
 
-                    double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * RandUtils.DeltaScale(lootSettings.StatBonusVariance, _rand.Rand)));
+                    double finalStatAmount = Math.Max(1, Math.Round(midStatAmount * RandUtils.DeltaScale(lootSettings.StatBonusVariance, _gs.Rand)));
 
 
                     Effect itemEffect = new Effect()
@@ -348,14 +346,14 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                         {
                             effect.Quantity +=
                                 (long)extraStatQuantity +
-                                _rand.Rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
+                                _gs.Rand.NextDouble() < (extraStatQuantity - (long)extraStatQuantity) ? 1 : 0;
                         }
                     }
                 }
 
-                if (_rand.Rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease * itemGenArgs.PowerIncrease)
+                if (_gs.Rand.NextDouble() < lootSettings.BaseEnchantChance + lootSettings.EnchantChancePerPowerIncrease * itemGenArgs.PowerIncrease)
                 {
-                    CrawlerLootType enchantType = RandUtils.GetRandomEnchant(lootSettings.GetData(), _rand.Rand);
+                    CrawlerLootType enchantType = RandUtils.GetRandomEnchant(lootSettings.GetData(), _gs.Rand);
 
                     if (enchantType != null)
                     {
@@ -367,7 +365,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 }
             }
 
-            item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_rand.Rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
+            item.Name = chosenRank.Name + " " + _itemGenService.GenerateItemName(_gs.Rand, itemType.IdKey, level, QualityTypes.Uncommon, null).SingularName;
             item.Level = Math.Max(1, level);
 
             double cost = lootSettings.BaseLootCost;
@@ -439,20 +437,20 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
             {
                 double lootScale = (1 + crawlerUnit.BonusCount * extraScalePerBonus);
                 exp += expPerMonster * lootScale;
-                gold += RandUtils.LongRange(minGold, maxGold, _rand.Rand) * lootScale;
+                gold += RandUtils.LongRange(minGold, maxGold, _gs.Rand) * lootScale;
 
-                if (_rand.Rand.NextDouble() < itemChance * lootScale)
+                if (_gs.Rand.NextDouble() < itemChance * lootScale)
                 {
                     itemCount++;
                 }
 
-                if (_rand.Rand.NextDouble() < craftingSettings.MonsterDropReagentChance)
+                if (_gs.Rand.NextDouble() < craftingSettings.MonsterDropReagentChance)
                 {
                     reagentCount++;
                 }
             }
 
-            if (_rand.Rand.NextDouble() < lootSettings.FirstMonsterItemDropChance)
+            if (_gs.Rand.NextDouble() < lootSettings.FirstMonsterItemDropChance)
             {
                 itemCount++;
             }
@@ -497,7 +495,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
 
                 for (int i = 0; i < reagentCount; i++)
                 {
-                    allLootGenData.Currencies.Add(ctypes[_rand.Rand.Next() % ctypes.Count].IdKey, 1);
+                    allLootGenData.Currencies.Add(ctypes[_gs.Rand.Next() % ctypes.Count].IdKey, 1);
                 }
             }
 
@@ -546,7 +544,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
                 ItemGenArgs itemGenArgs = new ItemGenArgs()
                 {
                     Level = genData.Level,
-                    QualityTypeId = (long)(_rand.Rand.NextDouble() * (lootQualityBonus * 2 + 0.5f)),
+                    QualityTypeId = (long)(_gs.Rand.NextDouble() * (lootQualityBonus * 2 + 0.5f)),
                     PowerIncrease = extraItems,
                 };
 
@@ -668,14 +666,14 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
 
             double itemChance = settings.ItemChanceDefault * itemMult;
 
-            while (_rand.Rand.NextDouble() < itemChance && itemCount < settings.MaxLootItems)
+            while (_gs.Rand.NextDouble() < itemChance && itemCount < settings.MaxLootItems)
             {
                 itemCount++;
             }
 
             LootGenData genData = new LootGenData()
             {
-                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * RandUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _rand.Rand),
+                Exp = _trainingService.GetBaseExpForNextLevel(level) * expMult * RandUtils.FloatRange(settings.MinLevelExpMultDefault, settings.MaxLevelExpMultDefault, _gs.Rand),
                 ItemCount = itemCount,
                 NextState = nextState,
                 NextStateData = nextStateData,
@@ -683,7 +681,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Services
             };
 
             genData.Currencies[CoreCurrencyTypes.Coins] = (long)(_trainingService.GetBaseTrainingCostForNextLevel(level) * goldMult *
-                RandUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _rand.Rand));
+                RandUtils.FloatRange(settings.MinLevelGoldMultDefault, settings.MaxLevelGoldMultDefault, _gs.Rand));
 
             if (!string.IsNullOrEmpty(topMessage))
             {

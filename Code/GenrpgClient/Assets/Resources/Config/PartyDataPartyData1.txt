@@ -1,8 +1,6 @@
 ﻿{
-  "Id": "PartyData1",
-  "MainMessage": "Yes, it's pretty print JSON. You're welcome.",
-  "Flags": 1,
-  "Options": 32724,
+  "id": "PartyData1",
+  "Options": 131066,
   "SaveInventory": [],
   "QuestItems": {
     "Bits": [
@@ -17,15 +15,15 @@
       0
     ]
   },
-  "Seed": 1252137624,
+  "Seed": 1549447765,
   "WorldId": 303658,
   "CurrPos": {
     "MapId": 2,
-    "X": 5,
-    "Z": 5
+    "X": 16,
+    "Z": 11
   },
   "RecallPos": {},
-  "NextId": 134,
+  "NextId": 157,
   "Maps": [
     {
       "MapId": 2,
@@ -35,13 +33,123 @@
         ]
       },
       "OneTimeEncounters": []
+    },
+    {
+      "MapId": 1,
+      "CellsVisited": 3,
+      "TotalCells": 9464,
+      "Visited": {
+        "Bits": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          917504
+        ]
+      },
+      "OneTimeEncounters": []
     }
   ],
   "CurrentMap": {
     "Visited": {
       "Bits": [
         0,
-        8388608
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
       ]
     },
     "Cleansed": {
@@ -60,7 +168,7 @@
       0
     ]
   },
-  "HourOfDay": 8.0,
+  "HourOfDay": 8.249999,
   "UpgradeStatuses": [],
   "Upgrades": {
     "Data": [
@@ -75,9 +183,11 @@
   "Buffs": {
     "Data": [
       0.0,
+      1.41421354,
       0.0,
       0.0,
-      0.0
+      0.0,
+      1.41421354
     ]
   },
   "CompletedQuests": {
@@ -89,23 +199,28 @@
   "ActiveParty": [
     {
       "Stats": {},
-      "PartySlot": 1,
+      "PartySlot": 6,
       "SaveEquipment": [
         {
-          "Id": "I123",
-          "Name": "Mace of Guilt",
-          "Dat": "23 1 1 3 15 150 37 0 ",
-          "Effects": []
+          "Id": "I146",
+          "Name": "Translucent Hammer",
+          "Dat": "15 1 1 0 15 120 30 0 ",
+          "SaveEffects": []
         },
         {
-          "Id": "I124",
-          "Name": "Throwing Axe of Thunder",
-          "Dat": "31 1 1 1 17 87 21 0 ",
-          "Effects": []
+          "Id": "I147",
+          "Name": "Sling of the Heart",
+          "Dat": "31 1 1 0 17 35 8 0 ",
+          "SaveEffects": []
         }
       ],
-      "PermStats": "0 12 11 13 11 13 11 12 0 0 27 19",
-      "RegenFractions": [],
+      "PermStats": "0 11 12 16 8 10 9 8 7 0 8 7",
+      "RegenFractions": [
+        {
+          "StatTypeId": 2,
+          "Fraction": 0.249999925
+        }
+      ],
       "Upgrades": {
         "Data": [
           0,
@@ -114,34 +229,104 @@
           0
         ]
       },
-      "Summons": [
-        {
-          "UnitTypeId": 79,
-          "Name": "Guard",
-          "RoleId": 10
-        }
-      ],
+      "Summons": [],
       "UnitTypeId": 1,
-      "PortraitName": "Dwarf",
+      "PortraitName": "Portraite",
       "ExtraKeywords": [],
-      "Id": "P2",
-      "Name": "SirHolySmash",
-      "ClientVersion": "0.0.0",
-      "Level": 1,
+      "Id": "P37",
+      "Name": "Vesra",
+      "Created": "2026-07-03T17:01:59.027736Z",
+      "Client": "0.0.0",
+      "ClientVersion": {
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
       "FinalX": -1.0,
       "FinalZ": -1.0,
+      "Level": 1,
       "StatusEffects": {
         "Bits": [
           0
         ]
       },
-      "DataOverrides": {
+      "AB": {
         "Items": [],
-        "GameDataCheckTime": "2025-10-25T15:12:13.5518363Z"
+        "CheckTime": "2026-07-03T17:01:59.027736Z",
+        "SetTime": "2026-07-03T17:01:59.027736Z"
       },
       "Roles": [
         {
-          "RoleId": 102,
+          "RoleId": 106,
+          "Level": 1
+        },
+        {
+          "RoleId": 4,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 5,
+      "SaveEquipment": [
+        {
+          "Id": "I148",
+          "Name": "Rod of the Fall",
+          "Dat": "15 1 1 0 15 120 30 0 ",
+          "SaveEffects": []
+        },
+        {
+          "Id": "I149",
+          "Name": "Sling of the Mind",
+          "Dat": "31 1 1 0 17 35 8 0 ",
+          "SaveEffects": []
+        }
+      ],
+      "PermStats": "0 12 15 14 12 7 7 11 10 0 7 8",
+      "RegenFractions": [
+        {
+          "StatTypeId": 2,
+          "Fraction": 0.375000119
+        }
+      ],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [],
+      "UnitTypeId": 1,
+      "PortraitName": "Portraitq",
+      "ExtraKeywords": [],
+      "Id": "P26",
+      "Name": "Elenna",
+      "Created": "2026-07-03T17:01:35.5951103Z",
+      "Client": "0.0.0",
+      "ClientVersion": {
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "Level": 1,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "AB": {
+        "Items": [],
+        "CheckTime": "2026-07-03T17:01:35.5951103Z",
+        "SetTime": "2026-07-03T17:01:35.5951103Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 104,
           "Level": 1
         },
         {
@@ -152,22 +337,22 @@
     },
     {
       "Stats": {},
-      "PartySlot": 2,
+      "PartySlot": 4,
       "SaveEquipment": [
         {
-          "Id": "I125",
-          "Name": "Bastard Sword of Might",
-          "Dat": "25 1 1 3 15 375 93 0 ",
-          "Effects": []
+          "Id": "I150",
+          "Name": "Maul of Wizardry",
+          "Dat": "15 1 1 0 15 120 30 0 ",
+          "SaveEffects": []
         },
         {
-          "Id": "I126",
-          "Name": "Blades of Piety",
-          "Dat": "31 1 1 1 17 87 21 0 ",
-          "Effects": []
+          "Id": "I151",
+          "Name": "Zapper of Serenity",
+          "Dat": "28 1 1 0 17 50 12 0 ",
+          "SaveEffects": []
         }
       ],
-      "PermStats": "0 13 12 11 12 13 11 11 0 0 20 14",
+      "PermStats": "0 11 14 9 13 9 7 10 10 0 8 8",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -177,34 +362,163 @@
           0
         ]
       },
-      "Summons": [
-        {
-          "UnitTypeId": 49,
-          "Name": "Iron Golem",
-          "RoleId": 6
-        }
-      ],
+      "Summons": [],
       "UnitTypeId": 1,
-      "PortraitName": "IronGolem",
+      "PortraitName": "Portraith",
       "ExtraKeywords": [],
-      "Id": "P6",
-      "Name": "Mechaorc",
-      "ClientVersion": "0.0.0",
-      "Level": 1,
+      "Id": "P17",
+      "Name": "Zelfarr",
+      "Created": "2026-07-03T17:00:46.2760048Z",
+      "Client": "0.0.0",
+      "ClientVersion": {
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
       "FinalX": -1.0,
       "FinalZ": -1.0,
+      "Level": 1,
       "StatusEffects": {
         "Bits": [
           0
         ]
       },
-      "DataOverrides": {
+      "AB": {
         "Items": [],
-        "GameDataCheckTime": "2025-10-25T15:12:48.4213438Z"
+        "CheckTime": "2026-07-03T17:00:46.2760048Z",
+        "SetTime": "2026-07-03T17:00:46.2760048Z"
       },
       "Roles": [
         {
-          "RoleId": 103,
+          "RoleId": 101,
+          "Level": 1
+        },
+        {
+          "RoleId": 8,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 3,
+      "SaveEquipment": [
+        {
+          "Id": "I152",
+          "Name": "Bejwelled Sword",
+          "Dat": "18 1 1 0 15 330 82 0 ",
+          "SaveEffects": []
+        },
+        {
+          "Id": "I153",
+          "Name": "Unmatched Gun",
+          "Dat": "30 1 1 0 17 40 10 0 ",
+          "SaveEffects": []
+        }
+      ],
+      "PermStats": "0 12 12 13 14 11 9 7 7 0 11 7",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [],
+      "UnitTypeId": 1,
+      "PortraitName": "Portraitb",
+      "ExtraKeywords": [],
+      "Id": "P10",
+      "Name": "Brawlera",
+      "Created": "2026-07-03T17:00:00.0757202Z",
+      "Client": "0.0.0",
+      "ClientVersion": {
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "Level": 1,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "AB": {
+        "Items": [],
+        "CheckTime": "2026-07-03T17:00:00.0757202Z",
+        "SetTime": "2026-07-03T17:00:00.0757202Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 105,
+          "Level": 1
+        },
+        {
+          "RoleId": 5,
+          "Level": 1
+        }
+      ]
+    },
+    {
+      "Stats": {},
+      "PartySlot": 2,
+      "SaveEquipment": [
+        {
+          "Id": "I154",
+          "Name": "Fading Reaver",
+          "Dat": "13 1 1 0 15 120 30 0 ",
+          "SaveEffects": []
+        },
+        {
+          "Id": "I155",
+          "Name": "Faded Sling",
+          "Dat": "31 1 1 0 17 35 8 0 ",
+          "SaveEffects": []
+        }
+      ],
+      "PermStats": "0 14 8 13 12 13 10 10 7 0 16 8",
+      "RegenFractions": [],
+      "Upgrades": {
+        "Data": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Summons": [],
+      "UnitTypeId": 1,
+      "PortraitName": "Portraito",
+      "ExtraKeywords": [],
+      "Id": "P5",
+      "Name": "KeepinItHeal",
+      "Created": "2026-07-03T16:59:08.7755081Z",
+      "Client": "0.0.0",
+      "ClientVersion": {
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
+      "FinalX": -1.0,
+      "FinalZ": -1.0,
+      "Level": 1,
+      "StatusEffects": {
+        "Bits": [
+          0
+        ]
+      },
+      "AB": {
+        "Items": [],
+        "CheckTime": "2026-07-03T16:59:08.7755081Z",
+        "SetTime": "2026-07-03T16:59:08.7755081Z"
+      },
+      "Roles": [
+        {
+          "RoleId": 102,
           "Level": 1
         },
         {
@@ -215,22 +529,22 @@
     },
     {
       "Stats": {},
-      "PartySlot": 3,
+      "PartySlot": 1,
       "SaveEquipment": [
         {
-          "Id": "I127",
-          "Name": "Arcane Reaver",
-          "Dat": "21 1 1 3 15 150 37 0 ",
-          "Effects": []
+          "Id": "I156",
+          "Name": "Poker of Precision",
+          "Dat": "16 1 1 0 15 100 25 0 ",
+          "SaveEffects": []
         },
         {
-          "Id": "I128",
-          "Name": "Axe of Bone",
-          "Dat": "31 1 1 2 17 87 21 0 ",
-          "Effects": []
+          "Id": "I157",
+          "Name": "Black Musket",
+          "Dat": "30 1 1 0 17 40 10 0 ",
+          "SaveEffects": []
         }
       ],
-      "PermStats": "0 11 11 12 13 12 13 11 0 0 17 16",
+      "PermStats": "0 15 10 7 12 13 13 10 11 0 12 6",
       "RegenFractions": [],
       "Upgrades": {
         "Data": [
@@ -240,232 +554,45 @@
           0
         ]
       },
-      "Summons": [
-        {
-          "UnitTypeId": 2,
-          "Name": "Elf",
-          "RoleId": 7
-        }
-      ],
+      "Summons": [],
       "UnitTypeId": 1,
-      "PortraitName": "Halfling",
+      "PortraitName": "Portraitd",
       "ExtraKeywords": [],
-      "Id": "P11",
-      "Name": "LilSinger",
-      "ClientVersion": "0.0.0",
-      "Level": 1,
+      "Id": "P2",
+      "Name": "SmashFace",
+      "Created": "2026-07-03T16:58:15.1023841Z",
+      "Client": "0.0.0",
+      "ClientVersion": {
+        "Revision": -1,
+        "MajorRevision": -1,
+        "MinorRevision": -1
+      },
       "FinalX": -1.0,
       "FinalZ": -1.0,
+      "Level": 1,
       "StatusEffects": {
         "Bits": [
           0
         ]
       },
-      "DataOverrides": {
+      "AB": {
         "Items": [],
-        "GameDataCheckTime": "2025-10-25T15:13:04.348303Z"
+        "CheckTime": "2026-07-03T16:58:15.1023841Z",
+        "SetTime": "2026-07-03T16:58:15.1023841Z"
       },
       "Roles": [
         {
-          "RoleId": 105,
+          "RoleId": 103,
           "Level": 1
         },
         {
-          "RoleId": 7,
-          "Level": 1
-        }
-      ]
-    },
-    {
-      "Stats": {},
-      "PartySlot": 4,
-      "SaveEquipment": [
-        {
-          "Id": "I129",
-          "Name": "Knife of the Mountains",
-          "Dat": "24 1 1 3 15 112 28 0 ",
-          "Effects": []
-        },
-        {
-          "Id": "I130",
-          "Name": "Sturdy Axe",
-          "Dat": "31 1 1 3 17 87 21 0 ",
-          "Effects": []
-        }
-      ],
-      "PermStats": "0 11 12 11 15 12 11 11 0 0 19 14",
-      "RegenFractions": [],
-      "Upgrades": {
-        "Data": [
-          0,
-          0,
-          0,
-          0
-        ]
-      },
-      "Summons": [
-        {
-          "UnitTypeId": 55,
-          "Name": "Bear",
-          "RoleId": 3
-        }
-      ],
-      "UnitTypeId": 1,
-      "PortraitName": "Elf",
-      "ExtraKeywords": [],
-      "Id": "P18",
-      "Name": "PerfectShot",
-      "ClientVersion": "0.0.0",
-      "Level": 1,
-      "FinalX": -1.0,
-      "FinalZ": -1.0,
-      "StatusEffects": {
-        "Bits": [
-          0
-        ]
-      },
-      "DataOverrides": {
-        "Items": [],
-        "GameDataCheckTime": "2025-10-25T15:13:20.3348701Z"
-      },
-      "Roles": [
-        {
-          "RoleId": 101,
-          "Level": 1
-        },
-        {
-          "RoleId": 3,
-          "Level": 1
-        }
-      ]
-    },
-    {
-      "Stats": {},
-      "PartySlot": 5,
-      "SaveEquipment": [
-        {
-          "Id": "I131",
-          "Name": "Magical Sword",
-          "Dat": "21 1 1 4 15 150 37 0 ",
-          "Effects": []
-        },
-        {
-          "Id": "I132",
-          "Name": "Touch of the Hunter",
-          "Dat": "32 1 1 1 17 68 17 0 ",
-          "Effects": []
-        }
-      ],
-      "PermStats": "0 11 14 14 11 11 11 11 0 0 16 20",
-      "RegenFractions": [],
-      "Upgrades": {
-        "Data": [
-          0,
-          0,
-          0,
-          0
-        ]
-      },
-      "Summons": [
-        {
-          "UnitTypeId": 52,
-          "Name": "Earth Elemental",
-          "RoleId": 11
-        }
-      ],
-      "UnitTypeId": 1,
-      "PortraitName": "Gnome",
-      "ExtraKeywords": [],
-      "Id": "P27",
-      "Name": "Stormcrasher",
-      "ClientVersion": "0.0.0",
-      "Level": 1,
-      "FinalX": -1.0,
-      "FinalZ": -1.0,
-      "StatusEffects": {
-        "Bits": [
-          0
-        ]
-      },
-      "DataOverrides": {
-        "Items": [],
-        "GameDataCheckTime": "2025-10-25T15:13:40.5881772Z"
-      },
-      "Roles": [
-        {
-          "RoleId": 104,
-          "Level": 1
-        },
-        {
-          "RoleId": 11,
-          "Level": 1
-        }
-      ]
-    },
-    {
-      "Stats": {},
-      "PartySlot": 6,
-      "SaveEquipment": [
-        {
-          "Id": "I133",
-          "Name": "Dagger of the Redglow",
-          "Dat": "24 1 1 2 15 112 28 0 ",
-          "Effects": []
-        },
-        {
-          "Id": "I134",
-          "Name": "Wand of Shadows",
-          "Dat": "32 1 1 4 17 68 17 0 ",
-          "Effects": []
-        }
-      ],
-      "PermStats": "0 11 11 14 11 11 12 13 0 0 14 24",
-      "RegenFractions": [],
-      "Upgrades": {
-        "Data": [
-          0,
-          0,
-          0,
-          0
-        ]
-      },
-      "Summons": [
-        {
-          "UnitTypeId": 14,
-          "Name": "Monk",
-          "RoleId": 5
-        }
-      ],
-      "UnitTypeId": 1,
-      "PortraitName": "Cleric",
-      "ExtraKeywords": [],
-      "Id": "P38",
-      "Name": "SupremeMender",
-      "ClientVersion": "0.0.0",
-      "Level": 1,
-      "FinalX": -1.0,
-      "FinalZ": -1.0,
-      "StatusEffects": {
-        "Bits": [
-          0
-        ]
-      },
-      "DataOverrides": {
-        "Items": [],
-        "GameDataCheckTime": "2025-10-25T15:14:24.9385828Z"
-      },
-      "Roles": [
-        {
-          "RoleId": 100,
-          "Level": 1
-        },
-        {
-          "RoleId": 5,
+          "RoleId": 1,
           "Level": 1
         }
       ]
     }
   ],
+  "InGuild": [],
   "ItemsUsed": [],
   "ItemBuffs": {}
 }

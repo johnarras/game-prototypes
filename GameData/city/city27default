@@ -9,7 +9,7 @@
   "AncientName": "Corduba",
   "Population": 450000,
   "MapPixelX": 968,
-  "MapPixelY": 2369,
+  "MapPixelZ": 2369,
   "BiomeTypeId": 5,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -23,5 +23,21 @@
       "TradeGoodId": 62
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 8
+    }
+  ]
 }

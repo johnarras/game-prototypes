@@ -8,9 +8,9 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class CastSpellHandler : BaseUnitServerMapMessageHandler<CastSpell>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, CastSpell message)
+        protected override async ValueTask InnerProcess(Unit unit, CastSpell message)
         {
-            _spellService.FullTryStartCast(rand.Rand, unit, message.SpellId, message.TargetId);
+            _spellService.FullTryStartCast(unit, message.SpellId, message.TargetId);
 
         }
     }

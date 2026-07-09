@@ -2,5 +2,6 @@
   "Id": "stattype37default",
   "ParentId": "default",
   "IdKey": 37,
-  "Name": "SmartTarget"
+  "Name": "SmartTarget",
+  "Icon": "SmartTarget"
 }

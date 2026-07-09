@@ -14,14 +14,14 @@ namespace OxDb.RequestServer.Minigames.Games.Services
 {
     public interface IServerMingiameService : IInjectable
     {
-        Task EndMinigame(WebContext context, long minigameTypeId, bool wonGame);
+        ValueTask EndMinigame(WebContext context, long minigameTypeId, bool wonGame);
     }
     public class ServerMinigameService : IServerMingiameService
     {
         private IGameData _gameData = null;
         private IRewardService _rewardService = null;
 
-        public async Task EndMinigame(WebContext context, long minigameTypeId, bool wonGame)
+        public async ValueTask EndMinigame(WebContext context, long minigameTypeId, bool wonGame)
         {
 
             EndMinigameResponse response = new EndMinigameResponse();
@@ -49,7 +49,7 @@ namespace OxDb.RequestServer.Minigames.Games.Services
                     Quantity = coins,
                 };
 
-                rewardData.Rewards.Add(_rewardService.CreateRewardList(RewardSources.Minigame, new List<Reward>() { rew }, minigameTypeId));
+                rewardData.Rewards.AddRange(_rewardService.CreateListFromReward(RewardSources.Minigame, minigameTypeId, rew));
 
                 response.Rewards = rewardData;
 

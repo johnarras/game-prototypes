@@ -9,7 +9,7 @@
   "AncientName": "Babylon",
   "Population": 200000,
   "MapPixelX": 3220,
-  "MapPixelY": 2617,
+  "MapPixelZ": 2617,
   "BiomeTypeId": 3,
   "CultureTypeId": 6,
   "TradeGoodsProduced": [
@@ -29,5 +29,24 @@
       "TradeGoodId": 86
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 5
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

@@ -9,7 +9,7 @@
   "AncientName": "Aquileia",
   "Population": 100000,
   "MapPixelX": 1800,
-  "MapPixelY": 2013,
+  "MapPixelZ": 2013,
   "BiomeTypeId": 1,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,24 @@
       "TradeGoodId": 5
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

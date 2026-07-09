@@ -22,8 +22,8 @@
 
         public const string Skins = "Skins";
         public const string Stores = "Stores";
-        public const string TerrainTex = "TerrainTex";
         public const string TextureLists = "TextureLists";
+        public const string SpriteLists = "SpriteLists";
         public const string Tiles = "Tiles";
         public const string Trader = "Trader";
         public const string Trees = "Trees";

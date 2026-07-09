@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Chat.MessageHandlers
 {
     public class OnChatMessageHandler : BaseCharacterServerMapMessageHandler<OnChatMessage>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, OnChatMessage message)
+        protected override async ValueTask InnerProcess(Character ch, OnChatMessage message)
         {
             ch.AddMessage(message);
             await Task.CompletedTask;

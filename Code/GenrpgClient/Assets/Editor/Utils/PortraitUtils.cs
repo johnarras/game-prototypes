@@ -1,138 +1,138 @@
-﻿//using OxDb.SharedGame.Portraits.Utils;
-//using OxDb.SharedCore.Utils;
-//using System;
-//using System.Collections.Generic;
-//using System.IO;
-//using System.Text;
-//using UnityEditor;
-//using UnityEngine;
+﻿using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.Portraits.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
-//namespace Assets.Editor.Utils
-//{
-//    public static class PortraitAssetUtils
-//    {
-//        [MenuItem("Tools/Create Portrait Textures")]
-//        public static void SetupPortraits()
-//        {
-//            IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
-//            IClientAppService clientAppService = gs.loc.Get<IClientAppService>();
+namespace Assets.Editor.Utils
+{
+    public static class PortraitAssetUtils
+    {
+        [MenuItem("Tools/Create Portrait Textures")]
+        public static void SetupPortraits()
+        {
+            IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
+            IClientAppService clientAppService = gs.loc.Get<IClientAppService>();
 
-//            string parentPath = clientAppService.DataPath + "/FullAssets/Crawler/Images/";
+            string parentPath = clientAppService.DataPath + "/FullAssets/Crawler/Images/";
 
-//            string startFolder = parentPath + "/PortraitsStart/";
+            string startFolder = parentPath + "/PortraitsStart/";
 
-//            IRandom rand = new MyRandom(DateTime.UtcNow.Ticks);
+            IRandom rand = new MyRandom(DateTime.UtcNow.Ticks);
 
-//            string endFolder = parentPath + "PortraitSprites/";
+            string endFolder = parentPath + "PortraitSprites/";
 
-//            string prefabFolder = parentPath + "/Portraits/";
+            string prefabFolder = parentPath + "/Portraits/";
 
-//            if (!Directory.Exists(startFolder))
-//            {
-//                Directory.CreateDirectory(startFolder);
-//            }
+            if (!Directory.Exists(startFolder))
+            {
+                Directory.CreateDirectory(startFolder);
+            }
 
-//            if (!Directory.Exists(endFolder))
-//            {
-//                Directory.CreateDirectory(endFolder);
-//            }
+            if (!Directory.Exists(endFolder))
+            {
+                Directory.CreateDirectory(endFolder);
+            }
 
-//            if (!Directory.Exists(prefabFolder))
-//            {
-//                Directory.CreateDirectory(prefabFolder);
-//            }
+            if (!Directory.Exists(prefabFolder))
+            {
+                Directory.CreateDirectory(prefabFolder);
+            }
 
-//            float portraitChance = 0.20f;
+            int portraitCount = 0;
 
-//            int portraitCount = 0;
+            List<string> directories = Directory.GetDirectories(startFolder).ToList();
 
-//            string[] directories = Directory.GetDirectories(startFolder);
+            directories.Add(startFolder);
 
-//            foreach (string directory in directories)
-//            {
-//                string[] files = Directory.GetFiles(directory, "*.png");
+            foreach (string directory in directories)
+            {
+                string[] files = Directory.GetFiles(directory, "*.png");
 
-//                foreach (string file in files)
-//                {
-//                    if (rand.NextDouble() > portraitChance)
-//                    {
-//                        continue;
-//                    }
+                foreach (string file in files)
+                {
+                    string fileName = Path.GetFileName(file);
 
-//                    string fileName = Path.GetFileName(file);
+                    portraitCount++;
 
-//                    portraitCount++;
+                    // Do not use number here.
 
-//                    // Do not use number here.
+                    string portraitsuffix = PortraitUtils.GetFileSuffixFromIndex(portraitCount);
 
-//                    string portraitsuffix = PortraitUtils.GetFileSuffixFromIndex(portraitCount);
+                    string newFilename = "Portrait" + portraitsuffix + ".png";
 
-//                    string newFilename = "Portrait" + portraitsuffix + ".png";
+                    string finalPath = Path.Combine(endFolder, newFilename);
 
-//                    string finalPath = Path.Combine(endFolder, newFilename);
+                    File.Copy(file, finalPath, true);
 
-//                    File.Copy(file, finalPath, true);
+                    File.Copy(file + ".meta", finalPath + ".meta", true);
+                }
+            }
 
-//                    File.Copy(file + ".meta", finalPath + ".meta", true);
-//                }
-//            }
+            Debug.Log("PORTRAITCOUNT: " + portraitCount);
+        }
 
-//            Debug.Log("PORTRAITCOUNT: " + portraitCount);
-//        }
+        [MenuItem("Tools/Create Portrait Prefabs")]
+        public static void SetupPrefabs()
+        {
+            IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
+            IClientAppService clientAppService = gs.loc.Get<IClientAppService>();
 
-//        [MenuItem("Tools/Create Portrait Prefabs")]
-//        public static void SetupPrefabs()
-//        {
-//            IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
-//            IClientAppService clientAppService = gs.loc.Get<IClientAppService>();
+            string assetPathSuffix = "/FullAssets/Crawler/Images";
 
-//            string assetPathSuffix = "/FullAssets/Crawler/Images/";
-
-//            string parentPath = clientAppService.DataPath + assetPathSuffix;
+            string parentPath = clientAppService.DataPath + assetPathSuffix;
 
 
-//            IRandom rand = new MyRandom(DateTime.UtcNow.Ticks);
+            IRandom rand = new MyRandom(DateTime.UtcNow.Ticks);
 
-//            string spriteFolder = "Assets" + assetPathSuffix + "/PortraitSprites/";
+            string spriteFolder = "Assets" + assetPathSuffix + "/PortraitSprites/";
 
-//            string prefabFolder = "Assets" + assetPathSuffix + "/Portraits/";
+            string prefabFolder = "Assets" + assetPathSuffix + "/Portraits/";
 
-//            string[] newFiles = Directory.GetFiles(spriteFolder, "*.png");
+            string[] newFiles = Directory.GetFiles(spriteFolder, "*.png");
 
-//            foreach (string newFile in newFiles)
-//            {
-//                string fileName = Path.GetFileName(newFile);
+            foreach (string newFile in newFiles)
+            {
+                string fileName = Path.GetFileName(newFile);
 
-//                string spritePath = Path.Combine(spriteFolder, fileName);
+                string spritePath = Path.Combine(spriteFolder, fileName);
 
-//                string prefabPath = Path.Combine(prefabFolder, fileName).Replace(".png", ".prefab");
+                string prefabPath = Path.Combine(prefabFolder, fileName).Replace(".png", ".prefab");
 
-//                Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
 
-//                if (sprite == null)
-//                {
-//                    continue;
-//                }
+                object obj = AssetDatabase.LoadAssetAtPath(spritePath, typeof(System.Object));
 
-//                GameObject tempGo = new GameObject(Path.GetFileNameWithoutExtension(fileName));
+                Console.WriteLine("Obj: " + obj);
 
-//                SpriteList sl = tempGo.AddComponent<SpriteList>();
+                Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(spritePath);
 
-//                if (sl.Sprites == null)
-//                {
-//                    sl.Sprites = new List<Sprite>();
-//                }
+                if (sprite == null)
+                {
+                    continue;
+                }
 
-//                sl.Sprites.Add(sprite);
+                GameObject tempGo = new GameObject(Path.GetFileNameWithoutExtension(fileName));
 
-//                PrefabUtility.SaveAsPrefabAsset(tempGo, prefabPath);
+                SpriteList sl = tempGo.AddComponent<SpriteList>();
 
-//                UnityEngine.Object.DestroyImmediate(tempGo);
+                if (sl.Sprites == null)
+                {
+                    sl.Sprites = new List<Sprite>();
+                }
 
-//            }
+                sl.Sprites.Add(sprite);
 
-//            AssetDatabase.SaveAssets();
-//            AssetDatabase.Refresh();
-//        }
-//    }
-//}
+                PrefabUtility.SaveAsPrefabAsset(tempGo, prefabPath);
+
+                UnityEngine.Object.DestroyImmediate(tempGo);
+
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+        }
+    }
+}

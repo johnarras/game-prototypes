@@ -1,6 +1,5 @@
 
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Setup.Interfaces;
 using OxDb.SharedCore.HelperClasses;
@@ -45,7 +44,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
 {
     private IRealtimeNetworkService _networkService = null;
     private IPlayerManager _playerManager = null;
-    protected IClientRandom _rand = null;
+    protected IClientGameState _gs = null;
     protected IMapProvider _mapProvider = null;
     private ISingletonContainer _singletonContainer = null;
     protected IClientEntityService _clientEntityService = null;
@@ -64,8 +63,6 @@ public class ClientMapObjectManager : IClientMapObjectManager
     List<UnitController> _removeUnitList = new List<UnitController>();
     List<ClientMapObjectGridItem> _removeGridItems = new List<ClientMapObjectGridItem>();
     private SetupDictionaryContainer<long, ICrawlerMapObjectLoader> _mapObjectLoaders = new SetupDictionaryContainer<long, ICrawlerMapObjectLoader>();
-
-    protected IClientGameState _gs;
 
     public GameObject _fxParent;
 
@@ -325,7 +322,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
             return null;
         }
 
-        MapObject obj = fact.Create(_rand.Rand, spawn);
+        MapObject obj = fact.Create(_gs.Rand, spawn);
 
         return obj;
     }
@@ -375,7 +372,7 @@ public class ClientMapObjectManager : IClientMapObjectManager
         _removeGridItems.Clear();
         foreach (ClientMapObjectGridItem gridItem in _gridItems.Values)
         {
-            PointXZ gridPos = MapUtils.GetGridCoordinates(gridItem.Obj.X, gridItem.Obj.Z, gridSize);
+            Point2I gridPos = MapUtils.GetGridCoordinates(gridItem.Obj.X, gridItem.Obj.Z, gridSize);
 
             if (gridPos.X < minX || gridPos.X > maxX || gridPos.Z < minZ || gridPos.Z > maxZ)
             {

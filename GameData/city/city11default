@@ -9,7 +9,7 @@
   "AncientName": "Massilia",
   "Population": 30000,
   "MapPixelX": 1436,
-  "MapPixelY": 2125,
+  "MapPixelZ": 2125,
   "BiomeTypeId": 6,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -29,5 +29,18 @@
       "TradeGoodId": 43
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

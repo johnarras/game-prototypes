@@ -6,7 +6,7 @@ namespace OxDb.DataUtils.Importers.Purchasing
 {
     public class ProductSKUImporter : ParentChildImporter<ProductSkuSettings, ProductSku>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, ProductSku current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, ProductSkuSettings settings, ProductSku current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

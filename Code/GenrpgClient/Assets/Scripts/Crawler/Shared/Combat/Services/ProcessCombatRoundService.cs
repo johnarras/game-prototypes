@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Assets.Scripts.Crawler.Shared.Combat.Services;
@@ -41,7 +40,6 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
         private ICrawlerCombatService _combatService = null;
         private ICrawlerService _crawlerService = null;
         protected IClientGameState _gs = null;
-        protected IClientRandom _rand = null;
         private IGameData _gameData = null;
         private IDispatcher _dispatcher = null;
         private ISelectCombatActionsService _selectActionService = null;
@@ -204,7 +202,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 {
                     double averageLuck = 1.0 * totalLuck / party.Combat.PartyGroup.Units.Count;
 
-                    if (_rand.Rand.NextDouble() * party.Combat.Level < averageLuck)
+                    if (_gs.Rand.NextDouble() * party.Combat.Level < averageLuck)
                     {
                         _combatService.EndCombat(party);
                         _crawlerService.ChangeState(ECrawlerStates.ExploreWorld, token);
@@ -231,7 +229,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
             // Descending by speed.
             foreach (CrawlerUnit unit in allUnits)
             {
-                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * RandUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _rand.Rand);
+                unit.CombatPriority = unit.Stats.Max(StatTypes.Speed) * RandUtils.FloatRange(1 - speedDeltaPercent, 1 + speedDeltaPercent, _gs.Rand);
 
                 if (unit.FactionTypeId == FactionTypes.Player && overloadedInventoryCount > 0)
                 {

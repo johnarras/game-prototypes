@@ -1,11 +1,12 @@
+using Assets.Scripts.Assets.Textures;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Props;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Dungeons;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Riddles.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,20 +14,24 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
 {
     public class WallButton : CrawlerProp, IPointerClickHandler
     {
+        public EmissiveLerp EmissiveLerp;
         public MeshRenderer MeshRenderer;
         private ICrawlerMapService _mapService = null;
+        private IRiddleService _riddleService = null;
+
         public override void SetData(CrawlerObjectLoadData loadData)
         {
             base.SetData(loadData);
             CrawlerMapRoot root = _mapService.GetMapRoot();
 
-            FinalDungeonMaterials wallMats = root.GetMaterialsAt(_cell.MapX, _cell.MapZ);
+            _riddleService.SetPropPosition(gameObject, loadData, GetToken());
 
-            if (wallMats != null)
+
+            MaterialBlock block = root.GetMaterialBlockAt(loadData.Cell.MapX, loadData.Cell.MapZ);
+
+            if (block != null)
             {
-                MeshRenderer.sharedMaterial = wallMats.GetMaterials(DungeonPrefabIndexes.Walls)[0].Mat;
-                float colorScale = 1.1f;
-                MeshRenderer.material.color = new Color(colorScale, colorScale, colorScale, colorScale);
+                EmissiveLerp.SetColor(block.ForegroundColor);
             }
         }
 
@@ -41,7 +46,6 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
             if (index > 0)
             {
                 party.AddRiddleBitIndex(index - 1);
-                _logService.Info("Click Button index: " + index);
             }
 
             _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);

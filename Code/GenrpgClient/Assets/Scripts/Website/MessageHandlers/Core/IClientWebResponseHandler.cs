@@ -2,7 +2,7 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Website.Responses.Interfaces;
 using System;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Login.Messages
 {
@@ -10,7 +10,7 @@ namespace Assets.Scripts.Login.Messages
     {
 
         int Priority();
-        Awaitable Process(IWebResponse result, CancellationToken token);
+        ValueTask Process(IWebResponse result, CancellationToken token);
     }
 }
 

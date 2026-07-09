@@ -79,6 +79,11 @@ namespace AssetProcessing
             {
                 string baseName = pair.Key;
 
+                if (baseName == "Bear")
+                {
+                    Debug.Log("Bear:");
+                }
+
                 // Sort by the trailing number in ascending order to cleanly handle gaps
                 List<Sprite> sortedSprites = pair.Value
                     .OrderBy(s => int.Parse(nameRegex.Match(s.name).Groups["number"].Value))

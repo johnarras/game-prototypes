@@ -9,9 +9,10 @@ using System.Linq;
 namespace OxDb.SharedGame.DataStores.Categories.PlayerData.ParentChild
 {
     [DataGroup(EDataCategories.Players, ERepoTypes.Mongo)]
-    public abstract class OwnerObjectList<TChild> : BasePlayerData, ITopLevelUnitData, ISearchableItem where TChild : OwnerPlayerData
+    public abstract class OwnerObjectList<TChild> : BasePlayerData, ITopLevelUnitData, ISearchableItem, IVersionedData where TChild : OwnerPlayerData
     {
-        [IgnoreMember] public string _etag { get; set; }
+
+        [MessagePack.IgnoreMember] public abstract string VersionTag { get; set; }
         protected List<TChild> _data = new List<TChild>();
         public virtual void SetData(List<TChild> data)
         {

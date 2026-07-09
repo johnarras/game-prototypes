@@ -1,0 +1,12 @@
+{
+  "Id": "partybuff13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Command",
+  "Desc": "Sometimes increase damage/healing of an ability.",
+  "AtlasPrefix": "",
+  "Icon": "Command",
+  "Art": "Command",
+  "ProcChanceScale": 2.0,
+  "EffectScale": 0.25
+}

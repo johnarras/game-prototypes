@@ -3,21 +3,25 @@
   "ParentId": "default",
   "IdKey": 20034,
   "Name": "Monster Call Wight",
-  "PowerCost": 100.0,
-  "PowerPerLevel": 1.0,
+  "BaseCost": 100.0,
+  "TierCost": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 9,
   "RoleScalingTypeId": 5,
-  "RoleScalingTier": 1,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 4,
       "EntityId": 34,
-      "MinQuantity": 1,
-      "MaxQuantity": 1,
-      "ElementTypeId": 6
+      "ElementTypeId": 6,
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0
     }
   ],
-  "RolesKnowingThis": []
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  }
 }

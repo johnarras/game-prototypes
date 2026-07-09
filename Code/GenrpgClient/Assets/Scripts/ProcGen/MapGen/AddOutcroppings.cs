@@ -28,7 +28,7 @@ public class AddOutcroppings : BaseZoneGenerator
 
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MinZ, zone.MaxX, zone.MaxZ);
         }
     }
 
@@ -38,17 +38,17 @@ public class AddOutcroppings : BaseZoneGenerator
         {
             for (int x = 0; x < GridSize; x++)
             {
-                for (int y = 0; y < GridSize; y++)
+                for (int z = 0; z < GridSize; z++)
                 {
-                    grids[x, y, i] = 0;
+                    grids[x, z, i] = 0;
                 }
             }
         }
     }
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int startz, int endx, int endz)
     {
-        if (zone == null || endx <= startx || endy <= starty)
+        if (zone == null || endx <= startx || endz <= startz)
         {
             return;
         }
@@ -60,8 +60,8 @@ public class AddOutcroppings : BaseZoneGenerator
         startx = MathUtil.Clamp(edgeSize, startx, _mapProvider.GetMap().GetHwid() - edgeSize);
         endx = MathUtil.Clamp(edgeSize, endx, _mapProvider.GetMap().GetHwid() - edgeSize);
 
-        starty = MathUtil.Clamp(edgeSize, starty, _mapProvider.GetMap().GetHwid() - edgeSize);
-        endy = MathUtil.Clamp(edgeSize, endy, _mapProvider.GetMap().GetHwid() - edgeSize);
+        startz = MathUtil.Clamp(edgeSize, startz, _mapProvider.GetMap().GetHwid() - edgeSize);
+        endz = MathUtil.Clamp(edgeSize, endz, _mapProvider.GetMap().GetHwid() - edgeSize);
 
 
         int numOutcroppings = 2;
@@ -97,15 +97,15 @@ public class AddOutcroppings : BaseZoneGenerator
             for (int tries = 0; tries < 20; tries++)
             {
                 int sx = RandUtils.IntRange(startx, endx, rand);
-                int sy = RandUtils.IntRange(starty, endy, rand);
+                int sz = RandUtils.IntRange(startz, endz, rand);
 
                 int ex = RandUtils.IntRange(startx, endx, rand);
-                int ey = RandUtils.IntRange(starty, endy, rand);
+                int ez = RandUtils.IntRange(startz, endz, rand);
 
                 int dx = Math.Abs(ex - sx);
-                int dy = Math.Abs(ey - sy);
+                int dz = Math.Abs(ez - sz);
 
-                if (dx < MinSize || dx > MaxSize || dy < MinSize || dy > MaxSize)
+                if (dx < MinSize || dx > MaxSize || dz < MinSize || dz > MaxSize)
                 {
                     continue;
                 }
@@ -116,15 +116,15 @@ public class AddOutcroppings : BaseZoneGenerator
                     finalHeightScale = -finalHeightScale;
                 }
 
-                int minSize = Math.Min(dx, dy);
-                int maxSize = Math.Max(dx, dy);
+                int minSize = Math.Min(dx, dz);
+                int maxSize = Math.Max(dx, dz);
 
                 int maxWidth = RandUtils.IntRange(minSize * 2 / 3, minSize, rand);
 
                 float fullHeight = RandUtils.FloatRange(20.0f, 60.0f, rand) / MapConstants.MapHeight;
 
                 int mx = (sx + ex) / 2;
-                int my = (sy + ey) / 2;
+                int mz = (sz + ez) / 2;
 
                 LineGenParameters lineParams = new LineGenParameters()
                 {
@@ -139,11 +139,10 @@ public class AddOutcroppings : BaseZoneGenerator
                     LinePathNoiseScale = 1.0f,
                 };
 
-                MyPoint start = new MyPoint(sx, sy);
-                MyPoint end = new MyPoint(ex, ey);
+                Point2I start = new Point2I(sx, sz);
+                Point2I end = new Point2I(ex, ez);
 
-
-                List<MyPointF> line = _lineGenService.GetBressenhamLine(start, end, lineParams);
+                List<LineCell> line = _lineGenService.GetBressenhamLine(start, end, lineParams);
 
                 if (line.Count < 1)
                 {
@@ -154,23 +153,23 @@ public class AddOutcroppings : BaseZoneGenerator
                 int numAdjusted = 0;
                 if (line != null)
                 {
-                    foreach (MyPointF pt in line)
+                    foreach (LineCell pt in line)
                     {
                         int px = (int)(pt.X - mx) + GridSize / 2;
-                        int py = (int)(pt.Y - my) + GridSize / 2;
+                        int pz = (int)(pt.Z - mz) + GridSize / 2;
 
 
-                        if (px < 1 || py < 1 || px >= GridSize - 1 || py >= GridSize - 1)
+                        if (px < 1 || pz < 1 || px >= GridSize - 1 || pz >= GridSize - 1)
                         {
                             continue;
                         }
-                        grids[px, py, 0] = InGridVal;
+                        grids[px, pz, 0] = InGridVal;
                         numCenters++;
 
                     }
                 }
 
-                List<MyPointF> lowestPoints = new List<MyPointF>();
+                List<Point2I> lowestPoints = new List<Point2I>();
 
 
                 float smoothFreq = RandUtils.FloatRange(0.03f, 0.7f, rand);
@@ -184,15 +183,15 @@ public class AddOutcroppings : BaseZoneGenerator
                 int baseSmoothRad = Math.Max(7, (int)(fullHeight / 6));
 
 
-                List<MyPointF> potentialLowestPoints = new List<MyPointF>();
+                List<Point2I> potentialLowestPoints = new List<Point2I>();
 
                 for (int x = 0; x < GridSize; x++)
                 {
-                    for (int y = 0; y < GridSize; y++)
+                    for (int z = 0; z < GridSize; z++)
                     {
                         int numCells = 0;
                         float totalSum = 0;
-                        int smoothRad = Math.Max(2, (int)(baseSmoothRad * (1 + smoothNoise[x, y])));
+                        int smoothRad = Math.Max(2, (int)(baseSmoothRad * (1 + smoothNoise[x, z])));
                         for (int xx = x - smoothRad; xx <= x + smoothRad; xx++)
                         {
                             if (xx < 0 || xx >= GridSize)
@@ -200,29 +199,29 @@ public class AddOutcroppings : BaseZoneGenerator
                                 continue;
                             }
 
-                            for (int yy = y - smoothRad; yy <= y + smoothRad; yy++)
+                            for (int zz = z - smoothRad; zz <= z + smoothRad; zz++)
                             {
-                                if (yy < 0 || yy >= GridSize)
+                                if (zz < 0 || zz >= GridSize)
                                 {
                                     continue;
                                 }
 
-                                totalSum += grids[xx, yy, 0];
+                                totalSum += grids[xx, zz, 0];
                                 numCells++;
                             }
                         }
 
                         if (numCells > 0)
                         {
-                            grids[x, y, 1] = totalSum / numCells;
+                            grids[x, z, 1] = totalSum / numCells;
                             if (totalSum < numCells && totalSum > 0)
                             {
-                                potentialLowestPoints.Add(new MyPointF(x, y, 0));
+                                potentialLowestPoints.Add(new Point2I(x, z));
                             }
                         }
                         else
                         {
-                            grids[x, y, 1] = 0;
+                            grids[x, z, 1] = 0;
                         }
 
                     }
@@ -248,7 +247,7 @@ public class AddOutcroppings : BaseZoneGenerator
                     }
                 }
 
-                foreach (MyPointF pt in lowestPoints)
+                foreach (Point2I pt in lowestPoints)
                 {
                     float lowPointRadius = RandUtils.FloatRange(1.25f, 2.0f, rand) * fullHeight * MapConstants.MapHeight;
 
@@ -257,13 +256,13 @@ public class AddOutcroppings : BaseZoneGenerator
                     for (int x = 0; x < GridSize; x++)
                     {
                         float ddx = x - pt.X;
-                        for (int y = 0; y < GridSize; y++)
+                        for (int z = 0; z < GridSize; z++)
                         {
-                            float ddy = y - pt.Y;
+                            float ddz = z - pt.Z;
 
-                            double dist = Math.Sqrt(ddx * ddx + ddy * ddy);
+                            double dist = Math.Sqrt(ddx * ddx + ddz * ddz);
                             float scaleDist = (float)Math.Pow(Math.Min(1.0f, dist / lowPointRadius), power);
-                            grids[x, y, 1] *= scaleDist;
+                            grids[x, z, 1] *= scaleDist;
                         }
                     }
                 }
@@ -280,18 +279,17 @@ public class AddOutcroppings : BaseZoneGenerator
                         continue;
                     }
 
-                    for (int y = 0; y < GridSize; y++)
+                    for (int z = 0; z < GridSize; z++)
                     {
-                        int wy = y + my - GridSize / 2;
-                        if (wy < 0 || wy >= _mapProvider.GetMap().GetHhgt())
+                        int wz = z + mz - GridSize / 2;
+                        if (wz < 0 || wz >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
 
-                        if (grids[x, y, 1] != 0)
+                        if (grids[x, z, 1] != 0)
                         {
-                            float roadDist = _md.RoadDistances[wx, wy];
-
+                            float roadDist = _md.RoadDistances[wx, wz];
 
                             float roadScalePercent = MathUtil.GetSmoothScalePercent(10, 60, roadDist);
 
@@ -300,15 +298,15 @@ public class AddOutcroppings : BaseZoneGenerator
                                 roadScalePercent = 0;
                             }
 
-                            grids[x, y, 1] *= roadScalePercent;
+                            grids[x, z, 1] *= roadScalePercent;
 
-                            float mountainHeight = _md.MountainDistPercent[wx, wy];
+                            float mountainHeight = _md.MountainDistPercent[wx, wz];
 
-                            grids[x, y, 1] *= mountainHeight;
+                            grids[x, z, 1] *= mountainHeight;
 
-                            if (grids[x, y, 1] == 1)
+                            if (grids[x, z, 1] == 1)
                             {
-                                float hgt = _md.Heights[wx, wy];
+                                float hgt = _md.Heights[wx, wz];
                                 if (hgt < lowestMapHeight)
                                 {
                                     lowestMapHeight = hgt;
@@ -343,33 +341,32 @@ public class AddOutcroppings : BaseZoneGenerator
                         continue;
                     }
 
-                    for (int y = 0; y < GridSize; y++)
+                    for (int z = 0; z < GridSize; z++)
                     {
-                        int wy = y + my - GridSize / 2;
-                        if (wy < 0 || wy >= _mapProvider.GetMap().GetHhgt())
+                        int wz = z + mz - GridSize / 2;
+                        if (wz < 0 || wz >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
 
-                        if (grids[x, y, 1] <= 0)
+                        if (grids[x, z, 1] <= 0)
                         {
                             continue;
                         }
 
                         if (finalHeightScale > 0)
                         {
-
                             // Calculate the height difference.
                             // grid val * ((maxHeight-worldHeight)+(outcropping overallheight*(1+noise)))
-                            float gridval = grids[x, y, 1] * ((highestMapHeight - _md.Heights[wx, wy]) + fullHeight * (1 + heightScales[x, y]));
+                            float gridval = grids[x, z, 1] * ((highestMapHeight - _md.Heights[wx, wz]) + fullHeight * (1 + heightScales[x, z]));
 
-                            _md.Heights[wx, wy] += gridval * finalHeightScale;
+                            _md.Heights[wx, wz] += gridval * finalHeightScale;
                         }
                         else
                         {
-                            float gridval = grids[x, y, 1] * ((_md.Heights[wx, wy] - lowestMapHeight) - fullHeight * (1 + heightScales[x, y]));
+                            float gridval = grids[x, z, 1] * ((_md.Heights[wx, wz] - lowestMapHeight) - fullHeight * (1 + heightScales[x, z]));
 
-                            _md.Heights[wx, wy] += gridval * -finalHeightScale;
+                            _md.Heights[wx, wz] += gridval * -finalHeightScale;
                         }
                         numAdjusted++;
                     }

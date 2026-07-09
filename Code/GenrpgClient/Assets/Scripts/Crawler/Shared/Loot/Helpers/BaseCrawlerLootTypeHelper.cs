@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Inventory.Entities;
@@ -10,7 +9,6 @@ namespace OxDb.SharedGame.Crawler.Loot.Helpers
     {
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
-        protected IClientRandom _rand = null;
 
         public abstract long HelperKey { get; }
         public abstract void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args);

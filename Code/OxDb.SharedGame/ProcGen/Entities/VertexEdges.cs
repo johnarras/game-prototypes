@@ -8,7 +8,7 @@ namespace OxDb.SharedGame.ProcGen.Entities
         public int PosId { get; set; }
         public int X { get; set; }
 
-        public int Y { get; set; }
+        public int Z { get; set; }
 
         public List<int> AdjacentVerts { get; set; }
 

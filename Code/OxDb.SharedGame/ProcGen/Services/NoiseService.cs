@@ -1,6 +1,7 @@
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.ProcGen.Services
 {
@@ -12,9 +13,9 @@ namespace OxDb.SharedGame.ProcGen.Services
 
     public class NoiseService : INoiseService
     {
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         public float[,] Generate(double pers, double freq, double amp,

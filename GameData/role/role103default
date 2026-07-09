@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 103,
   "Name": "Half-Orc",
-  "Desc": "More Melee",
+  "Desc": "They bring a ferocity to close-quarters that no other race can approach.",
   "Abbrev": "Hc",
   "RoleCategoryId": 2,
   "StartSkillPoints": 1,
@@ -18,11 +18,6 @@
     {
       "EntityTypeId": 43,
       "EntityId": 11,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 15,
       "Amount": 1.0
     }
   ]

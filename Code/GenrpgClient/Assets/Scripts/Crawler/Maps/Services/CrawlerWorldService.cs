@@ -1,15 +1,16 @@
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.MapGen.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Repository;
 using Assets.Scripts.Repository.Constants;
+using Assets.Scripts.Setup.Interfaces;
 using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.MapGen.Helpers;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -30,6 +31,25 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Maps.Services
 {
+
+
+    public interface ICrawlerWorldService : IInjectable, IGameTokenService
+    {
+
+        ValueTask<CrawlerWorld> GenerateWorld(PartyData party);
+        ValueTask<CrawlerWorld> GetWorld(long worldId);
+        CrawlerMap GetMap(long mapId);
+
+        ValueTask SaveWorld(CrawlerWorld world);
+
+        ValueTask<ZoneType> GetCurrentZone(PartyData party, long mapId = 0, int x = -1, int z = -1);
+        ValueTask<long> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z);
+        ValueTask<long> GetMapLevelAtParty(PartyData party);
+        CrawlerMap CreateMap(CrawlerMapGenData genData, int width, int height);
+        ValueTask<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z);
+    }
+
+
     public class CrawlerWorldService : ICrawlerWorldService
     {
         private IClientRepositoryService _repoService = null;
@@ -38,10 +58,9 @@ namespace Assets.Scripts.Crawler.Maps.Services
         private ICrawlerMapGenService _mapGenService = null;
         private ICrawlerService _crawlerService = null;
         private ILogService _logService = null;
-        private IClientRandom _rand = null;
+        private IClientGameState _gs = null;
         private IDispatcher _dispatcher = null;
         private IClientAppService _clientAppService = null;
-        private IClientGameState _gs = null;
         private IPartyService _partyService = null;
         private ICrawlerQuestService _questService = null;
         private ICrawlerOptionsService _optionsService = null;
@@ -54,7 +73,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             _source = CancellationTokenSource.CreateLinkedTokenSource(token);
         }
 
-        public async Task<CrawlerWorld> GenerateWorld(PartyData party)
+        public async ValueTask<CrawlerWorld> GenerateWorld(PartyData party)
         {
 
             long oldWorldId = party.WorldId;
@@ -89,6 +108,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
             if (mapId == 0)
             {
                 mapId = genData.World.GetMaxMapId() + 1;
+            }
+
+            if (width < 4 || height < 4)
+            {
+                _logService.Info("Generating map too small: " + width + " " + height);
             }
 
             genData.World.Maps = genData.World.Maps.Where(x => x.IdKey != mapId).ToList();
@@ -136,7 +160,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 {
                     CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
-                    int spawnCount = RandUtils.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _rand.Rand);
+                    int spawnCount = RandUtils.IntRange(mapSettings.MinZoneUnitSpawns, mapSettings.MaxZoneUnitSpawns, _gs.Rand);
 
                     int sharedZoneSpawnCount = mapSettings.SharedZoneUnitCount;
 
@@ -158,7 +182,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     {
                         if (rareSpawns.Count > 0)
                         {
-                            ZoneUnitSpawn rare = rareSpawns[_rand.Rand.Next() % rareSpawns.Count];
+                            ZoneUnitSpawn rare = rareSpawns[_gs.Rand.Next() % rareSpawns.Count];
                             rareSpawns.Remove(rare);
                             spawns.Remove(rare);
                             map.ZoneUnits.Add(rare);
@@ -167,7 +191,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                     while (map.ZoneUnits.Count < spawnCount && spawns.Count > 0)
                     {
-                        ZoneUnitSpawn spawn = RandUtils.GetRandomElement(spawns, _rand.Rand);
+                        ZoneUnitSpawn spawn = RandUtils.GetRandomElement(spawns, _gs.Rand);
 
                         spawns.Remove(spawn);
                         map.ZoneUnits.Add(spawn);
@@ -195,7 +219,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             return _world?.GetMap(mapId) ?? null;
         }
 
-        public async Task<CrawlerWorld> GetWorld(long worldId)
+        public async ValueTask<CrawlerWorld> GetWorld(long worldId)
         {
 
             if (_world != null && _world.IdKey == worldId)
@@ -223,23 +247,23 @@ namespace Assets.Scripts.Crawler.Maps.Services
             return world;
         }
 
-        public async Task SaveWorld(CrawlerWorld world)
+        public async ValueTask SaveWorld(CrawlerWorld world)
         {
             await _repoService.Save(world);
         }
 
-        private async Task<CrawlerWorld> LoadWorld(long worldId)
+        private async ValueTask<CrawlerWorld> LoadWorld(long worldId)
         {
             return await _repoService.Load<CrawlerWorld>(worldId.ToString());
         }
 
-        private async Task<CrawlerWorld> GenerateInternal(long worldId, CancellationToken token)
+        private async ValueTask<CrawlerWorld> GenerateInternal(long worldId, CancellationToken token)
         {
 
             PartyData party = _crawlerService.GetParty();
             try
             {
-                CrawlerWorld world = new CrawlerWorld() { Id = worldId.ToString(), Name = "World" + worldId, IdKey = worldId, Seed = _rand.Rand.Next() };
+                CrawlerWorld world = new CrawlerWorld() { Id = worldId.ToString(), Name = "World" + worldId, IdKey = worldId, Seed = _gs.Rand.Next() };
                 _world = world;
                 ICrawlerMapGenHelper helper = _mapGenService.GetGenHelper(CrawlerMapTypes.Outdoors);
 
@@ -282,7 +306,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
             return null;
         }
 
-        public async Task<ZoneType> GetCurrentZone(PartyData party, long mapId = 0, int x = -1, int z = -1)
+        public async ValueTask<ZoneType> GetCurrentZone(PartyData party, long mapId = 0, int x = -1, int z = -1)
         {
 
             CrawlerWorld world = await GetWorld(party.WorldId);
@@ -326,12 +350,12 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         }
 
-        public async Task<long> GetMapLevelAtParty(PartyData party)
+        public async ValueTask<long> GetMapLevelAtParty(PartyData party)
         {
             return await GetMapLevelAtPoint(await GetWorld(party.WorldId), party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z);
         }
 
-        public async Task<long> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
+        public async ValueTask<long> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
         {
             CrawlerMap map = world.GetMap(mapId);
 
@@ -344,11 +368,11 @@ namespace Assets.Scripts.Crawler.Maps.Services
             return map.GetMapLevelAtPoint(x, z);
         }
 
-        public async Task<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z)
+        public async ValueTask<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z)
         {
             CrawlerMap map = GetMap(mapId);
 
-            if (map != null)
+            if (false && map != null)
             {
                 if (map.CrawlerMapTypeId != CrawlerMapTypes.City)
                 {

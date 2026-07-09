@@ -5,11 +5,12 @@ using OxDb.SharedGame.MapObjects.Messages;
 using OxDb.SharedGame.Units.Constants;
 using OxDb.SharedGame.Units.Entities;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class OnSpawnHandler : BaseClientMapMessageHandler<OnSpawn>
 {
-    protected override async Awaitable InnerProcess(OnSpawn spawnMessage, CancellationToken token)
+    protected override async ValueTask InnerProcess(OnSpawn spawnMessage, CancellationToken token)
     {
         if (_objectManager.GetMapObject(spawnMessage.ObjId, out MapObject obj))
         {

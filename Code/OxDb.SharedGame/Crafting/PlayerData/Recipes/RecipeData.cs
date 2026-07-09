@@ -23,6 +23,7 @@ namespace OxDb.SharedGame.Crafting.PlayerData.Recipes
         [Key(2)] public override string OwnerId { get; set; }
 
         [Key(3)] public List<IdVal> Levels { get; set; }
+        [Key(4)] public override string VersionTag { get; set; }
 
         public RecipeStatus()
         {
@@ -64,6 +65,7 @@ namespace OxDb.SharedGame.Crafting.PlayerData.Recipes
     public class RecipeData : OwnerIdObjectList<RecipeStatus>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
         public void AddRecipeStatus(long recipeTypeId)
         {

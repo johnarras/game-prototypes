@@ -4,5 +4,6 @@
   "IdKey": 52,
   "Name": "SpellDefMult",
   "Desc": "Spell Dam Reduced",
+  "Icon": "SpellDefMult",
   "GenScalePct": 10
 }

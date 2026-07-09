@@ -139,6 +139,14 @@ PrefabInstance:
       propertyPath: m_LocalRotation.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3731700554955103553, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3731700555145375389, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
+      propertyPath: DefaultSaturation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3731700555145375390, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -182,6 +190,18 @@ PrefabInstance:
     - target: {fileID: 3731700555145375391, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
       propertyPath: m_Name
       value: CoreClientData
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635202326547474054, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
+      propertyPath: m_Antialiasing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635202326547474054, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
+      propertyPath: m_RenderShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4635202326547474054, guid: e044c918e0fdd1a4dae4b477e1411714, type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

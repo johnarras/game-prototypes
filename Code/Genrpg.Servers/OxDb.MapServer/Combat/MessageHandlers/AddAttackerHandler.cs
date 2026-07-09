@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Combat.MessageHandlers
 {
     public class AddAttackerHandler : BaseUnitServerMapMessageHandler<AddAttacker>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, AddAttacker message)
+        protected override async ValueTask InnerProcess(Unit unit, AddAttacker message)
         {
             if (!_unitService.IsOkUnit(unit, false))
             {

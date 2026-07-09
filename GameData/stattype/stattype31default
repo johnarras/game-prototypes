@@ -4,6 +4,7 @@
   "IdKey": 31,
   "Name": "Armor",
   "Desc": "Reduces physical damage.",
+  "Icon": "Armor",
   "GenScalePct": 200,
   "IsCrawlerStat": true
 }

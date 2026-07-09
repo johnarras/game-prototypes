@@ -1,5 +1,4 @@
 using Assets.Scripts.ClientEvents.DataUpdates;
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Input;
 using Assets.Scripts.Input.Interfaces;
@@ -38,7 +37,7 @@ public class PlayerManager : IPlayerManager
     private Unit _unit;
     private UnitController _unitController;
     private GameObject _entity;
-    private IClientRandom _rand;
+    private IClientGameState _gs;
     private CancellationToken _mapToken;
 
     private IClientMapObjectManager _mapObjectManager = null;
@@ -47,7 +46,6 @@ public class PlayerManager : IPlayerManager
     private IInputService _inputService = null;
     private IClientUpdateService _updateService = null;
     private IDispatcher _dispatcher = null;
-    private IClientGameState _gs = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -132,7 +130,7 @@ public class PlayerManager : IPlayerManager
             int sz = (int)(_unitController.entity.transform.position.z);
             int ex = (int)(finalUnit.X);
             int ez = (int)(finalUnit.Z);
-            //WaypointList list = _pathfindingService.CalcPath(_unit, _rand.Rand, sx, sz, ex, ez, true);
+            //WaypointList list = _pathfindingService.CalcPath(_unit, _gs.Rand, sx, sz, ex, ez, true);
 
             //_clientPathfindingUtils.ShowPath(list, _mapToken);
         }
@@ -234,7 +232,7 @@ public class PlayerManager : IPlayerManager
                 return;
             }
 
-            int unitPos = _rand.Rand.Next() % finalUnits.Count;
+            int unitPos = _gs.Rand.Next() % finalUnits.Count;
 
             Unit finalUnit = finalUnits[unitPos];
 

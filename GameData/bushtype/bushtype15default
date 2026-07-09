@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype15default",
+  "ParentId": "default",
+  "IdKey": 15,
+  "Name": "Daisy",
+  "Art": "Daisy",
+  "Scale": 3.0,
+  "VariationCount": 1,
+  "Flags": 13
+}

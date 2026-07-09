@@ -18,6 +18,7 @@ namespace OxDb.SharedCore.GameSettings.Loaders
         Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing);
         List<CreateIndexData> GetIndexes();
         void SetParentChildData(List<ITopLevelSettings> parents, List<IChildSettings> children);
+        ITopLevelSettings CreateDefaultDocument();
     }
 }
 

@@ -9,7 +9,7 @@
   "AncientName": "Karakorum",
   "Population": 20000,
   "MapPixelX": 5896,
-  "MapPixelY": 1941,
+  "MapPixelZ": 1941,
   "BiomeTypeId": 18,
   "CultureTypeId": 13,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 169
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 13
+    },
+    {
+      "CaravanMemberId": 7
+    }
+  ]
 }

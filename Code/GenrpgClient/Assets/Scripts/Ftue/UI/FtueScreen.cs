@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.UI.Entities;
 using OxDb.SharedGame.Ftue.Constants;
 using OxDb.SharedGame.Ftue.Services;
@@ -12,7 +11,6 @@ namespace Assets.Scripts.UI.Blockers
     public class FtueScreen : BlockerScreen
     {
         protected IFtueService _ftueService = null;
-        protected IClientRandom _rand = null;
 
         public GameObject CircleMask;
 
@@ -124,7 +122,7 @@ namespace Assets.Scripts.UI.Blockers
 
         private void OnClickBackground()
         {
-            _ftueService.CompleteStep(_gs.ch, _step.IdKey, _rand.Rand);
+            _ftueService.CompleteStep(_gs.ch, _step.IdKey);
             StartClose();
         }
     }

@@ -1,4 +1,5 @@
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -6,7 +7,6 @@ using OxDb.SharedGame.Crawler.Buffs.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Loot.Services;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.TimeOfDay.Constants;
 using OxDb.SharedGame.Crawler.TimeOfDay.Settings;

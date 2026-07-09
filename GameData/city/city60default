@@ -9,7 +9,7 @@
   "AncientName": "Hegra (Mada'in Salih)",
   "Population": 2000,
   "MapPixelX": 2984,
-  "MapPixelY": 2897,
+  "MapPixelZ": 2897,
   "BiomeTypeId": 8,
   "CultureTypeId": 7,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 19
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

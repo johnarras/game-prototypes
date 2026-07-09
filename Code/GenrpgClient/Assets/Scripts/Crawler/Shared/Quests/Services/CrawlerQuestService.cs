@@ -1,6 +1,6 @@
-using Assets.Scripts.Core;
-using Assets.Scripts.Crawler.Maps;
-using Assets.Scripts.Crawler.Maps.Services.GenerateMaps;
+using Assets.Scripts.Crawler.MapGen.Helpers;
+using Assets.Scripts.Crawler.MapGen.Services;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Assets.Scripts.FloatingText.ClientEvents;
 using OxDb.SharedCore.Entities.Constants;
@@ -14,7 +14,6 @@ using OxDb.SharedGame.Crawler.Loot.Services;
 using OxDb.SharedGame.Crawler.MapGen.Helpers;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -32,6 +31,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace OxDb.SharedGame.Crawler.Quests.Services
@@ -53,20 +53,20 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
 
     public interface ICrawlerQuestService : IInjectable
     {
-        Awaitable SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token);
-        Awaitable AddWorldQuestGivers(PartyData party, CrawlerWorld world, IRandom rand, CancellationToken token);
-        Awaitable CompleteQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
+        ValueTask SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc, CrawlerQuestType questType, IRandom rand, CancellationToken token);
+        ValueTask AddWorldQuestGivers(PartyData party, CrawlerWorld world, IRandom rand, CancellationToken token);
+        ValueTask CompleteQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
         ICrawlerQuestTypeHelper GetHelper(long questTypeId);
-        Awaitable AcceptQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
+        ValueTask AcceptQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
         void DropQuest(PartyData party, FullQuest fullQuest, CancellationToken token);
-        Awaitable<List<string>> UpdateAfterCombat(PartyData party, CrawlerCombatState combat, CancellationToken token);
-        Awaitable<KillQuestTargetResult> GetKillQuestTargets(PartyData party, long level);
-        Awaitable<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool showFullDescription, bool showCurrentState, bool showNPC);
-        Awaitable CheckForCompletedQuests(PartyData party);
-        Awaitable GiveExploreQuestCredit(PartyData party, long mapId);
-        Awaitable<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcTypeId, MapCellDetail npcDetail, CancellationToken token);
-        Awaitable<bool> QuestIsActive(PartyData party, long questId);
-        Awaitable<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId);
+        ValueTask<List<string>> UpdateAfterCombat(PartyData party, CrawlerCombatState combat, CancellationToken token);
+        ValueTask<KillQuestTargetResult> GetKillQuestTargets(PartyData party, long level);
+        ValueTask<string> ShowQuestStatus(PartyData party, long crawlerQuestId, bool showFullDescription, bool showCurrentState, bool showNPC);
+        ValueTask CheckForCompletedQuests(PartyData party);
+        ValueTask GiveExploreQuestCredit(PartyData party, long mapId);
+        ValueTask<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcTypeId, MapCellDetail npcDetail, CancellationToken token);
+        ValueTask<bool> QuestIsActive(PartyData party, long questId);
+        ValueTask<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId);
         bool CanGetQuestCredit(PartyData party, long level);
 
     }
@@ -80,14 +80,13 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
         private ICrawlerWorldService _worldService = null;
         private IDispatcher _dispatcher = null;
         private ICrawlerService _crawlerService = null;
-        private IClientRandom _rand = null;
         private ILootGenService _lootGenService = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private ICrawlerOptionsService _optionsService = null;
 
         private SetupDictionaryContainer<long, ICrawlerQuestTypeHelper> _questTypeHelpers = new SetupDictionaryContainer<long, ICrawlerQuestTypeHelper>();
 
-        public async Awaitable AddWorldQuestGivers(PartyData party, CrawlerWorld world, IRandom rand, CancellationToken token)
+        public async ValueTask AddWorldQuestGivers(PartyData party, CrawlerWorld world, IRandom rand, CancellationToken token)
         {
             foreach (CrawlerMap startMap in world.Maps)
             {
@@ -95,7 +94,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             }
         }
 
-        private async Awaitable SetupQuestsForMap(PartyData party, CrawlerWorld world, CrawlerMap startMap, IRandom rand, CancellationToken token)
+        private async ValueTask SetupQuestsForMap(PartyData party, CrawlerWorld world, CrawlerMap startMap, IRandom rand, CancellationToken token)
         {
             CrawlerQuestSettings questSettings = _gameData.Get<CrawlerQuestSettings>(_gs.ch);
 
@@ -163,7 +162,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             return null;
         }
 
-        public async Awaitable SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc,
+        public async ValueTask SetupQuest(PartyData party, CrawlerWorld world, CrawlerMap startMap, MapLink targetMap, CrawlerNpc npc,
             CrawlerQuestType questType, IRandom rand, CancellationToken token)
         {
             ICrawlerQuestTypeHelper helper = GetHelper(questType.IdKey);
@@ -178,7 +177,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             _dispatcher.Dispatch(new ShowFloatingText(message, EFloatingTextArt.Error));
         }
 
-        public async Awaitable CompleteQuest(PartyData party, FullQuest fullQuest, CancellationToken token)
+        public async ValueTask CompleteQuest(PartyData party, FullQuest fullQuest, CancellationToken token)
         {
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 
@@ -228,7 +227,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             LootGenData lootGenData = await _lootGenService.CreateLootGenData(party, questSettings.ExpLootMult, questSettings.GoldLootMult, questSettings.ItemLootMult, "You Completed a Quest!", ECrawlerStates.NpcMain, fullQuest.NpcDetail);
 
 
-            lootGenData.ItemCount += (int)RandUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _rand.Rand);
+            lootGenData.ItemCount += (int)RandUtils.IntRange(1, (int)Math.Ceiling(questSettings.ItemLootMult), _gs.Rand);
             party.Quests.Remove(partyQuest);
             party.CompletedQuests.SetBitIndex(fullQuest.Quest.IdKey);
 
@@ -250,7 +249,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
 
         }
 
-        public async Awaitable AcceptQuest(PartyData party, FullQuest fullQuest, CancellationToken token)
+        public async ValueTask AcceptQuest(PartyData party, FullQuest fullQuest, CancellationToken token)
         {
             PartyQuest currQuest = party.Quests.FirstOrDefault(x => x.CrawlerQuestId == fullQuest.Quest.IdKey);
 
@@ -267,7 +266,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             _dispatcher.Dispatch(new UpdateQuestUI());
         }
 
-        public async Awaitable CheckForCompletedQuests(PartyData party)
+        public async ValueTask CheckForCompletedQuests(PartyData party)
         {
             bool didCompleteAQuest = false;
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
@@ -315,7 +314,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             _dispatcher.Dispatch(new UpdateQuestUI());
         }
 
-        public async Awaitable<List<string>> UpdateAfterCombat(PartyData party, CrawlerCombatState combat, CancellationToken token)
+        public async ValueTask<List<string>> UpdateAfterCombat(PartyData party, CrawlerCombatState combat, CancellationToken token)
         {
 
             List<CrawlerUnit> killedUnits = combat.EnemiesKilled;
@@ -430,9 +429,9 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
 
                 for (int i = 0; i < lootCheckQuantity; i++)
                 {
-                    if (_rand.Rand.NextDouble() < lootChance)
+                    if (_gs.Rand.NextDouble() < lootChance)
                     {
-                        long indexChosen = RandUtils.LongRange(0, totalQuantity, _rand.Rand);
+                        long indexChosen = RandUtils.LongRange(0, totalQuantity, _gs.Rand);
 
                         for (int q = 0; q < finalItemQuests.Count; q++)
                         {
@@ -478,7 +477,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             return retval;
         }
 
-        public async Awaitable<KillQuestTargetResult> GetKillQuestTargets(PartyData party, long level)
+        public async ValueTask<KillQuestTargetResult> GetKillQuestTargets(PartyData party, long level)
         {
             KillQuestTargetResult result = new KillQuestTargetResult();
 
@@ -519,7 +518,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
                 if (utype != null)
                 {
                     result.AllPossibleUnitTypeIds.Add(utype.IdKey);
-                    if (!canGetQuestCredit || _rand.Rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
+                    if (!canGetQuestCredit || _gs.Rand.NextDouble() > questSettings.ForceUnitInCombatChance * (1 + party.FailedKillQuestTimes))
                     {
                         continue;
                     }
@@ -542,7 +541,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             return result;
         }
 
-        public async Awaitable<string> ShowQuestStatus(PartyData party, long currentQuestId, bool showFullDescription, bool showCurrentState, bool showNPC)
+        public async ValueTask<string> ShowQuestStatus(PartyData party, long currentQuestId, bool showFullDescription, bool showCurrentState, bool showNPC)
         {
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 
@@ -561,7 +560,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             return "Unknown Quest Type";
         }
 
-        public async Awaitable GiveExploreQuestCredit(PartyData party, long mapId)
+        public async ValueTask GiveExploreQuestCredit(PartyData party, long mapId)
         {
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 
@@ -607,7 +606,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             return allQuests;
         }
 
-        public async Awaitable<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcId, MapCellDetail currNpcDetail, CancellationToken token)
+        public async ValueTask<NPCQuestStatus> GetNpcQuestStatus(PartyData party, CrawlerWorld world, long npcId, MapCellDetail currNpcDetail, CancellationToken token)
         {
 
             List<CrawlerQuest> allQuests = GetAllQuestsForNpc(party, world, npcId);
@@ -646,7 +645,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
                     CrawlerMap cityMap = world.GetMap(1);
 
                     int startQuestCount = world.Quests.Count;
-                    await SetupQuestsForMap(party, world, cityMap, _rand.Rand, token);
+                    await SetupQuestsForMap(party, world, cityMap, _gs.Rand, token);
                     int endQuestCount = world.Quests.Count;
 
                     if (endQuestCount > startQuestCount)
@@ -696,7 +695,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
             return questStatus;
         }
 
-        public async Awaitable<bool> QuestIsActive(PartyData party, long questId)
+        public async ValueTask<bool> QuestIsActive(PartyData party, long questId)
         {
             if (!_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
@@ -710,7 +709,7 @@ namespace OxDb.SharedGame.Crawler.Quests.Services
 
         }
 
-        public async Awaitable<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId)
+        public async ValueTask<List<CrawlerQuest>> GetQuestsForMap(PartyData party, long mapId)
         {
             CrawlerWorld world = await _worldService.GetWorld(party.WorldId);
 

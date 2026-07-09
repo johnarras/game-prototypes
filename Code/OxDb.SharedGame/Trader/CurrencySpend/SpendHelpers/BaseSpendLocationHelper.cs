@@ -44,7 +44,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
             return validSpends.FirstOrDefault();
         }
 
-        public abstract Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity);
+        public abstract ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity);
 
     }
 }

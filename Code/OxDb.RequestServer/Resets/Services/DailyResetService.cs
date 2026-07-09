@@ -2,6 +2,7 @@ using OxDb.RequestServer.Core;
 using OxDb.RequestServer.Resets.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Resets.PlayerData;
 using OxDb.SharedGame.Resets.Settings;
@@ -9,6 +10,10 @@ using OxDb.SharedGame.Time.Services;
 
 namespace OxDb.RequestServer.Resets.Services
 {
+    public interface IDailyResetService : IInjectable
+    {
+        ValueTask DailyReset(WebContext context);
+    }
     public class DailyResetService : IDailyResetService
     {
 
@@ -19,10 +24,8 @@ namespace OxDb.RequestServer.Resets.Services
         private OrderedSetupDictionaryContainer<Type, IDailyResetHelper> _resetHelpers = new OrderedSetupDictionaryContainer<Type, IDailyResetHelper>();
         //private List<IResetHelper> _helpers = null;
 
-        public async Task DailyReset(WebContext context)
+        public async ValueTask DailyReset(WebContext context)
         {
-
-
             CoreData coreData = await context.GetAsync<CoreData>();
 
             ResetSettings settings = _gameData.Get<ResetSettings>(coreData);

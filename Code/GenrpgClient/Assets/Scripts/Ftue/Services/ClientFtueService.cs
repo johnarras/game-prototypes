@@ -36,7 +36,7 @@ namespace Assets.Scripts.Ftue.Services
             new Dictionary<string, double>() { [AnalyticsKeys.FtueStepId] = step.IdKey });
         }
 
-        public override async Task<FtueStep> StartNextStep(IUnitDataLookup lookup)
+        public override async ValueTask<FtueStep> StartNextStep(IUnitDataLookup lookup)
         {
             FtueStep newStep = await base.StartNextStep(lookup);
 

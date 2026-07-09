@@ -8,9 +8,9 @@ namespace OxDb.MapServer.AI.MessageHandlers
 {
     public class AIUpdateHandler : BaseUnitServerMapMessageHandler<AIUpdate>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, AIUpdate message)
+        protected override async ValueTask InnerProcess(Unit unit, AIUpdate message)
         {
-            if (!_aiService.Update(rand.Rand, unit))
+            if (!_aiService.Update(unit))
             {
                 return;
             }

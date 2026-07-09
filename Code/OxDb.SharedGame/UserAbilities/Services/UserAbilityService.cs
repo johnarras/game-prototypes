@@ -2,6 +2,7 @@ using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.PlayerFiltering.Interfaces;
 using OxDb.SharedGame.UserAbilities.Settings;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.UserAbilities.Services
 {
@@ -9,9 +10,9 @@ namespace OxDb.SharedGame.UserAbilities.Services
     {
         private IGameData _gameData = null;
 
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         public long GetAbilityTotal(IFilteredObject filtered, long userAbilityId, long upgradeRank)

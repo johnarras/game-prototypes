@@ -3,6 +3,7 @@ using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Units.Mappers
 {
@@ -11,9 +12,9 @@ namespace OxDb.SharedGame.Units.Mappers
     {
         public virtual Version GetMinClientVersion() { return VersionConstants.MinVersion; }
         public virtual Version GetMaxClientVersion() { return VersionConstants.MaxVersion; }
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
         public virtual IUnitData MapToAPI(IUnitData serverObject)
         {

@@ -32,6 +32,7 @@ namespace OxDb.SharedGame.Characters.PlayerData
         [Key(19)] public ABList AB { get; set; } = new ABList();
         public string GetId() { return Id; }
 
+        [Key(20)] public override string VersionTag { get; set; }
         public string GetDocName(long settingsNameId)
         {
             if (_overrideList == null)

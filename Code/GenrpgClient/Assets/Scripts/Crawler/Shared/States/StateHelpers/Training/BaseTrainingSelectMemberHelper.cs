@@ -17,7 +17,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
 
         public abstract ECrawlerStates GetNextState();
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

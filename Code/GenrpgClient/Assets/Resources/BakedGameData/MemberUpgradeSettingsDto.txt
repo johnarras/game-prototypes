@@ -63,7 +63,7 @@
     {
       "IdKey": 7,
       "Name": "Willpower Bonus",
-      "Desc": "More Mana Per Level",
+      "Desc": "More Mana Per Level, Better Summons",
       "Icon": "",
       "Art": "",
       "BonusPerTier": 2.0,
@@ -72,6 +72,17 @@
     },
     {
       "IdKey": 8,
+      "Name": "Leadership Bonus",
+      "Desc": "Makes summons stronger.",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "BonusPerTier": 2.0,
+      "EntityTypeId": 43,
+      "EntityId": 18
+    },
+    {
+      "IdKey": 9,
       "Name": "Melee Scaling",
       "Desc": "More Melee Hits Per Level",
       "Icon": "",
@@ -81,7 +92,7 @@
       "EntityId": 1
     },
     {
-      "IdKey": 9,
+      "IdKey": 10,
       "Name": "Ranged Scaling",
       "Desc": "More Ranged Hits Per Level",
       "Icon": "",
@@ -91,7 +102,7 @@
       "EntityId": 2
     },
     {
-      "IdKey": 10,
+      "IdKey": 11,
       "Name": "SpellDam Scaling",
       "Desc": "More Attack Spell Hits Per Level",
       "Icon": "",
@@ -101,7 +112,7 @@
       "EntityId": 3
     },
     {
-      "IdKey": 11,
+      "IdKey": 12,
       "Name": "Healing Scaling",
       "Desc": "More Healing Ticks Per Level",
       "Icon": "",
@@ -111,7 +122,7 @@
       "EntityId": 4
     },
     {
-      "IdKey": 12,
+      "IdKey": 13,
       "Name": "Summon Scaling",
       "Desc": "More Summoned Creatures Per Level",
       "Icon": "",
@@ -121,9 +132,9 @@
       "EntityId": 5
     },
     {
-      "IdKey": 13,
-      "Name": "Utility Scaling",
-      "Desc": "Better Utility Scaling Per Level",
+      "IdKey": 14,
+      "Name": "Divination Scaling",
+      "Desc": "Better Divination Scaling Per Level",
       "Icon": "",
       "Art": "",
       "BonusPerTier": 0.05,
@@ -131,7 +142,7 @@
       "EntityId": 6
     },
     {
-      "IdKey": 14,
+      "IdKey": 15,
       "Name": "Defense Scaling",
       "Desc": "Better Defense Scaling Per Level",
       "AtlasPrefix": "",
@@ -140,6 +151,17 @@
       "BonusPerTier": 0.05,
       "EntityTypeId": 41,
       "EntityId": 7
+    },
+    {
+      "IdKey": 16,
+      "Name": "Mobility Scaling",
+      "Desc": "Better Mobility Scaling Per Level",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "",
+      "BonusPerTier": 0.05,
+      "EntityTypeId": 41,
+      "EntityId": 8
     }
   ],
   "Parent": {
@@ -149,5 +171,5 @@
     "Name": "MemberUpgradeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-08-29T11:13:02.593Z"
+  "SaveTime": "2026-06-29T21:30:00.911Z"
 }

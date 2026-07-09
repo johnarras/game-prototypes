@@ -2,23 +2,34 @@
   "Id": "role6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Name": "Engineer",
-  "Desc": "Hybrid ",
-  "Abbrev": "En",
+  "Name": "Paladin",
+  "Desc": "A fighter who can also heal.",
+  "Abbrev": "Pa",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 18,
-  "ManaPerLevel": 14,
-  "MaxArmorScalingTypeId": 4,
-  "CritPercent": 2,
+  "HealthPerLevel": 10,
+  "ManaPerLevel": 8,
+  "MaxArmorScalingTypeId": 3,
   "Guardian": true,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "TrainingXpScale": 1.3,
+  "TrainingGoldScale": 1.3,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
     {
       "EntityTypeId": 2,
-      "EntityId": 24
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 14
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
     },
     {
       "EntityTypeId": 2,
@@ -49,10 +60,6 @@
       "EntityId": 31
     },
     {
-      "EntityTypeId": 31,
-      "EntityId": 70
-    },
-    {
       "EntityTypeId": 100,
       "EntityId": 1
     },
@@ -66,11 +73,11 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 5
+      "EntityId": 6
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 7
+      "EntityId": 8
     },
     {
       "EntityTypeId": 100,
@@ -82,7 +89,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 23
+      "EntityId": 24
     },
     {
       "EntityTypeId": 100,
@@ -94,27 +101,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 34
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 35
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 38
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 62
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 63
+      "EntityId": 39
     },
     {
       "EntityTypeId": 100,
@@ -123,6 +110,10 @@
     {
       "EntityTypeId": 100,
       "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 84
     },
     {
       "EntityTypeId": 100,
@@ -142,67 +133,67 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 92
+      "EntityId": 94
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 131
+      "EntityId": 101
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 262
+      "EntityId": 102
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 270
+      "EntityId": 104
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 271
+      "EntityId": 107
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 280
+      "EntityId": 200
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 281
+      "EntityId": 201
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 10070
+      "EntityId": 203
     }
   ],
   "AmountBonuses": [
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.15
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
       "EntityId": 2,
-      "Amount": 0.1
+      "Amount": 0.15
     },
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.15
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
       "EntityId": 4,
-      "Amount": 0.1
+      "Amount": 0.15
     },
     {
       "EntityTypeId": 41,
       "EntityId": 5,
-      "Amount": 0.1
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
       "EntityId": 6,
-      "Amount": 0.15
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
@@ -216,17 +207,7 @@
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 12,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 14,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 15,
+      "EntityId": 13,
       "Amount": 1.0
     }
   ]

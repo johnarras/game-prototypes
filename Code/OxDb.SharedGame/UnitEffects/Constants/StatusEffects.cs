@@ -14,7 +14,7 @@ namespace OxDb.SharedGame.UnitEffects.Constants
         public const long Withered = 8; // Less bonus value from stats
         public const long Confused = 9; // Chance to target wrong thing TPDP
         public const long Clumsy = 10; // Chance to fail to perform skill in combat
-        public const long Berserk = 11; // Chance to use random skill TODO
+        public const long Berserk = 11; // Chance to use random skill
 
         public const long Rooted = 12; // Cannot melee
         public const long Silenced = 13; // Cannot cast spells

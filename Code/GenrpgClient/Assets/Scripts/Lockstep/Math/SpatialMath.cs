@@ -16,10 +16,10 @@ namespace Assets.Scripts.Lockstep.Math
         {
             // Deterministic integer floor via fixed-point division
             int x = (int)(pos.X / cellSize);
-            int y = (int)(pos.Y / cellSize);
+            int z = (int)(pos.Z / cellSize);
 
             // The core hashing formula
-            return (x * P1) ^ (y * P2);
+            return (x * P1) ^ (z * P2);
         }
     }
 }

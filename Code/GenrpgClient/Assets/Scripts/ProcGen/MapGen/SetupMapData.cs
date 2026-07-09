@@ -40,9 +40,9 @@ public class SetupMapData : BaseZoneGenerator
         {
             for (int gx = 0; gx < _mapProvider.GetMap().BlockCount; gx++)
             {
-                for (int gy = 0; gy < _mapProvider.GetMap().BlockCount; gy++)
+                for (int gz = 0; gz < _mapProvider.GetMap().BlockCount; gz++)
                 {
-                    _awaitableService.ForgetAwaitable(_terrainManager.SetupOneTerrainPatch(gx, gy, token));
+                    _awaitableService.ForgetAwaitable(_terrainManager.SetupOneTerrainPatch(gx, gz, token));
                 }
             }
         }
@@ -63,7 +63,7 @@ public class SetupMapData : BaseZoneGenerator
             _md.Heights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
 
 
-            _md.ZoneCenters = new List<MyPoint>();
+            _md.ZoneCenters = new List<Point2I>();
             _md.MaintainHeights = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
             _md.NearestMountainTopHeight = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
             _md.MountainDistPercent = new float[_mapProvider.GetMap().GetHwid(), _mapProvider.GetMap().GetHhgt()];
@@ -78,23 +78,23 @@ public class SetupMapData : BaseZoneGenerator
 
             for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
             {
-                for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
+                for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
                 {
-                    _md.MapZoneIds[x, y] = 0;
-                    _md.RoadDistances[x, y] = MapConstants.InitialRoadDistance;
-                    _md.MountainDistPercent[x, y] = 1.0f;
-                    _md.EdgeMountainDistPercent[x, y] = 1.0f;
-                    _md.MountainCenterDist[x, y] = MapConstants.InitialMountainDistance;
-                    _md.Flags[x, y] = 0;
+                    _md.MapZoneIds[x, z] = 0;
+                    _md.RoadDistances[x, z] = MapConstants.InitialRoadDistance;
+                    _md.MountainDistPercent[x, z] = 1.0f;
+                    _md.EdgeMountainDistPercent[x, z] = 1.0f;
+                    _md.MountainCenterDist[x, z] = MapConstants.InitialMountainDistance;
+                    _md.Flags[x, z] = 0;
                 }
 
             }
 
             for (int x = 0; x < _md.Awid; x++)
             {
-                for (int y = 0; y < _md.Ahgt; y++)
+                for (int z = 0; z < _md.Ahgt; z++)
                 {
-                    _md.Alphas[x, y, TerrainTexChannels.Base] = 1.0f;
+                    _md.Alphas[x, z, TerrainTexChannels.Base] = 1.0f;
                 }
             }
         }

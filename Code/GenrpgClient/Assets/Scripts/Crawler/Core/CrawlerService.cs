@@ -3,9 +3,9 @@ using Assets.Scripts.Assets;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.ClientEvents.HUD;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Input.Interfaces;
 using Assets.Scripts.UI.Entities;
@@ -21,7 +21,6 @@ using OxDb.SharedGame.Crawler.Combat.Services;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Items.Entities;
 using OxDb.SharedGame.Crawler.Loot.Services;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -72,7 +71,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
         void NewGamePhaseOne();
 
         void NewGamePhaseTwo();
-        Awaitable NewGamePhaseThree(int options);
+        ValueTask NewGamePhaseThree(int options);
         void ClearSpeedup();
         List<IStateHelper> GetAllStateHelpers();
         long GetCrawlerScreenId();
@@ -87,7 +86,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
         protected ILogService _logService = null;
         protected IRepositoryService _repoService = null;
         protected IDispatcher _dispatcher = null;
-        protected IClientRandom _rand = null;
+        protected IClientGameState _gs = null;
         protected ICrawlerCombatService _combatService = null;
         protected ICrawlerWorldService _worldService = null;
         protected ILootGenService _lootGenService = null;
@@ -100,7 +99,6 @@ namespace OxDb.SharedGame.Crawler.States.Services
         private ITextSerializer _textSerializer = null;
         private ICrawlerOptionsService _optionsService = null;
         private IGameData _gameData = null;
-        private IClientGameState _gs = null;
         protected IPartyService _partyService = null;
 
         public const string SaveFileSuffix = ".sav";
@@ -177,7 +175,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
 
                 _dispatcher.Dispatch(new HideInfoPanelEvent());
 
-                _awaitableService.ForgetAwaitable(ChangeStateAsync(fullCrawlerState, token));
+                _ = ChangeStateAsync(fullCrawlerState, token);
             }
 
             if (_inputService.WasPressedThisFrame(Key.Escape))
@@ -230,10 +228,9 @@ namespace OxDb.SharedGame.Crawler.States.Services
         }
 
         private bool _changingState = false;
-        private async Awaitable ChangeStateAsync(FullCrawlerState fullState, CancellationToken token)
+        private async ValueTask ChangeStateAsync(FullCrawlerState fullState, CancellationToken token)
         {
             _changingState = true;
-            await Awaitable.MainThreadAsync();
             try
             {
                 CrawlerStateData currData = fullState.StateData;
@@ -392,11 +389,11 @@ namespace OxDb.SharedGame.Crawler.States.Services
 
         public void InitPartyAfterLoad(PartyData party)
         {
-            _awaitableService.ForgetAwaitable(StartGameAfterLoadAsync(party));
+            _ = StartGameAfterLoadAsync(party);
         }
 
 
-        private async Awaitable StartGameAfterLoadAsync(PartyData party)
+        private async ValueTask StartGameAfterLoadAsync(PartyData party)
         {
             if (party == null)
             {
@@ -428,7 +425,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
 
             if (party.WorldId < 1)
             {
-                party.WorldId = _rand.Rand.Next() % 5000000;
+                party.WorldId = _gs.Rand.Next() % 5000000;
             }
 
             CrawlerWorld world = await _worldService.GetWorld(_party.WorldId);
@@ -475,7 +472,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
                 }
             }
 
-            party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _rand.Rand.Next() };
+            party = new PartyData() { Id = typeof(PartyData).Name + slot, SaveSlotId = slot, Seed = _gs.Rand.Next() };
 
             return party;
         }
@@ -607,7 +604,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.CrawlerNewGameOptions));
         }
 
-        public async Awaitable NewGamePhaseThree(int options)
+        public async ValueTask NewGamePhaseThree(int options)
         {
             _dispatcher.Dispatch(new OpenScreen(ScreenNames.Loading));
 
@@ -619,7 +616,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
                 _party = LoadPremadeParty(LoadSaveConstants.MinSlot);
             }
             _party.Options = options;
-            _party.Seed = _rand.Rand.Next();
+            _party.Seed = _gs.Rand.Next();
 
             _party.Flags = 0;
             _party.DaysPlayed = 0;
@@ -629,7 +626,6 @@ namespace OxDb.SharedGame.Crawler.States.Services
             _party.Currencies = new SmallIdLongCollection();
 
             _party.Currencies.Add(CoreCurrencyTypes.Coins, _gameData.Get<CrawlerSettings>(_gs.ch).StartGold);
-
 
             CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
 

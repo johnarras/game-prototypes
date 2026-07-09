@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Levelup.MessageHandlers
 {
     public class NewLevelHandler : BaseMapObjectServerMapMessageHandler<NewRpgLevel>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, NewRpgLevel message)
+        protected override async ValueTask InnerProcess(MapObject obj, NewRpgLevel message)
         {
             await Task.CompletedTask;
             obj.AddMessage(message);

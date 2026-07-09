@@ -16,7 +16,7 @@ namespace OxDb.SharedGame.Trader.Holdings.PlayerData
     [MessagePackObject]
     public class HoldingsData : UniquePersonalUserData, IUserData
     {
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.Holdings; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.Holdings; }
 
 
         public override PersonalDataAccumulation GetAccumulation()

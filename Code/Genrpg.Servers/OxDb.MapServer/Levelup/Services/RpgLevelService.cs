@@ -19,9 +19,9 @@ namespace OxDb.MapServer.Levelup.Services
 {
     public interface IRpgLevelService : IInjectable
     {
-        Task UpdateLevel(IRandom rand, Character ch);
+        Task UpdateLevel(Character ch);
         void SetupLevels(GameData data);
-        Task<bool> GiveLevelRewards(IRandom rand, Character ch, RpgLevel lev);
+        Task<bool> GiveLevelRewards(Character ch, RpgLevel lev);
 
     }
 
@@ -32,7 +32,7 @@ namespace OxDb.MapServer.Levelup.Services
         private IMapMessageService _messageService = null;
         private IGameData _gameData = null;
 
-        public async Task UpdateLevel(IRandom rand, Character ch)
+        public async Task UpdateLevel(Character ch)
         {
             CharCurrencyData currencies = ch.Get<CharCurrencyData>();
 
@@ -63,7 +63,7 @@ namespace OxDb.MapServer.Levelup.Services
                     UnitId = ch.Id,
                 };
                 _messageService.SendMessageNear(ch, levelMessage);
-                await GiveLevelRewards(rand, ch, ldata);
+                await GiveLevelRewards(ch, ldata);
             }
 
             if (endLevel > startLevel)
@@ -74,7 +74,7 @@ namespace OxDb.MapServer.Levelup.Services
             }
         }
 
-        public virtual async Task<bool> GiveLevelRewards(IRandom rand, Character ch, RpgLevel lev)
+        public virtual async Task<bool> GiveLevelRewards(Character ch, RpgLevel lev)
         {
 
             if (lev == null)
@@ -91,7 +91,7 @@ namespace OxDb.MapServer.Levelup.Services
 
             if (lev.RewardList != null)
             {
-                await _rewardService.GiveRewards(ch, new List<RewardList>() { _rewardService.CreateRewardList(RewardSources.Kill, lev.RewardList, lev.IdKey) }, null);
+                await _rewardService.GiveRewards(ch, _rewardService.CreateListFromList(RewardSources.Kill, lev.IdKey, lev.RewardList), null);
             }
 
             ch.AbilityPoints += lev.AbilityPoints;

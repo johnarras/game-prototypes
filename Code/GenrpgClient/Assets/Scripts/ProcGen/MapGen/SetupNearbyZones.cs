@@ -46,13 +46,13 @@ public class SetupNearbyZones : BaseAddMountains
 
                 if (zone1 != null && zone2 != null)
                 {
-                    int xmid1 = (zone1.XMin + zone1.XMax) / 2;
-                    int ymid1 = (zone1.ZMin + zone1.ZMax) / 2;
-                    int xmid2 = (zone2.XMin + zone2.XMax) / 2;
-                    int ymid2 = (zone2.ZMin + zone2.ZMax) / 2;
+                    int xmid1 = (zone1.MinX + zone1.MaxX) / 2;
+                    int zmid1 = (zone1.MinZ + zone1.MaxZ) / 2;
+                    int xmid2 = (zone2.MinX + zone2.MaxX) / 2;
+                    int zmid2 = (zone2.MinZ + zone2.MaxZ) / 2;
                     int dx = xmid1 - xmid2;
-                    int dy = ymid1 - ymid2;
-                    float dist = (float)Math.Sqrt(dx * dx + dy * dy);
+                    int dz = zmid1 - zmid2;
+                    float dist = (float)Math.Sqrt(dx * dx + dz * dz);
                     genZone1.AddNearbyZone(zone2, dist);
                     genZone2.AddNearbyZone(zone1, dist);
                 }

@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.GameObjects;
@@ -43,7 +42,7 @@ namespace Assets.Scripts.Dungeons.Audio
 
 
         private IClientUpdateService _updateService = null;
-        private IClientRandom _rand = null;
+        private IClientGameState _gs = null;
         private IClientAppService _appService = null;
         private IDispatcher _dispatcher = null;
         private ICrawlerMapService _mapService = null;
@@ -163,7 +162,7 @@ namespace Assets.Scripts.Dungeons.Audio
                     continue;
                 }
 
-                if (_rand.Rand.NextDouble() < status.Sound.ProcsPerSecond / _appService.TargetFrameRate)
+                if (_gs.Rand.NextDouble() < status.Sound.ProcsPerSecond / _appService.TargetFrameRate)
                 {
                     _dispatcher.Dispatch(new PlaySound(status.Sound.SoundName));
                     status.ElapsedTimeSinceLastPlay = 0;

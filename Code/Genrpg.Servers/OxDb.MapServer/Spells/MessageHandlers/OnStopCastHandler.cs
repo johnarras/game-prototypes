@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class OnStopCastHandler : BaseMapObjectServerMapMessageHandler<OnStopCast>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnStopCast message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnStopCast message)
         {
             obj.AddMessage(message);
         }

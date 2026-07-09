@@ -1,6 +1,7 @@
 {
   "Id": "default",
-  "EncounterChance": 0.15,
+  "EncounterChance": 0.03,
+  "CornerSmallRoomEncounterChance": 0.75,
   "Name": "MapEncounterSettings",
-  "SaveTime": "2026-01-25T15:44:27.786Z"
+  "SaveTime": "2026-07-09T19:36:49.686Z"
 }

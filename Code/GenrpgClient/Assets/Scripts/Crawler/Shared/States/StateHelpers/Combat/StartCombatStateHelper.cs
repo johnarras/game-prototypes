@@ -14,7 +14,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
     {
         public override ECrawlerStates HelperKey => ECrawlerStates.StartCombat;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = null;
 

@@ -9,7 +9,7 @@
   "AncientName": "Brundisium",
   "Population": 40000,
   "MapPixelX": 2008,
-  "MapPixelY": 2245,
+  "MapPixelZ": 2245,
   "BiomeTypeId": 1,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 5
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

@@ -12,12 +12,12 @@ namespace OxDb.SharedGame.Attributes.Helpers
         protected IAttributeService _attributeService = null;
         public abstract long HelperKey { get; }
 
-        public virtual async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
+        public virtual async ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
             return await _attributeService.GetQuantity(context, HelperKey, entityId);
         }
 
-        public virtual async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public virtual async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             return await _attributeService.GiveReward(context, HelperKey, entityId, quantity);
         }

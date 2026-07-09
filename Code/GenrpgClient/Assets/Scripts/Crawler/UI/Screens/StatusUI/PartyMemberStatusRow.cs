@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Assets.Textures;
+using Assets.Scripts.Crawler.Shared.GameEvents;
 using Assets.Scripts.Crawler.UI.Units;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.GameEvents;
@@ -10,6 +11,7 @@ using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.Crawler.States.StateHelpers.Exploring;
 using OxDb.SharedGame.Crawler.Training.Services;
 using OxDb.SharedGame.Stats.Constants;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,6 +45,9 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
         public GImage LevelUpImage;
         public GImage GuardianImage;
 
+
+        private Action _clickAction = null;
+
         public void SetData(int memberIndex)
         {
             _memberIndex = memberIndex;
@@ -53,7 +58,14 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
             AddUpdate(OnLateUpdate, UpdateTypes.Late);
             _uiService.SetButton(Button, name, ClickPartyMember);
             _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
+            _dispatcher.AddListener<ClearSelectCrawlerUnitActions>(OnClearSelectCrawlerActions, GetToken());
+            _dispatcher.AddListener<SelectPartyMemberIconAction>(OnSelectPartyMemberIcon, GetToken());
             UpdateData();
+        }
+
+        private void OnClearSelectCrawlerActions(ClearSelectCrawlerUnitActions clear)
+        {
+            _clickAction = null;
         }
 
         public PartyMember GetPartyMember()
@@ -61,12 +73,29 @@ namespace Assets.Scripts.UI.Crawler.StatusUI
             return _partyMember;
         }
 
+        private void OnSelectPartyMemberIcon(SelectPartyMemberIconAction action)
+        {
+            if (action.Member == _partyMember)
+            {
+                _clickAction = action.ClickAction;
+            }
+        }
+
         private void ClickPartyMember()
         {
             _partyMember = _crawlerService.GetParty().GetMemberInSlot(_memberIndex);
 
+
+
             if (_partyMember == null)
             {
+                _clickAction = null;
+                return;
+            }
+
+            if (_clickAction != null)
+            {
+                _clickAction.Invoke();
                 return;
             }
 

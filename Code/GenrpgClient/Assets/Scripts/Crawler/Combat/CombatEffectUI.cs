@@ -3,7 +3,6 @@
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.CombatFX;
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
 using OxDb.SharedCore.Utils;
@@ -25,7 +24,6 @@ namespace Assets.Scripts.Crawler.Combat
         const string CombatHitPrefabSuffix = "CombatHit";
 
         private ICrawlerService _crawlerService = null;
-        protected IClientRandom _rand = null;
 
         public GImage MainImage;
         public GameObject MainImageParent;
@@ -160,7 +158,7 @@ namespace Assets.Scripts.Crawler.Combat
                         }
                     }
 
-                    string artName = "CombatHit" + _rand.Rand.Next(1, 3);
+                    string artName = "CombatHit" + _gs.Rand.Next(1, 3);
 
                     _dispatcher.Dispatch(new PlaySound(CrawlerAudio.MonsterHit));
                     if (_combatHits.ContainsKey(artName))
@@ -263,9 +261,9 @@ namespace Assets.Scripts.Crawler.Combat
             _hitImageFrame = 0;
             RectTransform rectTransform = HitImage.GetComponent<RectTransform>();
 
-            float dx = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand.Rand);
+            float dx = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _gs.Rand);
 
-            float dy = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _rand.Rand);
+            float dy = RandUtils.FloatRange(-MaxHitAnchorOffset, MaxHitAnchorOffset, _gs.Rand);
 
             float angle = 0;
 
@@ -273,22 +271,22 @@ namespace Assets.Scripts.Crawler.Combat
             {
                 if (dy < 0)
                 {
-                    angle = RandUtils.FloatRange(0, 90, _rand.Rand);
+                    angle = RandUtils.FloatRange(0, 90, _gs.Rand);
                 }
                 else
                 {
-                    angle = RandUtils.FloatRange(-90, 0, _rand.Rand);
+                    angle = RandUtils.FloatRange(-90, 0, _gs.Rand);
                 }
             }
             else
             {
                 if (dy < 0)
                 {
-                    angle = RandUtils.FloatRange(90, 180, _rand.Rand);
+                    angle = RandUtils.FloatRange(90, 180, _gs.Rand);
                 }
                 else
                 {
-                    angle = RandUtils.FloatRange(180, 270, _rand.Rand);
+                    angle = RandUtils.FloatRange(180, 270, _gs.Rand);
                 }
             }
 
@@ -297,7 +295,7 @@ namespace Assets.Scripts.Crawler.Combat
 
             rectTransform.localEulerAngles = new Vector3(0, 0, angle);
 
-            rectTransform.localScale = Vector3.one * RandUtils.FloatRange(1, 1 + HitImageSizeDelta, _rand.Rand);
+            rectTransform.localScale = Vector3.one * RandUtils.FloatRange(1, 1 + HitImageSizeDelta, _gs.Rand);
         }
     }
 }

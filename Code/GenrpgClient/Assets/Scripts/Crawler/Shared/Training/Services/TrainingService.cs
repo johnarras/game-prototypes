@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.FloatingText.ClientEvents;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -66,7 +65,6 @@ namespace OxDb.SharedGame.Crawler.Training.Services
 
         private ICrawlerStatService _statService = null;
         protected IGameData _gameData = null;
-        protected IClientRandom _rand = null;
         protected IClientGameState _gs = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;

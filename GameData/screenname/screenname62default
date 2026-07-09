@@ -1,0 +1,8 @@
+{
+  "Id": "screenname62default",
+  "ParentId": "default",
+  "IdKey": 62,
+  "Name": "AuthMenu",
+  "ScreenLayerId": 20,
+  "Subdirectory": "Login"
+}

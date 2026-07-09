@@ -17,7 +17,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
     {
         public override ECrawlerStates HelperKey => ECrawlerStates.OnSelectSpell;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

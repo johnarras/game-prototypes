@@ -12,6 +12,7 @@
   "RandomEncounterChance": 0.12,
   "MovesBetweenEncounters": 6,
   "GroupAdvanceChance": 0.1,
+  "OverburdenedDamageScale": 0.5,
   "CastSpellChance": 0.3,
   "SummonChance": 0.02,
   "DebuffTiersPerUnitLevel": 0.33,
@@ -31,5 +32,5 @@
   "SlowEffectPriorityScale": 0.5,
   "HitPartyRandomMemberChance": 0.05,
   "Name": "CrawlerCombatSettings",
-  "SaveTime": "2025-12-25T00:01:09.379Z"
+  "SaveTime": "2026-06-29T03:11:09.572Z"
 }

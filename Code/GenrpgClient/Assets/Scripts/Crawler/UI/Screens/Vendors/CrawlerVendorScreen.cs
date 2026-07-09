@@ -1,10 +1,8 @@
-
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Crawlers.Services;
 using OxDb.SharedGame.Crawler.Loot.Services;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Party.Services;
 using OxDb.SharedGame.Crawler.States.Constants;
@@ -34,7 +32,6 @@ public class CrawlerVendorScreen : ItemIconScreen
     private IIconService _iconService = null;
     private ICrawlerUpgradeService _upgradeService = null;
     private IPartyService _partyService = null;
-    protected IClientRandom _rand = null;
 
     public const string VendorIconName = "VendorItemIcon";
 
@@ -88,7 +85,7 @@ public class CrawlerVendorScreen : ItemIconScreen
             _party.LastVendorRefresh = DateTime.UtcNow;
 
 
-            int quantity = RandUtils.IntRange(4, 10, _rand.Rand);
+            int quantity = RandUtils.IntRange(4, 10, _gs.Rand);
 
             long level = await _crawlerWorldService.GetMapLevelAtParty(_party);
 
@@ -101,7 +98,7 @@ public class CrawlerVendorScreen : ItemIconScreen
                 long qualityTypeId = (long)quality;
 
                 double remainder = quality - qualityTypeId;
-                if (_rand.Rand.NextDouble() < remainder)
+                if (_gs.Rand.NextDouble() < remainder)
                 {
                     qualityTypeId++;
                 }

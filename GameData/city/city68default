@@ -9,7 +9,7 @@
   "AncientName": "Artaxata",
   "Population": 150000,
   "MapPixelX": 3232,
-  "MapPixelY": 2285,
+  "MapPixelZ": 2285,
   "BiomeTypeId": 15,
   "CultureTypeId": 11,
   "TradeGoodsProduced": [
@@ -23,5 +23,21 @@
       "TradeGoodId": 88
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 8
+    }
+  ]
 }

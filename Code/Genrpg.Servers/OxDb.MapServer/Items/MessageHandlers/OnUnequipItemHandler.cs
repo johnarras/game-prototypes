@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Items.MessageHandlers
 {
     public class OnUnequipItemHandler : BaseMapObjectServerMapMessageHandler<OnUnequipItem>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnUnequipItem message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnUnequipItem message)
         {
             obj.AddMessage(message);
         }

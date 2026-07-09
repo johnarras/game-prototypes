@@ -11,6 +11,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         public float DirX { get; set; }
         public float DirY { get; set; }
         public long Level { get; set; }
+        public int RegionId { get; set; }
     }
 }
 

@@ -9,7 +9,7 @@
   "AncientName": "Tyrus",
   "Population": 60000,
   "MapPixelX": 2800,
-  "MapPixelY": 2585,
+  "MapPixelZ": 2585,
   "BiomeTypeId": 1,
   "CultureTypeId": 5,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 26
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

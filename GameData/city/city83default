@@ -9,7 +9,7 @@
   "AncientName": "Ukek",
   "Population": 10000,
   "MapPixelX": 3296,
-  "MapPixelY": 1745,
+  "MapPixelZ": 1745,
   "BiomeTypeId": 17,
   "CultureTypeId": 13,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 9
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

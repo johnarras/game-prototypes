@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -48,7 +47,6 @@ public class MapGenService : IMapGenService
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
-    protected IClientRandom _rand;
     protected IMapGenData _md;
     public Map GenerateMap(Map startMap)
     {
@@ -85,14 +83,14 @@ public class MapGenService : IMapGenService
     }
 
 
-    private ZoneType ChooseNextZoneType(MyRandom rand, List<ZoneTypeGenData> zoneGenList, int x, int y)
+    private ZoneType ChooseNextZoneType(MyRandom rand, List<ZoneTypeGenData> zoneGenList, int x, int z)
     {
 
         float totalSize = _mapProvider.GetMap().GetHwid();
         float midPt = totalSize / 2;
 
         double xNearCenterPt = MathUtil.Clamp(0, 1 - Math.Abs(x - midPt) / midPt, 1);
-        double yNearCenterPt = MathUtil.Clamp(0, 1 - Math.Abs(y - midPt) / midPt, 1);
+        double zNearCenterPt = MathUtil.Clamp(0, 1 - Math.Abs(z - midPt) / midPt, 1);
 
         double totalChance = 0;
 
@@ -125,23 +123,23 @@ public class MapGenService : IMapGenService
     {
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            zone.XMin = 1000000;
-            zone.ZMin = 1000000;
-            zone.XMax = 0;
-            zone.ZMax = 0;
+            zone.MinX = 1000000;
+            zone.MinZ = 1000000;
+            zone.MaxX = 0;
+            zone.MaxZ = 0;
         }
 
         for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
         {
-            for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
+            for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
             {
-                Zone currZone = _mapProvider.GetMap().Zones.FirstOrDefault(xx => xx.IdKey == _md.MapZoneIds[x, y]);
+                Zone currZone = _mapProvider.GetMap().Zones.FirstOrDefault(xx => xx.IdKey == _md.MapZoneIds[x, z]);
                 if (currZone != null)
                 {
-                    currZone.XMin = Math.Min(x, currZone.XMin);
-                    currZone.XMax = Math.Max(x, currZone.XMax);
-                    currZone.ZMin = Math.Min(y, currZone.ZMin);
-                    currZone.ZMax = Math.Max(y, currZone.ZMax);
+                    currZone.MinX = Math.Min(x, currZone.MinX);
+                    currZone.MaxX = Math.Max(x, currZone.MaxX);
+                    currZone.MinZ = Math.Min(z, currZone.MinZ);
+                    currZone.MaxZ = Math.Max(z, currZone.MaxZ);
                 }
             }
         }
@@ -150,12 +148,12 @@ public class MapGenService : IMapGenService
         {
             foreach (Zone zone in _mapProvider.GetMap().Zones)
             {
-                if (zone.XMin >= zone.XMax || zone.ZMin >= zone.ZMax)
+                if (zone.MinX >= zone.MaxX || zone.MinZ >= zone.MaxZ)
                 {
-                    zone.XMin = 0;
-                    zone.XMax = 0;
-                    zone.ZMin = 0;
-                    zone.ZMax = 0;
+                    zone.MinX = 0;
+                    zone.MaxX = 0;
+                    zone.MinZ = 0;
+                    zone.MaxZ = 0;
                 }
             }
 
@@ -163,7 +161,7 @@ public class MapGenService : IMapGenService
     }
 
 
-    private void SetZoneLevels(List<MyPoint> validCenters)
+    private void SetZoneLevels(List<Point2I> validCenters)
     {
         if (_mapProvider.GetMap() == null || _mapProvider.GetMap().Zones == null || validCenters == null)
         {
@@ -176,9 +174,9 @@ public class MapGenService : IMapGenService
         double minLevelRadius = _mapProvider.GetMap().GetHwid() + _mapProvider.GetMap().GetHhgt();
         double maxLevelRadius = 0;
 
-        foreach (MyPoint center in validCenters)
+        foreach (Point2I center in validCenters)
         {
-            double dist = Math.Sqrt(center.X * center.X + center.Y * center.Y);
+            double dist = Math.Sqrt(center.X * center.X + center.Z * center.Z);
             if (dist < minLevelRadius)
             {
                 minLevelRadius = dist;
@@ -194,7 +192,6 @@ public class MapGenService : IMapGenService
         {
             maxLevelRadius = _mapProvider.GetMap().GetHwid() + _mapProvider.GetMap().GetHhgt();
             minLevelRadius = 0;
-
         }
 
         // Now get the pct the zone center lies along 
@@ -218,9 +215,9 @@ public class MapGenService : IMapGenService
 
             if (dist > 2 * _mapProvider.GetMap().GetHwid())
             {
-                int cx = (zone.XMin + zone.XMax) / 2;
-                int cy = (zone.ZMin + zone.ZMax) / 2;
-                dist = Math.Sqrt(cx * cx + cy * cy);
+                int cx = (zone.MinX + zone.MaxX) / 2;
+                int cz = (zone.MinZ + zone.MaxZ) / 2;
+                dist = Math.Sqrt(cx * cx + cz * cz);
 
             }
             if (dist < minLevelRadius)
@@ -300,13 +297,10 @@ public class MapGenService : IMapGenService
 
         zoneTypes = zoneTypes.Where(x => x.IdKey > 0).ToList();
 
-
         if (zoneTypes.Count < 1)
         {
             return 0;
         }
-
-
 
         double totalWeight = 0;
 
@@ -314,11 +308,6 @@ public class MapGenService : IMapGenService
         {
             totalWeight += zt.ZoneListGenScale;
         }
-
-        if (totalWeight < 0.0001f)
-        {
-        }
-
 
         if (totalWeight > 0.0001f)
         {
@@ -511,22 +500,22 @@ public class MapGenService : IMapGenService
             _mapProvider.GetMap().Zones.Add(baseZone);
         }
 
-        List<MyPoint> newCenters = new List<MyPoint>(_md.ZoneCenters);
+        List<Point2I> newCenters = new List<Point2I>(_md.ZoneCenters);
 
         int zonedelta = (int)(_mapProvider.GetMap().ZoneSize * MapConstants.TerrainPatchSize / 12);
 
         int minRad = 50 + rand.Next() % 26;
         int maxRad = minRad * 3 / 2;
 
-        _md.ZoneCenters = new List<MyPoint>();
+        _md.ZoneCenters = new List<Point2I>();
         while (newCenters.Count > 0)
         {
             int pos = rand.Next() % newCenters.Count;
-            MyPoint center = newCenters[pos];
+            Point2I center = newCenters[pos];
             _md.ZoneCenters.Add(center);
             newCenters.Remove(center);
 
-            ZoneType zoneTypeChosen = ChooseNextZoneType(rand, zoneGenList, center.X, center.Y);
+            ZoneType zoneTypeChosen = ChooseNextZoneType(rand, zoneGenList, center.X, center.Z);
 
             Zone zone = _zoneGenService.Generate(currZoneId, zoneTypeChosen.IdKey, rand.Next() % 1000000000);
 
@@ -539,7 +528,7 @@ public class MapGenService : IMapGenService
             Location finalCenter = new Location()
             {
                 CenterX = (int)center.X + RandUtils.IntRange(-zonedelta, zonedelta, rand),
-                CenterZ = (int)center.Y + RandUtils.IntRange(-zonedelta, zonedelta, rand),
+                CenterZ = (int)center.Z + RandUtils.IntRange(-zonedelta, zonedelta, rand),
                 LocationTypeId = LocationTypes.ZoneCenter,
                 XSize = RandUtils.IntRange(minRad, maxRad, rand),
                 ZSize = RandUtils.IntRange(minRad, maxRad, rand),
@@ -562,7 +551,7 @@ public class MapGenService : IMapGenService
 
         if (allZones.Count > 0)
         {
-            _mapProvider.GetMap().OverrideZoneId = allZones[_rand.Rand.Next() % allZones.Count].IdKey;
+            _mapProvider.GetMap().OverrideZoneId = allZones[_gs.Rand.Next() % allZones.Count].IdKey;
             _mapProvider.GetMap().OverrideZonePercent = 0;
         }
     }

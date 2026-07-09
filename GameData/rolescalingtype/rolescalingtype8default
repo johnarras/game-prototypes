@@ -1,0 +1,8 @@
+{
+  "Id": "rolescalingtype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "Mobility",
+  "Desc": "Allows you to move around the world better.",
+  "ScalingStatTypeId": 17
+}

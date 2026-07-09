@@ -7,7 +7,7 @@ namespace OxDb.DataUtils.Importers.Core
 {
     public abstract class ParentChildImporter<TParent, TChild> : BaseParentDataImporter<TParent> where TParent : ParentSettings<TChild>, new() where TChild : ChildSettings, IIdName, new()
     {
-        protected abstract void ImportChildSubObject(EditorGameState gs, TChild current, int row, string firstColumn, string[] headers, string[] rowWords);
+        protected abstract void ImportSubobject(EditorGameState gs, TParent parent, TChild current, int row, string firstColumn, string[] headers, string[] rowWords);
 
         protected virtual bool IsIncrementalImporter() { return false; }
 
@@ -99,7 +99,7 @@ namespace OxDb.DataUtils.Importers.Core
                 {
                     if (headers.TryGetValue(rowWords[0].ToLower(), out string[] headerRow))
                     {
-                        ImportChildSubObject(gs, currentChild, row, rowWords[0].ToLower(), headerRow, rowWords);
+                        ImportSubobject(gs, currParent, currentChild, row, rowWords[0].ToLower(), headerRow, rowWords);
                     }
                 }
             }

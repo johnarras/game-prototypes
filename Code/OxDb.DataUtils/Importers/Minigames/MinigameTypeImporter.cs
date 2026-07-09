@@ -6,7 +6,7 @@ namespace OxDb.DataUtils.Importers.Minigames
 {
     public class MinigameTypeImporter : ParentChildImporter<MinigameTypeSettings, MinigameType>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, MinigameType current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, MinigameTypeSettings settings, MinigameType current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

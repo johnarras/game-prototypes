@@ -17,11 +17,14 @@ namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
         public override string ShowEffectInfo(CrawlerSpell spell, CrawlerSpellEffect effect)
         {
             StringBuilder sb = new StringBuilder();
-            if (effect.MinQuantity > 0 && effect.MaxQuantity > 0)
+            if (effect.WeaponDamageScale > 0)
             {
-                sb.Append("[" + effect.MinQuantity + "-" + effect.MaxQuantity + "] ");
+                sb.Append(" " + effect.WeaponDamageScale * 100 + "% Wpn ");
             }
-
+            if (effect.StatBonusDamageScale > 0)
+            {
+                sb.Append(" " + effect.StatBonusDamageScale * 100 + "% Stat ");
+            }
             ElementType elemType = _gameData.Get<ElementTypeSettings>(_gs.ch).Get(effect.ElementTypeId);
 
             if (elemType != null)

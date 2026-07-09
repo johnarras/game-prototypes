@@ -1,5 +1,4 @@
 ﻿using OxDb.RequestServer.Core;
-using OxDb.RequestServer.Spawns.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -9,6 +8,7 @@ using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Rewards.Constants;
 using OxDb.SharedGame.Rewards.Services;
 using OxDb.SharedGame.Spawns.Entities;
+using OxDb.SharedGame.Spawns.Services;
 using OxDb.SharedGame.Trader.Constants;
 using OxDb.SharedGame.Trader.Encounters.Entities;
 using OxDb.SharedGame.Trader.Encounters.Settings;
@@ -18,24 +18,24 @@ namespace OxDb.RequestServer.Trader.Encounters.Services
 {
     public interface ITravelEncounterService : IInjectable
     {
-        Task<EncounterResult> TryEndOfTravelDayEncounter(WebContext context, TravelStatus status, TravelDay day);
+        ValueTask<EncounterResult> TryEndOfTravelDayEncounter(WebContext context, TravelStatus status, TravelDay day);
 
-        Task TryCampingEncounter(WebContext context);
+        ValueTask TryCampingEncounter(WebContext context);
     }
 
     public class TravelEncounterService : ITravelEncounterService
     {
 
         private IGameData _gameData = null;
-        private IWebSpawnService _spawnService = null;
+        private ISpawnService _spawnService = null;
         private IRewardService _rewardService = null;
 
-        public async Task TryCampingEncounter(WebContext context)
+        public async ValueTask TryCampingEncounter(WebContext context)
         {
             await Task.CompletedTask;
         }
 
-        public async Task<EncounterResult> TryEndOfTravelDayEncounter(WebContext context, TravelStatus status, TravelDay day)
+        public async ValueTask<EncounterResult> TryEndOfTravelDayEncounter(WebContext context, TravelStatus status, TravelDay day)
         {
 
             CoreData coreData = await context.GetAsync<CoreData>();

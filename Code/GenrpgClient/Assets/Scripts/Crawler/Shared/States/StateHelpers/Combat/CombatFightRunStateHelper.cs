@@ -1,4 +1,3 @@
-
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Crawler.CrawlerPanels;
 using OxDb.SharedCore.Entities.Constants;
@@ -21,12 +20,11 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 {
     public class CombatFightRunStateHelper : BaseCombatStateHelper
     {
-
         private ICrawlerMoveService _moveService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.CombatFightRun;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
             stateData.BGSpriteName = CrawlerClientConstants.BattlefieldImage;

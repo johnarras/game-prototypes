@@ -2,7 +2,7 @@
   "Id": "rolescalingtype6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Name": "Utility",
-  "Desc": "Inceases chance to do odd things like pick locks.",
+  "Name": "Divination",
+  "Desc": "Gives knowledge about the world.",
   "ScalingStatTypeId": 16
 }

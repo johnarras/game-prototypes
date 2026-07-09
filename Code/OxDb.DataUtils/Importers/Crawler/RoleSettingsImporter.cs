@@ -1,4 +1,5 @@
 using OxDb.DataUtils.Entities.Core;
+using OxDb.DataUtils.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.GameSettings.Interfaces;
@@ -150,7 +151,8 @@ namespace OxDb.DataUtils.Importers.Crawler
 
             if (!string.IsNullOrWhiteSpace(missingWords))
             {
-                return false;
+
+                throw new Exception("Missing Words: " + missingWords);
             }
 
             for (int c = 0; c < topRow.Length; c++)
@@ -202,7 +204,7 @@ namespace OxDb.DataUtils.Importers.Crawler
             string normalizedWord = StrUtils.NormalizeWord(words[0]);
             List<IIdName> children = gameData.Get<T>(null).GetChildren().Cast<IIdName>().ToList();
 
-            IIdName child = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == normalizedWord);
+            IIdName? child = children.FirstOrDefault(x => StrUtils.NormalizeWord(x.Name) == normalizedWord);
 
             if (child != null)
             {

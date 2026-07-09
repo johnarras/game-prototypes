@@ -28,13 +28,13 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
 
         for (int x = 0; x < _md.LocationGrid.GetLength(0); x++)
         {
-            for (int y = 0; y < _md.LocationGrid.GetLength(1); y++)
+            for (int z = 0; z < _md.LocationGrid.GetLength(1); z++)
             {
-                if (_md.LocationGrid[x, y] == null)
+                if (_md.LocationGrid[x, z] == null)
                 {
                     continue;
                 }
-                foreach (Location loc in _md.LocationGrid[x, y])
+                foreach (Location loc in _md.LocationGrid[x, z])
                 {
                     if (loc.LocationTypeId != LocationTypes.ZoneCenter)
                     {
@@ -55,25 +55,25 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
             int rskip = 2;
 
             int roadx = -1;
-            int roady = -1;
+            int roadz = -1;
             double minRoadDist = 1000000;
 
             int cx = loc.CenterX;
-            int cy = loc.CenterZ;
+            int cz = loc.CenterZ;
             for (int r = radiusStart; r <= radiusEnd; r += rskip)
             {
-                if (roadx >= 0 && roady >= 0 && r > minRoadDist * 5 / 4)
+                if (roadx >= 0 && roadz >= 0 && r > minRoadDist * 5 / 4)
                 {
                     break;
                 }
                 int rad = r / 2;
-                int[] yvals = new int[] { cy - rad, cy + rad };
+                int[] zvals = new int[] { cz - rad, cz + rad };
 
-                foreach (int y in yvals)
+                foreach (int z in zvals)
                 {
-                    if (y >= 0 && y < _md.Ahgt)
+                    if (z >= 0 && z < _md.Ahgt)
                     {
-                        int dy = y - cy;
+                        int dz = z - cz;
                         for (int x = cx - rad; x <= cx + rad; x += rskip)
                         {
                             if (x < 0 || x >= _md.Awid)
@@ -81,15 +81,15 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
                                 continue;
                             }
 
-                            if (_md.Alphas[x, y, TerrainTexChannels.Road] > 0)
+                            if (_md.Alphas[x, z, TerrainTexChannels.Road] > 0)
                             {
                                 int dx = x - cx;
-                                double dist = Math.Sqrt(dx * dx + dy * dy);
+                                double dist = Math.Sqrt(dx * dx + dz * dz);
                                 if (dist < minRoadDist)
                                 {
                                     minRoadDist = dist;
                                     roadx = x;
-                                    roady = y;
+                                    roadz = z;
                                 }
                             }
                         }
@@ -103,22 +103,22 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
                     if (x >= 0 && x < _md.Awid)
                     {
                         int dx = x - cx;
-                        for (int y = cy - rad; y <= cy + rad; y += rskip)
+                        for (int z = cz - rad; z <= cz + rad; z += rskip)
                         {
-                            if (y < 0 || y >= _md.Ahgt)
+                            if (z < 0 || z >= _md.Ahgt)
                             {
                                 continue;
                             }
 
-                            if (_md.Alphas[x, y, TerrainTexChannels.Road] > 0)
+                            if (_md.Alphas[x, z, TerrainTexChannels.Road] > 0)
                             {
-                                int dy = y - cy;
-                                double dist = Math.Sqrt(dx * dx + dy * dy);
+                                int dz = z - cz;
+                                double dist = Math.Sqrt(dx * dx + dz * dz);
                                 if (dist < minRoadDist)
                                 {
                                     minRoadDist = dist;
                                     roadx = x;
-                                    roady = y;
+                                    roadz = z;
                                 }
                             }
                         }
@@ -126,9 +126,9 @@ public class ConnectSecondaryLocations : BaseZoneGenerator
                 }
             }
 
-            if (roadx > 0 && roady > 0)
+            if (roadx > 0 && roadz > 0)
             {
-                _addRoadService.AddRoad(cx, cy, roadx, roady, cx * 31 + cy * 37 + _mapProvider.GetMap().Seed / 3, rand, false);
+                _addRoadService.AddRoad(cx, cz, roadx, roadz, cx * 31 + cz * 37 + _mapProvider.GetMap().Seed / 3, rand, false);
             }
 
         }

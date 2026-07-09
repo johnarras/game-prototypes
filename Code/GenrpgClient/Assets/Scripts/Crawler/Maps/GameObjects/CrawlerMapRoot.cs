@@ -1,7 +1,7 @@
 using Assets.Scripts.Buildings;
-using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Helpers;
 using Assets.Scripts.Dungeons;
+using Assets.Scripts.MapTerrain;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using System.Collections.Generic;
@@ -15,6 +15,8 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
     {
         public long ZoneTypeId { get; set; }
         public FinalDungeonMaterials FinalMaterials { get; set; } = new FinalDungeonMaterials();
+        public Color ForegroundColor = Color.white;
+        public Color BackgroundColor = Color.black;
 
         public bool IsReady()
         {
@@ -41,14 +43,15 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
     }
 
 
-    public class CrawlerMapRoot : BaseBehaviour
+    public class CrawlerMapRoot : BaseBehaviour, ITerrainContainer
     {
         public string MapId { get; set; }
 
-        public int XZBlockSize { get; set; } = CrawlerMapConstants.DefaultXZBlockSize;
+        public int XZBlockSize { get; set; }
 
-        public int YBlockSize { get; set; } = CrawlerMapConstants.DefaultYBlockSize;
+        public int YBlockSize { get; set; }
 
+        public CoreTerrainData Core { get; set; } = new CoreTerrainData();
 
         private bool[,] _wallsInNECorner = null;
 
@@ -100,10 +103,6 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             }
         }
 
-        public GameObject AssetRoot { get; set; }
-
-        public Terrain GroundTerrain { get; set; }
-        public TerrainData GroundTerrainData { get; set; }
 
         private Dictionary<string, ClientMapCell> _worldCells { get; set; } = new Dictionary<string, ClientMapCell>();
 
@@ -145,9 +144,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         private List<long> _allZoneTypes = null;
 
-        public GameObject TerrainObject = null;
-
-        public List<CrawlerTerrainIndexData> TerrainTextureIndexes { get; set; } = new List<CrawlerTerrainIndexData>();
+        public GameObject TerrainParent = null;
 
         public List<ClientMapCell> GetAllCells()
         {
@@ -403,7 +400,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             }
             BuildingWallOptions.Clear();
 
-            _clientEntityService.Destroy(TerrainObject);
+            _clientEntityService.Destroy(TerrainParent);
 
             PillarAsset = null;
 

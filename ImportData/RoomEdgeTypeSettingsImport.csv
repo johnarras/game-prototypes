@@ -1,0 +1,22 @@
+header roomedgetypesettings,Id,Name,MinFilledPercent,MaxFilledPercent,MinSize,MaxSize,SquareRoomChance,AxisNoiseChance,UseRoomChance,SizeIncreaseChance,
+roomedgetypesettings,default,Default,0,0.4,2,4,0.3,0.2,0.8,0.1,
+,,,,,,,,,,,
+header edgepattern,IdKey,Name,Weight,Quantity,MinTypes,MaxTypes,SymmetricChance,,,,
+edgepattern,1,Blank,1,0,0,0,0,,,,
+edgepattern,2,One,1,1,1,1,0,,,,
+edgepattern,3,TwoSame,1,2,1,1,0.5,,,,
+edgepattern,4,TwoAny,1,2,1,2,0.5,,,,
+edgepattern,5,Three,1,3,1,3,0.5,,,,
+edgepattern,6,FourAny,1,4,1,4,0.5,,,,
+edgepattern,7,FourSymmetric,1,4,2,2,1,,,,
+,,,,,,,,,,,
+header roomedgetype,Idkey,Name,Weight,OffsetChance,NarrowChance,MinDepthRatio,MaxDepthRatio,MinEndDoorChance,MaxEndDoorChance,MinMissingChance,MaxMissingChance
+roomedgetype,1,Flat,1,0,0,0,0,0,0,0,0
+roomedgetype,2,Triangle,1,0.5,0.5,0.5,2,0,1,0,0
+roomedgetype,3,Wedge,1,0.5,0.5,0.5,2,0,1,0,0
+roomedgetype,4,Oval,1,0.5,0.5,0.5,2,0,1,0,0
+roomedgetype,5,Random,1,0.5,0.5,0.5,2,0,1,0,0
+roomedgetype,6,Nooks,1,0.5,0.5,0.5,2,0,1,0,0.4
+roomedgetype,7,Doors,1,0,0,0,0,1,1,0,0.4
+roomedgetype,8,Rooms,1,0.5,0.5,0.5,2,0,1,0,0
+roomedgetype,9,Maze,1,0.5,0.5,0.5,2,0,1,0,0

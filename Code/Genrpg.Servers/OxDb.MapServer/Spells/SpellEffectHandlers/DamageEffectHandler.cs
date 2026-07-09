@@ -2,6 +2,7 @@ using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Achievements.Constants;
 using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Spells.Interfaces;
 using OxDb.SharedGame.Spells.Messages;
 using OxDb.SharedGame.Spells.Settings.Effects;
@@ -22,7 +23,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
         public override bool UseStatScaling() { return true; }
 
 
-        public override List<ActiveSpellEffect> CreateEffects(IRandom rand, SpellHit hitData)
+        public override List<ActiveSpellEffect> CreateEffects(MapObject obj, SpellHit hitData)
         {
             ActiveSpellEffect eff = new ActiveSpellEffect(hitData);
             eff.EntityTypeId = EntityTypes.Damage;
@@ -30,7 +31,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
             return new List<ActiveSpellEffect>() { eff };
         }
 
-        public override bool HandleEffect(IRandom rand, ActiveSpellEffect eff)
+        public override bool HandleEffect(MapObject obj, ActiveSpellEffect eff)
         {
             if (!_objectManager.GetUnit(eff.TargetId, out Unit targ) || targ.HasFlag(UnitFlags.IsDead))
             {
@@ -43,7 +44,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
             int variancePct = 20;
 
             amount = RandUtils.LongRange(startAmount * (100 - variancePct) / 100,
-                startAmount * (100 + variancePct) / 100, rand);
+                startAmount * (100 + variancePct) / 100, obj.Rand);
 
             long absorbAmount = 0;
             bool isImmune = targ.IsFullImmune();
@@ -84,7 +85,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
                 }
             }
             eff.CurrQuantity = amount;
-            return base.HandleEffect(rand, eff);
+            return base.HandleEffect(obj, eff);
         }
     }
 }

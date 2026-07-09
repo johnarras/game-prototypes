@@ -4,5 +4,6 @@
   "IdKey": 33,
   "Name": "HealthRegen",
   "Desc": "Regenerates health.",
+  "Icon": "HealthRegen",
   "GenScalePct": 100
 }

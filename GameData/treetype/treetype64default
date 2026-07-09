@@ -2,8 +2,8 @@
   "Id": "treetype64default",
   "ParentId": "default",
   "IdKey": 64,
-  "Name": "AspenFall",
-  "Art": "AspenFall",
-  "Scale": 2.5,
+  "Name": "MagnoliaPink",
+  "Art": "MagnoliaPink",
+  "Scale": 1.5,
   "VariationCount": 2
 }

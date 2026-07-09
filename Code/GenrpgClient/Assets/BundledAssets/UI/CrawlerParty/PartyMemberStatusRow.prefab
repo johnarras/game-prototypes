@@ -505,6 +505,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7381895841654759651, guid: ecfb35b41dbe24041823bb4f920b6490, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7385840952322471926, guid: ecfb35b41dbe24041823bb4f920b6490, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -838,6 +842,10 @@ PrefabInstance:
       value: ExpBar
       objectReference: {fileID: 0}
     - target: {fileID: 7263015919846935270, guid: ecfb35b41dbe24041823bb4f920b6490, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381895841654759651, guid: ecfb35b41dbe24041823bb4f920b6490, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

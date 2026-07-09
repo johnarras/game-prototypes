@@ -9,6 +9,7 @@ using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.UnitEffects.Constants;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,8 +35,8 @@ namespace Assets.Scripts.Crawler.Combat
         public override void Init()
         {
             base.Init();
-            _dispatcher.AddListener<SetCombatGroupAction>(OnSetCombatGroupAction, GetToken());
-            _dispatcher.AddListener<ClearCombatGroupActions>(OnClearCombatGroupActions, GetToken());
+            _dispatcher.AddListener<SetSelectEnemyGroupAction>(OnSetCombatGroupAction, GetToken());
+            _dispatcher.AddListener<ClearSelectCrawlerUnitActions>(OnClearCombatGroupActions, GetToken());
 
             _dispatcher.AddListener<ShowCombatText>(OnShowCombatText, GetToken());
             _uiService.SetButton(Button, name, OnClickButton);
@@ -67,7 +68,8 @@ namespace Assets.Scripts.Crawler.Combat
             _uiService.SetText(Quantity, "x" + okUnitCount);
             if (!_didInit)
             {
-                Icon.SetImage(Group.UnitType.Icon);
+                List<string> iconNames = new List<string>() { "AirElemental", "Bat", "Bear", "Cat", "Giant" };
+                Icon.SetImage(iconNames[_gs.Rand.Next() % iconNames.Count]);// Group.UnitType.Icon);
             }
             _didInit = true;
 
@@ -96,12 +98,12 @@ namespace Assets.Scripts.Crawler.Combat
             _clickAction?.Invoke();
         }
 
-        private void OnClearCombatGroupActions(ClearCombatGroupActions clear)
+        private void OnClearCombatGroupActions(ClearSelectCrawlerUnitActions clear)
         {
             _clickAction = null;
         }
 
-        private void OnSetCombatGroupAction(SetCombatGroupAction setAction)
+        private void OnSetCombatGroupAction(SetSelectEnemyGroupAction setAction)
         {
 
             if (Group != null && Group == setAction.Group)

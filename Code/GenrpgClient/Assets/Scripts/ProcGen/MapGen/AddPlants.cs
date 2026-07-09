@@ -19,7 +19,7 @@ public class BaseDetailPrototype
     public long noiseSeed = 0;
     public int Index = 0;
     public int XGrid = -1;
-    public int YGrid = -1;
+    public int ZGrid = -1;
     public List<long> zoneIds = new List<long>();
 }
 
@@ -38,7 +38,7 @@ public class AddPlants : BaseZoneGenerator
         await base.Generate(token);
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MinZ, zone.MaxX, zone.MaxZ);
         }
         AddPlantsToMapData(_gs);
     }
@@ -47,9 +47,9 @@ public class AddPlants : BaseZoneGenerator
 
 
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int startz, int endx, int endz)
     {
-        if (startx >= endx || starty >= endy)
+        if (startx >= endx || startz >= endz)
         {
             return;
         }
@@ -70,8 +70,8 @@ public class AddPlants : BaseZoneGenerator
         }
 
         int dx = endx - startx + 1;
-        int dy = endy - starty + 1;
-        int perlinSize = Math.Max(MapConstants.DefaultNoiseSize, Math.Max(dx, dy));
+        int dz = endz - startz + 1;
+        int perlinSize = Math.Max(MapConstants.DefaultNoiseSize, Math.Max(dx, dz));
         float perlinScale = perlinSize * 1.0f / MapConstants.DefaultHeightmapSize;
         while (fullList.Count > MapConstants.MaxGrass)
         {
@@ -144,27 +144,27 @@ public class AddPlants : BaseZoneGenerator
             bool useUniformDensity = false;
             for (int x = startx; x <= endx; x++)
             {
-                for (int y = starty; y <= endy; y++)
+                for (int z = startz; z <= endz; z++)
                 {
                     float currDensityMult = RandUtils.FloatRange(0, 2, rand);
                     numChecked++;
 
-                    if (_md.MapZoneIds[x, y] != zone.IdKey) // zoneobject
+                    if (_md.MapZoneIds[x, z] != zone.IdKey) // zoneobject
                     {
                         badZoneId++;
                         continue;
                     }
 
-                    if (_md.CellHasObject(x, y))
+                    if (_md.CellHasObject(x, z))
                     {
                         continue;
                     }
 
-                    if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater))
+                    if (FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.BelowWater))
                     {
                         continue;
                     }
-                    if (_md.Alphas[x, y, TerrainTexChannels.Road] > 0)
+                    if (_md.Alphas[x, z, TerrainTexChannels.Road] > 0)
                     {
                         bool isNearRoad = false;
                         int roadRad = 0;
@@ -174,13 +174,13 @@ public class AddPlants : BaseZoneGenerator
                             {
                                 continue;
                             }
-                            for (int yy = y - roadRad; yy <= y + roadRad; yy++)
+                            for (int zz = z - roadRad; zz <= z + roadRad; zz++)
                             {
-                                if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                                if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                                 {
                                     continue;
                                 }
-                                if (_md.Alphas[xx, yy, TerrainTexChannels.Road] > 0)
+                                if (_md.Alphas[xx, zz, TerrainTexChannels.Road] > 0)
                                 {
                                     isNearRoad = true;
                                     break;
@@ -193,16 +193,16 @@ public class AddPlants : BaseZoneGenerator
                             continue;
                         }
                     }
-                    float hgt = _terrainManager.SampleHeight(x, y);
+                    float hgt = _terrainManager.SampleHeight(x, z);
                     if (hgt < MapConstants.MinLandHeight * 7 / 10)
                     {
                         continue;
                     }
 
 
-                    float steep = _terrainManager.GetSteepness(x, y);
+                    float steep = _terrainManager.GetSteepness(x, z);
 
-                    if (steep > (midSteepVal + steepVals[x - startx, y - starty]))
+                    if (steep > (midSteepVal + steepVals[x - startx, z - startz]))
                     {
                         continue;
                     }
@@ -213,7 +213,7 @@ public class AddPlants : BaseZoneGenerator
 
                         for (int i = 0; i < plantChanceTimes; i++)
                         {
-                            float origChance = plantChances[i][x - startx, y - starty];
+                            float origChance = plantChances[i][x - startx, z - startz];
                             if (origChance < 0)
                             {
                                 origChance = -origChance / 2;
@@ -230,7 +230,7 @@ public class AddPlants : BaseZoneGenerator
                     }
                     else
                     {
-                        if (_rand.Rand.NextDouble() > currDensityMult * density / 20.0f)
+                        if (_gs.Rand.NextDouble() > currDensityMult * density / 20.0f)
                         {
                             continue;
                         }
@@ -240,9 +240,9 @@ public class AddPlants : BaseZoneGenerator
                         }
                     }
 
-                    if (_zoneGenService.FindMapLocation(x, y, 1) != null)
+                    if (_zoneGenService.FindMapLocation(x, z, 1) != null)
                     {
-                        if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.IsLocationPatch))
+                        if (FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.IsLocationPatch))
                         {
                             nearLocation++;
                             continue;
@@ -272,7 +272,7 @@ public class AddPlants : BaseZoneGenerator
                             val++;
                         }
 
-                        int ny = y - (y / (MapConstants.TerrainPatchSize - 1)) * 0;
+                        int ny = z - (z / (MapConstants.TerrainPatchSize - 1)) * 0;
                         int nx = x - (x / (MapConstants.TerrainPatchSize - 1)) * 0;
                         if (full.plantType.HasFlag(PlantFlags.UsePrefab))
                         {
@@ -295,15 +295,15 @@ public class AddPlants : BaseZoneGenerator
         }
         for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
         {
-            for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
+            for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
             {
-                if (!_md.CellHasObject(x, y))
+                if (!_md.CellHasObject(x, z))
                 {
                     int val = 0;
                     int[] vals = new int[MapConstants.MaxGrass];
                     for (int i = 0; i < MapConstants.MaxGrass; i++)
                     {
-                        int currVal = Math.Min(MapConstants.MaxGrassValue, (int)_md.GrassAmounts[x, y, i]);
+                        int currVal = Math.Min(MapConstants.MaxGrassValue, (int)_md.GrassAmounts[x, z, i]);
                         vals[i] = currVal;
                         for (int j = 0; j < i; j++)
                         {
@@ -313,7 +313,7 @@ public class AddPlants : BaseZoneGenerator
                     }
                     if (val != 0)
                     {
-                        _md.SetEntityData(x, y, EntityTypes.Plant, val);
+                        _md.SetEntityData(x, z, EntityTypes.Plant, val);
                     }
                 }
             }

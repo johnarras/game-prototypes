@@ -9,7 +9,6 @@ using OxDb.SharedGame.Trader.Constants;
 using OxDb.SharedGame.UserEnergy.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
 {
@@ -17,7 +16,7 @@ namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
     {
         private IRewardService _rewardService = null;
 
-        protected override async Awaitable InnerProcess(HourlyUpdateResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(HourlyUpdateResponse response, CancellationToken token)
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
             coreData.NextHourlyUpdate = response.NextHourlyUpdate;

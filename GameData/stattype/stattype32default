@@ -4,6 +4,7 @@
   "IdKey": 32,
   "Name": "Resist",
   "Desc": "Reduces magical damage.",
+  "Icon": "Resist",
   "GenScalePct": 100,
   "IsCrawlerStat": true
 }

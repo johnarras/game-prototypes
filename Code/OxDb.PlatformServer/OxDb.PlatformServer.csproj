@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.75.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OxDb.ServerCore.\OxDb.ServerCore.csproj" />
     <ProjectReference Include="..\OxDb.SharedPlatform\OxDb.SharedPlatform.csproj" />
   </ItemGroup>

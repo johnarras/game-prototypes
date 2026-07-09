@@ -4,6 +4,7 @@
   "IdKey": 15,
   "Name": "Stamina",
   "Desc": "Adds to your health.",
+  "Icon": "Stamina",
   "Art": "GreenCauldron",
   "ColorName": "Green",
   "ColorCode": "#00FF00",

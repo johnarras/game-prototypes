@@ -39,10 +39,10 @@ public class AddWater : BaseZoneGenerator
             return;
         }
 
-        int minx = zone.XMin;
-        int maxx = zone.XMax;
-        int minz = zone.ZMin;
-        int maxz = zone.ZMax;
+        int minx = zone.MinX;
+        int maxx = zone.MaxX;
+        int minz = zone.MinZ;
+        int maxz = zone.MaxZ;
 
 
         int totalSize = (maxx - minx) * (maxz - minz);
@@ -160,17 +160,17 @@ public class AddWater : BaseZoneGenerator
                         continue;
                     }
 
-                    for (int y = cz - maxRadius; y <= cz + maxRadius; y++)
+                    for (int z = cz - maxRadius; z <= cz + maxRadius; z++)
                     {
-                        if (y < 0 || y >= _mapProvider.GetMap().GetHhgt())
+                        if (z < 0 || z >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
 
-                        if (_md.Heights[x, y] < worldBaseHeight &&
-                            FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater))
+                        if (_md.Heights[x, z] < worldBaseHeight &&
+                            FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.BelowWater))
                         {
-                            _md.Heights[x, y] = worldBaseHeight;
+                            _md.Heights[x, z] = worldBaseHeight;
                         }
                     }
                 }
@@ -179,7 +179,7 @@ public class AddWater : BaseZoneGenerator
     }
 
 
-    protected void AlterHeightsNear(int cx, int cy, int maxRadius, int randomSeed, bool lowerHeights)
+    protected void AlterHeightsNear(int cx, int cz, int maxRadius, int randomSeed, bool lowerHeights)
     {
         MyRandom rand = new MyRandom(randomSeed);
 
@@ -219,8 +219,8 @@ public class AddWater : BaseZoneGenerator
         int angleRot = rand.Next() % 360;
         int xmin = cx - maxRadiusX;
         int xmax = cx + maxRadiusX;
-        int ymin = cy - maxRadiusY;
-        int ymax = cy + maxRadiusY;
+        int zmin = cz - maxRadiusY;
+        int zmax = cz + maxRadiusY;
         for (int xx = xmin; xx <= xmax; xx++)
         {
             if (xx < 0 || xx >= _mapProvider.GetMap().GetHwid())
@@ -232,22 +232,22 @@ public class AddWater : BaseZoneGenerator
             float xpct = (xx - cx) / (1.0f * maxRadiusX);
             int distToEdgeX = Math.Min(Math.Abs(xx - xmin), Math.Abs(xx - xmax));
             int offsetx = xx - xmin;
-            for (int yy = ymin; yy <= ymax; yy++)
+            for (int zz = zmin; zz <= zmax; zz++)
             {
-                int dy = yy - cy;
-                if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                int dz = zz - cz;
+                if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                 {
                     continue;
                 }
 
-                float ypct = (yy - cy) / (1.0f * maxRadiusY);
-                int offsety = yy - ymin;
+                float zpct = (zz - cz) / (1.0f * maxRadiusY);
+                int offsetz = zz - zmin;
 
-                int distToEdgeY = Math.Min(Math.Abs(yy - ymin), Math.Abs(yy - ymax));
+                int distToEdgeZ = Math.Min(Math.Abs(zz - zmin), Math.Abs(zz - zmax));
 
                 float radMult = 1.0f;
 
-                double angle = Math.Atan2(dx, dy) * 180 / Math.PI + angleRot;
+                double angle = Math.Atan2(dx, dz) * 180 / Math.PI + angleRot;
 
                 while (angle >= 360)
                 {
@@ -283,9 +283,6 @@ public class AddWater : BaseZoneGenerator
                 }
                 radMult = 0.9f + radDelta;
 
-
-
-
                 float powerDelta = powerNoise[intAngle, intAngle / 2];
 
                 if (distToEnd <= distToEndCheck)
@@ -295,14 +292,14 @@ public class AddWater : BaseZoneGenerator
 
                 float depthPower = midPower + powerDelta;
 
-                float pctToEdge = (float)(Math.Pow((xpct * xpct + ypct * ypct) * radMult, depthPower));
+                float pctToEdge = (float)(Math.Pow((xpct * xpct + zpct * zpct) * radMult, depthPower));
 
                 if (pctToEdge > 1)
                 {
                     continue;
                 }
 
-                float currNoise = heightNoise[offsetx, offsety];
+                float currNoise = heightNoise[offsetx, offsetz];
 
                 float heightDiff = (1 - pctToEdge) * bottomDepth;
                 heightDiff += (float)((currNoise * bottomDepth * (1 - pctToEdge * pctToEdge)));
@@ -310,15 +307,14 @@ public class AddWater : BaseZoneGenerator
                 int edgeScaleDist = 8;
 
                 float edgeScaleDown = Math.Min(distToEdgeX, edgeScaleDist) * 1.0f / edgeScaleDist;
-                edgeScaleDown *= Math.Min(distToEdgeY, edgeScaleDist) * 1.0f / edgeScaleDist;
+                edgeScaleDown *= Math.Min(distToEdgeZ, edgeScaleDist) * 1.0f / edgeScaleDist;
                 edgeScaleDown = (float)(Math.Pow(edgeScaleDown, 0.8f));
 
                 heightDiff *= edgeScaleDown;
 
                 heightDiff /= MapConstants.MapHeight;
 
-
-                _md.Heights[xx, yy] += heightDiff * raiseLowerMult;
+                _md.Heights[xx, zz] += heightDiff * raiseLowerMult;
             }
         }
     }

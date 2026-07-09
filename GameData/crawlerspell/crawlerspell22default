@@ -4,43 +4,27 @@
   "IdKey": 22,
   "Name": "Cure",
   "Desc": "Cure a single ally",
-  "PowerCost": 5.0,
-  "PowerPerLevel": 2.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 5.0,
+  "TierCost": 2.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 2,
   "RoleScalingTypeId": 4,
-  "RoleScalingTier": 1,
-  "PointCost": 5,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 36,
-      "MinQuantity": -1,
-      "MaxQuantity": -1,
       "ElementTypeId": 7,
-      "Chance": 1.0
+      "WeaponDamageScale": -1.0,
+      "StatBonusDamageScale": -1.0,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 10
-    },
-    {
-      "RoleId": 11
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1624
+    ]
+  },
   "ItemEnchantWeight": 1.0
 }

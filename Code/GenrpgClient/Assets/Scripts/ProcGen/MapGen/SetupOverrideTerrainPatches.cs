@@ -63,7 +63,7 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
                     {
                         continue;
                     }
-                    long subZoneId = okZones[_rand.Rand.Next() % okZones.Count].IdKey;
+                    long subZoneId = okZones[_gs.Rand.Next() % okZones.Count].IdKey;
 
                     if (rand.NextDouble() < 0.8f) // Most subzones are not added for now
                     {
@@ -76,15 +76,15 @@ public class SetupOverrideTerrainPatches : BaseZoneGenerator
         }
     }
 
-    public Zone GetZoneAt(Map map, int x, int y)
+    public Zone GetZoneAt(Map map, int x, int z)
     {
         if (_mapProvider.GetMap() == null || _md == null ||
-            _md.MapZoneIds == null || x < 0 || y < 0 || x >= _md.MapZoneIds.GetLength(0) || y >= _md.MapZoneIds.GetLength(1))
+            _md.MapZoneIds == null || x < 0 || z < 0 || x >= _md.MapZoneIds.GetLength(0) || z >= _md.MapZoneIds.GetLength(1))
         {
             return null;
         }
 
-        return map.Get<Zone>(_md.MapZoneIds[x, y]);
+        return map.Get<Zone>(_md.MapZoneIds[x, z]);
     }
 
     protected void FloodFillRegion(int zoneId, int x, int z, int depth)

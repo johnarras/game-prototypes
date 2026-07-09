@@ -8,13 +8,13 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class SendSpellHandler : BaseUnitServerMapMessageHandler<SendSpell>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, SendSpell message)
+        protected override async ValueTask InnerProcess(Unit unit, SendSpell message)
         {
             if (!_unitService.IsOkUnit(unit, true))
             {
                 return;
             }
-            _spellService.OnSendSpell(rand.Rand, unit, message);
+            _spellService.OnSendSpell(unit, message);
         }
     }
 }

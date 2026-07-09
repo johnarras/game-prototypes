@@ -11,7 +11,7 @@ public class EditorGameDataUtils
 {
 
     [MenuItem("Tools/ClearEditorGameState")]
-    static void ExecuteDev()
+    public static void ClearGameState()
     {
         _gs = null;
     }
@@ -20,8 +20,12 @@ public class EditorGameDataUtils
     private static IClientGameState _gs = null;
 #pragma warning restore UDR0001 // Domain Reload Analyzer
 
-    public static IClientGameState GetEditorGameState()
+    public static IClientGameState GetEditorGameState(bool forceRefresh = false)
     {
+        if (forceRefresh)
+        {
+            _gs = null;
+        }
         if (_gs != null)
         {
             return _gs;

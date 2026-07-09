@@ -50,7 +50,7 @@ namespace OxDb.SharedGame.ProcGen.Settings.Locations
         /// </summary>
         public int XSize { get; set; }
         /// <summary>
-        /// YSize in units
+        /// ZSize in units
         /// </summary>
         public int ZSize { get; set; }
 

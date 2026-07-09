@@ -9,7 +9,7 @@
   "AncientName": "Berenice Troglodytica",
   "Population": 4000,
   "MapPixelX": 2828,
-  "MapPixelY": 3013,
+  "MapPixelZ": 3013,
   "BiomeTypeId": 2,
   "CultureTypeId": 3,
   "TradeGoodsProduced": [
@@ -23,5 +23,15 @@
       "TradeGoodId": 119
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

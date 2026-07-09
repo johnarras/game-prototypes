@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype86default",
+  "ParentId": "default",
+  "IdKey": 86,
+  "Name": "AdUnit",
+  "Icon": "AdUnit",
+  "Art": "AdUnit"
+}

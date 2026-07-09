@@ -26,7 +26,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
 
         public override ECrawlerStates HelperKey => ECrawlerStates.ProcessCombatRound;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

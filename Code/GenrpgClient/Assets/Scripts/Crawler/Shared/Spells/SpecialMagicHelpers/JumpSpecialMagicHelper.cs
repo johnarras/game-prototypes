@@ -72,7 +72,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelper
             _logService.Info("Ok Jump Distance Input" + distance);
 
 
-            PointXZ dir = DirUtils.AxisAngleToDirDelta((party.CurrPos.Rot + 90) % 360 / 90 * 90);
+            Point2I dir = DirUtils.AxisAngleToDirDelta((party.CurrPos.Rot + 90) % 360 / 90 * 90);
 
             if (dir == null)
             {

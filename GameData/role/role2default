@@ -2,19 +2,42 @@
   "Id": "role2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Thief",
-  "Desc": "Sneaky Fighter",
-  "Abbrev": "Th",
+  "Name": "Hunter",
+  "Desc": "Master of ranged combat and striking from the shadows.",
+  "Abbrev": "Hu",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 16,
-  "ManaPerLevel": 10,
-  "MaxArmorScalingTypeId": 2,
-  "CritPercent": 10,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "HealthPerLevel": 10,
+  "ManaPerLevel": 8,
+  "MaxArmorScalingTypeId": 3,
+  "TrainingXpScale": 1.1,
+  "TrainingGoldScale": 1.1,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 14
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 16
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 18
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 19
+    },
     {
       "EntityTypeId": 2,
       "EntityId": 21
@@ -25,27 +48,15 @@
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 23
+      "EntityId": 26
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 24
+      "EntityId": 27
     },
     {
       "EntityTypeId": 2,
       "EntityId": 30
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 31
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 31,
-      "EntityId": 63
     },
     {
       "EntityTypeId": 100,
@@ -65,31 +76,23 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 5
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 6
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 30
+      "EntityId": 7
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 31
+      "EntityId": 9
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 32
+      "EntityId": 11
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 38
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 39
+      "EntityId": 26
     },
     {
       "EntityTypeId": 100,
@@ -109,10 +112,6 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 85
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 89
     },
     {
@@ -121,11 +120,31 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 92
+      "EntityId": 103
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 135
+      "EntityId": 106
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 111
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 230
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 231
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 232
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 233
     },
     {
       "EntityTypeId": 100,
@@ -137,37 +156,33 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 280
+      "EntityId": 242
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 281
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 10063
+      "EntityId": 243
     }
   ],
   "AmountBonuses": [
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.15
-    },
-    {
-      "EntityTypeId": 41,
-      "EntityId": 2,
-      "Amount": 0.15
-    },
-    {
-      "EntityTypeId": 41,
-      "EntityId": 3,
       "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.3
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
       "EntityId": 4,
-      "Amount": 0.05
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
@@ -176,23 +191,13 @@
     },
     {
       "EntityTypeId": 41,
-      "EntityId": 6,
-      "Amount": 0.1
-    },
-    {
-      "EntityTypeId": 41,
-      "EntityId": 7,
+      "EntityId": 8,
       "Amount": 0.1
     },
     {
       "EntityTypeId": 43,
       "EntityId": 14,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 16,
-      "Amount": 3.0
+      "Amount": 2.0
     }
   ]
 }

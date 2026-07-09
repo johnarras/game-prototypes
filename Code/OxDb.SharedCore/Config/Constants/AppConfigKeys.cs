@@ -21,7 +21,8 @@ namespace OxDb.SharedCore.Config.Constants
 
         public const string SessionCacheDbConnectionString = "NoSQLDefaultConnection";
 
-        public const string GooglePlaySecret = "GooglePlaySecret";
+        public const string GooglePlayPurchasingSecret = "GooglePlayPurchasingSecret";
+
         public const string IOSSecret = "IOSSecret";
         public const string PackageName = "PackageName";
         public const string IOSBuyValidationURL = "IOSBuyValidationURL";
@@ -68,6 +69,18 @@ namespace OxDb.SharedCore.Config.Constants
         public const string AndroidKeystorePass = "AndroidKeystorePass";
         public const string AndroidKeyAliasName = "AndroidKeyAliasName";
         public const string AndroidKeyAliasPass = "AndroidKeyAliasPass";
+
+        public const string GooglePlayAndroidClientId = "GooglePlayAndroidClientId";
+        public const string GooglePlayServerClientId = "GooglePlayServerClientId";
+        public const string GooglePlayServerSecret = "GooglePlayServerSecret";
+
+
+        public const string FacebookAppId = "FacebookAppId";
+        public const string FacebookAppSecret = "FacebookAppSecret";
+
+
+        public const string UnityAndroidAdsGameKey = "UnityAndroidAdsGameKey";
+        public const string UnityIOSAdsGameKey = "UnityIOSAdsGameKey";
     }
 }
 

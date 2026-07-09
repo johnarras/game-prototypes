@@ -27,7 +27,7 @@ namespace OxDb.SharedGame.Purchasing.PlayerData
     [MessagePackObject]
     public class PurchaseHistoryData : UniquePersonalUserData, IUserData, IServerOnlyData
     {
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.PurchaseHistory; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.PurchaseHistory; }
         public override PersonalDataAccumulation GetAccumulation()
         {
             return new PersonalDataAccumulation();

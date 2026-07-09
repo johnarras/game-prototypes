@@ -12,9 +12,9 @@ public class ZoneHeightCellData
 
     public int zoneId;
     public int x;
-    public int y;
+    public int z;
     public int wx;
-    public int wy;
+    public int wz;
     public int heightOffset;
 }
 
@@ -44,12 +44,12 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
 
-            if (zone.XMin >= zone.XMax || zone.ZMin > zone.ZMax)
+            if (zone.MinX >= zone.MaxX || zone.MinZ > zone.MaxZ)
             {
                 continue;
             }
 
-            if (zone.XMin < minpos || zone.ZMin < minpos || zone.XMax > maxPos || zone.ZMax > maxPos)
+            if (zone.MinX < minpos || zone.MinZ < minpos || zone.MaxX > maxPos || zone.MaxZ > maxPos)
             {
                 continue;
             }
@@ -82,10 +82,10 @@ public class RaiseOrLowerZones : BaseZoneGenerator
 
         float waterScaledHeight = 1.0f * MapConstants.MinLandHeight / MapConstants.MapHeight;
 
-        int midx = (zone.XMin + zone.XMax) / 2;
-        int midy = (zone.ZMin + zone.ZMax) / 2;
+        int midx = (zone.MinX + zone.MaxX) / 2;
+        int midz = (zone.MinZ + zone.MaxZ) / 2;
 
-        float midHeight = _md.Heights[midx, midy];
+        float midHeight = _md.Heights[midx, midz];
 
         float centerSpread = 0.3f;
 
@@ -96,32 +96,29 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         float minPower = 1 - powerSpread;
         float maxPower = 1 + powerSpread;
 
-        int minx = (int)Math.Max(0, zone.XMin - extraWidth);
-        int maxx = (int)Math.Min(_mapProvider.GetMap().GetHwid() - 1, zone.XMax + extraWidth);
-        int miny = (int)Math.Max(0, zone.ZMin - extraWidth);
-        int maxy = (int)Math.Min(_mapProvider.GetMap().GetHhgt() - 1, zone.ZMax + extraWidth);
-
-
+        int minx = (int)Math.Max(0, zone.MinX - extraWidth);
+        int maxx = (int)Math.Min(_mapProvider.GetMap().GetHwid() - 1, zone.MaxX + extraWidth);
+        int minz = (int)Math.Max(0, zone.MinZ - extraWidth);
+        int maxz = (int)Math.Min(_mapProvider.GetMap().GetHhgt() - 1, zone.MaxZ + extraWidth);
 
         int closeCheckEdgeSize = 8;
 
         bool tooLowAlready = false;
 
-
         bool tooCloseToRaisedOrLowered = false;
         for (int x = minx + closeCheckEdgeSize; x < maxx - closeCheckEdgeSize; x++)
         {
-            for (int y = miny + closeCheckEdgeSize; y < maxy - closeCheckEdgeSize; y++)
+            for (int z = minz + closeCheckEdgeSize; z < maxz - closeCheckEdgeSize; z++)
             {
-                if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.IsRaisedOrLowered))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.IsRaisedOrLowered))
                 {
                     tooCloseToRaisedOrLowered = true;
                     break;
                 }
 
-                if (x >= minx && x < maxx && y >= miny && y < maxy)
+                if (x >= minx && x < maxx && z >= minz && z < maxz)
                 {
-                    if (_md.Heights[x, y] - heightOffset < waterScaledHeight)
+                    if (_md.Heights[x, z] - heightOffset < waterScaledHeight)
                     {
                         tooLowAlready = true;
                     }
@@ -138,13 +135,12 @@ public class RaiseOrLowerZones : BaseZoneGenerator
             return;
         }
 
-
         int distx = maxx - minx + 1;
-        int disty = maxy - miny + 1;
+        int distz = maxz - minz + 1;
 
-        int size = (distx + disty) / 2;
+        int size = (distx + distz) / 2;
 
-        if (distx < 100 || disty < 100)
+        if (distx < 100 || distz < 100)
         {
             return;
         }
@@ -153,9 +149,9 @@ public class RaiseOrLowerZones : BaseZoneGenerator
 
 
         if (midx < noLowEdgeSize ||
-            midy < noLowEdgeSize ||
+            midz < noLowEdgeSize ||
             midx > _mapProvider.GetMap().GetHwid() - noLowEdgeSize ||
-            midy > _mapProvider.GetMap().GetHhgt() - noLowEdgeSize)
+            midz > _mapProvider.GetMap().GetHhgt() - noLowEdgeSize)
         {
             tooLowAlready = true;
         }
@@ -171,25 +167,25 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         float centerPers = RandUtils.FloatRange(0.1f, 0.4f, rand);
         int centerOctaves = 2;
 
-        float[,] centers = _noiseService.Generate(centerPers, centerFreq, centerAmp, centerOctaves, rand.Next(), distx, disty);
+        float[,] centers = _noiseService.Generate(centerPers, centerFreq, centerAmp, centerOctaves, rand.Next(), distx, distz);
 
         float powerAmp = RandUtils.FloatRange(centerSpread, centerSpread * 2, rand);
         float powerFreq = RandUtils.FloatRange(size / 40, size / 10, rand);
         float powerPers = RandUtils.FloatRange(0.1f, 0.3f, rand);
         int powerOctaves = 2;
 
-        float[,] powers = _noiseService.Generate(powerPers, powerFreq, powerAmp, powerOctaves, rand.Next(), distx, disty);
+        float[,] powers = _noiseService.Generate(powerPers, powerFreq, powerAmp, powerOctaves, rand.Next(), distx, distz);
 
         int xsize = maxx - minx + 1;
-        int ysize = maxy - miny + 1;
+        int zsize = maxz - minz + 1;
 
-        int[,] distances = new int[xsize, ysize];
+        int[,] distances = new int[xsize, zsize];
 
         for (int x = 0; x < xsize; x++)
         {
-            for (int y = 0; y < ysize; y++)
+            for (int z = 0; z < zsize; z++)
             {
-                distances[x, y] = StartDist;
+                distances[x, z] = StartDist;
             }
         }
 
@@ -197,11 +193,11 @@ public class RaiseOrLowerZones : BaseZoneGenerator
 
         Queue<ZoneHeightCellData> cellQueue = new Queue<ZoneHeightCellData>();
 
-        List<MyPoint2> offsetList = new List<MyPoint2>();
-        offsetList.Add(new MyPoint2(-1, 0));
-        offsetList.Add(new MyPoint2(1, 0));
-        offsetList.Add(new MyPoint2(0, 1));
-        offsetList.Add(new MyPoint2(0, -1));
+        List<Point2I> offsetList = new List<Point2I>();
+        offsetList.Add(new Point2I(-1, 0));
+        offsetList.Add(new Point2I(1, 0));
+        offsetList.Add(new Point2I(0, 1));
+        offsetList.Add(new Point2I(0, -1));
         for (int x = 0; x < xsize; x++)
         {
             int wx = x + minx;
@@ -210,38 +206,38 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                 continue;
             }
 
-            for (int y = 0; y < ysize; y++)
+            for (int z = 0; z < zsize; z++)
             {
-                int wy = y + miny;
-                if (wy < 1 || wy >= _mapProvider.GetMap().GetHhgt() - 1)
+                int wz = z + minz;
+                if (wz < 1 || wz >= _mapProvider.GetMap().GetHhgt() - 1)
                 {
                     continue;
                 }
 
-                if (_md.MapZoneIds[wx, wy] != zone.IdKey)
+                if (_md.MapZoneIds[wx, wz] != zone.IdKey)
                 {
                     continue;
                 }
 
-                foreach (MyPoint2 offset in offsetList)
+                foreach (Point2I offset in offsetList)
                 {
                     int x2 = wx + (int)(offset.X);
-                    int y2 = wy + (int)(offset.Y);
+                    int z2 = wz + (int)(offset.Z);
 
-                    if (_md.MapZoneIds[x2, y2] != zone.IdKey)
+                    if (_md.MapZoneIds[x2, z2] != zone.IdKey)
                     {
 
                         ZoneHeightCellData cell = new ZoneHeightCellData()
                         {
-                            zoneId = _md.MapZoneIds[wx, wy],
+                            zoneId = _md.MapZoneIds[wx, wz],
                             wx = wx,
-                            wy = wy,
+                            wz = wz,
                             x = x,
-                            y = y,
+                            z = z,
                             heightOffset = 0,
                         };
                         cellQueue.Enqueue(cell);
-                        distances[x, y] = 0;
+                        distances[x, z] = 0;
                         break;
                     }
                 }
@@ -254,25 +250,25 @@ public class RaiseOrLowerZones : BaseZoneGenerator
             ZoneHeightCellData firstCell = cellQueue.Dequeue();
 
             if (firstCell.wx < 1 || firstCell.wx >= _mapProvider.GetMap().GetHwid() - 1 ||
-                firstCell.wy < 1 || firstCell.wy >= _mapProvider.GetMap().GetHhgt() - 1 ||
+                firstCell.wz < 1 || firstCell.wz >= _mapProvider.GetMap().GetHhgt() - 1 ||
                 firstCell.x < 1 || firstCell.x >= xsize - 1 ||
-                firstCell.y < 1 || firstCell.y >= ysize - 1)
+                firstCell.z < 1 || firstCell.z >= zsize - 1)
             {
                 continue;
             }
 
-            foreach (MyPoint2 offset in offsetList)
+            foreach (Point2I offset in offsetList)
             {
                 int nwx = firstCell.wx + (int)(offset.X);
-                int nwy = firstCell.wy + (int)(offset.Y);
+                int nwz = firstCell.wz + (int)(offset.Z);
                 int nx = firstCell.x + (int)(offset.X);
-                int ny = firstCell.y + (int)(offset.Y);
-                if (distances[nx, ny] != StartDist)
+                int nz = firstCell.z + (int)(offset.Z);
+                if (distances[nx, nz] != StartDist)
                 {
                     continue;
                 }
 
-                short newZoneId = _md.MapZoneIds[nwx, nwy];
+                short newZoneId = _md.MapZoneIds[nwx, nwz];
 
                 int delta = 0;
 
@@ -287,19 +283,17 @@ public class RaiseOrLowerZones : BaseZoneGenerator
 
                 int newHeightOffset = firstCell.heightOffset + delta;
 
-
-
                 ZoneHeightCellData cell = new ZoneHeightCellData()
                 {
                     zoneId = newZoneId,
                     wx = nwx,
-                    wy = nwy,
+                    wz = nwz,
                     x = nx,
-                    y = ny,
+                    z = nz,
                     heightOffset = newHeightOffset,
                 };
                 cellQueue.Enqueue(cell);
-                distances[nx, ny] = newHeightOffset;
+                distances[nx, nz] = newHeightOffset;
             }
 
         }
@@ -314,14 +308,13 @@ public class RaiseOrLowerZones : BaseZoneGenerator
         int numCellsChanged = 0;
         for (int x = 0; x < xsize; x++)
         {
-            for (int y = 0; y < ysize; y++)
+            for (int z = 0; z < zsize; z++)
             {
-
                 int nx = x;
-                int ny = y;
+                int nz = z;
 
                 int xroadDelta = 0;
-                int yroadDelta = 0;
+                int zroadDelta = 0;
 
                 // Check for roads nearby...if more are "farther" away from center, lower this
                 // otherwise raise this.
@@ -339,22 +332,22 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                         continue;
                     }
 
-                    for (int yy = y - roadCheckRad; yy <= y + roadCheckRad; yy++)
+                    for (int zz = z - roadCheckRad; zz <= z + roadCheckRad; zz++)
                     {
-                        if (yy < 0 || yy >= ysize)
+                        if (zz < 0 || zz >= zsize)
                         {
                             continue;
                         }
 
-                        int dry = yy - y;
-                        int wy = yy + miny;
-                        if (wy < 0 || wy >= _mapProvider.GetMap().GetHhgt())
+                        int drz = zz - z;
+                        int wz = zz + minz;
+                        if (wz < 0 || wz >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
 
-                        // Use wx wy for global alphas value
-                        if (_md.Alphas[wx, wy, TerrainTexChannels.Road] > 0)
+                        // Use wx wz for global alphas value
+                        if (_md.Alphas[wx, wz, TerrainTexChannels.Road] > 0)
                         {
                             if (xx < x)
                             {
@@ -365,25 +358,21 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                                 xroadDelta++;
                             }
 
-                            if (yy < y)
+                            if (zz < z)
                             {
-                                yroadDelta--;
+                                zroadDelta--;
                             }
-                            else if (yy > y)
+                            else if (zz > z)
                             {
-                                yroadDelta++;
+                                zroadDelta++;
                             }
                         }
                     }
                 }
                 nx = MathUtil.Clamp(0, x + (int)(xroadDelta / deltaDiv), xsize - 1);
-                ny = MathUtil.Clamp(0, y + (int)(yroadDelta / deltaDiv), ysize - 1);
+                nz = MathUtil.Clamp(0, z + (int)(zroadDelta / deltaDiv), zsize - 1);
 
-
-
-
-
-                int currDist = distances[nx, ny];
+                int currDist = distances[nx, nz];
 
                 if (currDist > -extraWidth && currDist < extraWidth)
                 {
@@ -407,21 +396,14 @@ public class RaiseOrLowerZones : BaseZoneGenerator
                     // start at middleHeightPercent at 0, up to 1 at extraWidth
                     heightDistPct = middleHeightPct + currDist * (1 - middleHeightPct) / extraWidth;
                 }
-                float power = MathUtil.Clamp(minPower, 1.0f + powers[x, y], maxPower);
-
-
+                float power = MathUtil.Clamp(minPower, 1.0f + powers[x, z], maxPower);
 
                 float powerDistPct = (float)(Math.Pow(heightDistPct, power));
 
-
-
-
-
                 float finalHeightOffset = powerDistPct * heightOffset;
 
-
-                _md.Flags[x + minx, y + miny] |= MapGenFlags.IsRaisedOrLowered;
-                _md.Heights[x + minx, y + miny] += finalHeightOffset;
+                _md.Flags[x + minx, z + minz] |= MapGenFlags.IsRaisedOrLowered;
+                _md.Heights[x + minx, z + minz] += finalHeightOffset;
             }
         }
 

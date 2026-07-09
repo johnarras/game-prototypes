@@ -9,7 +9,7 @@
   "AncientName": "Corinthus",
   "Population": 90000,
   "MapPixelX": 2228,
-  "MapPixelY": 2369,
+  "MapPixelZ": 2369,
   "BiomeTypeId": 1,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 54
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    }
+  ]
 }

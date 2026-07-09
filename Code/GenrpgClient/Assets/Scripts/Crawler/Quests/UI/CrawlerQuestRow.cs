@@ -1,14 +1,12 @@
-
-using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Quests.Entities;
 using OxDb.SharedGame.Crawler.Quests.Services;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Services;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Quests.UI
 {
@@ -17,7 +15,6 @@ namespace Assets.Scripts.Crawler.Quests.UI
 
         private ICrawlerService _crawlerService = null;
         private ICrawlerQuestService _questService = null;
-        private IAwaitableService _awaitableService = null;
         private ICrawlerWorldService _worldService = null;
 
         public GImage IsActiveImage;
@@ -45,7 +42,7 @@ namespace Assets.Scripts.Crawler.Quests.UI
 
         public void UpdateData()
         {
-            _awaitableService.ForgetAwaitable(ShowDataAsync(GetToken()));
+            _ = ShowDataAsync(GetToken());
         }
 
         public bool IsActiveQuest()
@@ -53,10 +50,8 @@ namespace Assets.Scripts.Crawler.Quests.UI
             return _isActiveQuest;
         }
 
-        private async Awaitable ShowDataAsync(CancellationToken token)
+        private async ValueTask ShowDataAsync(CancellationToken token)
         {
-            await Awaitable.MainThreadAsync();
-
             PartyData party = _crawlerService.GetParty();
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 

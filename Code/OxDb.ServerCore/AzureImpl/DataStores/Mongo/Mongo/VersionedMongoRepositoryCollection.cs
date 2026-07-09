@@ -17,10 +17,9 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
         private ReplaceOptions _casReplaceOptions = new ReplaceOptions() { IsUpsert = false, BypassDocumentValidation = true, };
         protected override async Task<bool> ReplaceDocument(T t, RepoSaveArgs args = null)
         {
-
-            if (string.IsNullOrEmpty(t._etag))
+            if (string.IsNullOrEmpty(t.VersionTag))
             {
-                t._etag = Guid.NewGuid().ToString();
+                t.VersionTag = HashUtils.NewGuid();
                 InsertOneOptions insertOptions = new InsertOneOptions()
                 {
                     BypassDocumentValidation = true,
@@ -30,8 +29,9 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
             }
 
 
-            string oldUpdateTag = t._etag;
-            t._etag = Guid.NewGuid().ToString();
+            string oldUpdateTag = t.VersionTag;
+            string newUpdateTag = HashUtils.NewGuid();
+            t.VersionTag = newUpdateTag;
 
             IClientSessionHandle session = null;
 
@@ -43,20 +43,19 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
             ReplaceOneResult result;
             if (session != null)
             {
-                result = await _collection.ReplaceOneAsync(session, x => x.Id == t.Id && x._etag == oldUpdateTag, t, _casReplaceOptions);
+                result = await _collection.ReplaceOneAsync(session, x => x.Id == t.Id && x.VersionTag == oldUpdateTag, t, _casReplaceOptions);
             }
             else
             {
-                result = await _collection.ReplaceOneAsync(x => x.Id == t.Id && x._etag == oldUpdateTag, t, _casReplaceOptions);
+                result = await _collection.ReplaceOneAsync(x => x.Id == t.Id && x.VersionTag == oldUpdateTag, t, _casReplaceOptions);
             }
 
-            // If it didn't find a match, it means the version (_etag) changed out from under you
+            // If it didn't find a match, it means the version (VersionTag) changed out from under you
             if (result.MatchedCount == 0)
             {
                 // Revert the tag changes so the local object isn't corrupted with a fake tag
-                t._etag = oldUpdateTag;
-
-                throw new Exception("Optimistic concurrency violation: The document has been modified by another process.");
+                t.VersionTag = oldUpdateTag;
+                throw new Exception("Optimistic concurrency violation: The document has been modified by another process." + oldUpdateTag);
             }
 
             return result.MatchedCount == 1;
@@ -70,7 +69,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
         class StubUpdateData : IVersionedData
         {
             public DateTime CreateTime { get; set; }
-            public string _etag { get; set; }
+            public string VersionTag { get; set; }
         }
 
 
@@ -80,7 +79,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
             if (string.IsNullOrEmpty(updateMemberName))
             {
                 StubUpdateData updateData = new StubUpdateData();
-                updateMemberName = nameof(updateData._etag);
+                updateMemberName = nameof(updateData.VersionTag);
             }
 
             if (!fieldNameUpdates.ContainsKey(updateMemberName))

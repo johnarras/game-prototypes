@@ -17,7 +17,6 @@ namespace OxDb.SharedGame.Crawler.Roles.Settings
 
     public class RoleScalingType : ChildSettings, IIndexedGameItem
     {
-
         public override string Id { get; set; }
         public override string ParentId { get; set; }
         public long IdKey { get; set; }
@@ -27,10 +26,7 @@ namespace OxDb.SharedGame.Crawler.Roles.Settings
         public string Icon { get; set; }
         public string Art { get; set; }
         public long ScalingStatTypeId { get; set; }
-
-
     }
-
 
     public class RoleScalingTypeSettingsDto : ParentSettingsDto<RoleScalingTypeSettings, RoleScalingType>
     {

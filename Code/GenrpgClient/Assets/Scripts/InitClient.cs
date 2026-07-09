@@ -1,3 +1,4 @@
+using Assets.Scripts.Auth.Services;
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents;
 using Assets.Scripts.ClientEvents.UI;
@@ -176,6 +177,10 @@ public class InitClient : BaseBehaviour, IInitClient
             await _loginService.StartNoUser(GetGameToken());
         }
         string txt2 = "ScreenWH: " + _clientAppService.ScreenWidth + "x" + _clientAppService.ScreenHeight + " -- " + _config.Config.GameMode.ToString() + " -- " + _config.Config.Env + " -- " + _clientAppService.RuntimePlatform;
+        if (_config.Config.GameMode == EGameModes.Trader)
+        {
+            _clientAppService.SetOrientation(ScreenOrientation.Portrait);
+        }
         _logService.Info(txt2);
     }
 

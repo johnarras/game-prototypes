@@ -18,6 +18,7 @@ namespace OxDb.SharedGame.Crafting.PlayerData.Crafting
         [Key(3)] public int CraftingSkillPoints { get; set; }
 
         [Key(4)] public int GatheringSkillPoints { get; set; }
+        [Key(5)] public override string VersionTag { get; set; }
 
         public void AddSkillPoints(int skillCategory, int amount)
         {
@@ -63,6 +64,7 @@ namespace OxDb.SharedGame.Crafting.PlayerData.Crafting
     public class CraftingData : OwnerIdObjectList<CraftingStatus>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
     }
     [MessagePackObject]
     public class CraftingDto : OwnerDtoList<CraftingData, CraftingStatus>

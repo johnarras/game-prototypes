@@ -6,7 +6,7 @@ namespace OxDb.DataUtils.Importers.Trader
 {
     public class SkinTypeSettingsImporter : ParentChildImporter<SkinTypeSettings, SkinType>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, SkinType current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, SkinTypeSettings settings, SkinType current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

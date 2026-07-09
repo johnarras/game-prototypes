@@ -21,12 +21,12 @@ public class AddMountainTextures : BaseZoneGenerator
         await base.Generate(token);
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MinZ, zone.MaxX, zone.MaxZ);
         }
 
     }
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int startz, int endx, int endz)
     {
 
         if (zone == null || zoneType == null)
@@ -34,12 +34,12 @@ public class AddMountainTextures : BaseZoneGenerator
             return;
         }
 
-        if (startx < 0 || starty < 0 || endx > _md.Awid || endy > _md.Ahgt || startx >= endx || starty >= endy)
+        if (startx < 0 || startz < 0 || endx > _md.Awid || endz > _md.Ahgt || startx >= endx || startz >= endz)
         {
             return;
         }
         int wid = endx - startx + 1;
-        int hgt = endy - starty + 1;
+        int hgt = endz - startz + 1;
         int maxSize = Math.Max(wid, hgt);
         float[,,] alphas = _md.Alphas;
         int size = Math.Max(Math.Max(wid, hgt), MapConstants.DefaultHeightmapSize);
@@ -66,14 +66,11 @@ public class AddMountainTextures : BaseZoneGenerator
             return;
         }
 
-
-
         float wh = MapConstants.MinLandHeight / MapConstants.MapHeight;
 
 
         float minFreqMult = 0.05f;
         float maxFreqMult = 0.4f;
-
 
         MyRandom edgeRand = new MyRandom(zone.Seed % 1000000000 + _mapProvider.GetMap().Seed % 1000000000 + 3474342);
         MyRandom texRand = new MyRandom(zone.Seed + 5423 + _mapProvider.GetMap().Seed / 5);
@@ -84,7 +81,6 @@ public class AddMountainTextures : BaseZoneGenerator
         float capPers = RandUtils.FloatRange(0.2f, 0.4f, capRand);
         int capOctaves = 2;
         float[,] capSteepnessDeltas = _noiseService.Generate(capPers, capFreq, capAmp, capOctaves, capRand.Next(), size, size);
-
 
         MyRandom randRand = new MyRandom(zone.Seed % 233534543 + 34534);
         float randFreq = RandUtils.FloatRange(minFreqMult, maxFreqMult, randRand) * size;
@@ -146,7 +142,6 @@ public class AddMountainTextures : BaseZoneGenerator
             }
         }
 
-
         int cleftChoice = texRand.Next() % cleftChoices.Count;
 
         int cleftTex = cleftChoices[cleftChoice];
@@ -191,8 +186,6 @@ public class AddMountainTextures : BaseZoneGenerator
             oppTex = TerrainTexChannels.Base;
         }
 
-
-
         // How steep can things be and still have cap?
         float startMinSteepnessForCap = RandUtils.FloatRange(MinSteepness, MaxSteepness, texRand);
 
@@ -212,28 +205,28 @@ public class AddMountainTextures : BaseZoneGenerator
 
         for (int x = startx; x < endx; x++)
         {
-            for (int y = starty; y < endy; y++)
+            for (int z = startz; z < endz; z++)
             {
                 float wallDist = 0.0f;
                 if (_md.MaintainHeights == null ||
-                    _md.MountainDistPercent[x, y] >= 1.0f ||
-                    _md.MapZoneIds[x, y] != zone.IdKey)
+                    _md.MountainDistPercent[x, z] >= 1.0f ||
+                    _md.MapZoneIds[x, z] != zone.IdKey)
                 {
                     continue;
                 }
 
-                wallDist = _md.MountainDistPercent[x, y];
+                wallDist = _md.MountainDistPercent[x, z];
 
                 float minSteepnessForCap = MathUtil.Clamp(MinSteepness - MaxSteepnessPerturbDelta,
-                    startMinSteepnessForCap + capSteepnessDeltas[x - startx, y - starty],
+                    startMinSteepnessForCap + capSteepnessDeltas[x - startx, z - startz],
                     MaxSteepness + MaxSteepnessPerturbDelta);
 
-                if (_md.Heights[x, y] < wh)
+                if (_md.Heights[x, z] < wh)
                 {
                     continue;
                 }
 
-                float steep = _terrainManager.GetSteepness(y, x);
+                float steep = _terrainManager.GetSteepness(z, x);
 
                 // Steepness works in 2 stages.
                 // Within the "Core" wall, not the extra blended edge, the steepness
@@ -248,19 +241,17 @@ public class AddMountainTextures : BaseZoneGenerator
 
                 int rad = 6;
 
-
-                if (alphas[x, y, TerrainTexChannels.Road] > 0.0f)
+                if (alphas[x, z, TerrainTexChannels.Road] > 0.0f)
                 {
                     continue;
                 }
-                float roadPct = 1 - MathUtil.GetSmoothScalePercent(rad / 3, rad, _md.RoadDistances[x, y]);
+                float roadPct = 1 - MathUtil.GetSmoothScalePercent(rad / 3, rad, _md.RoadDistances[x, z]);
 
 
-                if (_zoneGenService.FindMapLocation(x, y, 2) != null)
+                if (_zoneGenService.FindMapLocation(x, z, 2) != null)
                 {
                     continue;
                 }
-
 
                 currMainPercent = 1;
                 currCleftPercent = 0;
@@ -276,7 +267,7 @@ public class AddMountainTextures : BaseZoneGenerator
                 }
                 else
                 {
-                    float midhgt = _terrainManager.GetInterpolatedHeight(y, x);
+                    float midhgt = _terrainManager.GetInterpolatedHeight(z, x);
 
                     int numAngles = 100;
                     int innerMinNumAboveMid = numAngles / 2 + extraRaisedPointsPercent;
@@ -292,33 +283,31 @@ public class AddMountainTextures : BaseZoneGenerator
                         float sinx = (float)Math.Sin(Math.PI * 2.0f * i / numAngles);
 
                         float xx = x + innerrad * cosx;
-                        float yy = y + innerrad * sinx;
-                        float xyhgt = _terrainManager.GetInterpolatedHeight(yy, xx);
-                        if (xyhgt > midhgt + innerExtraHeight)
+                        float zz = z + innerrad * sinx;
+                        float xzhgt = _terrainManager.GetInterpolatedHeight(zz, xx);
+                        if (xzhgt > midhgt + innerExtraHeight)
                         {
                             innerNumAboveMid++;
                         }
 
                         xx = x + outerrad * cosx;
-                        yy = y + outerrad * sinx;
-                        xyhgt = _terrainManager.GetInterpolatedHeight(yy, xx);
-                        if (xyhgt > midhgt + innerExtraHeight)
+                        zz = z + outerrad * sinx;
+                        xzhgt = _terrainManager.GetInterpolatedHeight(zz, xx);
+                        if (xzhgt > midhgt + innerExtraHeight)
                         {
                             outerNumAboveMid++;
                         }
                     }
-
 
                     int extraNumMid1 = innerNumAboveMid - innerMinNumAboveMid;
                     int extraNumMid2 = outerNumAboveMid - innerMinNumAboveMid;
                     int extraNumMid = Math.Max(extraNumMid1, extraNumMid2);
                     if (extraNumMid >= extraAboveMidNeeded)
                     {
-
                         int ahx = Math.Abs(x - (startx + wid / 2));
-                        int ahy = Math.Abs(y - (starty + hgt / 2));
+                        int ahz = Math.Abs(z - (startz + hgt / 2));
 
-                        //if (Math.Abs(ahx - ahy) > 3)
+                        //if (Math.Abs(ahx - ahz) > 3)
                         {
                             float pct = RandUtils.FloatRange(0.2f, 1.0f, steepRandom) * extraNumMid * 0.50f;
                             pct = Math.Min(0.90f, pct);
@@ -339,13 +328,12 @@ public class AddMountainTextures : BaseZoneGenerator
                             currOppPercent = 0;
                             currCleftPercent = 0;
 
-
                         }
                         else
                         {
 
-                            currOppPercent = Math.Abs(randomBaseAmounts[x - startx, y - starty]);
-                            currCleftPercent = Math.Abs(randomBaseAmounts[x - startx, y - starty]);
+                            currOppPercent = Math.Abs(randomBaseAmounts[x - startx, z - startz]);
+                            currCleftPercent = Math.Abs(randomBaseAmounts[x - startx, z - startz]);
                             if (currOppPercent + currCleftPercent > 1)
                             {
                                 currOppPercent /= (currOppPercent + currCleftPercent);
@@ -360,7 +348,7 @@ public class AddMountainTextures : BaseZoneGenerator
                     }
                 }
 
-                float wallpercent = _md.MountainDistPercent[x, y];
+                float wallpercent = _md.MountainDistPercent[x, z];
 
                 // Near edge blend things.
                 float origPercent = 0.0f;
@@ -380,7 +368,7 @@ public class AddMountainTextures : BaseZoneGenerator
                 // Rescale existing splats.
                 for (int c = 0; c < TerrainTexChannels.Max; c++)
                 {
-                    _md.Alphas[x, y, c] *= origPercent;
+                    _md.Alphas[x, z, c] *= origPercent;
                 }
 
                 // Now rescale new alphas.
@@ -389,9 +377,9 @@ public class AddMountainTextures : BaseZoneGenerator
                 currOppPercent *= (1 - origPercent);
 
 
-                _md.Alphas[x, y, mainTex] += currMainPercent;
-                _md.Alphas[x, y, cleftTex] += currCleftPercent;
-                _md.Alphas[x, y, oppTex] += currOppPercent;
+                _md.Alphas[x, z, mainTex] += currMainPercent;
+                _md.Alphas[x, z, cleftTex] += currCleftPercent;
+                _md.Alphas[x, z, oppTex] += currOppPercent;
             }
         }
     }

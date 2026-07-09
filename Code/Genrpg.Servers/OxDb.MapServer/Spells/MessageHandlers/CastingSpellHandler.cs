@@ -12,25 +12,25 @@ namespace OxDb.MapServer.Spells.MessageHandlers
     public class CastingSpellHandler : BaseUnitServerMapMessageHandler<CastingSpell>
     {
         private IStatService _statService = null;
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, CastingSpell message)
+        protected override async ValueTask InnerProcess(Unit unit, CastingSpell message)
         {
             if (!_unitService.IsOkUnit(unit, true))
             {
                 unit.ActionMessage = null;
-                _spellService.SendStopCast(rand.Rand, unit);
+                _spellService.SendStopCast(unit);
                 return;
             }
 
             if (message.Spell == null)
             {
                 unit.ActionMessage = null;
-                _spellService.SendStopCast(rand.Rand, unit);
+                _spellService.SendStopCast(unit);
                 unit.SendError("Spell does not exist");
                 return;
             }
 
 
-            TryCastResult result = _spellService.TryCast(rand.Rand, unit, message.Spell.IdKey, message.TargetId, true);
+            TryCastResult result = _spellService.TryCast(unit, message.Spell.IdKey, message.TargetId, true);
 
             if (result.State != TryCastState.Ok)
             {
@@ -39,21 +39,21 @@ namespace OxDb.MapServer.Spells.MessageHandlers
                 {
                     unit.AddMessage(new OnTargetIsDead() { UnitId = message.TargetId });
                 }
-                _spellService.SendStopCast(rand.Rand, unit);
+                _spellService.SendStopCast(unit);
                 return;
             }
 
             if (unit.ActionMessage != message)
             {
                 unit.SendError("You aren't casting this spell");
-                _spellService.SendStopCast(rand.Rand, unit);
+                _spellService.SendStopCast(unit);
                 return;
             }
 
             _statService.Add(unit, result.Spell.PowerStatTypeId, UnitStatValOffsets.Curr, -result.Spell.GetCost(unit));
 
             // Send projectile to target.
-            _spellService.SendSpell(rand.Rand, unit, result);
+            _spellService.SendSpell(unit, result);
         }
     }
 }

@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.Entities.UI;
@@ -12,7 +11,6 @@ namespace Assets.Scripts.Doobers.UI
     {
 
         private IDynamicUIService _dynamicUIService = null;
-        protected IClientRandom _rand = null;
 
         private Vector3 _startPos;
         private Vector3 _endPos;
@@ -69,7 +67,7 @@ namespace Assets.Scripts.Doobers.UI
             }
             if (_elapsedTime == 0)
             {
-                _offsetAngle = RandUtils.FloatRange(0, 360, _rand.Rand);
+                _offsetAngle = RandUtils.FloatRange(0, 360, _gs.Rand);
             }
             _elapsedTime += deltaTime;
 

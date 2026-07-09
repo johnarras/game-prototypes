@@ -37,15 +37,15 @@ namespace Assets.Scripts.Trader.UI.TradeMapUI
 
 
             float xscale = 1;
-            float yscale = 1;
+            float zscale = 1;
 
             float xdelta = 0;
-            float ydelta = 0;
+            float zdelta = 0;
 
             foreach (City city in cities)
             {
                 int xpix = (int)(xdelta + city.MapPixelX * xscale);
-                int ypix = -(int)(ydelta + city.MapPixelY * yscale);
+                int zpix = -(int)(zdelta + city.MapPixelZ * zscale);
 
                 TraderMapCityButton button = _clientEntityService.FullInstantiate<TraderMapCityButton>(ButtonPrefab);
 
@@ -55,7 +55,7 @@ namespace Assets.Scripts.Trader.UI.TradeMapUI
 
                 _buttons.Add(button);
 
-                button.transform.localPosition = new Vector3(xpix, ypix, 0);
+                button.transform.localPosition = new Vector3(xpix, zpix, 0);
             }
 
             await Task.CompletedTask;

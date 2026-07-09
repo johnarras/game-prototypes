@@ -6,7 +6,7 @@ using OxDb.SharedGame.Crawler.Party.Services;
 using OxDb.SharedGame.Crawler.Temples.Settings;
 using OxDb.SharedGame.Currencies.Constants;
 using OxDb.SharedGame.Spells.Interfaces;
-using OxDb.SharedGame.Stats.Settings.Stats;
+using OxDb.SharedGame.Stats.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,31 +34,19 @@ namespace OxDb.SharedGame.Crawler.Temples.Services
 
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
-        private IStatService _statService = null;
         private IPartyService _partyService = null;
 
         public long GetHealingCostForMember(PartyData party, PartyMember member)
         {
             TempleSettings settings = _gameData.Get<TempleSettings>(_gs.ch);
 
-            List<StatType> mutableStatTypes = _statService.GetMutableStatTypes(member);
-
             long cost = 0;
 
-            bool missingStats = false;
+            long missingHealth = member.Stats.Max(StatTypes.Health) - member.Stats.Curr(StatTypes.Health);
 
-            foreach (StatType statType in mutableStatTypes)
+            if (missingHealth > 0)
             {
-                if (member.Stats.Curr(statType.IdKey) < member.Stats.Max(statType.IdKey))
-                {
-                    missingStats = true;
-                    break;
-                }
-            }
-
-            if (missingStats)
-            {
-                cost += settings.HealingCostPerLevel * Math.Min(member.Level, settings.MaxCostLevel);
+                cost += settings.CostPerMissingHealth * missingHealth;
             }
 
             List<IDisplayEffect> statusEffects = member.Effects.Where(x => x.EntityTypeId == EntityTypes.StatusEffect).ToList();
@@ -93,12 +81,7 @@ namespace OxDb.SharedGame.Crawler.Temples.Services
 
             _partyService.AddGold(party, -result.Cost);
 
-            List<StatType> mutableStatTypes = _statService.GetMutableStatTypes(member);
-
-            foreach (StatType statType in mutableStatTypes)
-            {
-                member.Stats.SetCurr(statType.IdKey, member.Stats.Max(statType.IdKey));
-            }
+            member.Stats.SetCurr(StatTypes.Health, member.Stats.Max(StatTypes.Health));
 
             member.StatusEffects.Clear();
             List<IDisplayEffect> statusEffects = member.Effects.Where(x => x.EntityTypeId == EntityTypes.StatusEffect).ToList();

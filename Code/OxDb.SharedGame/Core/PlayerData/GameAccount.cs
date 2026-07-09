@@ -14,7 +14,7 @@ namespace OxDb.SharedGame.Core.PlayerData
     {
 
         public override PersonalDataAccumulation GetAccumulation() { return new PersonalDataAccumulation(); }
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.GameAccount; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.GameAccount; }
 
         /// <summary>
         /// Used for the id found in the relational database
@@ -33,7 +33,7 @@ namespace OxDb.SharedGame.Core.PlayerData
         [Key(10)] public string DisplayName { get; set; }
         [Key(11)] public long DataBits { get; set; }
 
-        [Key(13)] public DataAccumulationSet Accumulations { get; set; } = new DataAccumulationSet();
+        [Key(12)] public DataAccumulationSet Accumulations { get; set; } = new DataAccumulationSet();
     }
 
     [MessagePackObject]

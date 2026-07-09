@@ -1,6 +1,6 @@
 using Assets.Scripts.Awaitables;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Quests.Entities;
 using OxDb.SharedGame.Crawler.States.Constants;

@@ -1,5 +1,5 @@
-﻿using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
-using OxDb.RequestServer.Core;
+﻿using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.RequestServer.Minigames.Games.Services;
 using OxDb.SharedGame.Minigames.Games.WebApi;
 

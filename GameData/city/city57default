@@ -9,7 +9,7 @@
   "AncientName": "Pataliputra",
   "Population": 400000,
   "MapPixelX": 5104,
-  "MapPixelY": 2933,
+  "MapPixelZ": 2933,
   "BiomeTypeId": 14,
   "CultureTypeId": 8,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 3
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 15
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

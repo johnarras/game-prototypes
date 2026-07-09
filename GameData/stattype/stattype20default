@@ -4,6 +4,7 @@
   "IdKey": 20,
   "Name": "DamagePower",
   "Desc": "Extra damage to all attacks.",
+  "Icon": "DamagePower",
   "GenScalePct": 100,
   "IsCrawlerStat": true
 }

@@ -2,8 +2,8 @@
   "Id": "treetype50default",
   "ParentId": "default",
   "IdKey": 50,
-  "Name": "WhiteOakFallYoung",
-  "Art": "WhiteOakFallYoung",
-  "Scale": 1.5,
+  "Name": "Aspen",
+  "Art": "Aspen",
+  "Scale": 2.5,
   "VariationCount": 2
 }

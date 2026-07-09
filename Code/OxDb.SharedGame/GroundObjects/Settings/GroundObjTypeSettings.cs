@@ -32,9 +32,9 @@ namespace OxDb.SharedGame.GroundObjects.Settings
         public bool OneTimeOnly { get; set; }
 
 
-        public static int GetPositionHash(int x, int y)
+        public static int GetPositionHash(int x, int z)
         {
-            return x / 16 + y / 16 << 10;
+            return x / 16 + z / 16 << 10;
         }
 
     }

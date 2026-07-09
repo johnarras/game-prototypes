@@ -7,6 +7,6 @@ namespace Assets.Scripts.Lockstep.Maps.Components
     [GenerateTestsForBurstCompatibility]
     public struct MapVisualOffset : IComponentData
     {
-        public float3 Value; // The (X, Y, Z) shift for this specific map instance
+        public float3 Value; // The (X, Z, Z) shift for this specific map instance
     }
 }

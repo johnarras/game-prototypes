@@ -17,7 +17,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 
         public override ECrawlerStates HelperKey => ECrawlerStates.Camping;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

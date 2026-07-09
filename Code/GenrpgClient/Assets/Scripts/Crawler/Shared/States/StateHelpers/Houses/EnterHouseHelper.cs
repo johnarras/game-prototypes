@@ -15,7 +15,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Houses
         public override ECrawlerStates HelperKey => ECrawlerStates.EnterHouse;
         public override long TriggerBuildingId() { return BuildingTypes.House; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -24,7 +24,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Houses
 
             stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
-            if (_rand.Rand.NextDouble() < 0.3f)
+            if (_gs.Rand.NextDouble() < 0.3f)
             {
                 stateData = new CrawlerStateData(ECrawlerStates.StartCombat, true)
                 {

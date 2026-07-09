@@ -50,38 +50,37 @@ public class SetMountainHeights : BaseAddMountains
 
         for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
         {
-            for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
+            for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
             {
 
                 int ax = Math.Min(x, _mapProvider.GetMap().GetHwid() - 1);
-                int ay = Math.Min(y, _mapProvider.GetMap().GetHhgt() - 1);
+                int az = Math.Min(z, _mapProvider.GetMap().GetHhgt() - 1);
 
 
                 float noiseScale = 1.0f;
-                float whh = _md.MaintainHeights[x, y];
+                float whh = _md.MaintainHeights[x, z];
 
                 float roadCheckDistance = MapConstants.MaxRoadCheckDistance;
                 float minNoiseDistance = 12.0f;
-                float roadDist = _md.RoadDistances[x, y];
+                float roadDist = _md.RoadDistances[x, z];
 
-
-                if (_md.RoadDistances[x, y] < roadCheckDistance)
+                if (_md.RoadDistances[x, z] < roadCheckDistance)
                 {
                     float rpct = roadDist / roadCheckDistance;
                     rpct = (float)(Math.Pow(rpct, 1.6f));
-                    float edgeDist = MathUtil.Clamp(0.10f, 0.30f + edgeNoise[x, y], 0.70f);
-                    float edgeAmt = (float)(Math.Pow(edgeDist, 1.7f + edgePowNoise[x, y]));
+                    float edgeDist = MathUtil.Clamp(0.10f, 0.30f + edgeNoise[x, z], 0.70f);
+                    float edgeAmt = (float)(Math.Pow(edgeDist, 1.7f + edgePowNoise[x, z]));
 
                     float currAmt = rpct * rpct;
-                    float noiseVal = noise[x, y];
+                    float noiseVal = noise[x, z];
                     float noiseMinDist = MapConstants.RoadBaseHillScaleDistance * (1 + noiseVal);
                     noiseMinDist = MathUtil.Clamp(minNoiseDistance, noiseMinDist, roadCheckDistance);
 
                     noiseMinDist = 20.0f;
-                    if (_md.RoadDistances[x, y] < noiseMinDist)
+                    if (_md.RoadDistances[x, z] < noiseMinDist)
                     {
                         float currPower = 1.8f;
-                        currPower *= MathUtil.Clamp(1.0f, (1.0f + powernoise[x, y]), 2.0f);
+                        currPower *= MathUtil.Clamp(1.0f, (1.0f + powernoise[x, z]), 2.0f);
                         noiseScale *= (float)(Math.Pow(roadDist / noiseMinDist, currPower));
                     }
                     if (rpct <= edgeDist)
@@ -94,35 +93,33 @@ public class SetMountainHeights : BaseAddMountains
                     }
                 }
 
-                if (_md.MaintainHeights[x, y] == 0 || _md.MountainDistPercent[x, y] >= 1.0f)
+                if (_md.MaintainHeights[x, z] == 0 || _md.MountainDistPercent[x, z] >= 1.0f)
                 {
-                    if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.OverrideWallNoiseScale))
+                    if (FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.OverrideWallNoiseScale))
                     {
-                        _md.Heights[x, y] += _md.MountainNoise[x, y] * noiseScale / MapConstants.MapHeight;
+                        _md.Heights[x, z] += _md.MountainNoise[x, z] * noiseScale / MapConstants.MapHeight;
                     }
                     continue;
                 }
 
-
-
-                float distPct = _md.MountainDistPercent[x, y];
+                float distPct = _md.MountainDistPercent[x, z];
                 if (distPct >= minDistPctCutoff && distPct <= 1)
                 {
                     float noiseMult = 1 - (distPct - minDistPctCutoff) / (1.0f - minDistPctCutoff);
                     whh *= noiseMult;
                 }
 
-                float edgePercent = (float)Math.Pow(_md.EdgeHeightmapAdjustPercent(_mapProvider.GetMap(), x, y), 0.09f);
+                float edgePercent = (float)Math.Pow(_md.EdgeHeightmapAdjustPercent(_mapProvider.GetMap(), x, z), 0.09f);
 
                 whh *= edgePercent;
                 if (whh != 0)
                 {
-                    _md.Heights[x, y] += (mountainDefaultHeight / MapConstants.MapHeight) * whh;
-                    _md.ClearAlphasAt(x, y);
-                    _md.Alphas[x, y, TerrainTexChannels.Base] = 1.0f;
+                    _md.Heights[x, z] += (mountainDefaultHeight / MapConstants.MapHeight) * whh;
+                    _md.ClearAlphasAt(x, z);
+                    _md.Alphas[x, z, TerrainTexChannels.Base] = 1.0f;
                 }
-                float currentNoise = Math.Abs(_md.MountainNoise[x, y]);
-                float maxNoise = Math.Abs(_md.MaintainHeights[x, y]) * mountainDefaultHeight * 0.2f;
+                float currentNoise = Math.Abs(_md.MountainNoise[x, z]);
+                float maxNoise = Math.Abs(_md.MaintainHeights[x, z]) * mountainDefaultHeight * 0.2f;
 
                 if (maxNoise < 0.0001f || currentNoise < 0.0001f)
                 {
@@ -134,12 +131,12 @@ public class SetMountainHeights : BaseAddMountains
                     noiseScale *= (maxNoise) / currentNoise;
                 }
 
-                if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.OverrideWallNoiseScale))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.OverrideWallNoiseScale))
                 {
                     noiseScale = 1.0f;
                 }
 
-                _md.Heights[x, y] += _md.MountainNoise[x, y] * noiseScale * edgePercent / MapConstants.MapHeight;
+                _md.Heights[x, z] += _md.MountainNoise[x, z] * noiseScale * edgePercent / MapConstants.MapHeight;
             }
         }
         await Task.CompletedTask;

@@ -1,125 +1,167 @@
-,,Warrior,Thief,Hunter,Mage,Cleric,Engineer,Bard,Druid,Barbarian,Paladin,Elementalist,Necromancer,Human,Elf,Dwarf,Half-Orc,Gnome,Halfling
-Idkey,,1,2,3,4,5,6,7,8,9,10,11,12,100,101,102,103,104,105
-Abbrev,,Wa,Th,Hu,Ma,Cl,En,Bd,Dr,Bb,Pa,El,Nc,Hu,Elf,Dw,Hc,Gn,Hf
-Desc,,Tough Fighter,Sneaky Fighter,Ranged Combat,Spell Damage,Healing,Hybrid ,Hybrid Spell,Full Hybrid,Big Melee Dam,Tanky Heals,Spell Dam and Heals,Undead Summons,Normal people,Slightly more Ranged,More health,More Melee,More Spell Dam,More Crit
-RoleCategoryId,,1,1,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2
-HealthPerLevel,,22,16,18,12,14,18,16,18,18,20,16,10,0,0,5,0,0,0
-ManaPerLevel,,10,10,14,22,22,14,16,18,10,18,20,20,0,0,0,0,0,0
-StartSkillPoints,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-StartUpgradePoints,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
-TrainingXpScale,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
-TrainingGoldScale,,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
-Guardian,,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
-MeleeScaling,,0.2,0.15,0.1,0.05,0.05,0.15,0.1,0.15,0.25,0.15,0.05,0.05,0,0,0,0.05,0,0
-RangedScaling,,0.1,0.15,0.25,0.05,0.05,0.1,0.15,0.05,0.15,0.05,0.05,0.05,0,0.05,0,0,0,0
-SpellDamScaling,,0.05,0.2,0.1,0.25,0.2,0.15,0.1,0.15,0.05,0.1,0.2,0.2,0,0,0,0,0.05,0
-HealingScaling,,0.05,0.05,0.05,0.05,0.3,0.1,0.15,0.15,0.05,0.15,0.2,0.15,0,0,0,0,0,0
-SummonScaling,,0.1,0.1,0.15,0.2,0.1,0.1,0.2,0.1,0.15,0.1,0.2,0.3,0,0,0,0,0,0
-UtilityScaling,,0.1,0.1,0.1,0.2,0.1,0.15,0.1,0.1,0.05,0.1,0.1,0.05,0,0,0,0,0,0
-DefenseScaling,,0.25,0.1,0.1,0.05,0.05,0.1,0.05,0.15,0.15,0.2,0.05,0.05,0,0,0,0,0,0
-,,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,0.85,,,,,,
-CritPercent,,2,10,3,3,1,2,2,3,3,1,3,2,0,0,0,0,0,5
-MaxArmorScalingTypeId,,4,2,3,1,1,4,3,2,3,4,3,2,,,,,,
-Attack,,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
-Defend,,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
-Shoot,,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
-Whirlwind,5,x,x,,,,,,x,x,x,,,,,,,,
-Volley,5,,x,x,,,x,x,,x,,,,,,,,,
-Hide,4,,x,,,,,x,x,x,,,,,,,,,
-Cleanse Area,2,,x,,x,,,,,,,,,,,,,,
-Pick Lock,4,,x,,,,x,x,,,,,,,,,,,x
-Reveal Area,6,,x,x,x,,,,x,,,x,x,,,,,,
-Charm,2,,,,,x,,x,,,,,,,,,,,
-Weaken,4,,,,,x,x,,x,x,,,,,,,,,
-Silence,5,,,,x,,,x,,x,x,,x,,,,,,
-Teleport,3,,,,x,,x,,x,,,,,,,,,,
-Town Portal,12,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
-Beacon,5,,,,x,,x,,x,,,x,x,,,,,,
-Jump,2,,,,,x,,,x,,,,,,,,,,
-Pass Wall,5,,x,,x,,x,,x,,,,x,,,,,,
-StrengthBonus,,2,0,0,0,0,1,0,1,3,1,0,0,0,0,0,1,0,0
-IntellectBonus,,0,0,0,3,0,1,0,1,0,0,2,1,0,1,0,0,1,0
-DevotionBonus,,0,0,0,0,3,0,1,1,0,1,2,0,0,0,1,0,1,0
-AgilityBonus,,0,1,3,0,0,1,1,0,0,0,0,0,0,1,0,0,0,1
-StaminaBonus,,2,0,1,0,0,1,1,1,1,1,0,2,0,0,1,1,0,0
-LuckBonus,,0,3,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0,1
-WillpowerBonus,,0,0,0,0,1,0,0,0,0,1,0,1,1,0,0,0,0,0
-Armor,4,x,,,,x,,x,,,x,,,,,,,,
-Resist,3,,,,x,,,,x,,,x,,,,,,,
-Hit,4,x,,x,,,x,,,x,,,,,,,,,
-Speed,5,x,x,,,,,,x,x,,x,,,,,,,
-Light,12,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
-Magic Compass,7,x,x,x,x,x,,,x,x,,,,,,,,,
-Levitate,7,,,x,x,,x,x,x,,,x,x,,,,,,
-Danger Sense,8,x,x,x,x,x,,,,x,x,,x,,,,,,
-Mapping,12,x,x,x,x,x,x,x,x,x,x,x,x,,,,,,
-Autoheal,7,,,,,x,x,x,x,,x,x,x,,,,,,
-Barrier,7,x,,,,x,x,,x,x,x,,x,,,,,,
-Retaliate,7,x,x,,,,,x,,x,x,x,x,,,,,,
-Cursed Arrows,7,,x,x,x,,,x,,x,,x,x,,,,,,
-Parry,7,x,,,,x,x,x,x,x,x,,,,,,,,
-Apply DoT,6,x,x,x,,,x,,x,,,x,,,,,,,
-Lifesteal,6,,,,x,x,,x,,x,x,,x,,,,,,
-,,8,7,7,7,8,7,8,8,9,8,7,9,,,,,,
-Charge,3,x,,,,,x,,,x,,,,,,,,,
-Heal Wounds,6,,,,,x,x,x,x,,x,x,,,,,,,
-Heal Party,1,,,,,x,,,,,,,,,,,,,
-Fireball,4,,,,x,,,x,,,,x,x,,,,,,
-Flamestrike,3,,,,x,,,,,,,x,x,,,,,,
-Frostbolt,3,,,,x,,,,,,,x,x,,,,,,
-Cone of Cold,3,,,,x,,,,,,,x,x,,,,,,
-Lightning Bolt,2,,,,,,,,x,,,x,,,,,,,
-Chain Lightning,2,,,,,,,,x,,,x,,,,,,,
-Holy Beam,2,,,,,x,,,,,x,,,,,,,,
-Holy Nova,2,,,,,x,,,,,x,,,,,,,,
-Identify Monster,3,,,x,,,,,x,,,x,,,,,,,
-Mesmerize,2,,,x,,,x,,,,,,,,,,,,
-Entangle,2,,,x,,,,,x,,,,,,,,,,
-Polymorph Dog,1,,,,x,,,,,,,,,,,,,,
-Identify Item,4,,x,,x,,x,,,,,,x,,,,,,
-Call Bear,1,,,x,,,,,,,,,,,,,,,
-Activate Golem,1,,,,,,x,,,,,,,,,,,,
-Conjure Elemental,1,,,,,,,,,,,x,,,,,,,
-Summon Monk,1,,,,,x,,,,,,,,,,,,,
-Summon Scrapper,1,x,,,,,,,,,,,,,,,,,
-Signal Thief,1,,x,,,,,,,,,,,,,,,,
-Raise Skeleton,1,,,,,,,,,,,,x,,,,,,
-Dig Up Vampire,1,,,,,,,,,,,,x,,,,,,
-Pspspsps Cat,1,,,,,,,,x,,,,,,,,,,
-Summon Guard,1,,,,,,,,,,x,,,,,,,,
-Summon Barbarian,1,,,,,,,,,x,,,,,,,,,
-Call Magician,1,,,,x,,,,,,,,,,,,,,
-Summon Elf,1,,,,,,,x,,,,,,,,,,,
-Holy Storm,0,,,,,,,,,,,,,,,,,,
-Lightning Storm,1,,,,,,,,,,,x,,,,,,,
-Firestorm,2,,,,x,,,,,,,,x,,,,,,
-Blizzard,1,,,,x,,,,,,,,,,,,,,
-Cure,6,,,,,x,x,x,x,,x,x,,,,,,,
-Cure Party,6,,,,,x,x,x,x,,x,x,,,,,,,
-Sword,,x,x,x,x,,,x,,x,x,x,,,,,,,
-Axe,,x,x,x,,,,x,,x,x,,,,,,,,
-Mace,,x,x,,,x,,x,x,x,x,x,x,,,,,,
-Dagger,,x,x,x,x,x,x,x,x,x,,x,x,,,,,,
-2HSword,,x,,x,,,x,,,x,x,,,,,,,,
-2HAxe,,x,,x,,,x,,,x,x,,,,,,,,
-2HMace,,x,,,,,x,,x,x,x,,,,,,,,
-Staff,,x,,x,x,x,x,,x,x,,x,x,,,,,,
-Polearm,,x,,x,,,x,,x,x,,,,,,,,,
-Ranged,,x,x,x,,,x,x,,x,,,,,,,,,
-Thrown,,x,x,,,,x,x,x,x,x,,,,,,,,
-Wand,,,x,,x,x,,x,,,,x,x,,,,,,
-Poison Arrow,,,x,x,,,,x,x,,,x,,,,,,,
-Poison Spray,,,x,x,,,,,x,,,x,,,,,,,
-Plaguestorm,,,,,,,,,x,,,x,,,,,,,
-Arcane Missiles,,,,,x,,,x,,,,,x,,,,,,
-Arcane Explosion,,,,,x,,,x,,,,,x,,,,,,
-Magestorm,,,,,x,,,x,,,,,x,,,,,,
-Darkbolt,,,,,,x,,,,,,,x,,,,,,
-Shadow Burst,,,,,,x,,,,,,,x,,,,,,
-Nightstorm,,,,,,x,x,,,,,,x,,,,,,
-Shards,,x,,,,,x,,,x,,x,,,,,,,
-Groundburst,,x,,,,,x,,,x,,x,,,,,,,
-Earthquake,,,,,,,,,,,,x,,,,,,,
-Acid Bolt,,,x,,,,x,,,,,,x,,,,,,
-Acid Spray,,,x,,,,x,,,,,,x,,,,,,
-Acidic Wave,,,,,,,,,,,,,x,,,,,,
+,,Fighter,Hunter,Mage,Cleric,Skirmisher,Paladin,Spellblade,Ranger,Warden,Sage,Human,Elf,Dwarf,Half-Orc,Gnome,Halfling,Lizardman
+Idkey,,1,2,3,4,5,6,7,8,9,10,100,101,102,103,104,105,106
+Abbrev,,Fi,Hu,Ma,Cl,Sk,Pa,Sp,Ra,Wa,Sa,Hu,El,Dw,Hc,Gn,Hf,Lz
+,,Fi,Hu,Ma,Cl,Fi/Hu,Fi/Cl,Fi/Ma,Hu/Ma,Hu/Cl,Ma/Cl,,,,,,,
+Desc,,Melee Fighter and Tank,Master of ranged combat and striking from the shadows.,Can cause massive spell damage.,A very good healer.,"A Fighter who is also skilled in ranged combat, and combat tricks.",A fighter who can also heal.,A fighter who can also fling a nasty fireball.,A ranged combat fighter who can also cast offensive magic.,A guardian of the wilds.,A master of all forms of magic.,They make better leaders.,They can shoot arrows with a precision unmatched by any other race.,They are harder to kill than anyone else.,They bring a ferocity to close-quarters that no other race can approach.,They are more attuned to destructive magic than anyone else.,They are a lucky race that can better see how to find a lethal weakness in enemies.,Their lives deep in the jungle have attuned them to healing methods better than others. 
+RoleCategoryId,,1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2
+HealthPerLevel,,12,10,6,8,11,10,9,8,9,7,0,0,5,0,0,0,0
+ManaPerLevel,,6,8,12,10,7,8,9,8,9,11,0,0,0,0,0,0,0
+StartSkillPoints,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+StartUpgradePoints,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+TrainingXpScale,,1,1.1,1.3,1.2,1.2,1.3,1.4,1.5,1.4,1.6,0,0,0,0,0,0,0
+TrainingGoldScale,,1,1.1,1.3,1.2,1.2,1.3,1.4,1.5,1.4,1.6,0,0,0,0,0,0,0
+Guardian,,TRUE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE
+MeleeScaling,,0.3,0.2,0.1,0.1,0.25,0.2,0.2,0.15,0.15,0.1,0,0,0,0.05,0,0,0
+RangedScaling,,0.2,0.3,0.1,0.1,0.25,0.15,0.15,0.2,0.2,0.1,0,0.05,0,0,0,0,0
+SpellDamScaling,,0.1,0.1,0.3,0.2,0.1,0.2,0.2,0.2,0.2,0.25,0,0,0,0,0.05,0,0
+HealingScaling,,0.1,0.1,0.2,0.3,0.1,0.15,0.15,0.15,0.15,0.25,0,0,0,0,0,0,0.05
+,,,,,,,,,,,,,,,,,,
+SummonScaling,,0,0.1,0,0.1,0.05,0.05,0,0.05,0.1,0.05,0.05,0,0,0,0,0,0
+DivinationScaling,,0,0,0.1,0.1,0,0.05,0.05,0.05,0.05,0.1,0,0,0,0,0,0,0
+DefenseScaling,,0.2,0,0,0,0.1,0.1,0.1,0,0,0,0,0,0,0,0,0,0
+MobilityScaling,,0,0.1,0.1,0,0.05,0,0.05,0.1,0.05,0.05,0,0,0,0,0,0,0
+,,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,,,,,,,
+CritPercent,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,0
+MaxArmorScalingTypeId,,4,3,1,1,4,3,2,3,4,3,0,0,0,0,0,0,0
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+StrengthBonus,,2,0,0,0,1,1,1,0,0,0,0,0,0,1,0,0,0
+IntellectBonus,,0,0,2,0,0,0,1,1,0,1,0,0,0,0,1,0,0
+DevotionBonus,,0,0,0,2,0,1,0,0,1,1,0,0,0,0,0,0,1
+AgilityBonus,,0,2,0,0,1,0,0,1,1,0,0,1,0,0,0,0,0
+StaminaBonus,,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+LuckBonus,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WillpowerBonus,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+LeadershipBonus,,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+,,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1
+,,,,,,,,,,,,,,,,,,
+Sword,7,x,x,x,,,x,,x,x,x,,,,,,,
+Axe,5,x,x,,,,x,,x,x,,,,,,,,
+Mace,7,x,,,x,,x,x,x,x,x,,,,,,,
+Dagger,9,x,x,x,x,x,x,x,x,,x,,,,,,,
+2HSword,5,x,x,,,x,,,x,x,,,,,,,,
+2HAxe,5,x,x,,,x,,,x,x,,,,,,,,
+2HMace,5,x,,,,x,,x,x,x,,,,,,,,
+Staff,8,x,x,x,x,x,,x,x,,x,,,,,,,
+Polearm,5,x,x,,,x,,x,x,,,,,,,,,
+Bow,5,x,x,,,x,x,,x,,,,,,,,,
+Thrown,6,x,,,,x,x,x,x,x,,,,,,,,
+Wand,4,,,x,x,,x,,,,x,,,,,,,
+Spear,5,x,x,,,x,,x,x,,,,,,,,,
+Orb,3,,,x,,x,,,,,x,,,,,,,
+Tome,4,,,,x,,x,x,,x,,,,,,,,
+Quiver,4,x,x,,,,x,,x,,,,,,,,,
+Gun,5,x,x,,,x,x,,x,,,,,,,,,
+Sling,4,,,x,x,,x,,,,x,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Defend,10,x,x,x,x,x,x,x,x,x,x,,,,,,,
+Hide,1,,x,,,,,,,,,,,,,,,
+Charge,1,x,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Attack,10,x,x,x,x,x,x,x,x,x,x,,,,,,,
+Pummel,5,x,x,,,x,x,x,,,,,,,,,,
+Bladestorm,4,x,,,,x,x,x,,,,,,,,,,
+Whirlwind,1,x,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Shoot,10,x,x,x,x,x,x,x,x,x,x,,,,,,,
+Rapid Fire,5,x,x,,,x,,,x,x,,,,,,,,
+Multishot,4,,x,,,x,,,x,x,,,,,,,,
+Volley,1,,x,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Cleanse Area,4,,,,x,,x,,,x,x,,,,,,,
+Reveal Area,4,,x,,,x,,,x,x,,,,,,,,
+Teleport,4,,,x,,,,x,x,,x,,,,,,,
+Town Portal,4,,,,x,,x,,,x,x,,,,,,,
+Beacon,4,,,x,,,,x,x,,x,,,,,,,
+Jump,4,,,x,,,,x,x,,x,,,,,,,
+Pass Wall,4,,,,x,,x,,,x,x,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Light,10,x,x,x,x,x,x,x,x,x,x,,,,,,,
+Magic Compass,7,,x,x,,x,,x,x,x,x,,,,,,,
+Levitate,7,,,x,x,,x,x,x,x,x,,,,,,,
+Danger Sense,7,x,x,,,x,x,x,x,x,,,,,,,,
+Mapping,7,x,,,x,x,x,x,,x,x,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Autoheal,4,,,,x,,x,,,x,x,,,,,,,
+Barrier,4,,,,x,,x,,,x,x,,,,,,,
+Retaliate,4,,x,,,x,,,x,x,,,,,,,,
+Cursed Arrows,4,,x,,,x,,,x,x,,,,,,,,
+Parry,4,x,,,,x,x,x,,,,,,,,,,
+Apply DoT,4,,,x,,,,x,x,,x,,,,,,,
+Lifesteal,4,,,x,,,,x,x,,x,,,,,,,
+Command,4,x,,,,x,x,x,,,,,,,,,,
+,,5,5,5,5,8,8,9,8,9,8,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Atrophy,,,,x,,,,x,x,,x,,,,,,,
+Hamstring,,x,,,,x,x,x,,,,,,,,,,
+Warp Mind,,,,,x,,x,,,x,x,,,,,,,
+Dust Cloud,,,x,,,x,,,x,x,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Curse,,,,,x,,x,,,x,x,,,,,,,
+Wither,,,,x,,,,x,x,,x,,,,,,,
+Feint,,,x,,,x,,,x,x,,,,,,,,
+Distract,,x,,,,x,x,x,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Enrage,,x,,,,,,,,,,,,,,,,
+Icy Grasp,,,,x,,,,,,,,,,,,,,
+Silence,,,,,x,,,,,,,,,,,,,
+Flashbang,,,x,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Heal Wounds,5,,,x,x,,x,,,x,x,,,,,,,
+Heal Party,1,,,,x,,,,,,,,,,,,,
+Cure,5,,,x,x,,x,,,x,x,,,,,,,
+Cure Party,1,,,,x,,,,,,,,,,,,,
+Rejuvenate,,,,,x,,x,,,x,x,,,,,,,
+Restoration,,,,,x,,,,,,,,,,,,,
+First Aid,,x,x,,,x,,x,x,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Fireball,4,,,x,,,,x,x,,x,,,,,,,
+Fire Blast,4,,,x,,,,x,x,,x,,,,,,,
+Flamestrike,4,,,x,,,,x,x,,x,,,,,,,
+Firestorm,1,,,x,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Frostbolt,4,,,x,,,,x,x,,x,,,,,,,
+Icy Blast,4,,,x,,,,x,x,,x,,,,,,,
+Cone of Cold,4,,,x,,,,x,x,,x,,,,,,,
+Blizzard,1,,,x,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Lightning Bolt,4,,x,,,x,,,x,x,,,,,,,,
+Electric Blast,4,,x,,,x,,,x,x,,,,,,,,
+Chain Lightning,4,,x,,,x,,,x,x,,,,,,,,
+Lightning Storm,1,,x,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Holy Beam,4,,,,x,,x,,,x,x,,,,,,,
+Light Blast,4,,,,x,,x,,,x,x,,,,,,,
+Holy Nova,4,,,,x,,x,,,x,x,,,,,,,
+Holy Storm,1,,,,x,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+Poison Arrow,,,x,,,x,,,x,x,,,,,,,,
+Poison Blast,,,x,,,x,,,x,x,,,,,,,,
+Poison Spray,,,x,,,x,,,x,x,,,,,,,,
+Plaguestorm,,,x,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+ ,,,,,,,,,,,,,,,,,,

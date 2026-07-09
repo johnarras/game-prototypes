@@ -631,6 +631,26 @@
     {
       "IdKey": 158,
       "Name": "DungeonThemeSettings"
+    },
+    {
+      "IdKey": 159,
+      "Name": "AdUnitSettings"
+    },
+    {
+      "IdKey": 160,
+      "Name": "ManaRegenSettings"
+    },
+    {
+      "IdKey": 161,
+      "Name": "RoomEdgeTypeSettings"
+    },
+    {
+      "IdKey": 162,
+      "Name": "RoomGenSettings"
+    },
+    {
+      "IdKey": 163,
+      "Name": "BushTypeSettings"
     }
   ],
   "Parent": {

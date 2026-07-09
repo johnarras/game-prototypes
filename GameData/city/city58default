@@ -9,7 +9,7 @@
   "AncientName": "Muziris",
   "Population": 10000,
   "MapPixelX": 4680,
-  "MapPixelY": 3641,
+  "MapPixelZ": 3641,
   "BiomeTypeId": 14,
   "CultureTypeId": 8,
   "TradeGoodsProduced": [
@@ -29,5 +29,15 @@
       "TradeGoodId": 102
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

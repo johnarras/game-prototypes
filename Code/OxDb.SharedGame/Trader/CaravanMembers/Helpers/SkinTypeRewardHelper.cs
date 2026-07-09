@@ -15,15 +15,15 @@ namespace OxDb.SharedGame.Trader.CaravanMembers.Helpers
 
         public long HelperKey => EntityTypes.SkinType;
 
-        public async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
-            return _caravanMemberService.GetSkinQuantity(await context.GetAsync<HoldingsData>(), entityId);
+            return await _caravanMemberService.GetSkinQuantity(context, entityId);
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             CoreData core = await context.GetAsync<CoreData>();
-            _caravanMemberService.AddSkinToHoldings(core, await context.GetAsync<HoldingsData>(), entityId);
+            await _caravanMemberService.AddSkinToHoldings(context, entityId);
 
             return true;
         }

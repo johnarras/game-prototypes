@@ -300,7 +300,7 @@ namespace OxDb.SharedGame.Stats.Services
         {
         }
 
-        public virtual void RegenerateTick(IRandom rand, Unit unit, float regenTickTime = StatConstants.RegenTickSeconds)
+        public virtual void RegenerateTick(Unit unit, float regenTickTime = StatConstants.RegenTickSeconds)
         {
 
         }

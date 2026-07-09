@@ -9,7 +9,7 @@ namespace OxDb.MapServer.Combat.MessageHandlers
 {
     public class DiedHandler : BaseUnitServerMapMessageHandler<Died>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, Died message)
+        protected override async ValueTask InnerProcess(Unit unit, Died message)
         {
             unit.AddMessage(message);
             unit.RemoveAttacker(message.UnitId);

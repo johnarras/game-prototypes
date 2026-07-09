@@ -1,7 +1,7 @@
+using Assets.Scripts.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using System;

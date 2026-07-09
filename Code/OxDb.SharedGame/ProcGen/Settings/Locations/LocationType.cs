@@ -15,7 +15,7 @@ namespace OxDb.SharedGame.ProcGen.Settings.Locations
         public string Icon { get; set; }
 
         public int XSize { get; set; }
-        public int YSize { get; set; }
+        public int ZSize { get; set; }
 
         public string SetupType { get; set; }
         public string Art { get; set; }

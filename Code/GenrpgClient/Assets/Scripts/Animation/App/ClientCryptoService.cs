@@ -7,7 +7,7 @@ using System.Text;
 public interface IClientCryptoService : IInjectable
 {
     string EncryptString(string txt);
-    string DecryptString(string txt);
+    string SafeDecryptString(string txt);
     string GetDeviceId();
 }
 
@@ -25,13 +25,20 @@ public class ClientCryptoService : IClientCryptoService
         return Convert.ToBase64String(trans.TransformFinalBlock(bytes, 0, bytes.Length));
     }
 
-    public string DecryptString(string txt)
+    public string SafeDecryptString(string txt)
     {
-        byte[] bytes = Convert.FromBase64String(txt);
-        SymmetricAlgorithm alg = TripleDES.Create();
-        alg.Mode = CipherMode.ECB;
-        ICryptoTransform trans = alg.CreateDecryptor(GetKey(), GetIV());
-        return Encoding.UTF8.GetString(trans.TransformFinalBlock(bytes, 0, bytes.Length));
+        try
+        {
+            byte[] bytes = Convert.FromBase64String(txt);
+            SymmetricAlgorithm alg = TripleDES.Create();
+            alg.Mode = CipherMode.ECB;
+            ICryptoTransform trans = alg.CreateDecryptor(GetKey(), GetIV());
+            return Encoding.UTF8.GetString(trans.TransformFinalBlock(bytes, 0, bytes.Length));
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     public string GetDeviceId()

@@ -21,7 +21,7 @@ internal class FullRockType
     public double Weight;
 
 
-    public List<MyPoint> PlacedRocks;
+    public List<Point2F> PlacedRocks;
 
     public string assetCategory = AssetCategoryNames.Rocks;
 
@@ -29,7 +29,7 @@ internal class FullRockType
     public string fullURL = "";
     public FullRockType()
     {
-        PlacedRocks = new List<MyPoint>();
+        PlacedRocks = new List<Point2F>();
     }
 }
 
@@ -44,21 +44,21 @@ public class AddRocks : BaseZoneGenerator
         await base.Generate(token);
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MinZ, zone.MaxX, zone.MaxZ);
         }
     }
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int startz, int endx, int endz)
     {
         GenZone genZone = _md.GetGenZone(zone.IdKey);
 
-        if (endx <= startx || endy <= starty)
+        if (endx <= startx || endz <= startz)
         {
             return;
         }
 
         int dx = endx - startx;
-        int dy = endy - starty;
+        int dz = endz - startz;
 
         MyRandom rand = new MyRandom(zone.Seed % 2000000000 + 15434454);
 
@@ -102,7 +102,6 @@ public class AddRocks : BaseZoneGenerator
                 continue;
             }
 
-
             FullRockType full = new FullRockType();
             full.zoneRock = zrt;
             full.zoneTypeRock = ztrt;
@@ -112,12 +111,11 @@ public class AddRocks : BaseZoneGenerator
             full.fullURL = full.assetName;
             full.assetCategory = AssetCategoryNames.Rocks;
             list.Add(full);
-
         }
 
-        int size = Math.Max(zone.XMax - zone.XMin, zone.ZMax - zone.ZMin);
+        int size = Math.Max(zone.MaxX - zone.MinX, zone.MaxZ - zone.MinZ);
 
-        long area = (zone.XMax - zone.XMin) * (zone.ZMax - zone.ZMin);
+        long area = (zone.MaxX - zone.MinX) * (zone.MaxZ - zone.MinZ);
 
         long totalNumber = (long)((area * RandomRockDensity) * zoneType.RockDensity * densityMult);
 
@@ -133,22 +131,22 @@ public class AddRocks : BaseZoneGenerator
             }
 
             int x = RandUtils.IntRange(startx, endx, rand);
-            int y = RandUtils.IntRange(starty, endy, rand);
+            int z = RandUtils.IntRange(startz, endz, rand);
 
 
 
-            if (_zoneGenService.FindMapLocation(x, y, 10) != null)
+            if (_zoneGenService.FindMapLocation(x, z, 10) != null)
             {
                 continue;
             }
 
 
-            if (_md.MapZoneIds[x, y] != zone.IdKey) // zoneobject
+            if (_md.MapZoneIds[x, z] != zone.IdKey) // zoneobject
             {
                 continue;
             }
 
-            if (_md.RoadDistances[x, y] < 10)
+            if (_md.RoadDistances[x, z] < 10)
             {
                 continue;
             }
@@ -222,40 +220,38 @@ public class AddRocks : BaseZoneGenerator
 
 
                 int px = x + RandUtils.IntRange(-maxOffset, maxOffset, rand);
-                int pz = y + RandUtils.IntRange(-maxOffset, maxOffset, rand);
+                int pz = z + RandUtils.IntRange(-maxOffset, maxOffset, rand);
 
                 px -= px / (MapConstants.TerrainPatchSize - 1);
                 pz -= pz / (MapConstants.TerrainPatchSize - 1);
 
                 int rdx = px - x;
-                int rdy = pz - y;
+                int rdz = pz - z;
 
-                float rdist = (float)Math.Sqrt(rdx * rdx + rdy * rdy);
-
+                float rdist = (float)Math.Sqrt(rdx * rdx + rdz * rdz);
 
                 int ipx = (int)(px);
-                int ipy = (int)(pz);
+                int ipz = (int)(pz);
 
-
-                if (ipx < 0 || ipy < 0 || ipx >= _mapProvider.GetMap().GetHwid() || ipy >= _mapProvider.GetMap().GetHhgt())
+                if (ipx < 0 || ipz < 0 || ipx >= _mapProvider.GetMap().GetHwid() || ipz >= _mapProvider.GetMap().GetHhgt())
                 {
                     continue;
                 }
 
-                if (_md.RoadDistances[ipx, ipy] < 3)
+                if (_md.RoadDistances[ipx, ipz] < 3)
                 {
                     continue;
                 }
-                float posHeight = _terrainManager.GetInterpolatedHeight(ipx, ipy);
+                float posHeight = _terrainManager.GetInterpolatedHeight(ipx, ipz);
 
                 if (posHeight < MapConstants.MinLandHeight)
                 {
                     continue;
                 }
 
-                if (!_md.CellHasObject(ipx, ipy))
+                if (!_md.CellHasObject(ipx, ipz))
                 {
-                    _md.SetEntityData(ipx, ipy, EntityTypes.Rock, frt.rockType.IdKey);
+                    _md.SetEntityData(ipx, ipz, EntityTypes.Rock, frt.rockType.IdKey);
 
                     didFinalPlace = true;
 
@@ -269,7 +265,7 @@ public class AddRocks : BaseZoneGenerator
 
                         float currMaxOffset = RandUtils.FloatRange(1.1f, 2.1f, rand);
                         float currMinOffset = currMaxOffset / 2;
-                        _addNearbyItemsHelper.AddItemsNear(rand, zoneType, zone, x, y, 0.9f, nearbyItemsCount, currMinOffset, currMaxOffset);
+                        _addNearbyItemsHelper.AddItemsNear(rand, zoneType, zone, x, z, 0.9f, nearbyItemsCount, currMinOffset, currMaxOffset);
                     }
                 }
 

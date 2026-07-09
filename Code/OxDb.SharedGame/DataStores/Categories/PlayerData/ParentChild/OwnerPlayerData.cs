@@ -7,12 +7,16 @@ using OxDb.SharedGame.Interfaces;
 namespace OxDb.SharedGame.DataStores.Categories.PlayerData.ParentChild
 {
     [DataGroup(EDataCategories.Players, ERepoTypes.Mongo)]
-    public abstract class OwnerPlayerData : BasePlayerData, IStringOwnerId, IChildUnitData, ISearchableItem
+    public abstract class OwnerPlayerData : BasePlayerData, IStringOwnerId, IChildUnitData, ISearchableItem, IVersionedData
     {
         [MessagePack.IgnoreMember]
         public abstract string OwnerId { get; set; }
 
+        [MessagePack.IgnoreMember] public abstract string VersionTag { get; set; }
+
         public override IUnitData Unpack() { return this; }
+
+
     }
 }
 

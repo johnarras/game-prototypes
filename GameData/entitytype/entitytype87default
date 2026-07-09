@@ -1,0 +1,8 @@
+{
+  "Id": "entitytype87default",
+  "ParentId": "default",
+  "IdKey": 87,
+  "Name": "RoomEdge",
+  "Icon": "RoomEdge",
+  "Art": "RoomEdge"
+}

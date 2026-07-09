@@ -10,7 +10,7 @@ namespace OxDb.MapServer.Trades.MessageHandlers
     public class OnCancelTradeHandler : BaseCharacterServerMapMessageHandler<OnCancelTrade>
     {
         private ITradeService _tradeService = null;
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, OnCancelTrade message)
+        protected override async ValueTask InnerProcess(Character ch, OnCancelTrade message)
         {
             _tradeService.HandleOnCancelTrade(ch, message);
         }

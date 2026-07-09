@@ -9,7 +9,7 @@
   "AncientName": "Tadmor",
   "Population": 200000,
   "MapPixelX": 2940,
-  "MapPixelY": 2533,
+  "MapPixelZ": 2533,
   "BiomeTypeId": 8,
   "CultureTypeId": 7,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 119
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 5
+    }
+  ]
 }

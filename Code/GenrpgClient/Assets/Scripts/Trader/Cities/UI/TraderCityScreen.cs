@@ -1,7 +1,6 @@
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Trader.Cities.UI;
 using Assets.Scripts.UI.ScreenSystem;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Cities.Settings;
@@ -32,15 +31,14 @@ namespace Assets.Scripts.Trader.UI.Cities
             if (_city == null)
             {
 
-                CoreData coreData = _gs.ch.Get<CoreData>();
-
-                CaravanPosition pos = _caravanService.GetPosition(coreData);
+                CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
                 _city = pos.GetCurrentCity();
             }
 
             if (_city == null)
             {
+                StartClose();
                 return;
             }
 

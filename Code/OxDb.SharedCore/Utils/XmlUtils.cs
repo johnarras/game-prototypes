@@ -1,12 +1,63 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Xml;
+using System.Xml.Schema;
 
 namespace OxDb.SharedCore.Utils
 {
+
+    public class XmlDict
+    {
+
+        public string this[string key]
+        {
+            get
+            {
+                return _dict[key];
+            }
+            set
+            {
+                _dict[key] = value;  
+            }
+        }
+
+        private Dictionary<string, string> _dict { get; set; } = new Dictionary<string, string>();
+
+
+        public XmlDict(Dictionary<string,string> dict)
+        {
+            _dict = dict;
+        }
+
+        public string GetVal(string key)
+        {
+            return _dict[key];
+        }
+
+
+        public int GetInt(string key)
+        {
+            return int.Parse(GetVal(key));
+        }
+
+        public bool GetBool(string key)
+        {
+            return bool.Parse(GetVal(key));
+        }
+
+        public T GetEnum<T>(string key) where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), GetVal(key));
+        }
+    }
+
+
     public static class XmlUtils
     {
-        public static Dictionary<string, string> ExtractAppConfigData(string path)
+        public static XmlDict ExtractAppConfigData(string path)
         {
             string txt = File.ReadAllText(path);
 
@@ -58,7 +109,9 @@ namespace OxDb.SharedCore.Utils
                     kvDict[key] = val;
                 }
             }
-            return kvDict;
+            
+
+            return new XmlDict(kvDict);
         }
     }
 }

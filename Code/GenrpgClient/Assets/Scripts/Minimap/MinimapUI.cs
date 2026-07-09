@@ -85,7 +85,7 @@ public class MinimapUI : BaseBehaviour
 
         // Player pct goes from -0.5 to 0.5.
         float xpct = pos.x / _mapProvider.GetMap().GetHwid();
-        float ypct = pos.z / _mapProvider.GetMap().GetHhgt();
+        float zpct = pos.z / _mapProvider.GetMap().GetHhgt();
 
         float imageSize = MapImage.rectTransform.sizeDelta.x;
 
@@ -95,8 +95,8 @@ public class MinimapUI : BaseBehaviour
             float sizePct = 256.0f / _mapProvider.GetMap().GetHwid();
             sizePct = MathUtil.Clamp(0.02f, sizePct, 0.15f);
             float xminpct = xpct - sizePct / 2;
-            float yminpct = ypct - sizePct / 2;
-            MapImage.uvRect = new Rect(new Vector2(xminpct, yminpct), new Vector2(sizePct, sizePct));
+            float zminpct = zpct - sizePct / 2;
+            MapImage.uvRect = new Rect(new Vector2(xminpct, zminpct), new Vector2(sizePct, sizePct));
         }
 
 

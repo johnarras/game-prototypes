@@ -11,7 +11,7 @@ namespace OxDb.MapServer.Spawns.MessageHandlers
     public class SendSpawnHandler : BaseMapObjectServerMapMessageHandler<SendSpawn>
     {
         private ITextSerializer _serializer = null;
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, SendSpawn message)
+        protected override async ValueTask InnerProcess(MapObject obj, SendSpawn message)
         {
             await Task.CompletedTask;
             if (!_objectManager.GetChar(message.ToObjId, out Character ch))

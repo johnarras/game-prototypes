@@ -1,0 +1,13 @@
+{
+  "Id": "stattype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "Leadership",
+  "Desc": "Helps with summoning and group effectiveness.",
+  "AtlasPrefix": "",
+  "Icon": "Leadership",
+  "Art": "CyanCauldron",
+  "ColorName": "Cyan",
+  "ColorCode": "#00FFFF",
+  "GenScalePct": 25
+}

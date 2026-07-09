@@ -1,8 +1,8 @@
 using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using Assets.Scripts.Crawler.Constants;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
@@ -13,7 +13,6 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Combat.Services;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Crawlers.Services;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -60,7 +59,6 @@ namespace OxDb.SharedGame.Crawler.Party.Services
     {
         private IGameData _gameData = null;
         private IClientGameState _gs = null;
-        private IClientRandom _rand = null;
         private IDispatcher _dispatcher = null;
         private ICrawlerWorldService _crawlerWorldService = null;
         private ICrawlerService _crawlerService = null;
@@ -155,7 +153,7 @@ namespace OxDb.SharedGame.Crawler.Party.Services
         {
             if (party.WorldId == 0)
             {
-                party.WorldId = _rand.Rand.Next() % 100000000;
+                party.WorldId = _gs.Rand.Next() % 100000000;
             }
             party.Maps = new List<CrawlerMapStatus>();
             party.CompletedMaps.Clear();

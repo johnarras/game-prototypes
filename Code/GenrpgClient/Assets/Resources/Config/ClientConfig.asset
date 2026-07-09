@@ -21,6 +21,8 @@ MonoBehaviour:
   ProductId: 2
   Flags: 1
   LogalyticsConnectionString: 
-  GooglePlaySecret: temp
-  IOSSecret: temp
+  GooglePlayAndroidClientId: 
+  IOSSecret: 
   PackageName: 
+  AndroidAdsGameKey: 
+  IOSAdsGameKey: 

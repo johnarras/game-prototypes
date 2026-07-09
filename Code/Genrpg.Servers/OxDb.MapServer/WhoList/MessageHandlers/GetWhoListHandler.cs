@@ -12,7 +12,7 @@ namespace OxDb.MapServer.WhoList.MessageHandlers
 {
     public class GetWhoListHandler : BaseCharacterServerMapMessageHandler<GetWhoList>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, GetWhoList message)
+        protected override async ValueTask InnerProcess(Character ch, GetWhoList message)
         {
             _cloudCommsService.SendResponseMessageWithHandler<WhoListResponse>(ServerNames.Player,
                new WhoListRequest() { Args = message.Args }, (response) => { OnReceiveWhoList(ch.Id, response); });

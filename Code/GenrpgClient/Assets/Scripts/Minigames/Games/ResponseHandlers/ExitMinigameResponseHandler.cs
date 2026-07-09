@@ -12,7 +12,7 @@ namespace Assets.Scripts.Minigames.Games.ResponseHandlers
     public class EndMinigameResponseHandler : BaseClientWebResponseHandler<EndMinigameResponse>
     {
         private IDynamicUIService _dynamicUIService = null;
-        protected override async Awaitable InnerProcess(EndMinigameResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(EndMinigameResponse response, CancellationToken token)
         {
             if (!string.IsNullOrEmpty(response.ErrorMessage))
             {

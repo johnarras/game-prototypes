@@ -9,7 +9,7 @@
   "AncientName": "Waset/Thebae",
   "Population": 80000,
   "MapPixelX": 2684,
-  "MapPixelY": 2933,
+  "MapPixelZ": 2933,
   "BiomeTypeId": 3,
   "CultureTypeId": 4,
   "TradeGoodsProduced": [
@@ -29,5 +29,18 @@
       "TradeGoodId": 37
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

@@ -5,18 +5,15 @@ using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Shipments.PlayerData;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Trader.Shipments.Services
 {
 
     public interface IShipmentService : IInitializable
     {
-
-        System.Threading.Tasks.Task AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
-
-
-        System.Threading.Tasks.Task RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
-
+        ValueTask AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
+        ValueTask RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId);
     }
 
 
@@ -25,16 +22,16 @@ namespace OxDb.SharedGame.Trader.Shipments.Services
 
         protected ICaravanService _caravanService = null;
 
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
-        public async System.Threading.Tasks.Task AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
+        public async ValueTask AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             ShipmentData shipmentData = await lookup.GetAsync<ShipmentData>();
 
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(lookup);
 
             if (pos.GetCurrentCity() != null)
             {
@@ -55,7 +52,7 @@ namespace OxDb.SharedGame.Trader.Shipments.Services
 
         }
 
-        public async System.Threading.Tasks.Task RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
+        public async ValueTask RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long uniqueId)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             ShipmentData shipmentData = await lookup.GetAsync<ShipmentData>();

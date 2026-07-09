@@ -12,9 +12,9 @@ namespace OxDb.MapServer.Vendors.MessageHandlers
 
         private IVendorService _vendorService = null!;
 
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, SellItem message)
+        protected override async ValueTask InnerProcess(MapObject obj, SellItem message)
         {
-            _vendorService.SellItem(rand.Rand, obj, message);
+            _vendorService.SellItem(obj, message);
         }
     }
 }

@@ -27,13 +27,13 @@
     {
       "IdKey": 5,
       "Name": "Summon",
-      "Desc": "Increases the quantity and power of summoned creatures.",
-      "ScalingStatTypeId": 17
+      "Desc": "Increases the power of summoned creatures.",
+      "ScalingStatTypeId": 18
     },
     {
       "IdKey": 6,
-      "Name": "Utility",
-      "Desc": "Inceases chance to do odd things like pick locks.",
+      "Name": "Divination",
+      "Desc": "Gives knowledge about the world.",
       "ScalingStatTypeId": 16
     },
     {
@@ -41,6 +41,12 @@
       "Name": "Defense",
       "Desc": "Gives a chance to lessen or ignore damage.",
       "ScalingStatTypeId": 15
+    },
+    {
+      "IdKey": 8,
+      "Name": "Mobility",
+      "Desc": "Allows you to move around the world better.",
+      "ScalingStatTypeId": 17
     }
   ],
   "Parent": {
@@ -48,5 +54,5 @@
     "Name": "RoleScalingTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-05-30T19:19:22.507Z"
+  "SaveTime": "2026-06-29T21:40:57.338Z"
 }

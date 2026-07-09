@@ -9,7 +9,7 @@
   "AncientName": "Sardis",
   "Population": 100000,
   "MapPixelX": 2488,
-  "MapPixelY": 2345,
+  "MapPixelZ": 2345,
   "BiomeTypeId": 7,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -26,5 +26,24 @@
       "TradeGoodId": 78
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 11
+    }
+  ]
 }

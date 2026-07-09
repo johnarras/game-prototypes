@@ -88,7 +88,7 @@ namespace Assets.Editor.Utils
         }
 
 
-        [MenuItem("Tools/Update Monster Images")]
+        [MenuItem("Tools/Create Monster Name Images")]
         public static void CreateMonsterNameTextures()
         {
             CreateNameTexturesFromFolder("/FullAssets/Crawler/Images/Monsters", Color.clear);
@@ -97,6 +97,7 @@ namespace Assets.Editor.Utils
 
         public static void CreateNameTexturesFromFolder(string assetFolderPath, Color bgColor, int textureSize = 256)
         {
+            return;
             IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
 
             TextureGenList genList = new TextureGenList()

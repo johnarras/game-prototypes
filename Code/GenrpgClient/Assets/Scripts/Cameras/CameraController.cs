@@ -1,4 +1,6 @@
+using Assets.Scripts.Awaitables;
 using Assets.Scripts.Cameras;
+using Assets.Scripts.Cameras.Constants;
 using Assets.Scripts.UI.Entities;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
@@ -8,6 +10,8 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [Serializable]
 public class CullDistanceOverride
@@ -23,6 +27,8 @@ public interface ICameraController : IInitializable
     void BeforeMoveUpdate();
     void AfterMoveUpdate();
     List<Camera> GetAllCameras();
+    void SetSaturation(float saturation, bool instant);
+    float GetDefaultSaturation();
 }
 
 public class CameraController : ICameraController
@@ -36,7 +42,13 @@ public class CameraController : ICameraController
     private IScreenService _screenService = null;
     private IClientGameState _gs = null;
     private IClientAppService _appService = null;
+    private IAwaitableService _awaitableService = null;
 
+
+    private float _currSaturation = GraphicsConstants.MaxSaturation;
+    private float _targetSaturation = GraphicsConstants.MaxSaturation;
+    private float _defaultSaturation = GraphicsConstants.MaxSaturation;
+    private float _saturationLerpSeconds = 1.0f;
     public async Task Initialize(CancellationToken token)
     {
         _settings = _initClient.GetCoreClientData().CameraSettings;
@@ -51,9 +63,21 @@ public class CameraController : ICameraController
             cam.enabled = true;
             cam.cullingMask = layerMask;
         }
+        _saturationLerpSeconds = _initClient.GetCoreClientData().SaturationLerpSeconds;
+        _defaultSaturation = _initClient.GetCoreClientData().DefaultSaturation;
+        _currSaturation = _defaultSaturation;
+        _targetSaturation = _defaultSaturation;
+
+        SetSaturation(_defaultSaturation, true);
+
+        SetSaturation(_initClient.GetCoreClientData().DefaultSaturation, true);
         await Task.CompletedTask;
     }
 
+    public float GetDefaultSaturation()
+    {
+        return _defaultSaturation;
+    }
 
     private const float CameraDistScale = 1.2f; // 1.5f?
     private Vector3 StartCameraOffset = new Vector3(0, 2.0f, -10.0f) * CameraDistScale;
@@ -564,6 +588,66 @@ public class CameraController : ICameraController
     }
 
 
+    private ClampedFloatParameter _saturation = null;
+    private ColorAdjustments _colorAdjustments = null;
+
+    private int _saturationChangeTimes = 0;
+    public void SetSaturation(float targetSaturation, bool instant)
+    {
+        if (_colorAdjustments == null)
+        {
+            _settings.Volume.profile.TryGet<ColorAdjustments>(out _colorAdjustments);
+            if (_colorAdjustments == null)
+            {
+                return;
+            }
+            _saturation = _colorAdjustments.saturation;
+        }
+
+        _awaitableService.ForgetAwaitable(SetSaturationAsync(targetSaturation, instant, ++_saturationChangeTimes));
+    }
+
+    private async Awaitable SetSaturationAsync(float targetSaturation, bool instant, int saturationChangeTimes)
+    {
+
+        int currentSaturationChangeTimes = saturationChangeTimes;
+
+        float saturationDelta = _currSaturation - targetSaturation;
+
+        float totalDistance = GraphicsConstants.MaxSaturation - GraphicsConstants.MinSaturation;
+
+        float totalLerpTime = Mathf.Abs(saturationDelta) / totalDistance * _saturationLerpSeconds;
+
+        float startSaturation = _currSaturation;
+        _targetSaturation = targetSaturation;
+
+        int totalFrames = 1;
+
+        if (!instant)
+        {
+            totalFrames = 1 + (int)(totalLerpTime * _appService.TargetFrameRate);
+        }
+
+        for (int f = 1; f <= totalFrames; f++)
+        {
+            float lerpPercent = 1.0f * f / totalFrames;
+
+            float finalLerpPercent = Mathf.SmoothStep(0, lerpPercent, 1);
+
+            _currSaturation = finalLerpPercent * _targetSaturation + (1 - finalLerpPercent) * startSaturation;
+
+            VolumeParameter volumeParam = new VolumeParameter<float>() { value = _currSaturation };
+
+            _saturation.SetValue(volumeParam);
+
+            await Awaitable.NextFrameAsync();
+
+            if (saturationChangeTimes != _saturationChangeTimes)
+            {
+                break;
+            }
+        }
+    }
 }
 
 

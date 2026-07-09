@@ -1,25 +1,102 @@
-using OxDb.SharedCore.Interfaces;
+
 using OxDb.SharedGame.MapServer.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine; // Needed
 namespace Assets.Scripts.MapTerrain
 {
-    public class TerrainPatchData : IStringId
+
+    public class CoreTerrainData
+    {
+
+        public Terrain Terrain { get; set; }
+
+        public TerrainData TerrainData { get; set; }
+
+        public GameObject AssetRoot { get; set; }
+
+        public List<IndexedTerrainLayer> Layers { get; set; } = new List<IndexedTerrainLayer>();
+
+        public int TerrainSize { get; set; }
+
+        public float WorldUnitsPerCell { get; set; } = 1;
+
+        public int GX { get; set; }
+        public int GZ { get; set; }
+
+
+        public bool IsValid()
+        {
+            return Terrain != null && TerrainData != null;
+        }
+
+        public bool IsReady()
+        {
+            return Layers.Count > 0 && !Layers.Any(x => !x.IsReady());
+        }
+
+        public void AddNewTextureIndex(long textureTypeId, long zoneTypeId)
+        {
+            if (textureTypeId < 1 || Layers.Any(x => x.TextureTypeId == textureTypeId))
+            {
+                return;
+            }
+
+            IndexedTerrainLayer indexData = new IndexedTerrainLayer()
+            {
+                TextureTypeId = textureTypeId,
+                Index = Layers.Count,
+                ZoneTypeId = zoneTypeId,
+                Core = this
+            };
+
+            Layers.Add(indexData);
+
+        }
+
+
+        public void SetLayers()
+        {
+            if (!IsValid() || !IsReady())
+            {
+                return;
+            }
+
+            TerrainLayer[] layers = Layers.OrderBy(x => x.Index).Select(x => x.TerrainLayer).ToArray();
+
+            TerrainData.terrainLayers = layers;
+        }
+
+    }
+
+    public interface ITerrainContainer
+    {
+        CoreTerrainData Core { get; set; }
+    }
+
+    public class IndexedTerrainLayer
+    {
+        public int Index { get; set; }
+        public long ZoneTypeId { get; set; }
+        public long TextureTypeId { get; set; }
+
+        public TerrainLayer TerrainLayer { get; set; }
+
+        public CoreTerrainData Core { get; set; }
+
+        public bool IsReady() { return TerrainLayer != null; }
+
+    }
+
+    public class TerrainPatchData : ITerrainContainer
     {
         public string Id { get; set; }
         public string MapId { get; set; }
 
         public int MapVersion { get; set; }
+
+        public CoreTerrainData Core { get; set; } = new CoreTerrainData();
         // X grid in map
-        public int X { get; set; }
-        // Y grid in map
-        public int Y { get; set; }
-
-        public Terrain terrain { get; set; }
-
-        public TerrainData terrainData { get; set; }
-
-        public object parentObject { get; set; }
 
         public List<long> FullZoneIdList { get; set; } = new List<long>();
 
@@ -45,13 +122,17 @@ namespace Assets.Scripts.MapTerrain
 
         public bool HaveSetAlphamaps = false;
 
-        public List<long> TerrainTextureIndexes { get; set; } = new List<long>();
-
         public List<ExtendedWorldObjectData> ExtendedObjects { get; set; } = new List<ExtendedWorldObjectData>();
+
+        public ExtendedWorldObjectData GetObjAtPos(PatchLoadData loadData, int x, int z)
+        {
+            return ExtendedObjects.FirstOrDefault(
+                e => e.Z - loadData.StartX == x && e.X - loadData.StartZ == z);
+        }
 
         public string GetFilePath()
         {
-            string path = MapUtils.GetMapFolder(MapId, MapVersion) + "TerrainX" + X.ToString("000") + "Y" + Y.ToString("000");
+            string path = MapUtils.GetMapFolder(MapId, MapVersion) + "TerrainX" + Core.GX.ToString("000") + "Z" + Core.GZ.ToString("000");
             return path;
         }
 

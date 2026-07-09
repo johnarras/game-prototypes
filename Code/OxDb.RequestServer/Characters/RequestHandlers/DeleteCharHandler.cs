@@ -1,5 +1,5 @@
-using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
 using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Characters.WebApi.DeleteChar;
 using OxDb.SharedGame.Core.PlayerData;

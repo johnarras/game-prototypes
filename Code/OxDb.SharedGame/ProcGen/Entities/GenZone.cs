@@ -38,6 +38,7 @@ namespace OxDb.SharedGame.ProcGen.Entities
 
         public List<ZoneRockType> RockTypes { get; set; } = new List<ZoneRockType>();
         public List<ZoneTreeType> TreeTypes { get; set; } = new List<ZoneTreeType>();
+        public List<ZoneBushType> BushTypes { get; set; } = new List<ZoneBushType>();
 
         public List<ZoneRelation> ZonesNearLevel { get; set; } = new List<ZoneRelation>();
         public List<ZoneRelation> ZonesNearPos { get; set; } = new List<ZoneRelation>();

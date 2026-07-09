@@ -11,7 +11,12 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
     {
         public override EAuthTypes HelperKey => EAuthTypes.Email;
 
-        public override async Task<AccountAuthResult> CheckAuthAsync(IWebContext context, IAccountAuthRequest request)
+        public override void Init()
+        {
+
+        }
+
+        public override async Task<AccountAuthResult> CheckAuthAsync(IWebContext context, IAccountAuthRequest request, CancellationToken token)
         {
             AccountAuthResult result = CreateAuthResult();
 
@@ -54,17 +59,17 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
                     string passwordHash = _cryptoService.GetPasswordHash(passwordSalt, request.UserSecret);
                     account = await _accountService.CreateNewAccount(request);
 
-                    account.PasswordHash = passwordHash;
-                    account.PasswordSalt = passwordSalt;
+                    account.EmailPasswordHash = passwordHash;
+                    account.EmailPasswordSalt = passwordSalt;
                     account.Email = request.UserIdentity;
                     account.LowerEmail = request.UserIdentity.ToLower();
                 }
             }
 
             // Regardless of whether this was an old account or a new one, we now check the sent password vs the account data.
-            string newPasswordHash = _cryptoService.GetPasswordHash(account.PasswordSalt, request.UserSecret);
+            string newPasswordHash = _cryptoService.GetPasswordHash(account.EmailPasswordSalt, request.UserSecret);
 
-            if (newPasswordHash != account.PasswordHash)
+            if (newPasswordHash != account.EmailPasswordHash)
             {
                 result.ErrorMessage = "Email or Password do not match.";
                 return result;

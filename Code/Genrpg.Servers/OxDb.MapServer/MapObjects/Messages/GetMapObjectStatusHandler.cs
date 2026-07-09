@@ -12,13 +12,13 @@ namespace OxDb.MapServer.MapObjects.Messages
 
         private IVendorService _vendorService = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, GetMapObjectStatus message)
+        protected override async ValueTask InnerProcess(MapObject obj, GetMapObjectStatus message)
         {
             OnGetMapObjectStatus result = new OnGetMapObjectStatus() { ObjId = message.ObjId };
             if (_objectManager.GetObject(message.ObjId, out MapObject mapObject))
             {
                 result.Addons = mapObject.GetAddons();
-                _vendorService.UpdateItems(rand.Rand, mapObject);
+                _vendorService.UpdateItems(mapObject);
             }
 
             _messageService.SendMessage(obj, result);

@@ -9,7 +9,7 @@
   "AncientName": "Petra",
   "Population": 25000,
   "MapPixelX": 2812,
-  "MapPixelY": 2721,
+  "MapPixelZ": 2721,
   "BiomeTypeId": 8,
   "CultureTypeId": 7,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 42
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

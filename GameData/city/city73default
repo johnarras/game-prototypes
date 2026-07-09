@@ -9,7 +9,7 @@
   "AncientName": "Ayutthaya (Ayutthaya Kingdom)",
   "Population": 1000000,
   "MapPixelX": 5792,
-  "MapPixelY": 3449,
+  "MapPixelZ": 3449,
   "BiomeTypeId": 16,
   "CultureTypeId": 12,
   "TradeGoodsProduced": [
@@ -41,5 +41,15 @@
       "TradeGoodId": 103
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

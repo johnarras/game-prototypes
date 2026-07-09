@@ -5,13 +5,6 @@ using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Environments.Constants;
 
-
-
-
-
-
-
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -45,6 +38,9 @@ public enum ClientPlayerFlags
     DevelopmentBuild = 1 << 4,
     BuildAppBundle = 1 << 5,
     IsCouldBuild = 1 << 6,
+    SideloadBuild = 1 << 7,
+    AllowDebugging = 1 << 8,
+    Demo = 1 << 9,
 }
 
 
@@ -64,9 +60,11 @@ public class ClientConfig : ScriptableObject
     public ClientPlayerFlags Flags = ClientPlayerFlags.None;
 
     public string LogalyticsConnectionString;
-    public string GooglePlaySecret;
+    public string GooglePlayAndroidClientId;
     public string IOSSecret;
     public string PackageName;
+    public string AndroidAdsGameKey;
+    public string IOSAdsGameKey;
 
     public string GetWebEndpoint()
     {

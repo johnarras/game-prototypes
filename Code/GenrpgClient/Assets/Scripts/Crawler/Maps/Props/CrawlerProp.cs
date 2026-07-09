@@ -23,6 +23,9 @@ namespace Assets.Scripts.Crawler.Maps.Props
         public GameObject OffObject;
         public GameObject OnObject;
 
+        public int X { get; set; }
+        public int Z { get; set; }
+
         protected MapCellDetail _detail = null;
         protected CrawlerMapRoot _mapRoot = null;
         protected PartyData _party = null;

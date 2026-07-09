@@ -1,24 +1,25 @@
 ﻿using OxDb.SharedCore.Interfaces;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Constants;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.Info.Services
 {
     public interface ITraderInfoService : IInjectable
     {
-        string GetHUDStatus(CoreData coreData);
+        ValueTask<string> GetHUDStatus();
     }
 
     public class TraderInfoService : ITraderInfoService
     {
         private ICaravanService _caravanService = null;
+        private IClientGameState _gs = null;
 
-        public string GetHUDStatus(CoreData coreData)
+        public async ValueTask<string> GetHUDStatus()
         {
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             StringBuilder sb = new StringBuilder();
 

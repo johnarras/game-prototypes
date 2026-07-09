@@ -2,38 +2,41 @@
   "Id": "role4default",
   "ParentId": "default",
   "IdKey": 4,
-  "Name": "Mage",
-  "Desc": "Spell Damage",
-  "Abbrev": "Ma",
+  "Name": "Cleric",
+  "Desc": "A very good healer.",
+  "Abbrev": "Cl",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 12,
-  "ManaPerLevel": 22,
+  "HealthPerLevel": 8,
+  "ManaPerLevel": 10,
   "MaxArmorScalingTypeId": 1,
-  "CritPercent": 3,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "TrainingXpScale": 1.2,
+  "TrainingGoldScale": 1.2,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
     {
       "EntityTypeId": 2,
       "EntityId": 21
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 24
+      "EntityId": 25
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 28
+      "EntityId": 29
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 31,
-      "EntityId": 32
+      "EntityId": 31
     },
     {
       "EntityTypeId": 100,
@@ -49,6 +52,30 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 23
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 24
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 25
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 30
     },
     {
@@ -57,31 +84,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 34
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 35
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 39
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 60
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 65
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 80
     },
     {
       "EntityTypeId": 100,
@@ -89,15 +92,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 82
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 83
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 84
     },
     {
       "EntityTypeId": 100,
@@ -105,102 +100,76 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 90
+      "EntityId": 87
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 93
+      "EntityId": 88
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 141
+      "EntityId": 102
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 210
+      "EntityId": 104
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 211
+      "EntityId": 110
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 212
+      "EntityId": 200
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 220
+      "EntityId": 201
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 221
+      "EntityId": 202
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 222
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 250
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 251
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 252
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 10032
+      "EntityId": 203
     }
   ],
   "AmountBonuses": [
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.05
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 2,
-      "Amount": 0.05
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.25
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
       "EntityId": 4,
-      "Amount": 0.05
+      "Amount": 0.3
     },
     {
       "EntityTypeId": 41,
       "EntityId": 5,
-      "Amount": 0.2
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 6,
-      "Amount": 0.2
-    },
-    {
-      "EntityTypeId": 41,
-      "EntityId": 7,
-      "Amount": 0.05
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 12,
-      "Amount": 3.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 16,
-      "Amount": 1.0
+      "EntityId": 13,
+      "Amount": 2.0
     }
   ]
 }

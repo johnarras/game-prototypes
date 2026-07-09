@@ -8,7 +8,7 @@ namespace Assets.Scripts.Trader.Caravans.Services
     public class ClientCalcAttributeService : CalcAttributeService
     {
         private IDispatcher _dispatcher = null;
-        public override async Task CalcBuffs(IUnitDataLookup lookup)
+        public override async ValueTask CalcBuffs(IUnitDataLookup lookup)
         {
             await base.CalcBuffs(lookup);
 

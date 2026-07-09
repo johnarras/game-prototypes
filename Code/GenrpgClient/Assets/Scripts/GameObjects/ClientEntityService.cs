@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts.GameObjects
 {
@@ -91,12 +92,12 @@ namespace Assets.Scripts.GameObjects
             }
 
             SetActive(go, true);
-            List<MonoBehaviour> allBehaviours = GetComponents<MonoBehaviour>(go);
+            List<Component> allComponents = GetComponents<Component>(go);
 
-            for (int b = allBehaviours.Count - 1; b >= 0; b--)
+            for (int b = allComponents.Count - 1; b >= 0; b--)
             {
-                MonoBehaviour behaviour = allBehaviours[b];
-                if (behaviour is BaseBehaviour baseBehaviour)
+                Component comp = allComponents[b];
+                if (comp is BaseBehaviour baseBehaviour)
                 {
                     try
                     {
@@ -107,9 +108,16 @@ namespace Assets.Scripts.GameObjects
                         _logService.Exception(e, "InitializeHierarchy");
                     }
                 }
-                else if (behaviour is GText gtext && !string.IsNullOrEmpty(gtext.text))
+                else if (comp is GText gtext && !string.IsNullOrEmpty(gtext.text))
                 {
                     _uiService.SetText(gtext, gtext.text);
+                }
+                else if (comp is MeshRenderer rend)
+                {
+                    rend.lightProbeUsage = LightProbeUsage.Off;
+                    rend.reflectionProbeUsage = ReflectionProbeUsage.Off;
+                    rend.motionVectorGenerationMode = MotionVectorGenerationMode.ForceNoMotion;
+                    rend.allowOcclusionWhenDynamic = false;
                 }
             }
         }

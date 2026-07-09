@@ -42,7 +42,7 @@ namespace OxDb.SharedGame.Purchasing.PlayerData
     [MessagePackObject]
     public class PlayerStoreOfferData : UniquePersonalUserData, IUserData, IServerOnlyData
     {
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.StoreOffers; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.StoreOffers; }
         public override PersonalDataAccumulation GetAccumulation()
         {
             return new PersonalDataAccumulation();
@@ -68,7 +68,7 @@ namespace OxDb.SharedGame.Purchasing.PlayerData
     public class PlayerStoreOfferDataMapper : NoChildUnitDataMapper<PlayerStoreOfferData, PlayerStoreOfferDto> { }
 
 
-    public class CurrentStoresLoader : UnitDataLoader<PlayerStoreOfferData> { }
+    public class PlayerStoreOfferLoader : UnitDataLoader<PlayerStoreOfferData> { }
 }
 
 

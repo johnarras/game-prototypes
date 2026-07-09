@@ -8,6 +8,7 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -22,6 +23,8 @@ namespace Assets.Scripts.ProcGen.Materials
     {
         public Texture2D[] DiffuseTextures { get; set; } = new Texture2D[DungeonMaterialIndexes.Max];
         public Texture2D[] NormalTextures { get; set; } = new Texture2D[DungeonMaterialIndexes.Max];
+        public Color ForegroundColor;
+        public Color BackgroundColor;
     }
 
     public class WallTextureGenArgs
@@ -42,7 +45,7 @@ namespace Assets.Scripts.ProcGen.Materials
 
         Awaitable<Texture2D[]> GenerateMultipleLooseTexturesForOneMaterialIndex(WallTextureGenArgs args, int materialIndex, int repeatTimes);
 
-        Texture2D CreateGrayscaleNormalMapFromDiffuseTexture(Texture2D diffuse, bool invertGrayscale, float strength = 1.0f);
+        Texture2D CreateAlphaNormalMapFromTexture(Texture2D diffuse, bool invertGrayscale, float strength = 1.0f);
 
         void SetNormalMap(Material mat, Texture2D normalMap);
     }
@@ -89,16 +92,18 @@ namespace Assets.Scripts.ProcGen.Materials
                     Settings = settings,
                 };
 
-                state.SetupFromArgs(args, prevState);
+                SetupFromArgs(state, args, prevState);
 
                 Texture2D diffuseMap = await GenerateTexture(state);
 
                 set.DiffuseTextures[materialIndex] = diffuseMap;
+                set.ForegroundColor = state.ForegroundMain;
+                set.BackgroundColor = state.BackgroundMain;
 
                 float frontGrayscale = state.ForegroundMain.grayscale;
                 float backGrayscale = state.BackgroundMain.grayscale;
 
-                set.NormalTextures[materialIndex] = CreateGrayscaleNormalMapFromDiffuseTexture(diffuseMap, frontGrayscale < backGrayscale);
+                set.NormalTextures[materialIndex] = CreateAlphaNormalMapFromTexture(diffuseMap, frontGrayscale < backGrayscale);
             }
             return set;
         }
@@ -114,12 +119,12 @@ namespace Assets.Scripts.ProcGen.Materials
 
                 MaterialGenState state = new MaterialGenState()
                 {
-                    Rand = new MyRandom(args.Seed + assetIndex + repeatTimes),
+                    Rand = new MyRandom(args.Seed + assetIndex + i),
                     MaterialIndex = assetIndex,
                     Settings = settings,
                 };
 
-                state.SetupFromArgs(args, prevState);
+                SetupFromArgs(state, args, prevState);
 
                 retval[i] = await GenerateTexture(state);
 
@@ -165,7 +170,14 @@ namespace Assets.Scripts.ProcGen.Materials
             return null;
         }
 
-        public Texture2D CreateGrayscaleNormalMapFromDiffuseTexture(Texture2D source, bool invertGrayscale, float strength = 1.0f)
+        /// <summary>
+        /// We set the bumpmaps to create alphas (texture is opaque) so we use those alphas here to make a normal map.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="invertGrayscale"></param>
+        /// <param name="strength"></param>
+        /// <returns></returns>
+        public Texture2D CreateAlphaNormalMapFromTexture(Texture2D source, bool invertGrayscale, float strength = 1.0f)
         {
             // Ensure the strength is clamped to a reasonable positive value
             strength = Mathf.Max(0.0f, strength);
@@ -175,25 +187,26 @@ namespace Assets.Scripts.ProcGen.Materials
 
             // Allocate the new texture
             Texture2D normalMap = new Texture2D(width, height, TextureFormat.RGBA32, true);
+            normalMap.filterMode = FilterMode.Bilinear;
             Color[] sourcePixels = source.GetPixels();
             Color[] normalPixels = new Color[sourcePixels.Length];
 
-            for (int y = 0; y < height; y++)
+            for (int z = 0; z < height; z++)
             {
                 for (int x = 0; x < width; x++)
                 {
                     // Sample neighboring pixels for Sobel-like filtering (wrapping edges)
-                    float xLeft = sourcePixels[SampleIndex(x - 1, y, width, height)].grayscale;
-                    float xRight = sourcePixels[SampleIndex(x + 1, y, width, height)].grayscale;
-                    float yUp = sourcePixels[SampleIndex(x, y + 1, width, height)].grayscale;
-                    float yDown = sourcePixels[SampleIndex(x, y - 1, width, height)].grayscale;
+                    float xLeft = sourcePixels[SampleIndex(x - 1, z, width, height)].a;
+                    float xRight = sourcePixels[SampleIndex(x + 1, z, width, height)].a;
+                    float zUp = sourcePixels[SampleIndex(x, z + 1, width, height)].a;
+                    float zDown = sourcePixels[SampleIndex(x, z - 1, width, height)].a;
 
                     // Calculate horizontal and vertical gradients
                     float xGrad = (xLeft - xRight) * strength;
-                    float yGrad = (yDown - yUp) * strength;
+                    float zGrad = (zDown - zUp) * strength;
 
                     // Construct the surface normal vector
-                    Vector3 normal = new Vector3(xGrad, yGrad, 1.0f).normalized;
+                    Vector3 normal = new Vector3(xGrad, zGrad, 1.0f).normalized;
 
                     // Map the Vector3 components from [-1, 1] to the RGB color space [0, 1]
                     Color pixelColor = new Color(
@@ -203,7 +216,7 @@ namespace Assets.Scripts.ProcGen.Materials
                         1.0f
                     );
 
-                    normalPixels[y * width + x] = pixelColor;
+                    normalPixels[z * width + x] = pixelColor;
                 }
             }
 
@@ -217,11 +230,106 @@ namespace Assets.Scripts.ProcGen.Materials
         /// <summary>
         /// Helper to sample pixel arrays with edge wrapping (tiling)
         /// </summary>
-        private int SampleIndex(int x, int y, int width, int height)
+        private int SampleIndex(int x, int z, int width, int height)
         {
             x = (x + width) % width;
-            y = (y + height) % height;
-            return y * width + x;
+            z = (z + height) % height;
+            return z * width + x;
+        }
+
+        public void SetupFromArgs(MaterialGenState state, WallTextureGenArgs args, MaterialGenState prevState)
+        {
+            state.Width = state.Settings.TextureSize;
+            state.Height = state.Settings.TextureSize;
+
+            if (args.MapRoot != null)
+            {
+                state.Width *= args.MapRoot.XZBlockSize / args.MapRoot.YBlockSize;
+            }
+
+
+            WeightedMaterialGenType genType = RandUtils.GetRandomElement(args.MaterialsData.GenTypes, state.Rand);
+
+            state.GenType = genType.WallGenType;
+
+            if (state.GenType == EMaterialGenTypes.Default)
+            {
+                state.GenType = EMaterialGenTypes.Blocks;
+            }
+
+            if (state.MaterialIndex == DungeonMaterialIndexes.Wood)
+            {
+                state.GenType = EMaterialGenTypes.Wood;
+            }
+
+            if (state.Rand.NextDouble() < state.Settings.CornerPerturbAtAllChance)
+            {
+                state.CornerPerturbChance = RandUtils.FloatRange(state.Settings.MinCornerPerturbChance, state.Settings.MaxCornerPerturbChance, state.Rand);
+                state.VerticalPerturbChance = RandUtils.FloatRange(state.Settings.MinVerticalPerturbChance, state.Settings.MaxVerticalPerturbChance, state.Rand);
+            }
+
+            state.RoundCornerMinSize = state.Width * state.Settings.RoundCornerMinSizePercent * RandUtils.DeltaScale(state.Settings.RoundCornerSizeDelta, state.Rand);
+            state.RoundCornerMaxSize = state.Width * state.Settings.RoundCornerMaxSizePercent * RandUtils.DeltaScale(state.Settings.RoundCornerSizeDelta, state.Rand);
+            state.MaxCornerPerturbScale = state.Settings.MaxCornerPerturbScale;
+
+            state.MaxDistanceToCrevice = state.Width * RandUtils.FloatRange(state.Settings.MinDistanceToCrevicePercent, state.Settings.MaxDistanceToCrevicePercent, state.Rand);
+
+            state.CurvedWallChance = RandUtils.FloatRange(state.Settings.CurvedWallMinChance, state.Settings.CurvedWallMaxChance, state.Rand);
+
+            state.BlockRowCount = RandUtils.IntRange(state.Settings.MinBrickRows, state.Settings.MaxBrickRows, state.Rand);
+
+
+            state.RoundCornerDistAmp = RandUtils.FloatRange(state.Settings.MinRoundCornerDistAmp, state.Settings.MaxRoundCornerDistAmp, state.Rand);
+            state.RoundCornerDistFreq = RandUtils.FloatRange(state.Settings.MinRoundCornerDistFreq, state.Settings.MaxRoundCornerDistFreq, state.Rand);
+            state.RoundCornerDistPers = RandUtils.FloatRange(state.Settings.MinRoundCornerDistPers, state.Settings.MaxRoundCornerDistPers, state.Rand);
+
+            SetupColors(state, state.Settings, args, prevState);
+        }
+
+        private void SetupNoiseColors(MaterialGenState state, Color mainColor, List<ScaledColor> scaledColors, MaterialGenSettingsData settings, bool allowMultiple)
+        {
+            int noiseCount = RandUtils.IntRange(settings.MinColorNoiseCount, settings.MaxColorNoiseCount, state.Rand);
+
+            if (!allowMultiple)
+            {
+                noiseCount = 1;
+            }
+
+            float noiseDelta = settings.MaxColorNoiseDelta;
+
+            float grayscale = mainColor.grayscale;
+
+            Color baseGrayColor = Color.white * grayscale;
+
+            int grayscaleCount = 0;
+            for (int i = 0; i < noiseCount; i++)
+            {
+                Color currColor = mainColor;
+
+                if (state.Rand.NextDouble() < settings.ColorNoiseGrayscaleChance && grayscaleCount < settings.MaxGrayscaleColorNoise)
+                {
+                    currColor = baseGrayColor;
+                    grayscaleCount++;
+                }
+
+                scaledColors.Add(new ScaledColor()
+                {
+                    Color = currColor * RandUtils.DeltaScale(noiseDelta, state.Rand),
+                    EffectThreshold = RandUtils.FloatRange(settings.MinNoiseEffectThreshold, settings.MaxNoiseEffectThreshold, state.Rand)
+                });
+            }
+        }
+
+        private void SetupColors(MaterialGenState state, MaterialGenSettingsData settings, WallTextureGenArgs args, MaterialGenState prevState)
+        {
+            ColorSet Colors = RandUtils.GetRandomElement(args.MaterialsData.ColorSets, state.Rand);
+            state.ForegroundMain = Colors.Foreground;
+            state.BackgroundMain = Colors.Background;
+
+            SetupNoiseColors(state, Colors.Foreground, state.ForegroundNoise, settings, true);
+
+            SetupNoiseColors(state, Colors.Background, state.BackgroundNoise, settings, false);
+
         }
     }
 }

@@ -38,14 +38,14 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds
         public override ECrawlerStates HelperKey => ECrawlerStates.GuildMain;
         public override long TriggerBuildingId() { return BuildingTypes.Guild; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
             stateData.BGSpriteName = CrawlerClientConstants.BuildingImage;
 
             PartyData party = _crawlerService.GetParty();
 
-            _statService.FullyRestParty(party);
+            party.Buffs.Clear();
 
             string txt = action.ExtraData as string;
 

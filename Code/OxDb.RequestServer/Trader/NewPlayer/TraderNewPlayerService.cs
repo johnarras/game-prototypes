@@ -49,7 +49,7 @@ namespace OxDb.RequestServer.Trader.NewPlayer
 
             CaravanData caravanData = await context.GetAsync<CaravanData>();
 
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(context);
 
             LevelTrackRewardSettings levelRewardSettings = _gameData.Get<LevelTrackRewardSettings>(coreData);
 

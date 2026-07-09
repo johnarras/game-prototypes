@@ -28,9 +28,9 @@ namespace OxDb.SharedGame.Attributes.Services
 {
     public interface ICalcAttributeService : IInitializable
     {
-        System.Threading.Tasks.Task CalcBuffs(IUnitDataLookup lookup);
-        Task<List<Reward>> CalcBaseAttributes(IUnitDataLookup lookup, bool didJustLevelUp);
-        Task<List<Reward>> CalcAllAttributes(IUnitDataLookup lookup, bool didJustLevelUp);
+        ValueTask CalcBuffs(IUnitDataLookup lookup);
+        ValueTask<List<Reward>> CalcBaseAttributes(IUnitDataLookup lookup, bool didJustLevelUp);
+        ValueTask<List<Reward>> CalcAllAttributes(IUnitDataLookup lookup, bool didJustLevelUp);
     }
 
     public class CalcAttributeService : ICalcAttributeService
@@ -43,7 +43,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
 
         private List<GameplayStatToTraderVarMapper> _statMappers = new List<GameplayStatToTraderVarMapper>();
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
             // Explicit list rather than reflection since this gets done at runtime.
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.MaxSize, TraderVars.MaxSize));
@@ -51,17 +51,17 @@ namespace OxDb.SharedGame.Attributes.Services
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.Luck, TraderVars.Luck));
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.Searching, TraderVars.Searching));
             _statMappers.Add(new GameplayStatToTraderVarMapper(GameplayStats.BonusSpeed, TraderVars.BonusSpeedPerDie));
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
-        public virtual async Task<List<Reward>> CalcAllAttributes(IUnitDataLookup lookup, bool didJustLevelUp)
+        public virtual async ValueTask<List<Reward>> CalcAllAttributes(IUnitDataLookup lookup, bool didJustLevelUp)
         {
             List<Reward> baseRewards = await CalcBaseAttributes(lookup, didJustLevelUp);
             await CalcBuffs(lookup);
             return baseRewards;
         }
 
-        public virtual async System.Threading.Tasks.Task CalcBuffs(IUnitDataLookup lookup)
+        public virtual async ValueTask CalcBuffs(IUnitDataLookup lookup)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -143,7 +143,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
 
 
-        protected async System.Threading.Tasks.Task UpdateBuffsFromBitList<TParent, TChild, TEffect>(IUnitDataLookup lookup, CoreData coreData, long memberBits)
+        protected async ValueTask UpdateBuffsFromBitList<TParent, TChild, TEffect>(IUnitDataLookup lookup, CoreData coreData, long memberBits)
             where TParent : ParentSettings<TChild>
             where TChild : ChildSettings, IId, IEffectList<TEffect>, new()
             where TEffect : class, IEffect
@@ -169,7 +169,7 @@ namespace OxDb.SharedGame.Attributes.Services
             return new List<long>() { EntityTypes.CoreCurrency, EntityTypes.TradeGood };
         }
 
-        public async Task<List<Reward>> CalcBaseAttributes(IUnitDataLookup lookup, bool didJustLevelup)
+        public async ValueTask<List<Reward>> CalcBaseAttributes(IUnitDataLookup lookup, bool didJustLevelup)
         {
 
             List<Reward> retval = new List<Reward>();

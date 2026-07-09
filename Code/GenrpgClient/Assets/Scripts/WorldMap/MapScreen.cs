@@ -68,17 +68,17 @@ public class MapScreen : BaseScreen
 
         // Player pct goes from -0.5 to 0.5.
         float xpct = pos.x / _mapProvider.GetMap().GetHwid() - 0.5f;
-        float ypct = pos.z / _mapProvider.GetMap().GetHhgt() - 0.5f;
+        float zpct = pos.z / _mapProvider.GetMap().GetHhgt() - 0.5f;
 
         float rot = player.transform.eulerAngles.y;
 
         float imageSize = MapImage.rectTransform.sizeDelta.x;
 
         float sx = xpct * imageSize;
-        float sy = ypct * imageSize;
+        float sz = zpct * imageSize;
 
         Vector3 cpos = arrow.transform.localPosition;
-        arrow.transform.localPosition = new Vector3(sx, sy, cpos.z);
+        arrow.transform.localPosition = new Vector3(sx, sz, cpos.z);
 
         arrow.transform.eulerAngles = new Vector3(0, 0, -rot);
 

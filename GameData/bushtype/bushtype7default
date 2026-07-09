@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Cattail",
+  "Art": "Cattail",
+  "Scale": 1.2,
+  "VariationCount": 2,
+  "Flags": 3
+}

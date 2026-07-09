@@ -2,14 +2,14 @@
 using OxDb.SharedGame.Rewards.Messages;
 using OxDb.SharedGame.Rewards.Services;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.MessageHandlers.Currency
 {
     public class OnAddQuantityRewardHandler : BaseClientMapMessageHandler<OnAddQuantityReward>
     {
         protected IRewardService _rewardService = null;
-        protected override async Awaitable InnerProcess(OnAddQuantityReward msg, CancellationToken token)
+        protected override async ValueTask InnerProcess(OnAddQuantityReward msg, CancellationToken token)
         {
             if (msg.CharId != _gs.ch.Id)
             {

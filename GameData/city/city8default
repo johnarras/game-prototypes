@@ -9,7 +9,7 @@
   "AncientName": "Men-nefer",
   "Population": 30000,
   "MapPixelX": 2620,
-  "MapPixelY": 2737,
+  "MapPixelZ": 2737,
   "BiomeTypeId": 3,
   "CultureTypeId": 4,
   "TradeGoodsProduced": [
@@ -29,5 +29,15 @@
       "TradeGoodId": 152
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 8
+    }
+  ]
 }

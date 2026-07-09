@@ -4,5 +4,6 @@
   "IdKey": 51,
   "Name": "AttackDefMult",
   "Desc": "Phys Dam Reduced",
+  "Icon": "AttackDefMult",
   "GenScalePct": 10
 }

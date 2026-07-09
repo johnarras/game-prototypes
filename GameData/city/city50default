@@ -9,7 +9,7 @@
   "AncientName": "Cyrene",
   "Population": 50000,
   "MapPixelX": 2188,
-  "MapPixelY": 2601,
+  "MapPixelZ": 2601,
   "BiomeTypeId": 2,
   "CultureTypeId": 3,
   "TradeGoodsProduced": [
@@ -23,5 +23,18 @@
       "TradeGoodId": 20
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

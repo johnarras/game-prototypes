@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Trader.Travel.Services;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.UI.Travel
 {
@@ -16,9 +18,9 @@ namespace Assets.Scripts.Trader.UI.Travel
 
         }
 
-        private void ClickTravelButton()
+        private async ValueTask ClickTravelButton(CancellationToken token)
         {
-            _clientTravelService.ClickTravelButton();
+            await _clientTravelService.ClickTravelButton(token);
         }
     }
 }

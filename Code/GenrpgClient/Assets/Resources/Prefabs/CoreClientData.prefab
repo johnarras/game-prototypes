@@ -41,7 +41,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376471114}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1.1
@@ -93,7 +93,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
@@ -183,7 +183,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1880425893740860500}
   - component: {fileID: 3731700554955103553}
-  - component: {fileID: 3731700554955103556}
   - component: {fileID: 3731700554955103567}
   - component: {fileID: 2473635705850709819}
   - component: {fileID: 3134985077281180138}
@@ -259,20 +258,12 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 1
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!124 &3731700554955103556
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3731700554955103557}
-  m_Enabled: 1
 --- !u!81 &3731700554955103567
 AudioListener:
   m_ObjectHideFlags: 0
@@ -334,10 +325,10 @@ MonoBehaviour:
   m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 10769
   m_VolumeTrigger: {fileID: 1880425893740860500}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_VolumeFrameworkUpdateModeOption: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 1
@@ -413,6 +404,8 @@ MonoBehaviour:
   LinearFogEnd: 300
   SunlightIntensityMultiplier: 1.1
   AmbientIntensityMultiplier: 0.65
+  DefaultSaturation: 0
+  SaturationLerpSeconds: 1
 --- !u!1 &3959712634914346852
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,3 +465,4 @@ MonoBehaviour:
   _cameraParent: {fileID: 3959712634914346852}
   _cameras:
   - {fileID: 3731700554955103553}
+  _volume: {fileID: 3134985077281180138}

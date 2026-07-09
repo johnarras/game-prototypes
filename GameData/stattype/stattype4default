@@ -4,6 +4,7 @@
   "IdKey": 4,
   "Name": "Combo",
   "Desc": "Start Empty, filll",
+  "Icon": "Combo",
   "MaxPool": 100,
   "RegenSeconds": -30
 }

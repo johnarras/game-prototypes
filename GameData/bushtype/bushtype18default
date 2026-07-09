@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype18default",
+  "ParentId": "default",
+  "IdKey": 18,
+  "Name": "Foxglove",
+  "Art": "Foxglove",
+  "Scale": 3.0,
+  "VariationCount": 1,
+  "Flags": 13
+}

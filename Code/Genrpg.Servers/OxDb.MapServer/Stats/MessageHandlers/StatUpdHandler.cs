@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Stats.MessageHandlers
 {
     public class StatUpdHandler : BaseMapObjectServerMapMessageHandler<StatUpd>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, StatUpd message)
+        protected override async ValueTask InnerProcess(MapObject obj, StatUpd message)
         {
             obj.AddMessage(message);
         }

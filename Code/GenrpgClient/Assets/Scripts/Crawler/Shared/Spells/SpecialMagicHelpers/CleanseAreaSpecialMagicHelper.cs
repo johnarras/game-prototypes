@@ -2,7 +2,6 @@ using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
-using OxDb.SharedGame.Crawler.Roles.Constants;
 using OxDb.SharedGame.Crawler.Spells.Settings;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;
@@ -28,7 +27,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelper
 
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 
-            double utilityTier = _roleService.GetRoleScalingLevel(party, action.Action.Member, RoleScalingTypes.Utility);
+            double utilityTier = _roleService.GetRoleScalingLevel(party, action.Action.Member, spell.RoleScalingTypeId);
 
             int radius = (int)Math.Floor(Math.Sqrt(utilityTier));
 

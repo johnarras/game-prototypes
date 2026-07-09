@@ -2,8 +2,8 @@
   "Id": "treetype33default",
   "ParentId": "default",
   "IdKey": 33,
-  "Name": "SpruceBare",
-  "Art": "SpruceBare",
+  "Name": "ScotsPineBare",
+  "Art": "ScotsPineBare",
   "Scale": 1.5,
   "VariationCount": 2
 }

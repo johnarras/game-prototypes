@@ -4,6 +4,7 @@
   "IdKey": 14,
   "Name": "Agility",
   "Desc": "Increases ranged damage.",
+  "Icon": "Agility",
   "Art": "YellowCauldron",
   "ColorName": "Yellow",
   "ColorCode": "#FFFF00",

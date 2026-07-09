@@ -22,7 +22,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
     {
         public override ECrawlerStates HelperKey => ECrawlerStates.SelectEnemyGroup;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -54,7 +54,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                     selectAction.Action.Action.FinalTargets = group.Units.ToList();
                     currUnit.AddAction(selectAction.Action.Action);
                     selectAction.Action.Action.FinalTargetGroups = new List<CombatGroup>() { group };
-                    _dispatcher.Dispatch(new ClearCombatGroupActions());
+                    _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
                 };
 
                 CrawlerStateAction newAction = new CrawlerStateAction(char.ToUpper(c) + " " + _combatService.ShowGroupStatus(group), FromChar(c),
@@ -70,14 +70,14 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                     };
 
 
-                _dispatcher.Dispatch(new SetCombatGroupAction() { Action = clickIconAction, Group = group });
+                _dispatcher.Dispatch(new SetSelectEnemyGroupAction() { Action = clickIconAction, Group = group });
 
             }
 
             stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.CombatPlayer,
                 delegate ()
                 {
-                    _dispatcher.Dispatch(new ClearCombatGroupActions());
+                    _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
                 }));
 
 

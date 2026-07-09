@@ -9,7 +9,7 @@
   "AncientName": "Hatra",
   "Population": 20000,
   "MapPixelX": 3136,
-  "MapPixelY": 2473,
+  "MapPixelZ": 2473,
   "BiomeTypeId": 3,
   "CultureTypeId": 6,
   "TradeGoodsProduced": [
@@ -20,5 +20,18 @@
       "TradeGoodId": 74
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 5
+    }
+  ]
 }

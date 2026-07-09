@@ -21,7 +21,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
         protected IMapProvider _mapProvider;
         protected IClientGameState _gs;
         protected IMapGenData _md;
-        protected List<TreeType> waterPlants = null;
+        protected List<BushType> waterPlants = null;
 
         public bool TryAddPool(WaterGenData genData)
         {
@@ -36,7 +36,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
             if (waterPlants == null)
             {
-                waterPlants = _gameData.Get<TreeTypeSettings>(_gs.ch).GetData().Where(x => x.HasFlag(TreeFlags.IsWaterItem)).ToList();
+                waterPlants = _gameData.Get<BushTypeSettings>(_gs.ch).GetData().Where(x => x.HasFlag(BushFlags.IsWaterItem)).ToList();
             }
 
             if (genData.stepSize < 1)
@@ -80,7 +80,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
             }
 
             int xSizeMaxHeight = 0;
-            int ySizeMaxHeight = 0;
+            int zSizeMaxHeight = 0;
             float maxHeightDiff = 0;
 
             int extraEdge = 4;
@@ -95,7 +95,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
             for (int xsize = genData.minXSize; xsize <= genData.maxXSize; xsize += genData.stepSize)
             {
-                for (int ysize = genData.minZSize; ysize <= genData.maxZSize; ysize += genData.stepSize)
+                for (int zsize = genData.minZSize; zsize <= genData.maxZSize; zsize += genData.stepSize)
                 {
 
 
@@ -114,27 +114,27 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
                         float dx = (xx - cx) * 1.0f / (xsize);
                         float ddx = dx * dx;
-                        for (int yy = cz - ysize - extraEdge; yy <= cz + ysize + extraEdge; yy++)
+                        for (int zz = cz - zsize - extraEdge; zz <= cz + zsize + extraEdge; zz++)
                         {
 
-                            if (yy < 0 || yy >= _mapProvider.GetMap().GetHwid())
+                            if (zz < 0 || zz >= _mapProvider.GetMap().GetHwid())
                             {
                                 minHeightAroundEdges = 0;
                                 minHeightAnywhere = 0;
                                 continue;
                             }
 
-                            if (FlagUtils.MatchesAnyBits(_md.Flags[xx, yy], MapGenFlags.NearWater))
+                            if (FlagUtils.MatchesAnyBits(_md.Flags[xx, zz], MapGenFlags.NearWater))
                             {
                                 nearWater = true;
                                 break;
                             }
 
-                            float dy = (yy - cz) * 1.0f / (ysize);
+                            float dy = (zz - cz) * 1.0f / (zsize);
                             float ddy = dy * dy;
 
 
-                            float currHeight = _md.Heights[xx, yy] * MapConstants.MapHeight;
+                            float currHeight = _md.Heights[xx, zz] * MapConstants.MapHeight;
                             if (currHeight < minHeightAnywhere)
                             {
                                 minHeightAnywhere = currHeight;
@@ -169,8 +169,8 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
                     if (heightDiff > maxHeightDiff)
                     {
-                        xSizeMaxHeight = ysize;
-                        ySizeMaxHeight = xsize;
+                        xSizeMaxHeight = zsize;
+                        zSizeMaxHeight = xsize;
                         maxHeightDiff = heightDiff;
                     }
                 }
@@ -178,7 +178,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
             int nearWaterRad = 2;
 
-            if (xSizeMaxHeight > 0 && ySizeMaxHeight > 0 && maxHeightDiff > 1)
+            if (xSizeMaxHeight > 0 && zSizeMaxHeight > 0 && maxHeightDiff > 1)
             {
                 float waterHeight = (MapConstants.MinLandHeight + (int)maxHeightDiff - 0.5f) / MapConstants.MapHeight;
                 float maxPlantHeight = waterHeight + 0.5f / MapConstants.MapHeight;
@@ -193,28 +193,28 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                     {
                         continue;
                     }
-                    for (int yy = cz - ySizeMaxHeight - extraEdge; yy <= cz + ySizeMaxHeight + extraEdge; yy++)
+                    for (int zz = cz - zSizeMaxHeight - extraEdge; zz <= cz + zSizeMaxHeight + extraEdge; zz++)
                     {
-                        if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                        if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
 
-                        _md.Flags[xx, yy] |= MapGenFlags.NearWater;
-                        if (_md.Heights[xx, yy] < waterHeight)
+                        _md.Flags[xx, zz] |= MapGenFlags.NearWater;
+                        if (_md.Heights[xx, zz] < waterHeight)
                         {
-                            _md.Flags[xx, yy] |= MapGenFlags.BelowWater;
+                            _md.Flags[xx, zz] |= MapGenFlags.BelowWater;
                         }
 
 
                         int tx = xx + 0 * (xx / (MapConstants.TerrainPatchSize - 1));
-                        int ty = yy + 0 * (yy / (MapConstants.TerrainPatchSize - 1));
+                        int ty = zz + 0 * (zz / (MapConstants.TerrainPatchSize - 1));
 
                         long entityTypeId = _md.EntityTypeIds[tx, ty];
 
                         if (entityTypeId != EntityTypes.Bridge)
                         {
-                            if (_md.Heights[xx, yy] < waterHeight)
+                            if (_md.Heights[xx, zz] < waterHeight)
                             {
                                 //_md.mapObjects[tx,ty] = 0;
                             }
@@ -222,15 +222,15 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                             {
 
                                 float dxpct = 1.0f * (cx - xx) / xSizeMaxHeight;
-                                float dypct = 1.0f * (cz - yy) / ySizeMaxHeight;
+                                float dypct = 1.0f * (cz - zz) / zSizeMaxHeight;
 
                                 float dpct = dxpct * dxpct + dypct * dypct;
                                 if (dpct <= 1.0f)
                                 {
                                     int ux = tx + 0 * (xx / (MapConstants.TerrainPatchSize - 1));
-                                    int uy = ty + 0 * (yy / (MapConstants.TerrainPatchSize - 1));
+                                    int uy = ty + 0 * (zz / (MapConstants.TerrainPatchSize - 1));
                                     if (!_md.CellHasObject(ux, uy) && waterPlants.Count > 0 &&
-                                        _md.Heights[xx, yy] < maxPlantHeight && rand.NextDouble() < plantChance)
+                                        _md.Heights[xx, zz] < maxPlantHeight && rand.NextDouble() < plantChance)
                                     {
                                         bool nearRealWater = false;
                                         for (int x1 = xx - nearWaterRad; x1 <= xx + nearWaterRad; x1++)
@@ -245,14 +245,14 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                                 continue;
                                             }
 
-                                            for (int y1 = yy - nearWaterRad; y1 <= yy + nearWaterRad; y1++)
+                                            for (int z1 = zz - nearWaterRad; z1 <= zz + nearWaterRad; z1++)
                                             {
-                                                if (y1 < 0 || y1 >= _mapProvider.GetMap().GetHhgt())
+                                                if (z1 < 0 || z1 >= _mapProvider.GetMap().GetHhgt())
                                                 {
                                                     continue;
                                                 }
 
-                                                if (_md.Heights[x1, y1] < waterHeight)
+                                                if (_md.Heights[x1, z1] < waterHeight)
                                                 {
                                                     nearRealWater = true;
                                                     break;
@@ -261,8 +261,8 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                                         }
                                         if (nearRealWater)
                                         {
-                                            TreeType plantChosen = waterPlants[rand.Next() % waterPlants.Count];
-                                            _md.SetEntityData(ux, uy, EntityTypes.Tree, plantChosen.IdKey);
+                                            BushType plantChosen = waterPlants[rand.Next() % waterPlants.Count];
+                                            _md.SetEntityData(ux, uy, EntityTypes.Bush, plantChosen.IdKey);
                                         }
                                     }
                                 }
@@ -277,7 +277,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                     X = nx,
                     Z = nz,
                     XSize = (int)(xSizeMaxHeight),
-                    ZSize = (int)(ySizeMaxHeight),
+                    ZSize = (int)(zSizeMaxHeight),
                     Height = (ushort)maxHeightDiff,
                     EntityTypeId = EntityTypes.Water,
                     EntityId = 0,

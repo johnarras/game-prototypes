@@ -404,6 +404,24 @@
       "Art": "TravelDayCurrencyBuff"
     },
     {
+      "IdKey": 86,
+      "Name": "AdUnit",
+      "Icon": "AdUnit",
+      "Art": "AdUnit"
+    },
+    {
+      "IdKey": 87,
+      "Name": "RoomEdge",
+      "Icon": "RoomEdge",
+      "Art": "RoomEdge"
+    },
+    {
+      "IdKey": 88,
+      "Name": "Bush",
+      "Icon": "Bush",
+      "Art": "Bush"
+    },
+    {
       "IdKey": 97,
       "Name": "Rock",
       "Icon": "Rock",

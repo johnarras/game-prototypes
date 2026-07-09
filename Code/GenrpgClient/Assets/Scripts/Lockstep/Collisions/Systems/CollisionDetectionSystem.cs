@@ -79,7 +79,7 @@ namespace Assets.Scripts.Lockstep.Collisions.Systems
             if (myShape.ShapeType == ECollisionShapeType.Circle && other.Shape.ShapeType == ECollisionShapeType.Circle)
             {
                 Vector2Fixed diff = myPos - other.Pos;
-                FixedPoint64 distSq = (diff.X * diff.X) + (diff.Y * diff.Y);
+                FixedPoint64 distSq = (diff.X * diff.X) + (diff.Z * diff.Z);
                 FixedPoint64 radiusSum = myShape.Extents.X + other.Shape.Extents.X;
 
                 if (distSq < (radiusSum * radiusSum))
@@ -114,8 +114,8 @@ namespace Assets.Scripts.Lockstep.Collisions.Systems
         private FixedPoint64 GetDistSq(Vector2Fixed a, Vector2Fixed b)
         {
             FixedPoint64 dx = a.X - b.X;
-            FixedPoint64 dy = a.Y - b.Y;
-            return (dx * dx) + (dy * dy);
+            FixedPoint64 dz = a.Z - b.Z;
+            return (dx * dx) + (dz * dz);
         }
 
         private bool IntersectCircleOBB(Vector2Fixed circlePos, FixedPoint64 radius, SpatialEntry rectEntry, out CollisionBuffer result)
@@ -131,18 +131,18 @@ namespace Assets.Scripts.Lockstep.Collisions.Systems
             FixedPoint64 sin = FixedPointMath.Sin(rectEntry.Shape.Extents.X);
 
             // Standard 2D rotation matrix for local space transformation
-            FixedPoint64 localX = (relative.X * cos) + (relative.Y * sin); //
-            FixedPoint64 localY = (-relative.X * sin) + (relative.Y * cos);
+            FixedPoint64 localX = (relative.X * cos) + (relative.Z * sin); //
+            FixedPoint64 localZ = (-relative.X * sin) + (relative.Z * cos);
 
             // 3. Find Closest Point on AABB in local space
             // Rectangle extents are stored in Extents (Half-Width, Half-Height)
             FixedPoint64 closestX = FixedPoint64.Max(-rectEntry.Shape.Extents.X, FixedPoint64.Min(localX, rectEntry.Shape.Extents.X));
-            FixedPoint64 closestY = FixedPoint64.Max(-rectEntry.Shape.Extents.Y, FixedPoint64.Min(localY, rectEntry.Shape.Extents.Y));
+            FixedPoint64 closestZ = FixedPoint64.Max(-rectEntry.Shape.Extents.Z, FixedPoint64.Min(localZ, rectEntry.Shape.Extents.Z));
 
             // 4. Calculate Distance and Normal in local space
             FixedPoint64 localDiffX = localX - closestX;
-            FixedPoint64 localDiffY = localY - closestY;
-            FixedPoint64 distSq = (localDiffX * localDiffX) + (localDiffY * localDiffY);
+            FixedPoint64 localDiffZ = localZ - closestZ;
+            FixedPoint64 distSq = (localDiffX * localDiffX) + (localDiffZ * localDiffZ);
 
             if (distSq < (radius * radius))
             {
@@ -157,14 +157,14 @@ namespace Assets.Scripts.Lockstep.Collisions.Systems
                 else
                 {
                     // Local normal
-                    Vector2Fixed localNormal = new Vector2Fixed(localDiffX / dist, localDiffY / dist);
+                    Vector2Fixed localNormal = new Vector2Fixed(localDiffX / dist, localDiffZ / dist);
 
                     // 5. Transform Normal back to World Space
-                    // WorldNormal.X = localX * cos - localY * sin
-                    // WorldNormal.Y = localX * sin + localY * cos
+                    // WorldNormal.X = localX * cos - localZ * sin
+                    // WorldNormal.Z = localX * sin + localZ * cos
                     result.Normal = new Vector2Fixed(
-                        (localNormal.X * cos) - (localNormal.Y * sin),
-                        (localNormal.X * sin) + (localNormal.Y * cos)
+                        (localNormal.X * cos) - (localNormal.Z * sin),
+                        (localNormal.X * sin) + (localNormal.Z * cos)
                     );
 
                     result.Penetration = radius - dist;

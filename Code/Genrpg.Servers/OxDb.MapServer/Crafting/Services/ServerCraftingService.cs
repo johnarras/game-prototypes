@@ -25,9 +25,9 @@ namespace OxDb.MapServer.Crafting.Services
 
     public interface IServerCraftingService : IInjectable
     {
-        CraftingResult CraftItem(IRandom rand, CraftingItemData data, Character ch, bool sendUpdates = false);
-        UseItemResult LearnRecipe(IRandom rand, Character ch, Item recipeItem);
-        Item GenerateRecipeReward(IRandom rand, long level);
+        CraftingResult CraftItem(Character ch, CraftingItemData data, bool sendUpdates = false);
+        UseItemResult LearnRecipe(Character ch, Item recipeItem);
+        Item GenerateRecipeReward(Character ch, long level);
     }
 
     public class ServerCraftingService : IServerCraftingService
@@ -38,16 +38,16 @@ namespace OxDb.MapServer.Crafting.Services
         private ISharedCraftingService _sharedCraftingService = null;
         private IItemGenService _itemGenService = null;
 
-        public CraftingResult CraftItem(IRandom rand, CraftingItemData data, Character ch, bool sendUpdates = false)
+        public CraftingResult CraftItem(Character ch, CraftingItemData data, bool sendUpdates = false)
         {
-            return _tradeService.SafeModifyObject(ch, delegate { return CraftItemInternal(rand, data, ch, sendUpdates); },
+            return _tradeService.SafeModifyObject(ch, delegate { return CraftItemInternal(ch, data, sendUpdates); },
                 new CraftingResult());
         }
 
-        private CraftingResult CraftItemInternal(IRandom rand, CraftingItemData data, Character ch, bool sendUpdates = false)
+        private CraftingResult CraftItemInternal(Character ch, CraftingItemData data, bool sendUpdates = false)
         {
             CraftingResult result = new CraftingResult();
-            CraftingStats stats = _sharedCraftingService.CalculateStatsFromReagents(rand, ch, data);
+            CraftingStats stats = _sharedCraftingService.CalculateStatsFromReagents(ch, data);
 
             if (stats == null)
             {
@@ -64,7 +64,7 @@ namespace OxDb.MapServer.Crafting.Services
             result.Message = "This crafting is currently disabled, sorry.";
             return result;
 
-            ValidityResult validResult = _sharedCraftingService.HasValidReagents(rand, ch, data, ch);
+            ValidityResult validResult = _sharedCraftingService.HasValidReagents(ch, data, ch);
 
             if (validResult == null)
             {
@@ -79,7 +79,7 @@ namespace OxDb.MapServer.Crafting.Services
             }
 
 
-            long crafterTypeId = _sharedCraftingService.GetCrafterTypeFromRecipe(rand, ch, data.RecipeTypeId, data.ScalingTypeId);
+            long crafterTypeId = _sharedCraftingService.GetCrafterTypeFromRecipe(ch, data.RecipeTypeId, data.ScalingTypeId);
 
             CraftingData crafterData = ch.Get<CraftingData>();
 
@@ -111,14 +111,14 @@ namespace OxDb.MapServer.Crafting.Services
 
             long recipeSkillGainChance = GetGainPercentChanceFromLevelDiff(recipeSkillLevel - stats.Level);
 
-            if (rand.NextDouble() * 100 < recipeSkillGainChance && recipeStatus.Get() < recipeStatus.GetMaxLevel())
+            if (ch.Rand.NextDouble() * 100 < recipeSkillGainChance && recipeStatus.Get() < recipeStatus.GetMaxLevel())
             {
                 recipeStatus.AddLevel(1);
             }
 
             long crafterSkillGainChance = GetGainPercentChanceFromLevelDiff(crafterLevel - stats.Level);
 
-            if (rand.NextDouble() * 100 < crafterSkillGainChance)
+            if (ch.Rand.NextDouble() * 100 < crafterSkillGainChance)
             {
                 crafterStatus.AddSkillPoints(CraftingConstants.CraftingSkill, 1);
             }
@@ -137,7 +137,7 @@ namespace OxDb.MapServer.Crafting.Services
                 Id = HashUtils.NewGuid(),
                 Level = stats.Level,
                 ItemTypeId = stats.EntityId,
-                Name = _itemGenService.GenerateItemName(rand, stats.EntityId, stats.Level, stats.QualityTypeId, new List<FullReagent>()).SingularName,
+                Name = _itemGenService.GenerateItemName(ch.Rand, stats.EntityId, stats.Level, stats.QualityTypeId, new List<FullReagent>()).SingularName,
             };
 
             // Now add the stats that were determined above.
@@ -193,14 +193,14 @@ namespace OxDb.MapServer.Crafting.Services
         /// <param name="ps"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public Item GenerateRecipeReward(IRandom rand, long level)
+        public Item GenerateRecipeReward(Character ch, long level)
         {
 
             return null;
         }
 
 
-        public UseItemResult LearnRecipe(IRandom rand, Character ch, Item recipeItem)
+        public UseItemResult LearnRecipe(Character ch, Item recipeItem)
         {
             UseItemResult res = new UseItemResult() { ItemUsed = recipeItem, Success = false };
 
@@ -211,7 +211,6 @@ namespace OxDb.MapServer.Crafting.Services
                 res.Message = "This is not a recipe item.";
                 return res;
             }
-
 
             ItemType itype = _gameData.Get<ItemTypeSettings>(ch).Get(recipeItem.ItemTypeId);
             if (itype == null)

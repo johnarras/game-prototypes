@@ -10,17 +10,17 @@
   "GenTypes": [
     {
       "Name": "Town",
-      "MinWidth": 12,
-      "MaxWidth": 12,
-      "MinHeight": 12,
-      "MaxHeight": 12,
+      "MinWidth": 14,
+      "MaxWidth": 18,
+      "MinHeight": 14,
+      "MaxHeight": 18,
       "MinFloors": 1,
       "MaxFloors": 1,
       "Weight": 1.0,
       "MinCorridorDensity": 1.2,
       "MaxCorridorDensity": 1.5,
-      "MinBuildingDensity": 1.0,
-      "MaxBuildingDensity": 2.0,
+      "MinBuildingDensity": 0.4,
+      "MaxBuildingDensity": 1.0,
       "WeightedZones": [
         {
           "Weight": 1.0,
@@ -30,17 +30,17 @@
     },
     {
       "Name": "City",
-      "MinWidth": 12,
-      "MaxWidth": 18,
-      "MinHeight": 12,
-      "MaxHeight": 18,
+      "MinWidth": 18,
+      "MaxWidth": 24,
+      "MinHeight": 18,
+      "MaxHeight": 24,
       "MinFloors": 1,
       "MaxFloors": 1,
       "Weight": 1.0,
       "MinCorridorDensity": 1.2,
       "MaxCorridorDensity": 1.5,
-      "MinBuildingDensity": 1.0,
-      "MaxBuildingDensity": 2.0,
+      "MinBuildingDensity": 0.4,
+      "MaxBuildingDensity": 1.0,
       "WeightedZones": [
         {
           "Name": "",

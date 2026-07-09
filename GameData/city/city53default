@@ -9,7 +9,7 @@
   "AncientName": "Marakanda",
   "Population": 150000,
   "MapPixelX": 4244,
-  "MapPixelY": 2285,
+  "MapPixelZ": 2285,
   "BiomeTypeId": 13,
   "CultureTypeId": 11,
   "TradeGoodsProduced": [
@@ -23,5 +23,24 @@
       "TradeGoodId": 113
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    }
+  ]
 }

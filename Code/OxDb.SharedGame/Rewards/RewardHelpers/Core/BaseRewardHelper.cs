@@ -17,9 +17,9 @@ namespace OxDb.SharedGame.Rewards.RewardHelpers.Core
 
         public abstract long HelperKey { get; }
 
-        public abstract Task<long> GetQuantity(IUnitDataLookup context, long entityId);
+        public abstract ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId);
 
-        public abstract Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp);
+        public abstract ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp);
     }
 }
 

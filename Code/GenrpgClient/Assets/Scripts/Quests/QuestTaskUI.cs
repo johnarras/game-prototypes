@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using OxDb.SharedGame.MapServer.Services;
 using OxDb.SharedGame.Quests.WorldData;
 
@@ -6,7 +5,6 @@ public class QuestTaskUI : BaseBehaviour
 {
 
     protected IMapProvider _mapProvider;
-    protected IClientRandom _rand = null;
 
     public GText TaskText;
 
@@ -34,7 +32,7 @@ public class QuestTaskUI : BaseBehaviour
             return;
         }
 
-        _uiService.SetText(TaskText, _qtype.PrintTaskText(_rand.Rand, _gs.ch, _gameData, _mapProvider, _task.Index));
+        _uiService.SetText(TaskText, _qtype.PrintTaskText(_gs.ch, _gameData, _mapProvider, _task.Index));
 
     }
 

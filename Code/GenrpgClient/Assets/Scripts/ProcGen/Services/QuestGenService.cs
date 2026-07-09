@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -28,7 +27,6 @@ public class QuestGenService : IQuestGenService
     protected IGameData _gameData;
     private IMapProvider _mapProvider;
     protected IClientGameState _gs;
-    protected IClientRandom _rand;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -109,7 +107,7 @@ public class QuestGenService : IQuestGenService
                         break;
                     }
 
-                    long currUnitTypeId = unitTypeIds[_rand.Rand.Next() % unitTypeIds.Count];
+                    long currUnitTypeId = unitTypeIds[_gs.Rand.Next() % unitTypeIds.Count];
 
                     unitTypeIds.Remove(currUnitTypeId);
 
@@ -260,7 +258,7 @@ public class QuestGenService : IQuestGenService
     }
 
 
-    protected List<MapSpawn> GetUnusedSpawnsNearPoint(long zoneId, int px, int py, float radius)
+    protected List<MapSpawn> GetUnusedSpawnsNearPoint(long zoneId, int px, int pz, float radius)
     {
         if (_mapProvider.GetSpawns() == null)
         {
@@ -270,7 +268,7 @@ public class QuestGenService : IQuestGenService
         List<MapSpawn> desiredUnits = _mapProvider.GetSpawns().Data.Where(u =>
         (u.EntityTypeId == EntityTypes.ZoneUnit || u.EntityTypeId == EntityTypes.Unit) &&
         u.EntityId == 0 &&
-        Math.Sqrt((u.X - px) * (u.X - px) + (u.Z - py) * (u.Z - py)) <= radius).ToList();
+        Math.Sqrt((u.X - px) * (u.X - px) + (u.Z - pz) * (u.Z - pz)) <= radius).ToList();
 
         return desiredUnits;
     }

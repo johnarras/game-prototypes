@@ -21,7 +21,7 @@ namespace OxDb.RequestServer.Purchasing.ValidationHelpers
         {
             _packageName = _serverConfig.GetConfigVal(AppConfigKeys.PackageName);
 
-            string jsonSecret = _serverConfig.GetConfigVal(AppConfigKeys.GooglePlaySecret);
+            string jsonSecret = _serverConfig.GetConfigVal(AppConfigKeys.GooglePlayPurchasingSecret);
 
             GoogleCredential credential = GoogleCredential
                 .FromJson(jsonSecret)

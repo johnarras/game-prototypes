@@ -10,16 +10,14 @@ namespace OxDb.SharedGame.Spells.Helpers
     {
         public long HelperKey => EntityTypes.Spell;
 
-        public async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
             return 0;
         }
 
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
             return true;
         }
     }

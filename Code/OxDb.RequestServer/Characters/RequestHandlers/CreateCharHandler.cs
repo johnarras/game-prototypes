@@ -1,5 +1,5 @@
-using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
 using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Characters.WebApi.CreateChar;

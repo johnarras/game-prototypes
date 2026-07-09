@@ -2,27 +2,61 @@
   "Id": "role8default",
   "ParentId": "default",
   "IdKey": 8,
-  "Name": "Druid",
-  "Desc": "Full Hybrid",
-  "Abbrev": "Dr",
+  "Name": "Ranger",
+  "Desc": "A ranged combat fighter who can also cast offensive magic.",
+  "Abbrev": "Ra",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 18,
-  "ManaPerLevel": 18,
-  "MaxArmorScalingTypeId": 2,
-  "CritPercent": 3,
-  "Guardian": true,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "HealthPerLevel": 8,
+  "ManaPerLevel": 8,
+  "MaxArmorScalingTypeId": 3,
+  "TrainingXpScale": 1.5,
+  "TrainingGoldScale": 1.5,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
     {
       "EntityTypeId": 2,
-      "EntityId": 23
+      "EntityId": 13
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 24
+      "EntityId": 14
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 16
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 18
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 19
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 26
     },
     {
       "EntityTypeId": 2,
@@ -34,19 +68,7 @@
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 29
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 31
-    },
-    {
-      "EntityTypeId": 31,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 31,
-      "EntityId": 63
+      "EntityId": 30
     },
     {
       "EntityTypeId": 100,
@@ -62,31 +84,15 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 4
+      "EntityId": 7
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 6
+      "EntityId": 9
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 20
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 22
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 23
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 30
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 31
+      "EntityId": 26
     },
     {
       "EntityTypeId": 100,
@@ -99,18 +105,6 @@
     {
       "EntityTypeId": 100,
       "EntityId": 35
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 37
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 61
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 62
     },
     {
       "EntityTypeId": 100,
@@ -130,19 +124,15 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 85
+      "EntityId": 84
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 87
+      "EntityId": 89
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 88
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 91
+      "EntityId": 90
     },
     {
       "EntityTypeId": 100,
@@ -150,7 +140,47 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 138
+      "EntityId": 93
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 100
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 103
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 105
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 106
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 211
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 213
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 221
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 223
     },
     {
       "EntityTypeId": 100,
@@ -162,6 +192,10 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 233
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 240
     },
     {
@@ -170,15 +204,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 242
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 10032
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 10063
+      "EntityId": 243
     }
   ],
   "AmountBonuses": [
@@ -190,12 +216,12 @@
     {
       "EntityTypeId": 41,
       "EntityId": 2,
-      "Amount": 0.05
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.15
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
@@ -205,22 +231,17 @@
     {
       "EntityTypeId": 41,
       "EntityId": 5,
-      "Amount": 0.1
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
       "EntityId": 6,
-      "Amount": 0.1
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
-      "EntityId": 7,
-      "Amount": 0.15
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 11,
-      "Amount": 1.0
+      "EntityId": 8,
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 43,
@@ -229,12 +250,7 @@
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 13,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 15,
+      "EntityId": 14,
       "Amount": 1.0
     }
   ]

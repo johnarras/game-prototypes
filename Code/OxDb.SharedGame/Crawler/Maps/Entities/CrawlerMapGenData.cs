@@ -1,3 +1,4 @@
+using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using OxDb.SharedGame.Units.Entities;
@@ -19,7 +20,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         public long CurrFloor { get; set; } = 1;
         public long MaxFloor { get; set; } = 1;
         public string Name { get; set; }
-        public bool RandomWallsDungeon { get; set; }
+        public long DungeonTypeId { get; set; }
         public CrawlerMap PrevMap { get; set; }
         public long ArtSeed { get; set; }
         public CrawlerMapType MapType { get; set; }

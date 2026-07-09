@@ -9,7 +9,7 @@
   "AncientName": "Roma",
   "Population": 1000000,
   "MapPixelX": 1760,
-  "MapPixelY": 2185,
+  "MapPixelZ": 2185,
   "BiomeTypeId": 1,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,27 @@
       "TradeGoodId": 4
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

@@ -4,5 +4,6 @@
   "IdKey": 64,
   "Name": "Efficiency",
   "Desc": "Lower Cost",
+  "Icon": "Efficiency",
   "GenScalePct": 200
 }

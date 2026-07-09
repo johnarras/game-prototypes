@@ -4,59 +4,25 @@
   "IdKey": 30,
   "Name": "Town Portal",
   "Desc": "Teleport to a town on the overworld map.",
-  "PowerCost": 25.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 25.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 8,
-  "RoleScalingTypeId": 6,
-  "RoleScalingTier": 1,
-  "PointCost": 5,
+  "RoleScalingTypeId": 8,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 37,
       "EntityId": 1,
       "ElementTypeId": 9,
-      "Chance": 1.0
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    },
-    {
-      "RoleId": 10
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1616
+    ]
+  },
   "ItemEnchantWeight": 0.1
 }

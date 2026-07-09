@@ -12,7 +12,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
     {
         public override long HelperKey => SpendLocations.Trainer;
 
-        public override async Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
+        public override async ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
         {
             List<SpendType> validSpendTypes = new List<SpendType>();
 

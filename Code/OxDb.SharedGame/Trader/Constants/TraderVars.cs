@@ -13,9 +13,9 @@ namespace OxDb.SharedGame.Trader.Constants
         public const long BaseDiceSpeed = 6; // May be 0 if you can't move.
         public const long BonusSpeedPerDie = 7; // Calc
         public const long FromX = 8;
-        public const long FromY = 9;
+        public const long FromZ = 9;
         public const long ToX = 10;
-        public const long ToY = 11;
+        public const long ToZ = 11;
         public const long CityId = 12;
         public const long TotalDistanceToTarget = 13;
         public const long DistanceGone = 14;

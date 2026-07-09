@@ -1,11 +1,11 @@
 using Assets.Scripts.Buildings;
+using Assets.Scripts.Crawler.Maps.Constants;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Buildings.Settings;
-using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
     {
         public override int Order => 300;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
         {
             long buildingTypeId = mapRoot.Map.GetEntityId(cell.MapX, cell.MapZ, EntityTypes.Building);
 

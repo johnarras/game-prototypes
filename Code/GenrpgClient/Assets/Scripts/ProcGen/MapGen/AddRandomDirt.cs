@@ -15,22 +15,22 @@ public class AddRandomDirt : BaseZoneGenerator
         await base.Generate(token);
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MinZ, zone.MaxX, zone.MaxZ);
         }
     }
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int startz, int endx, int endz)
     {
         if (_md.Alphas == null || zone == null || zoneType == null ||
-            endx <= startx || endy <= starty)
+            endx <= startx || endz <= startz)
         {
             return;
         }
 
         int dx = endx - startx;
-        int dy = endy - starty;
+        int dz = endz - startz;
 
-        int size = Math.Max(Math.Max(dx, dy), MapConstants.DefaultHeightmapSize);
+        int size = Math.Max(Math.Max(dx, dz), MapConstants.DefaultHeightmapSize);
 
         int[] replaceTextures = new int[] { TerrainTexChannels.Dirt, TerrainTexChannels.Steep };
 
@@ -47,14 +47,11 @@ public class AddRandomDirt : BaseZoneGenerator
 
             for (int r = 0; r < replaceTextures.Length; r++)
             {
-
-
                 MyRandom rand = new MyRandom(zone.Seed % 23463321 + r * 10293 + r * r * 32123 + outertimes * 3);
                 bool usePerlin = rand.NextDouble() < 0.5f;
 
                 float freq = RandUtils.FloatRange(size * 0.03f, size * 0.2f, rand) * 1.35f;
                 float amp = RandUtils.FloatRange(0.4f, 1.0f, rand) * 1.1f;
-
 
                 float pers = RandUtils.FloatRange(0.2f, 0.5f, rand);
                 int octaves = 2;
@@ -83,20 +80,20 @@ public class AddRandomDirt : BaseZoneGenerator
                 float[,] maxHeights = maxNoiseHeights[r];
                 for (int x = startx; x < endx; x++)
                 {
-                    for (int y = starty; y < endy; y++)
+                    for (int z = startz; z < endz; z++)
                     {
-                        if (_md.MapZoneIds[x, y] != zone.IdKey)
+                        if (_md.MapZoneIds[x, z] != zone.IdKey)
                         {
                             continue;
                         }
-                        float maxPct = midNoise + maxHeights[x - startx, y - starty];
+                        float maxPct = midNoise + maxHeights[x - startx, z - startz];
                         if (maxPct > 1)
                         {
                             maxPct = 1;
                         }
 
-                        float basePct = _md.Alphas[x, y, TerrainTexChannels.Base];
-                        float newPct = Math.Max(changes[x - startx, y - starty], 0);
+                        float basePct = _md.Alphas[x, z, TerrainTexChannels.Base];
+                        float newPct = Math.Max(changes[x - startx, z - startz], 0);
                         if (newPct > maxPct)
                         {
                             newPct = maxPct;
@@ -106,13 +103,13 @@ public class AddRandomDirt : BaseZoneGenerator
                         {
                             newPct = basePct;
                         }
-                        _md.Alphas[x, y, TerrainTexChannels.Base] -= newPct;
-                        _md.Alphas[x, y, newIndex] += newPct;
-                        if (_md.Alphas[x, y, newIndex] > 1)
+                        _md.Alphas[x, z, TerrainTexChannels.Base] -= newPct;
+                        _md.Alphas[x, z, newIndex] += newPct;
+                        if (_md.Alphas[x, z, newIndex] > 1)
                         {
-                            float diff = _md.Alphas[x, y, newIndex] - 1;
-                            _md.Alphas[x, y, TerrainTexChannels.Base] = diff;
-                            _md.Alphas[x, y, newIndex] = 1;
+                            float diff = _md.Alphas[x, z, newIndex] - 1;
+                            _md.Alphas[x, z, TerrainTexChannels.Base] = diff;
+                            _md.Alphas[x, z, newIndex] = 1;
                         }
                     }
                 }

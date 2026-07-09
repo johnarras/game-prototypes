@@ -2,8 +2,8 @@
   "Id": "treetype30default",
   "ParentId": "default",
   "IdKey": 30,
-  "Name": "BroadleafSmall",
-  "Art": "BroadleafSmall",
-  "Scale": 2.0,
+  "Name": "RedMapleWinterYoung",
+  "Art": "RedMapleWinterYoung",
+  "Scale": 1.5,
   "VariationCount": 2
 }

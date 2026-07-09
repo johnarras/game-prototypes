@@ -9,7 +9,7 @@
   "AncientName": "Leptis Magna",
   "Population": 80000,
   "MapPixelX": 1856,
-  "MapPixelY": 2605,
+  "MapPixelZ": 2605,
   "BiomeTypeId": 2,
   "CultureTypeId": 7,
   "TradeGoodsProduced": [
@@ -23,5 +23,15 @@
       "TradeGoodId": 51
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

@@ -23,7 +23,7 @@ namespace OxDb.DataUtils.Importers.Trader
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int MapPixelX { get; set; }
-        public int MapPixelY { get; set; }
+        public int MapPixelZ { get; set; }
         public string BiomeName { get; set; }
         public string CultureName { get; set; }
         public string PrimaryProducts { get; set; }
@@ -35,7 +35,7 @@ namespace OxDb.DataUtils.Importers.Trader
     {
         private ITextSerializer _textSerializer = null;
 
-        protected override void ImportChildSubObject(EditorGameState gs, City current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, CitySettings settings, City current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
 

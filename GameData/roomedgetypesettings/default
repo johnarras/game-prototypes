@@ -1,0 +1,65 @@
+{
+  "Id": "default",
+  "EdgePatterns": [
+    {
+      "IdKey": 1,
+      "Name": "Blank",
+      "Weight": 1.0
+    },
+    {
+      "IdKey": 2,
+      "Name": "One",
+      "Weight": 1.0,
+      "Quantity": 1,
+      "MinTypes": 1,
+      "MaxTypes": 1
+    },
+    {
+      "IdKey": 3,
+      "Name": "TwoSame",
+      "Weight": 1.0,
+      "Quantity": 2,
+      "SymmetricChance": 0.5,
+      "MinTypes": 1,
+      "MaxTypes": 1
+    },
+    {
+      "IdKey": 4,
+      "Name": "TwoAny",
+      "Weight": 1.0,
+      "Quantity": 2,
+      "SymmetricChance": 0.5,
+      "MinTypes": 1,
+      "MaxTypes": 2
+    },
+    {
+      "IdKey": 5,
+      "Name": "Three",
+      "Weight": 1.0,
+      "Quantity": 3,
+      "SymmetricChance": 0.5,
+      "MinTypes": 1,
+      "MaxTypes": 3
+    },
+    {
+      "IdKey": 6,
+      "Name": "FourAny",
+      "Weight": 1.0,
+      "Quantity": 4,
+      "SymmetricChance": 0.5,
+      "MinTypes": 1,
+      "MaxTypes": 4
+    },
+    {
+      "IdKey": 7,
+      "Name": "FourSymmetric",
+      "Weight": 1.0,
+      "Quantity": 4,
+      "SymmetricChance": 1.0,
+      "MinTypes": 2,
+      "MaxTypes": 2
+    }
+  ],
+  "Name": "RoomEdgeTypeSettings",
+  "SaveTime": "2026-07-04T23:21:39.062Z"
+}

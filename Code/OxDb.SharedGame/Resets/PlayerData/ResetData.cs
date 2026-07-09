@@ -2,6 +2,8 @@ using MessagePack;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Constants;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.NoChild;
+using OxDb.SharedGame.Purchasing.PlayerData;
+using OxDb.SharedGame.Units.Loaders;
 using OxDb.SharedGame.Units.Mappers;
 using System;
 namespace OxDb.SharedGame.Resets.PlayerData
@@ -24,10 +26,11 @@ namespace OxDb.SharedGame.Resets.PlayerData
 
         public override int GetOffsetBit()
         {
-            return EPersonalDataOffsetBits.Resets;
+            return PersonalDataOffsetBits.Resets;
         }
     }
 
+    public class ResetLoader : UnitDataLoader<ResetData> { }
     [MessagePackObject]
     public class ResetDto : NoChildPlayerDataDto<ResetData>
     {

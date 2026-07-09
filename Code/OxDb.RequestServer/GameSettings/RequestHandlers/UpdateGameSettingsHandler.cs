@@ -1,5 +1,5 @@
-using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
 using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.ServerCore.GameSettings.Services;
 using OxDb.SharedCore.GameSettings.WebApi.UpdateGameSettings;
 using OxDb.SharedGame.Characters.PlayerData;

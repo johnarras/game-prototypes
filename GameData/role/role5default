@@ -2,22 +2,46 @@
   "Id": "role5default",
   "ParentId": "default",
   "IdKey": 5,
-  "Name": "Cleric",
-  "Desc": "Healing",
-  "Abbrev": "Cl",
+  "Name": "Skirmisher",
+  "Desc": "A Fighter who is also skilled in ranged combat, and combat tricks.",
+  "Abbrev": "Sk",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 14,
-  "ManaPerLevel": 22,
-  "MaxArmorScalingTypeId": 1,
-  "CritPercent": 1,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "HealthPerLevel": 11,
+  "ManaPerLevel": 7,
+  "MaxArmorScalingTypeId": 4,
+  "Guardian": true,
+  "TrainingXpScale": 1.2,
+  "TrainingGoldScale": 1.2,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
     {
       "EntityTypeId": 2,
-      "EntityId": 23
+      "EntityId": 16
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 18
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 19
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 22
     },
     {
       "EntityTypeId": 2,
@@ -25,15 +49,15 @@
     },
     {
       "EntityTypeId": 2,
+      "EntityId": 27
+    },
+    {
+      "EntityTypeId": 2,
       "EntityId": 28
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 31,
-      "EntityId": 31
+      "EntityId": 30
     },
     {
       "EntityTypeId": 100,
@@ -49,35 +73,27 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 20
+      "EntityId": 6
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 21
+      "EntityId": 7
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 22
+      "EntityId": 8
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 23
+      "EntityId": 9
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 30
+      "EntityId": 26
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 33
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 62
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 64
+      "EntityId": 80
     },
     {
       "EntityTypeId": 100,
@@ -97,11 +113,11 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 87
+      "EntityId": 89
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 88
+      "EntityId": 90
     },
     {
       "EntityTypeId": 100,
@@ -109,81 +125,93 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 93
+      "EntityId": 94
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 133
+      "EntityId": 101
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 200
+      "EntityId": 103
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 201
+      "EntityId": 106
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 260
+      "EntityId": 107
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 261
+      "EntityId": 230
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 262
+      "EntityId": 231
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 10031
+      "EntityId": 233
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 240
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 241
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 243
     }
   ],
   "AmountBonuses": [
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.05
+      "Amount": 0.25
     },
     {
       "EntityTypeId": 41,
       "EntityId": 2,
-      "Amount": 0.05
+      "Amount": 0.25
     },
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.2
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 4,
-      "Amount": 0.3
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 5,
-      "Amount": 0.1
-    },
-    {
-      "EntityTypeId": 41,
-      "EntityId": 6,
-      "Amount": 0.1
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
       "EntityId": 7,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 8,
       "Amount": 0.05
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 13,
-      "Amount": 3.0
+      "EntityId": 11,
+      "Amount": 1.0
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 17,
+      "EntityId": 14,
       "Amount": 1.0
     }
   ]

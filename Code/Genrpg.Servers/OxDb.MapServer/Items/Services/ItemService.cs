@@ -1,6 +1,5 @@
 using OxDb.MapServer.Crafting.Services;
 using OxDb.MapServer.Maps;
-using OxDb.MapServer.Spawns.Services;
 using OxDb.MapServer.Trades.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Interfaces;
@@ -13,17 +12,19 @@ using OxDb.SharedGame.Inventory.Services;
 using OxDb.SharedGame.Rewards.Constants;
 using OxDb.SharedGame.Rewards.Services;
 using OxDb.SharedGame.Spawns.Entities;
+using OxDb.SharedGame.Spawns.Services;
 using OxDb.SharedGame.Spells.Casting;
 using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OxDb.MapServer.Items.Services
 {
     public interface IItemService : IInjectable
     {
-        UseItemResult UseItem(IRandom rand, Character ch, Item item);
+        ValueTask<UseItemResult> UseItem(Character ch, Item item);
 
     }
 
@@ -39,16 +40,16 @@ namespace OxDb.MapServer.Items.Services
 
         // This should call out to different functions in different parts of the code.
         // Eventually split these cases into separate functions.
-        public UseItemResult UseItem(IRandom rand, Character ch, Item item)
+        public async ValueTask<UseItemResult> UseItem( Character ch, Item item)
         {
             return _tradeService.SafeModifyObject(ch, delegate
             {
-                return UseItemInternal(rand, ch, item);
+                return UseItemInternal(ch, item);
             },
             new UseItemResult() { ItemUsed = item, Success = false });
         }
 
-        private UseItemResult UseItemInternal(IRandom rand, Character ch, Item item)
+        private UseItemResult UseItemInternal(Character ch, Item item)
         {
             UseItemResult res = new UseItemResult() { ItemUsed = item, Success = false };
             if (item == null)
@@ -66,7 +67,7 @@ namespace OxDb.MapServer.Items.Services
             {
                 theProc = recipeProc;
                 shouldRemoveItem = true;
-                res = _craftingService.LearnRecipe(rand, ch, item);
+                res = _craftingService.LearnRecipe(ch, item);
             }
 
             if (theProc == null)
@@ -82,10 +83,20 @@ namespace OxDb.MapServer.Items.Services
                         Level = ch.Level,
                         Times = 1
                     };
-                    List<RewardList> newItems = _spawnService.Roll(rand, spawnProc.EntityId, RewardSources.UseItem, rollLootArgs);
+
+                    ValueTask<List<RewardList>> itemsVal = _spawnService.Roll(ch, spawnProc.EntityId, RewardSources.UseItem, rollLootArgs);
+
+                    List<RewardList> newItems = null;
+                    if (!itemsVal.IsCompleted)
+                    {
+                        res.Success = false;
+                        return res;
+                    }
+
+                    newItems = itemsVal.Result;
                     if (newItems != null)
                     {
-                        _rewardService.GiveRewards(ch, newItems, null).Wait();
+                        ValueTask<bool>  giveTask = _rewardService.GiveRewards(ch, newItems, null);
                     }
 
                     res.Success = true;

@@ -4,5 +4,6 @@
   "IdKey": 65,
   "Name": "Cooldown",
   "Desc": "Lower Cooldown",
+  "Icon": "Cooldown",
   "GenScalePct": 200
 }

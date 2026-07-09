@@ -2,52 +2,28 @@
   "Id": "crawlerspell2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "Defend",
-  "Desc": "Take half damage this turn if you get hit.",
-  "StatBonusScaling": 1.0,
+  "Name": "Shoot",
+  "Desc": "Attack one or more enemies that are out of melee range.",
+  "MinRange": 20,
   "MaxRange": 100,
-  "CombatActionId": 2,
-  "TargetTypeId": 9,
-  "RoleScalingTypeId": 4,
-  "RoleScalingTier": 1,
-  "Effects": [],
-  "RolesKnowingThis": [
+  "CombatActionId": 3,
+  "TargetTypeId": 1,
+  "RoleScalingTypeId": 2,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
+  "Effects": [
     {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    },
-    {
-      "RoleId": 10
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
+      "EntityTypeId": 39,
+      "EntityId": 2,
+      "ElementTypeId": 11,
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0,
+      "ProcChance": 100.0
     }
   ],
-  "Flags": 1
+  "Roles": {
+    "Bits": [
+      2046
+    ]
+  }
 }

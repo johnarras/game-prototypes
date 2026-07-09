@@ -36,7 +36,7 @@ public class BaseAddMountains : BaseZoneGenerator
         return heightMult;
     }
 
-    protected void AddMountainRidge(int sx, int sy, int ex, int ey, long seed, bool boring, float heightMult, bool secondaryMountain = false)
+    protected void AddMountainRidge(int sx, int sz, int ex, int ez, long seed, bool boring, float heightMult, bool secondaryMountain = false)
     {
         if (heightMult < 0.01f)
         {
@@ -80,25 +80,25 @@ public class BaseAddMountains : BaseZoneGenerator
         lp.Seed = lineRand.Next();
 
         int dx = Math.Abs(sx - ex);
-        int dy = Math.Abs(sy - ey);
+        int dz = Math.Abs(sz - ez);
 
 
-        int maxLen = Math.Max(dx, dy);
+        int maxLen = Math.Max(dx, dz);
 
-        List<MyPointF> points = _lineGenService.GetBressenhamLine(new MyPoint(sx, sy), new MyPoint(ex, ey), (boring ? boringLP : lp));
+        List<LineCell> points = _lineGenService.GetBressenhamLine(new Point2I(sx, sz), new Point2I(ex, ez), (boring ? boringLP : lp));
         if (points == null || points.Count < 1)
         {
             return;
         }
         int startWallWidth = Math.Max(1, lineRand.Next(mountainWidth * 9 / 10, mountainWidth * 11 / 10));
 
-        float baseFreqScaling = MathUtil.Sqrt((sx - ex) * (sx - ex) + (sy - ey) * (sy - ey));
+        float baseFreqScaling = MathUtil.Sqrt((sx - ex) * (sx - ex) + (sz - ez) * (sz - ez));
 
         AddMountainPoints(points, startWallWidth, baseFreqScaling, lineRand.Next(),
             maxLen, secondaryMountain, heightMult);
     }
 
-    public void AddMountainPoints(List<MyPointF> points, int startWallWidth, float baseFreqScaling,
+    public void AddMountainPoints(List<LineCell> points, int startWallWidth, float baseFreqScaling,
         int randSeed, int maxLen, bool secondaryMountain, float heightMult)
     {
         MyRandom lineRand = new MyRandom(randSeed / 3 + 183892);
@@ -120,46 +120,46 @@ public class BaseAddMountains : BaseZoneGenerator
         int currWallWidth = Math.Max(1, startWallWidth + lineRand.Next() % 3 - lineRand.Next() % 3);
         for (int l = 0; l < points.Count; l++)
         {
-            MyPointF item = points[l];
+            LineCell item = points[l];
             float mainHeight = mainHeightNoise[l, 0];
             int cx = (int)(item.X);
-            int cy = (int)(item.Y);
+            int cz = (int)(item.Z);
 
             currWallWidth = (int)(startWallWidth * (1 + widthNoise[l, 0]));
 
-            if (cx < 0 || cy < 0 || cx >= _mapProvider.GetMap().GetHwid() || cy >= _mapProvider.GetMap().GetHhgt())
+            if (cx < 0 || cz < 0 || cx >= _mapProvider.GetMap().GetHwid() || cz >= _mapProvider.GetMap().GetHhgt())
             {
                 continue;
             }
-            if (_md.MapZoneIds[cx, cy] < 1)
+            if (_md.MapZoneIds[cx, cz] < 1)
             {
-                _md.MapZoneIds[cx, cy] = MapConstants.MountainZoneId;
+                _md.MapZoneIds[cx, cz] = MapConstants.MountainZoneId;
             }
             float heightToSet = (1.1f * (1.0f + mainHeight)) * wallHeightScale * heightMult * MapConstants.MountainHeightMult;
-            if (_md.MaintainHeights[cx, cy] < heightToSet)
+            if (_md.MaintainHeights[cx, cz] < heightToSet)
             {
-                _md.MaintainHeights[cx, cy] = heightToSet;
+                _md.MaintainHeights[cx, cz] = heightToSet;
             }
 
-            _md.MountainDistPercent[cx, cy] = 0f;
+            _md.MountainDistPercent[cx, cz] = 0f;
             if (!secondaryMountain)
             {
-                _md.EdgeMountainDistPercent[cx, cy] = 0f;
+                _md.EdgeMountainDistPercent[cx, cz] = 0f;
             }
 
             float topWidth = 2;
             int mincmidx = Math.Min(_mapProvider.GetMap().GetHwid() / 2, cx);
             int maxcmidx = Math.Max(_mapProvider.GetMap().GetHwid() / 2, cx);
-            int mincmidy = Math.Min(_mapProvider.GetMap().GetHhgt() / 2, cy);
-            int maxcmidy = Math.Max(_mapProvider.GetMap().GetHhgt() / 2, cy);
-            for (int y = Math.Max(0, cy - currWallWidth); y <= Math.Min(_mapProvider.GetMap().GetHhgt() - 1, cy + currWallWidth); y++)
+            int mincmidz = Math.Min(_mapProvider.GetMap().GetHhgt() / 2, cz);
+            int maxcmidz = Math.Max(_mapProvider.GetMap().GetHhgt() / 2, cz);
+            for (int z = Math.Max(0, cz - currWallWidth); z <= Math.Min(_mapProvider.GetMap().GetHhgt() - 1, cz + currWallWidth); z++)
             {
-                int ddy = Math.Abs(y - cy);
+                int ddz = Math.Abs(z - cz);
                 for (int x = Math.Max(0, cx - currWallWidth); x <= Math.Min(_mapProvider.GetMap().GetHwid() - 1, cx + currWallWidth); x++)
                 {
                     int ddx = Math.Abs(x - cx);
 
-                    double currDist = Math.Sqrt(ddx * ddx + ddy * ddy);
+                    double currDist = Math.Sqrt(ddx * ddx + ddz * ddz);
                     double distPct = currDist / currWallWidth;
 
                     if (currDist < topWidth)
@@ -176,38 +176,38 @@ public class BaseAddMountains : BaseZoneGenerator
                         continue;
                     }
 
-                    if (_md.MapZoneIds[x, y] == 0)
+                    if (_md.MapZoneIds[x, z] == 0)
                     {
-                        _md.MapZoneIds[x, y] = MapConstants.MountainZoneId;
+                        _md.MapZoneIds[x, z] = MapConstants.MountainZoneId;
                     }
-                    if (_md.MountainDistPercent[x, y] > distPct)
+                    if (_md.MountainDistPercent[x, z] > distPct)
                     {
-                        _md.MountainDistPercent[x, y] = (float)distPct;
+                        _md.MountainDistPercent[x, z] = (float)distPct;
                     }
-                    if (_md.MountainCenterDist[x, y] > currDist)
+                    if (_md.MountainCenterDist[x, z] > currDist)
                     {
-                        _md.MountainCenterDist[x, y] = (float)(currDist);
-                        _md.NearestMountainTopHeight[x, y] = heightToSet;
+                        _md.MountainCenterDist[x, z] = (float)(currDist);
+                        _md.NearestMountainTopHeight[x, z] = heightToSet;
                     }
                     if (!secondaryMountain)
                     {
-                        if (_md.EdgeMountainDistPercent[x, y] > distPct)
+                        if (_md.EdgeMountainDistPercent[x, z] > distPct)
                         {
-                            _md.EdgeMountainDistPercent[x, y] = (float)distPct;
+                            _md.EdgeMountainDistPercent[x, z] = (float)distPct;
                         }
                     }
-                    _md.Flags[x, y] |= MapGenFlags.IsEdgeWall;
-                    float currPower = MathUtil.Clamp(0.5f, 1.7f, 1.0f + _md.MountainDecayPower[x, y]);
-                    float newPct = _md.MaintainHeights[cx, cy] * (float)(1.0f - Math.Pow(distPct, currPower));
+                    _md.Flags[x, z] |= MapGenFlags.IsEdgeWall;
+                    float currPower = MathUtil.Clamp(0.5f, 1.7f, 1.0f + _md.MountainDecayPower[x, z]);
+                    float newPct = _md.MaintainHeights[cx, cz] * (float)(1.0f - Math.Pow(distPct, currPower));
 
-                    if (newPct != 0 && _md.MaintainHeights[x, y] == 0 && secondaryMountain)
+                    if (newPct != 0 && _md.MaintainHeights[x, z] == 0 && secondaryMountain)
                     {
-                        _md.Flags[x, y] |= MapGenFlags.IsSecondaryWall;
+                        _md.Flags[x, z] |= MapGenFlags.IsSecondaryWall;
                     }
 
-                    if (newPct > _md.MaintainHeights[x, y])
+                    if (newPct > _md.MaintainHeights[x, z])
                     {
-                        _md.MaintainHeights[x, y] = newPct;
+                        _md.MaintainHeights[x, z] = newPct;
                     }
 
                 }

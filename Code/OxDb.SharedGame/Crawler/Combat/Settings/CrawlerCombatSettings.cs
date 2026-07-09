@@ -20,7 +20,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Settings
         public int MovesBetweenEncounters { get; set; }
 
         public double GroupAdvanceChance { get; set; }
-
+        public double OverburdenedDamageScale { get; set; }
 
         public double CastSpellChance { get; set; }
         public double SummonChance { get; set; }

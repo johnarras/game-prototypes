@@ -24,10 +24,10 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Services
 {
     public interface ITradeGoodService : IInjectable
     {
-        Task<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long forcedUniqueId = 0);
-        Task<RemoveTradeGoodFromCaravanResponse> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long sellValue, long uniqueId);
+        ValueTask<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long forcedUniqueId = 0);
+        ValueTask<RemoveTradeGoodFromCaravanResponse> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long sellValue, long uniqueId);
 
-        Task<long> GetSellValueAtPosition(IUnitDataLookup lookup, long tradeGoodId, long x, long y);
+        ValueTask<long> GetSellValueAtPosition(IUnitDataLookup lookup, long tradeGoodId, long x, long z);
     }
 
 
@@ -40,19 +40,16 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Services
 
         private IRewardService _rewardService = null;
 
-        public async Task<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long forcedUniqueId = 0)
+        public async ValueTask<AddTradeGoodToCaravanResponse> AddTradeGoodToCaravan(IUnitDataLookup lookup, long tradeGoodId, long forcedUniqueId = 0)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             AddTradeGoodToCaravanResponse result = new AddTradeGoodToCaravanResponse()
             {
                 Success = false,
-                Travel = _caravanService.GetTravelInfo(coreData),
+                Travel = await _caravanService.GetTravelInfo(lookup),
             };
 
-
             CaravanData caravanData = await lookup.GetAsync<CaravanData>();
-
-
 
             long newUniqueId = forcedUniqueId;
 
@@ -71,26 +68,25 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Services
             await _calcAttributeService.CalcBuffs(lookup);
 
             result.TradeGoodId = tradeGoodId;
-            result.Travel = _caravanService.GetTravelInfo(coreData);
+            result.Travel = await _caravanService.GetTravelInfo(lookup);
             result.UniqueId = newUniqueId;
             result.Success = true;
 
             return result;
         }
 
-        public async Task<RemoveTradeGoodFromCaravanResponse> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long sellValue, long uniqueId)
+        public async ValueTask<RemoveTradeGoodFromCaravanResponse> RemoveTradeGoodFromCaravan(IUnitDataLookup lookup, long tradeGoodId, long sellValue, long uniqueId)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             RemoveTradeGoodFromCaravanResponse response = new RemoveTradeGoodFromCaravanResponse()
             {
                 Success = false,
-                Travel = _caravanService.GetTravelInfo(coreData),
+                Travel = await _caravanService.GetTravelInfo(lookup),
                 UniqueId = uniqueId,
                 SellValue = sellValue,
             };
 
-
-            CaravanPosition position = _caravanService.GetPosition(coreData);
+            CaravanPosition position = await _caravanService.GetPosition(lookup);
 
             if (position.GetCurrentCity() == null)
             {
@@ -111,7 +107,7 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Services
 
             TravelSettings travelSettings = _gameData.Get<TravelSettings>(coreData);
 
-            long serverSellValue = await GetSellValueAtPosition(lookup, tradeGoodId, position.CurrX, position.CurrY);
+            long serverSellValue = await GetSellValueAtPosition(lookup, tradeGoodId, position.CurrX, position.CurrZ);
 
             if (serverSellValue != sellValue)
             {
@@ -132,14 +128,14 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Services
             await _calcAttributeService.CalcBuffs(lookup);
 
             response.TradeGoodId = tradeGoodId;
-            response.Travel = _caravanService.GetTravelInfo(coreData);
+            response.Travel = await _caravanService.GetTravelInfo(lookup);
 
             response.Success = true;
 
             return response;
         }
 
-        public async Task<long> GetSellValueAtPosition(IUnitDataLookup lookup, long tradeGoodId, long x, long y)
+        public async ValueTask<long> GetSellValueAtPosition(IUnitDataLookup lookup, long tradeGoodId, long x, long z)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
 
@@ -167,7 +163,7 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Services
 
                 if (city != null)
                 {
-                    long distance = await _mapService.GetDistanceBetweenPoints(lookup, x, y, city.MapPixelX, city.MapPixelY);
+                    long distance = await _mapService.GetDistanceBetweenPoints(lookup, x, z, city.MapPixelX, city.MapPixelZ);
 
                     if (distance < closestDistance || closestDistance == -1)
                     {

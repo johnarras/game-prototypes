@@ -9,7 +9,7 @@
   "AncientName": "Burdigala",
   "Population": 20000,
   "MapPixelX": 1160,
-  "MapPixelY": 2053,
+  "MapPixelZ": 2053,
   "BiomeTypeId": 6,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -23,5 +23,18 @@
       "TradeGoodId": 43
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

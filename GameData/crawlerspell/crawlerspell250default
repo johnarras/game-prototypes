@@ -4,35 +4,28 @@
   "IdKey": 250,
   "Name": "Arcane Missiles",
   "Desc": "Hit one or more enemies with arcane damage.",
-  "PowerCost": 4.0,
-  "PowerPerLevel": 1.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 4.0,
+  "TierCost": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 1,
   "RoleScalingTypeId": 3,
-  "RoleScalingTier": 1,
-  "PointCost": 1,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 33,
       "EntityId": 3,
-      "MinQuantity": 3,
-      "MaxQuantity": 17,
       "ElementTypeId": 9,
-      "Chance": 1.0
+      "WeaponDamageScale": 0.5,
+      "StatBonusDamageScale": 1.5,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 12
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  },
   "ItemEnchantWeight": 1.0
 }

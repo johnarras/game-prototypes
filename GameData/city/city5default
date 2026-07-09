@@ -9,7 +9,7 @@
   "AncientName": "Antiochia ad Orontem",
   "Population": 400000,
   "MapPixelX": 2844,
-  "MapPixelY": 2453,
+  "MapPixelZ": 2453,
   "BiomeTypeId": 1,
   "CultureTypeId": 5,
   "TradeGoodsProduced": [
@@ -29,5 +29,27 @@
       "TradeGoodId": 119
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 5
+    },
+    {
+      "CaravanMemberId": 12
+    }
+  ]
 }

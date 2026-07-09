@@ -9,7 +9,7 @@
   "AncientName": "Londinium",
   "Population": 60000,
   "MapPixelX": 1180,
-  "MapPixelY": 1749,
+  "MapPixelZ": 1749,
   "BiomeTypeId": 11,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -29,5 +29,21 @@
       "TradeGoodId": 27
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

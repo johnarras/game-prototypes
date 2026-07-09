@@ -1,3 +1,4 @@
+using Assets.Scripts.Crawler.Maps.Loading;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -12,9 +13,9 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 {
     public interface IRiddleTypeHelper : ISetupDictionaryItem<long>
     {
-        Task AddRiddle(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand);
+        Task AddRiddle(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand);
         bool ShouldDrawProp(PartyData party, int x, int z);
-        void SetPropPosition(object prop, object data, CancellationToken token);
+        void SetPropPosition(object prop, CrawlerObjectLoadData data, CancellationToken token);
     }
 }
 

@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype10default",
+  "ParentId": "default",
+  "IdKey": 10,
+  "Name": "Snakeweed",
+  "Art": "Snakeweed",
+  "Scale": 1.0,
+  "VariationCount": 2,
+  "Flags": 3
+}

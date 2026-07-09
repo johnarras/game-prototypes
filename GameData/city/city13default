@@ -9,7 +9,7 @@
   "AncientName": "Ephesus",
   "Population": 250000,
   "MapPixelX": 2440,
-  "MapPixelY": 2369,
+  "MapPixelZ": 2369,
   "BiomeTypeId": 7,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 82
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

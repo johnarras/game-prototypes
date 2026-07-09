@@ -4,30 +4,23 @@
   "IdKey": 37,
   "Name": "Identify Monster",
   "Desc": "Get some information about a monster.",
-  "StatBonusScaling": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 8,
   "RoleScalingTypeId": 6,
-  "RoleScalingTier": 3,
-  "PointCost": 5,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
   "Effects": [
     {
       "EntityTypeId": 37,
       "EntityId": 3,
       "ElementTypeId": 9,
-      "Chance": 1.0
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 11
-    }
-  ]
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  }
 }

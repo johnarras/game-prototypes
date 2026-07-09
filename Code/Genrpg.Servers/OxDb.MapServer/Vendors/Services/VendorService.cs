@@ -32,9 +32,9 @@ namespace OxDb.MapServer.Vendors.Services
 {
     public interface IVendorService : IInjectable
     {
-        void UpdateItems(IRandom rand, MapObject mapObject);
-        void BuyItem(IRandom rand, MapObject obj, BuyItem buyItem);
-        void SellItem(IRandom rand, MapObject obj, SellItem sellItem);
+        void UpdateItems(MapObject mapObject);
+        void BuyItem(MapObject obj, BuyItem buyItem);
+        void SellItem(MapObject obj, SellItem sellItem);
     }
 
 
@@ -52,7 +52,7 @@ namespace OxDb.MapServer.Vendors.Services
         protected ITextSerializer _serializer = null;
         private IGameData _gameData = null!;
 
-        public void UpdateItems(IRandom rand, MapObject mapObject)
+        public void UpdateItems(MapObject mapObject)
         {
 
             VendorAddon addon = mapObject.GetAddon<VendorAddon>();
@@ -74,7 +74,7 @@ namespace OxDb.MapServer.Vendors.Services
                 return;
             }
 
-            int currItemCount = RandUtils.IntRange(addon.ItemCount, addon.ItemCount * 2, rand);
+            int currItemCount = RandUtils.IntRange(addon.ItemCount, addon.ItemCount * 2, mapObject.Rand);
             long level = mapObject.Level;
             Zone zone = _mapProvider.GetMap().Get<Zone>(mapObject.ZoneId);
 
@@ -93,7 +93,7 @@ namespace OxDb.MapServer.Vendors.Services
                     Quantity = 1,
                 };
 
-                Item item = _itemGenService.Generate(rand, igd);
+                Item item = _itemGenService.Generate(mapObject.Rand, igd);
 
                 if (item != null)
                 {
@@ -120,12 +120,12 @@ namespace OxDb.MapServer.Vendors.Services
             }
         }
 
-        public void BuyItem(IRandom rand, MapObject obj, BuyItem buyItem)
+        public void BuyItem(MapObject obj, BuyItem buyItem)
         {
-            _tradeService.SafeModifyObject(obj, delegate { BuyItemInternal(rand, obj, buyItem); });
+            _tradeService.SafeModifyObject(obj, delegate { BuyItemInternal(obj, buyItem); });
         }
 
-        private void BuyItemInternal(IRandom rand, MapObject obj, BuyItem buyItem)
+        private void BuyItemInternal(MapObject obj, BuyItem buyItem)
         {
             if (!_objectManager.GetObject(buyItem.UnitId, out MapObject vendor))
             {
@@ -186,18 +186,18 @@ namespace OxDb.MapServer.Vendors.Services
 
             if (vendorItem != null)
             {
-                _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -itemPrice, RewardSources.BuyItem, null, 0, null).Wait();
+                _ = _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -itemPrice, RewardSources.BuyItem, null, 0, null);
                 _inventoryService.AddItem(ch, vendorItem.Item, true);
                 _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsBought, 1);
             }
         }
 
-        public void SellItem(IRandom rand, MapObject obj, SellItem sellItem)
+        public void SellItem(MapObject obj, SellItem sellItem)
         {
-            _tradeService.SafeModifyObject(obj, delegate { SellItemInternal(rand, obj, sellItem); });
+            _tradeService.SafeModifyObject(obj, delegate { SellItemInternal(obj, sellItem); });
         }
 
-        private void SellItemInternal(IRandom rand, MapObject obj, SellItem sellItem)
+        private void SellItemInternal(MapObject obj, SellItem sellItem)
         {
             if (!_objectManager.GetObject(sellItem.UnitId, out MapObject mapObject))
             {
@@ -236,7 +236,7 @@ namespace OxDb.MapServer.Vendors.Services
 
             _inventoryService.RemoveItem(ch, sellItem.ItemId, true);
             _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsSold, 1);
-            _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, money, RewardSources.SellItem, null, 0, null).Wait();
+            _ = _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, money, RewardSources.SellItem, null, 0, null);
             _achievementService.UpdateAchievement(ch, AchievementTypes.VendorMoney, money);
         }
     }

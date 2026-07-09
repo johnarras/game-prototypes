@@ -1,39 +1,37 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.GameObjects;
+using Assets.Scripts.ClientEvents.UI;
+using Assets.Scripts.Trader.WorldMap.Services;
+using OxDb.SharedGame.Trader.Caravans.Entities;
+using OxDb.SharedGame.Trader.Caravans.Services;
+using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Trader.UI.TraderHUD
 {
     public class TraderHUDScreen : BaseScreen
     {
-
-        string TraderTerrainParentName = "TraderTerrainParent";
-        private ISingletonContainer _singletonContainer = null;
+        private ICaravanService _caravanService = null;
+        private ITraderTerrainService _terrainService = null;
         protected override async Task OnStartOpen(object data, CancellationToken token)
         {
 
+            _terrainService.ShowTerrain();
 
-            _assetService.LoadAssetInto(_singletonContainer.GetSingleton(TraderTerrainParentName),
-                AssetCategoryNames.Biomes, "TraderTerrain", OnLoadTerrain, token, data);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
+
+            if (pos.GetCurrentCity() != null)
+            {
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCity));
+            }
 
             await Task.CompletedTask;
         }
 
-        private void OnLoadTerrain(GameObject go, object data, CancellationToken token)
-        {
-        }
-
         protected override void OnStartClose()
         {
-
-            GameObject traderTerrainParent = _singletonContainer.GetSingleton(TraderTerrainParentName);
-
-            _clientEntityService.DestroyAllChildren(traderTerrainParent);
-
             base.OnStartClose();
 
+            _terrainService.HideTerrain();
 
         }
     }

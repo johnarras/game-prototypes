@@ -24,6 +24,7 @@ namespace OxDb.SharedGame.UnitEffects.Settings
         public string Abbrev { get; set; }
         public long ElementTypeId { get; set; }
         public long CombatActionId { get; set; }
+        public long RoleScalingTypeId { get; set; }
         public long Amount { get; set; }
         public bool RemoveAtEndOfCombat { get; set; }
     }

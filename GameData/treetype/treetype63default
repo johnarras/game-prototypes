@@ -2,8 +2,8 @@
   "Id": "treetype63default",
   "ParentId": "default",
   "IdKey": 63,
-  "Name": "Aspen",
-  "Art": "Aspen",
-  "Scale": 2.5,
+  "Name": "Magnolia",
+  "Art": "Magnolia",
+  "Scale": 1.5,
   "VariationCount": 2
 }

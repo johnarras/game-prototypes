@@ -42,10 +42,10 @@ public class AddSecondaryLocations : BaseZoneGenerator
         for (int times = 0; times < locationsDesired * 100 && locationsPlaced < locationsDesired; times++)
         {
             int cx = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHwid() - 2 * edgeDistance);
-            int cy = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHhgt() - 2 * edgeDistance);
+            int cz = edgeDistance + rand.Next() % (_mapProvider.GetMap().GetHhgt() - 2 * edgeDistance);
 
             // Not near current loc.
-            Location nearLoc = _zoneGenService.FindMapLocation(cx, cy, minDistToFeature);
+            Location nearLoc = _zoneGenService.FindMapLocation(cx, cz, minDistToFeature);
             if (nearLoc != null)
             {
                 continue;
@@ -59,14 +59,14 @@ public class AddSecondaryLocations : BaseZoneGenerator
                     continue;
                 }
 
-                for (int yy = cy - mountainCheckRadius; yy <= cy + mountainCheckRadius; yy++)
+                for (int zz = cz - mountainCheckRadius; zz <= cz + mountainCheckRadius; zz++)
                 {
-                    if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                    if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                     {
                         continue;
                     }
 
-                    if (FlagUtils.MatchesAnyBits(base._md.Flags[xx, yy], MapGenFlags.IsEdgeWall))
+                    if (FlagUtils.MatchesAnyBits(base._md.Flags[xx, zz], MapGenFlags.IsEdgeWall))
                     {
                         failed = true;
                     }
@@ -78,12 +78,12 @@ public class AddSecondaryLocations : BaseZoneGenerator
                 continue;
             }
 
-            if (base._md.RoadDistances[cx, cy] < minDistToFeature)
+            if (base._md.RoadDistances[cx, cz] < minDistToFeature)
             {
                 continue;
             }
 
-            if (base._md.MapZoneIds[cx, cy] < MapConstants.MapZoneStartId)
+            if (base._md.MapZoneIds[cx, cz] < MapConstants.MapZoneStartId)
             {
                 continue;
             }
@@ -100,7 +100,7 @@ public class AddSecondaryLocations : BaseZoneGenerator
             Location loc = new Location()
             {
                 CenterX = cx,
-                CenterZ = cy,
+                CenterZ = cz,
                 LocationTypeId = LocationTypes.Secondary,
                 XSize = RandUtils.IntRange(minRad, maxRad, rand),
                 ZSize = RandUtils.IntRange(minRad, maxRad, rand),

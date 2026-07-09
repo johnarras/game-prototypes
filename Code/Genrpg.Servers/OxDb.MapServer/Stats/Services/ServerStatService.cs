@@ -53,7 +53,7 @@ namespace OxDb.MapServer.Stats.Services
         }
 
         private List<StatType> _mutableStats = null;
-        public override void RegenerateTick(IRandom rand, Unit unit, float regenTickTime = StatConstants.RegenTickSeconds)
+        public override void RegenerateTick(Unit unit, float regenTickTime = StatConstants.RegenTickSeconds)
         {
             if (unit == null || unit.HasFlag(UnitFlags.IsDead))
             {
@@ -122,7 +122,7 @@ namespace OxDb.MapServer.Stats.Services
 
                 long currRegen = (long)currRegenFloat;
 
-                if (rand.NextDouble() < currRegenFloat - currRegen)
+                if (unit.Rand.NextDouble() < currRegenFloat - currRegen)
                 {
                     currRegen += Math.Sign(st.RegenSeconds);
                 }

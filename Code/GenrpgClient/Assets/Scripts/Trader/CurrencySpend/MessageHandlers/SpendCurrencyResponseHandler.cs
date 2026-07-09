@@ -7,14 +7,14 @@ using OxDb.SharedGame.Rewards.Services;
 using OxDb.SharedGame.Trader.CurrencySpend.Entities;
 using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.CurrencySpend.MessageHandlers
 {
     public class SpendCurrencyResponseHandler : BaseClientWebResponseHandler<SpendCurrencyResponse>
     {
         private IRewardService _rewardService = null;
-        protected override async Awaitable InnerProcess(SpendCurrencyResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(SpendCurrencyResponse response, CancellationToken token)
         {
             if (response.State != ESpendCurrencyCheckState.Success)
             {

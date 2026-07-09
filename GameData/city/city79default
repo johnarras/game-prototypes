@@ -9,7 +9,7 @@
   "AncientName": "Dadu / Khanbaliq",
   "Population": 1000000,
   "MapPixelX": 6516,
-  "MapPixelY": 2281,
+  "MapPixelZ": 2281,
   "BiomeTypeId": 10,
   "CultureTypeId": 9,
   "TradeGoodsProduced": [
@@ -29,5 +29,21 @@
       "TradeGoodId": 170
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 12
+    }
+  ]
 }

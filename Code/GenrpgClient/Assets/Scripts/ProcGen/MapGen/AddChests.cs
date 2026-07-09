@@ -37,9 +37,9 @@ public class AddChests : BaseZoneGenerator
 
         for (int x = MapConstants.TerrainPatchSize; x < _mapProvider.GetMap().GetHwid() - MapConstants.TerrainPatchSize; x += skipSize)
         {
-            for (int y = MapConstants.TerrainPatchSize; y < _mapProvider.GetMap().GetHhgt() - MapConstants.TerrainPatchSize; y += skipSize)
+            for (int z = MapConstants.TerrainPatchSize; z < _mapProvider.GetMap().GetHhgt() - MapConstants.TerrainPatchSize; z += skipSize)
             {
-                if (FlagUtils.MatchesAnyBits(_md.Flags[x, y], MapGenFlags.BelowWater | MapGenFlags.IsLocation))
+                if (FlagUtils.MatchesAnyBits(_md.Flags[x, z], MapGenFlags.BelowWater | MapGenFlags.IsLocation))
                 {
                     continue;
                 }
@@ -73,17 +73,17 @@ public class AddChests : BaseZoneGenerator
                 {
 
                     int cx = x + RandUtils.IntRange(-skipSize / 3, skipSize / 3, placeRand);
-                    int cy = y + RandUtils.IntRange(-skipSize / 3, skipSize / 3, placeRand);
+                    int cz = z + RandUtils.IntRange(-skipSize / 3, skipSize / 3, placeRand);
 
                     bool haveNearbyItem = false;
 
 
                     for (int xx = cx - nearbyRadius; xx <= cx + nearbyRadius; xx++)
                     {
-                        for (int yy = cy - nearbyRadius; yy <= cy + nearbyRadius; yy++)
+                        for (int zz = cz - nearbyRadius; zz <= cz + nearbyRadius; zz++)
                         {
 
-                            if (_md.CellHasObject(xx, yy))
+                            if (_md.CellHasObject(xx, zz))
                             {
                                 haveNearbyItem = true;
                                 break;
@@ -102,21 +102,21 @@ public class AddChests : BaseZoneGenerator
 
 
                     int tx = cx - cx / (MapConstants.TerrainPatchSize - 1);
-                    int ty = cy - cy / (MapConstants.TerrainPatchSize - 1);
+                    int tz = cz - cz / (MapConstants.TerrainPatchSize - 1);
 
-                    if (_zoneGenService.FindMapLocation(tx, ty, 10) != null)
+                    if (_zoneGenService.FindMapLocation(tx, tz, 10) != null)
                     {
                         continue;
                     }
 
 
-                    if (_md.RoadDistances[cx, cy] < 30)
+                    if (_md.RoadDistances[cx, cz] < 30)
                     {
                         continue;
                     }
 
 
-                    if (_terrainManager.GetSteepness(cx, cy) > MaxSteepness)
+                    if (_terrainManager.GetSteepness(cx, cz) > MaxSteepness)
                     {
                         continue;
                     }
@@ -125,10 +125,10 @@ public class AddChests : BaseZoneGenerator
                     {
                         EntityTypeId = EntityTypes.GroundObject,
                         EntityId = chosenObj.IdKey,
-                        SpawnX = cy,
+                        SpawnX = cz,
                         SpawnZ = cx,
-                        ZoneId = _md.MapZoneIds[cx, cy],
-                        ZoneOverridePercent = (int)(_md.OverrideZoneScales[cx, cy] * MapConstants.OverrideZoneScaleMax),
+                        ZoneId = _md.MapZoneIds[cx, cz],
+                        ZoneOverridePercent = (int)(_md.OverrideZoneScales[cx, cz] * MapConstants.OverrideZoneScaleMax),
                     };
 
 

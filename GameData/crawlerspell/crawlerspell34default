@@ -4,32 +4,25 @@
   "IdKey": 34,
   "Name": "Teleport",
   "Desc": "Move to a different location in the current map.",
-  "PowerCost": 25.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 25.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 8,
-  "RoleScalingTypeId": 6,
-  "RoleScalingTier": 8,
-  "PointCost": 5,
+  "RoleScalingTypeId": 8,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 8,
   "Effects": [
     {
       "EntityTypeId": 37,
       "EntityId": 6,
-      "ElementTypeId": 9,
-      "Chance": 1.0
+      "ElementTypeId": 4,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 8
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1416
+    ]
+  },
   "ItemEnchantWeight": 0.1
 }

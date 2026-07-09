@@ -2,8 +2,8 @@
   "Id": "treetype31default",
   "ParentId": "default",
   "IdKey": 31,
-  "Name": "CedarBare",
-  "Art": "CedarBare",
+  "Name": "LondonPlaneFall",
+  "Art": "LondonPlaneFall",
   "Scale": 1.5,
   "VariationCount": 2
 }

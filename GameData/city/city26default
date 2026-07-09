@@ -9,7 +9,7 @@
   "AncientName": "Colonia Agrippinensis",
   "Population": 45000,
   "MapPixelX": 1504,
-  "MapPixelY": 1773,
+  "MapPixelZ": 1773,
   "BiomeTypeId": 6,
   "CultureTypeId": 10,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 1
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

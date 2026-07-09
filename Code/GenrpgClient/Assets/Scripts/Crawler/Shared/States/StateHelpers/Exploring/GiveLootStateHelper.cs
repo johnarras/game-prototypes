@@ -27,7 +27,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 
         public override ECrawlerStates HelperKey => ECrawlerStates.GiveLoot;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

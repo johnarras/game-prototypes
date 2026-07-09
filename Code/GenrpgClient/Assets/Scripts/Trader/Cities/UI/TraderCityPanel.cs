@@ -14,6 +14,7 @@ namespace Assets.Scripts.Trader.Cities.UI
         public GButton EnchanterButton;
         public GButton TempleButton;
         public GButton TrainerButton;
+        public GButton TravelButton;
 
         private City _city = null;
         public void SetData(City city)
@@ -28,6 +29,7 @@ namespace Assets.Scripts.Trader.Cities.UI
             _uiService.SetButton(EnchanterButton, GetName(), () => { OpenScreenNamed(ScreenNames.Enchanter); });
             _uiService.SetButton(TempleButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderTemple); });
             _uiService.SetButton(TrainerButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderTrainer); });
+            _uiService.SetButton(TravelButton, GetName(), () => { OpenScreenNamed(ScreenNames.TraderCityRoads); });
 
         }
         private void OpenScreenNamed(long screenName)

@@ -8,7 +8,7 @@ namespace OxDb.MapServer.MapObjects.Messages
 {
     public class OnGetMapObjectStatusHandler : BaseMapObjectServerMapMessageHandler<OnGetMapObjectStatus>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnGetMapObjectStatus message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnGetMapObjectStatus message)
         {
             obj.AddMessage(message);
         }

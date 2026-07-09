@@ -4,5 +4,6 @@
   "IdKey": 35,
   "Name": "RoleScalingPercent",
   "Abbrev": "",
-  "Desc": "Percent modifier (divide this by 100) to role scaling for this unit."
+  "Desc": "Percent modifier (divide this by 100) to role scaling for this unit.",
+  "Icon": "RoleScalingPercent"
 }

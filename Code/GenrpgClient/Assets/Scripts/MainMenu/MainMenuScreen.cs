@@ -1,3 +1,4 @@
+using Assets.Scripts.Auth.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,9 +24,9 @@ public class MainMenuScreen : BaseScreen
     }
 
 
-    private void ClickLogout()
+    private async ValueTask ClickLogout(CancellationToken token)
     {
-        _loginService.Logout();
+        await _loginService.Logout();
     }
 
     private void ClickQuit()

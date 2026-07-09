@@ -3,7 +3,6 @@ using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.Trader.Travel.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.CaravanMembers.Settings;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.PlayerData;
@@ -11,6 +10,7 @@ using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Cities.Settings;
 using OxDb.SharedGame.Trader.Travel.Entities;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Travel.UI
@@ -53,20 +53,20 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             _updateService.AddUpdate(this, UpdateCurrentDistance, UpdateTypes.Regular, GetToken());
 
-            ShowStatus(true);
+            _ = ShowStatus(true, false);
         }
 
         private void OnUpdateTraderHUD(UpdateTraderHUD updateUI)
         {
             if (updateUI.FullRefresh)
             {
-                ShowStatus(true);
+                _ = ShowStatus(true, false);
             }
         }
 
         private void OnShowTravelDay(TravelDay day)
         {
-            ShowStatus(false);
+            _ = ShowStatus(false, true);
             _targetDistanceGone = day.Vars[DayVars.EndDistance];
         }
 
@@ -91,11 +91,11 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             if (_currDistanceGone < _targetDistanceGone)
             {
-                _currDistanceGone += 1.0f / ClientTravelService.FramesPerUnitOfDistance;
+                _currDistanceGone += 1.0f / ClientTravelService.VisualFramesPerUnitOfDistance;
             }
             else if (_currDistanceGone < _targetDistanceGone)
             {
-                _currDistanceGone += 1.0f / ClientTravelService.FramesPerUnitOfDistance;
+                _currDistanceGone += 1.0f / ClientTravelService.VisualFramesPerUnitOfDistance;
             }
 
 
@@ -109,11 +109,10 @@ namespace Assets.Scripts.Trader.Travel.UI
         }
 
         private long _lastCityIdNameShown = 0;
-        private void ShowStatus(bool instant)
+        private async ValueTask ShowStatus(bool instant, bool traveling)
         {
 
-            CoreData coreData = _gs.ch.Get<CoreData>();
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             CaravanData caravanData = _gs.ch.Get<CaravanData>();
 
@@ -130,7 +129,7 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             long currCityIdToShow = 0;
 
-            if (pos.GetCurrentCity() != null)
+            if (!traveling && pos.GetCurrentCity() != null)
             {
                 _clientEntityService.SetActive(TravelAnchor, false);
                 _clientEntityService.SetActive(InCityAnchor, true);

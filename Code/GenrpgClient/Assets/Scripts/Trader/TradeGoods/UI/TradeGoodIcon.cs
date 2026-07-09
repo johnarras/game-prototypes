@@ -1,6 +1,5 @@
 using Assets.Scripts.UI.Entities;
 using OxDb.SharedCore.Entities.Constants;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Currencies.Constants;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
@@ -37,13 +36,11 @@ namespace Assets.Scripts.Trader.UI.Icons
 
             _uniqueId = uniqueId;
 
-            CoreData coreData = _gs.ch.Get<CoreData>();
-
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             City city = pos.GetCurrentCity();
 
-            _sellPrice = await _tradeGoodService.GetSellValueAtPosition(_gs.ch, entityId, pos.CurrX, pos.CurrY);
+            _sellPrice = await _tradeGoodService.GetSellValueAtPosition(_gs.ch, entityId, pos.CurrX, pos.CurrZ);
             _clientEntityService.SetActive(SellButton, _sellPrice > 0);
             _clientEntityService.SetActive(DropButton, _sellPrice == 0);
 

@@ -2,7 +2,6 @@ using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.Services;
 using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Options.Services;
 using OxDb.SharedCore.Interfaces;
@@ -30,7 +29,7 @@ public class UnityAudioService : IAudioService
     private IAssetService _assetService = null;
     private IClientEntityService _clientEntityService = null;
     private ISingletonContainer _singletons = null;
-    private IClientRandom _rand = null;
+    private IClientGameState _gs = null;
     private IDispatcher _dispatcher = null;
     private ILogService _logService = null;
 
@@ -358,7 +357,7 @@ public class UnityAudioService : IAudioService
         if (catCont.curr != null && catCont.curr.GetRandomIzeSeconds() > 0)
         {
             float randTime = catCont.curr.GetRandomIzeSeconds();
-            float newRandTime = RandUtils.FloatRange(randTime / 2, randTime * 3 / 2, _rand.Rand);
+            float newRandTime = RandUtils.FloatRange(randTime / 2, randTime * 3 / 2, _gs.Rand);
             catCont.curr.NextRandomizeTime = DateTime.UtcNow.AddSeconds(newRandTime);
         }
     }
@@ -407,7 +406,7 @@ public class UnityAudioService : IAudioService
                 channel.curr.GetRandomIzeSeconds() > 0 &&
                 DateTime.UtcNow > channel.curr.NextRandomizeTime)
             {
-                channel.ChooseNewRandomSound(_rand.Rand);
+                channel.ChooseNewRandomSound(_gs.Rand);
             }
         }
 

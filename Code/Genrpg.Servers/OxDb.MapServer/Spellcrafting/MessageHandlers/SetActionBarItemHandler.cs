@@ -9,7 +9,7 @@ namespace OxDb.MapServer.Spellcrafting.MessageHandlers
 {
     public class SetActionBarItemHandler : BaseCharacterServerMapMessageHandler<SetActionBarItem>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, SetActionBarItem message)
+        protected override async ValueTask InnerProcess(Character ch, SetActionBarItem message)
         {
             ActionInputData actionData = ch.Get<ActionInputData>();
 

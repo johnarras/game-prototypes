@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Movement.MessageHandlers
 {
     public class OnUpdPosHandler : BaseMapObjectServerMapMessageHandler<OnUpdatePos>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnUpdatePos message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnUpdatePos message)
         {
             if (obj.Id != message.ObjId)
             {

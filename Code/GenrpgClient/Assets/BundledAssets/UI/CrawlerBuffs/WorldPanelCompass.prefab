@@ -112,7 +112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 96, y: 96}
+  m_SizeDelta: {x: 88, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7025373683747219430
 MonoBehaviour:
@@ -127,10 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
+  AnimSprite: {fileID: 0}
   QuantityText: {fileID: 0}
   NameText: {fileID: 0}
   IsMainIcon: 0
   UpdateTicks: 10
+  AllowAnimatedSprite: 0
+  BlankSprite: {fileID: 0}
   PartyBuffId: 3
   ContentRoot: {fileID: 823243018255254752}
   CompassDirection: {fileID: 5735419256911978698}

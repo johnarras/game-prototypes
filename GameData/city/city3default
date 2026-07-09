@@ -9,7 +9,7 @@
   "AncientName": "Carthago",
   "Population": 500000,
   "MapPixelX": 1660,
-  "MapPixelY": 2421,
+  "MapPixelZ": 2421,
   "BiomeTypeId": 2,
   "CultureTypeId": 3,
   "TradeGoodsProduced": [
@@ -29,5 +29,21 @@
       "TradeGoodId": 45
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

@@ -11,7 +11,7 @@ namespace OxDb.MapServer.Players.MessageHandlers
     public class SaveDirtyHandler : BaseCharacterServerMapMessageHandler<SaveDirty>
     {
         protected IPlayerDataService _playerDataService = null;
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, SaveDirty message)
+        protected override async ValueTask InnerProcess(Character ch, SaveDirty message)
         {
             await Task.CompletedTask;
             _playerDataService.SavePlayerData(ch);

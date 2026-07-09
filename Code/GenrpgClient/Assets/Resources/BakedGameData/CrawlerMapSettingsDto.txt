@@ -50,10 +50,10 @@
         },
         {
           "Name": "Tower",
-          "MinWidth": 6,
-          "MaxWidth": 10,
-          "MinHeight": 6,
-          "MaxHeight": 10,
+          "MinWidth": 10,
+          "MaxWidth": 12,
+          "MinHeight": 10,
+          "MaxHeight": 12,
           "MinFloors": 1,
           "MaxFloors": 4,
           "SpecialTileChance": 0.05,
@@ -128,17 +128,17 @@
       "GenTypes": [
         {
           "Name": "Town",
-          "MinWidth": 12,
-          "MaxWidth": 12,
-          "MinHeight": 12,
-          "MaxHeight": 12,
+          "MinWidth": 14,
+          "MaxWidth": 18,
+          "MinHeight": 14,
+          "MaxHeight": 18,
           "MinFloors": 1,
           "MaxFloors": 1,
           "Weight": 1.0,
           "MinCorridorDensity": 1.2,
           "MaxCorridorDensity": 1.5,
-          "MinBuildingDensity": 1.0,
-          "MaxBuildingDensity": 2.0,
+          "MinBuildingDensity": 0.4,
+          "MaxBuildingDensity": 1.0,
           "WeightedZones": [
             {
               "Weight": 1.0,
@@ -148,17 +148,17 @@
         },
         {
           "Name": "City",
-          "MinWidth": 12,
-          "MaxWidth": 18,
-          "MinHeight": 12,
-          "MaxHeight": 18,
+          "MinWidth": 18,
+          "MaxWidth": 24,
+          "MinHeight": 18,
+          "MaxHeight": 24,
           "MinFloors": 1,
           "MaxFloors": 1,
           "Weight": 1.0,
           "MinCorridorDensity": 1.2,
           "MaxCorridorDensity": 1.5,
-          "MinBuildingDensity": 1.0,
-          "MaxBuildingDensity": 2.0,
+          "MinBuildingDensity": 0.4,
+          "MaxBuildingDensity": 1.0,
           "WeightedZones": [
             {
               "Name": "",
@@ -178,18 +178,21 @@
       "IdKey": 3,
       "Name": "Outdoors",
       "Desc": "",
+      "AtlasPrefix": "",
       "Icon": "",
       "Art": "",
       "GenTypes": [
         {
           "Name": "None",
-          "MinWidth": 70,
-          "MaxWidth": 90,
-          "MinHeight": 55,
-          "MaxHeight": 65,
+          "MinWidth": 80,
+          "MaxWidth": 110,
+          "MinHeight": 80,
+          "MaxHeight": 110,
           "MinFloors": 1,
           "MaxFloors": 1,
           "Weight": 1.0,
+          "MinBuildingDensity": 80.0,
+          "MaxBuildingDensity": 130.0,
           "WeightedZones": [
             {
               "Name": "Outdoors",
@@ -231,5 +234,5 @@
     "Name": "CrawlerMapSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-05-19T14:25:28.917Z"
+  "SaveTime": "2026-07-09T19:33:04.456Z"
 }

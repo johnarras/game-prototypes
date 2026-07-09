@@ -18,7 +18,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Vendors
         public override bool HideBigPanels() { return true; }
         protected override bool OnlyUseBGImage() { return true; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData crawlerStateData = CreateStateData();
             crawlerStateData.BGSpriteName = CrawlerClientConstants.BuildingImage;

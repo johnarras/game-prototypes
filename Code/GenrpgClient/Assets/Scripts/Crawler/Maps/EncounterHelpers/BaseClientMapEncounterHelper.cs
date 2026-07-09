@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
@@ -9,7 +8,7 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 {
@@ -21,11 +20,10 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
         protected IAssetService _assetService = null;
         protected IClientEntityService _clientEntityService = null;
         protected ICrawlerService _crawlerService = null;
-        protected IClientRandom _rand = null;
 
         public abstract long HelperKey { get; }
-        public abstract Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token);
-        public abstract Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token);
+        public abstract ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token);
+        public abstract ValueTask OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token);
 
     }
 }

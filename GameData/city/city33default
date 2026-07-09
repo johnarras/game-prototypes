@@ -9,7 +9,7 @@
   "AncientName": "Thebae",
   "Population": 30000,
   "MapPixelX": 2256,
-  "MapPixelY": 2349,
+  "MapPixelZ": 2349,
   "BiomeTypeId": 1,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -23,5 +23,18 @@
       "TradeGoodId": 2
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

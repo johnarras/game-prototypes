@@ -8,14 +8,13 @@ using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
     public class ErrorResponseHandler : BaseClientWebResponseHandler<ErrorResponse>
     {
         private IScreenService _screenService = null;
-        protected override async Awaitable InnerProcess(ErrorResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(ErrorResponse response, CancellationToken token)
         {
             List<ActiveScreen> screens = _screenService.GetAllScreens();
 
@@ -36,7 +35,7 @@ namespace Assets.Scripts.Website.MessageHandlers
             }
 
             _dispatcher.Dispatch(new CloseAllScreens() { CloseKeepOpenScreens = true });
-            _dispatcher.Dispatch(new OpenScreen(ScreenNames.Login, response));
+            _dispatcher.Dispatch(new OpenScreen(ScreenNames.GetMainAuthScreen(), response));
 
             _dispatcher.Dispatch(new ShowFloatingText(response.Error, EFloatingTextArt.Error));
 

@@ -10,15 +10,15 @@ namespace OxDb.RequestServer.Trader.Stats.Services
 
     public interface IServerGameStatService : IInjectable
     {
-        Task AddDebuffDaysPlayed(WebContext context, long daysAdded, bool sendResponseToClient);
-        Task CheckBuffs(WebContext context, bool isLogin);
+        ValueTask AddDebuffDaysPlayed(WebContext context, long daysAdded, bool sendResponseToClient);
+        ValueTask CheckBuffs(WebContext context, bool isLogin);
     }
 
     public class ServerGameStatService : IServerGameStatService
     {
         private IAttributeService _attributeService = null;
 
-        public async Task CheckBuffs(WebContext context, bool isLogin)
+        public async ValueTask CheckBuffs(WebContext context, bool isLogin)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
             if (isLogin || (coreData.Vars[TraderVars.BuffBits] != 0 && coreData.NextBuffEndsTime <= DateTime.UtcNow))
@@ -39,7 +39,7 @@ namespace OxDb.RequestServer.Trader.Stats.Services
         /// <param name="context"></param>
         /// <param name="newDebuffDaysPlayed"></param>
         /// <returns></returns>
-        public async Task AddDebuffDaysPlayed(WebContext context, long newDebuffDaysPlayed, bool sendResponseToClient)
+        public async ValueTask AddDebuffDaysPlayed(WebContext context, long newDebuffDaysPlayed, bool sendResponseToClient)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 

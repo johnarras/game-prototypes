@@ -4,6 +4,7 @@
   "IdKey": 3,
   "Name": "Energy",
   "Desc": "1->Fast Use/Fill",
+  "Icon": "Energy",
   "MaxPool": 100,
   "RegenSeconds": 15
 }

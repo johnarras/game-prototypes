@@ -1,7 +1,7 @@
 using Assets.Scripts.Login.Messages.Core;
 using OxDb.SharedGame.MapServer.WebApi.LoadIntoMap;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Website.MessageHandlers
         public override int Priority() { return 1000; }
 
         private IZoneGenService _zoneGenService = null;
-        protected override async Awaitable InnerProcess(LoadIntoMapResponse result, CancellationToken token)
+        protected override async ValueTask InnerProcess(LoadIntoMapResponse result, CancellationToken token)
         {
             await _zoneGenService.OnLoadIntoMap(result, token);
         }

@@ -4,6 +4,7 @@
   "IdKey": 2,
   "Name": "Mana",
   "Desc": "Power used to cast spells.",
+  "Icon": "Mana",
   "MaxPool": 1000,
   "RegenSeconds": 75,
   "IsCrawlerStat": true

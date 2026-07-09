@@ -30,6 +30,7 @@ namespace OxDb.SharedGame.Crawler.Parties.PlayerData
         public override string Id { get; set; }
         public string Name { get; set; }
         protected string _analyticsName = null;
+        public override string VersionTag { get; set; }
         public string GetAnalyticsName()
         {
             if (string.IsNullOrEmpty(_analyticsName))

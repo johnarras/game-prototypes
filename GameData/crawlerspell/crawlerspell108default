@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell108default",
+  "ParentId": "default",
+  "IdKey": 108,
+  "Name": "Enrage",
+  "Desc": "Make enemies go berserk and just start mashing random abilities.",
+  "BaseCost": 100.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 1,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 11,
+      "ElementTypeId": 1,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      2
+    ]
+  },
+  "ItemEnchantWeight": 0.01
+}

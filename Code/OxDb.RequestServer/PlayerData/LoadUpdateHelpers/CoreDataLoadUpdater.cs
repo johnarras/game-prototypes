@@ -22,8 +22,6 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
         public async Task Update(WebContext context, List<IUnitData> unitData)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
-            CaravanData caravanData = await context.GetAsync<CaravanData>();
-            AttributesData attributeData = await context.GetAsync<AttributesData>();
 
             await _newPlayerService.UpdatePlayerOnLogin(context, true);
 

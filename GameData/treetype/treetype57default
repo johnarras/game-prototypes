@@ -2,8 +2,8 @@
   "Id": "treetype57default",
   "ParentId": "default",
   "IdKey": 57,
-  "Name": "AmurCorkBare",
-  "Art": "AmurCorkBare",
-  "Scale": 1.5,
+  "Name": "Apple",
+  "Art": "Apple",
+  "Scale": 2.5,
   "VariationCount": 2
 }

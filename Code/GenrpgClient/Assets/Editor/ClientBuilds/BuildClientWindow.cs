@@ -18,10 +18,10 @@ namespace Assets.Editor.Builds
         {
             BuildClientWindow window = GetWindow<BuildClientWindow>("Build Clients");
             int xsize = 250;
-            int ysize = 400;
+            int zsize = 400;
 
-            window.minSize = new Vector2(xsize, ysize);
-            window.maxSize = new Vector2(xsize, ysize);
+            window.minSize = new Vector2(xsize, zsize);
+            window.maxSize = new Vector2(xsize, zsize);
         }
 
         private string[] _envNames = new string[] { EnvNames.Local, EnvNames.Dev, EnvNames.Test, EnvNames.Prod };

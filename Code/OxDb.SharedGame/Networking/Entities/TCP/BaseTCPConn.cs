@@ -190,7 +190,7 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
 
                     if (messages.Count < 1)
                     {
-                        await System.Threading.Tasks.Task.Delay(1, token).ConfigureAwait(false);
+                        await Task.Delay(1, token).ConfigureAwait(false);
                         continue;
                     }
                     _serializer.BinarySerialize(messages, _writer);
@@ -221,7 +221,7 @@ namespace OxDb.SharedGame.Networking.Entities.TCP
             }
         }
 
-        protected async System.Threading.Tasks.Task ReadLoop(CancellationToken token)
+        protected async Task ReadLoop(CancellationToken token)
         {
 
             byte[] header = new byte[ConnectionConstants.HeaderSize];

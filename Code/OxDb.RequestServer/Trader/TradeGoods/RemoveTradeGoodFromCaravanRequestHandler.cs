@@ -1,5 +1,5 @@
-﻿using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
-using OxDb.RequestServer.Core;
+﻿using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.SharedGame.Trader.TradeGoods.Services;
 using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 

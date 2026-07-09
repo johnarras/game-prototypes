@@ -29,8 +29,8 @@ namespace OxDb.SharedGame.Crawler.Loot.Helpers
                 maxRank = StatusEffects.Dead - 1;
             }
 
-            long rank = Math.Min(RandUtils.LongRange(0, maxRank - 1, _rand.Rand),
-                RandUtils.LongRange(0, maxRank - 1, _rand.Rand));
+            long rank = Math.Min(RandUtils.LongRange(0, maxRank - 1, _gs.Rand),
+                RandUtils.LongRange(0, maxRank - 1, _gs.Rand));
 
             item.Effects.Add(new Effect()
             {

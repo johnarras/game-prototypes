@@ -11,11 +11,11 @@ using UnityEngine;
 public class CreviceData
 {
     public int xStart;
-    public int yStart;
+    public int zStart;
     public int xEnd;
-    public int yEnd;
+    public int zEnd;
     public int xSize;
-    public int ySize;
+    public int zSize;
     public Zone zone;
 }
 public class AddCrevices : BaseZoneGenerator
@@ -39,7 +39,7 @@ public class AddCrevices : BaseZoneGenerator
 
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.XMax, zone.ZMin, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MaxX, zone.MinZ, zone.MaxZ);
         }
 
 
@@ -56,12 +56,11 @@ public class AddCrevices : BaseZoneGenerator
 
         for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
         {
-            for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
+            for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
             {
-                float lowerValue = base._md.CreviceDepths[x, y] * MapConstants.DefaultCreviceDepth / MapConstants.MapHeight;
+                float lowerValue = base._md.CreviceDepths[x, z] * MapConstants.DefaultCreviceDepth / MapConstants.MapHeight;
 
-
-                float roadDist = base._md.RoadDistances[x, y];
+                float roadDist = base._md.RoadDistances[x, z];
                 if (roadDist < RoadEFfectDist)
                 {
                     if (roadDist < RoadZeroDist)
@@ -76,13 +75,13 @@ public class AddCrevices : BaseZoneGenerator
                 }
 
 
-                base._md.Heights[x, y] += lowerValue;
+                base._md.Heights[x, z] += lowerValue;
             }
         }
     }
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int endx, int starty, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int endx, int startz, int endz)
     {
-        if (zone == null || zoneType == null || startx >= endx || starty >= endy)
+        if (zone == null || zoneType == null || startx >= endx || startz >= endz)
         {
             return;
         }
@@ -93,9 +92,9 @@ public class AddCrevices : BaseZoneGenerator
             startx = 0;
         }
 
-        if (starty < 0)
+        if (startz < 0)
         {
-            starty = 0;
+            startz = 0;
         }
 
         if (endx >= _mapProvider.GetMap().GetHwid())
@@ -103,15 +102,15 @@ public class AddCrevices : BaseZoneGenerator
             endx = _mapProvider.GetMap().GetHwid() - 1;
         }
 
-        if (endy >= _mapProvider.GetMap().GetHhgt())
+        if (endz >= _mapProvider.GetMap().GetHhgt())
         {
-            endy = _mapProvider.GetMap().GetHhgt() - 1;
+            endz = _mapProvider.GetMap().GetHhgt() - 1;
         }
 
         int xsize = endx - startx + 1;
-        int ysize = endy - starty + 1;
+        int zsize = endz - startz + 1;
 
-        if (xsize < 1 || ysize < 1)
+        if (xsize < 1 || zsize < 1)
         {
             return;
         }
@@ -119,11 +118,11 @@ public class AddCrevices : BaseZoneGenerator
         CreviceData cdata = new CreviceData()
         {
             xSize = xsize,
-            ySize = ysize,
+            zSize = zsize,
             xStart = startx,
-            yStart = starty,
+            zStart = startz,
             xEnd = endx,
-            yEnd = endy,
+            zEnd = endz,
             zone = zone,
         };
         if (_md.CreviceDepths == null)
@@ -134,7 +133,7 @@ public class AddCrevices : BaseZoneGenerator
         MyRandom rand = new MyRandom(zone.Seed + 2333);
 
 
-        int perlinSize = Math.Max(cdata.xSize + 40, cdata.ySize + 40);
+        int perlinSize = Math.Max(cdata.xSize + 40, cdata.zSize + 40);
 
         float depthFreq = 5.0f * RandUtils.FloatRange(0.8f, 1.2f, rand);
         float depthAmp = 0.05f * RandUtils.FloatRange(0.8f, 1.2f, rand);
@@ -181,13 +180,13 @@ public class AddCrevices : BaseZoneGenerator
         MyRandom endPtRand = new MyRandom(zone.Seed % 134634657 + 6623 + index * 13 + index * index * 7);
 
         int sx = 0;
-        int sy = 0;
+        int sz = 0;
         int ex = 0;
-        int ey = 0;
+        int ez = 0;
 
         int edgeSize = 10;
 
-        int size = Math.Max(cdata.xSize, cdata.ySize);
+        int size = Math.Max(cdata.xSize, cdata.zSize);
         int times = 0;
         int minSize = size / 30;
         int maxSize = size * 3 / 4;
@@ -200,40 +199,40 @@ public class AddCrevices : BaseZoneGenerator
         {
 
             sx = RandUtils.IntRange(edgeSize, cdata.xSize - edgeSize, endPtRand) + cdata.xStart;
-            sy = RandUtils.IntRange(edgeSize, cdata.ySize - edgeSize, endPtRand) + cdata.yStart;
+            sz = RandUtils.IntRange(edgeSize, cdata.zSize - edgeSize, endPtRand) + cdata.zStart;
             ex = RandUtils.IntRange(edgeSize, cdata.xSize - edgeSize, endPtRand) + cdata.xStart;
-            ey = RandUtils.IntRange(edgeSize, cdata.ySize - edgeSize, endPtRand) + cdata.yStart;
+            ez = RandUtils.IntRange(edgeSize, cdata.zSize - edgeSize, endPtRand) + cdata.zStart;
 
             int dx = Math.Abs(sx - ex);
-            int dy = Math.Abs(sy - ey);
+            int dz = Math.Abs(sz - ez);
 
             if (endPtRand.NextDouble() < 0.3f)
             {
                 sx = (sx + ex) / 2;
-                sy = (sy + ey) / 2;
+                sz = (sz + ez) / 2;
             }
             else if (endPtRand.NextDouble() < 0.3)
             {
                 ex = (sx + ex) / 2;
-                ey = (sy + ey) / 2;
+                ez = (sz + ez) / 2;
 
             }
-            if ((dx >= minSize || dy >= minSize) &&
-                (dx < maxSize || dy < maxSize))
+            if ((dx >= minSize || dz >= minSize) &&
+                (dx < maxSize || dz < maxSize))
             {
                 break;
             }
 
         }
 
-        MyPoint sp = new MyPoint(sx, sy);
-        MyPoint ep = new MyPoint(ex, ey);
+        Point2I sp = new Point2I(sx, sz);
+        Point2I ep = new Point2I(ex, ez);
 
         InnerAddCreviceDepths(cdata, zone, zoneType, sp, ep, endPtRand.Next() % 100000000, depthOffsets, smoothOffsets);
 
     }
 
-    private void InnerAddCreviceDepths(CreviceData cdata, Zone zone, ZoneType zoneType, MyPoint sp, MyPoint ep, int randSeed,
+    private void InnerAddCreviceDepths(CreviceData cdata, Zone zone, ZoneType zoneType, Point2I sp, Point2I ep, int randSeed,
         float[,] depthOffsets, float[,] smoothOffsets)
     {
         MyRandom crossRand = new MyRandom(zone.Seed % 1000000000 + 662423 + randSeed);
@@ -245,7 +244,7 @@ public class AddCrevices : BaseZoneGenerator
         }
         if (_md.CreviceBridges == null)
         {
-            _md.CreviceBridges = new List<MyPointF>();
+            _md.CreviceBridges = new List<Point2I>();
         }
 
         float overallDepthMult = (RandUtils.FloatRange(0.5f, 1.2f, rand) +
@@ -258,7 +257,7 @@ public class AddCrevices : BaseZoneGenerator
 
         LineGenParameters ld = GetCreviceParameters(sp, ep, zoneType, rand.Next(), 0);
 
-        List<MyPointF> line = _lineGenService.GetBressenhamLine(sp, ep, ld);
+        List<LineCell> line = _lineGenService.GetBressenhamLine(sp, ep, ld);
 
         if (line == null)
         {
@@ -269,18 +268,18 @@ public class AddCrevices : BaseZoneGenerator
 
 
 
-        List<MyPointF> centerPoints = new List<MyPointF>();
+        List<LineCell> centerPoints = new List<LineCell>();
 
-        foreach (MyPointF item in line)
+        foreach (LineCell item in line)
         {
-            int cx = (int)(item.X);
-            int cy = (int)(item.Y);
-            if (cx < 0 || cx >= _mapProvider.GetMap().GetHwid() || cy < 0 || cy >= _mapProvider.GetMap().GetHhgt())
+            int cx = item.X;
+            int cz = item.Z;
+            if (cx < 0 || cx >= _mapProvider.GetMap().GetHwid() || cz < 0 || cz >= _mapProvider.GetMap().GetHhgt())
             {
                 continue;
             }
 
-            if (item.Z == 1)
+            if (item.IsCenter)
             {
                 centerPoints.Add(item);
             }
@@ -289,17 +288,17 @@ public class AddCrevices : BaseZoneGenerator
             if (depthOffsets != null)
             {
                 int dx = cx - cdata.xStart;
-                int dy = cy - cdata.yStart;
+                int dz = cz - cdata.zStart;
 
-                if (dx >= 0 && dy >= 0 && dx < depthOffsets.GetLength(0) && dy < depthOffsets.GetLength(1))
+                if (dx >= 0 && dz >= 0 && dx < depthOffsets.GetLength(0) && dz < depthOffsets.GetLength(1))
                 {
-                    currDepthMult += depthOffsets[dx, dy];
+                    currDepthMult += depthOffsets[dx, dz];
                 }
 
             }
 
             // Min depth to set crevice.
-            _md.CreviceDepths[cx, cy] = Math.Min(_md.CreviceDepths[cx, cy], -1 * currDepthMult * overallDepthMult);
+            _md.CreviceDepths[cx, cz] = Math.Min(_md.CreviceDepths[cx, cz], -1 * currDepthMult * overallDepthMult);
 
 
 
@@ -307,7 +306,7 @@ public class AddCrevices : BaseZoneGenerator
 
 
 
-        List<MyPointF> sideCenterPoints = new List<MyPointF>();
+        List<LineCell> sideCenterPoints = new List<LineCell>();
 
         int nextCreviceStart = RandUtils.IntRange(50, 90, rand);
         int nextCreviceMod = RandUtils.IntRange(40, 65, rand);
@@ -316,9 +315,9 @@ public class AddCrevices : BaseZoneGenerator
 
         int nextCreviceDist = nextCreviceStart + crossRand.Next() % nextCreviceMod;
         int pointsSinceLastCrevice = nextCreviceStart + crossRand.Next() % nextCreviceMod;
-        foreach (MyPointF cpf in centerPoints)
+        foreach (LineCell lc in centerPoints)
         {
-            MyPoint cp = new MyPoint((int)(cpf.X), (int)(cpf.Y));
+            Point2I cp = new Point2I((int)(lc.X), (int)(lc.Z));
             pointsSinceLastCrevice++;
             if (pointsSinceLastCrevice < nextCreviceDist)
             {
@@ -327,11 +326,11 @@ public class AddCrevices : BaseZoneGenerator
             pointsSinceLastCrevice = 0;
             nextCreviceDist = nextCreviceStart + crossRand.Next() % nextCreviceMod;
 
-            int cdx = sp.Y - ep.Y;
-            int cdy = -(sp.X - ep.X);
+            int cdx = sp.Z - ep.Z;
+            int cdz = -(sp.X - ep.X);
 
 
-            float origSize = MathUtil.Sqrt(cdx * cdx + cdy * cdy);
+            float origSize = MathUtil.Sqrt(cdx * cdx + cdz * cdz);
             if (origSize < 1)
             {
                 continue;
@@ -339,50 +338,49 @@ public class AddCrevices : BaseZoneGenerator
             int len = 40 + crossRand.Next() % 45;
 
             int newdx = (int)(len * cdx / origSize);
-            int newdy = (int)(len * cdy / origSize);
+            int newdz = (int)(len * cdz / origSize);
 
             int maxdx = (int)(len * 1.0f);
 
             int csx = cp.X + newdx + RandUtils.IntRange(-maxdx, maxdx, crossRand);
-            int csy = cp.Y - newdy + RandUtils.IntRange(-maxdx, maxdx, crossRand);
+            int csz = cp.Z - newdz + RandUtils.IntRange(-maxdx, maxdx, crossRand);
             int cex = cp.X + newdx + RandUtils.IntRange(-maxdx, maxdx, crossRand);
-            int cey = cp.Y + newdy + RandUtils.IntRange(-maxdx, maxdx, crossRand);
+            int cez = cp.Z + newdz + RandUtils.IntRange(-maxdx, maxdx, crossRand);
 
-            MyPoint csp = new MyPoint(csx, csy);
-            MyPoint cep = new MyPoint(cex, cey);
+            Point2I csp = new Point2I(csx, csz);
+            Point2I cep = new Point2I(cex, cez);
 
 
             ld = GetCreviceParameters(csp, cep, zoneType, rand.Next(), 1);
 
-            List<MyPointF> line2 = _lineGenService.GetBressenhamLine(csp, cep, ld);
-            foreach (MyPointF pt2 in line2)
+            List<LineCell> line2 = _lineGenService.GetBressenhamLine(csp, cep, ld);
+            foreach (LineCell pt2 in line2)
             {
 
-                int cx = (int)(pt2.X);
-                int cy = (int)(pt2.Y);
-                if (cx < 0 || cx >= _mapProvider.GetMap().GetHwid() || cy < 0 || cy >= _mapProvider.GetMap().GetHhgt())
+                int cx = pt2.X;
+                int cz = pt2.Z;
+                if (cx < 0 || cx >= _mapProvider.GetMap().GetHwid() || cz < 0 || cz >= _mapProvider.GetMap().GetHhgt())
                 {
                     continue;
                 }
-
 
                 float currDepthMult = 1.0f;
 
                 if (depthOffsets != null)
                 {
                     int dx = cx - cdata.xStart;
-                    int dy = cy - cdata.yStart;
+                    int dz = cz - cdata.zStart;
 
-                    if (dx >= 0 && dy >= 0 && dx < depthOffsets.GetLength(0) && dy < depthOffsets.GetLength(1))
+                    if (dx >= 0 && dz >= 0 && dx < depthOffsets.GetLength(0) && dz < depthOffsets.GetLength(1))
                     {
-                        currDepthMult += depthOffsets[dx, dy];
+                        currDepthMult += depthOffsets[dx, dz];
                     }
 
                 }
 
                 // Min depth to create crevice.
-                _md.CreviceDepths[cx, cy] = Math.Min(_md.CreviceDepths[cx, cy], -1 * currDepthMult * sideDepthMult);
-                if (pt2.Z == 1)
+                _md.CreviceDepths[cx, cz] = Math.Min(_md.CreviceDepths[cx, cz], -1 * currDepthMult * sideDepthMult);
+                if (pt2.IsCenter)
                 {
                     sideCenterPoints.Add(pt2);
                 }
@@ -392,7 +390,7 @@ public class AddCrevices : BaseZoneGenerator
             }
         }
 
-        foreach (MyPointF cp in sideCenterPoints)
+        foreach (LineCell cp in sideCenterPoints)
         {
             centerPoints.Add(cp);
         }
@@ -401,12 +399,12 @@ public class AddCrevices : BaseZoneGenerator
 
         for (int c = 0; c < centerPoints.Count; c++)
         {
-            MyPointF cp = centerPoints[c];
+            LineCell cp = centerPoints[c];
             int ax = (int)(cp.X * _mapProvider.GetMap().GetHwid() / _md.Awid);
-            int ay = (int)(cp.Y * _mapProvider.GetMap().GetHhgt() / _md.Ahgt);
-            if (ax >= 0 && ax < _md.Awid && ay >= 0 && ay < _md.Ahgt)
+            int az = (int)(cp.Z * _mapProvider.GetMap().GetHhgt() / _md.Ahgt);
+            if (ax >= 0 && ax < _md.Awid && az >= 0 && az < _md.Ahgt)
             {
-                if (_md.RoadDistances[ax, ay] <= 2 && rand.NextDouble() < 0.03f)
+                if (_md.RoadDistances[ax, az] <= 2 && rand.NextDouble() < 0.03f)
                 {
                     _md.CreviceBridges.Add(cp);
                 }
@@ -418,7 +416,7 @@ public class AddCrevices : BaseZoneGenerator
     }
 
 
-    private LineGenParameters GetCreviceParameters(MyPoint sp, MyPoint ep, ZoneType zoneType, int randomSeed, int depth)
+    private LineGenParameters GetCreviceParameters(Point2I sp, Point2I ep, ZoneType zoneType, int randomSeed, int depth)
     {
 
         LineGenParameters ld = new LineGenParameters();
@@ -465,7 +463,7 @@ public class AddCrevices : BaseZoneGenerator
 
     }
 
-    public void SmoothNearCrevice(ZoneType zoneType, CreviceData cdata, List<MyPointF> pts, float[,] smoothChanges)
+    public void SmoothNearCrevice(ZoneType zoneType, CreviceData cdata, List<LineCell> pts, float[,] smoothChanges)
     {
         if (_md.CreviceDepths == null || pts == null || cdata == null || zoneType == null)
         {
@@ -482,17 +480,17 @@ public class AddCrevices : BaseZoneGenerator
 
         // Loop through all points and make the depths approach 0 based on how far they are from the points in the line.
         // Use min of currval, smooth val to keep the crevices in place.
-        foreach (MyPointF pt in pts)
+        foreach (LineCell pt in pts)
         {
             int cx = (int)(pt.X);
-            int cy = (int)(pt.Y);
+            int cz = (int)(pt.Z);
 
-            if (cx < 0 || cy < 0 || cx >= _mapProvider.GetMap().GetHwid() || cy >= _mapProvider.GetMap().GetHhgt())
+            if (cx < 0 || cz < 0 || cx >= _mapProvider.GetMap().GetHwid() || cz >= _mapProvider.GetMap().GetHhgt())
             {
                 continue;
             }
 
-            float centerDepth = _md.CreviceDepths[cx, cy];
+            float centerDepth = _md.CreviceDepths[cx, cz];
             float smoothRadius = startSmoothRadius;
 
             if (zoneType.CreviceWidthScale > 0)
@@ -503,11 +501,11 @@ public class AddCrevices : BaseZoneGenerator
             if (smoothChanges != null)
             {
                 int dx = cx - cdata.xStart;
-                int dy = cy - cdata.yStart;
+                int dz = cz - cdata.zStart;
 
-                if (dx >= 0 && dy >= 0 && dx < smoothChanges.GetLength(0) && dy < smoothChanges.GetLength(1))
+                if (dx >= 0 && dz >= 0 && dx < smoothChanges.GetLength(0) && dz < smoothChanges.GetLength(1))
                 {
-                    smoothRadius += smoothChanges[dx, dy] * startSmoothRadius;
+                    smoothRadius += smoothChanges[dx, dz] * startSmoothRadius;
                 }
                 smoothRadius = MathUtil.Clamp(startSmoothRadius / 2, smoothRadius, startSmoothRadius * 2);
             }
@@ -521,15 +519,15 @@ public class AddCrevices : BaseZoneGenerator
                     continue;
                 }
                 float ddx = cx - xx;
-                for (int yy = cy - smoothRadiusInt; yy <= cy + smoothRadiusInt; yy++)
+                for (int zz = cz - smoothRadiusInt; zz <= cz + smoothRadiusInt; zz++)
                 {
-                    if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                    if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                     {
                         continue;
                     }
-                    float ddy = cy - yy;
+                    float ddz = cz - zz;
 
-                    float dist = (float)Math.Sqrt(ddx * ddx + ddy * ddy);
+                    float dist = (float)Math.Sqrt(ddx * ddx + ddz * ddz);
                     if (dist >= smoothRadius)
                     {
                         continue;
@@ -537,16 +535,14 @@ public class AddCrevices : BaseZoneGenerator
 
                     float distMult = 1 - dist / smoothRadius;
 
-
                     float valueToSet = centerDepth * distMult;
 
-                    float currVal = _md.CreviceDepths[xx, yy];
+                    float currVal = _md.CreviceDepths[xx, zz];
 
                     if (valueToSet < currVal)
                     {
-                        _md.CreviceDepths[xx, yy] = valueToSet;
+                        _md.CreviceDepths[xx, zz] = valueToSet;
                     }
-
                 }
             }
         }

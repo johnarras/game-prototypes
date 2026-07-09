@@ -1,11 +1,10 @@
 using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.UI.Interfaces;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Combat.Services;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Spells.Services;
 using OxDb.SharedGame.Crawler.States.Constants;
@@ -30,7 +29,6 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers
         protected IRepositoryService _repoService = null;
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
-        protected IClientRandom _rand = null;
         protected ICrawlerWorldService _worldService = null;
         protected IDispatcher _dispatcher = null;
         protected ITextService _textService = null;
@@ -38,7 +36,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers
         protected IInputService _inputService = null;
 
         public abstract ECrawlerStates HelperKey { get; }
-        public abstract Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token);
+        public abstract ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token);
 
         public virtual bool IsTopLevelState() { return false; }
         public virtual long TriggerBuildingId() { return 0; }

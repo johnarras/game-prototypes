@@ -4,5 +4,6 @@
   "IdKey": 66,
   "Name": "CritDamage",
   "Desc": "More Crit Damage",
+  "Icon": "CritDamage",
   "GenScalePct": 300
 }

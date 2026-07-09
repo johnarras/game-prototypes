@@ -4,5010 +4,4734 @@
       "IdKey": 1,
       "Name": "Attack",
       "Desc": "Melee attack one or more enemies.",
-      "StatBonusScaling": 1.0,
       "MaxRange": 10,
       "CombatActionId": 1,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 1,
-      "RoleScalingTier": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 38,
           "EntityId": 1,
           "ElementTypeId": 1,
-          "Chance": 1.0
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
-      "Flags": 1
+      "Roles": {
+        "Bits": [
+          2046
+        ]
+      }
     },
     {
       "IdKey": 2,
-      "Name": "Defend",
-      "Desc": "Take half damage this turn if you get hit.",
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 2,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "Effects": [],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
-      "Flags": 1
-    },
-    {
-      "IdKey": 3,
       "Name": "Shoot",
       "Desc": "Attack one or more enemies that are out of melee range.",
-      "StatBonusScaling": 1.0,
       "MinRange": 20,
       "MaxRange": 100,
       "CombatActionId": 3,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 2,
-      "RoleScalingTier": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 39,
           "EntityId": 2,
           "ElementTypeId": 11,
-          "Chance": 1.0
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
-      "Flags": 1
+      "Roles": {
+        "Bits": [
+          2046
+        ]
+      }
+    },
+    {
+      "IdKey": 3,
+      "Name": "Defend",
+      "Desc": "Take half damage this turn if you get hit.",
+      "MaxRange": 100,
+      "CombatActionId": 2,
+      "TargetTypeId": 9,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
+      "Effects": [],
+      "Roles": {
+        "Bits": [
+          2046
+        ]
+      }
     },
     {
       "IdKey": 4,
-      "Name": "Whirlwind",
-      "Desc": "Hit one or more enemies in all groups within melee range.",
-      "StatBonusScaling": 1.0,
-      "MaxRange": 10,
-      "ReplacesCrawlerSpellId": 1,
-      "CombatActionId": 1,
-      "TargetTypeId": 10,
-      "RoleScalingTypeId": 1,
-      "RoleScalingTier": 2,
-      "PointCost": 10,
-      "Effects": [
-        {
-          "EntityTypeId": 38,
-          "EntityId": 1,
-          "ElementTypeId": 1,
-          "Chance": 1.0
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        }
-      ]
-    },
-    {
-      "IdKey": 5,
-      "Name": "Volley",
-      "Desc": "Hit one or more enemies in all groups with ranged damage.",
-      "StatBonusScaling": 1.0,
-      "MinRange": 20,
-      "MaxRange": 100,
-      "ReplacesCrawlerSpellId": 3,
-      "CombatActionId": 3,
-      "TargetTypeId": 10,
-      "RoleScalingTypeId": 2,
-      "RoleScalingTier": 2,
-      "PointCost": 10,
-      "Effects": [
-        {
-          "EntityTypeId": 39,
-          "EntityId": 2,
-          "ElementTypeId": 11,
-          "Chance": 1.0
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 9
-        }
-      ]
-    },
-    {
-      "IdKey": 6,
       "Name": "Hide",
       "Desc": "Meld into the shadows to allow next single target ability to crit.",
-      "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 5,
       "TargetTypeId": 9,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 3,
-      "PointCost": 5,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        }
-      ]
+      "Roles": {
+        "Bits": [
+          4
+        ]
+      }
     },
     {
-      "IdKey": 7,
+      "IdKey": 5,
       "Name": "Charge",
       "Desc": "Passive buff to move the party forward more when advancing.",
-      "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 1,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
+      "Effects": [],
+      "Roles": {
+        "Bits": [
+          2
+        ]
+      }
+    },
+    {
+      "IdKey": 6,
+      "Name": "Pummel",
+      "Desc": "Extra powerful set of melee attacks.",
+      "BaseCost": 5.0,
+      "TierCost": 2.0,
+      "MaxRange": 10,
+      "CombatActionId": 1,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 2,
       "Effects": [
         {
-          "EntityTypeId": 36,
-          "EntityId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 4,
-          "Chance": 1.0
+          "EntityTypeId": 38,
+          "EntityId": 1,
+          "ElementTypeId": 1,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
         }
       ],
-      "RolesKnowingThis": [
+      "Roles": {
+        "Bits": [
+          230
+        ]
+      }
+    },
+    {
+      "IdKey": 7,
+      "Name": "Rapid Fire",
+      "Desc": "Shoot a handful of arrows at enemies.",
+      "BaseCost": 5.0,
+      "TierCost": 2.0,
+      "MinRange": 20,
+      "MaxRange": 100,
+      "CombatActionId": 3,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 2,
+      "Effects": [
         {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 9
+          "EntityTypeId": 39,
+          "EntityId": 2,
+          "ElementTypeId": 11,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
         }
-      ]
+      ],
+      "Roles": {
+        "Bits": [
+          806
+        ]
+      }
+    },
+    {
+      "IdKey": 8,
+      "Name": "Bladestorm",
+      "Desc": "Hit all enemies in a group with half the normal number of attacks.",
+      "BaseCost": 20.0,
+      "TierCost": 5.0,
+      "MaxRange": 10,
+      "CombatActionId": 1,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 0.5,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 38,
+          "EntityId": 1,
+          "ElementTypeId": 1,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          226
+        ]
+      }
+    },
+    {
+      "IdKey": 9,
+      "Name": "Multishot",
+      "Desc": "Hit all enemies out of melee range with half as many attacks as usual.",
+      "BaseCost": 20.0,
+      "TierCost": 5.0,
+      "MinRange": 20,
+      "MaxRange": 100,
+      "CombatActionId": 3,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 0.5,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 39,
+          "EntityId": 2,
+          "ElementTypeId": 11,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      }
+    },
+    {
+      "IdKey": 10,
+      "Name": "Whirlwind",
+      "Desc": "Hit all enemies in melee range with half as many attacks as usual.",
+      "BaseCost": 50.0,
+      "TierCost": 10.0,
+      "MaxRange": 10,
+      "CombatActionId": 1,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 0.5,
+      "UnlockTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 38,
+          "EntityId": 1,
+          "ElementTypeId": 1,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          2
+        ]
+      }
+    },
+    {
+      "IdKey": 11,
+      "Name": "Volley",
+      "Desc": "Hit all enemies out of melee range with half as many attacks as usual.",
+      "BaseCost": 50.0,
+      "TierCost": 10.0,
+      "MinRange": 20,
+      "MaxRange": 100,
+      "CombatActionId": 3,
+      "TargetTypeId": 4,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 0.5,
+      "UnlockTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 39,
+          "EntityId": 2,
+          "ElementTypeId": 11,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          4
+        ]
+      }
     },
     {
       "IdKey": 20,
       "Name": "Heal Wounds",
       "Desc": "Heal the wounds of an ally.",
-      "PowerCost": 3.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 5.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 2,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 34,
-          "MinQuantity": 3,
-          "MaxQuantity": 15,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1624
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 21,
       "Name": "Heal Party",
       "Desc": "Heal the wounds of all allies.",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 4.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 15.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 5,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 3,
-      "PointCost": 15,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 34,
-          "MinQuantity": 2,
-          "MaxQuantity": 12,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          16
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 22,
       "Name": "Cure",
       "Desc": "Cure a single ally",
-      "PowerCost": 5.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 5.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 2,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 36,
-          "MinQuantity": -1,
-          "MaxQuantity": -1,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": -1.0,
+          "StatBonusDamageScale": -1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1624
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 23,
       "Name": "Cure Party",
       "Desc": "Cure all party members",
-      "PowerCost": 15.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 25.0,
+      "TierCost": 5.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 5,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 3,
-      "PointCost": 15,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 36,
-          "MinQuantity": -1,
-          "MaxQuantity": -1,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": -1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          16
+        ]
+      },
       "ItemEnchantWeight": 0.1
+    },
+    {
+      "IdKey": 24,
+      "Name": "Rejuvenate",
+      "Desc": "Heal and cure one party member.",
+      "BaseCost": 10.0,
+      "TierCost": 5.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 2,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
+      "Effects": [
+        {
+          "EntityTypeId": 34,
+          "ElementTypeId": 7,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        },
+        {
+          "EntityTypeId": 36,
+          "ElementTypeId": 7,
+          "WeaponDamageScale": -1.0,
+          "StatBonusDamageScale": -1.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
+      "ItemEnchantWeight": 1.0
+    },
+    {
+      "IdKey": 25,
+      "Name": "Restoration",
+      "Desc": "Heal and cure all party members",
+      "BaseCost": 100.0,
+      "TierCost": 20.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 5,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 34,
+          "ElementTypeId": 7,
+          "WeaponDamageScale": 1.5,
+          "StatBonusDamageScale": 3.0,
+          "ProcChance": 1.0
+        },
+        {
+          "EntityTypeId": 36,
+          "ElementTypeId": 7,
+          "WeaponDamageScale": -1.0,
+          "StatBonusDamageScale": -1.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          16
+        ]
+      },
+      "ItemEnchantWeight": 0.1
+    },
+    {
+      "IdKey": 26,
+      "Name": "First Aid",
+      "Desc": "Minor healing on an allly.",
+      "BaseCost": 10.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 2,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 0.5,
+      "UnlockTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 34,
+          "ElementTypeId": 7,
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 0.5,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          422
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 30,
       "Name": "Town Portal",
       "Desc": "Teleport to a town on the overworld map.",
-      "PowerCost": 25.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 25.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
+      "RoleScalingTypeId": 8,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 1,
           "ElementTypeId": 9,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 31,
       "Name": "Pass Wall",
       "Desc": "Pass through a wall in front of you if the square behind it exists.",
-      "PowerCost": 50.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 50.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
+      "RoleScalingTypeId": 8,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 2,
-          "ElementTypeId": 9,
-          "Chance": 1.0
+          "ElementTypeId": 5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 32,
       "Name": "Identify Item",
       "Desc": "Find out the stats an item has.",
-      "PowerCost": 10.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 10.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 3,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 4,
           "ElementTypeId": 9,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 33,
       "Name": "Jump",
       "Desc": "Jump forward 1-9 squares if you are not impeded by anything.",
-      "PowerCost": 10.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 10.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 5,
-      "PointCost": 5,
+      "RoleScalingTypeId": 8,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 5,
-          "ElementTypeId": 9,
-          "Chance": 1.0
+          "ElementTypeId": 4,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 8
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 34,
       "Name": "Teleport",
       "Desc": "Move to a different location in the current map.",
-      "PowerCost": 25.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 25.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 8,
-      "PointCost": 5,
+      "RoleScalingTypeId": 8,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 8,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 6,
-          "ElementTypeId": 9,
-          "Chance": 1.0
+          "ElementTypeId": 4,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 8
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 35,
       "Name": "Beacon",
       "Desc": "Set a beacon or return to a location.",
-      "PowerCost": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 5,
-      "PointCost": 5,
+      "RoleScalingTypeId": 8,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 5,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 9,
-          "ElementTypeId": 9,
-          "Chance": 1.0
+          "ElementTypeId": 5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 37,
       "Name": "Identify Monster",
       "Desc": "Get some information about a monster.",
-      "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 3,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 3,
           "ElementTypeId": 9,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ]
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 38,
       "Name": "Pick Lock",
       "Desc": "Open a locked door or chest.",
-      "StatBonusScaling": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 10,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
           "ElementTypeId": 1,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 105
-        }
-      ]
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 39,
       "Name": "Cleanse Area",
       "Desc": "Disarm traps and negate nearby room effects.",
-      "PowerCost": 50.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 50.0,
+      "TierCost": 5.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 7,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 1,
-          "Chance": 1.0
+          "ElementTypeId": 7,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 4
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 60,
-      "Name": "Silence",
-      "Desc": "Prevent a group from casting spells.",
-      "PowerCost": 15.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 6,
-      "PointCost": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 36,
-          "EntityId": 10,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 6,
-          "Chance": 0.25
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 12
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 61,
-      "Name": "Entangle",
-      "Desc": "Prevent a group from use melee attacks.",
-      "PowerCost": 15.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 5,
-      "PointCost": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 36,
-          "EntityId": 11,
-          "MinQuantity": 2,
-          "MaxQuantity": 3,
-          "ElementTypeId": 8,
-          "Chance": 0.25
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 8
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 62,
-      "Name": "Weaken",
-      "Desc": "Reduce the melee damage of a group of foes.",
-      "PowerCost": 5.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 36,
-          "EntityId": 17,
-          "MinQuantity": 100,
-          "MaxQuantity": 100,
-          "ElementTypeId": 9,
-          "Chance": 0.25
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 63,
-      "Name": "Mesmerize",
-      "Desc": "Make  group of enemies unable to act.",
-      "PowerCost": 10.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 6,
-      "PointCost": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 36,
-          "EntityId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 4,
-          "Chance": 0.25
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 6
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 64,
-      "Name": "Charm",
-      "Desc": "Convince a monster to join your side.",
-      "PowerCost": 25.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 5,
-      "PointCost": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 36,
-          "EntityId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 6,
-          "Chance": 0.25
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 7
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 65,
-      "Name": "Polymorph Dog",
-      "Desc": "Transform some enemy monsters into dogs.",
-      "PowerCost": 10.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 5,
-      "Effects": [
-        {
-          "EntityTypeId": 59,
-          "EntityId": 24,
-          "MinQuantity": 1,
-          "MaxQuantity": 2,
-          "ElementTypeId": 6,
-          "Chance": 0.25
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 80,
       "Name": "Reveal Area",
       "Desc": "Reveal surrounding map cells.",
-      "PowerCost": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 8,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 37,
           "EntityId": 8,
-          "ElementTypeId": 9,
-          "Chance": 1.0
+          "ElementTypeId": 2,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 81,
       "Name": "Light",
       "Desc": "Create a light to let you see.",
-      "PowerCost": 5.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 2.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 1,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
           "ElementTypeId": 2,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          2046
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 82,
       "Name": "Magic Compass",
       "Desc": "Gives you a compass.",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 2.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2,
-          "Chance": 1.0
+          "ElementTypeId": 5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1964
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 83,
       "Name": "Levitate",
       "Desc": "Lets you float over many traps.",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 2.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
-      "RoleScalingTypeId": 6,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "RoleScalingTypeId": 8,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2,
-          "Chance": 1.0
+          "ElementTypeId": 4,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          2008
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 84,
       "Name": "Danger Sense",
       "Desc": "Alerts you to traps nearby.",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 2.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 4,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 2,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2,
-          "Chance": 1.0
+          "ElementTypeId": 5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          998
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 85,
       "Name": "Mapping",
       "Desc": "Lets you map the area you're in.",
-      "PowerCost": 5.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 2.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 6,
-      "RoleScalingTier": 1,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 5,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2,
-          "Chance": 1.0
+          "ElementTypeId": 4,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1778
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 87,
       "Name": "Autoheal",
       "Desc": "Sometimes heals your party members.",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 4.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 15.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 2,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 6,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 88,
       "Name": "Barrier",
       "Desc": "Sometimes you avoid incoming damage.",
-      "PowerCost": 15.0,
-      "PowerPerLevel": 3.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 15.0,
+      "TierCost": 3.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
-      "RoleScalingTypeId": 7,
-      "RoleScalingTier": 3,
-      "PointCost": 5,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 7,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 5,
-          "Chance": 1.0
+          "ElementTypeId": 1,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 89,
       "Name": "Retaliate",
       "Desc": "Retaliate damage toward your attacker.",
-      "PowerCost": 20.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 20.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 8,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "ElementTypeId": 1,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 90,
       "Name": "Cursed Arrows",
       "Desc": "Chance to debuff enemies with ranged attacks.",
-      "PowerCost": 20.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 20.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
-      "RoleScalingTypeId": 2,
-      "RoleScalingTier": 3,
-      "PointCost": 5,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 9,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 11,
-          "Chance": 1.0
+          "ElementTypeId": 6,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 91,
       "Name": "Parry",
       "Desc": "Gives a chance to use your weapon to deflect an attack.",
-      "PowerCost": 20.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 20.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
-      "RoleScalingTypeId": 1,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 10,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
           "ElementTypeId": 1,
-          "Chance": 1.0
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          226
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 92,
       "Name": "Apply DoT",
       "Desc": "Chance to apply a DoT to enemies when damaging them.",
-      "PowerCost": 20.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 20.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 3,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 11,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 11,
-          "Chance": 1.0
+          "ElementTypeId": 6,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
       "IdKey": 93,
       "Name": "Lifesteal",
       "Desc": "Chance to get some health back when damaging enemies.",
-      "PowerCost": 20.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 20.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 6,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 101,
           "EntityId": 12,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 1,
-          "Chance": 1.0
+          "ElementTypeId": 6,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 10
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
-      "IdKey": 130,
-      "Name": "Call Bear",
-      "Desc": "Summon a bear.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 94,
+      "Name": "Command",
+      "Desc": "Chance to do more damage/healing.",
+      "BaseCost": 20.0,
+      "TierCost": 2.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
+      "TargetTypeId": 6,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 55,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 3
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 131,
-      "Name": "Activate Golem",
-      "Desc": "Activate an iron golem.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
-      "Effects": [
-        {
-          "EntityTypeId": 4,
-          "EntityId": 49,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 6
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 132,
-      "Name": "Conjure Elemental",
-      "Desc": "Summon an elemental.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
-      "Effects": [
-        {
-          "EntityTypeId": 4,
-          "EntityId": 52,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 11
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 133,
-      "Name": "Summon Monk",
-      "Desc": "Summon a monk",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
-      "Effects": [
-        {
-          "EntityTypeId": 4,
-          "EntityId": 14,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        }
-      ],
-      "ItemEnchantWeight": 0.1
-    },
-    {
-      "IdKey": 134,
-      "Name": "Summon Scrapper",
-      "Desc": "Summon a scrapper",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
-      "Effects": [
-        {
-          "EntityTypeId": 4,
+          "EntityTypeId": 101,
           "EntityId": 13,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "ElementTypeId": 7,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          226
+        ]
+      },
       "ItemEnchantWeight": 0.1
     },
     {
-      "IdKey": 135,
-      "Name": "Signal Thief",
-      "Desc": "Signal a thief to follow you.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 100,
+      "Name": "Atrophy",
+      "Desc": "Weaken a group of enemies so they do less damage.",
+      "BaseCost": 25.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 39,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 3,
+          "ElementTypeId": 2,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
+      "ItemEnchantWeight": 0.05
     },
     {
-      "IdKey": 136,
-      "Name": "Raise Skeleton",
-      "Desc": "Summon a skeleton.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 101,
+      "Name": "Hamstring",
+      "Desc": "Slow enemies so they attack later.",
+      "BaseCost": 25.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 31,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 4,
+          "ElementTypeId": 5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 12
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          226
+        ]
+      },
+      "ItemEnchantWeight": 0.05
     },
     {
-      "IdKey": 137,
-      "Name": "Dig Up Vampire",
-      "Desc": "Summon a Vampire",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 102,
+      "Name": "Warp Mind",
+      "Desc": "Make enemies less able to effectively cast spells.",
+      "BaseCost": 25.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 5,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 70,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 5,
+          "ElementTypeId": 6,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 12
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
+      "ItemEnchantWeight": 0.05
     },
     {
-      "IdKey": 138,
-      "Name": "Pspspsps Cat",
-      "Desc": "Summon a cat.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 103,
+      "Name": "Dust Cloud",
+      "Desc": "Make enemies less able to make ranged attacks.",
+      "BaseCost": 25.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 28,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 6,
+          "ElementTypeId": 11,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 8
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
+      "ItemEnchantWeight": 0.05
     },
     {
-      "IdKey": 139,
-      "Name": "Summon Guard",
-      "Desc": "Summon a Guard",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 104,
+      "Name": "Curse",
+      "Desc": "Curse a group of enemies to lower their effective level.",
+      "BaseCost": 50.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 79,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 7,
+          "ElementTypeId": 6,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 10
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
+      "ItemEnchantWeight": 0.025
     },
     {
-      "IdKey": 140,
-      "Name": "Summon Barbarian",
-      "Desc": "Summon a Barbarian",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 105,
+      "Name": "Wither",
+      "Desc": "Cause enemy stats to wither away.",
+      "BaseCost": 50.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 15,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 8,
+          "ElementTypeId": 3,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 9
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
+      "ItemEnchantWeight": 0.025
     },
     {
-      "IdKey": 141,
-      "Name": "Call Magician",
-      "Desc": "Summon a magician.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 106,
+      "Name": "Feint",
+      "Desc": "A quick move that sometimes makes enemies forget what they were doing.",
+      "BaseCost": 50.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 17,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 10,
+          "ElementTypeId": 1,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        }
-      ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
+      "ItemEnchantWeight": 0.025
     },
     {
-      "IdKey": 142,
-      "Name": "Summon Elf",
-      "Desc": "Summon an elf.",
-      "PowerCost": 9.0,
-      "StatBonusScaling": 1.0,
+      "IdKey": 107,
+      "Name": "Distract",
+      "Desc": "SQUIRREL! Enemies get distracted and sometimes attack the wrong thing.",
+      "BaseCost": 50.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
-      "PointCost": 10,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 3,
       "Effects": [
         {
-          "EntityTypeId": 4,
-          "EntityId": 2,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 8,
-          "Chance": 1.0
+          "EntityTypeId": 36,
+          "EntityId": 9,
+          "ElementTypeId": 11,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
+      "Roles": {
+        "Bits": [
+          226
+        ]
+      },
+      "ItemEnchantWeight": 0.025
+    },
+    {
+      "IdKey": 108,
+      "Name": "Enrage",
+      "Desc": "Make enemies go berserk and just start mashing random abilities.",
+      "BaseCost": 100.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
+      "Effects": [
         {
-          "RoleId": 7
+          "EntityTypeId": 36,
+          "EntityId": 11,
+          "ElementTypeId": 1,
+          "ProcChance": 1.0
         }
       ],
-      "ItemEnchantWeight": 0.1
+      "Roles": {
+        "Bits": [
+          2
+        ]
+      },
+      "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 109,
+      "Name": "Icy Grasp",
+      "Desc": "Fix enemies to a spot so that they can't melee attack.",
+      "BaseCost": 100.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 12,
+          "ElementTypeId": 5,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          8
+        ]
+      },
+      "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 110,
+      "Name": "Silence",
+      "Desc": "Silence a group of enemies and prevent them from casting spells.",
+      "BaseCost": 100.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 13,
+          "ElementTypeId": 7,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          16
+        ]
+      },
+      "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 111,
+      "Name": "Flashbang",
+      "Desc": "A bright flash prevents enemies from using ranged combat.",
+      "BaseCost": 100.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 3,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
+      "Effects": [
+        {
+          "EntityTypeId": 36,
+          "EntityId": 14,
+          "ElementTypeId": 11,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          4
+        ]
+      },
+      "ItemEnchantWeight": 0.01
     },
     {
       "IdKey": 200,
       "Name": "Holy Beam",
       "Desc": "Hit one or more enemies with holy damage.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 4,
-          "MaxQuantity": 15,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 10
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 201,
       "Name": "Holy Nova",
       "Desc": "Hit all enemies in a group with holy damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 5,
-          "MaxQuantity": 18,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 10
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 202,
       "Name": "Holy Storm",
       "Desc": "Hit all enemies with holy damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 4,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 6,
-          "MaxQuantity": 21,
           "ElementTypeId": 7,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [],
+      "Roles": {
+        "Bits": [
+          16
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 203,
+      "Name": "Light Blast",
+      "Desc": "Hit one or more enemies with holy damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 4,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 7,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          1616
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 210,
       "Name": "Fireball",
       "Desc": "Hit one or more enemies in a group with fire damage.",
-      "PowerCost": 5.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 3,
-          "MaxQuantity": 16,
           "ElementTypeId": 2,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 211,
       "Name": "Flamestrike",
       "Desc": "Hit all enemies in a group with fire damage.",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 4,
-          "MaxQuantity": 19,
           "ElementTypeId": 2,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 212,
       "Name": "Firestorm",
       "Desc": "Hit all enemies with fire damage.",
-      "PowerCost": 15.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 5,
-          "MaxQuantity": 22,
           "ElementTypeId": 2,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          8
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 213,
+      "Name": "Fire Blast",
+      "Desc": "Hit one or more enemies in a group with fire damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 2,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 220,
       "Name": "Frostbolt",
       "Desc": "Hit one or more enemies in a group with cold damage.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 5,
-          "MaxQuantity": 14,
           "ElementTypeId": 3,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 221,
       "Name": "Cone of Cold",
       "Desc": "Hit all enemies in a group with cold damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 6,
-          "MaxQuantity": 17,
           "ElementTypeId": 3,
-          "Chance": 1.0
+          "WeaponDamageScale": 50.0,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 11
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 222,
       "Name": "Blizzard",
       "Desc": "Hit all enemies with cold damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 7,
-          "MaxQuantity": 20,
           "ElementTypeId": 3,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          8
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 223,
+      "Name": "Icy Blast",
+      "Desc": "Hit one or more enemies in a group with cold damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 3,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          1416
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 230,
       "Name": "Lightning Bolt",
       "Desc": "Hit one or more enemies with electric damage.",
-      "PowerCost": 6.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 20,
           "ElementTypeId": 4,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 231,
       "Name": "Chain Lightning",
       "Desc": "Hit all enemies in a group with electric damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 25,
           "ElementTypeId": 4,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 232,
       "Name": "Lightning Storm",
       "Desc": "Hit all enemies with electric damage.",
-      "PowerCost": 18.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 30,
           "ElementTypeId": 4,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          4
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 233,
+      "Name": "Electric Blast",
+      "Desc": "Hit one or more enemies with electric damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 1,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 4,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 240,
       "Name": "Poison Arrow",
       "Desc": "Hit one or more enemies with nature damage.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 4,
-          "MaxQuantity": 17,
           "ElementTypeId": 8,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 241,
       "Name": "Poison Spray",
       "Desc": "Hit all enemies in a group with nature damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 7,
-          "MaxQuantity": 21,
           "ElementTypeId": 8,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 242,
       "Name": "Plaguestorm",
       "Desc": "Hit all enemies with poisonous nature damage",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
-      "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 10,
-          "MaxQuantity": 25,
           "ElementTypeId": 8,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          4
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 243,
+      "Name": "Poison Blast",
+      "Desc": "Hit one or more enemies with nature damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 2,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 8,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          804
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 250,
       "Name": "Arcane Missiles",
       "Desc": "Hit one or more enemies with arcane damage.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 3,
-          "MaxQuantity": 17,
           "ElementTypeId": 9,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 251,
       "Name": "Arcane Explosion",
       "Desc": "Hit all enemies in a group with arcane damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 5,
-          "MaxQuantity": 21,
           "ElementTypeId": 9,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 252,
       "Name": "Magestorm",
       "Desc": "Hit all enemies with arcane damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 7,
-          "MaxQuantity": 25,
           "ElementTypeId": 9,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 253,
+      "Name": "Arcane Blast",
+      "Desc": "Hit one or more enemies with arcane damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 260,
       "Name": "Darkbolt",
       "Desc": "Hit one or more enemies with shadow damage.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 4,
-          "MaxQuantity": 17,
           "ElementTypeId": 6,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 261,
       "Name": "Shadow Burst",
       "Desc": "Hit all enemies in a group with shadow damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 6,
-          "MaxQuantity": 21,
           "ElementTypeId": 6,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 262,
       "Name": "Nightstorm",
       "Desc": "Hit all enemies with shadow damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 8,
-          "MaxQuantity": 25,
           "ElementTypeId": 6,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 263,
+      "Name": "Night Blast",
+      "Desc": "Hit one or more enemies with shadow damage.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 270,
       "Name": "Shards",
       "Desc": "Hit one or more enemies with earthen shards.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 6,
-          "MaxQuantity": 15,
           "ElementTypeId": 5,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 271,
       "Name": "Groundburst",
       "Desc": "Hit all enemies in a group with earth damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 7,
-          "MaxQuantity": 17,
           "ElementTypeId": 5,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 272,
       "Name": "Earthquake",
       "Desc": "Hit all enemies with earth damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 8,
-          "MaxQuantity": 19,
           "ElementTypeId": 5,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 11
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.01
+    },
+    {
+      "IdKey": 273,
+      "Name": "Shards",
+      "Desc": "Hit one or more enemies with earthen shards.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
+      "Effects": [
+        {
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 5,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 280,
       "Name": "Acid Bolt",
       "Desc": "Hit one or more enemies with acid.",
-      "PowerCost": 4.0,
-      "PowerPerLevel": 1.0,
-      "StatBonusScaling": 1.0,
+      "BaseCost": 4.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 1,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 1,
-      "PointCost": 1,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 3,
-          "MaxQuantity": 17,
           "ElementTypeId": 10,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.5,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 281,
       "Name": "Acid Spray",
       "Desc": "Hit all enemies in a group with acid damage.",
-      "PowerCost": 8.0,
-      "PowerPerLevel": 2.0,
-      "StatBonusScaling": 1.5,
+      "BaseCost": 8.0,
+      "TierCost": 4.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 3,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 2,
-      "PointCost": 3,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 2,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 6,
-          "MaxQuantity": 22,
           "ElementTypeId": 10,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.25,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.2
     },
     {
       "IdKey": 282,
       "Name": "Acidic Wave",
       "Desc": "Hit all enemies with acid damage.",
-      "PowerCost": 12.0,
-      "PowerPerLevel": 5.0,
-      "StatBonusScaling": 2.0,
+      "BaseCost": 12.0,
+      "TierCost": 6.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 4,
       "RoleScalingTypeId": 3,
-      "RoleScalingTier": 4,
-      "PointCost": 4,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 4,
       "Effects": [
         {
           "EntityTypeId": 33,
           "EntityId": 3,
-          "MinQuantity": 9,
-          "MaxQuantity": 27,
           "ElementTypeId": 10,
-          "Chance": 1.0
+          "WeaponDamageScale": 0.5,
+          "StatBonusDamageScale": 1.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 12
-        }
-      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
       "ItemEnchantWeight": 0.01
     },
     {
-      "IdKey": 10031,
-      "Name": "Enhance Armor",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 1.0,
+      "IdKey": 283,
+      "Name": "Acid Blast",
+      "Desc": "Hit one or more enemies with acid.",
+      "BaseCost": 12.0,
+      "TierCost": 3.0,
       "MaxRange": 100,
       "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
+      "TargetTypeId": 1,
+      "RoleScalingTypeId": 3,
+      "AttackQuantityScale": 2.0,
+      "UnlockTier": 3,
       "Effects": [
         {
-          "EntityTypeId": 31,
-          "EntityId": 31,
-          "MinQuantity": 1,
-          "MaxQuantity": 1
+          "EntityTypeId": 33,
+          "EntityId": 3,
+          "ElementTypeId": 10,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 2.0,
+          "ProcChance": 1.0
         }
       ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 5
-        },
-        {
-          "RoleId": 7
-        },
-        {
-          "RoleId": 10
-        }
-      ]
-    },
-    {
-      "IdKey": 10032,
-      "Name": "Enhance Resist",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "Effects": [
-        {
-          "EntityTypeId": 31,
-          "EntityId": 32,
-          "MinQuantity": 1,
-          "MaxQuantity": 1
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 4
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 11
-        }
-      ]
-    },
-    {
-      "IdKey": 10063,
-      "Name": "Enhance Speed",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "Effects": [
-        {
-          "EntityTypeId": 31,
-          "EntityId": 63,
-          "MinQuantity": 1,
-          "MaxQuantity": 1
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 2
-        },
-        {
-          "RoleId": 8
-        },
-        {
-          "RoleId": 9
-        },
-        {
-          "RoleId": 11
-        }
-      ]
-    },
-    {
-      "IdKey": 10070,
-      "Name": "Enhance Hit",
-      "PowerCost": 10.0,
-      "PowerPerLevel": 1.0,
-      "MaxRange": 100,
-      "CombatActionId": 4,
-      "TargetTypeId": 9,
-      "RoleScalingTypeId": 4,
-      "RoleScalingTier": 1,
-      "Effects": [
-        {
-          "EntityTypeId": 31,
-          "EntityId": 70,
-          "MinQuantity": 1,
-          "MaxQuantity": 1
-        }
-      ],
-      "RolesKnowingThis": [
-        {
-          "RoleId": 1
-        },
-        {
-          "RoleId": 3
-        },
-        {
-          "RoleId": 6
-        },
-        {
-          "RoleId": 9
-        }
-      ]
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      },
+      "ItemEnchantWeight": 1.0
     },
     {
       "IdKey": 20000,
       "Name": "Monster Call None",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20001,
       "Name": "Monster Call Human",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 1,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20002,
       "Name": "Monster Call Elf",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 2,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20003,
       "Name": "Monster Call Dwarf",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 3,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 3
+          "ElementTypeId": 3,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20004,
       "Name": "Monster Call Mongrel",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 4,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20005,
       "Name": "Monster Call Gnome",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 5,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20006,
       "Name": "Monster Call Halfling",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 6,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20007,
       "Name": "Monster Call Goblin",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 7,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20008,
       "Name": "Monster Call Hobgoblin",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 8,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20009,
       "Name": "Monster Call Warrior",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 9,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20010,
       "Name": "Monster Call Fighter",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 10,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20011,
       "Name": "Monster Call Bladesman",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 11,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20012,
       "Name": "Monster Call Swordsman",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 12,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20013,
       "Name": "Monster Call Scrapper",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 13,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20014,
       "Name": "Monster Call Monk",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 14,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20015,
       "Name": "Monster Call Barbarian",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 15,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20016,
       "Name": "Monster Call Mage",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 16,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20017,
       "Name": "Monster Call Magician",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 17,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20018,
       "Name": "Monster Call Conjurer",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 18,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20019,
       "Name": "Monster Call Sorcerer",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 19,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20020,
       "Name": "Monster Call Wizard",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 20,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20021,
       "Name": "Monster Call Faerie",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 21,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20022,
       "Name": "Monster Call Cleric",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 22,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20023,
       "Name": "Monster Call Medusa",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 23,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 5
+          "ElementTypeId": 5,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20024,
       "Name": "Monster Call Dog",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 24,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20025,
       "Name": "Monster Call Hound",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 25,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20026,
       "Name": "Monster Call Wolf",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 26,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20027,
       "Name": "Monster Call Coyote",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 27,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20028,
       "Name": "Monster Call Cat",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 28,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20029,
       "Name": "Monster Call Tiger",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 29,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20030,
       "Name": "Monster Call Lion",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 30,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20031,
       "Name": "Monster Call Skeleton",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 31,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20032,
       "Name": "Monster Call Zombie",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 32,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20033,
       "Name": "Monster Call Ghoul",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 33,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20034,
       "Name": "Monster Call Wight",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 34,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20035,
       "Name": "Monster Call Wraith",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 35,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20036,
       "Name": "Monster Call Ghost",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 36,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20037,
       "Name": "Monster Call Spectre",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 37,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20038,
       "Name": "Monster Call Lich",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 38,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20039,
       "Name": "Monster Call Thief",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 39,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20040,
       "Name": "Monster Call Rogue",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 40,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20041,
       "Name": "Monster Call Assassin",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 41,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20042,
       "Name": "Monster Call Demon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 42,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20043,
       "Name": "Monster Call Blue Dragon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 43,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 4
+          "ElementTypeId": 4,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20044,
       "Name": "Monster Call Red Dragon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 44,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20045,
       "Name": "Monster Call White Dragon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 45,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 3
+          "ElementTypeId": 3,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20046,
       "Name": "Monster Call Black Dragon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 46,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 4
+          "ElementTypeId": 4,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20047,
       "Name": "Monster Call Green Dragon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 47,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 5
+          "ElementTypeId": 5,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20048,
       "Name": "Monster Call Stone Golem",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 48,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20049,
       "Name": "Monster Call Iron Golem",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 49,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20050,
       "Name": "Monster Call Flesh Golem",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 50,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 1
+          "ElementTypeId": 1,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20051,
       "Name": "Monster Call Air Elemental",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 51,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 4
+          "ElementTypeId": 4,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20052,
       "Name": "Monster Call Earth Elemental",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 52,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 5
+          "ElementTypeId": 5,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20053,
       "Name": "Monster Call Fire Elemental",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 53,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20054,
       "Name": "Monster Call Water Elemental",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 54,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 3
+          "ElementTypeId": 3,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20055,
       "Name": "Monster Call Bear",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 55,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20056,
       "Name": "Monster Call Slime",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 56,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20057,
       "Name": "Monster Call Spider",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 57,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20058,
       "Name": "Monster Call Scorpion",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 58,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20059,
       "Name": "Monster Call Chimera",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 59,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20060,
       "Name": "Monster Call Orc",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 60,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20061,
       "Name": "Monster Call Ogre",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 61,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20062,
       "Name": "Monster Call Rat",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 62,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20063,
       "Name": "Monster Call Bat",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 63,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20064,
       "Name": "Monster Call Salamander",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 64,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20065,
       "Name": "Monster Call Wyvern",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 65,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20066,
       "Name": "Monster Call Frog",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 66,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20067,
       "Name": "Monster Call Lizardman",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 67,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20068,
       "Name": "Monster Call Werewolf",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 68,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20069,
       "Name": "Monster Call Troll",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 69,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20070,
       "Name": "Monster Call Vampire",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 70,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20071,
       "Name": "Monster Call Mummy",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 71,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 6
+          "ElementTypeId": 6,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20072,
       "Name": "Monster Call Harpy",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 72,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20073,
       "Name": "Monster Call Griffon",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 73,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20074,
       "Name": "Monster Call Manticore",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 74,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20075,
       "Name": "Monster Call Snake",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 75,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20076,
       "Name": "Monster Call Steed",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 76,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20077,
       "Name": "Monster Call Basilisk",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 77,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 5
+          "ElementTypeId": 5,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20078,
       "Name": "Monster Call Giant",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 78,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20079,
       "Name": "Monster Call Guard",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 79,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20080,
       "Name": "Monster Call Gnoll",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 80,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20081,
       "Name": "Monster Call Frog",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 81,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20082,
       "Name": "Monster Call Buck",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 82,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20083,
       "Name": "Monster Call Crab",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 83,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20084,
       "Name": "Monster Call Crocodile",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 84,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20085,
       "Name": "Monster Call Snail",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 85,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20086,
       "Name": "Monster Call Treant",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 86,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20087,
       "Name": "Monster Call Kobold",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 87,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 2
+          "ElementTypeId": 2,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20088,
       "Name": "Monster Call Cyclops",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 88,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20089,
       "Name": "Monster Call Hydra",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 89,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 20090,
       "Name": "Monster Call Bull",
-      "PowerCost": 100.0,
-      "PowerPerLevel": 1.0,
+      "BaseCost": 100.0,
+      "TierCost": 1.0,
       "MaxRange": 100,
       "CombatActionId": 4,
       "TargetTypeId": 9,
       "RoleScalingTypeId": 5,
-      "RoleScalingTier": 1,
+      "UnlockTier": 1,
       "Effects": [
         {
           "EntityTypeId": 4,
           "EntityId": 90,
-          "MinQuantity": 1,
-          "MaxQuantity": 1,
-          "ElementTypeId": 9
+          "ElementTypeId": 9,
+          "WeaponDamageScale": 1.0,
+          "StatBonusDamageScale": 1.0
         }
       ],
-      "RolesKnowingThis": []
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     }
   ],
   "Parent": {
     "Id": "default",
     "StatBuffPowerCost": 10.0,
     "StatBuffPowerPerLevel": 1.0,
+    "SummonTierExtraStatScale": 0.1,
+    "SummonStatBonusScale": 0.5,
     "Name": "CrawlerSpellSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-23T20:27:09.495Z"
+  "SaveTime": "2026-07-01T23:51:54.619Z"
 }

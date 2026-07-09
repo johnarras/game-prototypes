@@ -29,7 +29,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 
         public override ECrawlerStates HelperKey => ECrawlerStates.ChooseName;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -104,7 +104,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
                         ItemGenArgs igd = new ItemGenArgs()
                         {
                             Level = 0,
-                            ItemTypeId = okMelee[_rand.Rand.Next() % (okMelee.Count + 1) / 2].IdKey,
+                            ItemTypeId = okMelee[_gs.Rand.Next() % (okMelee.Count + 1) / 2].IdKey,
                         };
 
                         if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
@@ -126,7 +126,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
                         ItemGenArgs igd = new ItemGenArgs()
                         {
                             Level = 0,
-                            ItemTypeId = okRanged[_rand.Rand.Next() % (okRanged.Count + 1) / 2].IdKey,
+                            ItemTypeId = okRanged[_gs.Rand.Next() % (okRanged.Count + 1) / 2].IdKey,
                         };
                         Item newItem = _lootGenService.GenerateItem(igd);
                         if (newItem != null)
@@ -144,7 +144,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
                     List<CrawlerSpell> spells = _crawlerSpellService.GetSpellsForMember(party, member);
 
                     List<CrawlerSpell> summonSpells = spells.Where(x => x.Effects.FastAny(y => y.EntityTypeId == EntityTypes.Unit) &&
-                    x.RoleScalingTier == 1).ToList();
+                    x.UnlockTier == 1).ToList();
 
 
                     if (summonSpells.Count > 0)

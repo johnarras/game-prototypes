@@ -5,11 +5,11 @@ namespace OxDb.SharedGame.Trader.Caravans.Entities
     public class CaravanPosition
     {
         public int FromX { get; set; }
-        public int FromY { get; set; }
+        public int FromZ { get; set; }
         public int ToX { get; set; }
-        public int ToY { get; set; }
+        public int ToZ { get; set; }
         public int CurrX { get; set; }
-        public int CurrY { get; set; }
+        public int CurrZ { get; set; }
         public int TotalDistanceToTarget { get; set; }
         public int DistanceGone { get; set; }
         public City TargetCity { get; set; }
@@ -54,7 +54,7 @@ namespace OxDb.SharedGame.Trader.Caravans.Entities
 
         public bool OnRoad()
         {
-            return (FromX != ToX || FromY != ToY);
+            return (FromX != ToX || FromZ != ToZ);
         }
     }
 }

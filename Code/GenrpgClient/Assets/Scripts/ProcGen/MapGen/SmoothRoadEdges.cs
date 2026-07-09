@@ -24,52 +24,46 @@ public class SmoothRoadEdges : BaseZoneGenerator
 
         for (int x = 0; x < hwid; x++)
         {
-            for (int y = 0; y < hhgt; y++)
+            for (int z = 0; z < hhgt; z++)
             {
-                heights2[x, y] = _md.Heights[x, y];
+                heights2[x, z] = _md.Heights[x, z];
             }
         }
         for (int x = 0; x < hwid; x++)
         {
-            for (int y = 0; y < hhgt; y++)
+            for (int z = 0; z < hhgt; z++)
             {
                 int ax = (int)(1.0f * x / hwid * awid);
-                int ay = (int)(1.0f * y / hhgt * ahgt);
+                int az = (int)(1.0f * z / hhgt * ahgt);
 
-
-                float currSplat = _md.Alphas[ax, ay, TerrainTexChannels.Road];
+                float currSplat = _md.Alphas[ax, az, TerrainTexChannels.Road];
                 if (currSplat > 0.0f)
                 {
                     //continue;
                 }
 
-                if (_md.RoadDistances[ax, ay] >= radius)
+                if (_md.RoadDistances[ax, az] >= radius)
                 {
                     continue;
                 }
 
-                float aveSplat = _md.GetAverageSplatNear(ax, ay, radius, TerrainTexChannels.Road);
+                float aveSplat = _md.GetAverageSplatNear(ax, az, radius, TerrainTexChannels.Road);
 
                 int averad = radius;
                 if (currSplat > 0)
                 {
                     averad = 2;
                 }
-                float aveHeight = _md.GetAverageHeightNear(_mapProvider.GetMap(), x, y, averad);
+                float aveHeight = _md.GetAverageHeightNear(_mapProvider.GetMap(), x, z, averad);
 
-
-
-                if (currSplat <= 0 && _zoneGenService.FindMapLocation(x, y, 5) != null)
+                if (currSplat <= 0 && _zoneGenService.FindMapLocation(x, z, 5) != null)
                 {
                     continue;
                 }
 
-
                 float alterPercent = Math.Max(0.1f, 1 - aveSplat * 3.0f);
 
-
                 alterPercent = Math.Min(1.0f, aveSplat * 5.0f);
-
 
                 if (averad < 0)
                 {
@@ -80,8 +74,7 @@ public class SmoothRoadEdges : BaseZoneGenerator
                     alterPercent = 1.0f;
                 }
 
-
-                float bridgeDist = _md.BridgeDistances[y, x];
+                float bridgeDist = _md.BridgeDistances[z, x];
 
                 float bridgeScale = 1.0f;
 
@@ -92,21 +85,19 @@ public class SmoothRoadEdges : BaseZoneGenerator
                     alterPercent *= bridgeScale;
                 }
 
-
-
                 if (alterPercent <= 0)
                 {
                     continue;
                 }
 
-                float currHeight = _md.Heights[x, y];
+                float currHeight = _md.Heights[x, z];
 
                 if (aveHeight < currHeight)
                 {
                     aveHeight += (currHeight - aveHeight) / 2;
                 }
 
-                heights2[x, y] = currHeight + (aveHeight - currHeight) * alterPercent;
+                heights2[x, z] = currHeight + (aveHeight - currHeight) * alterPercent;
 
             }
         }

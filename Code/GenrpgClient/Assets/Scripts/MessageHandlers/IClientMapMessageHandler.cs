@@ -2,13 +2,13 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.MapMessages.Interfaces;
 using System;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 public interface IClientMapMessageHandler : ISetupDictionaryItem<Type>
 {
     // Purposely not Task because there is jankiness needing to return to main thread before doing
     // Unity actions.
-    Awaitable Process(IMapApiMessage msg, CancellationToken token);
+    ValueTask Process(IMapApiMessage msg, CancellationToken token);
 }
 
 

@@ -8,7 +8,7 @@ namespace OxDb.DataUtils.Importers.Trader
 {
     public class CaravanMemberImporter : BaseTraderDataImporter<CaravanMemberSettings, CaravanMember>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, CaravanMember current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, CaravanMemberSettings settings, CaravanMember current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
             if (firstColumn == "membereffect")
             {

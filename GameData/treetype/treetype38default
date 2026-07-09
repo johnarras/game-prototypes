@@ -2,8 +2,8 @@
   "Id": "treetype38default",
   "ParentId": "default",
   "IdKey": 38,
-  "Name": "BirchWinter",
-  "Art": "BirchWinter",
+  "Name": "WhiteOakWinterYoung",
+  "Art": "WhiteOakWinterYoung",
   "Scale": 1.5,
   "VariationCount": 2
 }

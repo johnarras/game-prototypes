@@ -7,7 +7,7 @@ namespace OxDb.DataUtils.Importers.Spells
 {
     public class ElementTypeSettingsImporter : ParentChildImporter<ElementTypeSettings, ElementType>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, ElementType current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, ElementTypeSettings settings, ElementType current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
             if (firstColumn == "proc")
             {

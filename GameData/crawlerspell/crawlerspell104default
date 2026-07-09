@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell104default",
+  "ParentId": "default",
+  "IdKey": 104,
+  "Name": "Curse",
+  "Desc": "Curse a group of enemies to lower their effective level.",
+  "BaseCost": 50.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 4,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 7,
+      "ElementTypeId": 6,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      1616
+    ]
+  },
+  "ItemEnchantWeight": 0.025
+}

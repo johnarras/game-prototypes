@@ -57,11 +57,11 @@ public interface IMapGenData : IInjectable
 
 
     // List of roads created
-    List<List<MyPointF>> Roads { get; set; }
+    List<List<LineCell>> Roads { get; set; }
 
-    List<MyPointF> CreviceBridges { get; set; }
+    List<Point2I> CreviceBridges { get; set; }
     // Bridges that have been made
-    List<MyPointF> CurrBridges { get; set; }
+    List<Point2I> CurrBridges { get; set; }
 
     public ExtendedWorldObjectData[,] ExtendedObjects { get; set; }
 
@@ -74,14 +74,14 @@ public interface IMapGenData : IInjectable
     List<Location>[,] LocationGrid { get; set; }
 
     // Ends of ramps where special monsters or quests can be placed.
-    List<MyPoint> RampTops { get; set; }
+    List<Point2F> RampTops { get; set; }
 
     float[,] CreviceDepths { get; set; }
 
     int[,] Flags { get; set; }
 
     short[,] MapZoneIds { get; set; }
-    List<MyPoint> ZoneCenters { get; set; }
+    List<Point2I> ZoneCenters { get; set; }
     List<ConnectedPairData> ZoneConnections { get; set; }
     float[,] MaintainHeights { get; set; }
     float[,] NearestMountainTopHeight { get; set; }
@@ -119,11 +119,11 @@ public interface IMapGenData : IInjectable
 
     GenZone GetGenZone(long zoneId);
 
-    float GetAverageHeightNear(Map map, int hx, int hy, int radius, int terrainType = -1);
+    float GetAverageHeightNear(Map map, int hx, int hz, int radius, int terrainType = -1);
 
-    float GetAverageSplatNear(int x, int y, int radius, int channel);
+    float GetAverageSplatNear(int x, int z, int radius, int channel);
 
-    float EdgeHeightmapAdjustPercent(Map map, int x, int y);
+    float EdgeHeightmapAdjustPercent(Map map, int x, int z);
     void AddMapLocation(IMapProvider _mapProvider, Location loc);
     float GetMountainDefaultSize(Map map);
 }
@@ -154,11 +154,11 @@ public class MapGenData : IMapGenData
 
 
     // List of roads created
-    public List<List<MyPointF>> Roads { get; set; }
+    public List<List<LineCell>> Roads { get; set; }
 
-    public List<MyPointF> CreviceBridges { get; set; }
+    public List<Point2I> CreviceBridges { get; set; }
     // Bridges that have been made
-    public List<MyPointF> CurrBridges { get; set; }
+    public List<Point2I> CurrBridges { get; set; }
 
     public ushort[,] BridgeDistances { get; set; }
 
@@ -169,14 +169,14 @@ public class MapGenData : IMapGenData
     public List<Location>[,] LocationGrid { get; set; }
 
     // Ends of ramps where special monsters or quests can be placed.
-    public List<MyPoint> RampTops { get; set; }
+    public List<Point2F> RampTops { get; set; }
 
     public float[,] CreviceDepths { get; set; }
 
     public int[,] Flags { get; set; }
 
     public short[,] MapZoneIds { get; set; }
-    public List<MyPoint> ZoneCenters { get; set; }
+    public List<Point2I> ZoneCenters { get; set; }
     public List<ConnectedPairData> ZoneConnections { get; set; }
     public float[,] MaintainHeights { get; set; }
     public float[,] NearestMountainTopHeight { get; set; }
@@ -306,7 +306,7 @@ public class MapGenData : IMapGenData
         return genZone;
     }
 
-    public float GetAverageHeightNear(Map map, int hx, int hy, int radius, int terrainType = -1)
+    public float GetAverageHeightNear(Map map, int hx, int hz, int radius, int terrainType = -1)
     {
         if (Heights == null)
         {
@@ -332,15 +332,15 @@ public class MapGenData : IMapGenData
             {
                 continue;
             }
-            for (int y = hy - radius; y <= hy + radius; y++)
+            for (int z = hz - radius; z <= hz + radius; z++)
             {
-                if (y < 0 || y >= map.GetHhgt() || y >= map.GetHhgt())
+                if (z < 0 || z >= map.GetHhgt() || z >= map.GetHhgt())
                 {
                     continue;
                 }
-                if (terrainType < 0 || terrainType < Alphas.Length && Alphas[x, y, terrainType] > 0)
+                if (terrainType < 0 || terrainType < Alphas.Length && Alphas[x, z, terrainType] > 0)
                 {
-                    totalHeight += Heights[x, y];
+                    totalHeight += Heights[x, z];
                     totalCells++;
                 }
             }
@@ -354,7 +354,7 @@ public class MapGenData : IMapGenData
 
     }
 
-    public float GetAverageSplatNear(int x, int y, int radius, int channel)
+    public float GetAverageSplatNear(int x, int z, int radius, int channel)
     {
         if (Alphas == null || radius < 1 || channel < 0 || channel >= TerrainTexChannels.Max)
         {
@@ -364,17 +364,17 @@ public class MapGenData : IMapGenData
         float[,,] alphas2 = Alphas;
         int minx = Math.Max(0, x - radius);
         int maxx = Math.Min(alphas2.GetLength(0) - 1, x + radius);
-        int miny = Math.Max(0, y - radius);
-        int maxy = Math.Min(alphas2.GetLength(1) - 1, y + radius);
+        int minz = Math.Max(0, z - radius);
+        int maxz = Math.Min(alphas2.GetLength(1) - 1, z + radius);
 
         float totalDirt = 0.0f;
         int cellCount = 0;
 
         for (int xx = minx; xx <= maxx; xx++)
         {
-            for (int yy = miny; yy <= maxy; yy++)
+            for (int zz = minz; zz <= maxz; zz++)
             {
-                totalDirt += alphas2[xx, yy, channel];
+                totalDirt += alphas2[xx, zz, channel];
                 cellCount++;
 
             }
@@ -388,9 +388,9 @@ public class MapGenData : IMapGenData
         return totalDirt / cellCount;
     }
 
-    public float EdgeHeightmapAdjustPercent(Map map, int x, int y)
+    public float EdgeHeightmapAdjustPercent(Map map, int x, int z)
     {
-        if (x < 0 || y < 0 || x >= map.GetHwid() || y > map.GetHhgt())
+        if (x < 0 || z < 0 || x >= map.GetHwid() || z > map.GetHhgt())
         {
             return 0.0f;
         }
@@ -401,7 +401,7 @@ public class MapGenData : IMapGenData
             edgeSize = map.GetHwid() / 2;
         }
 
-        if (x > edgeSize && x < map.GetHwid() - edgeSize && y > edgeSize && y < map.GetHhgt() - edgeSize)
+        if (x > edgeSize && x < map.GetHwid() - edgeSize && z > edgeSize && z < map.GetHhgt() - edgeSize)
         {
             return 1.0f;
         }
@@ -409,7 +409,7 @@ public class MapGenData : IMapGenData
 
 
         int minDistX = Math.Min(x, map.GetHwid() - x);
-        int minDistY = Math.Min(y, map.GetHhgt() - y);
+        int minDistY = Math.Min(z, map.GetHhgt() - z);
         int minDist = Math.Min(minDistX, minDistY);
 
         return 1.0f * minDist / edgeSize;
@@ -427,9 +427,9 @@ public class MapGenData : IMapGenData
             LocationGrid = new List<Location>[MapConstants.MaxTerrainGridSize, MapConstants.MaxTerrainGridSize];
             for (int x = 0; x < MapConstants.MaxTerrainGridSize; x++)
             {
-                for (int y = 0; y < MapConstants.MaxTerrainGridSize; y++)
+                for (int z = 0; z < MapConstants.MaxTerrainGridSize; z++)
                 {
-                    LocationGrid[x, y] = new List<Location>();
+                    LocationGrid[x, z] = new List<Location>();
                 }
             }
         }
@@ -446,9 +446,9 @@ public class MapGenData : IMapGenData
             zone.Locations.Add(loc);
 
             int gx = MathUtil.Clamp(0, loc.CenterX / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
-            int gy = MathUtil.Clamp(0, loc.CenterZ / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
+            int gz = MathUtil.Clamp(0, loc.CenterZ / MapConstants.TerrainPatchSize, MapConstants.MaxTerrainGridSize - 1);
 
-            LocationGrid[gx, gy].Add(loc);
+            LocationGrid[gx, gz].Add(loc);
 
             loc.Id = _mapProvider.GetMap().Id + "-" + (++locationCount);
         }

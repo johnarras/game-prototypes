@@ -9,7 +9,7 @@
   "AncientName": "Gades",
   "Population": 20000,
   "MapPixelX": 900,
-  "MapPixelY": 2433,
+  "MapPixelZ": 2433,
   "BiomeTypeId": 5,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 45
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    }
+  ]
 }

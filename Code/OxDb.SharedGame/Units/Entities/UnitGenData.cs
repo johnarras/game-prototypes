@@ -12,7 +12,7 @@ namespace OxDb.SharedGame.Units.Entities
 
         // Immediately create a unit and use it to store UnitTypeId, Id and Level.
         public Unit Unit { get; set; }
-        public MyPointF Pos { get; set; }
+        public Point3F Pos { get; set; }
         public short Rot { get; set; }
         public object Parent { get; set; }
         public int StatPct { get; set; }

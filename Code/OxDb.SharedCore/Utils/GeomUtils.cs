@@ -91,7 +91,7 @@ namespace OxDb.SharedCore.Utils
 
         }
 
-        public static MyPoint2 GetClosestPoint2(List<MyPoint2> points, MyPoint2 newPoint, double p = 2)
+        public static Point2F GetClosestPoint2(List<Point2F> points, Point2F newPoint, double p = 2)
         {
             if (points == null || points.Count < 1 || newPoint == null)
             {
@@ -99,10 +99,10 @@ namespace OxDb.SharedCore.Utils
             }
 
             double minDist = MaxDistance;
-            MyPoint2 closestPoint = null;
-            foreach (MyPoint2 pt in points)
+            Point2F closestPoint = null;
+            foreach (Point2F pt in points)
             {
-                double dist = MathUtil.LPNorm(p, pt.X - newPoint.X, pt.Y - newPoint.Y);
+                double dist = MathUtil.LPNorm(p, pt.X - newPoint.X, pt.Z - newPoint.Z);
 
                 if (dist < minDist)
                 {
@@ -117,17 +117,54 @@ namespace OxDb.SharedCore.Utils
 
 
 
-        public static double GetMinDistance2(List<MyPoint2> points, MyPoint2 newPoint, double p = 2)
+        public static double GetMinDistance2(List<Point2F> points, Point2F newPoint, double p = 2)
         {
-            MyPoint2 closestPt = GetClosestPoint2(points, newPoint, p);
+            Point2F closestPt = GetClosestPoint2(points, newPoint, p);
             if (closestPt == null || newPoint == null)
             {
                 return MaxDistance;
             }
 
-            return MathUtil.LPNorm(p, closestPt.X - newPoint.X, closestPt.Y - newPoint.Y);
+            return MathUtil.LPNorm(p, closestPt.X - newPoint.X, closestPt.Z - newPoint.Z);
+        }
 
 
+
+        public static Point2I GetClosestPoint2(List<Point2I> points, Point2I newPoint, double p = 2)
+        {
+            if (points == null || points.Count < 1 || newPoint == null)
+            {
+                return null;
+            }
+
+            double minDist = MaxDistance;
+            Point2I closestPoint = null;
+            foreach (Point2I pt in points)
+            {
+                double dist = MathUtil.LPNorm(p, pt.X - newPoint.X, pt.Z - newPoint.Z);
+
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    closestPoint = pt;
+                }
+            }
+
+            return closestPoint;
+        }
+
+
+
+
+        public static double GetMinDistance2(List<Point2I> points, Point2I newPoint, double p = 2)
+        {
+            Point2I closestPt = GetClosestPoint2(points, newPoint, p);
+            if (closestPt == null || newPoint == null)
+            {
+                return MaxDistance;
+            }
+
+            return MathUtil.LPNorm(p, closestPt.X - newPoint.X, closestPt.Z - newPoint.Z);
         }
     }
 }

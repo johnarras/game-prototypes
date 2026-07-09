@@ -12,6 +12,9 @@ namespace OxDb.SharedGame.Crawler.Combat.Entities
         public List<FullEffect> Effects { get; set; } = new List<FullEffect>();
         public long LuckyHitQuantity { get; set; }
         public Item CastingItem { get; set; }
+        public bool HasLeadership { get; set; }
+        public long RoleScalingTypeId { get; set; }
+        public long StatScalingTypeId { get; set; }
     }
 }
 

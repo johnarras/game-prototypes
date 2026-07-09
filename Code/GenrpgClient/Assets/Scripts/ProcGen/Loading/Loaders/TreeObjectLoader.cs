@@ -18,7 +18,7 @@ public class TreeObjectLoader : BaseObjectLoader
     const int ScaleStepCount = 20;
 
     public override bool LoadObject(PatchLoadData loadData, int entityId,
-        int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
+        int x, int z, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
         FullTreePrototype fullProto = null;
         TreeType treeType = null;
@@ -39,39 +39,23 @@ public class TreeObjectLoader : BaseObjectLoader
             return false;
         }
 
-        if (treeType.HasFlag(TreeFlags.IsBush))
+        if (_mapProvider.GetMap().OverrideZoneId > 0 && _mapProvider.GetMap().OverrideZonePercent > 0)
         {
-            assetCategory = AssetCategoryNames.Bushes;
-        }
-
-        if (!treeType.HasFlag(TreeFlags.IsWaterItem) &&
-            _mapProvider.GetMap().OverrideZoneId > 0 && _mapProvider.GetMap().OverrideZonePercent > 0)
-        {
-            if (loadData.patch.overrideZoneScales[x, y] < _mapProvider.GetMap().OverrideZonePercent)
+            if (loadData.patch.overrideZoneScales[x, z] < _mapProvider.GetMap().OverrideZonePercent)
             {
                 Zone zone = _mapProvider.GetMap().Get<Zone>(_mapProvider.GetMap().OverrideZoneId);
                 if (zone != null)
                 {
                     List<long> okTreeIds = new List<long>();
 
-                    if (treeType.HasFlag(TreeFlags.IsBush))
+                    if (_md.zoneTreeIds.TryGetValue(zone.ZoneTypeId, out List<long> treeIds))
                     {
-                        if (_md.zoneBushIds.TryGetValue(zone.ZoneTypeId, out List<long> bushIds))
-                        {
-                            okTreeIds = bushIds;
-                        }
-                    }
-                    else
-                    {
-                        if (_md.zoneTreeIds.TryGetValue(zone.ZoneTypeId, out List<long> treeIds))
-                        {
-                            okTreeIds = treeIds;
-                        }
+                        okTreeIds = treeIds;
                     }
 
                     if (okTreeIds.Count > 0)
                     {
-                        long treeTypeId = okTreeIds[(loadData.gx * 191 + loadData.gy * 2189 + x * 108061 + y * 857) % okTreeIds.Count];
+                        long treeTypeId = okTreeIds[(loadData.gx * 191 + loadData.gz * 2189 + x * 108061 + z * 857) % okTreeIds.Count];
 
                         TreeType treeType2 = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(treeTypeId);
 
@@ -86,7 +70,7 @@ public class TreeObjectLoader : BaseObjectLoader
         }
 
 
-        long index = GetIndexForTree(currZone, treeType, loadData.gx * y + loadData.gy * x + x * 11 + y * 31);
+        long index = GetIndexForTree(currZone, treeType, loadData.gx * z + loadData.gz * x + x * 11 + z * 31);
         string artName = treeType.Art + index;
         if (false && treeType.HasFlag(TreeFlags.DirectPlaceObject))
         {
@@ -95,28 +79,22 @@ public class TreeObjectLoader : BaseObjectLoader
             dlo.url = artName;
             dlo.loadData = loadData;
             dlo.x = x;
-            dlo.y = y;
+            dlo.z = z;
             dlo.zone = currZone;
             dlo.zoneType = currZoneType;
             dlo.assetCategory = assetCategory;
 
 
-            long placementSeed = 17041 + x * 9479 + y * 2281 + loadData.gx * 5281 + loadData.gy * 719 +
-                loadData.gx * y + loadData.gy * x;
+            long placementSeed = 17041 + x * 9479 + z * 2281 + loadData.gx * 5281 + loadData.gz * 719 +
+                loadData.gx * z + loadData.gz * x;
 
             treeType.Scale = 1.0f; // TODO Fix
             float minScale = treeType.Scale;
             float maxScale = treeType.Scale * 1.50f;
             float finalScale = minScale + (maxScale - minScale) * (placementSeed % (ScaleStepCount + 1)) / ScaleStepCount;
 
-            if (treeType.HasFlag(TreeFlags.IsBush))
-            {
-                finalScale *= AddTrees.BushSizeScale;
-            }
-            else
-            {
-                finalScale *= AddTrees.TreeSizeScale;
-            }
+            finalScale *= AddTrees.TreeSizeScale;
+
             dlo.scale = finalScale;
 
             _assetService.LoadAsset(assetCategory, artName, OnDownloadObjectDirect, null, token, dlo);
@@ -128,7 +106,7 @@ public class TreeObjectLoader : BaseObjectLoader
             fullProto.treeType = treeType;
 
 
-            StartPlaceInstance(loadData, treeType, assetCategory, artName, x, y, null, token);
+            StartPlaceInstance(loadData, treeType, assetCategory, artName, x, z, null, token);
         }
         return true;
     }
@@ -158,7 +136,7 @@ public class TreeObjectLoader : BaseObjectLoader
 
     protected void StartPlaceInstance(PatchLoadData loadData,
         IIndexedGameItem dataItem,
-        string assetCategory, string artName, int x, int y, object extraData, CancellationToken token)
+        string assetCategory, string artName, int x, int z, object extraData, CancellationToken token)
     {
         if (string.IsNullOrEmpty(artName) || loadData == null)
         {
@@ -196,13 +174,13 @@ public class TreeObjectLoader : BaseObjectLoader
             protoIndex = loadData.objectProtos.Count - 1;
 
 
-            loadData.terrManager.AddTerrainProtoPatch(artName, loadData.gx, loadData.gy);
+            loadData.terrManager.AddTerrainProtoPatch(artName, loadData.gx, loadData.gz);
             GameObject currObject = loadData.terrManager.GetTerrainProtoObject(artName);
 
             if (currObject != null)
             {
                 tp.prefab = currObject;
-                PlaceInstance(dataItem, loadData.treeInstances, protoIndex, loadData.gx, loadData.gy, x, y, extraData);
+                PlaceInstance(dataItem, loadData.treeInstances, protoIndex, loadData.gx, loadData.gz, x, z, extraData);
             }
             else
             {
@@ -210,22 +188,22 @@ public class TreeObjectLoader : BaseObjectLoader
             }
         }
 
-        PlaceInstance(dataItem, loadData.treeInstances, protoIndex, loadData.gx, loadData.gy, x, y, extraData);
+        PlaceInstance(dataItem, loadData.treeInstances, protoIndex, loadData.gx, loadData.gz, x, z, extraData);
     }
 
 
 
-    private void PlaceInstance(IIndexedGameItem dataItem, List<TreeInstance> instances, int protoIndex, int gx, int gy, int x, int y, object data)
+    private void PlaceInstance(IIndexedGameItem dataItem, List<TreeInstance> instances, int protoIndex, int gx, int gz, int x, int z, object data)
     {
 
-        long placementSeed = 17041 + x * 9479 + y * 2281 + gx * 5281 + gy * 719 +
-            gx * y + gy * x;
+        long placementSeed = 17041 + x * 9479 + z * 2281 + gx * 5281 + gz * 719 +
+            gx * z + gz * x;
 
         int wx = gx * (MapConstants.TerrainPatchSize - 1) + x;
-        int wy = gy * (MapConstants.TerrainPatchSize - 1) + y;
+        int wz = gz * (MapConstants.TerrainPatchSize - 1) + z;
         float ddx = RandUtils.SeedFloatRange(placementSeed * 13, 143, -0.5f, 0.5f, 101);
-        float ddy = RandUtils.SeedFloatRange(placementSeed * 17, 149, -0.5f, 0.5f, 101);
-        float height = _terrainManager.SampleHeight(wx, wy);
+        float ddz = RandUtils.SeedFloatRange(placementSeed * 17, 149, -0.5f, 0.5f, 101);
+        float height = _terrainManager.SampleHeight(wx, wz);
 
         TreeInstance ti = new TreeInstance();
         ti.prototypeIndex = protoIndex;
@@ -233,7 +211,7 @@ public class TreeObjectLoader : BaseObjectLoader
 
         float ex = x + ddx;
         float ey = height;
-        float ez = y + ddy;
+        float ez = z + ddz;
         bool isbush = false;
         TreeType tt = dataItem as TreeType;
         if (tt != null)
@@ -243,28 +221,18 @@ public class TreeObjectLoader : BaseObjectLoader
             float minScale = tt.Scale;
             float maxScale = minScale * 1.5f;
 
-            if (tt.HasFlag(TreeFlags.IsBush))
-            {
-                isbush = true;
-                minScale = 1.0f;
-                maxScale = 1.0f;
-            }
-            else
-            {
-                maxScale *= AddTrees.TreeSizeScale;
-            }
+            maxScale *= AddTrees.TreeSizeScale;
+
             float finalScale = minScale + (maxScale - minScale) * (placementSeed % (ScaleStepCount + 1)) / ScaleStepCount;
 
-            Vector3 currNormal = _terrainManager.GetInterpolatedNormal(_mapProvider.GetMap(), wx, wy);
+            Vector3 currNormal = _terrainManager.GetInterpolatedNormal(_mapProvider.GetMap(), wx, wz);
 
             float offsetScale = 1.0f;
-            if (!tt.HasFlag(TreeFlags.IsBush))
-            {
-                Vector3 offset = currNormal * -(0.3f + (2.5f * (1 - currNormal.y)) / Math.Max(1.0f, offsetScale));
-                ex += offset.x;
-                ey += offset.y - 1.0f;
-                ez += offset.z;
-            }
+
+            Vector3 offset = currNormal * -(0.3f + (2.5f * (1 - currNormal.y)) / Math.Max(1.0f, offsetScale));
+            ex += offset.x;
+            ey += offset.y - 1.0f;
+            ez += offset.z;
 
             ti.heightScale = finalScale;
             ti.widthScale = finalScale;
@@ -302,27 +270,6 @@ public class TreeObjectLoader : BaseObjectLoader
 
         op.Prototype.prefab = go;
 
-        TreeType treeType = op.DataItem as TreeType;
-        if (treeType != null && treeType.HasFlag(TreeFlags.IsBush))
-        {
-            LODGroup lodGroup = go.GetComponent<LODGroup>();
-            if (lodGroup != null)
-            {
-                for (int c = 0; c < go.transform.childCount; c++)
-                {
-                    Transform child = go.transform.GetChild(c);
-                    if (child != null && child.gameObject != null && child.name.IndexOf("LOD0") < 0)
-                    {
-
-                        child.gameObject.SetActive(false);
-                    }
-                }
-                lodGroup.enabled = false;
-                lodGroup.animateCrossFading = false;
-                lodGroup.fadeMode = LODFadeMode.None;
-            }
-        }
-
         _clientEntityService.SetLayer(go, LayerNames.ObjectLayer);
         go.transform.localPosition = new Vector3(0, -2000, 0);
     }
@@ -352,19 +299,7 @@ public class TreeObjectLoader : BaseObjectLoader
                 {
                     TreeType treeType = treeSettings.Get(ztt.TreeTypeId);
 
-                    if (treeType.HasFlag(TreeFlags.IsWaterItem))
-                    {
-                        continue;
-                    }
-
-                    if (treeType.HasFlag(TreeFlags.IsBush))
-                    {
-                        bushList.Add(treeType.IdKey);
-                    }
-                    else
-                    {
-                        treeList.Add(treeType.IdKey);
-                    }
+                    treeList.Add(treeType.IdKey);
                 }
             }
         }

@@ -128,21 +128,23 @@ public class InputService : IInputService
 
     public bool MouseClickNow(int index)
     {
-        if (index < 0 || index > 2)
+        if (index == 0)
         {
-            return false;
+            return Mouse.current.leftButton.wasPressedThisFrame;
         }
-
-        return Mouse.current.IsPressed(index);
+        else if (index == 1)
+        {
+            return Mouse.current.rightButton.wasPressedThisFrame;
+        }
+        else if (index == 2)
+        {
+            return Mouse.current.middleButton.wasPressedThisFrame;
+        }
+        return false;
     }
 
     public bool MouseIsDown(int index)
     {
-        if (index < 0 || index > 2)
-        {
-            return false;
-        }
-
         if (index == 0)
         {
             return Mouse.current.leftButton.isPressed;
@@ -151,9 +153,11 @@ public class InputService : IInputService
         {
             return Mouse.current.rightButton.isPressed;
         }
+        else if (index == 2)
         {
-            return false;
+            return Mouse.current.middleButton.isPressed;
         }
+        return false;
     }
 
     public Vector3 MousePosition()
@@ -274,8 +278,15 @@ public class InputService : IInputService
     float hitObjectDistance = 0;
     GameObject playerObject = null;
     float errorDistance = 1000000;
+    int clicks = 0;
     private void GetMapMouseHit()
     {
+
+        if (MouseClickNow(1))
+        {
+            clicks++;
+
+        }
         if (mainCam == null)
         {
             if (_cameraController == null)

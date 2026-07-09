@@ -2,13 +2,12 @@ using OxDb.SharedGame.SpellCrafting.Messages;
 using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.SpellCrafting
 {
     public class OnCraftSpellHandler : BaseClientMapMessageHandler<OnCraftSpell>
     {
-        protected override async Awaitable InnerProcess(OnCraftSpell msg, CancellationToken token)
+        protected override async ValueTask InnerProcess(OnCraftSpell msg, CancellationToken token)
         {
 
             _gs.ch.Get<SpellData>().Remove(msg.CraftedSpell.IdKey);

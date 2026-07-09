@@ -4,35 +4,28 @@
   "IdKey": 211,
   "Name": "Flamestrike",
   "Desc": "Hit all enemies in a group with fire damage.",
-  "PowerCost": 10.0,
-  "PowerPerLevel": 2.0,
-  "StatBonusScaling": 1.5,
+  "BaseCost": 8.0,
+  "TierCost": 4.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 3,
   "RoleScalingTypeId": 3,
-  "RoleScalingTier": 2,
-  "PointCost": 3,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 2,
   "Effects": [
     {
       "EntityTypeId": 33,
       "EntityId": 3,
-      "MinQuantity": 4,
-      "MaxQuantity": 19,
       "ElementTypeId": 2,
-      "Chance": 1.0
+      "WeaponDamageScale": 0.5,
+      "StatBonusDamageScale": 1.25,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1416
+    ]
+  },
   "ItemEnchantWeight": 0.2
 }

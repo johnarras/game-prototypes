@@ -44,11 +44,11 @@ namespace Assets.Scripts.Lockstep.Actors.Systems
                 }
 
                 // 2. Convert FixedPoint to Float
-                // We map Sim-X to World-X and Sim-Y to World-Z (standard top-down)
+                // We map Sim-X to World-X and Sim-Z to World-Z (standard top-down)
                 float3 visualPos = new float3(
                     (float)simPos.Pos.X,
                     0.0f, // Height is 0 for now
-                    (float)simPos.Pos.Y
+                    (float)simPos.Pos.Z
                 );
 
                 // 3. Update the matrix Unity uses for rendering

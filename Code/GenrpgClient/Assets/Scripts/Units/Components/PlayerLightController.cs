@@ -1,12 +1,10 @@
-
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Buffs.Constants;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
@@ -20,7 +18,6 @@ namespace Assets.Scripts.Controllers
         private ICrawlerService _crawlerService = null;
         private ICrawlerWorldService _crawlerWorldService = null;
         private IClientConfigContainer _configContainer = null;
-        protected IClientRandom _rand = null;
 
         public float Range = 75;
 
@@ -88,7 +85,7 @@ namespace Assets.Scripts.Controllers
 
             if (_currIntensity != _targetIntensity)
             {
-                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, RandUtils.FloatRange(0, IntensityDelta * 2, _rand.Rand));
+                _currIntensity = _modTextureService.MoveCurrFloatToTarget(_currIntensity, _targetIntensity, RandUtils.FloatRange(0, IntensityDelta * 2, _gs.Rand));
             }
 
             if (_currIntensity == _targetIntensity)
@@ -97,8 +94,8 @@ namespace Assets.Scripts.Controllers
 
                 if (_stableTicksLeft <= 0)
                 {
-                    _targetIntensity = RandUtils.FloatRange(MaxIntensity * 3 / 4, MaxIntensity, _rand.Rand);
-                    _stableTicksLeft = RandUtils.IntRange(0, _maxStableTicks, _rand.Rand);
+                    _targetIntensity = RandUtils.FloatRange(MaxIntensity * 3 / 4, MaxIntensity, _gs.Rand);
+                    _stableTicksLeft = RandUtils.IntRange(0, _maxStableTicks, _gs.Rand);
                 }
             }
 

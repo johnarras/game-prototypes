@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OxDb.SharedGame.DataStores.Categories.PlayerData.Units
 {
-    public interface ITopLevelUnitData : IUnitData, IVersionedData
+    public interface ITopLevelUnitData : IUnitData
     {
         List<IUnitData> GetChildren();
     }

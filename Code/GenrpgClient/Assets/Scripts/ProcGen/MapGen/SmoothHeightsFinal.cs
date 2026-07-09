@@ -23,19 +23,19 @@ public class SmoothHeightsFinal : BaseZoneGenerator
 
         for (int x = 0; x < hwid; x++)
         {
-            for (int y = 0; y < hhgt; y++)
+            for (int z = 0; z < hhgt; z++)
             {
-                heights2[x, y] = _md.Heights[x, y];
+                heights2[x, z] = _md.Heights[x, z];
             }
         }
 
 
         for (int x = 0; x < hwid; x++)
         {
-            for (int y = 0; y < hhgt; y++)
+            for (int z = 0; z < hhgt; z++)
             {
                 int currRadius = minRadius;
-                int numRoadCellsChecked = 0;
+                int numLineCellsChecked = 0;
                 float totalRoadPercent = 0;
                 float currSmoothingScale = smoothScale;
                 float otherZoneDist = 10000;
@@ -48,20 +48,20 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                         continue;
                     }
 
-                    for (int yy = y - checkRadius; yy <= y + checkRadius; yy++)
+                    for (int zz = z - checkRadius; zz <= z + checkRadius; zz++)
                     {
-                        if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                        if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
-                        numRoadCellsChecked++;
-                        totalRoadPercent += _md.Alphas[xx, yy, TerrainTexChannels.Road];
-                        if (_md.MapZoneIds[xx, yy] != _md.MapZoneIds[x, y])
+                        numLineCellsChecked++;
+                        totalRoadPercent += _md.Alphas[xx, zz, TerrainTexChannels.Road];
+                        if (_md.MapZoneIds[xx, zz] != _md.MapZoneIds[x, z])
                         {
                             float dx = xx - x;
-                            float dy = yy - y;
+                            float dz = zz - z;
 
-                            float dist = (float)Math.Sqrt(dx * dx + dy * dy);
+                            float dist = (float)Math.Sqrt(dx * dx + dz * dz);
                             if (dist < otherZoneDist)
                             {
                                 otherZoneDist = dist;
@@ -74,7 +74,7 @@ public class SmoothHeightsFinal : BaseZoneGenerator
 
                 if (_md.BridgeDistances != null)
                 {
-                    bridgeDist = _md.BridgeDistances[x, y];
+                    bridgeDist = _md.BridgeDistances[x, z];
                 }
 
                 float bridgeScale = 1.0f;
@@ -87,10 +87,9 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                     currSmoothingScale *= bridgeScale;
                 }
 
-
                 if (totalRoadPercent > 0 && false)
                 {
-                    float adjustedRoadPercent = Math.Min(1, 1.5f * totalRoadPercent / numRoadCellsChecked);
+                    float adjustedRoadPercent = Math.Min(1, 1.5f * totalRoadPercent / numLineCellsChecked);
                     currSmoothingScale *= (1 - adjustedRoadPercent);
                 }
 
@@ -108,10 +107,8 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                     }
                 }
 
-
                 float totalWeight = 0;
                 float totalVal = 0;
-
 
                 for (int xx = x - currRadius; xx <= x + currRadius; xx++)
                 {
@@ -121,27 +118,22 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                     }
 
                     float dx = Math.Abs(xx - x);
-                    for (int yy = y - currRadius; yy <= y + currRadius; yy++)
+                    for (int zz = z - currRadius; zz <= z + currRadius; zz++)
                     {
-                        if (yy < 0 || yy >= _mapProvider.GetMap().GetHhgt())
+                        if (zz < 0 || zz >= _mapProvider.GetMap().GetHhgt())
                         {
                             continue;
                         }
 
+                        float dz = Math.Abs(zz - z);
 
-                        float dy = Math.Abs(yy - y);
-
-                        float totalOffset = dx + dy;
+                        float totalOffset = dx + dz;
 
                         float currweight = 1;
                         currweight = (float)Math.Pow(currSmoothingScale, totalOffset);
 
-
-
-
-                        totalVal += _md.Heights[xx, yy] * currweight;
+                        totalVal += _md.Heights[xx, zz] * currweight;
                         totalWeight += currweight;
-
                     }
                 }
 
@@ -150,7 +142,7 @@ public class SmoothHeightsFinal : BaseZoneGenerator
                     continue;
                 }
 
-                heights2[x, y] = totalVal / totalWeight;
+                heights2[x, z] = totalVal / totalWeight;
             }
 
         }

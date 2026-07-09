@@ -1,9 +1,8 @@
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Maps.Services.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Party.Services;
@@ -25,7 +24,6 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
         protected IDispatcher _dispatcher = null;
-        protected IClientRandom _rand = null;
         protected ICrawlerStatService _crawlerStatService = null;
         protected IPartyService _partyService = null;
         protected ILogService _logService = null;

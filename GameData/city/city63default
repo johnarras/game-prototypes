@@ -9,7 +9,7 @@
   "AncientName": "Eburacum",
   "Population": 25000,
   "MapPixelX": 1140,
-  "MapPixelY": 1637,
+  "MapPixelZ": 1637,
   "BiomeTypeId": 11,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 44
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

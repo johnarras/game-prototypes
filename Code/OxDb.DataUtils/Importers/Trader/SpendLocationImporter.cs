@@ -7,7 +7,7 @@ namespace OxDb.DataUtils.Importers.Trader
 {
     public class SpendLocationImporter : ParentChildImporter<SpendLocationSettings, SpendLocation>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, SpendLocation current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, SpendLocationSettings settings, SpendLocation current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
             if (current == null)
             {

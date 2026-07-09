@@ -32,8 +32,6 @@ namespace OxDb.MapServer.MapMessaging.Entities
 
         private DateTime _startTime = DateTime.UtcNow;
 
-        protected MyRandom _rand = new MyRandom();
-
         public MapMessageQueue(DateTime startTime, int queueIndex, ILogService logService, IMapMessageService mapMessageService, ITaskService taskService, CancellationToken token)
         {
             _token = token;
@@ -87,7 +85,6 @@ namespace OxDb.MapServer.MapMessaging.Entities
             package.MapObject = mapObject;
             package.Handler = handler;
             package.delaySeconds = delaySeconds;
-            package.Rand = _rand;
 
             if (package.delaySeconds <= 0)
             {
@@ -112,24 +109,28 @@ namespace OxDb.MapServer.MapMessaging.Entities
 
                     while (true)
                     {
-                        DateTime tickStartTime = DateTime.UtcNow;
+                        // FIX 1: Capture a stable snapshot of the time at the start of this processing cycle
+                        DateTime loopSnapshotTime = DateTime.UtcNow;
+
                         while (_delayedQueue.TryDequeue(out MapMessagePackage item))
                         {
                             DateTime nextExecuteTime = item.Message.GetLastExecuteTime().AddSeconds(item.delaySeconds);
-                            double messageTimeDiff = Math.Max(0, (nextExecuteTime - DateTime.UtcNow).TotalSeconds);
-                            int messageTimeTicks = (int)(messageTimeDiff /= MessageConstants.DelayedMessageTimeGranularity);
+
+                            // FIX 2: Compare against our stable snapshot time, not the mutating "UtcNow"
+                            double messageTimeDiff = Math.Max(0, (nextExecuteTime - loopSnapshotTime).TotalSeconds);
+                            int messageTimeTicks = (int)(messageTimeDiff / MessageConstants.DelayedMessageTimeGranularity);
+
                             int offset = MathUtil.Clamp(1, messageTimeTicks, DelayedMessageBufferSize - 1);
                             int index = (currentTick + offset) % DelayedMessageBufferSize;
                             item.Message.SetLastExecuteTime(nextExecuteTime);
                             _delayedMessages[index].Add(item);
                         }
 
-                        // Find the new tick based on the time elapsed from start of game.
-                        int newTick = (int)((DateTime.UtcNow - _startTime).TotalSeconds / MessageConstants.DelayedMessageTimeGranularity);
+                        // FIX 3: Calculate the new tick target using the exact same snapshot time
+                        int newTick = (int)((loopSnapshotTime - _startTime).TotalSeconds / MessageConstants.DelayedMessageTimeGranularity);
 
                         for (int i = currentTick + 1; i <= newTick; i++)
                         {
-                            // For each tick in between currentTick and newTick, pull all messages into the main queue.
                             int idx = i % DelayedMessageBufferSize;
                             List<MapMessagePackage> newMessages = _delayedMessages[idx];
                             _delayedMessages[idx] = new List<MapMessagePackage>();
@@ -138,7 +139,7 @@ namespace OxDb.MapServer.MapMessaging.Entities
                                 _currentQueue.Enqueue(package);
                             }
                         }
-                        // Update the current tick as far as we need to go.
+
                         currentTick = newTick;
 
                         await timer.WaitForNextTickAsync(_token).ConfigureAwait(false);
@@ -154,6 +155,8 @@ namespace OxDb.MapServer.MapMessaging.Entities
                 _logService.Exception(e, "MessageQueueDelay");
             }
         }
+
+
         protected async Task ProcessQueue(CancellationToken token)
         {
             try

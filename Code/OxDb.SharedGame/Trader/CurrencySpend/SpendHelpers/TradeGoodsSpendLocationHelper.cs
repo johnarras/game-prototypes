@@ -20,7 +20,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
     {
         public override long HelperKey => SpendLocations.TradeGoods;
 
-        public override async Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
+        public override async ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
         {
             List<SpendType> validSpendTypes = new List<SpendType>();
 
@@ -37,7 +37,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
 
             IReadOnlyList<TradeGood> allTradeGoods = tradeGoodSettings.GetData();
 
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(lookup);
 
             City city = pos.GetCurrentCity();
 
@@ -70,7 +70,6 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
             }
 
             fullSpendLoc.IsValid = true;
-
 
             foreach (CityTradeGood cityTradeGood in tradeGoods)
             {

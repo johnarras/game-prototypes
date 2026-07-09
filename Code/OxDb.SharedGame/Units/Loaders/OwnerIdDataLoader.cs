@@ -3,6 +3,7 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.ParentChild;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Units.Loaders
 {
@@ -21,7 +22,7 @@ namespace OxDb.SharedGame.Units.Loaders
             return new List<CreateIndexData> { cid };
         }
 
-        public override async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public override async Task Initialize(CancellationToken token)
         {
             await base.Initialize(token);
         }

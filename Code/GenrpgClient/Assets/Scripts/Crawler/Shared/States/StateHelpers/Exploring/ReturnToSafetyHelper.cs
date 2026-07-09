@@ -17,7 +17,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
         private ITextSerializer _serializer;
         public override ECrawlerStates HelperKey => ECrawlerStates.ReturnToSafety;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -73,7 +73,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
                         ReturnToSafety = true,
                     };
 
-                    stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ExploreWorld,
+                    stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Z, ECrawlerStates.ExploreWorld,
                         () =>
                         {
                             party.RecallPos = _serializer.MakeCopy(party.CurrPos);

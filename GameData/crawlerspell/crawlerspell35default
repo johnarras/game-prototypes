@@ -4,38 +4,25 @@
   "IdKey": 35,
   "Name": "Beacon",
   "Desc": "Set a beacon or return to a location.",
-  "PowerCost": 1.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 8,
-  "RoleScalingTypeId": 6,
-  "RoleScalingTier": 5,
-  "PointCost": 5,
+  "RoleScalingTypeId": 8,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 5,
   "Effects": [
     {
       "EntityTypeId": 37,
       "EntityId": 9,
-      "ElementTypeId": 9,
-      "Chance": 1.0
+      "ElementTypeId": 5,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1416
+    ]
+  },
   "ItemEnchantWeight": 0.1
 }

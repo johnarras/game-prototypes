@@ -19,7 +19,7 @@ namespace OxDb.SharedGame.Attributes.PlayerData
     [MessagePackObject]
     public class AttributesData : UniquePersonalUserData, IUserData
     {
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.Attributes; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.Attributes; }
 
         public override PersonalDataAccumulation GetAccumulation()
         {

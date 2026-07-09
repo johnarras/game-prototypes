@@ -1,6 +1,6 @@
-using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
-using OxDb.RequestServer.ClientUserRequests.Services;
 using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
+using OxDb.RequestServer.GameClientRequests.Services;
 using OxDb.ServerCore.CloudComms.PubSub.Topics.Admin.Messages;
 using OxDb.ServerCore.CloudComms.Services;
 using OxDb.ServerCore.DataStores.Services;

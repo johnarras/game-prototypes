@@ -92,7 +92,10 @@ namespace OxDb.SharedCore.Entities.Constants
         public const long BonusTravelDayCurrency = 84;
         public const long TravelDayCurrencyBuff = 85;
 
-
+        public const long AdUnit = 86;
+        public const long RoomEdge = 87;
+        public const long Bush = 88;
+         
 
         public const long Rock = 97;
         public const long Water = 98;

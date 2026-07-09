@@ -13,7 +13,7 @@ namespace OxDb.MapServer.Spellcrafting.MessageHandlers
     {
         private ISharedSpellCraftService _spellCraftService = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, CraftSpell message)
+        protected override async ValueTask InnerProcess(Character ch, CraftSpell message)
         {
             Spell startSpell = message.CraftedSpell;
 

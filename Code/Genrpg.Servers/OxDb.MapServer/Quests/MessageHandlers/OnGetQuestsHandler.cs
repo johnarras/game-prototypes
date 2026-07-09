@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Quests.MessageHandlers
 {
     public class OnGetQuestsHandler : BaseCharacterServerMapMessageHandler<OnGetQuests>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, OnGetQuests message)
+        protected override async ValueTask InnerProcess(Character ch, OnGetQuests message)
         {
             await Task.CompletedTask;
             ch.AddMessage(message);

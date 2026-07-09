@@ -1,13 +1,12 @@
+using OxDb.SharedCore.Utils;
+
 namespace OxDb.SharedGame.Zones.Settings
 {
-    public class ZoneBridgeType
+    public class ZoneBridgeType : IWeightedItem
     {
         public long BridgeTypeId { get; set; }
-        public int Chance { get; set; }
         public string Name { get; set; }
-        public ZoneBridgeType()
-        {
-        }
+        public double Weight { get; set; }
     }
 }
 

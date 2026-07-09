@@ -39,7 +39,7 @@ namespace OxDb.SharedGame.Trader.Cities.Settings
         public string AncientName { get; set; }
         public long Population { get; set; }
         public int MapPixelX { get; set; }
-        public int MapPixelY { get; set; }
+        public int MapPixelZ { get; set; }
         public long BiomeTypeId { get; set; }
         public long CultureTypeId { get; set; }
 

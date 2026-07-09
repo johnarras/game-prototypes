@@ -8,9 +8,9 @@ namespace OxDb.MapServer.Spawns.MessageHandlers
 {
     public class RespawnObjectHandler : BaseMapObjectServerMapMessageHandler<RespawnObject>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, RespawnObject message)
+        protected override async ValueTask InnerProcess(MapObject obj, RespawnObject message)
         {
-            _objectManager.SpawnObject(rand.Rand, message.Spawn);
+            _objectManager.SpawnObject(obj.Rand, message.Spawn);
         }
     }
 }

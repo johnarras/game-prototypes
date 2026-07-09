@@ -2,8 +2,10 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Buildings.Constants;
 using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Inventory.Entities;
 using OxDb.SharedGame.Units.Entities;
 using OxDb.SharedGame.Zones.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,7 +22,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         public const int Max = 6;
     }
 
-    public class CrawlerMap : IStringId, IIdName
+    public class CrawlerMap : IStringId, IIdName, IComponentGrid
     {
         public string Id { get; set; }
         public long IdKey { get; set; }
@@ -92,6 +94,55 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
             return Get(x, z, CellIndex.EntityId);
         }
 
+        public bool HasCell(int x, int z)
+        {
+            if (x < 0 || x >= Width || z < 0  || z >= Height)
+            {
+                return false;
+            }
+            return Get(x, z, CellIndex.Terrain) > 0;
+        }
+
+        public bool IsConnectedTo(int x, int z, int nx, int nz)
+        {
+            if (!HasCell(x,z) || !HasCell(nx,nz))
+            {
+                return false;
+            }
+
+            int dx = nx - x;
+            int dz = nz - z;
+
+            if (Math.Abs(dx) + Math.Abs(dz) != 1)
+            {
+                return false;
+            }
+
+            int blockingBits = 0;
+            if (dx == 1)
+            {
+                blockingBits = EastWall(x, z);
+            }
+            else if (dz == 1)
+            {
+                blockingBits = NorthWall(x, z);
+            }
+            else if (dx == -1)
+            {
+                blockingBits = EastWall(nx,nz);
+            }
+            else if (dz == -1)
+            {
+                blockingBits = NorthWall(nx, nz);
+            }
+            else
+            {
+                return false;
+            }
+
+            return !WallTypes.IsBlockingType(blockingBits);
+        }
+
         public void SetEntity(int x, int z, long entityTypeId, long entityId)
         {
             if (entityTypeId == 0 || entityId == 0)
@@ -155,14 +206,78 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
             return Name;
         }
 
-        public byte EastWall(int x, int y)
+        public void SetDirWallBits(int x, int z, EMapDirs dir, long value)
         {
-            return (byte)((Get(x, y, CellIndex.Walls) >> MapWallBits.EWallStart) % (1 << MapWallBits.WallBitSize));
+            // West or south, move appropriately and set it there.
+            if (dir == EMapDirs.West || dir == EMapDirs.South)
+            {
+                MapDir md = MapDirUtils.GetDir(dir);
+                SetDirWallBits(x + md.DX, z + md.DZ, md.OppDir, value);
+                return;
+            }
+
+            // Dir must be north or east.
+
+            // Clamp
+            if (HasFlag(CrawlerMapFlags.IsLooping))
+            {
+                if (x < 0)
+                {
+                    x = Width - 1;
+                }
+                if (x >= Width)
+                {
+                    x = 0;
+                }
+                if (z < 0)
+                {
+                    z = Height - 1;
+                }
+                if (z >= Height)
+                {
+                    z = 0;
+                }
+            }
+
+            if (x < 0 || z < 0 || x >= Width || z >= Height)
+            {
+                return;
+            }
+
+            int currBits = Get(x, z, CellIndex.Walls);
+
+            int bitMask = 0;
+
+            int bitOffset = 0;
+
+            if (dir == EMapDirs.North)
+            {
+                bitOffset = MapWallBits.NWallStart;
+                bitMask = MapWallBits.NWallBitMask;
+
+            }
+            else if (dir == EMapDirs.East)
+            {
+                bitOffset = MapWallBits.EWallStart;
+                bitMask = MapWallBits.EWallBitMask;
+            }
+
+            currBits &= ~bitMask;
+
+            currBits |= ((int)value << bitOffset);
+
+            Set(x, z, CellIndex.Walls, currBits);
         }
 
-        public byte NorthWall(int x, int y)
+
+        public byte EastWall(int x, int z)
         {
-            return (byte)((Get(x, y, CellIndex.Walls) >> MapWallBits.NWallStart) % (1 << MapWallBits.WallBitSize));
+            return (byte)(((Get(x, z, CellIndex.Walls) >> MapWallBits.EWallStart)) & MapWallBits.WallBitMask);
+        }
+
+        public byte NorthWall(int x, int z)
+        {
+            return (byte)(((Get(x, z, CellIndex.Walls) >> MapWallBits.NWallStart) & MapWallBits.WallBitMask));
         }
 
         public bool EntranceRiddleRequired()

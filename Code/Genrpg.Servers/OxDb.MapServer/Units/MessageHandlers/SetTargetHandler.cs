@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Units.MessageHandlers
 {
     public class SetTargetHandler : BaseUnitServerMapMessageHandler<SetTarget>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, SetTarget message)
+        protected override async ValueTask InnerProcess(Unit unit, SetTarget message)
         {
 
             string targetId = null;

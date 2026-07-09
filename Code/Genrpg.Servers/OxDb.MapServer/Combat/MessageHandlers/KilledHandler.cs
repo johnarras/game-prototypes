@@ -19,9 +19,9 @@ namespace OxDb.MapServer.Combat.MessageHandlers
         private IRpgLevelService _levelService = null;
         private IMapProvider _mapProvider = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, Killed message)
+        protected override async ValueTask InnerProcess(Unit unit, Killed message)
         {
-            _aiService.EndCombat(rand.Rand, unit, message.UnitId, false);
+            _aiService.EndCombat(unit, message.UnitId, false);
             if (unit is Character ch)
             {
                 Zone zone = _mapProvider.GetMap().Get<Zone>(message.ZoneId);
@@ -32,7 +32,7 @@ namespace OxDb.MapServer.Combat.MessageHandlers
                     if (level != null)
                     {
                         await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Exp, level.MobExp, RewardSources.Kill, null, 0, null);
-                        await _levelService.UpdateLevel(rand.Rand, ch);
+                        await _levelService.UpdateLevel(ch);
                     }
                 }
             }

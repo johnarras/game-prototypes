@@ -87,7 +87,7 @@ public class PlayerController : UnitController
                 Vector3 diff = pos - lastSendPos;
 
                 _unit.X = pos.x;
-                _unit.Y = pos.y;
+                _unit.Z = pos.y;
                 _unit.Z = pos.z;
                 int keysDown = GetKeysDown();
                 if ((((diff.magnitude >= PlayerUpdateMaxDistance) || oldRot != _unit.Rot) &&

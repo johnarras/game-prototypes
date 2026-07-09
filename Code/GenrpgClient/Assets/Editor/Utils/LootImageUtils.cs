@@ -83,7 +83,7 @@ namespace Assets.Editor.Utils
             Debug.Log("PORTRAITCOUNT: " + portraitCount);
         }
 
-        [MenuItem("Tools/Create Portrait Prefabs")]
+        [MenuItem("Tools/Create Loot Images")]
         public static void SetupPrefabs()
         {
             IClientGameState gs = EditorGameDataUtils.GetEditorGameState();

@@ -4,6 +4,7 @@
   "IdKey": 70,
   "Name": "Hit",
   "Desc": "Chance to Hit",
+  "Icon": "Hit",
   "GenScalePct": 100,
   "IsCrawlerStat": true
 }

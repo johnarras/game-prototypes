@@ -9,7 +9,7 @@
   "AncientName": "Chang'an",
   "Population": 1000000,
   "MapPixelX": 6176,
-  "MapPixelY": 2537,
+  "MapPixelZ": 2537,
   "BiomeTypeId": 10,
   "CultureTypeId": 9,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 71
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 12
+    }
+  ]
 }

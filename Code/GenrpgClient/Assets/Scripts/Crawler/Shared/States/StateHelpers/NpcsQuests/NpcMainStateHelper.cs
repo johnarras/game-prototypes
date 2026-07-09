@@ -27,7 +27,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.NpcsQuests
         public override long TriggerBuildingId() { return BuildingTypes.Npc; }
         public override long TriggerDetailEntityTypeId() { return EntityTypes.Npc; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

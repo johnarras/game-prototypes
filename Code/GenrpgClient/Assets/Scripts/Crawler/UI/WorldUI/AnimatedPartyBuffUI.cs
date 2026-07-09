@@ -1,17 +1,29 @@
 using Assets.Scripts.Assets.Textures;
+using OxDb.SharedGame.Crawler.Buffs.Settings;
 
 namespace Assets.Scripts.Crawler.UI.WorldUI
 {
     public class AnimatedPartyBuffUI : PartyBuffUI
     {
-        public string ImageName;
         public AnimatedSprite Sprite;
 
         public override void Init()
         {
             base.Init();
 
-            Sprite.SetImage(ImageName);
+
+            string imageName = "";
+            if (string.IsNullOrEmpty(imageName))
+            {
+                PartyBuff buff = _gameData.Get<PartyBuffSettings>(_gs.ch).Get(PartyBuffId);
+
+                if (buff != null)
+                {
+                    imageName = buff.Icon;
+                }
+            }
+
+            Sprite.SetImage(imageName);
             Sprite.FramesBetweenSequenceStep = (int)UpdateTicks;
         }
     }

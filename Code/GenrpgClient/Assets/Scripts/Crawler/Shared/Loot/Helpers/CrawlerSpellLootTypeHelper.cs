@@ -21,9 +21,9 @@ namespace OxDb.SharedGame.Crawler.Loot.Helpers
 
             long effectLevel = (long)(1 + (args.Level * lootType.ScalingPerLevel));
 
-            List<CrawlerSpell> okSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x => x.RoleScalingTier <= effectLevel).ToList();
+            List<CrawlerSpell> okSpells = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().Where(x => x.UnlockTier <= effectLevel).ToList();
 
-            CrawlerSpell spell = RandUtils.GetRandomEnchant(okSpells, _rand.Rand);
+            CrawlerSpell spell = RandUtils.GetRandomEnchant(okSpells, _gs.Rand);
 
             if (spell != null && lootType != null)
             {

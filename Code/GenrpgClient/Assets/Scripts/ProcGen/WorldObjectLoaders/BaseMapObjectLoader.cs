@@ -45,7 +45,7 @@ public abstract class BaseCrawlerMapObjectLoader : ICrawlerMapObjectLoader
         {
             return;
         }
-        Terrain terrain = patchData.terrain as Terrain;
+        Terrain terrain = patchData.Core.Terrain;
         if (terrain != null)
         {
             _clientEntityService.AddToParent(go, terrain.gameObject);

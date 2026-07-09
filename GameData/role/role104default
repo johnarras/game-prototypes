@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 104,
   "Name": "Gnome",
-  "Desc": "More Spell Dam",
+  "Desc": "They are more attuned to destructive magic than anyone else.",
   "Abbrev": "Gn",
   "RoleCategoryId": 2,
   "StartSkillPoints": 1,
@@ -18,11 +18,6 @@
     {
       "EntityTypeId": 43,
       "EntityId": 12,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 13,
       "Amount": 1.0
     }
   ]

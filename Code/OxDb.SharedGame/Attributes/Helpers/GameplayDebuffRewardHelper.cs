@@ -13,11 +13,11 @@ namespace OxDb.SharedGame.Attributes.Helpers
         private IAttributeService _attributeService = null;
         public long HelperKey => EntityTypes.GameplayDebuff;
 
-        public async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
             return await _attributeService.GetDebuffDays(context, entityId);
         }
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
 
             await _attributeService.AddDebuff(context, entityId, quantity);

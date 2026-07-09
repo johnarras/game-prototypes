@@ -6,7 +6,7 @@ namespace OxDb.DataUtils.Importers.Gameplay
 {
     public class GameplayStatImporter : ParentChildImporter<GameplayStatSettings, GameplayStat>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, GameplayStat current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, GameplayStatSettings settings, GameplayStat current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

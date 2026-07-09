@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 102,
   "Name": "Dwarf",
-  "Desc": "More health",
+  "Desc": "They are harder to kill than anyone else.",
   "Abbrev": "Dw",
   "RoleCategoryId": 2,
   "HealthPerLevel": 5,
@@ -11,11 +11,6 @@
   "StartUpgradePoints": 1,
   "BinaryBonuses": [],
   "AmountBonuses": [
-    {
-      "EntityTypeId": 43,
-      "EntityId": 13,
-      "Amount": 1.0
-    },
     {
       "EntityTypeId": 43,
       "EntityId": 15,

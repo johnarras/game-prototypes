@@ -7,6 +7,6 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
 {
     public interface ISpendLocationHelper : ISetupDictionaryItem<long>
     {
-        Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity);
+        ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity);
     }
 }

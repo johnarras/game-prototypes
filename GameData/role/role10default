@@ -2,50 +2,44 @@
   "Id": "role10default",
   "ParentId": "default",
   "IdKey": 10,
-  "Name": "Paladin",
-  "Desc": "Tanky Heals",
-  "Abbrev": "Pa",
+  "Name": "Sage",
+  "Desc": "A master of all forms of magic.",
+  "Abbrev": "Sa",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 20,
-  "ManaPerLevel": 18,
-  "MaxArmorScalingTypeId": 4,
-  "CritPercent": 1,
-  "Guardian": true,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "HealthPerLevel": 7,
+  "ManaPerLevel": 11,
+  "MaxArmorScalingTypeId": 3,
+  "TrainingXpScale": 1.6,
+  "TrainingGoldScale": 1.6,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
     {
       "EntityTypeId": 2,
       "EntityId": 21
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 22
+      "EntityId": 24
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 23
+      "EntityId": 29
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 25
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 26
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 27
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 31
-    },
-    {
-      "EntityTypeId": 31,
       "EntityId": 31
     },
     {
@@ -62,10 +56,6 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 4
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 20
     },
     {
@@ -74,7 +64,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 23
+      "EntityId": 24
     },
     {
       "EntityTypeId": 100,
@@ -82,7 +72,23 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 60
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 33
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 34
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 35
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 39
     },
     {
       "EntityTypeId": 100,
@@ -90,7 +96,11 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 84
+      "EntityId": 82
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
     },
     {
       "EntityTypeId": 100,
@@ -106,11 +116,7 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 89
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 91
+      "EntityId": 92
     },
     {
       "EntityTypeId": 100,
@@ -118,7 +124,19 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 139
+      "EntityId": 100
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 102
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 104
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 105
     },
     {
       "EntityTypeId": 100,
@@ -130,34 +148,58 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 10031
+      "EntityId": 203
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 211
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 213
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 221
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 223
     }
   ],
   "AmountBonuses": [
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.15
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 2,
-      "Amount": 0.05
+      "Amount": 0.1
     },
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.1
+      "Amount": 0.25
     },
     {
       "EntityTypeId": 41,
       "EntityId": 4,
-      "Amount": 0.15
+      "Amount": 0.25
     },
     {
       "EntityTypeId": 41,
       "EntityId": 5,
-      "Amount": 0.1
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
@@ -166,27 +208,17 @@
     },
     {
       "EntityTypeId": 41,
-      "EntityId": 7,
-      "Amount": 0.2
+      "EntityId": 8,
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 11,
+      "EntityId": 12,
       "Amount": 1.0
     },
     {
       "EntityTypeId": 43,
       "EntityId": 13,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 15,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 17,
       "Amount": 1.0
     }
   ]

@@ -6,11 +6,11 @@ namespace Assets.Scripts.ProcGen.Materials
     {
         public int Index { get; set; }
         public int X { get; set; }
-        public int Y { get; set; }
+        public int Z { get; set; }
 
         public int OrigX { get; set; }
 
-        public int OrigY { get; set; }
+        public int OrigZ { get; set; }
 
         public int LeftIndex { get; set; }
         public int UpIndex { get; set; }
@@ -26,12 +26,12 @@ namespace Assets.Scripts.ProcGen.Materials
 
         public bool IsUpReplace { get; set; }
 
-        public CornerPoint(int x, int y)
+        public CornerPoint(int x, int z)
         {
             OrigX = x;
-            OrigY = y;
+            OrigZ = z;
             X = x;
-            Y = y;
+            Z = z;
         }
 
         public string PrintData()
@@ -39,8 +39,8 @@ namespace Assets.Scripts.ProcGen.Materials
             StringBuilder sb = new StringBuilder();
 
             sb.Append("Corner: " + Index);
-            sb.Append(" Orig: (" + OrigX + "," + OrigY + ")");
-            sb.Append(" Curr: (" + X + "," + Y + ")");
+            sb.Append(" Orig: (" + OrigX + "," + OrigZ + ")");
+            sb.Append(" Curr: (" + X + "," + Z + ")");
             sb.Append(" Up: " + UpIndex);
             sb.Append(" Down: " + DownIndex);
             sb.Append(" Left: " + LeftIndex);

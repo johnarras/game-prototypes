@@ -1,0 +1,18 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "TraderCamping",
+      "Icon": "TraderCamping",
+      "Art": "TraderCamping",
+      "RegenHours": 2.0,
+      "Rewards": []
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "Name": "AdUnitSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-06-17T22:17:35.934Z"
+}

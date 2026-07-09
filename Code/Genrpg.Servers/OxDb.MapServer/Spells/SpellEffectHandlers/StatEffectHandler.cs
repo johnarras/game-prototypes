@@ -1,5 +1,6 @@
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Spells.Constants;
 using OxDb.SharedGame.Spells.Messages;
 using OxDb.SharedGame.Spells.Procs.Entities;
@@ -15,7 +16,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
         public override bool IsModifyStatEffect() { return true; }
         public override bool UseStatScaling() { return true; }
 
-        public override List<ActiveSpellEffect> CreateEffects(IRandom rand, SpellHit hitData)
+        public override List<ActiveSpellEffect> CreateEffects(MapObject obj, SpellHit hitData)
         {
 
             List<ActiveSpellEffect> retval = new List<ActiveSpellEffect>();
@@ -41,7 +42,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
             foreach (SpellProc proc in list)
             {
 
-                if (rand.NextDouble() > proc.Chance)
+                if (obj.Rand.NextDouble() > proc.Chance)
                 {
                     continue;
                 }
@@ -49,13 +50,13 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
                 ActiveSpellEffect eff = new ActiveSpellEffect(hitData);
                 eff.EntityTypeId = EntityTypes.Stat;
                 eff.EntityId = proc.EntityId;
-                eff.Quantity = RandUtils.LongRange(proc.MinQuantity, proc.MaxQuantity, rand);
+                eff.Quantity = RandUtils.LongRange(proc.MinQuantity, proc.MaxQuantity, obj.Rand);
                 retval.Add(eff);
             }
             return retval;
         }
 
-        public override bool HandleEffect(IRandom rand, ActiveSpellEffect eff)
+        public override bool HandleEffect(MapObject obj, ActiveSpellEffect eff)
         {
             return true;
         }

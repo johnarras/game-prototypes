@@ -198,7 +198,7 @@ namespace OxDb.DataUtils.Services.EditorData
                 File.Delete(file);
             }
 
-            List<IGameSettings> allSettings = gs.data.AllSettings().Cast<IGameSettings>().ToList();
+            List<IGameSettings> allSettings = gs.data.AllSettings().OfType<IGameSettings>().ToList();
 
             DateTime saveTime = DateTime.UtcNow;
             foreach (ITopLevelSettings topLevel in allSettings)

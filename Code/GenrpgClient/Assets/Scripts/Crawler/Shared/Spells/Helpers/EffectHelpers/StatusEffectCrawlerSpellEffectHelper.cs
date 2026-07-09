@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
@@ -20,7 +19,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
     {
         public override long HelperKey => EntityTypes.StatusEffect;
 
-        public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
+        public override async ValueTask ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {
             IReadOnlyList<StatusEffect> allEffects = _gameData.Get<StatusEffectSettings>(null).GetData();
 
@@ -30,14 +29,14 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             }
 
 
-            if (fullEffect.Effect.MaxQuantity < 0)
+            if (fullEffect.Effect.WeaponDamageScale < 0)
             {
                 CrawlerCombatSettings combatSettings = _gameData.Get<CrawlerCombatSettings>(null);
 
-                double quantityFraction = 1 + Math.Abs(fullEffect.Effect.MaxQuantity * combatSettings.ExtraCureStatusEffectsRemovedPerTier);
+                double quantityFraction = 1 + Math.Abs(1 * combatSettings.ExtraCureStatusEffectsRemovedPerTier);
 
                 int finalQuantity = (int)quantityFraction;
-                if (_rand.Rand.NextDouble() < (quantityFraction - finalQuantity))
+                if (_gs.Rand.NextDouble() < (quantityFraction - finalQuantity))
                 {
                     finalQuantity++;
                 }
@@ -79,11 +78,11 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                             {
                                 if (fullEffect.Hit.MaxQuantity > currentEffect.MaxDuration)
                                 {
-                                    currentEffect.MaxDuration = fullEffect.Effect.MaxQuantity;
+                                    currentEffect.MaxDuration = (int)fullEffect.Effect.WeaponDamageScale / 10;
                                 }
                                 if (fullEffect.Hit.MaxQuantity > currentEffect.DurationLeft)
                                 {
-                                    currentEffect.DurationLeft = fullEffect.Effect.MaxQuantity;
+                                    currentEffect.DurationLeft = (int)fullEffect.Effect.StatBonusDamageScale / 10;
                                 }
                             }
                         }
@@ -91,8 +90,8 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                         {
                             DisplayEffect displayEffect = new DisplayEffect()
                             {
-                                MaxDuration = fullEffect.Effect.MaxQuantity,
-                                DurationLeft = fullEffect.Effect.MaxQuantity, // MaxQuantity == 0 means infinite
+                                MaxDuration = (int)fullEffect.Effect.WeaponDamageScale / 10,
+                                DurationLeft = (int)fullEffect.Effect.WeaponDamageScale / 10, // MaxQuantity == 0 means infinite
                                 EntityTypeId = EntityTypes.StatusEffect,
                                 EntityId = fullEffect.Effect.EntityId,
                             };

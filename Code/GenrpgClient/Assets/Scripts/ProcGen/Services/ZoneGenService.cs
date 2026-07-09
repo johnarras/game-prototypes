@@ -1,6 +1,5 @@
 using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.Setup.Interfaces;
 using OxDb.SharedCore.DataStores.Interfaces;
@@ -53,9 +52,7 @@ public interface IZoneGenService : IInitializable
     void SetAllHeightmaps(float[,] heights, CancellationToken token);
 
     void LoadMap(LoadIntoMapRequest loadData);
-    void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token);
 
-    void InitTerrainSettings(Terrain terr, int patchSize);
     Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token);
 
     string LoadedMapId { get; set; }
@@ -74,7 +71,6 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
-    protected IClientRandom _rand;
     protected IMapGenData _md;
     private IRealtimeNetworkService _realtimeNetworkService = null;
     private IMapTerrainManager _mapManager = null;
@@ -97,15 +93,6 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
     }
     public virtual void LoadMap(LoadIntoMapRequest loadData)
-    {
-
-    }
-    public virtual void InitTerrainSettings(int gx, int gy, int patchSize, CancellationToken token)
-    {
-
-    }
-
-    public virtual void InitTerrainSettings(Terrain terr, int patchSize)
     {
 
     }
@@ -256,7 +243,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
     /// <param name="gs">GameState</param>
     /// <param name="map">Map parent of zone</param>
     /// <param name="x">x pos of zone</param>
-    /// <param name="y">y pos of zone</param>
+    /// <param name="y">z pos of zone</param>
     /// <param name="zoneId">Id of new zone</param>
     /// <param name="zoneTypeId">Zone type of new zone</param>
     /// <param name="extraSeed">Extra MyRandom seed for this zone</param>
@@ -540,8 +527,6 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         // Copy Tree types to zone and perturb.
 
         List<ZoneTreeType> treeTypes = new List<ZoneTreeType>();
-        List<ZoneTreeType> bushTypes = new List<ZoneTreeType>();
-        List<ZoneTreeType> waterTypes = new List<ZoneTreeType>();
         foreach (ZoneTreeType ztt in zt.TreeTypes)
         {
             TreeType tt = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(ztt.TreeTypeId);
@@ -549,66 +534,77 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
             {
                 continue;
             }
+            treeTypes.Add(ztt);
+        }
 
-            if (tt.HasFlag(TreeFlags.IsWaterItem))
+        List<ZoneBushType> bushTypes = new List<ZoneBushType>();
+        List<ZoneBushType> waterTypes = new List<ZoneBushType>();
+        foreach (ZoneBushType zbt in zt.BushTypes)
+        {
+            BushType btype = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zbt.BushTypeId);
+            if (btype == null)
             {
-                waterTypes.Add(ztt);
+                continue;
             }
-            else if (tt.HasFlag(TreeFlags.IsBush))
+
+            if (btype.HasFlag(BushFlags.IsWaterItem))
             {
-                bushTypes.Add(ztt);
+                waterTypes.Add(zbt);
             }
             else
             {
-                treeTypes.Add(ztt);
+                bushTypes.Add(zbt);
             }
         }
 
-        for (int i = 0; i < 2; i++)
+        int maxNum = maxNumTrees;
+
+        List<ZoneTreeType> newTreeList = new List<ZoneTreeType>();
+
+        foreach (ZoneTreeType tt in treeTypes)
         {
-            List<ZoneTreeType> list = null;
-            if (i == 0)
+            ZoneTreeType tt2 = new ZoneTreeType();
+            tt2.TreeTypeId = tt.TreeTypeId;
+            tt2.Weight = RandUtils.FloatRange(minPopulationScale, maxPopulationScale, rand);
+            newTreeList.Add(tt2);
+            while (newTreeList.Count > maxNum)
             {
-                list = treeTypes;
-            }
-            else if (i == 1)
-            {
-                list = bushTypes;
-            }
-
-            List<ZoneTreeType> newList = new List<ZoneTreeType>();
-
-            foreach (ZoneTreeType tt in list)
-            {
-                ZoneTreeType tt2 = new ZoneTreeType();
-                tt2.TreeTypeId = tt.TreeTypeId;
-                tt2.PopulationScale = RandUtils.FloatRange(minPopulationScale, maxPopulationScale, rand);
-                newList.Add(tt2);
-            }
-            int maxNum = i == 0 ? maxNumTrees : maxNumBushes;
-
-            while (newList.Count > maxNum)
-            {
-                newList.RemoveAt(rand.Next() % newList.Count);
-            }
-            if (genZone.TreeTypes == null)
-            {
-                genZone.TreeTypes = new List<ZoneTreeType>();
-            }
-
-            foreach (ZoneTreeType newItem in newList)
-            {
-                genZone.TreeTypes.Add(newItem);
+                newTreeList.RemoveAt(rand.Next() % newTreeList.Count);
             }
         }
-        foreach (ZoneTreeType waterZtt in waterTypes)
+        foreach (ZoneTreeType newItem in newTreeList)
         {
-            ZoneTreeType wtt2 = new ZoneTreeType()
+            genZone.TreeTypes.Add(newItem);
+        }
+        maxNum = maxNumBushes;
+
+        List<ZoneBushType> newBushList = new List<ZoneBushType>();
+
+        foreach (ZoneBushType tt in bushTypes)
+        {
+            ZoneBushType tt2 = new ZoneBushType();
+            tt2.BushTypeId = tt.BushTypeId;
+            tt2.Weight = RandUtils.FloatRange(minPopulationScale, maxPopulationScale, rand);
+            newBushList.Add(tt2);
+            while (newBushList.Count > maxNum)
             {
-                TreeTypeId = waterZtt.TreeTypeId,
-                PopulationScale = 1.0f,
+                newBushList.RemoveAt(rand.Next() % newTreeList.Count);
+            }
+        }
+        foreach (ZoneBushType newItem in newBushList)
+        {
+            genZone.BushTypes.Add(newItem);
+        }
+
+
+        foreach (ZoneBushType waterZtt in waterTypes)
+        {
+            ZoneBushType wtt2 = new ZoneBushType()
+            {
+                BushTypeId = waterZtt.BushTypeId,
+                Weight = 1.0f,
             };
-            genZone.TreeTypes.Add(wtt2);
+            genZone.BushTypes.Add(wtt2);
         }
     }
 
@@ -675,7 +671,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
                 };
 
                 zone.Units.Add(unitStatus);
-                unitStatus.Prefix = _unitGenService.GenerateUnitPrefixName(_rand.Rand, utype.IdKey, zone, null);
+                unitStatus.Prefix = _unitGenService.GenerateUnitPrefixName(_gs.Rand, utype.IdKey, zone, null);
 
             }
         }
@@ -699,7 +695,7 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
             return badName + " No Zone Name";
         }
 
-        string zoneName = _nameGenService.PickWord(_rand.Rand, zt.ZoneNames);
+        string zoneName = _nameGenService.PickWord(_gs.Rand, zt.ZoneNames);
         string excludeWord = zoneName;
         if (zoneName == null)
         {
@@ -712,21 +708,21 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         }
 
         string excludePrefix = zoneName.Substring(0, 3);
-        string zonePrefix = _nameGenService.PickWord(_rand.Rand, zt.ZoneAdjectives, excludeWord, excludePrefix);
+        string zonePrefix = _nameGenService.PickWord(_gs.Rand, zt.ZoneAdjectives, excludeWord, excludePrefix);
 
-        string prefixDouble = _nameGenService.PickNameListName(_rand.Rand, "ItemDoublePrefix", excludeWord, excludePrefix);
-        string suffixDouble = _nameGenService.PickNameListName(_rand.Rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
+        string prefixDouble = _nameGenService.PickNameListName(_gs.Rand, "ItemDoublePrefix", excludeWord, excludePrefix);
+        string suffixDouble = _nameGenService.PickNameListName(_gs.Rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
 
 
         int times = 0;
         while (prefixDouble != null && suffixDouble != null &&
             prefixDouble.ToLower() == suffixDouble.ToLower() && ++times < 20)
         {
-            suffixDouble = _nameGenService.PickNameListName(_rand.Rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
+            suffixDouble = _nameGenService.PickNameListName(_gs.Rand, "ItemDoubleSuffix", excludeWord, excludePrefix);
         }
 
-        string doubleName = _nameGenService.CombinePrefixSuffix(_rand.Rand, prefixDouble, suffixDouble, 0);
-        string prefixName = _nameGenService.PickNameListName(_rand.Rand, "ZoneNamePrefix", excludeWord, excludePrefix);
+        string doubleName = _nameGenService.CombinePrefixSuffix(_gs.Rand, prefixDouble, suffixDouble, 0);
+        string prefixName = _nameGenService.PickNameListName(_gs.Rand, "ZoneNamePrefix", excludeWord, excludePrefix);
 
         if (forceDoubleWord)
         {

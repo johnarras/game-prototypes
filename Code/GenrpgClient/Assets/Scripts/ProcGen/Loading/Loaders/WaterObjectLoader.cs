@@ -5,7 +5,6 @@ using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Constants;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
-using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ public class WaterObjectLoader : BaseObjectLoader
     public override long HelperKey => EntityTypes.Water;
 
     public override bool LoadObject(PatchLoadData loadData, int entityId,
-        int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
+        int x, int z, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
 
         if (loadData.patch == null)
@@ -22,7 +21,7 @@ public class WaterObjectLoader : BaseObjectLoader
             return false;
         }
 
-        ExtendedWorldObjectData extData = loadData.patch.ExtendedObjects.FirstOrDefault(e => e.X == x && e.Z == y);
+        ExtendedWorldObjectData extData = loadData.patch.GetObjAtPos(loadData, x, z);
 
         if (extData == null)
         {
@@ -44,12 +43,12 @@ public class WaterObjectLoader : BaseObjectLoader
         dlo.url = artName;
         dlo.loadData = loadData;
         dlo.x = x;
-        dlo.y = y;
-        dlo.finalZ = heightOffset - 0.5f;
+        dlo.z = z;
+        dlo.finalY = heightOffset - 0.5f;
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Prefabs;
-        dlo.data = new MyPointF(xSize, heightOffset, zSize);
+        dlo.data = new Point3F(xSize, heightOffset, zSize);
 
         _assetService.LoadAsset(AssetCategoryNames.Prefabs, artName, OnDownloadWater, null, token, dlo);
 
@@ -58,16 +57,16 @@ public class WaterObjectLoader : BaseObjectLoader
     }
     public virtual void OnDownloadWater(GameObject go, DownloadObjectData dlo, CancellationToken token)
     {
-        MyPointF size = dlo.data as MyPointF;
+        Point3F size = dlo.data as Point3F;
         if (size == null)
         {
             return;
         }
 
         int gx = dlo.loadData.gx;
-        int gy = dlo.loadData.gy;
+        int gz = dlo.loadData.gz;
         int wx = gx * (MapConstants.TerrainPatchSize - 1) + dlo.x;
-        int wy = gy * (MapConstants.TerrainPatchSize - 1) + dlo.y;
+        int wz = gz * (MapConstants.TerrainPatchSize - 1) + dlo.z;
 
         if (dlo.loadData.patch == null)
         {
@@ -75,7 +74,7 @@ public class WaterObjectLoader : BaseObjectLoader
             return;
         }
 
-        Terrain terr = dlo.loadData.patch.terrain as Terrain;
+        Terrain terr = dlo.loadData.patch.Core.Terrain;
         if (terr != null)
         {
             _clientEntityService.AddToParent(go, terr.gameObject);
@@ -87,7 +86,7 @@ public class WaterObjectLoader : BaseObjectLoader
         }
 
         float mult = 2.0f; // = 100.0f // if AQUAS
-        go.transform.localPosition = new Vector3(dlo.x, dlo.finalZ, dlo.y);
+        go.transform.localPosition = new Vector3(dlo.x, dlo.finalY, dlo.z);
         go.transform.localScale = new Vector3(size.X * mult, 1, size.Z * mult);
         _clientEntityService.SetLayer(go, LayerUtils.NameToLayer(LayerNames.Water));
 

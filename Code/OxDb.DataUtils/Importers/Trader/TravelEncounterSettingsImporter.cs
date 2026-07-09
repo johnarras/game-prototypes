@@ -7,7 +7,7 @@ namespace OxDb.DataUtils.Importers.Trader
 {
     public class TravelEncounterSettingsImporter : ParentChildImporter<TravelEncounterSettings, TravelEncounter>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, TravelEncounter current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, TravelEncounterSettings settings, TravelEncounter current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
             if (string.IsNullOrEmpty(firstColumn))
             {

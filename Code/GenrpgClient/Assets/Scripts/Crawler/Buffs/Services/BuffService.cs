@@ -47,6 +47,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
             public PartyMember Member { get; set; }
             public double Power { get; set; }
             public long Mana { get; set; }
+            public long MaxMana { get; set; }
             public MemberItemSpell ItemSpell { get; set; }
         }
 
@@ -175,6 +176,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
                     {
                         Member = member,
                         Mana = member.Stats.Curr(StatTypes.Mana),
+                        MaxMana = member.Stats.Max(StatTypes.Mana)
                     };
 
                     casters.Add(currCaster);
@@ -185,7 +187,7 @@ namespace Assets.Scripts.Crawler.Buffs.Services
 
                         if (cost <= currCaster.Mana)
                         {
-                            currCaster.Power = _roleService.GetSpellScalingLevel(party, member, spell);
+                            currCaster.Power = _roleService.GetSpellScalingLevel(party, member, spell, false);
                         }
                     }
 
@@ -211,12 +213,11 @@ namespace Assets.Scripts.Crawler.Buffs.Services
                 List<BuffCaster> orderedCasters =
                     casters.OrderByDescending(x => x.Power)
                     .ThenByDescending(x => x.ItemSpell != null ? 1 : 0)
-                    .ThenByDescending(x => x.Mana).ToList();
+                    .ThenByDescending(x => x.Mana).
+                    ThenByDescending(x => x.MaxMana).ToList();
 
                 if (orderedCasters.Count > 0 && orderedCasters[0].Power > 0)
                 {
-
-
                     float newTier = GetPartyBuffPower(party, pbuff.IdKey);
 
                     if (party.Buffs[pbuff.IdKey] > newTier - 0.001f)

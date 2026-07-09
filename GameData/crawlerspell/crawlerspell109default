@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell109default",
+  "ParentId": "default",
+  "IdKey": 109,
+  "Name": "Icy Grasp",
+  "Desc": "Fix enemies to a spot so that they can't melee attack.",
+  "BaseCost": 100.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 3,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 12,
+      "ElementTypeId": 5,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      8
+    ]
+  },
+  "ItemEnchantWeight": 0.01
+}

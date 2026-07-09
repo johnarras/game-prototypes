@@ -9,11 +9,12 @@ using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public interface IAddNearbyItemsHelper : IInjectable
 {
     int GetNearbyItemsCount(int radius, MyRandom rand);
-    void AddItemsNear(IRandom rand, ZoneType zoneType, Zone zone, int x, int y, double placeChance, int maxPlaceQuantity, float minOffset, float maxOffset, bool canPlaceTrees = true);
+    void AddItemsNear(IRandom rand, ZoneType zoneType, Zone zone, int x, int z, double placeChance, int maxPlaceQuantity, float minOffset, float maxOffset, bool canPlaceTrees = true);
 }
 
 
@@ -28,10 +29,10 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
     private IMapProvider _mapProvider;
     private IMapGenData _mapGenData;
     private IMapTerrainManager _terrainManager;
-    public void AddItemsNear(IRandom rand, ZoneType zoneType, Zone zone, int x, int y, double placeChance, int maxPlaceQuantity, float minOffset, float maxOffset, bool canPlaceTrees = true)
+    public void AddItemsNear(IRandom rand, ZoneType zoneType, Zone zone, int x, int z, double placeChance, int maxPlaceQuantity, float minOffset, float maxOffset, bool canPlaceTrees = true)
     {
 
-        float posHeight = _terrainManager.GetInterpolatedHeight(y, x);
+        float posHeight = _terrainManager.GetInterpolatedHeight(z, x);
 
         if (posHeight < MapConstants.OceanHeight)
         {
@@ -71,14 +72,14 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             return;
         }
 
-        List<ZoneTreeType> bushList = new List<ZoneTreeType>();
+        List<ZoneBushType> bushList = new List<ZoneBushType>();
         List<ZoneTreeType> treeList = new List<ZoneTreeType>();
 
 
 
         foreach (ZoneTreeType zt in zoneType.TreeTypes)
         {
-            if (zt.PopulationScale <= 0)
+            if (zt.Weight <= 0)
             {
                 continue;
             }
@@ -87,20 +88,31 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             {
                 continue;
             }
-            if (tt.HasFlag(TreeFlags.IsWaterItem))
+            treeList.Add(zt);
+
+        }
+
+        foreach (ZoneBushType zbt in zoneType.BushTypes)
+        {
+            if (zbt.Weight <= 0)
+            {
+                continue;
+            }
+            BushType btype = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zbt.BushTypeId);
+            if (btype == null || btype.Name == null)
+            {
+                continue;
+            }
+            if (btype.HasFlag(BushFlags.IsWaterItem))
             {
                 continue;
             }
 
-            if (tt.HasFlag(TreeFlags.IsBush))
-            {
-                bushList.Add(zt);
-            }
-            else
-            {
-                treeList.Add(zt);
-            }
+            bushList.Add(zbt);
         }
+
+
+
 
         if (!canPlaceTrees)
         {
@@ -118,18 +130,20 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
         maxTreeOffset = Math.Max(minOffset + 2, maxTreeOffset);
         maxBushOffset = Math.Max(minOffset + 1, maxBushOffset);
 
+
         for (int plantTimes = 0; plantTimes < 2; plantTimes++)
         {
             int numToPlace = treesToAdd;
             double offset = maxTreeOffset;
-            List<ZoneTreeType> itemList = treeList;
-
+            List<IWeightedItemId> itemList = treeList.Cast<IWeightedItemId>().ToList();
+            long entityTypeId = EntityTypes.Tree;
 
             if (plantTimes == 1)
             {
                 numToPlace = bushesToAdd;
                 offset = maxBushOffset;
-                itemList = bushList;
+                itemList = bushList.Cast<IWeightedItemId>().ToList();
+                entityTypeId = EntityTypes.Bush;
             }
 
             if (itemList.Count < 1)
@@ -141,13 +155,10 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
             for (int tries = 0; tries < numToPlace * 30 && numPlaced < numToPlace; tries++)
             {
                 int plantx = (int)(x + RandUtils.DeltaRange(offset, rand) + 0.5f);
-                int planty = (int)(y + RandUtils.DeltaRange(offset, rand) + 0.5f);
-
-
-
+                int planty = (int)(z + RandUtils.DeltaRange(offset, rand) + 0.5f);
 
                 int pdx = plantx - x;
-                int pdy = planty - y;
+                int pdy = planty - z;
 
 
                 float dist = (float)Math.Sqrt(pdx * pdx + pdy * pdy);
@@ -175,9 +186,9 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
                     continue;
                 }
 
-                ZoneTreeType item = itemList[rand.Next() % itemList.Count];
+                IWeightedItemId item = itemList[rand.Next() % itemList.Count];
 
-                _mapGenData.SetEntityData(ipplantx, ipplanty, EntityTypes.Tree, item.TreeTypeId);
+                _mapGenData.SetEntityData(ipplantx, ipplanty, entityTypeId, item.GetId());
             }
         }
     }

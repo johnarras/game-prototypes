@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell111default",
+  "ParentId": "default",
+  "IdKey": 111,
+  "Name": "Flashbang",
+  "Desc": "A bright flash prevents enemies from using ranged combat.",
+  "BaseCost": 100.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 2,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 14,
+      "ElementTypeId": 11,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      4
+    ]
+  },
+  "ItemEnchantWeight": 0.01
+}

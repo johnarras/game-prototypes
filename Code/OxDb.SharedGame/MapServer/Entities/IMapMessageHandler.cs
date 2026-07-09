@@ -6,7 +6,7 @@ namespace OxDb.SharedGame.MapServer.Entities
 {
     public interface IMapMessageHandler : ISetupDictionaryItem<Type>
     {
-        System.Threading.Tasks.Task Process(MapMessagePackage package);
+        System.Threading.Tasks.ValueTask Process(MapMessagePackage package);
     }
 }
 

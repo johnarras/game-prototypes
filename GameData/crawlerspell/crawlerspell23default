@@ -4,43 +4,27 @@
   "IdKey": 23,
   "Name": "Cure Party",
   "Desc": "Cure all party members",
-  "PowerCost": 15.0,
-  "PowerPerLevel": 5.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 25.0,
+  "TierCost": 5.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 5,
   "RoleScalingTypeId": 4,
-  "RoleScalingTier": 3,
-  "PointCost": 15,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
   "Effects": [
     {
       "EntityTypeId": 36,
-      "MinQuantity": -1,
-      "MaxQuantity": -1,
       "ElementTypeId": 7,
-      "Chance": 1.0
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": -1.0,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 10
-    },
-    {
-      "RoleId": 11
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      16
+    ]
+  },
   "ItemEnchantWeight": 0.1
 }

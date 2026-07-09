@@ -3,9 +3,9 @@ using Assets.Scripts.Trader.ClientEvents;
 using Assets.Scripts.UI.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.Constants;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Trader.Travel.UI
 {
@@ -39,13 +39,12 @@ namespace Assets.Scripts.Trader.Travel.UI
 
         private void ShowData()
         {
-            CoreData coreData = _gs.ch.Get<CoreData>();
-            ShowExplicitData(coreData);
+            _ = ShowExplicitData();
         }
 
-        public void ShowExplicitData(CoreData coreData)
+        private async ValueTask ShowExplicitData()
         {
-            CaravanTravelInfo info = _caravanService.GetTravelInfo(coreData);
+            CaravanTravelInfo info = await _caravanService.GetTravelInfo(_gs.ch);
 
 
             _uiService.SetText(DiceCountText, info.DiceSpeed.ToString());

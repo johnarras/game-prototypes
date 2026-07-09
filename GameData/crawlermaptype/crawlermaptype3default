@@ -4,18 +4,21 @@
   "IdKey": 3,
   "Name": "Outdoors",
   "Desc": "",
+  "AtlasPrefix": "",
   "Icon": "",
   "Art": "",
   "GenTypes": [
     {
       "Name": "None",
-      "MinWidth": 70,
-      "MaxWidth": 90,
-      "MinHeight": 55,
-      "MaxHeight": 65,
+      "MinWidth": 80,
+      "MaxWidth": 110,
+      "MinHeight": 80,
+      "MaxHeight": 110,
       "MinFloors": 1,
       "MaxFloors": 1,
       "Weight": 1.0,
+      "MinBuildingDensity": 80.0,
+      "MaxBuildingDensity": 130.0,
       "WeightedZones": [
         {
           "Name": "Outdoors",

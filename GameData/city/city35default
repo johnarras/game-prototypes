@@ -9,7 +9,7 @@
   "AncientName": "Miletus",
   "Population": 100000,
   "MapPixelX": 2440,
-  "MapPixelY": 2393,
+  "MapPixelZ": 2393,
   "BiomeTypeId": 7,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 106
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

@@ -102,7 +102,6 @@ namespace RunBuilds
                 {
                     ClearBuildEnvironmentVariables();
                     SetBuildEnvironmentVariables(dict);
-                    await PreExport();
                     await LocalBuildPlayer();
                     await PostExport();
                     ClearBuildEnvironmentVariables();
@@ -118,7 +117,7 @@ namespace RunBuilds
         {
 
             await Awaitable.MainThreadAsync();
-            Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
+            XmlDict kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
 
             string apiKey = kvDict[AppConfigKeys.UnityCloudBuildApiKey];
 
@@ -172,31 +171,55 @@ namespace RunBuilds
             PlatformBuildData buildData = buildDataList.FirstOrDefault(x => x.ClientPlatform == args.PlatformName);
 
             // Feel free to change this to something else you use in your jenkins or whatever build.
-            Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
+            XmlDict kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
 
             SetDictionaryValue(ClientBuildVars.ENV, args.Env, retval);
-            SetDictionaryValue(ClientBuildVars.BUILD_FLAGS, ((int)args.Flags).ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.CLIENT_PLAYER_FLAGS, ((int)args.Flags).ToString(), retval);
 
             SetDictionaryValue(ClientBuildVars.LOGALYTICS_CONNECTION_STRING, args.LogalyticsConnectionString, retval);
             SetDictionaryValue(ClientBuildVars.GAME_MODE, args.GameModeStr, retval);
             SetDictionaryValue(ClientBuildVars.WEB_SERVER_URL, kvDict[AppConfigKeys.WebServerURL], retval);
             SetDictionaryValue(ClientBuildVars.CONTENT_ROOT, kvDict[AppConfigKeys.ContentRoot], retval);
             SetDictionaryValue(ClientBuildVars.IOS_SECRET, kvDict[AppConfigKeys.IOSSecret], retval);
-            SetDictionaryValue(ClientBuildVars.GOOGLE_SECRET, kvDict[AppConfigKeys.GooglePlaySecret], retval);
+            SetDictionaryValue(ClientBuildVars.GOOGLE_PLAY_ANDROID_CLIENT_ID, kvDict[AppConfigKeys.GooglePlayAndroidClientId], retval);
             SetDictionaryValue(ClientBuildVars.PACKAGE_NAME, kvDict[AppConfigKeys.PackageName], retval);
             SetDictionaryValue(ClientBuildVars.WORLDS_ENV, GetEnvName(kvDict[EDataCategories.Worlds.ToString() + AppConfigKeys.EnvSuffix], args.Env), retval);
             SetDictionaryValue(ClientBuildVars.ASSETS_ENV, GetEnvName(kvDict[EDataCategories.Assets.ToString() + AppConfigKeys.EnvSuffix], args.Env), retval);
 
-            SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_NAME, kvDict[AppConfigKeys.AndroidKeystoreName], retval);
-            SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_PASS, kvDict[AppConfigKeys.AndroidKeystorePass], retval);
-            SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_NAME, kvDict[AppConfigKeys.AndroidKeyAliasName], retval);
-            SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_PASS, kvDict[AppConfigKeys.AndroidKeyAliasPass], retval);
+            if (!args.Flags.HasFlag(ClientPlayerFlags.IsCouldBuild))
+            {
+                string keystorePath = Path.GetFullPath(kvDict[AppConfigKeys.AndroidKeystoreName], Application.dataPath);
+
+                SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_NAME, keystorePath, retval);
+                SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_PASS, kvDict[AppConfigKeys.AndroidKeystorePass], retval);
+                SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_NAME, kvDict[AppConfigKeys.AndroidKeyAliasName], retval);
+                SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_PASS, kvDict[AppConfigKeys.AndroidKeyAliasPass], retval);
+            }
+            SetDictionaryValue(ClientBuildVars.ANDROID_ADS_GAME_KEY, kvDict[AppConfigKeys.UnityAndroidAdsGameKey], retval);
+            SetDictionaryValue(ClientBuildVars.IOS_ADS_GAME_KEY, kvDict[AppConfigKeys.UnityIOSAdsGameKey], retval);
+
+
+
+            if (args.Flags.HasFlag(ClientPlayerFlags.SideloadBuild))
+            {
+                SetDictionaryValue(ClientBuildVars.GOOGLE_PLAY_ANDROID_CLIENT_ID, "411474638664-bidvbm0a0o95tn50p7f1o0vej75jkmhr.apps.googleusercontent.com", retval);
+
+                if (!args.Flags.HasFlag(ClientPlayerFlags.IsCouldBuild))
+                {
+                    SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_NAME, "C:\\Users\\johna\\.android\\debug.keystore", retval);
+                    SetDictionaryValue(ClientBuildVars.ANDROID_KEYSTORE_PASS, "android", retval);
+                    SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_NAME, "androiddebugkey", retval);
+                    SetDictionaryValue(ClientBuildVars.ANDROID_KEY_ALIAS_PASS, "android", retval);
+                }
+            }
+
+            SetDictionaryValue(ClientBuildVars.CLIENT_BUILD_VERSION, ClientBuildVersion.GetNextBuildVersion().ToString(), retval);
 
             ClientConfig config = ScriptableObjectUtils.LoadDefault<ClientConfig>();
 
             SetDictionaryValue(ClientBuildVars.OLD_GAME_MODE, config.GameMode.ToString(), retval);
             SetDictionaryValue(ClientBuildVars.OLD_ENV, config.Env, retval);
-            SetDictionaryValue(ClientBuildVars.OLD_BUILD_FLAGS, ((int)(config.Flags)).ToString(), retval);
+            SetDictionaryValue(ClientBuildVars.OLD_CLIENT_PLAYER_FLAGS, ((int)(config.Flags)).ToString(), retval);
 
 
             if (!String.IsNullOrEmpty(config.LogalyticsConnectionString) && string.IsNullOrEmpty(args.LogalyticsConnectionString))
@@ -230,9 +253,8 @@ namespace RunBuilds
             string streamingAssetsPath = Application.streamingAssetsPath;
 
             string platformString = buildData.ClientPlatform;
-            string appsuffix = buildData.ApplicationSuffix;
             string outputFilesFolder = "../../../Build/" + lowerGameModeStr + "/" + platformString + "/" + lowerEnv + "/";
-            string outputPath = outputFilesFolder + lowerGameModeStr + appsuffix;
+            string outputPath = outputFilesFolder + lowerGameModeStr + applicationSuffix;
 
             SetDictionaryValue(ClientBuildVars.UNITY_OUTPUT_BUILD_PATH, outputPath, retval);
 
@@ -274,12 +296,11 @@ namespace RunBuilds
 
         private static void SetDictionaryValue(string key, string val, Dictionary<string, string> dict)
         {
-            dict.Add(key, val);
+            dict[key] = val;
         }
 
-        public static async Awaitable PreExport()
+        public static async Awaitable SetVariablesBeforeBuild()
         {
-            Debug.Log("PreExport 1");
             string env = GetVar(ClientBuildVars.ENV);
 
             if (string.IsNullOrEmpty(env))
@@ -318,12 +339,13 @@ namespace RunBuilds
 
             config.Env = GetVar(ClientBuildVars.ENV);
 
-            config.Flags = (ClientPlayerFlags)Enum.Parse(typeof(ClientPlayerFlags), GetVar(ClientBuildVars.BUILD_FLAGS));
-
-            config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.GAME_MODE));
+            config.Flags = GetEnum<ClientPlayerFlags>(ClientBuildVars.CLIENT_PLAYER_FLAGS);
+            config.GameMode = GetEnum<EGameModes>(ClientBuildVars.GAME_MODE);
             config.BaseWebEndpoint = GetVar(ClientBuildVars.WEB_SERVER_URL);
             config.ContentEndpoint = GetVar(ClientBuildVars.CONTENT_ROOT);
             config.LogalyticsConnectionString = GetVar(ClientBuildVars.LOGALYTICS_CONNECTION_STRING);
+            config.IOSAdsGameKey = GetVar(ClientBuildVars.IOS_ADS_GAME_KEY);
+            config.AndroidAdsGameKey = GetVar(ClientBuildVars.ANDROID_ADS_GAME_KEY);
 
             string packageName = GetVar(ClientBuildVars.PACKAGE_NAME);
 
@@ -344,15 +366,8 @@ namespace RunBuilds
 
             if (namedTarget == NamedBuildTarget.Android)
             {
-                PlayerSettings.Android.useCustomKeystore = true;
-                PlayerSettings.Android.keystoreName = GetVar(ClientBuildVars.ANDROID_KEYSTORE_NAME);
-                PlayerSettings.Android.keystorePass = GetVar(ClientBuildVars.ANDROID_KEYSTORE_PASS);
-                PlayerSettings.Android.keyaliasName = GetVar(ClientBuildVars.ANDROID_KEY_ALIAS_NAME);
-                PlayerSettings.Android.keyaliasPass = GetVar(ClientBuildVars.ANDROID_KEY_ALIAS_PASS);
-                EditorUserBuildSettings.buildAppBundle = config.Flags.HasFlag(ClientPlayerFlags.BuildAppBundle);
+                AndroidPrebuild(config);
             }
-
-
 
             GameModeBuildData gameModeData = GetGameModeData().FirstOrDefault(x => x.GameMode == config.GameMode);
             PlayerSettings.productName = gameModeData.ProductName;
@@ -361,9 +376,14 @@ namespace RunBuilds
 
             config.WorldsEnv = GetVar(ClientBuildVars.WORLDS_ENV);
             config.IOSSecret = GetVar(ClientBuildVars.IOS_SECRET);
-            config.GooglePlaySecret = GetVar(ClientBuildVars.GOOGLE_SECRET);
+            config.GooglePlayAndroidClientId = GetVar(ClientBuildVars.GOOGLE_PLAY_ANDROID_CLIENT_ID);
             config.AssetsEnv = GetVar(ClientBuildVars.ASSETS_ENV);
             EditorUtility.SetDirty(config);
+
+
+            BuildTarget buildTarget = GetEnum<BuildTarget>(ClientBuildVars.BUILD_TARGET);
+            BuildTargetGroup targetGroup = GetEnum<BuildTargetGroup>(ClientBuildVars.BUILD_TARGET_GROUP);
+            EditorUserBuildSettings.SwitchActiveBuildTarget(targetGroup, buildTarget);
 
             string clientPlatform = GetVar(ClientBuildVars.CLIENT_PLATFORM);
 
@@ -402,9 +422,25 @@ namespace RunBuilds
 
         }
 
+        private static void AndroidPrebuild(ClientConfig config)
+        {
+
+            if (!config.Flags.HasFlag(ClientPlayerFlags.IsCouldBuild))
+            {
+                PlayerSettings.Android.useCustomKeystore = true;
+                PlayerSettings.Android.keystoreName = GetVar(ClientBuildVars.ANDROID_KEYSTORE_NAME);
+                PlayerSettings.Android.keystorePass = GetVar(ClientBuildVars.ANDROID_KEYSTORE_PASS);
+                PlayerSettings.Android.keyaliasName = GetVar(ClientBuildVars.ANDROID_KEY_ALIAS_NAME);
+                PlayerSettings.Android.keyaliasPass = GetVar(ClientBuildVars.ANDROID_KEY_ALIAS_PASS);
+            }
+
+            PlayerSettings.Android.bundleVersionCode = GetInt(ClientBuildVars.CLIENT_BUILD_VERSION);
+            EditorUserBuildSettings.buildAppBundle = config.Flags.HasFlag(ClientPlayerFlags.BuildAppBundle);
+        }
+
         public static async Awaitable LocalBuildPlayer()
         {
-            await Task.CompletedTask;
+            await SetVariablesBeforeBuild();
             List<EditorBuildSettingsScene> scenes = new List<EditorBuildSettingsScene>();
 
             for (int s = 0; s < EditorBuildSettings.scenes.Length; s++)
@@ -424,19 +460,16 @@ namespace RunBuilds
                 Debug.Log("LocalBuild Scene: " + sceneName);
             }
 
-            if (!Enum.TryParse<BuildTarget>(GetVar(ClientBuildVars.BUILD_TARGET), out BuildTarget buildTarget))
-            {
-                Debug.Log("Invalid BuildTarget: " + GetVar(ClientBuildVars.BUILD_TARGET));
-                return;
-            }
+            ClientPlayerFlags clientPlayerFlags = GetEnum<ClientPlayerFlags>(ClientBuildVars.CLIENT_PLAYER_FLAGS);
 
-            if (!Enum.TryParse<BuildTargetGroup>(GetVar(ClientBuildVars.NAMED_BUILD_TARGET), out BuildTargetGroup targetGroup))
-            {
-                Debug.Log("Invalid BuildTargetGroup: " + GetVar(ClientBuildVars.NAMED_BUILD_TARGET));
-                return;
-            }
+            EditorUserBuildSettings.allowDebugging = clientPlayerFlags.HasFlag(ClientPlayerFlags.AllowDebugging);
+            EditorUserBuildSettings.development = clientPlayerFlags.HasFlag(ClientPlayerFlags.DevelopmentBuild);
 
-            BuildOptions buildOptions = (BuildOptions)Enum.Parse(typeof(BuildOptions), GetVar(ClientBuildVars.UNITY_BUILD_OPTIONS));
+            BuildTarget buildTarget = GetEnum<BuildTarget>(ClientBuildVars.BUILD_TARGET);
+
+            BuildTargetGroup targetGroup = GetEnum<BuildTargetGroup>(ClientBuildVars.BUILD_TARGET_GROUP);
+
+            BuildOptions buildOptions = GetEnum<BuildOptions>(ClientBuildVars.UNITY_BUILD_OPTIONS);
 
             string outputPath = GetVar(ClientBuildVars.UNITY_OUTPUT_BUILD_PATH);
 
@@ -450,7 +483,7 @@ namespace RunBuilds
 
             opts.scenes = sceneArray;
             opts.locationPathName = outputPath;
-            opts.target = BuildTarget.StandaloneWindows64;
+            opts.target = buildTarget;
             opts.targetGroup = targetGroup;
             opts.options = buildOptions;
 
@@ -480,28 +513,16 @@ namespace RunBuilds
 
             config.Env = GetVar(ClientBuildVars.OLD_ENV);
 
-            config.GameMode = (EGameModes)Enum.Parse(typeof(EGameModes), GetVar(ClientBuildVars.OLD_GAME_MODE));
+            config.GameMode = GetEnum<EGameModes>(ClientBuildVars.OLD_GAME_MODE);
             config.LogalyticsConnectionString = "";
+            config.IOSSecret = "";
+            config.GooglePlayAndroidClientId = "";
+            config.AndroidAdsGameKey = "";
+            config.IOSAdsGameKey = "";
+
+
             EditorUtility.SetDirty(config);
             AssetDatabase.SaveAssets();
-
-            int oldVersion = 1;
-            int version = 1;
-            ClientBuildVersionSettings clientSettings = ClientBuildVersionSettings.GetClientVersionFile(env);
-            if (clientSettings != null)
-            {
-                oldVersion = clientSettings.Version;
-                clientSettings.Version++;
-                version = clientSettings.Version;
-            }
-
-            ClientBuildVersionSettings.UpdateVersionFile(clientSettings, env);
-
-            string outputZipFolder = "../../../Build/" + lowerGameModeStr + "/zips/";
-            if (!Directory.Exists(outputZipFolder))
-            {
-                Directory.CreateDirectory(outputZipFolder);
-            }
 
             string lowerEnv = GetVar(ClientBuildVars.ENV);
 
@@ -517,21 +538,25 @@ namespace RunBuilds
             {
                 Directory.CreateDirectory(outputFilesFolder);
             }
-            string versionFilePath = outputZipFolder + PatcherUtils.GetPatchVersionFilename();
-            File.WriteAllText(versionFilePath, String.Empty);
-            File.WriteAllText(versionFilePath, version.ToString());
-            string localVersionPath = dataPath + "/../" + versionFilePath;
-
-            Debug.Log("Version: " + version);
 
             Debug.Log($"Finished building E: {env} G: {gameModeStr} P: {platformString} SC: {config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient)}");
 
             await Task.CompletedTask;
         }
 
+        private static int GetInt(string key)
+        {
+            string val = GetVar(key);
+
+            if (int.TryParse(val, out int result))
+            {
+                return result;
+            }
+            return 0;
+        }
+
         private static string GetVar(string key)
         {
-            Debug.Log("GetEnvVar: " + key + " Val: " + System.Environment.GetEnvironmentVariable(key));
             return Environment.GetEnvironmentVariable(key);
         }
 
@@ -539,6 +564,12 @@ namespace RunBuilds
         {
             System.Environment.SetEnvironmentVariable(key, val);
         }
+
+        private static T GetEnum<T>(string key) where T : Enum
+        {
+            return (T)Enum.Parse(typeof(T), GetVar(key));
+        }
+
 
         private static void SetupBuildFromConfig()
         {

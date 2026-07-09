@@ -1,4 +1,3 @@
-
 using Assets.Scripts.Options.Services;
 using OxDb.SharedCore.Client.Contants;
 using OxDb.SharedCore.Interfaces;
@@ -28,6 +27,7 @@ public interface IClientAppService : IInitializable, IExplicitInject
     string GetPlatformName();
     string GetRuntimePrefix();
     void SetupScreen(int width, int height, bool isFullScreen, bool isLandscape, int vsyncCount);
+    void SetOrientation(ScreenOrientation orientation);
     int ScreenWidth { get; }
     int ScreenHeight { get; }
     Awaitable TakeMemorySnapshot();
@@ -139,9 +139,21 @@ public class ClientAppService : IClientAppService
 
         Screen.SetResolution(width, height, _fullScreenMode);
         Screen.orientation = isLandscape ? ScreenOrientation.LandscapeLeft : ScreenOrientation.Portrait;
+        QualitySettings.vSyncCount = vsyncCount;
+    }
+
+    private void DisableAutoRotation()
+    {
         Screen.autorotateToPortrait = false;
         Screen.autorotateToPortraitUpsideDown = false;
-        QualitySettings.vSyncCount = vsyncCount;
+        Screen.autorotateToLandscapeRight = false;
+        Screen.autorotateToLandscapeLeft = false;
+    }
+
+    public void SetOrientation(ScreenOrientation orientation)
+    {
+        Screen.orientation = orientation;
+        DisableAutoRotation();
     }
 
     public async Awaitable TakeMemorySnapshot()

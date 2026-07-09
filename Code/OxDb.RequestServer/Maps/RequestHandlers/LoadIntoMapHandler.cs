@@ -1,5 +1,5 @@
-using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
 using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.RequestServer.Purchasing.Services;
 using OxDb.ServerCore.CloudComms.Servers.InstanceServer.Queues;
 using OxDb.ServerCore.CloudComms.Servers.WebServer;
@@ -134,7 +134,7 @@ namespace OxDb.RequestServer.Maps.RequestHandlers
         {
             if (!_mapCache.ContainsKey(mapId))
             {
-                Map newMap = await _mapDataService.LoadMap(context.Rand, mapId);
+                Map newMap = await _mapDataService.LoadMap(mapId);
                 if (newMap == null || newMap.Zones == null || newMap.Zones.Count < 1)
                 {
                     return new FullCachedMap();

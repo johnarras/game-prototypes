@@ -24,7 +24,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 
         public override ECrawlerStates HelperKey => ECrawlerStates.RollStats;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -50,7 +50,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 
             foreach (StatType statType in statTypes)
             {
-                int statValue = RandUtils.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _rand.Rand);
+                int statValue = RandUtils.IntRange(statSettings.MinStartValue, statSettings.MaxStartValue, _gs.Rand);
 
                 if (!rollStats)
                 {

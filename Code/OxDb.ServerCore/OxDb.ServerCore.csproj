@@ -33,6 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Ads\RequestHandlers\" />
+    <Folder Include="Ads\Services\" />
     <Folder Include="Logalytics\Services\" />
   </ItemGroup>
 

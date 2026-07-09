@@ -4,5 +4,6 @@
   "IdKey": 41,
   "Name": "AttackMult",
   "Desc": "Phys Dam Mult",
+  "Icon": "AttackMult",
   "GenScalePct": 10
 }

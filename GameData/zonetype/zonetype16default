@@ -143,6 +143,7 @@
   "FenceTypes": [],
   "RockTypes": [],
   "TreeTypes": [],
+  "BushTypes": [],
   "CreatureNamePrefixes": [],
   "CreatureDoubleNamePrefixes": [],
   "Overrides": [],

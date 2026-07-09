@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Rewards.MessageHandlers
 {
     public class OnAddQuantityRewardHandler : BaseMapObjectServerMapMessageHandler<OnAddQuantityReward>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnAddQuantityReward message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnAddQuantityReward message)
         {
             obj.AddMessage(message);
         }

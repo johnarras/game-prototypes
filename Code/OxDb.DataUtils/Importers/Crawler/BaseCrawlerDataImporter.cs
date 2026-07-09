@@ -4,6 +4,7 @@ using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.Roles.Constants;
 using OxDb.SharedGame.Crawler.Roles.Settings;
@@ -52,12 +53,12 @@ namespace OxDb.DataUtils.Importers.Crawler
                 {
                     IdKey = buffStatId + CrawlerSpellConstants.StatBuffSpellIdOffset,
                     Name = "Enhance " + stats.First(x => x.IdKey == buffStatId).Name,
-                    PowerCost = spellSettings.StatBuffPowerCost,
-                    PowerPerLevel = spellSettings.StatBuffPowerPerLevel,
+                    BaseCost = spellSettings.StatBuffPowerCost,
+                    TierCost = spellSettings.StatBuffPowerPerLevel,
                     MinRange = 0,
                     MaxRange = 100,
                     TargetTypeId = TargetTypes.Self,
-                    RoleScalingTier = 1,
+                    UnlockTier = 1,
                     CombatActionId = CombatActions.Cast,
                     RoleScalingTypeId = RoleScalingTypes.Healing,
                 };
@@ -68,8 +69,8 @@ namespace OxDb.DataUtils.Importers.Crawler
                 {
                     EntityTypeId = EntityTypes.Stat,
                     EntityId = buffStatId,
-                    MinQuantity = 1,
-                    MaxQuantity = 1,
+                    WeaponDamageScale = 1,
+                    StatBonusDamageScale = 1,
                 });
 
                 gs.LookedAtObjects.Add(spell);
@@ -112,13 +113,13 @@ namespace OxDb.DataUtils.Importers.Crawler
             }
             foreach (CrawlerSpell spell in newSpells)
             {
-                spell.RolesKnowingThis = new List<RoleKnown>();
+                spell.Roles = new SmallIndexBitList();
 
                 List<Role> rolesKnowingThis = roles.Where(x => x.BinaryBonuses.Any(y => y.EntityTypeId == EntityTypes.CrawlerSpell && y.EntityId == spell.IdKey)).ToList();
 
                 foreach (Role role in rolesKnowingThis)
                 {
-                    spell.RolesKnowingThis.Add(new RoleKnown() { RoleId = role.IdKey });
+                    spell.Roles.SetBitIndex(role.IdKey);
                 }
             }
 
@@ -234,12 +235,12 @@ namespace OxDb.DataUtils.Importers.Crawler
                 {
                     IdKey = utype.IdKey + CrawlerSpellConstants.MonsterSummonSpellIdOffset,
                     Name = "Monster Call " + utype.Name,
-                    PowerCost = 100,
-                    PowerPerLevel = 1,
+                    BaseCost = 100,
+                    TierCost = 1,
                     MinRange = 0,
                     MaxRange = 100,
                     TargetTypeId = TargetTypes.Self,
-                    RoleScalingTier = 1,
+                    UnlockTier = 1,
                     CombatActionId = CombatActions.Cast,
                     RoleScalingTypeId = RoleScalingTypes.Summon,
                 };
@@ -248,8 +249,8 @@ namespace OxDb.DataUtils.Importers.Crawler
                 {
                     EntityTypeId = EntityTypes.Unit,
                     EntityId = utype.IdKey,
-                    MinQuantity = 1,
-                    MaxQuantity = 1,
+                    WeaponDamageScale = 1,
+                    StatBonusDamageScale = 1,
                     ElementTypeId = elementTypeId,
                 });
 

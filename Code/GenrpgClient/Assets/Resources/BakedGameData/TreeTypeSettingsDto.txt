@@ -107,159 +107,55 @@
     },
     {
       "IdKey": 16,
-      "Name": "Azalea",
-      "Art": "Azalea",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 1
-    },
-    {
-      "IdKey": 17,
-      "Name": "AzaleaPink",
-      "Art": "AzaleaPink",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 1
-    },
-    {
-      "IdKey": 18,
-      "Name": "Azalea",
-      "Art": "Azalea",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 1
-    },
-    {
-      "IdKey": 19,
-      "Name": "AzaleaWhite",
-      "Art": "AzaleaWhite",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 1
-    },
-    {
-      "IdKey": 20,
-      "Name": "CactusCylinder",
-      "Art": "CactusCylinder",
-      "Scale": 1.0,
-      "VariationCount": 4,
-      "Flags": 1
-    },
-    {
-      "IdKey": 21,
-      "Name": "CactusSphere",
-      "Art": "CactusSphere",
-      "Scale": 1.0,
-      "VariationCount": 4,
-      "Flags": 1
-    },
-    {
-      "IdKey": 22,
-      "Name": "Cattail",
-      "Art": "Cattail",
-      "Scale": 1.2,
-      "VariationCount": 2,
-      "Flags": 3
-    },
-    {
-      "IdKey": 23,
-      "Name": "ElephantGrass",
-      "Art": "ElephantGrass",
-      "Scale": 0.5,
-      "VariationCount": 2,
-      "Flags": 3
-    },
-    {
-      "IdKey": 24,
       "Name": "Juniper",
       "Art": "Juniper",
       "Scale": 3.0,
       "VariationCount": 2
     },
     {
-      "IdKey": 25,
-      "Name": "Knapweed",
-      "Art": "Knapweed",
-      "Scale": 0.5,
-      "VariationCount": 2,
-      "Flags": 3
-    },
-    {
-      "IdKey": 26,
-      "Name": "Snakeweed",
-      "Art": "Snakeweed",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 3
-    },
-    {
-      "IdKey": 27,
-      "Name": "SnakeweedYellow",
-      "Art": "SnakeweedYellow",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 3
-    },
-    {
-      "IdKey": 28,
-      "Name": "SwordFern",
-      "Art": "SwordFern",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 1
-    },
-    {
-      "IdKey": 29,
-      "Name": "LeafFern",
-      "Art": "LeafFern",
-      "Scale": 1.0,
-      "VariationCount": 2,
-      "Flags": 1
-    },
-    {
-      "IdKey": 30,
+      "IdKey": 17,
       "Name": "BroadleafSmall",
       "Art": "BroadleafSmall",
       "Scale": 2.0,
       "VariationCount": 2
     },
     {
-      "IdKey": 31,
+      "IdKey": 18,
       "Name": "CedarBare",
       "Art": "CedarBare",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 32,
+      "IdKey": 19,
       "Name": "ElmFall",
       "Art": "ElmFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 33,
+      "IdKey": 20,
       "Name": "SpruceBare",
       "Art": "SpruceBare",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 34,
+      "IdKey": 21,
       "Name": "SpruceWinter",
       "Art": "SpruceWinter",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 35,
+      "IdKey": 22,
       "Name": "DouglasFirBare",
       "Art": "DouglasFirBare",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 36,
+      "IdKey": 23,
       "Name": "DouglasFirPyramid",
       "Desc": "",
       "Icon": "",
@@ -268,361 +164,305 @@
       "VariationCount": 2
     },
     {
-      "IdKey": 37,
+      "IdKey": 24,
       "Name": "BirchFall",
       "Art": "BirchFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 38,
+      "IdKey": 25,
       "Name": "BirchWinter",
       "Art": "BirchWinter",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 39,
+      "IdKey": 26,
       "Name": "RedMapleYoung",
       "Art": "RedMapleYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 40,
+      "IdKey": 27,
       "Name": "RedMapleFall",
       "Art": "RedMapleFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 41,
+      "IdKey": 28,
       "Name": "RedMapleFallYoung",
       "Art": "RedMapleFallYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 42,
+      "IdKey": 29,
       "Name": "RedMapleWinter",
       "Art": "RedMapleWinter",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 43,
+      "IdKey": 30,
       "Name": "RedMapleWinterYoung",
       "Art": "RedMapleWinterYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 44,
+      "IdKey": 31,
       "Name": "LondonPlaneFall",
       "Art": "LondonPlaneFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 45,
+      "IdKey": 32,
       "Name": "LondonPlaneWinter",
       "Art": "LondonPlaneWinter",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 46,
+      "IdKey": 33,
       "Name": "ScotsPineBare",
       "Art": "ScotsPineBare",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 47,
+      "IdKey": 34,
       "Name": "ScotsPineWinter",
       "Art": "ScotsPineWinter",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 48,
+      "IdKey": 35,
       "Name": "WhiteOakFall",
       "Art": "WhiteOakFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 49,
+      "IdKey": 36,
       "Name": "WhiteOakWinter",
       "Art": "WhiteOakWinter",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 50,
+      "IdKey": 37,
       "Name": "WhiteOakFallYoung",
       "Art": "WhiteOakFallYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 51,
+      "IdKey": 38,
       "Name": "WhiteOakWinterYoung",
       "Art": "WhiteOakWinterYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 52,
+      "IdKey": 39,
       "Name": "JuniperBare",
       "Art": "JuniperBare",
       "Scale": 3.0,
       "VariationCount": 2
     },
     {
-      "IdKey": 53,
+      "IdKey": 40,
       "Name": "Baobab",
       "Art": "Baobab",
       "Scale": 0.4,
       "VariationCount": 2
     },
     {
-      "IdKey": 54,
+      "IdKey": 41,
       "Name": "BaobabSmall",
       "Art": "BaobabSmall",
       "Scale": 0.6,
       "VariationCount": 2
     },
     {
-      "IdKey": 55,
+      "IdKey": 42,
       "Name": "AmurCork",
       "Art": "AmurCork",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 56,
+      "IdKey": 43,
       "Name": "AmurCorkFall",
       "Art": "AmurCorkFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 57,
+      "IdKey": 44,
       "Name": "AmurCorkBare",
       "Art": "AmurCorkBare",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 58,
+      "IdKey": 45,
       "Name": "CypressFull",
       "Art": "CypressFull",
       "Scale": 1.0,
       "VariationCount": 2
     },
     {
-      "IdKey": 59,
+      "IdKey": 46,
       "Name": "CypressThin",
       "Art": "CypressThin",
       "Scale": 1.0,
       "VariationCount": 2
     },
     {
-      "IdKey": 60,
+      "IdKey": 47,
       "Name": "CypressGold",
       "Art": "CypressGold",
       "Scale": 1.0,
       "VariationCount": 2
     },
     {
-      "IdKey": 61,
+      "IdKey": 48,
       "Name": "BanyanThin",
       "Art": "BanyanThin",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 62,
+      "IdKey": 49,
       "Name": "BanyanThick",
       "Art": "BanyanThick",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 63,
+      "IdKey": 50,
       "Name": "Aspen",
       "Art": "Aspen",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 64,
+      "IdKey": 51,
       "Name": "AspenFall",
       "Art": "AspenFall",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 65,
+      "IdKey": 52,
       "Name": "AspenBare",
       "Art": "AspenBare",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 66,
+      "IdKey": 53,
       "Name": "JapaneseMaple",
       "Art": "JapaneseMaple",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 67,
+      "IdKey": 54,
       "Name": "JapaneseMapleYoung",
       "Art": "JapaneseMapleYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 68,
+      "IdKey": 55,
       "Name": "JapaneseMapleFall",
       "Art": "JapaneseMapleFall",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 69,
+      "IdKey": 56,
       "Name": "JapaneseMapleFallYoung",
       "Art": "JapaneseMapleFallYoung",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 70,
+      "IdKey": 57,
       "Name": "Apple",
       "Art": "Apple",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 71,
+      "IdKey": 58,
       "Name": "AppleFall",
       "Art": "AppleFall",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 72,
+      "IdKey": 59,
       "Name": "AppleBare",
       "Art": "AppleBare",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 73,
+      "IdKey": 60,
       "Name": "RiverBirch",
       "Art": "RiverBirch",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 74,
+      "IdKey": 61,
       "Name": "RiverBirchFall",
       "Art": "RiverBirchFall",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 75,
+      "IdKey": 62,
       "Name": "RiverBirchBare",
       "Art": "RiverBirchBare",
       "Scale": 2.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 76,
+      "IdKey": 63,
       "Name": "Magnolia",
       "Art": "Magnolia",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 77,
+      "IdKey": 64,
       "Name": "MagnoliaPink",
       "Art": "MagnoliaPink",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 78,
+      "IdKey": 65,
       "Name": "MagnoliaWhite",
       "Art": "MagnoliaWhite",
       "Scale": 1.5,
       "VariationCount": 2
     },
     {
-      "IdKey": 79,
+      "IdKey": 66,
       "Name": "MagnoliaBare",
       "Art": "MagnoliaBare",
       "Scale": 1.5,
       "VariationCount": 2
-    },
-    {
-      "IdKey": 80,
-      "Name": "Buttercup",
-      "Art": "Buttercup",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 13
-    },
-    {
-      "IdKey": 81,
-      "Name": "Daisy",
-      "Art": "Daisy",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 13
-    },
-    {
-      "IdKey": 82,
-      "Name": "Dandelion",
-      "Art": "Dandelion",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 13
-    },
-    {
-      "IdKey": 83,
-      "Name": "Fern",
-      "Art": "Fern",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 9
-    },
-    {
-      "IdKey": 84,
-      "Name": "Foxglove",
-      "Art": "Foxglove",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 13
-    },
-    {
-      "IdKey": 85,
-      "Name": "Poppy",
-      "Art": "Poppy",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 13
-    },
-    {
-      "IdKey": 86,
-      "Name": "Thistle",
-      "Art": "Thistle",
-      "Scale": 3.0,
-      "VariationCount": 1,
-      "Flags": 13
     }
   ],
   "Parent": {
@@ -632,5 +472,5 @@
     "Name": "TreeTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2026-07-06T00:10:29.714Z"
 }

@@ -1,12 +1,11 @@
-﻿using OxDb.SharedGame.Crawler.Maps.Constants;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.Dungeons
 {
     public class DungeonAssetBlockList : BaseBehaviour
     {
-        public int BlockXZSize = CrawlerMapConstants.DefaultXZBlockSize;
-        public int BlockYSize = CrawlerMapConstants.DefaultYBlockSize;
+        public int BlockXZSize;
+        public int BlockYSize;
 
         public List<WeightedDungeonAssetBlock> Blocks = new List<WeightedDungeonAssetBlock>();
 

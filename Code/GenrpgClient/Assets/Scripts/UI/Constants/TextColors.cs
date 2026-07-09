@@ -7,6 +7,7 @@ namespace Assets.Scripts.UI.Constants
         public const string ColorRed = "#FF0000";
         public const string ColorGold = "#CCA500";
         public const string ColorCyan = "#00FFFF";
+        public const string ColorLightBlue = "#7F7FFF";
     }
 }
 

@@ -9,7 +9,7 @@
   "AncientName": "Byzantion/Constantinopolis",
   "Population": 500000,
   "MapPixelX": 2512,
-  "MapPixelY": 2225,
+  "MapPixelZ": 2225,
   "BiomeTypeId": 4,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -29,5 +29,30 @@
       "TradeGoodId": 119
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 14
+    }
+  ]
 }

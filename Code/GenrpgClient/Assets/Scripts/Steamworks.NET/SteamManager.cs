@@ -206,10 +206,12 @@ public class SteamManager : BaseBehaviour
         _steamService?.OnUpdate();
     }
 #else
-    public static bool Initialized {
-		get {
-			return false;
-		}
-	}
+    public static bool Initialized
+    {
+        get
+        {
+            return false;
+        }
+    }
 #endif // !DISABLESTEAMWORKS
 }

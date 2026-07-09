@@ -21,7 +21,7 @@ public partial struct MapVisualTransformJob : IJobEntity
         float3 visualPos = new float3(
             (float)simPos.Pos.X,
             0,
-            (float)simPos.Pos.Y
+            (float)simPos.Pos.Z
         );
 
         // 3. Final World Position = Sim + Offset

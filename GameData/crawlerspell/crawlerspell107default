@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell107default",
+  "ParentId": "default",
+  "IdKey": 107,
+  "Name": "Distract",
+  "Desc": "SQUIRREL! Enemies get distracted and sometimes attack the wrong thing.",
+  "BaseCost": 50.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 2,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 9,
+      "ElementTypeId": 11,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      226
+    ]
+  },
+  "ItemEnchantWeight": 0.025
+}

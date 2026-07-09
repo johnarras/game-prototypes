@@ -11,7 +11,7 @@ namespace OxDb.MapServer.Chat.MessageHandlers
 {
     public class SendChatMessageHandler : BaseMapObjectServerMapMessageHandler<SendChatMessage>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, SendChatMessage message)
+        protected override async ValueTask InnerProcess(MapObject obj, SendChatMessage message)
         {
             float radius = 0;
             if (message.ChatTypeId == ChatTypes.Say)

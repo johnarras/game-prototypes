@@ -4,5 +4,6 @@
   "IdKey": 21,
   "Name": "AttackPower",
   "Desc": "Phys Power",
+  "Icon": "AttackPower",
   "GenScalePct": 150
 }

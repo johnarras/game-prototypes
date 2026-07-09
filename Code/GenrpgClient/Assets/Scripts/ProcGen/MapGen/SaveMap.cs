@@ -18,35 +18,35 @@ public class SaveMap : BaseZoneGenerator
     {
         await base.Generate(token);
 
-        _mapProvider.GetMap().OverrideZonePercent = 0; // RandUtils.IntRange(20, 80, _rand.Rand);
+        _mapProvider.GetMap().OverrideZonePercent = 0; // RandUtils.IntRange(20, 80, _gs.Rand);
 
         for (int gx = 0; gx < _mapProvider.GetMap().BlockCount; gx++)
         {
-            for (int gy = 0; gy < _mapProvider.GetMap().BlockCount; gy++)
+            for (int gz = 0; gz < _mapProvider.GetMap().BlockCount; gz++)
             {
-                await SaveOneTerrainPatch(gx, gy);
+                await SaveOneTerrainPatch(gx, gz);
             }
         }
     }
 
 
-    public async Awaitable SaveOneTerrainPatch(int gx, int gy)
+    public async Awaitable SaveOneTerrainPatch(int gx, int gz)
     {
 
         List<ExtendedWorldObjectData> extendedObjects = new List<ExtendedWorldObjectData>();
 
 
-        TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gy);
+        TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gz);
 
         if (patch == null)
         {
-            _logService.Error("NO patch at " + gx + " " + gy);
+            _logService.Error("NO patch at " + gx + " " + gz);
             return;
         }
 
         if (patch.FullZoneIdList == null || patch.FullZoneIdList.Count < 1)
         {
-            _logService.Error("No zone list at " + gx + " " + gy);
+            _logService.Error("No zone list at " + gx + " " + gz);
             return;
         }
 
@@ -55,7 +55,7 @@ public class SaveMap : BaseZoneGenerator
         int maxFileSize = MapConstants.TerrainPatchSize * MapConstants.TerrainPatchSize * MapConstants.TerrainBytesPerUnit;
 
         byte[] origBytes = new byte[maxFileSize];
-        int startX = gy * (MapConstants.TerrainPatchSize - 1);
+        int startX = gz * (MapConstants.TerrainPatchSize - 1);
         int startY = gx * (MapConstants.TerrainPatchSize - 1);
 
 
@@ -76,9 +76,9 @@ public class SaveMap : BaseZoneGenerator
         // 1 Heights: 2 bytes
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize; z++)
             {
-                shortHeight = (ushort)(MapConstants.HeightSaveMult * _md.Heights[x + startX, y + startY]);
+                shortHeight = (ushort)(MapConstants.HeightSaveMult * _md.Heights[x + startX, z + startY]);
 
                 origBytes[index++] = (byte)(shortHeight);
                 origBytes[index++] = (byte)(shortHeight >> 8);
@@ -86,21 +86,20 @@ public class SaveMap : BaseZoneGenerator
         }
 
         int objStartX = gx * (MapConstants.TerrainPatchSize - 1);
-        int objStartY = gy * (MapConstants.TerrainPatchSize - 1);
+        int objStartZ = gz * (MapConstants.TerrainPatchSize - 1);
 
         // 2 Objects: 2 bytes
         for (int x = 0; x < MapConstants.TerrainPatchSize - 1; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize - 1; z++)
             {
                 int fx = x + objStartX;
-                int fy = y + objStartY;
+                int fz = z + objStartZ;
 
-                long entityTypeId = _md.EntityTypeIds[fy, fx];
-                long entityId = _md.EntityIds[fy, fx];
+                long entityTypeId = _md.EntityTypeIds[fz, fx];
+                long entityId = _md.EntityIds[fz, fx];
 
-
-                if (x == MapConstants.TerrainPatchSize - 1 || y == MapConstants.TerrainPatchSize - 1)
+                if (x == MapConstants.TerrainPatchSize - 1 || z == MapConstants.TerrainPatchSize - 1)
                 {
                     if (entityTypeId == EntityTypes.Plant)
                     {
@@ -109,7 +108,7 @@ public class SaveMap : BaseZoneGenerator
                     }
                 }
 
-                ExtendedWorldObjectData extObj = _md.ExtendedObjects[fy, fx];
+                ExtendedWorldObjectData extObj = _md.ExtendedObjects[fz, fx];
 
                 if (extObj != null)
                 {
@@ -123,12 +122,12 @@ public class SaveMap : BaseZoneGenerator
         // 3 Alphas: 3 bytes (*divsq)
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize; z++)
             {
 
                 for (int i = 0; i < TerrainTexChannels.Max - 1; i++)
                 {
-                    origBytes[index++] = (byte)(_md.Alphas[x + startX, y + startY, i] * MapConstants.AlphaSaveMult);
+                    origBytes[index++] = (byte)(_md.Alphas[x + startX, z + startY, i] * MapConstants.AlphaSaveMult);
                 }
             }
         }
@@ -138,12 +137,12 @@ public class SaveMap : BaseZoneGenerator
         // 4 Zones: 1 byte (*divsq)
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize; z++)
             {
-                byte zid = (byte)_md.MapZoneIds[x + startX, y + startY];
+                byte zid = (byte)_md.MapZoneIds[x + startX, z + startY];
                 if (zid <= MapConstants.MountainZoneId)
                 {
-                    _logService.Error("Found bad zoneId at " + (x + startX) + " " + (y + startY));
+                    _logService.Error("Found bad zoneId at " + (x + startX) + " " + (z + startY));
                 }
                 origBytes[index++] = zid;
                 if (!zoneIds.Contains(zid))
@@ -155,18 +154,18 @@ public class SaveMap : BaseZoneGenerator
         // 5 subZoneIds 1 byte
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize; z++)
             {
-                origBytes[index++] = (byte)(_md.SubZoneIds[x + startX, y + startY]);
+                origBytes[index++] = (byte)(_md.SubZoneIds[x + startX, z + startY]);
             }
         }
 
         // 6 OverrideZoneScale 1 byte 0 to MapConstants.OverrideZoneScaleMax
         for (int x = 0; x < MapConstants.TerrainPatchSize; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize; z++)
             {
-                float val = MathUtil.Clamp(0, Math.Abs(_md.OverrideZoneScales[x + startX, y + startY]), 1);
+                float val = MathUtil.Clamp(0, Math.Abs(_md.OverrideZoneScales[x + startX, z + startY]), 1);
 
                 origBytes[index++] = (byte)(val * MapConstants.OverrideZoneScaleMax);
             }

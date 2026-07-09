@@ -9,7 +9,7 @@
   "AncientName": "Salona",
   "Population": 60000,
   "MapPixelX": 1940,
-  "MapPixelY": 2109,
+  "MapPixelZ": 2109,
   "BiomeTypeId": 1,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 5
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

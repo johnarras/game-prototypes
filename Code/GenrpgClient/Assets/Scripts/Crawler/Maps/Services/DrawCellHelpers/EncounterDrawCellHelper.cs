@@ -5,7 +5,6 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 {
@@ -13,7 +12,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
     {
         public override int Order => 500;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
         {
             long encounterId = _mapService.GetCurrentEncounterAtCell(party, mapRoot.Map, cell.MapX, cell.MapZ, true);
 

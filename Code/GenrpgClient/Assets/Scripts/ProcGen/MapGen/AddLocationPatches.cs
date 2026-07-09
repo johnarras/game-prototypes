@@ -17,19 +17,19 @@ public class AddLocationPatches : BaseZoneGenerator
     {
         await base.Generate(token);
         int edgeSize = MapConstants.LocCenterEdgeSize;
-        MyRandom smoothnessRand = new MyRandom(_rand.Rand.NextLong());
+        MyRandom smoothnessRand = new MyRandom(_gs.Rand.NextLong());
         for (int pass = 0; pass < 2; pass++)
         {
             for (int gx = 0; gx < _md.LocationGrid.GetLength(0); gx++)
             {
-                for (int gy = 0; gy < _md.LocationGrid.GetLength(1); gy++)
+                for (int gz = 0; gz < _md.LocationGrid.GetLength(1); gz++)
                 {
-                    if (_md.LocationGrid[gx, gy] == null)
+                    if (_md.LocationGrid[gx, gz] == null)
                     {
                         continue;
                     }
 
-                    foreach (Location loc in _md.LocationGrid[gx, gy])
+                    foreach (Location loc in _md.LocationGrid[gx, gz])
                     {
                         if ((pass == 0) != (loc.LocationTypeId == LocationTypes.ZoneCenter))
                         {
@@ -401,7 +401,7 @@ public class AddLocationPatches : BaseZoneGenerator
                 MinDistToOther = 10000000,
             });
 
-            MyRandom connectRand = new MyRandom(_rand.Rand.Next());
+            MyRandom connectRand = new MyRandom(_gs.Rand.Next());
 
             List<ConnectedPairData> roadsToMake = _lineGenService.ConnectPoints(connectPoints, connectRand, 0.1f);
 

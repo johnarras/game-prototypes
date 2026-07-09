@@ -18,7 +18,7 @@ public interface IStatService : IInjectable
     void Add(Unit unit, long statTypeId, int statCategory, long value);
     void Set(Unit unit, long statTypeId, int statCategory, long value);
 
-    void RegenerateTick(IRandom rand, Unit unit, float regenTickTime = StatConstants.RegenTickSeconds);
+    void RegenerateTick(Unit unit, float regenTickTime = StatConstants.RegenTickSeconds);
 }
 
 

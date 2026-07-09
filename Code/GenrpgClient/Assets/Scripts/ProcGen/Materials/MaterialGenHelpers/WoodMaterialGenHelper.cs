@@ -40,33 +40,33 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
             float regularColorChance = 0.70f;
 
-            float yShiftOutChance = 0.1f;
-            float yShiftBackChance = 0.5f;
-            int deltaY = 0;
-            int currY = 0;
+            float zShiftOutChance = 0.1f;
+            float zShiftBackChance = 0.5f;
+            int deltaZ = 0;
+            int currZ = 0;
 
             Color lineColor = mainColor;
-            for (int y = 0; y < state.Block.Colors.GetLength(1); y++)
+            for (int z = 0; z < state.Block.Colors.GetLength(1); z++)
             {
-                currY = y;
-                deltaY = 0;
+                currZ = z;
+                deltaZ = 0;
                 for (int x = 0; x < state.Block.Colors.GetLength(0); x++)
                 {
-                    if (deltaY == 0)
+                    if (deltaZ == 0)
                     {
-                        if (state.Rand.NextDouble() < yShiftOutChance)
+                        if (state.Rand.NextDouble() < zShiftOutChance)
                         {
-                            deltaY = state.Rand.NextDouble() < 0.5f ? -1 : 1;
-                            currY = (y + deltaY + state.Block.Colors.GetLength(1)) % state.Block.Colors.GetLength(1);
+                            deltaZ = state.Rand.NextDouble() < 0.5f ? -1 : 1;
+                            currZ = (z + deltaZ + state.Block.Colors.GetLength(1)) % state.Block.Colors.GetLength(1);
                         }
                     }
-                    else if (state.Rand.NextDouble() < yShiftBackChance)
+                    else if (state.Rand.NextDouble() < zShiftBackChance)
                     {
-                        deltaY = 0;
-                        currY = y;
+                        deltaZ = 0;
+                        currZ = z;
                     }
 
-                    state.Block.Colors[x, currY] = lineColor;
+                    state.Block.Colors[x, currZ] = lineColor;
                     currColorPixelsLeft--;
                     if (currColorPixelsLeft < 1)
                     {
@@ -81,23 +81,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                     }
                 }
             }
-
-            float colorDelta = RandUtils.FloatRange(0.1f, 0.4f, state.Rand);
-
-            int noiseCount = 2 + state.Rand.Next() % 2;
-
-            for (int i = 0; i < noiseCount; i++)
-            {
-
-                state.ForegroundNoise.Add(new ScaledColor()
-
-                {
-                    Color = (mainColor * RandUtils.DeltaScale(colorDelta, state.Rand)),
-                    EffectThreshold = RandUtils.FloatRange(state.Settings.MinNoiseEffectThreshold, state.Settings.MaxNoiseEffectThreshold, state.Rand),
-                }
-                );
-
-            }
+            float colorDelta = RandUtils.FloatRange(0.2f, 0.5f, state.Rand);
 
             state.Settings.ColorNoiseOctaves = 3;
 
@@ -110,39 +94,39 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 averageRowHeight = 4;
             }
 
-            List<PointXZ> blockCenters = new List<PointXZ>();
+            List<Point2I> blockCenters = new List<Point2I>();
 
             float heightDelta = 0.2f;
 
-            List<int> rowYValues = new List<int>();
+            List<int> rowZValues = new List<int>();
 
-            int startRowYValue = RandUtils.IntRange(0, state.Height - 1, state.Rand);
+            int startRowZValue = RandUtils.IntRange(0, state.Height - 1, state.Rand);
 
-            float currRowYValue = startRowYValue;
+            float currRowZValue = startRowZValue;
 
-            float yValuesUsed = 0;
+            float zValuesUsed = 0;
 
-            rowYValues.Add(startRowYValue);
+            rowZValues.Add(startRowZValue);
             while (true)
             {
-                float yValueSkip = averageRowHeight * RandUtils.FloatRange(1, 1 + heightDelta, state.Rand);
+                float zValueSkip = averageRowHeight * RandUtils.FloatRange(1, 1 + heightDelta, state.Rand);
 
-                float maxSkip = (state.Height - yValuesUsed) / 2;
+                float maxSkip = (state.Height - zValuesUsed) / 2;
 
-                if (yValueSkip > maxSkip)
+                if (zValueSkip > maxSkip)
                 {
-                    yValueSkip = maxSkip;
+                    zValueSkip = maxSkip;
                 }
 
-                currRowYValue += yValueSkip;
+                currRowZValue += zValueSkip;
 
-                yValuesUsed += yValueSkip;
+                zValuesUsed += zValueSkip;
 
-                int currYValueInt = (int)currRowYValue;
+                int currentZValueInt = (int)currRowZValue;
 
-                rowYValues.Add(currYValueInt % state.Height);
+                rowZValues.Add(currentZValueInt % state.Height);
 
-                if (currRowYValue - startRowYValue > state.Height - averageRowHeight * 1.5f)
+                if (currRowZValue - startRowZValue > state.Height - averageRowHeight * 1.5f)
                 {
                     break;
                 }
@@ -167,7 +151,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
             state.CurvedWallChance = 0;
 
-            foreach (int rowValue in rowYValues)
+            foreach (int rowValue in rowZValues)
             {
                 CornerPoint cp1 = new CornerPoint(0, rowValue);
                 CornerPoint cp2 = new CornerPoint(state.Width - 1, rowValue);

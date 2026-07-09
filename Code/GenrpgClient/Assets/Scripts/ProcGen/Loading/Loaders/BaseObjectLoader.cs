@@ -1,8 +1,8 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.MapTerrain;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Constants;
 using OxDb.SharedGame.MapServer.Services;
@@ -14,7 +14,7 @@ using UnityEngine;
 
 public interface IMMOMapObjectLoader : ISetupDictionaryItem<long>
 {
-    bool LoadObject(PatchLoadData loadData, int entityId, int x, int y,
+    bool LoadObject(PatchLoadData loadData, int entityId, int x, int z,
         Zone currZone, ZoneType currZoneType, CancellationToken token);
 
     void FinalPlaceObject(GameObject go, DownloadObjectData dlo, CancellationToken token);
@@ -27,13 +27,13 @@ public abstract class BaseObjectLoader : IMMOMapObjectLoader
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
-    protected IClientRandom _rand;
     protected IMapGenData _md;
     protected IClientEntityService _clientEntityService = null;
+    protected ILogService _logService = null;
 
     public abstract long HelperKey { get; }
 
-    public abstract bool LoadObject(PatchLoadData loadData, int entityId, int x, int y,
+    public abstract bool LoadObject(PatchLoadData loadData, int entityId, int x, int z,
         Zone currZone, ZoneType currZoneType, CancellationToken token);
 
     protected void OnDownloadObject(GameObject go, DownloadObjectData data, CancellationToken token)
@@ -62,13 +62,13 @@ public abstract class BaseObjectLoader : IMMOMapObjectLoader
 
 
         int gx = dlo.loadData.gx;
-        int gy = dlo.loadData.gy;
+        int gz = dlo.loadData.gz;
         int wx = gx * (MapConstants.TerrainPatchSize - 1) + dlo.x;
-        int wy = gy * (MapConstants.TerrainPatchSize - 1) + dlo.y;
+        int wz = gz * (MapConstants.TerrainPatchSize - 1) + dlo.z;
 
         TerrainPatchData patch = dlo.loadData.patch;
 
-        Terrain terr = patch.terrain as Terrain;
+        Terrain terr = patch.Core.Terrain;
         if (terr == null)
         {
             return;
@@ -85,25 +85,25 @@ public abstract class BaseObjectLoader : IMMOMapObjectLoader
         _clientEntityService.AddToParent(go, terrGo);
         _clientEntityService.SetLayer(go, LayerUtils.NameToLayer(LayerNames.ObjectLayer));
 
-        dlo.placementSeed = 17041 + dlo.x * 9479 + dlo.y * 2281 + dlo.loadData.gx * 5281 + dlo.loadData.gy * 719
-            + dlo.loadData.gx * dlo.y + dlo.loadData.gy * dlo.x;
+        dlo.placementSeed = 17041 + dlo.x * 9479 + dlo.z * 2281 + dlo.loadData.gx * 5281 + dlo.loadData.gz * 719
+            + dlo.loadData.gx * dlo.z + dlo.loadData.gz * dlo.x;
 
 
         if (dlo.allowRandomPlacement)
         {
             dlo.ddx = RandUtils.SeedFloatRange(dlo.placementSeed * 13, 143, -0.5f, 0.5f, 101);
-            dlo.ddy = RandUtils.SeedFloatRange(dlo.placementSeed * 17, 149, -0.5f, 0.5f, 101);
+            dlo.ddz = RandUtils.SeedFloatRange(dlo.placementSeed * 17, 149, -0.5f, 0.5f, 101);
         }
-        dlo.height = _terrainManager.SampleHeight(wx, wy);
-        go.transform.localPosition = new Vector3(dlo.x + dlo.ddx, dlo.height + dlo.zOffset, dlo.y + dlo.ddy);
+        dlo.height = _terrainManager.SampleHeight(wx, wz);
+        go.transform.localPosition = new Vector3(dlo.x + dlo.ddx, dlo.height + dlo.zOffset, dlo.z + dlo.ddz);
         go.transform.localScale = Vector3.one;
-        if (dlo.finalZ > 0)
+        if (dlo.finalY > 0)
         {
-            go.transform.localPosition = new Vector3(dlo.x + dlo.ddx, dlo.finalZ, dlo.y + dlo.ddy);
+            go.transform.localPosition = new Vector3(dlo.x + dlo.ddx, dlo.finalY, dlo.z + dlo.ddz);
         }
         if (dlo.rotation != null)
         {
-            go.transform.Rotate(dlo.rotation.X, dlo.rotation.Y, dlo.rotation.Z);
+            go.transform.Rotate(dlo.rotation.X, dlo.rotation.Z, dlo.rotation.Z);
         }
         else
         {

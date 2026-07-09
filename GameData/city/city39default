@@ -9,7 +9,7 @@
   "AncientName": "Damascus",
   "Population": 100000,
   "MapPixelX": 2848,
-  "MapPixelY": 2573,
+  "MapPixelZ": 2573,
   "BiomeTypeId": 1,
   "CultureTypeId": 5,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 151
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 5
+    }
+  ]
 }

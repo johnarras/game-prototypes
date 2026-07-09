@@ -7,7 +7,7 @@ using Assets.Scripts.Controllers;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Maps;
+using Assets.Scripts.Crawler.MapGen.Services;
 using Assets.Scripts.Crawler.Maps.EncounterHelpers;
 using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Maps.GameObjects;
@@ -29,14 +29,12 @@ using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
-using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Buildings.Settings;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Crawlers.Services;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -216,6 +214,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             if (_party.InitialCombat != null)
             {
                 _crawlerService.ChangeState(ECrawlerStates.StartCombat, token);
+                await Task.Delay(1000);
             }
             else
             {
@@ -290,15 +289,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 assetBlockPrefix = "Wide";
             }
 
-            _assetService.LoadAsset(AssetCategoryNames.Dungeons, assetBlockPrefix + DungeonAssetBlockListFilename, OnLoadDungeonAssetBlock, _crawlerMapRoot.AssetRoot, token, mapRoot);
-
-            if (_crawlerMapRoot.Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
-            {
-                string buildingArtFolder = _gameData.Get<BuildingArtSettings>(_gs.ch).Get(mapRoot.Map.BuildingArtId).Art;
-
-                _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, _crawlerMapRoot.AssetRoot, token, default(object), buildingArtFolder);
-
-            }
+            _assetService.LoadAsset(AssetCategoryNames.Dungeons, assetBlockPrefix + DungeonAssetBlockListFilename, OnLoadDungeonAssetBlock, _crawlerMapRoot.Core.AssetRoot, token, mapRoot);
 
             while (!mapRoot.AssetsAreReady())
             {
@@ -320,13 +311,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _crawlerMapRoot.CityAssets = assetGo.GetComponent<CityAssets>();
 
             _assetService.LoadAsset(AssetCategoryNames.Dungeons, "Building" + MaterialGenDataFilenameSuffix, OnLoadBuildingMaterialData,
-                _crawlerMapRoot.AssetRoot, token, _crawlerMapRoot);
+                _crawlerMapRoot.Core.AssetRoot, token, _crawlerMapRoot);
 
         }
 
         private void OnLoadBuildingMaterialData(GameObject go, CrawlerMapRoot mapRoot, CancellationToken token)
         {
-
             _awaitableService.ForgetAwaitable(OnLoadBuildingMaterialDataAsync(go, mapRoot, token));
         }
 
@@ -334,7 +324,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         {
 
             MaterialGenData materialsData = _clientEntityService.FullInstantiate(go.GetComponent<MaterialGenData>());
-            _clientEntityService.AddToParent(materialsData, mapRoot.AssetRoot);
+            _clientEntityService.AddToParent(materialsData, mapRoot.Core.AssetRoot);
 
             WallTextureGenArgs args = new WallTextureGenArgs()
             {
@@ -351,7 +341,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
                 mat.mainTexture = tex;
 
-                Texture2D normalTex = _materialGenService.CreateGrayscaleNormalMapFromDiffuseTexture(tex, false, 1);
+                Texture2D normalTex = _materialGenService.CreateAlphaNormalMapFromTexture(tex, false, 1);
 
                 _materialGenService.SetNormalMap(mat, normalTex);
 
@@ -409,8 +399,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             mapRoot.AssetBlock = list.Blocks[1];
             mapRoot.XZBlockSize = mapRoot.AssetBlockList.BlockXZSize;
             mapRoot.YBlockSize = mapRoot.AssetBlockList.BlockYSize;
+            mapRoot.DrawY = mapRoot.YBlockSize / 2;
             mapRoot.PillarAsset = RandUtils.GetRandomElement(mapRoot.AssetBlock.Pillars, rand).Asset;
-
 
             if (rand.NextDouble() < mapRoot.AssetBlockList.VaultedCeilingChance &&
                 mapRoot.AssetBlockList.VaultedCeilings != null)
@@ -443,6 +433,15 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             allDungeonZoneTypes = allDungeonZoneTypes.Distinct().ToList();
 
+            if (_crawlerMapRoot.Map.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
+            {
+                string buildingArtFolder = _gameData.Get<BuildingArtSettings>(_gs.ch).Get(mapRoot.Map.BuildingArtId).Art;
+
+                _assetService.LoadAsset(AssetCategoryNames.Buildings, "CityAssets", OnLoadCityAssets, _crawlerMapRoot.Core.AssetRoot, token, default(object), buildingArtFolder);
+
+            }
+
+
             foreach (long zoneTypeId in currentZoneTypes)
             {
                 if (allDungeonZoneTypes.Contains(zoneTypeId))
@@ -457,7 +456,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
                         string dungeonArtName = ztype.Art;
 
-                        _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName + MaterialGenDataFilenameSuffix, OnLoadDungeonMaterialsData, _crawlerMapRoot.AssetRoot, token, block);
+                        _assetService.LoadAsset(AssetCategoryNames.Dungeons, dungeonArtName + MaterialGenDataFilenameSuffix, OnLoadDungeonMaterialsData, _crawlerMapRoot.Core.AssetRoot, token, block);
                     }
                 }
             }
@@ -482,7 +481,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             IRandom rand = new MyRandom(materialSeed);
 
             MaterialGenData materialsData = _clientEntityService.FullInstantiate(assetGo.GetComponent<MaterialGenData>());
-            _clientEntityService.AddToParent(materialsData, _crawlerMapRoot.AssetRoot);
+            _clientEntityService.AddToParent(materialsData, _crawlerMapRoot.Core.AssetRoot);
 
             WallTextureGenArgs genArgs = new WallTextureGenArgs()
             {
@@ -509,6 +508,10 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     _crawlerMapRoot.GeneratedTextures.Add(normal);
                 }
             }
+
+
+            block.ForegroundColor = textureSet.ForegroundColor;
+            block.BackgroundColor = textureSet.BackgroundColor;
 
             for (int materialIndex = 0; materialIndex < DungeonMaterialIndexes.Max; materialIndex++)
             {
@@ -827,17 +830,58 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             _dispatcher.Dispatch(new MovePartyEvent());
         }
 
-        private int IgnoreSecret(int wallVal)
+        private int IgnoreSecret(CrawlerMap map, int x, int z, int dx, int dz)
         {
-            if (wallVal == WallTypes.Barricade)
+
+            int wallBits = 0;
+
+            bool edgeIsBlank = !map.HasFlag(CrawlerMapFlags.IsLooping) &&
+                map.Get(x, z, CellIndex.Terrain) == 0;
+
+            if (dx == 1)
+            {
+                wallBits = map.EastWall(x, z);
+                if (x == map.Width - 1 && edgeIsBlank)
+                {
+                    wallBits = 0;
+                }
+            }
+            else if (dz == 1)
+            {
+                wallBits = map.NorthWall(x, z);
+                if (z == map.Height - 1 && edgeIsBlank)
+                {
+                    wallBits = 0;
+                }
+            }
+            else if (dx == -1)
+            {
+                wallBits = map.EastWall((x + map.Width - 1) % map.Width, z);
+                if (x == 0 && edgeIsBlank)
+                {
+                    wallBits = 0;
+                }
+            }
+            else if (dz == -1)
+            {
+                wallBits = map.NorthWall(x, (z + map.Height - 1) % map.Height);
+                if (z == 0 && edgeIsBlank)
+                {
+                    wallBits = 0;
+                }
+            }
+
+
+            if (wallBits == WallTypes.Barricade)
             {
                 return WallTypes.None;
             }
-            else if (wallVal == WallTypes.Secret)
+            else if (wallBits == WallTypes.Secret)
             {
                 return WallTypes.Wall;
             }
-            return wallVal;
+
+            return wallBits;
         }
         public FullWallTileImage GetMinimapWallFilename(CrawlerMap map, int x, int z)
         {
@@ -845,13 +889,13 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             int index = 0;
 
-            index += IgnoreSecret(map.NorthWall(x, (z + map.Height - 1) % map.Height));
+            index += IgnoreSecret(map, x, z, 0, -1);
             index *= 3;
-            index += IgnoreSecret(map.EastWall((x + map.Width - 1) % map.Width, z));
+            index += IgnoreSecret(map, x, z, -1, 0);
             index *= 3;
-            index += IgnoreSecret(map.NorthWall(x, z));
+            index += IgnoreSecret(map, x, z, 0, 1);
             index *= 3;
-            index += IgnoreSecret(map.EastWall(x, z));
+            index += IgnoreSecret(map, x, z, 1, 0);
 
             FullWallTileImage img = TileImages[index];
 
@@ -1048,13 +1092,13 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                     return encounterTypeId;
                 }
 
-                // If we did this encounter, return false, otherwise return true.
-                PointXZ pt = mapStatus.OneTimeEncounters.FirstOrDefault(o => o.X == x && o.Z == z);
+                int index = map.GetIndex(x, z);
 
-                if (pt != null)
+                if (mapStatus.Encounters.HasBitIndex(index))
                 {
                     return 0;
                 }
+
             }
 
             else // Can repeat, just check if we've been here this run.
@@ -1209,7 +1253,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             loadData.Cell.Props.Add(go);
 
-            go.name = go.name + "-" + loadData.Cell.MapX + "." + loadData.Cell.MapZ + "--" + go.transform.position / 8;
+            go.name = "CrawlerProp-" + go.name + "-" + loadData.Cell.MapX + "." + loadData.Cell.MapZ + "--" + go.transform.position / 8;
             CrawlerProp prop = _clientEntityService.GetComponent<CrawlerProp>(go);
 
             if (prop != null)

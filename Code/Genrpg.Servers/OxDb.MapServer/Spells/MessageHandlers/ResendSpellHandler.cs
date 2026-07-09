@@ -13,7 +13,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
     public class ResendSpellHandler : BaseMapObjectServerMapMessageHandler<ResendSpell>
     {
         protected IServerUnitService _unitService = null;
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, ResendSpell message)
+        protected override async ValueTask InnerProcess(MapObject obj, ResendSpell message)
         {
             if (message.ShotsLeft < 1)
             {
@@ -32,7 +32,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
                 return;
             }
 
-            _spellService.ResendSpell(rand.Rand, caster, target, message.SpellMessage);
+            _spellService.ResendSpell(caster, target, message.SpellMessage);
 
             message.ShotsLeft--;
 

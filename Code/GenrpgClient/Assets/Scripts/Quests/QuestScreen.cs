@@ -1,6 +1,5 @@
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core;
 using ClientEvents;
 using OxDb.SharedGame.MapObjects.MapObjectAddons.Constants;
 using OxDb.SharedGame.Quests.Constants;
@@ -26,7 +25,6 @@ internal class QuestTypeWithIndex
 /// </summary>
 public class QuestScreen : ItemIconScreen
 {
-    protected IClientRandom _rand = null;
     public GButton VendorButton;
     public GameObject QuestListParent;
     public QuestInfoUI FullQuestInfo;
@@ -91,7 +89,7 @@ public class QuestScreen : ItemIconScreen
         foreach (QuestType quest in allQuests)
         {
 
-            int questState = _questService.GetQuestState(_rand.Rand, _gs.ch, quest);
+            int questState = _questService.GetQuestState(_gs.ch, quest);
 
             if (questState == QuestState.Available || questState == QuestState.Complete ||
                 questState == QuestState.Active)

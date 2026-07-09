@@ -5,13 +5,12 @@ using OxDb.SharedGame.Units.Constants;
 using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Targets
 {
     public class OnTargetIsDeadHandler : BaseClientMapMessageHandler<OnTargetIsDead>
     {
-        protected override async Awaitable InnerProcess(OnTargetIsDead msg, CancellationToken token)
+        protected override async ValueTask InnerProcess(OnTargetIsDead msg, CancellationToken token)
         {
             if (_objectManager.GetUnit(msg.UnitId, out Unit unit))
             {

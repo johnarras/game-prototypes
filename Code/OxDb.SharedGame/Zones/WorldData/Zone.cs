@@ -56,10 +56,10 @@ namespace OxDb.SharedGame.Zones.WorldData
 
         public string Art { get; set; }
 
-        public int XMin { get; set; }
-        public int ZMin { get; set; }
-        public int XMax { get; set; }
-        public int ZMax { get; set; }
+        public int MinX { get; set; }
+        public int MinZ { get; set; }
+        public int MaxX { get; set; }
+        public int MaxZ { get; set; }
 
         public List<Location> Locations { get; set; }
         public List<ZoneUnitStatus> Units { get; set; }
@@ -148,10 +148,10 @@ namespace OxDb.SharedGame.Zones.WorldData
 
         public long GetFinalUnitLevel(IRandom rand, float x, float z, long startLevel, long mapMaxLevel)
         {
-            float dmaxx = XMax - x;
-            float dmaxz = ZMax - z;
-            float dminx = XMin - x;
-            float dminz = ZMin - z;
+            float dmaxx = MaxX - x;
+            float dmaxz = MaxZ - z;
+            float dminx = MinX - x;
+            float dminz = MinZ - z;
 
             float distFromMax = dmaxx * dmaxx + dmaxz * dmaxz;
             float distFromMin = dminx * dminx + dminz * dminz;

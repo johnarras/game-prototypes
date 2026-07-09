@@ -1,9 +1,9 @@
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.UI.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Combat.Services;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Roles.Services;
 using OxDb.SharedGame.Crawler.Spells.Services;
 using OxDb.SharedGame.Crawler.Spells.Settings;

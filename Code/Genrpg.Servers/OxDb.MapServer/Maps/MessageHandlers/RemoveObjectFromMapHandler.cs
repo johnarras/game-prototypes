@@ -8,9 +8,9 @@ namespace OxDb.MapServer.Maps.MessageHandlers
 {
     public class RemoveObjectFromMapHandler : BaseMapObjectServerMapMessageHandler<RemoveObjectFromMap>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, RemoveObjectFromMap message)
+        protected override async ValueTask InnerProcess(MapObject obj, RemoveObjectFromMap message)
         {
-            _objectManager.RemoveObject(rand.Rand, obj.Id);
+            _objectManager.RemoveObject(obj.Rand, obj.Id);
         }
     }
 }

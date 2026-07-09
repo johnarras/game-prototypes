@@ -15,7 +15,7 @@ namespace OxDb.MapServer.Looting.MessageHandlers
 {
     public class SkillLootCorpseHandler : BaseUnitServerMapMessageHandler<SkillLootCorpse>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit looter, SkillLootCorpse message)
+        protected override async ValueTask InnerProcess(Unit looter, SkillLootCorpse message)
         {
 
             await Task.CompletedTask;

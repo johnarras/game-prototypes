@@ -64,8 +64,14 @@ namespace OxDb.SharedGame.UI.Constants
         public const long Enchanter = 59; // SpendLocations.Buffs
         public const long Repair = 60;  // SpendLocations.Repair
         public const long Manifest = 61; // List of shipments
+        public const long AuthMenu = 62; // List of auth options.
 
 
+
+        public static long GetMainAuthScreen()
+        {
+            return AuthMenu;
+        }
 
 
     }

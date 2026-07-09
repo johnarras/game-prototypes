@@ -4,35 +4,23 @@
   "IdKey": 38,
   "Name": "Pick Lock",
   "Desc": "Open a locked door or chest.",
-  "StatBonusScaling": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 8,
   "RoleScalingTypeId": 6,
-  "RoleScalingTier": 1,
-  "PointCost": 5,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 37,
       "EntityId": 10,
-      "MinQuantity": 1,
-      "MaxQuantity": 2,
       "ElementTypeId": 1,
-      "Chance": 1.0
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 105
-    }
-  ]
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  }
 }

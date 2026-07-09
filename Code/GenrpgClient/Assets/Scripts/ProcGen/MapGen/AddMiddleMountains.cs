@@ -34,14 +34,12 @@ public class AddMiddleMountains : BaseAddMountains
             return;
         }
 
-        int xsize = zone.XMax - zone.XMin;
-        int ysize = zone.ZMax - zone.ZMin;
-        int maxSize = Math.Max(xsize, ysize);
+        int xsize = zone.MaxX - zone.MinX;
+        int zsize = zone.MaxZ - zone.MinZ;
+        int maxSize = Math.Max(xsize, zsize);
         int minSize = MapConstants.TerrainPatchSize * 5;
 
-
-
-        if (xsize < minSize || ysize < minSize)
+        if (xsize < minSize || zsize < minSize)
         {
             return;
         }
@@ -68,34 +66,34 @@ public class AddMiddleMountains : BaseAddMountains
             int currMaxLen = RandUtils.IntRange(30, maxSize, middleRand);
 
 
-            int sx = RandUtils.IntRange(zone.XMin, zone.XMax, middleRand);
+            int sx = RandUtils.IntRange(zone.MinX, zone.MaxX, middleRand);
 
-            int sy = RandUtils.IntRange(zone.ZMin, zone.ZMax, middleRand);
+            int sz = RandUtils.IntRange(zone.MinZ, zone.MaxZ, middleRand);
 
 
             int ex = RandUtils.IntRange(sx - currMaxLen, sx + currMaxLen, middleRand);
 
-            int ey = RandUtils.IntRange(sy - currMaxLen, sx + currMaxLen, middleRand);
+            int ez = RandUtils.IntRange(sz - currMaxLen, sx + currMaxLen, middleRand);
 
-            if (ex < 0 || ex >= _mapProvider.GetMap().GetHwid() || ey < 0 || ey >= _mapProvider.GetMap().GetHhgt())
+            if (ex < 0 || ex >= _mapProvider.GetMap().GetHwid() || ez < 0 || ez >= _mapProvider.GetMap().GetHhgt())
             {
                 continue;
             }
 
-            if (_md.MapZoneIds[sx, sy] != zone.IdKey || _md.MapZoneIds[ex, ey] != zone.IdKey)
+            if (_md.MapZoneIds[sx, sz] != zone.IdKey || _md.MapZoneIds[ex, ez] != zone.IdKey)
             {
                 continue;
             }
 
             int dx = Math.Abs(ex - sx);
-            int dy = Math.Abs(ey - sy);
+            int dz = Math.Abs(ez - sz);
 
-            int maxDist = Math.Max(dx, dy);
+            int maxDist = Math.Max(dx, dz);
 
             if (maxDist >= 10 && maxDist < maxSize)
             {
                 float height = GetMountainHeightMult(middleRand);
-                AddMountainRidge(sx, sy, ex, ey, zone.Seed / 2 + times, false, height, true);
+                AddMountainRidge(sx, sz, ex, ez, zone.Seed / 2 + times, false, height, true);
                 wallsAdded++;
             }
         }

@@ -4,6 +4,7 @@
       "IdKey": 1,
       "Name": "Health",
       "Desc": "Your health before you die.",
+      "Icon": "Health",
       "RegenSeconds": 75,
       "IsCrawlerStat": true
     },
@@ -11,6 +12,7 @@
       "IdKey": 2,
       "Name": "Mana",
       "Desc": "Power used to cast spells.",
+      "Icon": "Mana",
       "MaxPool": 1000,
       "RegenSeconds": 75,
       "IsCrawlerStat": true
@@ -19,6 +21,7 @@
       "IdKey": 3,
       "Name": "Energy",
       "Desc": "1->Fast Use/Fill",
+      "Icon": "Energy",
       "MaxPool": 100,
       "RegenSeconds": 15
     },
@@ -26,6 +29,7 @@
       "IdKey": 4,
       "Name": "Combo",
       "Desc": "Start Empty, filll",
+      "Icon": "Combo",
       "MaxPool": 100,
       "RegenSeconds": -30
     },
@@ -34,7 +38,7 @@
       "Name": "Strength",
       "Abbrev": "",
       "Desc": "Increases melee damage.",
-      "Icon": "",
+      "Icon": "Strength",
       "Art": "RedCauldron",
       "ColorName": "Red",
       "ColorCode": "#FF0000",
@@ -45,6 +49,7 @@
       "IdKey": 12,
       "Name": "Intellect",
       "Desc": "Increases attack spell damage.",
+      "Icon": "Intellect",
       "Art": "OrangeCauldron",
       "ColorName": "Orange",
       "ColorCode": "#FF7F00",
@@ -55,6 +60,7 @@
       "IdKey": 13,
       "Name": "Devotion",
       "Desc": "Increases healing power.",
+      "Icon": "Devotion",
       "Art": "BlueCauldron",
       "ColorName": "Blue",
       "ColorCode": "#0000FF",
@@ -65,6 +71,7 @@
       "IdKey": 14,
       "Name": "Agility",
       "Desc": "Increases ranged damage.",
+      "Icon": "Agility",
       "Art": "YellowCauldron",
       "ColorName": "Yellow",
       "ColorCode": "#FFFF00",
@@ -75,6 +82,7 @@
       "IdKey": 15,
       "Name": "Stamina",
       "Desc": "Adds to your health.",
+      "Icon": "Stamina",
       "Art": "GreenCauldron",
       "ColorName": "Green",
       "ColorCode": "#00FF00",
@@ -85,6 +93,7 @@
       "IdKey": 16,
       "Name": "Luck",
       "Desc": "Gives a chance to get extra attacks.",
+      "Icon": "Luck",
       "Art": "WhiteCauldron",
       "ColorName": "White",
       "ColorCode": "#FFFFFF",
@@ -96,18 +105,29 @@
       "Name": "Willpower",
       "Abbrev": "",
       "Desc": "More mana and resistances",
-      "Icon": "",
+      "Icon": "Willpower",
       "Art": "PurpleCauldron",
       "ColorName": "Purple",
       "ColorCode": "#FFFF00",
       "GenScalePct": 100,
-      "BonusStatTypeId": 32,
       "IsCrawlerStat": true
+    },
+    {
+      "IdKey": 18,
+      "Name": "Leadership",
+      "Desc": "Helps with summoning and group effectiveness.",
+      "AtlasPrefix": "",
+      "Icon": "Leadership",
+      "Art": "CyanCauldron",
+      "ColorName": "Cyan",
+      "ColorCode": "#00FFFF",
+      "GenScalePct": 25
     },
     {
       "IdKey": 20,
       "Name": "DamagePower",
       "Desc": "Extra damage to all attacks.",
+      "Icon": "DamagePower",
       "GenScalePct": 100,
       "IsCrawlerStat": true
     },
@@ -115,23 +135,27 @@
       "IdKey": 21,
       "Name": "AttackPower",
       "Desc": "Phys Power",
+      "Icon": "AttackPower",
       "GenScalePct": 150
     },
     {
       "IdKey": 22,
       "Name": "SpellPower",
       "Desc": "Magic Power",
+      "Icon": "SpellPower",
       "GenScalePct": 150
     },
     {
       "IdKey": 30,
       "Name": "Defense",
-      "Desc": "All Defense"
+      "Desc": "All Defense",
+      "Icon": "Defense"
     },
     {
       "IdKey": 31,
       "Name": "Armor",
       "Desc": "Reduces physical damage.",
+      "Icon": "Armor",
       "GenScalePct": 200,
       "IsCrawlerStat": true
     },
@@ -139,6 +163,7 @@
       "IdKey": 32,
       "Name": "Resist",
       "Desc": "Reduces magical damage.",
+      "Icon": "Resist",
       "GenScalePct": 100,
       "IsCrawlerStat": true
     },
@@ -146,68 +171,80 @@
       "IdKey": 33,
       "Name": "HealthRegen",
       "Desc": "Regenerates health.",
+      "Icon": "HealthRegen",
       "GenScalePct": 100
     },
     {
       "IdKey": 34,
       "Name": "ManaRegen",
       "Desc": "Mana Regen",
+      "Icon": "ManaRegen",
       "GenScalePct": 100
     },
     {
       "IdKey": 35,
       "Name": "RoleScalingPercent",
       "Abbrev": "",
-      "Desc": "Percent modifier (divide this by 100) to role scaling for this unit."
+      "Desc": "Percent modifier (divide this by 100) to role scaling for this unit.",
+      "Icon": "RoleScalingPercent"
     },
     {
       "IdKey": 36,
-      "Name": "DetectHidden"
+      "Name": "DetectHidden",
+      "Icon": "DetectHidden"
     },
     {
       "IdKey": 37,
-      "Name": "SmartTarget"
+      "Name": "SmartTarget",
+      "Icon": "SmartTarget"
     },
     {
       "IdKey": 40,
       "Name": "PowerMult",
       "Desc": "All Dam Mult",
+      "Icon": "PowerMult",
       "GenScalePct": 10
     },
     {
       "IdKey": 41,
       "Name": "AttackMult",
       "Desc": "Phys Dam Mult",
+      "Icon": "AttackMult",
       "GenScalePct": 10
     },
     {
       "IdKey": 42,
       "Name": "SpellMult",
       "Desc": "Spell Dam Mult",
+      "Icon": "SpellMult",
       "GenScalePct": 10
     },
     {
       "IdKey": 50,
       "Name": "DefenseMult",
       "Desc": "All Dam Reduced",
+      "Icon": "DefenseMult",
       "GenScalePct": 10
     },
     {
       "IdKey": 51,
       "Name": "AttackDefMult",
       "Desc": "Phys Dam Reduced",
+      "Icon": "AttackDefMult",
       "GenScalePct": 10
     },
     {
       "IdKey": 52,
       "Name": "SpellDefMult",
       "Desc": "Spell Dam Reduced",
+      "Icon": "SpellDefMult",
       "GenScalePct": 10
     },
     {
       "IdKey": 61,
       "Name": "Crit",
       "Desc": "Chance to instantly kill a monster.",
+      "Icon": "Crit",
       "GenScalePct": 200,
       "IsCrawlerStat": true
     },
@@ -215,6 +252,7 @@
       "IdKey": 62,
       "Name": "Haste",
       "Desc": "Attack faster.",
+      "Icon": "Haste",
       "GenScalePct": 200
     },
     {
@@ -222,6 +260,7 @@
       "Name": "Speed",
       "Abbrev": "",
       "Desc": "Lets you attack earlier during combat.",
+      "Icon": "Speed",
       "GenScalePct": 200,
       "IsCrawlerStat": true
     },
@@ -229,24 +268,28 @@
       "IdKey": 64,
       "Name": "Efficiency",
       "Desc": "Lower Cost",
+      "Icon": "Efficiency",
       "GenScalePct": 200
     },
     {
       "IdKey": 65,
       "Name": "Cooldown",
       "Desc": "Lower Cooldown",
+      "Icon": "Cooldown",
       "GenScalePct": 200
     },
     {
       "IdKey": 66,
       "Name": "CritDamage",
       "Desc": "More Crit Damage",
+      "Icon": "CritDamage",
       "GenScalePct": 300
     },
     {
       "IdKey": 70,
       "Name": "Hit",
       "Desc": "Chance to Hit",
+      "Icon": "Hit",
       "GenScalePct": 100,
       "IsCrawlerStat": true
     }
@@ -257,5 +300,5 @@
     "Name": "StatSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-07-16T02:22:20.598Z"
+  "SaveTime": "2026-06-29T22:16:27.271Z"
 }

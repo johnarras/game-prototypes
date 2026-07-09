@@ -1,0 +1,13 @@
+{
+  "Id": "mapencountertype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "JunkPile",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "JunkPile",
+  "Art": "",
+  "Weight": 0.4,
+  "CanRepeat": true,
+  "IsCornerSmallRoomItem": true
+}

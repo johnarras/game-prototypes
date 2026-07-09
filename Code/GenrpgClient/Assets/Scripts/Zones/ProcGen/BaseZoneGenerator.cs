@@ -1,5 +1,4 @@
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.Repository;
 using OxDb.SharedCore.GameSettings;
@@ -27,7 +26,6 @@ public class BaseZoneGenerator : IZoneGenerator, IInitializable
     protected IGameData _gameData;
     protected IMapProvider _mapProvider;
     protected IClientGameState _gs;
-    protected IClientRandom _rand;
     protected IMapGenData _md;
     protected IPathfindingService _pathfindingService = null;
     protected IClientEntityService _clientEntityService = null;

@@ -13,20 +13,21 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Pathfinding.Services
 {
 
     public interface IPathfindingService : IInitializable
     {
-        System.Threading.Tasks.Task LoadPathfinding(string urlPrefix);
+        Task LoadPathfinding(string urlPrefix);
         bool[,] ConvertBytesToGrid(byte[] bytes);
         byte[] ConvertGridToBytes(bool[,] grid);
         /// <summary>
         /// Update path. This uses a callback so that it can be put onto a different server eventually.
         /// </summary>
-        void UpdatePath(Unit tracker, IRandom rand, int endx, int endz, Action<IRandom, Unit> callback, bool showFullLine = false);
-        void CalcPath(Unit tracker, IRandom rand, int worldStartX, int worldStartZ, int worldEndX, int worldEndZ, bool showFullLine = false, bool forcePathIfNeeded = false);
+        void UpdatePath(Unit tracker, int endx, int endz, Action<Unit> callback, bool showFullLine = false);
+        void CalcPath(Unit tracker, int worldStartX, int worldStartZ, int worldEndX, int worldEndZ, bool showFullLine = false, bool forcePathIfNeeded = false);
         bool CellIsBlocked(int x, int z);
         long GetPathSearchCount();
         void SetPathfinding(bool[,] grid);
@@ -47,9 +48,9 @@ namespace OxDb.SharedGame.Pathfinding.Services
             return _pathSearchCount;
         }
 
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         public void SetPathfinding(bool[,] grid)
@@ -62,7 +63,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             return _grid;
         }
 
-        public async System.Threading.Tasks.Task LoadPathfinding(string urlPrefix)
+        public async Task LoadPathfinding(string urlPrefix)
         {
             if (_grid != null || _mapProvider.GetMap() == null)
             {
@@ -73,7 +74,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             {
                 string filename = MapUtils.GetMapObjectFilename(PathfindingConstants.Filename, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion);
 
-                string fullUrl = urlPrefix + filename;
+                string fullUrl = urlPrefix + "/" + filename;
 
                 byte[] compressedBytes = await WebRequestUtils.DownloadBytes(fullUrl);
 
@@ -95,7 +96,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             bool[,] grid = new bool[xsize, zsize];
 
             int x = 0;
-            int y = 0;
+            int z = 0;
 
             try
             {
@@ -105,19 +106,19 @@ namespace OxDb.SharedGame.Pathfinding.Services
 
                     for (int b = 0; b < 8; b++)
                     {
-                        if (x >= grid.GetLength(0) || y >= grid.GetLength(1))
+                        if (x >= grid.GetLength(0) || z >= grid.GetLength(1))
                         {
                             break;
                         }
                         if ((currByte & 1 << (7 - b)) != 0)
                         {
-                            grid[x, y] = true;
+                            grid[x, z] = true;
                         }
                         x++;
                         if (x >= grid.GetLength(0))
                         {
                             x = 0;
-                            y++;
+                            z++;
                         }
                     }
                 }
@@ -244,9 +245,9 @@ namespace OxDb.SharedGame.Pathfinding.Services
 
                 for (int x = 0; x < GridSize; x++)
                 {
-                    for (int y = 0; y < GridSize; y++)
+                    for (int z = 0; z < GridSize; z++)
                     {
-                        Cells[x, y] = new PathCell();
+                        Cells[x, z] = new PathCell();
                     }
                 }
                 for (int i = 0; i < GridSize * 4; i++)
@@ -381,7 +382,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             }
         }
 
-        private PathWorkbook CheckoutWorkbook(IRandom rand)
+        private PathWorkbook CheckoutWorkbook()
         {
             if (_workbookCache.TryDequeue(out PathWorkbook workbook))
             {
@@ -391,12 +392,12 @@ namespace OxDb.SharedGame.Pathfinding.Services
             return new PathWorkbook();
         }
 
-        private void ReturnWorkbook(IRandom rand, PathWorkbook workbook)
+        private void ReturnWorkbook(PathWorkbook workbook)
         {
             _workbookCache.Enqueue(workbook);
         }
 
-        public void CalcPath(Unit tracker, IRandom rand, int worldStartX, int worldStartZ, int worldEndX, int worldEndZ, bool showFullLine = false, bool forcePathIfNeeded = false)
+        public void CalcPath(Unit tracker, int worldStartX, int worldStartZ, int worldEndX, int worldEndZ, bool showFullLine = false, bool forcePathIfNeeded = false)
         {
             tracker.Waypoints.Clear();
             if (worldEndX < 0 || worldEndZ < 0)
@@ -410,7 +411,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             }
             _pathSearchCount++;
 
-            PathWorkbook workbook = CheckoutWorkbook(rand);
+            PathWorkbook workbook = CheckoutWorkbook();
 
             // Map to pathfinding grid values.
             int startGridX = (worldStartX + PathfindingConstants.BlockSize / 2) / PathfindingConstants.BlockSize;
@@ -422,7 +423,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
             if (startGridX == endGridX && startGridZ == endGridZ)
             {
                 tracker.Waypoints.AddGridCell(endGridX, endGridZ);
-                ReturnWorkbook(rand, workbook);
+                ReturnWorkbook(workbook);
                 tracker.Waypoints.RetvalType = "Start Is End";
                 return;
             }
@@ -435,7 +436,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
                 {
                     CreateOverridePath(tracker, startGridX, startGridZ, endGridX, endGridZ);
                 }
-                ReturnWorkbook(rand, workbook);
+                ReturnWorkbook(workbook);
                 tracker.Waypoints.RetvalType = "No direct path found";
                 return;
             }
@@ -486,7 +487,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
                 {
                     tracker.Waypoints.AddGridCell(endGridX, endGridZ);
                 }
-                ReturnWorkbook(rand, workbook);
+                ReturnWorkbook(workbook);
                 tracker.Waypoints.RetvalType = "Straight Path";
                 return;
             }
@@ -560,7 +561,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
                         }
                     }
                     tracker.Waypoints.AddGridCell(endGridX, endGridZ);
-                    ReturnWorkbook(rand, workbook);
+                    ReturnWorkbook(workbook);
                     tracker.Waypoints.RetvalType = "Small Bad Points";
                     return;
                 }
@@ -594,7 +595,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
                     {
                         CreateOverridePath(tracker, startGridX, startGridZ, endGridX, endGridZ);
                     }
-                    ReturnWorkbook(rand, workbook);
+                    ReturnWorkbook(workbook);
                     tracker.Waypoints.RetvalType = "No Open Cells Left " + openCellIteration;
                     return;
                 }
@@ -625,7 +626,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
                     }
 
                     tracker.Waypoints.Waypoints.Reverse();
-                    ReturnWorkbook(rand, workbook);
+                    ReturnWorkbook(workbook);
                     tracker.Waypoints.RetvalType = "ASTAR SUCCESS";
                     return;
                 }
@@ -791,7 +792,7 @@ namespace OxDb.SharedGame.Pathfinding.Services
         /// <param name="endx"></param>
         /// <param name="endz"></param>
         /// <returns>true if the path was altered, false if not</returns>
-        public void UpdatePath(Unit tracker, IRandom rand, int endx, int endz, Action<IRandom, Unit> callback, bool showFullLine = false)
+        public void UpdatePath(Unit tracker, int endx, int endz, Action<Unit> callback, bool showFullLine = false)
         {
             if (endx < 0 || endz < 0)
             {
@@ -848,8 +849,8 @@ namespace OxDb.SharedGame.Pathfinding.Services
                 }
             }
 
-            CalcPath(tracker, rand, (int)tracker.X, (int)tracker.Z, endx, endz, tracker.HasFlag(UnitFlags.Evading));
-            callback(rand, tracker);
+            CalcPath(tracker,  (int)tracker.X, (int)tracker.Z, endx, endz, tracker.HasFlag(UnitFlags.Evading));
+            callback(tracker);
             return;
         }
 

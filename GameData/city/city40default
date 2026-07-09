@@ -9,7 +9,7 @@
   "AncientName": "Aelia Capitolina",
   "Population": 100000,
   "MapPixelX": 2804,
-  "MapPixelY": 2649,
+  "MapPixelZ": 2649,
   "BiomeTypeId": 1,
   "CultureTypeId": 5,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 108
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

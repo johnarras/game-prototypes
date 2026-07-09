@@ -8,7 +8,6 @@ using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.ResultHandlers.TypedHandlers
 {
@@ -19,7 +18,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
         private IClientPathfindingUtils _pathfindingUtils;
         private IPlayerManager _playerManager;
 
-        protected override async Awaitable InnerProcess(OnUpdatePos pos, CancellationToken token)
+        protected override async ValueTask InnerProcess(OnUpdatePos pos, CancellationToken token)
         {
             if (pos.ObjId == _playerManager.GetUnitId())
             {
@@ -74,7 +73,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
                         }
 
 
-                        _pathfindingService.UpdatePath(unit, _rand.Rand, (int)obj.FinalX, (int)obj.FinalZ, OnUpdatePath);
+                        _pathfindingService.UpdatePath(unit, (int)obj.FinalX, (int)obj.FinalZ, OnUpdatePath);
                     }
 
                     if (unit.HasFlag(UnitFlags.ProxyCharacter))
@@ -89,7 +88,7 @@ namespace Assets.Scripts.ResultHandlers.TypedHandlers
             await Task.CompletedTask;
         }
 
-        private void OnUpdatePath(IRandom rand, Unit unit)
+        private void OnUpdatePath(Unit unit)
         {
         }
     }

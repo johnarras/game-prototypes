@@ -41,7 +41,7 @@ public partial struct BasicMovementSystem : ISeededSystem, ISystem
             FixedPoint64 sin = FixedPointMath.Sin(rot.Angle);
 
             pos.Pos.X += cos * speed.Speed * DeltaTime;
-            pos.Pos.Y += sin * speed.Speed * DeltaTime;
+            pos.Pos.Z += sin * speed.Speed * DeltaTime;
         }
     }
 }

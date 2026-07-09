@@ -4,5 +4,6 @@
   "IdKey": 62,
   "Name": "Haste",
   "Desc": "Attack faster.",
+  "Icon": "Haste",
   "GenScalePct": 200
 }

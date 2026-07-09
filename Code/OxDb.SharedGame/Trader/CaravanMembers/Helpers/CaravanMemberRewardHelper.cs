@@ -11,20 +11,19 @@ namespace OxDb.SharedGame.Trader.CaravanMembers.Helpers
 {
     public class CaravanMamberRewardHelper : IRewardHelper
     {
-        private ICaravanMemberService _CaravanMemberService = null;
+        private ICaravanMemberService _caravanMemberService = null;
 
         public long HelperKey => EntityTypes.CaravanMember;
 
-        public async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
-        {
-            CoreData core = await context.GetAsync<CoreData>();
-            _CaravanMemberService.AddCaravanMemberToHoldings(core, await context.GetAsync<HoldingsData>(), entityId);
+        public async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        {            
+            await _caravanMemberService.AddCaravanMemberToHoldings(context, entityId);
             return true;
         }
 
-        public async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
-            return _CaravanMemberService.GetCaravanMemberQuantity(await context.GetAsync<HoldingsData>(), entityId);
+            return await _caravanMemberService.GetCaravanMemberQuantity(context, entityId);
         }
     }
 }

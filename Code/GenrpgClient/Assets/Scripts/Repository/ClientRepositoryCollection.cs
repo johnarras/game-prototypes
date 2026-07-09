@@ -64,6 +64,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
 
     public async Task<T> Load(String id)
     {
+        string val = null;
         try
         {
             await Task.CompletedTask;
@@ -72,7 +73,7 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
                 return default(T);
             }
             string key = GetKeyFromId(id);
-            string val = LoadString(key);
+            val = LoadString(key);
             if (string.IsNullOrEmpty(val))
             {
                 return default(T);
@@ -82,6 +83,8 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
         catch (Exception e)
         {
             _logService.Exception(e, "Local Load Error");
+
+            _logService.Info(val);
             return default(T);
         }
     }
@@ -225,27 +228,26 @@ public class ClientRepositoryCollection<T> : IClientRepositoryCollection where T
             return "";
         }
 
+        string startText = File.ReadAllText(path, System.Text.Encoding.UTF8);
+
         string finalText = null;
+
 
         try
         {
-
-            string startText = File.ReadAllText(path, System.Text.Encoding.UTF8);
-
-            try
-            {
-                finalText = _clientCryptoService.DecryptString(StrUtils.ConvertFromBase64(startText));
-            }
-            catch
-            {
-                finalText = startText;
-
-            }
+            // Need to try/catch this in case this isn't an encrypted base64 string.
+            finalText = _clientCryptoService.SafeDecryptString(startText);
         }
-        catch (Exception e)
+        catch
         {
-            _logService.Info("Failed to read file: " + path + " " + e.Message);
+
         }
+
+        if (string.IsNullOrEmpty(finalText))
+        {
+            finalText = startText;
+        }
+
         return finalText;
     }
 

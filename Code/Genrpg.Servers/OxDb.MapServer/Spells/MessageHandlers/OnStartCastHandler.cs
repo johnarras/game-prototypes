@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class OnStartCastHandler : BaseMapObjectServerMapMessageHandler<OnStartCast>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnStartCast message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnStartCast message)
         {
             obj.AddMessage(message);
         }

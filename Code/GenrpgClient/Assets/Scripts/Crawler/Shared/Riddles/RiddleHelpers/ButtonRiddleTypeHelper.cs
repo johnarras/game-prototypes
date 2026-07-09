@@ -1,4 +1,5 @@
 using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.UI.Dungeons;
 using OxDb.SharedCore.Entities.Constants;
@@ -6,7 +7,6 @@ using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Riddles.Constants;
 using OxDb.SharedGame.Riddles.Entities;
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
         private ICrawlerMapService _mapService = null;
         public override long HelperKey => RiddleTypes.Buttons;
 
-        public override void SetPropPosition(object prop, object data, CancellationToken token)
+        public override void SetPropPosition(object prop, CrawlerObjectLoadData loadData, CancellationToken token)
         {
             GameObject go = prop as GameObject;
             if (go == null)
@@ -40,26 +40,31 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
                 return;
             }
 
-            CrawlerObjectLoadData loadData = data as CrawlerObjectLoadData;
-
-            if (loadData == null)
-            {
-                return;
-            }
+            int dir = loadData.MapRoot.Map.Get(loadData.Cell.MapX, loadData.Cell.MapZ, CellIndex.Dir);
 
             IRandom rand = new MyRandom(loadData.Seed);
 
             float edgeDelta = 2;
             float xpos = RandUtils.FloatRange(-loadData.MapRoot.XZBlockSize + edgeDelta, loadData.MapRoot.XZBlockSize - edgeDelta, rand) / 2;
             float ypos = RandUtils.FloatRange(-loadData.MapRoot.YBlockSize + edgeDelta, loadData.MapRoot.YBlockSize - edgeDelta, rand) / 2;
+            float zpos = xpos;
+
 
             Vector3 pos = wb.MeshRenderer.gameObject.transform.localPosition;
 
-            Vector3 newPos = pos + new Vector3(xpos, ypos, 0);
+            if (dir % 4 == 0)
+            {
+                xpos = 0;
+            }
+            else
+            {
+                zpos = 0;
+            }
+            Vector3 newPos = pos + new Vector3(xpos, ypos, zpos);
             wb.MeshRenderer.gameObject.transform.localPosition = newPos;
         }
 
-        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
+        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand)
         {
             int buttonCount = rand.Next(3, 5);
 
@@ -67,17 +72,18 @@ namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
             int riddleAnswer = 0;
             while (buttonsPlaced < buttonCount && openPoints.Count > 0)
             {
-                PointXZ openPoint = openPoints[rand.Next(openPoints.Count)];
+                Point2I openPoint = openPoints[rand.Next(openPoints.Count)];
                 openPoints.Remove(openPoint);
 
-                MapDir[] dirs = MapDirs.GetDirs();
+                Dictionary<EMapDirs, MapDir> dirs = MapDirUtils.GetDirs();
 
-                bool[] validWall = new bool[dirs.Length];
+                bool[] validWall = new bool[dirs.Keys.Count];
 
-                for (int d = 0; d < dirs.Length; d++)
+
+                foreach (MapDir dir in dirs.Values)
                 {
-                    validWall[d] = _mapService.GetBlockingBits(prevFloor, openPoint.X, openPoint.Z, openPoint.X + dirs[d].DX,
-                        openPoint.Z + dirs[d].DZ, false) == WallTypes.Wall;
+                    validWall[dir.Index] = _mapService.GetBlockingBits(prevFloor, openPoint.X, openPoint.Z, openPoint.X + dir.DX,
+                        openPoint.Z + dir.DZ, false) == WallTypes.Wall;
                 }
 
                 int numChoices = validWall.Where(x => x == true).Count();

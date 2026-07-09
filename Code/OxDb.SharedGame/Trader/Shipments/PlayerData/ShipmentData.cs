@@ -17,7 +17,7 @@ namespace OxDb.SharedGame.Trader.Shipments.PlayerData
     [MessagePackObject]
     public class ShipmentData : UniquePersonalUserData, IUserData
     {
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.Shipments; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.Shipments; }
 
         public override PersonalDataAccumulation GetAccumulation()
         {

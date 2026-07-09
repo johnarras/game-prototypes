@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Items.MessageHandlers
 {
     public class OnRemoveItemHandler : BaseMapObjectServerMapMessageHandler<OnRemoveItem>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnRemoveItem message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnRemoveItem message)
         {
             obj.AddMessage(message);
         }

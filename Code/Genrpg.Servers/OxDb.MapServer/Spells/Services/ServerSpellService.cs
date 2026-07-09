@@ -4,6 +4,7 @@ using OxDb.MapServer.Maps;
 using OxDb.MapServer.Spells.SpellEffectHandlers;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.MapObjects.Entities;
@@ -31,6 +32,36 @@ using System.Threading.Tasks;
 
 namespace OxDb.MapServer.Spells.Services
 {
+
+    public interface IServerSpellService : IInitializable
+    {
+        TryCastResult TryCast(Unit unit, long spellId, string targetId, bool endOfCast);
+
+        bool FullTryStartCast(Unit unit, long spellId, string targetId);
+
+
+        TargetCastState GetTargetState(Spell spell, string targetId);
+
+        void SendStopCast(MapObject obj);
+
+        void SendSpell(Unit caster, TryCastResult result);
+
+        void ResendSpell(Unit caster, Unit target, SendSpell sendSpell);
+
+        void OnSendSpell(Unit origTarget, SendSpell sendSpell);
+
+        void OnSpellHit(MapObject obj, SpellHit hit);
+
+        void ShowFX(string fromUnitId, string toUnitId, long elementTypeId, string fxName, float duration);
+
+        void ShowProjectile(Unit caster, Unit target, Spell spell, string fxName, float speed);
+
+        void ShowCombatText(Unit unit, string txt, int combatTextColorId, bool isCrit = false);
+
+        void ApplyOneEffect(ActiveSpellEffect eff);
+    }
+
+
     public class ServerSpellService : IServerSpellService
     {
         private IMapMessageService _messageService = null;
@@ -60,7 +91,7 @@ namespace OxDb.MapServer.Spells.Services
 
         }
 
-        public TryCastResult TryCast(IRandom rand, Unit caster, long spellId, string targetId, bool endOfCast)
+        public TryCastResult TryCast(Unit caster, long spellId, string targetId, bool endOfCast)
         {
             TryCastResult result = new TryCastResult();
 
@@ -155,7 +186,7 @@ namespace OxDb.MapServer.Spells.Services
                 return result;
             }
 
-            TargetCastState targState = GetTargetState(rand, spell, targetId);
+            TargetCastState targState = GetTargetState(spell, targetId);
 
             if (targState.State != TryCastState.Ok)
             {
@@ -181,7 +212,7 @@ namespace OxDb.MapServer.Spells.Services
             SetResultState(result, TryCastState.Ok);
             return result;
         }
-        public TargetCastState GetTargetState(IRandom rand, Spell spell, string unitId)
+        public TargetCastState GetTargetState(Spell spell, string unitId)
         {
             TargetCastState castState = new TargetCastState();
             if (!_objectManager.GetUnit(unitId, out Unit target))
@@ -225,7 +256,7 @@ namespace OxDb.MapServer.Spells.Services
         }
 
 
-        public void SendStopCast(IRandom rand, MapObject obj)
+        public void SendStopCast(MapObject obj)
         {
 
             OnStopCast stop = obj.GetCachedMessage<OnStopCast>(true);
@@ -233,7 +264,7 @@ namespace OxDb.MapServer.Spells.Services
             _messageService.SendMessageNear(obj, stop);
         }
 
-        public void SendSpell(IRandom rand, Unit caster, TryCastResult result)
+        public void SendSpell(Unit caster, TryCastResult result)
         {
             // Creating and sending projectiles
 
@@ -248,15 +279,15 @@ namespace OxDb.MapServer.Spells.Services
                 ElementType = result.ElementType,
             };
 
-            SendOneSpell(rand, caster, result.Target, sendSpell, true);
+            SendOneSpell(caster, result.Target, sendSpell, true);
         }
 
-        public void ResendSpell(IRandom rand, Unit caster, Unit target, SendSpell sendSpell)
+        public void ResendSpell(Unit caster, Unit target, SendSpell sendSpell)
         {
-            SendOneSpell(rand, caster, target, sendSpell, false);
+            SendOneSpell(caster, target, sendSpell, false);
         }
 
-        private void SendOneSpell(IRandom rand, Unit caster, Unit target, SendSpell sendSpell, bool isFirstSend)
+        private void SendOneSpell(Unit caster, Unit target, SendSpell sendSpell, bool isFirstSend)
         {
             float distance1 = MapObjectUtils.DistanceBetween(caster, target);
 
@@ -308,11 +339,11 @@ namespace OxDb.MapServer.Spells.Services
 
             if (duration1 > 0)
             {
-                ShowProjectile(rand, caster, target, sendSpell.Spell, FXNames.Projectile, SpellConstants.ProjectileSpeed);
+                ShowProjectile(caster, target, sendSpell.Spell, FXNames.Projectile, SpellConstants.ProjectileSpeed);
             }
             else
             {
-                ShowFX(rand, caster.Id, target.Id, sendSpell.Spell.ElementTypeId, FXNames.Projectile, 0);
+                ShowFX(caster.Id, target.Id, sendSpell.Spell.ElementTypeId, FXNames.Projectile, 0);
             }
             //}
             //if (isFirstSend && caster is Character ch)
@@ -327,7 +358,7 @@ namespace OxDb.MapServer.Spells.Services
             //}
         }
 
-        public void ShowFX(IRandom rand, string fromUnitId, string toUnitId, long elementTypeId, string fxName, float duration)
+        public void ShowFX(string fromUnitId, string toUnitId, long elementTypeId, string fxName, float duration)
         {
 
             if (string.IsNullOrEmpty(fxName))
@@ -355,7 +386,7 @@ namespace OxDb.MapServer.Spells.Services
         }
 
 
-        public void ShowProjectile(IRandom rand, Unit fromUnit, Unit toUnit, Spell spell, string fxName, float speed)
+        public void ShowProjectile(Unit fromUnit, Unit toUnit, Spell spell, string fxName, float speed)
         {
             FX fx = new FX()
             {
@@ -374,12 +405,12 @@ namespace OxDb.MapServer.Spells.Services
             _messageService.SendMessageNear(fromUnit, fx);
         }
 
-        public void OnSendSpell(IRandom rand, Unit origTarget, SendSpell sendSpell)
+        public void OnSendSpell(Unit origTarget, SendSpell sendSpell)
         {
 
             foreach (SpellEffect effect in sendSpell.Spell.Effects)
             {
-                List<SpellHit> hits = GetTargetsHit(rand, origTarget, sendSpell, effect);
+                List<SpellHit> hits = GetTargetsHit(origTarget, sendSpell, effect);
 
                 foreach (SpellHit hit in hits)
                 {
@@ -394,7 +425,7 @@ namespace OxDb.MapServer.Spells.Services
         /// <param name="gs"></param>
         /// <param name="spellData"></param>
         /// <returns></returns>
-        protected List<SpellHit> GetTargetsHit(IRandom rand, Unit origTarget, SendSpell sendSpell, SpellEffect effect)
+        protected List<SpellHit> GetTargetsHit(Unit origTarget, SendSpell sendSpell, SpellEffect effect)
         {
             List<SpellHit> hits = new List<SpellHit>();
 
@@ -421,7 +452,7 @@ namespace OxDb.MapServer.Spells.Services
 
             if (effect.ExtraTargets > 0)
             {
-                List<Unit> newTargets = GetTargetUnitsNear(rand, origTarget.X, origTarget.Z, origTarget, SpellConstants.ExtraTargetRadius,
+                List<Unit> newTargets = GetTargetUnitsNear(origTarget.X, origTarget.Z, origTarget, SpellConstants.ExtraTargetRadius,
                     casterFactionId, targetTypeId);
 
                 // Targets for spells are first distinct (since lockless read multithreaded movement allows for
@@ -444,7 +475,7 @@ namespace OxDb.MapServer.Spells.Services
             {
                 foreach (Unit ptarg in primaryTargets)
                 {
-                    List<Unit> newTargets = GetTargetUnitsNear(rand, ptarg.X, ptarg.Z, ptarg, effect.Radius,
+                    List<Unit> newTargets = GetTargetUnitsNear(ptarg.X, ptarg.Z, ptarg, effect.Radius,
                         casterFactionId, targetTypeId);
 
                     newTargets = newTargets.Distinct().ToList();
@@ -462,7 +493,7 @@ namespace OxDb.MapServer.Spells.Services
 
                 SpellHit newHit = new SpellHit()
                 {
-                    Id = rand.NextLong(),
+                    Id = origTarget.Rand.NextLong(),
                     OrigTarget = origTarget,
                     Target = targ,
                     SendSpell = sendSpell,
@@ -480,7 +511,7 @@ namespace OxDb.MapServer.Spells.Services
             return hits;
         }
 
-        protected List<Unit> GetTargetUnitsNear(IRandom rand, float x, float z, Unit origTarget, float radius,
+        protected List<Unit> GetTargetUnitsNear(float x, float z, Unit origTarget, float radius,
             long casterFactionId, long targetTypeId)
         {
             List<Unit> newTargets = _objectManager.GetTypedObjectsNear<Unit>(x, z, origTarget, radius, true);
@@ -495,9 +526,9 @@ namespace OxDb.MapServer.Spells.Services
             return newTargets;
         }
 
-        public void OnSpellHit(IRandom rand, SpellHit hit)
+        public void OnSpellHit(MapObject obj, SpellHit hit)
         {
-            List<ActiveSpellEffect> effects = CalcSpellEffects(rand, hit);
+            List<ActiveSpellEffect> effects = CalcSpellEffects(obj, hit);
 
             foreach (ActiveSpellEffect eff in effects)
             {
@@ -516,7 +547,7 @@ namespace OxDb.MapServer.Spells.Services
         /// <param name="castData"></param>
         /// <param name="hitData"></param>
         /// <param name="cr"></param>
-        public List<ActiveSpellEffect> CalcSpellEffects(IRandom rand, SpellHit hit)
+        public List<ActiveSpellEffect> CalcSpellEffects(MapObject obj, SpellHit hit)
         {
             List<ActiveSpellEffect> retval = new List<ActiveSpellEffect>();
             SendSpell sendSpell = hit.SendSpell;
@@ -627,7 +658,7 @@ namespace OxDb.MapServer.Spells.Services
             }
             hit.BaseQuantity = finalQuantity;
 
-            return handler.CreateEffects(rand, hit);
+            return handler.CreateEffects(obj, hit);
 
         }
 
@@ -646,7 +677,7 @@ namespace OxDb.MapServer.Spells.Services
 
 
 
-        public void ApplyOneEffect(IRandom rand, ActiveSpellEffect eff)
+        public void ApplyOneEffect(ActiveSpellEffect eff)
         {
 
             if (!_objectManager.GetUnit(eff.TargetId, out Unit targ))
@@ -656,14 +687,14 @@ namespace OxDb.MapServer.Spells.Services
 
             if (eff.Id < 0)
             {
-                eff.Id = rand.NextLong();
+                eff.Id = targ.Rand.NextLong();
             }
 
             bool isImmune = targ.IsFullImmune();
 
             if (!isImmune && eff.Radius > 0 && eff.IsOrigTarget)
             {
-                ShowFX(rand, eff.TargetId, eff.TargetId, eff.ElementTypeId, FXNames.Explosion, 2.0f);
+                ShowFX(eff.TargetId, eff.TargetId, eff.ElementTypeId, FXNames.Explosion, 2.0f);
             }
 
             bool allySpell = false;
@@ -687,14 +718,14 @@ namespace OxDb.MapServer.Spells.Services
                 fxName = FXNames.DoT;
                 fxName = "";
             }
-            ShowFX(rand, eff.TargetId, eff.TargetId, eff.ElementTypeId, fxName, 2.0f);
+            ShowFX(eff.TargetId, eff.TargetId, eff.ElementTypeId, fxName, 2.0f);
 
             if (!GetSpellEffectHandler(eff.EntityTypeId, out ISpellEffectHandler handler))
             {
                 return;
             }
 
-            if (!handler.HandleEffect(rand, eff))
+            if (!handler.HandleEffect(targ, eff))
             {
                 eff.SetCancelled(true);
                 return;
@@ -704,8 +735,8 @@ namespace OxDb.MapServer.Spells.Services
             {
                 if (!targ.HasTarget())
                 {
-                    _aiService.TargetMove(rand, targ, eff.CasterId);
-                    _aiService.BringFriends(rand, targ, eff.CasterId); // When a target is attacked, it brings friends
+                    _aiService.TargetMove(targ, eff.CasterId);
+                    _aiService.BringFriends(targ, eff.CasterId); // When a target is attacked, it brings friends
                 }
                 if (!targ.HasFlag(UnitFlags.IsDead) && _objectManager.GetChar(eff.CasterId, out Character chCaster))
                 {
@@ -716,12 +747,12 @@ namespace OxDb.MapServer.Spells.Services
             // If this is the first tick, add the effect.
             if (eff.MaxDuration > 0 && !isImmune && eff.DurationLeft == eff.MaxDuration)
             {
-                AddEffect(rand, eff);
+                AddEffect(targ.Rand, eff);
             }
             // If it's the last tick, remove it.
             else if (eff.DurationLeft < 1 || isImmune)
             {
-                RemoveEffect(rand, eff);
+                RemoveEffect(targ.Rand, eff);
             }
             // Otherwise middle tick, do nothing.
             else
@@ -733,7 +764,7 @@ namespace OxDb.MapServer.Spells.Services
             {
                 if (targetTypeId == TargetTypes.Enemy && !string.IsNullOrEmpty(fxName))
                 {
-                    ShowFX(rand, eff.TargetId, eff.TargetId, eff.ElementTypeId, fxName, 1);
+                    ShowFX(eff.TargetId, eff.TargetId, eff.ElementTypeId, fxName, 1);
                 }
             }
 
@@ -847,9 +878,9 @@ namespace OxDb.MapServer.Spells.Services
             _statService.CalcStats(unit, false);
         }
 
-        public bool FullTryStartCast(IRandom rand, Unit caster, long spellId, string targetId)
+        public bool FullTryStartCast(Unit caster, long spellId, string targetId)
         {
-            TryCastResult result = TryCast(rand, caster, spellId, targetId, false);
+            TryCastResult result = TryCast(caster, spellId, targetId, false);
 
             if (result.State != TryCastState.Ok)
             {

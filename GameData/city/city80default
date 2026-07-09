@@ -9,7 +9,7 @@
   "AncientName": "Jiankang",
   "Population": 1000000,
   "MapPixelX": 6628,
-  "MapPixelY": 2637,
+  "MapPixelZ": 2637,
   "BiomeTypeId": 10,
   "CultureTypeId": 9,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 131
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 1
+    }
+  ]
 }

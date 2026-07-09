@@ -1,0 +1,31 @@
+{
+  "Id": "crawlerspell9default",
+  "ParentId": "default",
+  "IdKey": 9,
+  "Name": "Multishot",
+  "Desc": "Hit all enemies out of melee range with half as many attacks as usual.",
+  "BaseCost": 20.0,
+  "TierCost": 5.0,
+  "MinRange": 20,
+  "MaxRange": 100,
+  "CombatActionId": 3,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 2,
+  "AttackQuantityScale": 0.5,
+  "UnlockTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 39,
+      "EntityId": 2,
+      "ElementTypeId": 11,
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0,
+      "ProcChance": 100.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      804
+    ]
+  }
+}

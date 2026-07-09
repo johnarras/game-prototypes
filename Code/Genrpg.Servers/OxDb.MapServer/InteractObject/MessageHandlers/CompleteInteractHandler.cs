@@ -1,5 +1,4 @@
 using OxDb.MapServer.MapMessaging.MessageHandlers;
-using OxDb.MapServer.Spawns.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Utils;
@@ -11,6 +10,7 @@ using OxDb.SharedGame.Loot.Messages;
 using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Rewards.Constants;
 using OxDb.SharedGame.Spawns.Entities;
+using OxDb.SharedGame.Spawns.Services;
 using OxDb.SharedGame.Spawns.Settings;
 using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ namespace OxDb.MapServer.InteractObject.MessageHandlers
     {
         private ISpawnService _spawnService = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, CompleteInteract message)
+        protected override async ValueTask InnerProcess(Character ch, CompleteInteract message)
         {
             await Task.CompletedTask;
             string errorMessage = "";
@@ -88,7 +88,7 @@ namespace OxDb.MapServer.InteractObject.MessageHandlers
                         QualityTypeId = QualityTypes.Common,
                         Times = 1,
                     };
-                    List<RewardList> rewards = _spawnService.Roll(rand.Rand, lootItems, RewardSources.SkillLoot, rollLootArgs);
+                    List<RewardList> rewards = await _spawnService.Roll(ch, lootItems, RewardSources.SkillLoot, rollLootArgs);
 
                     if (rewards.Count > 0)
                     {
@@ -124,7 +124,7 @@ namespace OxDb.MapServer.InteractObject.MessageHandlers
             message.SetCancelled(true);
             ch.ActionMessage = null;
             target.OnActionMessage = null;
-            _objectManager.RemoveObject(rand.Rand, target.Id, 0);
+            _objectManager.RemoveObject(ch.Rand, target.Id, 0);
         }
     }
 }

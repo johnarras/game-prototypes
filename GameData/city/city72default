@@ -9,7 +9,7 @@
   "AncientName": "Angkor (Khmer Empire)",
   "Population": 1000000,
   "MapPixelX": 5944,
-  "MapPixelY": 3493,
+  "MapPixelZ": 3493,
   "BiomeTypeId": 16,
   "CultureTypeId": 12,
   "TradeGoodsProduced": [
@@ -32,5 +32,15 @@
       "TradeGoodId": 154
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

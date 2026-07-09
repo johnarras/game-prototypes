@@ -9,7 +9,7 @@
         public string MapName;
 
         public bool WrapX;
-        public bool WrapY;
+        public bool WrapZ;
 
         public float2 Offset;
 

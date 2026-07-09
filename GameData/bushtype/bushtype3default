@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype3default",
+  "ParentId": "default",
+  "IdKey": 3,
+  "Name": "Azalea",
+  "Art": "Azalea",
+  "Scale": 1.0,
+  "VariationCount": 2,
+  "Flags": 1
+}

@@ -16,10 +16,10 @@ namespace Assets.Editor.Builds
         {
             BuildBundleWindow window = GetWindow<BuildBundleWindow>("Build Bundles");
             int xsize = 250;
-            int ysize = xsize;
+            int zsize = xsize;
 
-            window.minSize = new Vector2(xsize, ysize);
-            window.maxSize = new Vector2(xsize, ysize);
+            window.minSize = new Vector2(xsize, zsize);
+            window.maxSize = new Vector2(xsize, zsize);
         }
 
         private string[] _platformNames = null;

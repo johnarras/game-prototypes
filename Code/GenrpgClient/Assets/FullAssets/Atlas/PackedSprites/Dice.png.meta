@@ -53,7 +53,9 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -123,7 +125,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Die1
+      name: Dice_0
       rect:
         serializedVersion: 2
         x: 0
@@ -138,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a34565a1a6e57b04b93a6da8b4d514e6
-      internalID: -862933492
+      spriteID: db41060c4bd60c540baa40bc0d7bf96e
+      internalID: -2139093824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Die5
+      name: Dice_1
       rect:
         serializedVersion: 2
         x: 128
@@ -160,14 +162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a076d7ec838a30b44a261cb46f68dbd0
-      internalID: 717088040
+      spriteID: 6a0c04d2d2dceca48ba2eb83eba77ad8
+      internalID: -809525309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Die6
+      name: Dice_2
       rect:
         serializedVersion: 2
         x: 256
@@ -182,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ca1a11bfa877884697ec650d942d53c
-      internalID: -94141976
+      spriteID: b2a95aef571c6614fb18ccf8f23a64a9
+      internalID: 2100490923
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Die2
+      name: Dice_3
       rect:
         serializedVersion: 2
         x: 0
@@ -204,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2ac29fff1cdbf84f867131743913fb9
-      internalID: 792904988
+      spriteID: 7112bc8d3aef9e942a73b3d9fe5c0086
+      internalID: 1454003804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Die3
+      name: Dice_4
       rect:
         serializedVersion: 2
         x: 0
@@ -226,14 +228,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 448c251ac9047114eba0e43086a2b820
-      internalID: -1318467946
+      spriteID: 5a9f20e6786428c4daaee3c51ee4b1a5
+      internalID: 1618492245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Die4
+      name: Dice_5
       rect:
         serializedVersion: 2
         x: 0
@@ -248,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5dd4df07bb405074c96ad89bced85e16
-      internalID: -2004535414
+      spriteID: 989b9bb2c55cf0046aa19523471a0cb2
+      internalID: 433213922
       vertices: []
       indices: 
       edges: []
@@ -272,12 +274,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":true,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Die1: -862933492
-      Die2: 792904988
-      Die3: -1318467946
-      Die4: -2004535414
-      Die5: 717088040
-      Die6: -94141976
+      Dice_0: -2139093824
+      Dice_1: -809525309
+      Dice_2: 2100490923
+      Dice_3: 1454003804
+      Dice_4: 1618492245
+      Dice_5: 433213922
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

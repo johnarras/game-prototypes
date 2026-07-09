@@ -15,7 +15,7 @@ namespace OxDb.MapServer.InteractObject.MessageHandlers
 {
     public class InteractCommandHandler : BaseMapObjectServerMapMessageHandler<InteractCommand>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, InteractCommand message)
+        protected override async ValueTask InnerProcess(MapObject obj, InteractCommand message)
         {
             await Task.CompletedTask;
             if (!_objectManager.GetObject(message.TargetId, out MapObject target))

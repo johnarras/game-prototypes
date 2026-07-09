@@ -1,0 +1,10 @@
+{
+  "Id": "adunit1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "TraderCamping",
+  "Icon": "TraderCamping",
+  "Art": "TraderCamping",
+  "RegenHours": 2.0,
+  "Rewards": []
+}

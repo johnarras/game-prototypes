@@ -15,7 +15,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
     {
         public override long HelperKey => EntityTypes.Polymorph;
 
-        public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
+        public override async ValueTask ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {
 
             if (party.Combat == null || target.StatusEffects.HasBitIndex(StatusEffects.Dead))

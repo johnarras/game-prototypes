@@ -1,4 +1,6 @@
+using Assets.Scripts.Crawler.Shared.GameEvents;
 using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Roles.Constants;
 using OxDb.SharedGame.Crawler.Roles.Settings;
@@ -21,7 +23,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
     {
         public override ECrawlerStates HelperKey => ECrawlerStates.SelectAlly;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -29,6 +31,12 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
             List<PartyMember> partyMembers = party.ActiveParty;
 
             SelectSpellAction spellAction = new SelectSpellAction();
+
+
+            Action clearAction = () =>
+            {
+                _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
+            };
 
             stateData.Actions.Add(new CrawlerStateAction("Select a party member:\n"));
             for (int m = 0; m < partyMembers.Count; m++)
@@ -51,14 +59,23 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                 {
                     ptrEnterAction = (GameObject go) => { ShowInfo(EntityTypes.Role, classRole.IdKey); };
                 }
+                CrawlerStateAction newAction = new CrawlerStateAction(char.ToUpper(c) + partyMember.Name, FromChar(c),
+                  ECrawlerStates.SelectSpell, clearAction,
 
-                stateData.Actions.Add(new CrawlerStateAction(char.ToUpper(c) + partyMember.Name, FromChar(c),
-                  ECrawlerStates.SelectSpell, extraData: selectAction,
+                  extraData: selectAction, pointerEnterAction: ptrEnterAction);
+                stateData.Actions.Add(newAction);
 
-                    pointerEnterAction: ptrEnterAction));
+                Action clickAction = () =>
+                {
+                    _crawlerService.ChangeState(stateData, newAction, token);
+                    _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
+                };
+
+                _dispatcher.Dispatch(new SelectPartyMemberIconAction() { Member = partyMember, ClickAction = clickAction });
+
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld, clearAction));
 
 
             await Task.CompletedTask;

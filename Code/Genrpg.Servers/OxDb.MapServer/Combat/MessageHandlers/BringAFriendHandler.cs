@@ -9,7 +9,7 @@ namespace OxDb.MapServer.Combat.MessageHandlers
 {
     public class BringAFriendHandler : BaseUnitServerMapMessageHandler<BringFriends>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, BringFriends message)
+        protected override async ValueTask InnerProcess(Unit unit, BringFriends message)
         {
             if (unit.IsPlayer() || unit.HasFlag(UnitFlags.IsDead | UnitFlags.Evading))
             {
@@ -27,7 +27,7 @@ namespace OxDb.MapServer.Combat.MessageHandlers
             }
             else
             {
-                _aiService.TargetMove(rand.Rand, unit, message.TargetId);
+                _aiService.TargetMove(unit, message.TargetId);
             }
             await Task.CompletedTask;
         }

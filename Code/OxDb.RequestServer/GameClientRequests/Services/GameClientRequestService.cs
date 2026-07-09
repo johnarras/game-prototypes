@@ -1,5 +1,5 @@
-using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
 using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.RequestServer.Maps;
 using OxDb.RequestServer.PlayerData.Services;
 using OxDb.ServerGame.Maps;
@@ -12,7 +12,7 @@ using OxDb.SharedCore.Website.Responses.Interfaces;
 using OxDb.SharedGame.Core.PlayerData;
 using System.Text;
 
-namespace OxDb.RequestServer.ClientUserRequests.Services
+namespace OxDb.RequestServer.GameClientRequests.Services
 {
     public class GameClientRequestService : IGameClientRequestService
     {

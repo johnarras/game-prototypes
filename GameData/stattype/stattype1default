@@ -4,6 +4,7 @@
   "IdKey": 1,
   "Name": "Health",
   "Desc": "Your health before you die.",
+  "Icon": "Health",
   "RegenSeconds": 75,
   "IsCrawlerStat": true
 }

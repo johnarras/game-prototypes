@@ -13,7 +13,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.DeleteMember
         private IPartyService _partyService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.DeleteConfirm;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

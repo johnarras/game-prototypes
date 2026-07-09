@@ -2,9 +2,8 @@
   "Id": "treetype19default",
   "ParentId": "default",
   "IdKey": 19,
-  "Name": "AzaleaWhite",
-  "Art": "AzaleaWhite",
-  "Scale": 1.0,
-  "VariationCount": 2,
-  "Flags": 1
+  "Name": "ElmFall",
+  "Art": "ElmFall",
+  "Scale": 1.5,
+  "VariationCount": 2
 }

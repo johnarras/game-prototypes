@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Config;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Utils;
-using System.Collections.Generic;
 
 namespace Assets.Scripts.Logalytics.Utils
 {
@@ -22,7 +21,7 @@ namespace Assets.Scripts.Logalytics.Utils
 
             // This is a bit strange but it keeps the connection string out of the client until a player is built.
 #if UNITY_EDITOR
-            Dictionary<string, string> kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
+            XmlDict kvDict = XmlUtils.ExtractAppConfigData(ConfigConstants.MainAppConfigPath);
             string connectionString = kvDict[AppConfigKeys.AppInsightsConnectionString];
             if (!string.IsNullOrEmpty(connectionString))
             {

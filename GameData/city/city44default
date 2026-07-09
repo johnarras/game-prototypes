@@ -9,7 +9,7 @@
   "AncientName": "Nineveh",
   "Population": 150000,
   "MapPixelX": 3160,
-  "MapPixelY": 2449,
+  "MapPixelZ": 2449,
   "BiomeTypeId": 3,
   "CultureTypeId": 6,
   "TradeGoodsProduced": [
@@ -23,5 +23,24 @@
       "TradeGoodId": 107
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 5
+    },
+    {
+      "CaravanMemberId": 7
+    }
+  ]
 }

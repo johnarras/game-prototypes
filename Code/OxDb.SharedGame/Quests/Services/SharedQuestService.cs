@@ -15,9 +15,9 @@ namespace OxDb.SharedGame.Quests.Services
 {
     public interface ISharedQuestService : IInjectable
     {
-        int GetQuestState(IRandom rand, Character ch, QuestType qtype);
-        bool IsQuestSoonVisible(IRandom rand, Character ch, QuestType qtype);
-        List<Reward> GetRewards(IRandom rand, Character ch, QuestType qtype, bool createRewards = false);
+        int GetQuestState(Character ch, QuestType qtype);
+        bool IsQuestSoonVisible(Character ch, QuestType qtype);
+        List<Reward> GetRewards(Character ch, QuestType qtype, bool createRewards = false);
 
     }
 
@@ -27,7 +27,7 @@ namespace OxDb.SharedGame.Quests.Services
 
         private IGameData _gameData = null;
 
-        public int GetQuestState(IRandom rand, Character ch, QuestType qtype)
+        public int GetQuestState(Character ch, QuestType qtype)
         {
             if (qtype == null)
             {
@@ -67,7 +67,7 @@ namespace OxDb.SharedGame.Quests.Services
 
         }
 
-        public virtual bool IsQuestSoonVisible(IRandom rand, Character ch, QuestType qtype)
+        public virtual bool IsQuestSoonVisible(Character ch, QuestType qtype)
         {
 
             if (ch.Level < qtype.MinLevel - QuestConstants.QuestAlmostVisibleLevels)
@@ -79,7 +79,7 @@ namespace OxDb.SharedGame.Quests.Services
         }
 
 
-        public List<Reward> GetRewards(IRandom rand, Character ch, QuestType qtype, bool createRewards = false)
+        public List<Reward> GetRewards(Character ch, QuestType qtype, bool createRewards = false)
         {
             List<Reward> rewards = new List<Reward>();
 

@@ -4,13 +4,12 @@ using OxDb.SharedCore.GameSettings.WebApi.UpdateGameSettings;
 using OxDb.SharedGame.Characters.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
     public class UpdateGameSettingsResponseHandler : BaseClientWebResponseHandler<UpdateGameSettingsResponse>
     {
-        protected override async Awaitable InnerProcess(UpdateGameSettingsResponse result, CancellationToken token)
+        protected override async ValueTask InnerProcess(UpdateGameSettingsResponse result, CancellationToken token)
         {
             if (_gs.ch != null)
             {

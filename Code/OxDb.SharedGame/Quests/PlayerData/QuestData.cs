@@ -17,6 +17,7 @@ namespace OxDb.SharedGame.Quests.PlayerData
         [Key(2)] public QuestType Quest { get; set; }
         [Key(3)] public List<QuestTaskStatus> Tasks { get; set; } = new List<QuestTaskStatus>();
 
+        [Key(4)] public override string VersionTag { get; set; }
         public bool IsComplete()
         {
             if (Quest == null || Quest.Tasks == null || Tasks == null)
@@ -45,6 +46,7 @@ namespace OxDb.SharedGame.Quests.PlayerData
     public class QuestData : OwnerObjectList<QuestStatus>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
         public QuestStatus GetStatus(QuestType qtype)
         {

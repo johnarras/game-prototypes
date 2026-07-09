@@ -4,5 +4,6 @@
   "IdKey": 22,
   "Name": "SpellPower",
   "Desc": "Magic Power",
+  "Icon": "SpellPower",
   "GenScalePct": 150
 }

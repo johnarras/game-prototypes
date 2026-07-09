@@ -2,19 +2,35 @@
   "Id": "role7default",
   "ParentId": "default",
   "IdKey": 7,
-  "Name": "Bard",
-  "Desc": "Hybrid Spell",
-  "Abbrev": "Bd",
+  "Name": "Spellblade",
+  "Desc": "A fighter who can also fling a nasty fireball.",
+  "Abbrev": "Sp",
   "RoleCategoryId": 1,
-  "HealthPerLevel": 16,
-  "ManaPerLevel": 16,
-  "MaxArmorScalingTypeId": 3,
-  "CritPercent": 2,
-  "TrainingXpScale": 1.0,
-  "TrainingGoldScale": 1.0,
+  "HealthPerLevel": 9,
+  "ManaPerLevel": 9,
+  "MaxArmorScalingTypeId": 2,
+  "Guardian": true,
+  "TrainingXpScale": 1.4,
+  "TrainingGoldScale": 1.4,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
   "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 16
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 20
+    },
     {
       "EntityTypeId": 2,
       "EntityId": 21
@@ -25,27 +41,11 @@
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 23
+      "EntityId": 25
     },
     {
       "EntityTypeId": 2,
-      "EntityId": 24
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 30
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 31
-    },
-    {
-      "EntityTypeId": 2,
-      "EntityId": 32
-    },
-    {
-      "EntityTypeId": 31,
-      "EntityId": 31
+      "EntityId": 28
     },
     {
       "EntityTypeId": 100,
@@ -61,39 +61,27 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 5
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 6
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 20
+      "EntityId": 8
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 22
+      "EntityId": 26
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 23
+      "EntityId": 33
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 30
+      "EntityId": 34
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 38
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 60
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 64
+      "EntityId": 35
     },
     {
       "EntityTypeId": 100,
@@ -101,7 +89,15 @@
     },
     {
       "EntityTypeId": 100,
+      "EntityId": 82
+    },
+    {
+      "EntityTypeId": 100,
       "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 84
     },
     {
       "EntityTypeId": 100,
@@ -109,19 +105,11 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 87
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 89
-    },
-    {
-      "EntityTypeId": 100,
-      "EntityId": 90
-    },
-    {
-      "EntityTypeId": 100,
       "EntityId": 91
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 92
     },
     {
       "EntityTypeId": 100,
@@ -129,7 +117,23 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 142
+      "EntityId": 94
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 100
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 101
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 105
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 107
     },
     {
       "EntityTypeId": 100,
@@ -137,30 +141,30 @@
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 240
+      "EntityId": 211
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 250
+      "EntityId": 213
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 251
+      "EntityId": 220
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 252
+      "EntityId": 221
     },
     {
       "EntityTypeId": 100,
-      "EntityId": 10031
+      "EntityId": 223
     }
   ],
   "AmountBonuses": [
     {
       "EntityTypeId": 41,
       "EntityId": 1,
-      "Amount": 0.1
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
@@ -170,7 +174,7 @@
     {
       "EntityTypeId": 41,
       "EntityId": 3,
-      "Amount": 0.1
+      "Amount": 0.2
     },
     {
       "EntityTypeId": 41,
@@ -179,37 +183,27 @@
     },
     {
       "EntityTypeId": 41,
-      "EntityId": 5,
-      "Amount": 0.2
-    },
-    {
-      "EntityTypeId": 41,
       "EntityId": 6,
-      "Amount": 0.1
+      "Amount": 0.05
     },
     {
       "EntityTypeId": 41,
       "EntityId": 7,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 8,
       "Amount": 0.05
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 13,
+      "EntityId": 11,
       "Amount": 1.0
     },
     {
       "EntityTypeId": 43,
-      "EntityId": 14,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 15,
-      "Amount": 1.0
-    },
-    {
-      "EntityTypeId": 43,
-      "EntityId": 16,
+      "EntityId": 12,
       "Amount": 1.0
     }
   ]

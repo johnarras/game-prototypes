@@ -10,14 +10,13 @@ using OxDb.SharedGame.Trader.Travel.WebApi;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Trader.MessageHandlers.Travelling
 {
     public class HeadToTargetResponseHandler : BaseClientWebResponseHandler<HeadToTargetResponse>
     {
         private ICalcAttributeService _calcAttributeService = null;
-        protected override async Awaitable InnerProcess(HeadToTargetResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(HeadToTargetResponse response, CancellationToken token)
         {
             if (!string.IsNullOrEmpty(response.ErrorMessage))
             {
@@ -28,9 +27,9 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
             CoreData coreData = _gs.ch.Get<CoreData>();
 
             coreData.Vars[TraderVars.FromX] = response.FromX;
-            coreData.Vars[TraderVars.FromY] = response.FromY;
+            coreData.Vars[TraderVars.FromZ] = response.FromZ;
             coreData.Vars[TraderVars.ToX] = response.ToX;
-            coreData.Vars[TraderVars.ToY] = response.ToY;
+            coreData.Vars[TraderVars.ToZ] = response.ToZ;
             coreData.Vars[TraderVars.CityId] = response.ToCityId;
             coreData.Vars[TraderVars.DistanceGone] = 0;
             coreData.Vars[TraderVars.TotalDistanceToTarget] = response.TotalDistanceToTarget;
@@ -45,8 +44,9 @@ namespace Assets.Scripts.Trader.MessageHandlers.Travelling
             }
 
             _dispatcher.Dispatch(new CloseScreen(ScreenNames.TraderCityRoads));
+            _dispatcher.Dispatch(new CloseScreen(ScreenNames.TraderCity));
             _dispatcher.Dispatch(new UpdateTraderHUD() { FullRefresh = true });
-            _dispatcher.Dispatch(new UpdateTraderMapAngle());
+            _dispatcher.Dispatch(new ShowTraderMapPosition());
             await Task.CompletedTask;
         }
     }

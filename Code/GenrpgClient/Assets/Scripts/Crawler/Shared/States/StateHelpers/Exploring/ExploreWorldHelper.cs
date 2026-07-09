@@ -23,13 +23,14 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
         private ICrawlerMoveService _moveService = null;
         private IPartyService _partyService = null;
         private ICrawlerMapService _crawlerMapService = null;
+        private ICameraController _cameraController = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.ExploreWorld;
         public override bool IsTopLevelState() { return true; }
         public override bool HideBigPanels() { return true; }
         public override bool ShouldDispatchClickKeys() { return true; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             EnterCrawlerMapData mapData = action.ExtraData as EnterCrawlerMapData;
 
@@ -37,6 +38,8 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 
             _combatService.EndCombat(party);
 
+
+            _cameraController.SetSaturation(_cameraController.GetDefaultSaturation(), false);
             if (mapData == null)
             {
                 CrawlerStateData topLevelData = _crawlerService.GetTopLevelState();
@@ -47,7 +50,6 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
                     return topLevelData;
                 }
             }
-
             CrawlerStateData stateData = CreateStateData();
             stateData.ClearBGImage = true;
 

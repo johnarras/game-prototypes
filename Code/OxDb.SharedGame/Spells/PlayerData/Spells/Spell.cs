@@ -42,13 +42,14 @@ namespace OxDb.SharedGame.Spells.PlayerData.Spells
 
         [Key(17)] public DateTime CooldownEnds { get; set; }
         [Key(18)] public int CurrCharges { get; set; }
+        [Key(19)] public override string VersionTag { get; set; }
 
-        [Key(19)] public int Flags { get; set; }
+        [Key(20)] public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
 
-        [Key(20)] public List<SpellEffect> Effects { get; set; } = new List<SpellEffect>();
+        [Key(21)] public List<SpellEffect> Effects { get; set; } = new List<SpellEffect>();
         protected string _analyticsName = null;
         public string GetAnalyticsName()
         {

@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
@@ -13,8 +12,8 @@ using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Party.Services;
-using OxDb.SharedGame.Crawler.Roles.Constants;
 using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
 using OxDb.SharedGame.Crawler.Stats.Settings;
 using OxDb.SharedGame.Crawler.Training.Settings;
 using OxDb.SharedGame.Crawler.Upgrades.Constants;
@@ -52,7 +51,6 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
         protected IStatService _statService = null;
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
-        protected IClientRandom _rand = null;
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;
         protected IPartyService _partyService = null;
@@ -79,24 +77,13 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
             CrawlerMonsterSettings monsterSettings = _gameData.Get<CrawlerMonsterSettings>(_gs.ch);
             CrawlerStatSettings statSettings = _gameData.Get<CrawlerStatSettings>(_gs.ch);
             CrawlerTrainingSettings trainingSettings = _gameData.Get<CrawlerTrainingSettings>(_gs.ch);
+            CrawlerSpellSettings spellSettings = _gameData.Get<CrawlerSpellSettings>(_gs.ch);
 
             IReadOnlyList<StatType> allStats = _gameData.Get<StatSettings>(_gs.ch).GetData();
 
             IReadOnlyList<Role> allRoles = roleSettings.GetData();
 
-            List<long> buffStatTypes = new List<long>();
-
-            foreach (Role role in allRoles)
-            {
-                buffStatTypes.AddRange(role.BinaryBonuses.Where(x => x.EntityTypeId == EntityTypes.Stat).Select(x => x.EntityId));
-            }
-
-            List<Role> classRoles = allRoles.Where(x => x.RoleCategoryId == RoleCategories.Class).ToList();
-            List<Role> raceRoles = allRoles.Where(x => x.RoleCategoryId == RoleCategories.Origin).ToList();
-
-            buffStatTypes = buffStatTypes.Where(x => x < StatConstants.PrimaryStatStart || x > StatConstants.PrimaryStatEnd).ToList();
-
-            buffStatTypes = buffStatTypes.Distinct().ToList();
+            List<long> buffStatTypes = new List<long> { StatTypes.Armor, StatTypes.Resist, StatTypes.Speed, StatTypes.Hit };
 
             List<long> mutableStatTypes = new List<long>() { StatTypes.Health, StatTypes.Mana };
 
@@ -219,7 +206,6 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
                     {
                         _statService.Set(unit, statType.IdKey, UnitStatValOffsets.Base, statSettings.BaseBuffStatValue + unit.Level);
                     }
-
                 }
 
                 long minHealth = (long)(monsterSettings.BaseMinHealth + unit.Level * monsterSettings.MinHealthPerLevel);
@@ -233,6 +219,12 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
 
                 if (unit.FactionTypeId == FactionTypes.Player)
                 {
+                    if (monster.SummonArgs != null)
+                    {
+                        minHealth = (minHealth + maxHealth) / 2;
+                        maxHealth = minHealth;
+                    }
+
                     double qualityPercent = _upgradeService.GetPartyBonus(party, PartyUpgrades.SummonQuality);
 
                     healthScale = (1 + qualityPercent / 100.0f);
@@ -277,7 +269,7 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
                 for (int t = 0; t < healthCalcTimes; t++)
                 {
 
-                    startHealth += RandUtils.LongRange(minHealth, maxHealth, _rand.Rand);
+                    startHealth += RandUtils.LongRange(minHealth, maxHealth, _gs.Rand);
                 }
 
                 startHealth /= healthCalcTimes;
@@ -314,6 +306,15 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
             if (statValue >= 16)
             {
                 statBonus = GetBaseStatBonus(statValue);
+            }
+
+            if (unit is Monster monster)
+            {
+                if (monster.SummonArgs != null)
+                {
+                    statBonus += monster.SummonArgs.SummonStatBonus;
+                }
+                return statBonus;
             }
 
             List<Role> roles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(unit.Roles);

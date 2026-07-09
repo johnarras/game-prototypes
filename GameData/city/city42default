@@ -9,7 +9,7 @@
   "AncientName": "Byblos",
   "Population": 10000,
   "MapPixelX": 2820,
-  "MapPixelY": 2549,
+  "MapPixelZ": 2549,
   "BiomeTypeId": 1,
   "CultureTypeId": 5,
   "TradeGoodsProduced": [
@@ -23,5 +23,15 @@
       "TradeGoodId": 85
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

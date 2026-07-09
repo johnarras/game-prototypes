@@ -14,11 +14,13 @@ namespace OxDb.SharedGame.Spells.PlayerData
         [Key(2)] public long AbilityCategoryId { get; set; }
         [Key(3)] public long AbilityTypeId { get; set; }
         [Key(4)] public int Rank { get; set; }
+        [Key(5)] public override string VersionTag { get; set; }
     }
     [MessagePackObject]
     public class CombatAbilityData : OwnerObjectList<CombatAbilityRank>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
     }
 

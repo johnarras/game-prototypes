@@ -131,11 +131,11 @@ public class CreateMinimap : BaseZoneGenerator
 
         for (int x = 0; x < _md.ExtendedObjects.GetLength(0); x++)
         {
-            for (int y = 0; y < _md.ExtendedObjects.GetLength(1); y++)
+            for (int z = 0; z < _md.ExtendedObjects.GetLength(1); z++)
             {
-                if (_md.ExtendedObjects[x, y] != null && _md.ExtendedObjects[x, y].EntityTypeId == EntityTypes.Water)
+                if (_md.ExtendedObjects[x, z] != null && _md.ExtendedObjects[x, z].EntityTypeId == EntityTypes.Water)
                 {
-                    waterObjects.Add(_md.ExtendedObjects[x, y]);
+                    waterObjects.Add(_md.ExtendedObjects[x, z]);
                 }
             }
         }
@@ -157,23 +157,23 @@ public class CreateMinimap : BaseZoneGenerator
         foreach (ExtendedWorldObjectData extWater in waterObjects)
         {
             int x = (int)extWater.X;
-            int y = (int)extWater.Z;
+            int z = (int)extWater.Z;
 
             int nx = x + 0 * (x / (MapConstants.TerrainPatchSize - 1));
-            int ny = y + 0 * (y / (MapConstants.TerrainPatchSize - 1));
+            int nz = z + 0 * (z / (MapConstants.TerrainPatchSize - 1));
 
             PatchLoadData loadData = new PatchLoadData()
             {
                 gx = 0,
-                gy = 0,
+                gz = 0,
                 StartX = 0,
-                StartY = 0,
+                StartZ = 0,
                 protoParent = waterRoot,
                 patch = patch,
             };
 
             waterObjectCount++;
-            waterLoader.LoadObject(loadData, 0, ny, nx, null, null, token);
+            waterLoader.LoadObject(loadData, 0, nz, nx, null, null, token);
         }
 
         await Awaitable.WaitForSecondsAsync(0.1f * waterObjectCount, cancellationToken: token);
@@ -199,14 +199,14 @@ public class CreateMinimap : BaseZoneGenerator
 
         for (int x = 0; x < TexSize; x++)
         {
-            for (int y = 0; y < TexSize; y++)
+            for (int z = 0; z < TexSize; z++)
             {
-                UnityEngine.Color pix = pixels[GetIndex(x, y)];
+                UnityEngine.Color pix = pixels[GetIndex(x, z)];
                 if (pix.r < colorDelta &&
                     pix.g < colorDelta &&
                     pix.b > 1 - colorDelta)
                 {
-                    bluePixels[x, y] = true;
+                    bluePixels[x, z] = true;
                 }
             }
         }
@@ -226,9 +226,9 @@ public class CreateMinimap : BaseZoneGenerator
 
         for (int x = 0; x < TexSize; x++)
         {
-            for (int y = 0; y < TexSize; y++)
+            for (int z = 0; z < TexSize; z++)
             {
-                if (bluePixels[x, y])
+                if (bluePixels[x, z])
                 {
                     float minDistToOther = rad * 3;
                     for (int xx = x - rad; xx <= x + rad; xx++)
@@ -238,17 +238,17 @@ public class CreateMinimap : BaseZoneGenerator
                             continue;
                         }
                         int dx = xx - x;
-                        for (int yy = y - rad; yy <= y + rad; yy++)
+                        for (int zz = z - rad; zz <= z + rad; zz++)
                         {
-                            if (yy < 0 || yy >= TexSize)
+                            if (zz < 0 || zz >= TexSize)
                             {
                                 continue;
                             }
 
-                            if (!bluePixels[xx, yy])
+                            if (!bluePixels[xx, zz])
                             {
-                                int dy = yy - y;
-                                float dist = (float)Math.Sqrt(dx * dx + dy * dy);
+                                int dz = zz - z;
+                                float dist = (float)Math.Sqrt(dx * dx + dz * dz);
                                 if (dist < minDistToOther)
                                 {
                                     minDistToOther = dist;
@@ -268,12 +268,12 @@ public class CreateMinimap : BaseZoneGenerator
                     newColor[1] = (startVal * waterGreen) * (1 + distPct * lossPct);
                     newColor[2] = (startVal * waterBlue) * (1 + distPct * lossPct);
 
-                    pixels[GetIndex(x, y)] = new Color(newColor[0], newColor[1], newColor[2]);
+                    pixels[GetIndex(x, z)] = new Color(newColor[0], newColor[1], newColor[2]);
                 }
                 else
                 {
                     // move toward target tint.
-                    UnityEngine.Color pcolor = pixels[GetIndex(x, y)];
+                    UnityEngine.Color pcolor = pixels[GetIndex(x, z)];
                     newColor[0] = pcolor.r;
                     newColor[1] = pcolor.g;
                     newColor[2] = pcolor.b;
@@ -281,7 +281,7 @@ public class CreateMinimap : BaseZoneGenerator
                     {
                         newColor[i] = (1 - tintPct) * newColor[i] + tintPct * tint[i];
                     }
-                    pixels[GetIndex(x, y)] = new Color(newColor[0], newColor[1], newColor[2]);
+                    pixels[GetIndex(x, z)] = new Color(newColor[0], newColor[1], newColor[2]);
                 }
             }
         }
@@ -293,7 +293,7 @@ public class CreateMinimap : BaseZoneGenerator
         double[] totals = new double[3];
         for (int x = 0; x < TexSize; x++)
         {
-            for (int y = 0; y < TexSize; y++)
+            for (int z = 0; z < TexSize; z++)
             {
                 double totalWeightNearby = 0;
                 for (int i = 0; i < 3; i++)
@@ -307,15 +307,15 @@ public class CreateMinimap : BaseZoneGenerator
                         continue;
                     }
                     float dx = Math.Abs(x - xx);
-                    for (int yy = y - 1; yy <= y + 1; yy++)
+                    for (int zz = z - 1; zz <= z + 1; zz++)
                     {
-                        if (yy < 0 || yy >= TexSize)
+                        if (zz < 0 || zz >= TexSize)
                         {
                             continue;
                         }
-                        float dy = Math.Abs(y - yy);
-                        float scaleFactor = 1.0f / (1 + smoothDivisor * (dx + dy + dx * dy));
-                        UnityEngine.Color pix = smoothingPixels[GetIndex(xx, yy)];
+                        float dz = Math.Abs(z - zz);
+                        float scaleFactor = 1.0f / (1 + smoothDivisor * (dx + dz + dx * dz));
+                        UnityEngine.Color pix = smoothingPixels[GetIndex(xx, zz)];
 
                         totals[0] += pix.r * scaleFactor;
                         totals[1] += pix.g * scaleFactor;
@@ -326,11 +326,11 @@ public class CreateMinimap : BaseZoneGenerator
                 for (int i = 0; i < 3; i++)
                 {
                     totals[i] /= totalWeightNearby;
-                    totals[i] = totals[i] * (1.0f + noiseList[i][x, y]);
+                    totals[i] = totals[i] * (1.0f + noiseList[i][x, z]);
                     totals[i] = Math.Max(0, contrast * (totals[i] - 0.5f) + 0.5f + bright);
                 }
 
-                pixels[GetIndex(x, y)] = new Color((float)totals[0], (float)totals[1], (float)totals[2]);
+                pixels[GetIndex(x, z)] = new Color((float)totals[0], (float)totals[1], (float)totals[2]);
             }
         }
 
@@ -349,16 +349,15 @@ public class CreateMinimap : BaseZoneGenerator
         for (int x = 0; x < TexSize; x++)
         {
             int xpos = (int)((shiftScale * 1.0 * x / TexSize) * _mapProvider.GetMap().GetHwid());
-            for (int y = 0; y < TexSize; y++)
+            for (int z = 0; z < TexSize; z++)
             {
-                int ypos = (int)((shiftScale * 1.0 * y / TexSize) * _mapProvider.GetMap().GetHhgt());
+                int zpos = (int)((shiftScale * 1.0 * z / TexSize) * _mapProvider.GetMap().GetHhgt());
 
-                float belowMinLandDist = minLandPct - _terrainManager.GetInterpolatedHeight(xpos, ypos) / MapConstants.MapHeight;
+                float belowMinLandDist = minLandPct - _terrainManager.GetInterpolatedHeight(xpos, zpos) / MapConstants.MapHeight;
 
                 if (belowMinLandDist > 0)
                 {
                     float origBelowLandDist = belowMinLandDist;
-
 
                     belowMinLandDist *= 40;
                     if (belowMinLandDist > 0.90f)
@@ -368,12 +367,10 @@ public class CreateMinimap : BaseZoneGenerator
 
                     UnityEngine.Color color = waterColor * belowMinLandDist + UnityEngine.Color.white * (1 - belowMinLandDist) * 0.9f;
 
-
-
                     if (origBelowLandDist < blendHigherLandDist)
                     {
                         float oldColorPct = origBelowLandDist / blendHigherLandDist;
-                        color = pixels[GetIndex(x, y)] * oldColorPct + color * (1 - oldColorPct);
+                        color = pixels[GetIndex(x, z)] * oldColorPct + color * (1 - oldColorPct);
                     }
                     else if (belowMinLandDist > darkenStartPercent)
                     {
@@ -381,11 +378,11 @@ public class CreateMinimap : BaseZoneGenerator
 
                         color *= pctLeft;
                     }
-                    pixels[GetIndex(x, y)] = color;
+                    pixels[GetIndex(x, z)] = color;
                 }
-                if (x < blackBorderWidth || y < blackBorderWidth || x >= TexSize - blackBorderWidth || y >= TexSize - blackBorderWidth)
+                if (x < blackBorderWidth || z < blackBorderWidth || x >= TexSize - blackBorderWidth || z >= TexSize - blackBorderWidth)
                 {
-                    pixels[GetIndex(x, y)] = waterColor;
+                    pixels[GetIndex(x, z)] = waterColor;
                 }
             }
         }
@@ -425,9 +422,9 @@ public class CreateMinimap : BaseZoneGenerator
         RenderSettings.fog = true;
     }
 
-    protected int GetIndex(int x, int y)
+    protected int GetIndex(int x, int z)
     {
-        return x + y * TexSize;
+        return x + z * TexSize;
     }
 }
 

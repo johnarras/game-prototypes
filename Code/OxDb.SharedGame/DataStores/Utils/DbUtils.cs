@@ -2,9 +2,9 @@
 {
     public static class DbUtils
     {
-        public static string GetDbName(string category, string env)
+        public static string GetDbName(string productName, string category, string env)
         {
-            return (env + "-" + category).ToLower();
+            return (productName + "-" + category + "-" + env).ToLower();
         }
     }
 }

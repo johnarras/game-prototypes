@@ -2,8 +2,8 @@
   "Id": "treetype49default",
   "ParentId": "default",
   "IdKey": 49,
-  "Name": "WhiteOakWinter",
-  "Art": "WhiteOakWinter",
+  "Name": "BanyanThick",
+  "Art": "BanyanThick",
   "Scale": 1.5,
   "VariationCount": 2
 }

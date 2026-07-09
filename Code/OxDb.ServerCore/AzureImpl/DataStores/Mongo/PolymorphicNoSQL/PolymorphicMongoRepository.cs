@@ -46,7 +46,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.PolymorphicNoSQL
             CancellationToken token)
         {
             _token = token;
-            string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
+            string databaseName = DbUtils.GetDbName(args.ProductName, args.Category.ToString(), args.Env);
             _databaseName = databaseName;
             _logService = logService;
             _serializer = serializer;

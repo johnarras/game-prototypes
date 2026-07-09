@@ -17,7 +17,7 @@ namespace OxDb.MapServer.Quests.Services
 
     public interface IServerQuestService : IInjectable
     {
-        UpdateQuestResult UpdateQuest(IRandom rand, MapObject mobj, Reward spawnResult);
+        UpdateQuestResult UpdateQuest(MapObject mobj, Reward spawnResult);
     }
 
     public class ServerQuestService : IServerQuestService
@@ -26,7 +26,7 @@ namespace OxDb.MapServer.Quests.Services
         private IMapProvider _mapProvider = null;
         private IGameData _gameData = null;
 
-        public virtual UpdateQuestResult UpdateQuest(IRandom rand, MapObject mobj, Reward spawnResult)
+        public virtual UpdateQuestResult UpdateQuest(MapObject mobj, Reward spawnResult)
         {
             UpdateQuestResult retval = new UpdateQuestResult();
             if (!(mobj is Character ch))
@@ -86,7 +86,7 @@ namespace OxDb.MapServer.Quests.Services
                         taskStatus.CurrQuantity = task.Quantity;
                     }
 
-                    retval.Message += questStatus.Quest.PrintTaskText(rand, ch, _gameData, _mapProvider, task.Index) + "\n";
+                    retval.Message += questStatus.Quest.PrintTaskText(ch, _gameData, _mapProvider, task.Index) + "\n";
                     retval.Success = true;
                 }
                 if (changedSomething)

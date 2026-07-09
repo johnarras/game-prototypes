@@ -4,57 +4,25 @@
   "IdKey": 1,
   "Name": "Attack",
   "Desc": "Melee attack one or more enemies.",
-  "StatBonusScaling": 1.0,
   "MaxRange": 10,
   "CombatActionId": 1,
   "TargetTypeId": 1,
   "RoleScalingTypeId": 1,
-  "RoleScalingTier": 1,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 38,
       "EntityId": 1,
       "ElementTypeId": 1,
-      "Chance": 1.0
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0,
+      "ProcChance": 100.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    },
-    {
-      "RoleId": 10
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
-    }
-  ],
-  "Flags": 1
+  "Roles": {
+    "Bits": [
+      2046
+    ]
+  }
 }

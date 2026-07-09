@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell110default",
+  "ParentId": "default",
+  "IdKey": 110,
+  "Name": "Silence",
+  "Desc": "Silence a group of enemies and prevent them from casting spells.",
+  "BaseCost": 100.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 4,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 4,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 13,
+      "ElementTypeId": 7,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      16
+    ]
+  },
+  "ItemEnchantWeight": 0.01
+}

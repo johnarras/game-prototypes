@@ -9,7 +9,7 @@
   "AncientName": "Takshashila",
   "Population": 30000,
   "MapPixelX": 4528,
-  "MapPixelY": 2557,
+  "MapPixelZ": 2557,
   "BiomeTypeId": 14,
   "CultureTypeId": 8,
   "TradeGoodsProduced": [
@@ -23,5 +23,27 @@
       "TradeGoodId": 22
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 15
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 13
+    }
+  ]
 }

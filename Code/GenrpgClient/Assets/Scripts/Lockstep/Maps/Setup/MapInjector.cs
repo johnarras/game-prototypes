@@ -79,7 +79,7 @@ namespace Assets.Scripts.Lockstep.Maps.Setup
             // 1. Set basic properties
             root.Size = new int2(width, height);
             root.WrapX = (byte)(config.WrapX ? 1 : 0);
-            root.WrapY = (byte)(config.WrapY ? 1 : 0);
+            root.WrapZ = (byte)(config.WrapZ ? 1 : 0);
             root.CellSize = config.CellSize;
 
             root.MapId = config.MapId;
@@ -93,12 +93,12 @@ namespace Assets.Scripts.Lockstep.Maps.Setup
             // 2. Flatten 2D array into 1D BlobArray
             BlobBuilderArray<TileData> tileArray = builder.Allocate(ref root.Tiles, width * height);
 
-            for (int y = 0; y < height; y++)
+            for (int z = 0; z < height; z++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    int index = (y * width) + x;
-                    var tileConfig = config.Tiles[x, y];
+                    int index = (z * width) + x;
+                    var tileConfig = config.Tiles[x, z];
 
                     tileArray[index] = new TileData
                     {

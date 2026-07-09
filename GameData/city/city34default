@@ -9,7 +9,7 @@
   "AncientName": "Pergamum",
   "Population": 200000,
   "MapPixelX": 2428,
-  "MapPixelY": 2309,
+  "MapPixelZ": 2309,
   "BiomeTypeId": 7,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 5
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

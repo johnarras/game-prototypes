@@ -18,7 +18,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Training
         public override ECrawlerStates HelperKey => ECrawlerStates.TrainingMain;
         public override long TriggerBuildingId() { return BuildingTypes.Trainer; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

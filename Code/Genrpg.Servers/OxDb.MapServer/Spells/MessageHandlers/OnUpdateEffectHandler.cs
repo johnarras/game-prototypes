@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class OnUpdateEffectHandler : BaseMapObjectServerMapMessageHandler<OnUpdateEffect>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnUpdateEffect message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnUpdateEffect message)
         {
             obj.AddMessage(message);
             await Task.CompletedTask;

@@ -1,4 +1,5 @@
-﻿using OxDb.PlatformServer.Accounts.AuthHelpers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using OxDb.PlatformServer.Accounts.AuthHelpers;
 using OxDb.PlatformServer.Accounts.Entities;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Website.Responses.Core;
@@ -17,33 +18,34 @@ namespace OxDb.PlatformServer.Accounts.RequestHandlers
 
             if (string.IsNullOrEmpty(request.DeviceId))
             {
-                context.ShowError("Unknown device.");
+                context.AddResponse(new AccountAuthResponse("Unknown device"));         
                 return;
             }
 
             if (!_authHelpers.TryGetValue(request.AuthType, out IAccountAuthHelper helper))
             {
-                context.ShowError("Unknown auth type: " + request.AuthType.ToString());
+                context.AddResponse(new AccountAuthResponse("Unknown auth type: " + request.AuthType.ToString()));
                 return;
             }
 
-            AccountAuthResult result = await helper.CheckAuthAsync(context, request);
+            AccountAuthResult result = await helper.CheckAuthAsync(context, request, token);
 
             if (!result.Success)
             {
-                context.ShowError(result.ErrorMessage);
+                context.AddResponse(new AccountAuthResponse(result.ErrorMessage));
+                _logService.Error("AuthFailure: " + request.AuthType.ToString() + ": " +  result.ErrorMessage);
                 return;
             }
 
             if (result.CurrentAccount == null)
             {
-                context.ShowError("Internal Auth Failure, Please try again later.");
+                context.AddResponse(new AccountAuthResponse("Internal Auth Failure, Please try again later."));
                 return;
             }
 
             string installSource = request.InstallSource;
 
-            await AfterAuthSuccess(context, result.CurrentAccount, request);
+            await AfterAuthSuccess(context, result, request);
 
             await Task.CompletedTask;
         }

@@ -9,7 +9,7 @@
   "AncientName": "Arkaim",
   "Population": 2000,
   "MapPixelX": 3916,
-  "MapPixelY": 1693,
+  "MapPixelZ": 1693,
   "BiomeTypeId": 18,
   "CultureTypeId": 8,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 169
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

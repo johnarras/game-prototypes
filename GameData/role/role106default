@@ -1,0 +1,24 @@
+{
+  "Id": "role106default",
+  "ParentId": "default",
+  "IdKey": 106,
+  "Name": "Lizardman",
+  "Desc": "Their lives deep in the jungle have attuned them to healing methods better than others.",
+  "Abbrev": "Lz",
+  "RoleCategoryId": 2,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
+  "BinaryBonuses": [],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Amount": 0.05
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 13,
+      "Amount": 1.0
+    }
+  ]
+}

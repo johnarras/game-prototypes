@@ -9,42 +9,68 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
+
+public class LineCell : Point2I
+{
+    public bool IsCenter { get; set; }
+    public bool IsEdge { get; set; }
+
+    public LineCell(int x, int z, bool isCenter, bool isEdge) : base(x,z)
+    {
+        IsCenter = isCenter;    
+        IsEdge = isEdge;  
+    }
+}
+
+public interface IComponentGrid
+{
+    int Width { get; }
+    int Height { get; }
+    bool IsConnectedTo(int x, int z, int nx, int nz);
+    bool HasCell(int x, int z);
+}
+
 public interface ILineGenService : IInitializable
 {
-    List<MyPointF> GetBressenhamLine(MyPoint start, MyPoint end, LineGenParameters lg = null);
-    List<MyPointF> GetBressenhamCircle(MyPoint center, LineGenParameters pars);
+    List<LineCell> GetBressenhamLine(Point2I start, Point2I end, LineGenParameters lg = null);
+    List<LineCell> GetBressenhamCircle(Point2I center, LineGenParameters pars);
     List<ConnectedPairData> ConnectPoints(List<ConnectPointData> points, IRandom rand, float extraConnectionPct = 0.0f);
-    List<PointXZ> GridConnect(int sx, int sz, int ex, int ez, bool xFirst);
+    List<Point2I> GridConnect(int sx, int sz, int ex, int ez, bool xFirst);
 
-    List<PointXZ> GetRotatedEllipse(float cx, float cy, float rx, float ry, float angle);
+    List<Point2I> GetRotatedEllipse(float cx, float cy, float rx, float ry, float angle);
+
+    int[,] GetConnectedComponents(IComponentGrid grid);
 }
+
+
+
 
 public class LineGenService : ILineGenService
 {
-    protected INoiseService _noiseService;
+    protected INoiseService _noiseService = null!;
     public async Task Initialize(CancellationToken token)
     {
         await Task.CompletedTask;
     }
 
-    public List<MyPointF> GetBressenhamLine(MyPoint start, MyPoint end, LineGenParameters lg = null)
+    public List<LineCell> GetBressenhamLine(Point2I start, Point2I end, LineGenParameters lg = null)
     {
         if (lg == null)
         {
             lg = new LineGenParameters();
         }
 
-
-        start.X = MathUtil.Clamp(lg.XMin, start.X, lg.XMax);
-        start.Y = MathUtil.Clamp(lg.YMin, start.Y, lg.YMax);
-        end.X = MathUtil.Clamp(lg.XMin, end.X, lg.XMax);
-        end.Y = MathUtil.Clamp(lg.YMin, end.Y, lg.YMax);
+        start.X = MathUtil.Clamp(lg.MinX, start.X, lg.MaxX);
+        start.Z = MathUtil.Clamp(lg.MinZ, start.Z, lg.MaxZ);
+        end.X = MathUtil.Clamp(lg.MinX, end.X, lg.MaxX);
+        end.Z = MathUtil.Clamp(lg.MinZ, end.Z, lg.MaxZ);
 
         MyRandom rand = new MyRandom(lg.Seed);
 
         bool addToEndOnEvenWidth = rand.NextDouble() < 0.5f;
 
-        List<MyPointF> retval = new List<MyPointF>();
+        List<LineCell> retval = new List<LineCell>();
         if (start == null || end == null)
         {
             return retval;
@@ -54,7 +80,7 @@ public class LineGenService : ILineGenService
 
         // Only used to determine which axis is longer, we move along that axis.
         int dx = end.X - start.X;
-        int dy = end.Y - start.Y;
+        int dy = end.Z - start.Z;
 
         int remainder = 0;
 
@@ -84,21 +110,21 @@ public class LineGenService : ILineGenService
             dl = Math.Sign(dx);
             dw = Math.Sign(dy);
             sl = start.X;
-            sw = start.Y;
+            sw = start.Z;
             el = end.X;
-            ew = end.Y;
+            ew = end.Z;
             cl = (sl + el) / 2.0f;
         }
-        else // Swap x and y axis.
+        else // Swap cx and cz axis.
         {
             xAxis = false;
             length = Math.Abs(dy);
             width = Math.Abs(dx);
             dl = Math.Sign(dy);
             dw = Math.Sign(dx);
-            sl = start.Y;
+            sl = start.Z;
             sw = start.X;
-            el = end.Y;
+            el = end.Z;
             ew = end.X;
             cl = (sl + el) / 2.0f;
         }
@@ -144,16 +170,15 @@ public class LineGenService : ILineGenService
             }
         }
 
-
         int correctWidthPos = sw;
         int startWidthPos = 0;
         int endWidthPos = 0;
 
         int currWidthPos = sw;
 
-        List<MyPoint> oldPos = new List<MyPoint>();
+        List<Point2I> oldPos = new List<Point2I>();
 
-        oldPos.Add(new MyPoint(sw, sw));
+        oldPos.Add(new Point2I(sw, sw));
 
         int index = 0;
         for (int l = sl; l != el; l += dl, index++)
@@ -288,16 +313,16 @@ public class LineGenService : ILineGenService
 
             if (oldPos.Count > 0)
             {
-                MyPoint prevPos = oldPos[oldPos.Count - 1];
+                Point2I prevPos = oldPos[oldPos.Count - 1];
 
                 if (endWidthPos < prevPos.X)
                 {
                     endWidthPos = prevPos.X;
                 }
 
-                if (startWidthPos > prevPos.Y)
+                if (startWidthPos > prevPos.Z)
                 {
-                    startWidthPos = prevPos.Y;
+                    startWidthPos = prevPos.Z;
                 }
 
                 int biggestPrevStart = -100000000;
@@ -306,7 +331,7 @@ public class LineGenService : ILineGenService
                 for (int c = oldPos.Count - 1; c >= 0 && c >= oldPos.Count - lg.MinOverlap - 1; c--)
                 {
                     int pstart = oldPos[c].X;
-                    int pend = oldPos[c].Y;
+                    int pend = oldPos[c].Z;
 
                     if (pstart > biggestPrevStart)
                     {
@@ -338,50 +363,43 @@ public class LineGenService : ILineGenService
                     oldDiff = 5;
                 }
 
-                if (startWidthPos < lg.XMin)
+                if (startWidthPos < lg.MinX)
                 {
-                    startWidthPos = lg.XMin;
+                    startWidthPos = lg.MinX;
                     endWidthPos = startWidthPos + oldDiff;
                 }
-                if (endWidthPos > lg.XMax)
+                if (endWidthPos > lg.MaxX)
                 {
-                    endWidthPos = lg.XMax;
+                    endWidthPos = lg.MaxX;
                     startWidthPos = endWidthPos - oldDiff;
                 }
             }
 
             for (int w = startWidthPos; w <= endWidthPos; w++)
             {
-                MyPointF pt = null;
+                LineCell pt = null;
+
+
+                bool isCenter = w == (startWidthPos + endWidthPos) / 2;
+                bool isEdge = (w == startWidthPos || w == endWidthPos);
+
                 if (xAxis)
                 {
-                    pt = new MyPointF(l, w + offsets[index]);
+                    retval.Add(new LineCell(l, w + offsets[index], isCenter, isEdge));
 
                 }
                 else
                 {
-                    pt = new MyPointF(w + offsets[index], l);
+                    retval.Add(new LineCell(w + offsets[index], l, isCenter, isEdge));
                 }
-
-                if (w == (startWidthPos + endWidthPos) / 2)
-                {
-                    pt.Z = 1;
-                }
-                else if (w == startWidthPos || w == endWidthPos)
-                {
-                    pt.Z = -1;
-                }
-
-                retval.Add(pt);
-
             }
-            oldPos.Add(new MyPoint(startWidthPos, endWidthPos));
+            oldPos.Add(new Point2I(startWidthPos, endWidthPos));
         }
         return retval;
     }
-    public List<MyPointF> GetBressenhamCircle(MyPoint center, LineGenParameters pars)
+    public List<LineCell> GetBressenhamCircle(Point2I center, LineGenParameters pars)
     {
-        List<MyPointF> retval = new List<MyPointF>();
+        List<LineCell> retval = new List<LineCell>();
         if (center == null || pars == null)
         {
             return retval;
@@ -398,17 +416,17 @@ public class LineGenService : ILineGenService
         for (int i = 0; i < numSegments; i++)
         {
             double startx = center.X + pars.XRadius * Math.Cos(1.0f * i / numSegments * Math.PI * 2);
-            double starty = center.Y + pars.YRadius * Math.Sin(1.0f * i / numSegments * Math.PI * 2);
+            double starty = center.Z + pars.ZRadius * Math.Sin(1.0f * i / numSegments * Math.PI * 2);
             double endx = center.X + pars.XRadius * Math.Cos(1.0f * (i + 1) / numSegments * Math.PI * 2);
-            double endy = center.Y + pars.YRadius * Math.Sin(1.0f * (i + 1) / numSegments * Math.PI * 2);
-            MyPoint startPt = new MyPoint((int)startx, (int)starty);
-            MyPoint endPt = new MyPoint((int)endx, (int)endy);
+            double endy = center.Z + pars.ZRadius * Math.Sin(1.0f * (i + 1) / numSegments * Math.PI * 2);
+            Point2I startPt = new Point2I((int)startx, (int)starty);
+            Point2I endPt = new Point2I((int)endx, (int)endy);
             pars.Seed = circRand.Next();
             pars.MaxWidthPosDrift = 3;
-            List<MyPointF> newPts = GetBressenhamLine(startPt, endPt, pars);
+            List<LineCell> newPts = GetBressenhamLine(startPt, endPt, pars);
             if (newPts != null)
             {
-                foreach (MyPointF item in newPts)
+                foreach (LineCell item in newPts)
                 {
                     retval.Add(item);
                 }
@@ -626,11 +644,11 @@ public class LineGenService : ILineGenService
 
     }
 
-    public List<PointXZ> GridConnect(int sx, int sz, int ex, int ez, bool xFirst)
+    public List<Point2I> GridConnect(int sx, int sz, int ex, int ez, bool xFirst)
     {
-        List<PointXZ> points = new List<PointXZ>();
+        List<Point2I> points = new List<Point2I>();
 
-        points.Add(new PointXZ(sx, sz));
+        points.Add(new Point2I(sx, sz));
 
         if (sx == ex && sz == ez)
         {
@@ -638,12 +656,12 @@ public class LineGenService : ILineGenService
         }
 
 
-        points.Add(new PointXZ(ex, ez));
+        points.Add(new Point2I(ex, ez));
 
         int mx = (xFirst ? ex : sx);
         int mz = (xFirst ? sz : ez);
 
-        points.Add(new PointXZ(mx, mz));
+        points.Add(new Point2I(mx, mz));
 
         // Loop along X.
         if (ex != sx)
@@ -651,7 +669,7 @@ public class LineGenService : ILineGenService
             int dx = Math.Sign(ex - sx);
             for (int x = sx; x != ex; x += dx)
             {
-                points.Add(new PointXZ(x, mz));
+                points.Add(new Point2I(x, mz));
             }
         }
 
@@ -660,50 +678,115 @@ public class LineGenService : ILineGenService
             int dz = Math.Sign(ez - sz);
             for (int z = sz; z != ez; z += dz)
             {
-                points.Add(new PointXZ(mx, z));
+                points.Add(new Point2I(mx, z));
             }
         }
 
         return points;
     }
 
-    public List<PointXZ> GetRotatedEllipse(float cx, float cy, float rx, float ry, float angleDegrees)
+    public List<Point2I> GetRotatedEllipse(float cx, float cz, float rx, float rz, float angleDegrees)
     {
 
-        List<PointXZ> retval = new List<PointXZ>();
+        List<Point2I> retval = new List<Point2I>();
         float angleRad = angleDegrees * (MathF.PI / 180.0f);
         float cosA = MathF.Cos(angleRad);
         float sinA = MathF.Sin(angleRad);
 
         // Calculate bounding box half-extents
-        float width = MathF.Sqrt(MathF.Pow(rx * cosA, 2) + MathF.Pow(ry * sinA, 2));
-        float height = MathF.Sqrt(MathF.Pow(rx * sinA, 2) + MathF.Pow(ry * cosA, 2));
+        float width = MathF.Sqrt(MathF.Pow(rx * cosA, 2) + MathF.Pow(rz * sinA, 2));
+        float height = MathF.Sqrt(MathF.Pow(rx * sinA, 2) + MathF.Pow(rz * cosA, 2));
 
         int xStart = (int)MathF.Floor(cx - width);
         int xEnd = (int)MathF.Ceiling(cx + width);
-        int yStart = (int)MathF.Floor(cy - height);
-        int yEnd = (int)MathF.Ceiling(cy + height);
+        int zStart = (int)MathF.Floor(cz - height);
+        int zEnd = (int)MathF.Ceiling(cz + height);
 
-        for (int y = yStart; y <= yEnd; y++)
+        for (int z = zStart; z <= zEnd; z++)
         {
             for (int x = xStart; x <= xEnd; x++)
             {
                 // Relativize to center
                 float dx = x - cx;
-                float dy = y - cy;
+                float dy = z - cz;
 
                 // Rotate point back to axis-aligned space
                 float xRot = dx * cosA + dy * sinA;
-                float yRot = -dx * sinA + dy * cosA;
+                float zRot = -dx * sinA + dy * cosA;
 
                 // Standard ellipse check
-                if ((xRot * xRot) / (rx * rx) + (yRot * yRot) / (ry * ry) <= 1.0f)
+                if ((xRot * xRot) / (rx * rx) + (zRot * zRot) / (rz * rz) <= 1.0f)
                 {
-                    retval.Add(new PointXZ(x, y));
+                    retval.Add(new Point2I(x, z));
                 }
             }
         }
 
         return retval;
+    }
+
+
+    private static readonly List<Point2I> _gridOffsets = new List<Point2I>()
+    {
+        new Point2I(0,1),
+        new Point2I(0,-1),
+        new Point2I(1,0),
+        new Point2I(-1,0),
+    };
+
+    public int[,] GetConnectedComponents(IComponentGrid grid)
+    {
+        int[,] labels = new int[grid.Width,grid.Height];
+        int currentLabel = 0;
+
+        // Initialize all labels to 0 (unlabeled)
+        // 0 will mean background/false, >= 1 will be component IDs
+        for (int x = 0; x < grid.Width; x++)
+        {
+            for (int z = 0; z < grid.Height; z++)
+            {
+                // If it's part of a set and hasn't been labeled yet
+                if (grid.HasCell(x,z) && labels[x,z] == 0)
+                {
+                    currentLabel++;
+                    FloodFill4Way(grid, labels, x, z, currentLabel);
+                }
+            }
+        }
+
+        return labels;
+    }
+
+
+
+    private static void FloodFill4Way(IComponentGrid grid, int[,] labels, int cx, int cz, int currentLabel)
+    {
+        Queue<Point2I> queue = new Queue<Point2I>();
+
+        labels[cx, cz] = currentLabel;
+        queue.Enqueue(new Point2I(cx,cz));
+
+        while (queue.Count > 0)
+        {
+            Point2I current = queue.Dequeue();
+            cx = current.X;
+            cz = current.Z;
+
+            foreach (Point2I offset in _gridOffsets)
+            {
+                int nx = cx + offset.X;
+                int nz = cz + offset.Z;
+
+                bool hasCell = grid.HasCell(nx, nz);
+                int label = labels[nx, nz];
+                bool isConnected = grid.IsConnectedTo(cx, cz, nx, nz);
+
+                if (hasCell && label == 0 && isConnected)
+                {
+                    labels[nx, nz] = currentLabel;
+                    queue.Enqueue(new Point2I(nx, nz));
+                }
+            }
+        }
     }
 }

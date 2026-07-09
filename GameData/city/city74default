@@ -9,7 +9,7 @@
   "AncientName": "Malacca (Sultanate of Malacca)",
   "Population": 200000,
   "MapPixelX": 5868,
-  "MapPixelY": 4005,
+  "MapPixelZ": 4005,
   "BiomeTypeId": 16,
   "CultureTypeId": 12,
   "TradeGoodsProduced": [
@@ -38,5 +38,12 @@
       "TradeGoodId": 160
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

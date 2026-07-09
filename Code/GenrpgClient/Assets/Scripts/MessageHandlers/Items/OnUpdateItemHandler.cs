@@ -3,14 +3,13 @@ using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Inventory.Services;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.MessageHandlers.Items
 {
     public class OnUpdateItemHandler : BaseClientMapMessageHandler<OnUpdateItem>
     {
         protected ISharedItemService _sharedItemService = null;
-        protected override async Awaitable InnerProcess(OnUpdateItem msg, CancellationToken token)
+        protected override async ValueTask InnerProcess(OnUpdateItem msg, CancellationToken token)
         {
 
             if (msg.UnitId != _gs.ch.Id)

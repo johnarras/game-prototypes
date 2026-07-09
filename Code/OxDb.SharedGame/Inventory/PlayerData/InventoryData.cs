@@ -16,6 +16,7 @@ namespace OxDb.SharedGame.Inventory.PlayerData
     public class InventoryData : OwnerObjectList<Item>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
         public override void SetData(List<Item> data)
         {

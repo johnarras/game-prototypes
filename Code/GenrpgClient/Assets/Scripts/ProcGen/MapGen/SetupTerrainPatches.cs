@@ -13,33 +13,33 @@ public class SetupTerrainPatches : BaseZoneGenerator
 
         for (int px = 0; px < MapConstants.MaxTerrainGridSize; px++)
         {
-            for (int py = 0; py < MapConstants.MaxTerrainGridSize; py++)
+            for (int pz = 0; pz < MapConstants.MaxTerrainGridSize; pz++)
             {
-                if (_terrainManager.GetTerrainPatch(px, py, false) == null)
+                if (_terrainManager.GetTerrainPatch(px, pz, false) == null)
                 {
-                    _terrainManager.SetTerrainPatchAtGridLocation(px, py, null, null);
+                    _terrainManager.SetTerrainPatchAtGridLocation(px, pz, null, null);
                 }
 
-                UnityEngine.TerrainData tdata = _terrainManager.GetTerrainData(px, py);
+                UnityEngine.TerrainData tdata = _terrainManager.GetTerrainData(px, pz);
                 if (tdata == null)
                 {
                     continue;
                 }
 
-                TerrainPatchData patch = _terrainManager.GetTerrainPatch(px, py, false);
+                TerrainPatchData patch = _terrainManager.GetTerrainPatch(px, pz, false);
                 int sx = px * (MapConstants.TerrainPatchSize - 1);
-                int sy = py * (MapConstants.TerrainPatchSize - 1);
+                int sz = pz * (MapConstants.TerrainPatchSize - 1);
 
                 Dictionary<int, int> baseZoneIdCounts = new Dictionary<int, int>();
 
-                for (int y = sy; y <= sy + MapConstants.TerrainPatchSize && y < _mapProvider.GetMap().GetHhgt(); y++)
+                for (int z = sz; z <= sz + MapConstants.TerrainPatchSize && z < _mapProvider.GetMap().GetHhgt(); z++)
                 {
                     for (int x = sx; x <= sx + MapConstants.TerrainPatchSize && x < _mapProvider.GetMap().GetHwid(); x++)
                     {
-                        int zoneId = _md.MapZoneIds[y, x];
+                        int zoneId = _md.MapZoneIds[z, x];
                         if (zoneId < SharedMapConstants.MapZoneStartId)
                         {
-                            _logService.Info("Missing zoneId at " + x + " " + y);
+                            _logService.Info("Missing zoneId at " + x + " " + z);
                         }
                         else if (!patch.FullZoneIdList.Contains(zoneId))
                         {
@@ -50,17 +50,17 @@ public class SetupTerrainPatches : BaseZoneGenerator
                             }
                             baseZoneIdCounts[zoneId]++;
                         }
-                        int baseZoneId = _md.SubZoneIds[y, x];
+                        int baseZoneId = _md.SubZoneIds[z, x];
 
                         if (baseZoneId >= SharedMapConstants.MinBaseZoneId && !patch.FullZoneIdList.Contains(baseZoneId))
                         {
                             patch.FullZoneIdList.Add(baseZoneId);
                         }
 
-                        if (y - sy < MapConstants.TerrainPatchSize && x - sx < MapConstants.TerrainPatchSize)
+                        if (z - sz < MapConstants.TerrainPatchSize && x - sx < MapConstants.TerrainPatchSize)
                         {
-                            patch.mainZoneIds[y - sy, x - sx] = (byte)_md.MapZoneIds[y, x];
-                            patch.subZoneIds[y - sy, x - sx] = (byte)_md.SubZoneIds[y, x];
+                            patch.mainZoneIds[z - sz, x - sx] = (byte)_md.MapZoneIds[z, x];
+                            patch.subZoneIds[z - sz, x - sx] = (byte)_md.SubZoneIds[z, x];
                         }
                     }
                 }

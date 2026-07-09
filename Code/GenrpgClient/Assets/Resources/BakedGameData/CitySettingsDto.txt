@@ -9,7 +9,7 @@
       "AncientName": "Roma",
       "Population": 1000000,
       "MapPixelX": 1760,
-      "MapPixelY": 2185,
+      "MapPixelZ": 2185,
       "BiomeTypeId": 1,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -26,7 +26,29 @@
           "TradeGoodId": 4
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 2,
@@ -37,7 +59,7 @@
       "AncientName": "Athenae",
       "Population": 250000,
       "MapPixelX": 2276,
-      "MapPixelY": 2365,
+      "MapPixelZ": 2365,
       "BiomeTypeId": 1,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -57,7 +79,23 @@
           "TradeGoodId": 4
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 3,
@@ -68,7 +106,7 @@
       "AncientName": "Carthago",
       "Population": 500000,
       "MapPixelX": 1660,
-      "MapPixelY": 2421,
+      "MapPixelZ": 2421,
       "BiomeTypeId": 2,
       "CultureTypeId": 3,
       "TradeGoodsProduced": [
@@ -88,7 +126,23 @@
           "TradeGoodId": 45
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 4,
@@ -99,7 +153,7 @@
       "AncientName": "Alexandria ad Aegyptum",
       "Population": 500000,
       "MapPixelX": 2552,
-      "MapPixelY": 2681,
+      "MapPixelZ": 2681,
       "BiomeTypeId": 2,
       "CultureTypeId": 4,
       "TradeGoodsProduced": [
@@ -122,7 +176,23 @@
           "TradeGoodId": 80
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 9
+        }
+      ]
     },
     {
       "IdKey": 5,
@@ -133,7 +203,7 @@
       "AncientName": "Antiochia ad Orontem",
       "Population": 400000,
       "MapPixelX": 2844,
-      "MapPixelY": 2453,
+      "MapPixelZ": 2453,
       "BiomeTypeId": 1,
       "CultureTypeId": 5,
       "TradeGoodsProduced": [
@@ -153,7 +223,29 @@
           "TradeGoodId": 119
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 5
+        },
+        {
+          "CaravanMemberId": 12
+        }
+      ]
     },
     {
       "IdKey": 6,
@@ -164,7 +256,7 @@
       "AncientName": "Tyrus",
       "Population": 60000,
       "MapPixelX": 2800,
-      "MapPixelY": 2585,
+      "MapPixelZ": 2585,
       "BiomeTypeId": 1,
       "CultureTypeId": 5,
       "TradeGoodsProduced": [
@@ -181,7 +273,20 @@
           "TradeGoodId": 26
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 7,
@@ -192,7 +297,7 @@
       "AncientName": "Babylon",
       "Population": 200000,
       "MapPixelX": 3220,
-      "MapPixelY": 2617,
+      "MapPixelZ": 2617,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -212,7 +317,26 @@
           "TradeGoodId": 86
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 5
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 8,
@@ -223,7 +347,7 @@
       "AncientName": "Men-nefer",
       "Population": 30000,
       "MapPixelX": 2620,
-      "MapPixelY": 2737,
+      "MapPixelZ": 2737,
       "BiomeTypeId": 3,
       "CultureTypeId": 4,
       "TradeGoodsProduced": [
@@ -243,7 +367,17 @@
           "TradeGoodId": 152
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 9,
@@ -254,7 +388,7 @@
       "AncientName": "Byzantion/Constantinopolis",
       "Population": 500000,
       "MapPixelX": 2512,
-      "MapPixelY": 2225,
+      "MapPixelZ": 2225,
       "BiomeTypeId": 4,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -274,7 +408,32 @@
           "TradeGoodId": 119
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 14
+        }
+      ]
     },
     {
       "IdKey": 10,
@@ -285,7 +444,7 @@
       "AncientName": "Gades",
       "Population": 20000,
       "MapPixelX": 900,
-      "MapPixelY": 2433,
+      "MapPixelZ": 2433,
       "BiomeTypeId": 5,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -302,7 +461,20 @@
           "TradeGoodId": 45
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 11,
@@ -313,7 +485,7 @@
       "AncientName": "Massilia",
       "Population": 30000,
       "MapPixelX": 1436,
-      "MapPixelY": 2125,
+      "MapPixelZ": 2125,
       "BiomeTypeId": 6,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -333,7 +505,20 @@
           "TradeGoodId": 43
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 12,
@@ -344,7 +529,7 @@
       "AncientName": "Corinthus",
       "Population": 90000,
       "MapPixelX": 2228,
-      "MapPixelY": 2369,
+      "MapPixelZ": 2369,
       "BiomeTypeId": 1,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -361,7 +546,20 @@
           "TradeGoodId": 54
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 13,
@@ -372,7 +570,7 @@
       "AncientName": "Ephesus",
       "Population": 250000,
       "MapPixelX": 2440,
-      "MapPixelY": 2369,
+      "MapPixelZ": 2369,
       "BiomeTypeId": 7,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -389,7 +587,23 @@
           "TradeGoodId": 82
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 14,
@@ -400,7 +614,7 @@
       "AncientName": "Tadmor",
       "Population": 200000,
       "MapPixelX": 2940,
-      "MapPixelY": 2533,
+      "MapPixelZ": 2533,
       "BiomeTypeId": 8,
       "CultureTypeId": 7,
       "TradeGoodsProduced": [
@@ -417,7 +631,23 @@
           "TradeGoodId": 119
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 5
+        }
+      ]
     },
     {
       "IdKey": 15,
@@ -428,7 +658,7 @@
       "AncientName": "Petra",
       "Population": 25000,
       "MapPixelX": 2812,
-      "MapPixelY": 2721,
+      "MapPixelZ": 2721,
       "BiomeTypeId": 8,
       "CultureTypeId": 7,
       "TradeGoodsProduced": [
@@ -445,7 +675,17 @@
           "TradeGoodId": 42
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 16,
@@ -456,7 +696,7 @@
       "AncientName": "Leptis Magna",
       "Population": 80000,
       "MapPixelX": 1856,
-      "MapPixelY": 2605,
+      "MapPixelZ": 2605,
       "BiomeTypeId": 2,
       "CultureTypeId": 7,
       "TradeGoodsProduced": [
@@ -470,7 +710,17 @@
           "TradeGoodId": 51
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 17,
@@ -481,7 +731,7 @@
       "AncientName": "Syracusae",
       "Population": 250000,
       "MapPixelX": 1884,
-      "MapPixelY": 2409,
+      "MapPixelZ": 2409,
       "BiomeTypeId": 1,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -498,7 +748,17 @@
           "TradeGoodId": 47
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 18,
@@ -509,7 +769,7 @@
       "AncientName": "Meroë",
       "Population": 25000,
       "MapPixelX": 2736,
-      "MapPixelY": 3341,
+      "MapPixelZ": 3341,
       "BiomeTypeId": 3,
       "CultureTypeId": 4,
       "TradeGoodsProduced": [
@@ -529,7 +789,17 @@
           "TradeGoodId": 93
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 19,
@@ -540,7 +810,7 @@
       "AncientName": "Lothal",
       "Population": 2500,
       "MapPixelX": 4476,
-      "MapPixelY": 3069,
+      "MapPixelZ": 3069,
       "BiomeTypeId": 9,
       "CultureTypeId": 8,
       "TradeGoodsProduced": [
@@ -560,7 +830,17 @@
           "TradeGoodId": 42
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 1
+        }
+      ]
     },
     {
       "IdKey": 20,
@@ -571,7 +851,7 @@
       "AncientName": "Ur",
       "Population": 65000,
       "MapPixelX": 3340,
-      "MapPixelY": 2689,
+      "MapPixelZ": 2689,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -588,7 +868,23 @@
           "TradeGoodId": 107
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 5
+        }
+      ]
     },
     {
       "IdKey": 21,
@@ -599,7 +895,7 @@
       "AncientName": "Chang'an",
       "Population": 1000000,
       "MapPixelX": 6176,
-      "MapPixelY": 2537,
+      "MapPixelZ": 2537,
       "BiomeTypeId": 10,
       "CultureTypeId": 9,
       "TradeGoodsProduced": [
@@ -616,7 +912,23 @@
           "TradeGoodId": 71
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 12
+        }
+      ]
     },
     {
       "IdKey": 22,
@@ -627,7 +939,7 @@
       "AncientName": "Londinium",
       "Population": 60000,
       "MapPixelX": 1180,
-      "MapPixelY": 1749,
+      "MapPixelZ": 1749,
       "BiomeTypeId": 11,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -647,7 +959,23 @@
           "TradeGoodId": 27
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 23,
@@ -658,7 +986,7 @@
       "AncientName": "Lugdunum",
       "Population": 75000,
       "MapPixelX": 1404,
-      "MapPixelY": 2009,
+      "MapPixelZ": 2009,
       "BiomeTypeId": 6,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -675,7 +1003,23 @@
           "TradeGoodId": 47
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 24,
@@ -686,7 +1030,7 @@
       "AncientName": "Lutetia Parisiorum",
       "Population": 200000,
       "MapPixelX": 1296,
-      "MapPixelY": 1869,
+      "MapPixelZ": 1869,
       "BiomeTypeId": 6,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -703,7 +1047,20 @@
           "TradeGoodId": 12
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 25,
@@ -714,7 +1071,7 @@
       "AncientName": "Augusta Treverorum",
       "Population": 75000,
       "MapPixelX": 1492,
-      "MapPixelY": 1825,
+      "MapPixelZ": 1825,
       "BiomeTypeId": 6,
       "CultureTypeId": 10,
       "TradeGoodsProduced": [
@@ -731,7 +1088,23 @@
           "TradeGoodId": 112
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 26,
@@ -742,7 +1115,7 @@
       "AncientName": "Colonia Agrippinensis",
       "Population": 45000,
       "MapPixelX": 1504,
-      "MapPixelY": 1773,
+      "MapPixelZ": 1773,
       "BiomeTypeId": 6,
       "CultureTypeId": 10,
       "TradeGoodsProduced": [
@@ -759,7 +1132,23 @@
           "TradeGoodId": 1
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 27,
@@ -770,7 +1159,7 @@
       "AncientName": "Corduba",
       "Population": 450000,
       "MapPixelX": 968,
-      "MapPixelY": 2369,
+      "MapPixelZ": 2369,
       "BiomeTypeId": 5,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -784,7 +1173,23 @@
           "TradeGoodId": 62
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 28,
@@ -795,7 +1200,7 @@
       "AncientName": "Tarraco",
       "Population": 30000,
       "MapPixelX": 1244,
-      "MapPixelY": 2221,
+      "MapPixelZ": 2221,
       "BiomeTypeId": 5,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -812,7 +1217,20 @@
           "TradeGoodId": 36
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 29,
@@ -823,7 +1241,7 @@
       "AncientName": "Emerita Augusta",
       "Population": 40000,
       "MapPixelX": 892,
-      "MapPixelY": 2325,
+      "MapPixelZ": 2325,
       "BiomeTypeId": 5,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -840,7 +1258,23 @@
           "TradeGoodId": 45
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 30,
@@ -851,7 +1285,7 @@
       "AncientName": "Ravenna",
       "Population": 50000,
       "MapPixelX": 1748,
-      "MapPixelY": 2073,
+      "MapPixelZ": 2073,
       "BiomeTypeId": 1,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -868,7 +1302,20 @@
           "TradeGoodId": 1
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 31,
@@ -879,7 +1326,7 @@
       "AncientName": "Aquileia",
       "Population": 100000,
       "MapPixelX": 1800,
-      "MapPixelY": 2013,
+      "MapPixelZ": 2013,
       "BiomeTypeId": 1,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -896,7 +1343,26 @@
           "TradeGoodId": 5
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 32,
@@ -907,7 +1373,7 @@
       "AncientName": "Sparta",
       "Population": 25000,
       "MapPixelX": 2208,
-      "MapPixelY": 2409,
+      "MapPixelZ": 2409,
       "BiomeTypeId": 1,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -918,7 +1384,17 @@
           "TradeGoodId": 50
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 33,
@@ -929,7 +1405,7 @@
       "AncientName": "Thebae",
       "Population": 30000,
       "MapPixelX": 2256,
-      "MapPixelY": 2349,
+      "MapPixelZ": 2349,
       "BiomeTypeId": 1,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -943,7 +1419,20 @@
           "TradeGoodId": 2
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 34,
@@ -954,7 +1443,7 @@
       "AncientName": "Pergamum",
       "Population": 200000,
       "MapPixelX": 2428,
-      "MapPixelY": 2309,
+      "MapPixelZ": 2309,
       "BiomeTypeId": 7,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -971,7 +1460,23 @@
           "TradeGoodId": 5
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 35,
@@ -982,7 +1487,7 @@
       "AncientName": "Miletus",
       "Population": 100000,
       "MapPixelX": 2440,
-      "MapPixelY": 2393,
+      "MapPixelZ": 2393,
       "BiomeTypeId": 7,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -999,7 +1504,20 @@
           "TradeGoodId": 106
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 36,
@@ -1010,7 +1528,7 @@
       "AncientName": "Halicarnassus",
       "Population": 30000,
       "MapPixelX": 2448,
-      "MapPixelY": 2409,
+      "MapPixelZ": 2409,
       "BiomeTypeId": 7,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -1027,7 +1545,20 @@
           "TradeGoodId": 104
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 37,
@@ -1038,7 +1569,7 @@
       "AncientName": "Sardis",
       "Population": 100000,
       "MapPixelX": 2488,
-      "MapPixelY": 2345,
+      "MapPixelZ": 2345,
       "BiomeTypeId": 7,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -1055,7 +1586,26 @@
           "TradeGoodId": 78
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 11
+        }
+      ]
     },
     {
       "IdKey": 38,
@@ -1066,7 +1616,7 @@
       "AncientName": "Tarsus",
       "Population": 50000,
       "MapPixelX": 2784,
-      "MapPixelY": 2413,
+      "MapPixelZ": 2413,
       "BiomeTypeId": 7,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -1080,7 +1630,23 @@
           "TradeGoodId": 1
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 39,
@@ -1091,7 +1657,7 @@
       "AncientName": "Damascus",
       "Population": 100000,
       "MapPixelX": 2848,
-      "MapPixelY": 2573,
+      "MapPixelZ": 2573,
       "BiomeTypeId": 1,
       "CultureTypeId": 5,
       "TradeGoodsProduced": [
@@ -1108,7 +1674,23 @@
           "TradeGoodId": 151
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 5
+        }
+      ]
     },
     {
       "IdKey": 40,
@@ -1119,7 +1701,7 @@
       "AncientName": "Aelia Capitolina",
       "Population": 100000,
       "MapPixelX": 2804,
-      "MapPixelY": 2649,
+      "MapPixelZ": 2649,
       "BiomeTypeId": 1,
       "CultureTypeId": 5,
       "TradeGoodsProduced": [
@@ -1136,7 +1718,17 @@
           "TradeGoodId": 108
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 41,
@@ -1147,7 +1739,7 @@
       "AncientName": "Sidon",
       "Population": 40000,
       "MapPixelX": 2808,
-      "MapPixelY": 2573,
+      "MapPixelZ": 2573,
       "BiomeTypeId": 1,
       "CultureTypeId": 5,
       "TradeGoodsProduced": [
@@ -1164,7 +1756,20 @@
           "TradeGoodId": 9
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 42,
@@ -1175,7 +1780,7 @@
       "AncientName": "Byblos",
       "Population": 10000,
       "MapPixelX": 2820,
-      "MapPixelY": 2549,
+      "MapPixelZ": 2549,
       "BiomeTypeId": 1,
       "CultureTypeId": 5,
       "TradeGoodsProduced": [
@@ -1189,7 +1794,17 @@
           "TradeGoodId": 85
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 43,
@@ -1200,7 +1815,7 @@
       "AncientName": "Dura-Europos",
       "Population": 15000,
       "MapPixelX": 3040,
-      "MapPixelY": 2505,
+      "MapPixelZ": 2505,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -1214,7 +1829,20 @@
           "TradeGoodId": 68
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 5
+        },
+        {
+          "CaravanMemberId": 12
+        }
+      ]
     },
     {
       "IdKey": 44,
@@ -1225,7 +1853,7 @@
       "AncientName": "Nineveh",
       "Population": 150000,
       "MapPixelX": 3160,
-      "MapPixelY": 2449,
+      "MapPixelZ": 2449,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -1239,7 +1867,26 @@
           "TradeGoodId": 107
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 5
+        },
+        {
+          "CaravanMemberId": 7
+        }
+      ]
     },
     {
       "IdKey": 45,
@@ -1250,7 +1897,7 @@
       "AncientName": "Parsa",
       "Population": 20000,
       "MapPixelX": 3600,
-      "MapPixelY": 2737,
+      "MapPixelZ": 2737,
       "BiomeTypeId": 12,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1261,7 +1908,23 @@
           "TradeGoodId": 75
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 11
+        }
+      ]
     },
     {
       "IdKey": 46,
@@ -1272,7 +1935,7 @@
       "AncientName": "Shushan",
       "Population": 80000,
       "MapPixelX": 3400,
-      "MapPixelY": 2633,
+      "MapPixelZ": 2633,
       "BiomeTypeId": 12,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1289,7 +1952,26 @@
           "TradeGoodId": 53
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 5
+        },
+        {
+          "CaravanMemberId": 10
+        }
+      ]
     },
     {
       "IdKey": 47,
@@ -1300,7 +1982,7 @@
       "AncientName": "Tisfun",
       "Population": 500000,
       "MapPixelX": 3228,
-      "MapPixelY": 2585,
+      "MapPixelZ": 2585,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -1317,7 +1999,29 @@
           "TradeGoodId": 56
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 48,
@@ -1328,7 +2032,7 @@
       "AncientName": "Hatra",
       "Population": 20000,
       "MapPixelX": 3136,
-      "MapPixelY": 2473,
+      "MapPixelZ": 2473,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -1339,7 +2043,20 @@
           "TradeGoodId": 74
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 5
+        }
+      ]
     },
     {
       "IdKey": 49,
@@ -1350,7 +2067,7 @@
       "AncientName": "Waset/Thebae",
       "Population": 80000,
       "MapPixelX": 2684,
-      "MapPixelY": 2933,
+      "MapPixelZ": 2933,
       "BiomeTypeId": 3,
       "CultureTypeId": 4,
       "TradeGoodsProduced": [
@@ -1370,7 +2087,20 @@
           "TradeGoodId": 37
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 50,
@@ -1381,7 +2111,7 @@
       "AncientName": "Cyrene",
       "Population": 50000,
       "MapPixelX": 2188,
-      "MapPixelY": 2601,
+      "MapPixelZ": 2601,
       "BiomeTypeId": 2,
       "CultureTypeId": 3,
       "TradeGoodsProduced": [
@@ -1395,7 +2125,20 @@
           "TradeGoodId": 20
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 51,
@@ -1406,7 +2149,7 @@
       "AncientName": "Volubilis",
       "Population": 15000,
       "MapPixelX": 932,
-      "MapPixelY": 2541,
+      "MapPixelZ": 2541,
       "BiomeTypeId": 2,
       "CultureTypeId": 3,
       "TradeGoodsProduced": [
@@ -1420,7 +2163,20 @@
           "TradeGoodId": 10
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 52,
@@ -1431,7 +2187,7 @@
       "AncientName": "Caesarea Mauretaniae",
       "Population": 30000,
       "MapPixelX": 1292,
-      "MapPixelY": 2437,
+      "MapPixelZ": 2437,
       "BiomeTypeId": 2,
       "CultureTypeId": 3,
       "TradeGoodsProduced": [
@@ -1448,7 +2204,17 @@
           "TradeGoodId": 38
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 53,
@@ -1459,7 +2225,7 @@
       "AncientName": "Marakanda",
       "Population": 150000,
       "MapPixelX": 4244,
-      "MapPixelY": 2285,
+      "MapPixelZ": 2285,
       "BiomeTypeId": 13,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1473,7 +2239,26 @@
           "TradeGoodId": 113
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        }
+      ]
     },
     {
       "IdKey": 54,
@@ -1484,7 +2269,7 @@
       "AncientName": "Bukhara",
       "Population": 80000,
       "MapPixelX": 4140,
-      "MapPixelY": 2285,
+      "MapPixelZ": 2285,
       "BiomeTypeId": 13,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1501,7 +2286,23 @@
           "TradeGoodId": 16
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 11
+        }
+      ]
     },
     {
       "IdKey": 55,
@@ -1512,7 +2313,7 @@
       "AncientName": "Margiana",
       "Population": 200000,
       "MapPixelX": 4020,
-      "MapPixelY": 2377,
+      "MapPixelZ": 2377,
       "BiomeTypeId": 13,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1529,7 +2330,23 @@
           "TradeGoodId": 16
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 11
+        }
+      ]
     },
     {
       "IdKey": 56,
@@ -1540,7 +2357,7 @@
       "AncientName": "Takshashila",
       "Population": 30000,
       "MapPixelX": 4528,
-      "MapPixelY": 2557,
+      "MapPixelZ": 2557,
       "BiomeTypeId": 14,
       "CultureTypeId": 8,
       "TradeGoodsProduced": [
@@ -1554,7 +2371,29 @@
           "TradeGoodId": 22
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 15
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 13
+        }
+      ]
     },
     {
       "IdKey": 57,
@@ -1565,7 +2404,7 @@
       "AncientName": "Pataliputra",
       "Population": 400000,
       "MapPixelX": 5104,
-      "MapPixelY": 2933,
+      "MapPixelZ": 2933,
       "BiomeTypeId": 14,
       "CultureTypeId": 8,
       "TradeGoodsProduced": [
@@ -1582,7 +2421,20 @@
           "TradeGoodId": 3
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 15
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 58,
@@ -1593,7 +2445,7 @@
       "AncientName": "Muziris",
       "Population": 10000,
       "MapPixelX": 4680,
-      "MapPixelY": 3641,
+      "MapPixelZ": 3641,
       "BiomeTypeId": 14,
       "CultureTypeId": 8,
       "TradeGoodsProduced": [
@@ -1613,7 +2465,17 @@
           "TradeGoodId": 102
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 59,
@@ -1624,7 +2486,7 @@
       "AncientName": "Berenice Troglodytica",
       "Population": 4000,
       "MapPixelX": 2828,
-      "MapPixelY": 3013,
+      "MapPixelZ": 3013,
       "BiomeTypeId": 2,
       "CultureTypeId": 3,
       "TradeGoodsProduced": [
@@ -1638,7 +2500,17 @@
           "TradeGoodId": 119
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 60,
@@ -1649,7 +2521,7 @@
       "AncientName": "Hegra (Mada'in Salih)",
       "Population": 2000,
       "MapPixelX": 2984,
-      "MapPixelY": 2897,
+      "MapPixelZ": 2897,
       "BiomeTypeId": 8,
       "CultureTypeId": 7,
       "TradeGoodsProduced": [
@@ -1666,7 +2538,17 @@
           "TradeGoodId": 19
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 61,
@@ -1677,7 +2559,7 @@
       "AncientName": "Mediolanum",
       "Population": 100000,
       "MapPixelX": 1568,
-      "MapPixelY": 2025,
+      "MapPixelZ": 2025,
       "BiomeTypeId": 1,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -1694,7 +2576,26 @@
           "TradeGoodId": 1
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        }
+      ]
     },
     {
       "IdKey": 62,
@@ -1705,7 +2606,7 @@
       "AncientName": "Burdigala",
       "Population": 20000,
       "MapPixelX": 1160,
-      "MapPixelY": 2053,
+      "MapPixelZ": 2053,
       "BiomeTypeId": 6,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -1719,7 +2620,20 @@
           "TradeGoodId": 43
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 3
+        }
+      ]
     },
     {
       "IdKey": 63,
@@ -1730,7 +2644,7 @@
       "AncientName": "Eburacum",
       "Population": 25000,
       "MapPixelX": 1140,
-      "MapPixelY": 1637,
+      "MapPixelZ": 1637,
       "BiomeTypeId": 11,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -1747,7 +2661,20 @@
           "TradeGoodId": 44
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 64,
@@ -1758,7 +2685,7 @@
       "AncientName": "Brundisium",
       "Population": 40000,
       "MapPixelX": 2008,
-      "MapPixelY": 2245,
+      "MapPixelZ": 2245,
       "BiomeTypeId": 1,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -1775,7 +2702,20 @@
           "TradeGoodId": 5
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 65,
@@ -1786,7 +2726,7 @@
       "AncientName": "Tingis",
       "Population": 20000,
       "MapPixelX": 920,
-      "MapPixelY": 2465,
+      "MapPixelZ": 2465,
       "BiomeTypeId": 2,
       "CultureTypeId": 3,
       "TradeGoodsProduced": [
@@ -1803,7 +2743,20 @@
           "TradeGoodId": 61
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 66,
@@ -1814,7 +2767,7 @@
       "AncientName": "Seleucia",
       "Population": 600000,
       "MapPixelX": 3224,
-      "MapPixelY": 2585,
+      "MapPixelZ": 2585,
       "BiomeTypeId": 3,
       "CultureTypeId": 6,
       "TradeGoodsProduced": [
@@ -1831,7 +2784,29 @@
           "TradeGoodId": 47
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 11
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 5
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 67,
@@ -1842,7 +2817,7 @@
       "AncientName": "Ecbatana",
       "Population": 50000,
       "MapPixelX": 3404,
-      "MapPixelY": 2513,
+      "MapPixelZ": 2513,
       "BiomeTypeId": 12,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1853,7 +2828,23 @@
           "TradeGoodId": 32
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 12
+        }
+      ]
     },
     {
       "IdKey": 68,
@@ -1864,7 +2855,7 @@
       "AncientName": "Artaxata",
       "Population": 150000,
       "MapPixelX": 3232,
-      "MapPixelY": 2285,
+      "MapPixelZ": 2285,
       "BiomeTypeId": 15,
       "CultureTypeId": 11,
       "TradeGoodsProduced": [
@@ -1878,7 +2869,23 @@
           "TradeGoodId": 88
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 7
+        },
+        {
+          "CaravanMemberId": 8
+        }
+      ]
     },
     {
       "IdKey": 69,
@@ -1889,7 +2896,7 @@
       "AncientName": "Barygaza",
       "Population": 30000,
       "MapPixelX": 4516,
-      "MapPixelY": 3113,
+      "MapPixelZ": 3113,
       "BiomeTypeId": 14,
       "CultureTypeId": 8,
       "TradeGoodsProduced": [
@@ -1906,7 +2913,20 @@
           "TradeGoodId": 91
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 70,
@@ -1917,7 +2937,7 @@
       "AncientName": "Philippopolis",
       "Population": 100000,
       "MapPixelX": 2320,
-      "MapPixelY": 2177,
+      "MapPixelZ": 2177,
       "BiomeTypeId": 10,
       "CultureTypeId": 2,
       "TradeGoodsProduced": [
@@ -1931,7 +2951,23 @@
           "TradeGoodId": 38
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 71,
@@ -1942,7 +2978,7 @@
       "AncientName": "Salona",
       "Population": 60000,
       "MapPixelX": 1940,
-      "MapPixelY": 2109,
+      "MapPixelZ": 2109,
       "BiomeTypeId": 1,
       "CultureTypeId": 1,
       "TradeGoodsProduced": [
@@ -1959,7 +2995,20 @@
           "TradeGoodId": 5
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 3
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 72,
@@ -1970,7 +3019,7 @@
       "AncientName": "Angkor (Khmer Empire)",
       "Population": 1000000,
       "MapPixelX": 5944,
-      "MapPixelY": 3493,
+      "MapPixelZ": 3493,
       "BiomeTypeId": 16,
       "CultureTypeId": 12,
       "TradeGoodsProduced": [
@@ -1993,7 +3042,17 @@
           "TradeGoodId": 154
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 73,
@@ -2004,7 +3063,7 @@
       "AncientName": "Ayutthaya (Ayutthaya Kingdom)",
       "Population": 1000000,
       "MapPixelX": 5792,
-      "MapPixelY": 3449,
+      "MapPixelZ": 3449,
       "BiomeTypeId": 16,
       "CultureTypeId": 12,
       "TradeGoodsProduced": [
@@ -2036,7 +3095,17 @@
           "TradeGoodId": 103
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 74,
@@ -2047,7 +3116,7 @@
       "AncientName": "Malacca (Sultanate of Malacca)",
       "Population": 200000,
       "MapPixelX": 5868,
-      "MapPixelY": 4005,
+      "MapPixelZ": 4005,
       "BiomeTypeId": 16,
       "CultureTypeId": 12,
       "TradeGoodsProduced": [
@@ -2076,7 +3145,14 @@
           "TradeGoodId": 160
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 75,
@@ -2087,7 +3163,7 @@
       "AncientName": "Palembang (Srivijaya Empire)",
       "Population": 50000,
       "MapPixelX": 5984,
-      "MapPixelY": 4241,
+      "MapPixelZ": 4241,
       "BiomeTypeId": 16,
       "CultureTypeId": 12,
       "TradeGoodsProduced": [
@@ -2107,7 +3183,14 @@
           "TradeGoodId": 137
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 76,
@@ -2118,7 +3201,7 @@
       "AncientName": "Oc Eo (Funan Kingdom)",
       "Population": 20000,
       "MapPixelX": 6000,
-      "MapPixelY": 3637,
+      "MapPixelZ": 3637,
       "BiomeTypeId": 16,
       "CultureTypeId": 12,
       "TradeGoodsProduced": [
@@ -2135,7 +3218,17 @@
           "TradeGoodId": 163
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 9
+        },
+        {
+          "CaravanMemberId": 15
+        }
+      ]
     },
     {
       "IdKey": 77,
@@ -2146,7 +3239,7 @@
       "AncientName": "Bolghar (Volga Bulgaria)",
       "Population": 50000,
       "MapPixelX": 3432,
-      "MapPixelY": 1589,
+      "MapPixelZ": 1589,
       "BiomeTypeId": 17,
       "CultureTypeId": 13,
       "TradeGoodsProduced": [
@@ -2166,7 +3259,23 @@
           "TradeGoodId": 166
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 14
+        }
+      ]
     },
     {
       "IdKey": 78,
@@ -2177,7 +3286,7 @@
       "AncientName": "Karakorum",
       "Population": 20000,
       "MapPixelX": 5896,
-      "MapPixelY": 1941,
+      "MapPixelZ": 1941,
       "BiomeTypeId": 18,
       "CultureTypeId": 13,
       "TradeGoodsProduced": [
@@ -2194,7 +3303,23 @@
           "TradeGoodId": 169
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 13
+        },
+        {
+          "CaravanMemberId": 7
+        }
+      ]
     },
     {
       "IdKey": 79,
@@ -2205,7 +3330,7 @@
       "AncientName": "Dadu / Khanbaliq",
       "Population": 1000000,
       "MapPixelX": 6516,
-      "MapPixelY": 2281,
+      "MapPixelZ": 2281,
       "BiomeTypeId": 10,
       "CultureTypeId": 9,
       "TradeGoodsProduced": [
@@ -2225,7 +3350,23 @@
           "TradeGoodId": 170
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 12
+        }
+      ]
     },
     {
       "IdKey": 80,
@@ -2236,7 +3377,7 @@
       "AncientName": "Jiankang",
       "Population": 1000000,
       "MapPixelX": 6628,
-      "MapPixelY": 2637,
+      "MapPixelZ": 2637,
       "BiomeTypeId": 10,
       "CultureTypeId": 9,
       "TradeGoodsProduced": [
@@ -2253,7 +3394,17 @@
           "TradeGoodId": 131
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 1
+        }
+      ]
     },
     {
       "IdKey": 81,
@@ -2264,7 +3415,7 @@
       "AncientName": "Panyu / Canton",
       "Population": 500000,
       "MapPixelX": 6376,
-      "MapPixelY": 3045,
+      "MapPixelZ": 3045,
       "BiomeTypeId": 19,
       "CultureTypeId": 9,
       "TradeGoodsProduced": [
@@ -2284,7 +3435,14 @@
           "TradeGoodId": 119
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 10
+        },
+        {
+          "CaravanMemberId": 9
+        }
+      ]
     },
     {
       "IdKey": 82,
@@ -2295,7 +3453,7 @@
       "AncientName": "Arkaim",
       "Population": 2000,
       "MapPixelX": 3916,
-      "MapPixelY": 1693,
+      "MapPixelZ": 1693,
       "BiomeTypeId": 18,
       "CultureTypeId": 8,
       "TradeGoodsProduced": [
@@ -2312,7 +3470,17 @@
           "TradeGoodId": 169
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 6
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     },
     {
       "IdKey": 83,
@@ -2323,7 +3491,7 @@
       "AncientName": "Ukek",
       "Population": 10000,
       "MapPixelX": 3296,
-      "MapPixelY": 1745,
+      "MapPixelZ": 1745,
       "BiomeTypeId": 17,
       "CultureTypeId": 13,
       "TradeGoodsProduced": [
@@ -2340,7 +3508,23 @@
           "TradeGoodId": 9
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 4
+        },
+        {
+          "CaravanMemberId": 8
+        },
+        {
+          "CaravanMemberId": 1
+        },
+        {
+          "CaravanMemberId": 12
+        },
+        {
+          "CaravanMemberId": 2
+        }
+      ]
     },
     {
       "IdKey": 84,
@@ -2351,7 +3535,7 @@
       "AncientName": "Mangazeya",
       "Population": 3000,
       "MapPixelX": 4952,
-      "MapPixelY": 1053,
+      "MapPixelZ": 1053,
       "BiomeTypeId": 20,
       "CultureTypeId": 13,
       "TradeGoodsProduced": [
@@ -2365,7 +3549,17 @@
           "TradeGoodId": 45
         }
       ],
-      "CaravanMembersForSale": []
+      "CaravanMembersForSale": [
+        {
+          "CaravanMemberId": 14
+        },
+        {
+          "CaravanMemberId": 2
+        },
+        {
+          "CaravanMemberId": 4
+        }
+      ]
     }
   ],
   "Parent": {
@@ -2373,5 +3567,5 @@
     "Name": "CitySettings"
   },
   "Id": "default",
-  "SaveTime": "2026-03-23T19:57:43.777Z"
+  "SaveTime": "2026-07-03T16:17:40.736Z"
 }

@@ -21,9 +21,9 @@ namespace OxDb.SharedGame.Rewards.Interfaces
         /// <param name="quantity"></param>
         /// <param name="extraData"></param>
         /// <returns></returns>
-        Task<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp);
+        ValueTask<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp);
 
-        Task<long> GetQuantity(IUnitDataLookup lookup, long entityId);
+        ValueTask<long> GetQuantity(IUnitDataLookup lookup, long entityId);
     }
 }
 

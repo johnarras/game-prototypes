@@ -18,23 +18,23 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
     {
         for (int x = 0; x < _md.Awid; x++)
         {
-            for (int y = 0; y < _md.Ahgt; y++)
+            for (int z = 0; z < _md.Ahgt; z++)
             {
                 float total = 0;
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
-                    total += _md.Alphas[x, y, i];
+                    total += _md.Alphas[x, z, i];
                 }
                 if (total < 0.1f)
                 {
-                    _md.ClearAlphasAt(x, y);
-                    _md.Alphas[x, y, TerrainTexChannels.Base] = 1.0f;
+                    _md.ClearAlphasAt(x, z);
+                    _md.Alphas[x, z, TerrainTexChannels.Base] = 1.0f;
                 }
                 else
                 {
                     for (int i = 0; i < TerrainTexChannels.Max; i++)
                     {
-                        _md.Alphas[x, y, i] /= total;
+                        _md.Alphas[x, z, i] /= total;
                     }
                 }
             }
@@ -64,22 +64,22 @@ public class SetFinalTerrainTextures : BaseZoneGenerator
                 {
                     break;
                 }
-                for (int y = 0; y < _mapProvider.GetMap().BlockCount; y++)
+                for (int z = 0; z < _mapProvider.GetMap().BlockCount; z++)
                 {
                     if (missingLayer)
                     {
                         break;
                     }
 
-                    TerrainPatchData patch = _terrainManager.GetTerrainPatch(x, y);
+                    TerrainPatchData patch = _terrainManager.GetTerrainPatch(x, z);
 
-                    if (patch == null)
+                    if (patch == null || !patch.Core.IsReady())
                     {
                         missingLayer = true;
                         break;
                     }
 
-                    TerrainData tdata = _terrainManager.GetTerrainData(x, y);
+                    TerrainData tdata = _terrainManager.GetTerrainData(x, z);
                     if (tdata == null)
                     {
                         missingLayer = true;

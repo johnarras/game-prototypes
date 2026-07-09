@@ -8,7 +8,7 @@ namespace OxDb.DataUtils.Importers.Purchasing
     /// </summary>
     public class StoreOfferSettingsImporter : BaseStoreOfferImporter<StoreOfferSettings, StoreOffer>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, StoreOffer current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, StoreOfferSettings settings, StoreOffer current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

@@ -8,7 +8,7 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
 {
@@ -26,7 +26,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
 
         public virtual Type HelperKey => GetType();
 
-        public abstract Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token);
+        public abstract ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token);
 
     }
 }

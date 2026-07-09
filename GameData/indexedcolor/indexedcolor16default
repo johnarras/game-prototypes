@@ -2,8 +2,8 @@
   "Id": "indexedcolor16default",
   "IdKey": 16,
   "ParentId": "default",
-  "TextureTypeId": 9,
-  "R": 176,
-  "G": 176,
-  "B": 112
+  "TextureTypeId": 15,
+  "R": 216,
+  "G": 216,
+  "B": 216
 }

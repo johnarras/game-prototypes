@@ -23,7 +23,7 @@ namespace OxDb.SharedGame.Crawler.Roles.Services
     {
 
         double GetRoleScalingLevel(PartyData party, CrawlerUnit crawlerUnit, long roleScalingTypeId);
-        double GetSpellScalingLevel(PartyData party, CrawlerUnit crawlerUnit, CrawlerSpell spell);
+        double GetSpellScalingLevel(PartyData party, CrawlerUnit crawlerUnit, CrawlerSpell spell, bool includeSpellAttackScaling);
 
     }
 
@@ -99,30 +99,11 @@ namespace OxDb.SharedGame.Crawler.Roles.Services
         }
 
 
-        public double GetSpellScalingLevel(PartyData party, CrawlerUnit unit, CrawlerSpell spell)
+        public double GetSpellScalingLevel(PartyData party, CrawlerUnit unit, CrawlerSpell spell, bool includeSpellAttackScaling)
         {
 
             CrawlerSpell finalSpell = spell;
 
-            if (finalSpell.ReplacesCrawlerSpellId > 0)
-            {
-                List<CrawlerSpell> spellsSeen = new List<CrawlerSpell>();
-                while (finalSpell.ReplacesCrawlerSpellId > 0)
-                {
-                    CrawlerSpell prevSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).Get(finalSpell.ReplacesCrawlerSpellId);
-
-                    if (prevSpell != null && !spellsSeen.Contains(prevSpell))
-                    {
-                        finalSpell = prevSpell;
-                        spellsSeen.Add(prevSpell);
-                    }
-                    else
-                    {
-                        break;
-                    }
-
-                }
-            }
 
             double scalingLevel = GetRoleScalingLevel(party, unit, finalSpell.RoleScalingTypeId);
 
@@ -134,6 +115,12 @@ namespace OxDb.SharedGame.Crawler.Roles.Services
 
                 scalingLevel += action.BaseBonusHits;
             }
+
+            if (includeSpellAttackScaling && spell.AttackQuantityScale > 0)
+            {
+                scalingLevel *= spell.AttackQuantityScale;
+            }
+
             return scalingLevel;
         }
     }

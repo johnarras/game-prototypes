@@ -170,11 +170,20 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
             sb.Clear();
             sb.Append("Tiers: ");
 
+
+            int roleScalingsShown = 0;
             foreach (RoleScalingType scalingType in scalingTypes)
             {
                 double tier = _roleService.GetRoleScalingLevel(party, _partyMember, scalingType.IdKey);
 
+
                 sb.Append(_infoService.CreateInfoLink(scalingType) + ": " + tier + "   ");
+
+                roleScalingsShown++;
+                if (roleScalingsShown % 4 == 0)
+                {
+                    sb.Append("\n");
+                }
             }
 
             _uiService.SetText(TiersText, sb.ToString());

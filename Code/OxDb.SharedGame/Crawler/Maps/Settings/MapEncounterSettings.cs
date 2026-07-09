@@ -13,6 +13,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Settings
     {
         public override string Id { get; set; }
         public double EncounterChance { get; set; }
+        public double CornerSmallRoomEncounterChance { get; set; }
     }
 
     public class MapEncounterType : ChildSettings, IIndexedGameItem, IWeightedItem
@@ -28,6 +29,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Settings
         public double Weight { get; set; }
         public bool CanRepeat { get; set; }
         public bool CanBeCleansed { get; set; }
+        public bool IsCornerSmallRoomItem { get; set; }
 
     }
 

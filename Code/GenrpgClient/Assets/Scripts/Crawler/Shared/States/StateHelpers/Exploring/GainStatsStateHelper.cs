@@ -1,6 +1,5 @@
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.FloatingText.ClientEvents;
-using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -27,7 +26,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
 
         public override ECrawlerStates HelperKey => ECrawlerStates.GainStats;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -67,7 +66,8 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
                     () =>
                     {
                         pm.AddPermStat(statType.IdKey, statAdded);
-                        mapStatus.OneTimeEncounters.Add(new PointXZ(party.CurrPos.X, party.CurrPos.Z));
+                        int index = map.GetIndex(party.CurrPos.X, party.CurrPos.Z);
+                        mapStatus.Encounters.SetBitIndex(index);
                         _crawlerStatService.CalcUnitStats(party, pm, false);
                         _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
                         _dispatcher.Dispatch(new ShowFloatingText("+ " + statAdded + " " + statType.Name + "!"));

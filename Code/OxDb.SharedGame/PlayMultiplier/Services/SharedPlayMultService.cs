@@ -1,22 +1,34 @@
 using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Core.PlayerData;
+using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.PlayMultiplier.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.PlayMultiplier.Services
 {
+    public interface ISharedPlayMultService : IInjectable
+    {
+        ValueTask<int> GetMaxMult(IUnitDataLookup lookup);
+
+        ValueTask<List<int>> GetValidMults(IUnitDataLookup lookup);
+    }
     public class SharedPlayMultService : ISharedPlayMultService
     {
         private IGameData _gameData = null;
-        public int GetMaxMult(CoreData coreData)
+        public async ValueTask<int> GetMaxMult(IUnitDataLookup lookup)
         {
-            return GetValidMults(coreData).Last();
+            return (await GetValidMults(lookup)).Last();
         }
 
-        public List<int> GetValidMults(CoreData coreData)
+        public async ValueTask<List<int>> GetValidMults(IUnitDataLookup lookup)
         {
+
+            CoreData coreData = await lookup.GetAsync<CoreData>();
             PlayMultSettings settings = _gameData.Get<PlayMultSettings>(coreData);
 
             long maxMult = settings.MaxPlayMult;

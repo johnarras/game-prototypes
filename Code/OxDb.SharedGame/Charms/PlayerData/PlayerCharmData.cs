@@ -27,6 +27,7 @@ namespace OxDb.SharedGame.Charms.PlayerData
 
         [Key(7)] public List<PlayerCharmBonusList> Bonuses { get; set; } = new List<PlayerCharmBonusList>();
 
+        [Key(8)] public override string VersionTag { get; set; }
     }
     [MessagePackObject]
     public class PlayerCharmBonusList
@@ -40,6 +41,7 @@ namespace OxDb.SharedGame.Charms.PlayerData
     public class PlayerCharmData : OwnerIdObjectList<PlayerCharm>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
     }
     [MessagePackObject]
     public class PlayerCharmDto : OwnerDtoList<PlayerCharmData, PlayerCharm>

@@ -1,4 +1,5 @@
 using Assets.Scripts.Assets.Constants;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.Tilemap;
 using OxDb.SharedCore.Entities.Constants;
@@ -8,10 +9,10 @@ using OxDb.SharedGame.Crawler.Buffs.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
+using OxDb.SharedGame.Riddles.Services;
 using OxDb.SharedGame.Zones.Settings;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,8 +52,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
     public class CrawlerTilemap : BaseBehaviour
     {
-        public const bool RequireMapping = true;
-        public const bool UseFogOfWar = true;
+        public const bool RequireMapping = false;
+        public const bool UseFogOfWar = false;
 
 
         public GImage PartyImage;
@@ -85,6 +86,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
         private ICrawlerWorldService _worldService = null;
         private ICrawlerMapService _crawlerMapService = null;
         private ICrawlerService _crawlerService = null;
+        private IRiddleService _riddleService = null;
 
         private CrawlerMap _map = null;
         private PartyData _party = null;
@@ -130,7 +132,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             int maxSize = Mathf.Max(width, height);
 
-            while (maxSize > 32)
+            while (maxSize > 16)
             {
                 _tileSize /= 2;
                 maxSize /= 2;
@@ -453,6 +455,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                 for (int iz = 0; iz < Height; iz++)
                 {
                     int z = (iz + zpos - Height / 2);
+
                     if (_map.HasFlag(CrawlerMapFlags.IsLooping))
                     {
                         if (z < 0)
@@ -465,11 +468,6 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     if (x < 0 || x >= _map.Width || z < 0 || z >= _map.Height)
                     {
                         ShowOutOfBounds(ix, iz);
-                        continue;
-                    }
-
-                    if (_mapDepth < TilemapIndexes.Max && x == Width / 2 && z == Height / 2)
-                    {
                         continue;
                     }
 
@@ -523,6 +521,12 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         }
                     }
 
+                    // Center of big map is only terrain + player
+                    if (_mapDepth < TilemapIndexes.Max && x == Width / 2 && z == Height / 2)
+                    {
+                        continue;
+                    }
+
                     bool didSetObject = false;
 
                     long treeTypeId = _map.GetEntityId(x, z, EntityTypes.Tree);
@@ -549,7 +553,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     }
 
                     long riddleId = _map.GetEntityId(x, z, EntityTypes.Riddle);
-                    if (riddleId > 0)
+                    if (riddleId > 0 && _riddleService.ShouldDrawProp(_party, x, z))
                     {
                         _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_riddleSprite);
                         didSetObject = true;

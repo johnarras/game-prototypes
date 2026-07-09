@@ -9,7 +9,7 @@
   "AncientName": "Mediolanum",
   "Population": 100000,
   "MapPixelX": 1568,
-  "MapPixelY": 2025,
+  "MapPixelZ": 2025,
   "BiomeTypeId": 1,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,24 @@
       "TradeGoodId": 1
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    }
+  ]
 }

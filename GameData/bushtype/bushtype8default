@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype8default",
+  "ParentId": "default",
+  "IdKey": 8,
+  "Name": "ElephantGrass",
+  "Art": "ElephantGrass",
+  "Scale": 0.5,
+  "VariationCount": 2,
+  "Flags": 3
+}

@@ -2,5 +2,6 @@
   "Id": "stattype36default",
   "ParentId": "default",
   "IdKey": 36,
-  "Name": "DetectHidden"
+  "Name": "DetectHidden",
+  "Icon": "DetectHidden"
 }

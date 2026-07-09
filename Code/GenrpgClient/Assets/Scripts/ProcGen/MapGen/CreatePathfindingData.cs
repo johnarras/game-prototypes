@@ -59,7 +59,7 @@ public class CreatePathfindingData : BaseZoneGenerator
                         {
                             TreeType ttype = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(_md.EntityIds[x, z]);
 
-                            if (ttype != null && !ttype.HasFlag(TreeFlags.IsBush))
+                            if (ttype != null)
                             {
                                 blockedCells[pz, px] = true;
                             }

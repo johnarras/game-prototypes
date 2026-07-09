@@ -28,14 +28,13 @@ namespace OxDb.SharedGame.Trader.Maps.Services
 
     public interface ITraderMapService : IInjectable
     {
-        MyPointF GetMapCoordinate(long fromX, long fromY, long toX, long toY, double distanceGone, double totalDistance);
+        Point2F GetMapCoordinate(long fromX, long fromZ, long toX, long toZ, double distanceGone, double totalDistance);
 
-        float GetAngle(long fromX, long fromY, long toX, long toY);
+        float GetAngle(long fromX, long fromZ, long toX, long toZ);
 
+        ValueTask<int> GetDistanceBetweenPoints(IUnitDataLookup lookup, long x, long z, long toX, long toZ);
 
-        Task<int> GetDistanceBetweenPoints(IUnitDataLookup lookup, long x, long y, long toX, long toY);
-
-        Task<List<CityTravelDistance>> GetNearbyCities(IUnitDataLookup lookup);
+        ValueTask<List<CityTravelDistance>> GetNearbyCities(IUnitDataLookup lookup);
 
 
     }
@@ -47,31 +46,31 @@ namespace OxDb.SharedGame.Trader.Maps.Services
         private IGameData _gameData = null;
 
 
-        public async Task<int> GetDistanceBetweenPoints(IUnitDataLookup lookup, long x, long y, long toX, long toY)
+        public async ValueTask<int> GetDistanceBetweenPoints(IUnitDataLookup lookup, long x, long z, long toX, long toZ)
         {
             long dx = x - toX;
-            long dy = y - toY;
+            long dz = z - toZ;
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
 
             TravelSettings settings = _gameData.Get<TravelSettings>(coreData);
 
-            return (int)(Math.Sqrt(dx * dx + dy * dy) * settings.DistancePerMapUnit);
+            return (int)(Math.Sqrt(dx * dx + dz * dz) * settings.DistancePerMapUnit);
         }
-        public MyPointF GetMapCoordinate(long fromX, long fromY, long toX, long toY, double distanceGone, double totalDistance)
+
+        public Point2F GetMapCoordinate(long fromX, long fromZ, long toX, long toZ, double distanceGone, double totalDistance)
         {
             if (totalDistance < 1)
             {
-                return new MyPointF(toX, toY);
+                return new Point2F(toX, toZ);
             }
 
             double pctGone = 1.0 * distanceGone / totalDistance;
 
             double x = fromX * (1 - pctGone) + toX * pctGone;
-            double y = fromY * (1 - pctGone) + toY * pctGone;
+            double z = fromZ * (1 - pctGone) + toZ * pctGone;
 
-            return new MyPointF((float)x, (float)y);
-
+            return new Point2F((float)x, (float)z);
         }
 
         public float GetAngle(long fromX, long fromY, long toX, long toY)
@@ -86,11 +85,11 @@ namespace OxDb.SharedGame.Trader.Maps.Services
             return 0;
         }
 
-        public async Task<List<CityTravelDistance>> GetNearbyCities(IUnitDataLookup lookup)
+        public async ValueTask<List<CityTravelDistance>> GetNearbyCities(IUnitDataLookup lookup)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
 
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(lookup);
 
             IReadOnlyList<City> allCities = _gameData.Get<CitySettings>(coreData).GetData();
 
@@ -105,7 +104,7 @@ namespace OxDb.SharedGame.Trader.Maps.Services
                     continue;
                 }
 
-                long distanceToCity = await GetDistanceBetweenPoints(lookup, pos.CurrX, pos.CurrY, city.MapPixelX, city.MapPixelY);
+                long distanceToCity = await GetDistanceBetweenPoints(lookup, pos.CurrX, pos.CurrZ, city.MapPixelX, city.MapPixelZ);
 
                 if (distanceToCity == 0 || distanceToCity > travelSettings.MaxDistanceToTarget)
                 {

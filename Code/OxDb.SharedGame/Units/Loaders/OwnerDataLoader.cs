@@ -28,9 +28,9 @@ namespace OxDb.SharedGame.Units.Loaders
 
             return new List<CreateIndexData>() { cid };
         }
-        public override async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public override async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
         public override async Task<ITopLevelUnitData> LoadFullData(Unit unit)
@@ -45,7 +45,7 @@ namespace OxDb.SharedGame.Units.Loaders
             Task<TParent> parentTask = _repoService.Load<TParent>(id);
             Task<List<TChild>> childTask = _repoService.Search<TChild>(x => x.OwnerId == id);
 
-            await System.Threading.Tasks.Task.WhenAll(parentTask, childTask).ConfigureAwait(false);
+            await Task.WhenAll(parentTask, childTask).ConfigureAwait(false);
 
             TParent parent = await parentTask;
             List<TChild> items = await childTask;

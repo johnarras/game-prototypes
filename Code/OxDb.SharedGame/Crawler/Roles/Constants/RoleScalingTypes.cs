@@ -7,8 +7,9 @@ namespace OxDb.SharedGame.Crawler.Roles.Constants
         public const long SpellDam = 3;
         public const long Healing = 4;
         public const long Summon = 5;
-        public const long Utility = 6;
+        public const long Divination = 6;
         public const long Defense = 7;
+        public const long Mobility = 8;
     }
 }
 

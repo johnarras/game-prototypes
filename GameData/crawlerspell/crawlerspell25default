@@ -1,0 +1,37 @@
+{
+  "Id": "crawlerspell25default",
+  "ParentId": "default",
+  "IdKey": 25,
+  "Name": "Restoration",
+  "Desc": "Heal and cure all party members",
+  "BaseCost": 100.0,
+  "TierCost": 20.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 5,
+  "RoleScalingTypeId": 4,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 34,
+      "ElementTypeId": 7,
+      "WeaponDamageScale": 1.5,
+      "StatBonusDamageScale": 3.0,
+      "ProcChance": 1.0
+    },
+    {
+      "EntityTypeId": 36,
+      "ElementTypeId": 7,
+      "WeaponDamageScale": -1.0,
+      "StatBonusDamageScale": -1.0,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      16
+    ]
+  },
+  "ItemEnchantWeight": 0.1
+}

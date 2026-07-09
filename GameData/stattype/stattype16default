@@ -4,6 +4,7 @@
   "IdKey": 16,
   "Name": "Luck",
   "Desc": "Gives a chance to get extra attacks.",
+  "Icon": "Luck",
   "Art": "WhiteCauldron",
   "ColorName": "White",
   "ColorCode": "#FFFFFF",

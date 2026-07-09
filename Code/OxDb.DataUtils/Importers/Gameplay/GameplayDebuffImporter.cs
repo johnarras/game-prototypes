@@ -8,7 +8,7 @@ namespace OxDb.DataUtils.Importers.Gameplay
 {
     public class GameplayDebuffImporter : ParentChildImporter<GameplayDebuffSettings, GameplayDebuff>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, GameplayDebuff current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, GameplayDebuffSettings settings, GameplayDebuff current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
             if (firstColumn == "debuffeffect")
             {

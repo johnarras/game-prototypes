@@ -1,4 +1,5 @@
 using MongoDB.Driver;
+using OxDb.PlatformServer.Accounts.Entities;
 using OxDb.PlatformServer.Accounts.PlayerData;
 using OxDb.PlatformServer.Accounts.Services;
 using OxDb.ServerCore.CloudComms.Services;
@@ -34,8 +35,10 @@ namespace OxDb.PlatformServer.Accounts.RequestHandlers
             await HandleRequestInternal(context, (TRequest)request, token);
         }
 
-        protected async Task AfterAuthSuccess(IWebContext context, Account account, IAccountAuthRequest request)
+        protected async Task AfterAuthSuccess(IWebContext context, AccountAuthResult result, IAccountAuthRequest request)
         {
+            Account account = result.CurrentAccount;
+
             ProductRecord prodRecord = account.Products.FirstOrDefault(x => x.ProductId == request.ProductId)!;
 
             string installSource = request.InstallSource;
@@ -80,12 +83,12 @@ namespace OxDb.PlatformServer.Accounts.RequestHandlers
                 DisplayName = account.DisplayName,
             };
 
-            AuthRecord authRecord = account.AuthRecords.FirstOrDefault(x => x.DeviceId == request.DeviceId)!;
+            DeviceAuthStatus authRecord = account.AuthRecords.FirstOrDefault(x => x.DeviceId == request.DeviceId)!;
 
             string clientLoginToken;
             if (authRecord == null)
             {
-                authRecord = new AuthRecord()
+                authRecord = new DeviceAuthStatus()
                 {
                     DeviceId = request.DeviceId,
                 };
@@ -104,6 +107,7 @@ namespace OxDb.PlatformServer.Accounts.RequestHandlers
             AccountAuthResponse response = new AccountAuthResponse()
             {
                 AccountId = account.Id,
+                LastAuthType = result.AuthType,
                 LoginToken = clientLoginToken,
                 AccountSessionId = sessionData.AccountSessionId,
                 ProductUserId = prodRecord.ProductUserId,
@@ -111,11 +115,18 @@ namespace OxDb.PlatformServer.Accounts.RequestHandlers
                 ProductId = prodRecord.ProductId,
                 DisplayName = account.DisplayName,
                 InstallSource = account.InstallSource,
+                OneTimeGuestSecret = result.OneTimeGuestSecret,
+                OneTimeGuestAccountId = result.OneTimeGuestAccountId,   
+                ValidAuthTypes = account.GetValidAuthTypes(),
+                Success = true,
             };
 
             if (justAddedProduct)
             {
-                _accountService.AddAccountToProductGraph(account, request.ProductId, request.ReferrerId, account.Products.Count > 1);
+                AddAccountConnectionArgs args = new AddAccountConnectionArgs(account.Id, request.ReferrerId, request.ProductId, account.Products.Count > 1);
+
+
+                _accountService.AddAccountToProductGraph(args);
             }
             await UpdatePublicAccount(account);
 

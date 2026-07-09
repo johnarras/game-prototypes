@@ -9,7 +9,7 @@
   "AncientName": "Mangazeya",
   "Population": 3000,
   "MapPixelX": 4952,
-  "MapPixelY": 1053,
+  "MapPixelZ": 1053,
   "BiomeTypeId": 20,
   "CultureTypeId": 13,
   "TradeGoodsProduced": [
@@ -23,5 +23,15 @@
       "TradeGoodId": 45
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 14
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

@@ -21,13 +21,12 @@ namespace OxDb.SharedGame.Trader.CaravanMembers.Helpers
         protected ICaravanService _caravanService = null;
         public long HelperKey => EntityTypes.UpdateCaravanMembers;
 
-        public async Task<long> GetQuantity(IUnitDataLookup lookup, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup lookup, long entityId)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
             return 0;
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             CaravanData caravanData = await lookup.GetAsync<CaravanData>();
 

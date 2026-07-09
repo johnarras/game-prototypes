@@ -11,7 +11,7 @@ public class SetMapSpawnPoint : BaseZoneGenerator
     {
         await base.Generate(token);
         int minx = _mapProvider.GetMap().GetHwid() / 2;
-        int miny = _mapProvider.GetMap().GetHhgt() / 2;
+        int minz = _mapProvider.GetMap().GetHhgt() / 2;
         long minDist = 1000000000;
         Zone minZone = null;
         int edgeSize = MapConstants.LocCenterEdgeSize;
@@ -31,12 +31,12 @@ public class SetMapSpawnPoint : BaseZoneGenerator
                 {
                     minDist = currDist;
                     minx = loc.CenterX;
-                    miny = loc.CenterZ;
+                    minz = loc.CenterZ;
                     minZone = zone;
                 }
             }
         }
-        _mapProvider.GetMap().SpawnX = miny;
+        _mapProvider.GetMap().SpawnX = minz;
         _mapProvider.GetMap().SpawnY = minx;
         if (minZone != null)
         {

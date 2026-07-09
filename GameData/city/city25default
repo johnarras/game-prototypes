@@ -9,7 +9,7 @@
   "AncientName": "Augusta Treverorum",
   "Population": 75000,
   "MapPixelX": 1492,
-  "MapPixelY": 1825,
+  "MapPixelZ": 1825,
   "BiomeTypeId": 6,
   "CultureTypeId": 10,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 112
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

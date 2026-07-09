@@ -2,14 +2,14 @@ using ClientEvents;
 using OxDb.SharedGame.Loot.Messages;
 using OxDb.SharedGame.Rewards.Services;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.MessageHandlers.Rewards
 {
     public class SendRewardsHandler : BaseClientMapMessageHandler<SendRewards>
     {
         protected IRewardService _rewardService = null;
-        protected override async Awaitable InnerProcess(SendRewards msg, CancellationToken token)
+        protected override async ValueTask InnerProcess(SendRewards msg, CancellationToken token)
         {
             await _rewardService.GiveRewards(_gs.ch, msg.Rewards, null);
 

@@ -5,7 +5,7 @@
   "Name": "Trap",
   "Icon": "Trap",
   "Art": "",
-  "Weight": 0.08,
+  "Weight": 0.2,
   "CanRepeat": true,
   "CanBeCleansed": true
 }

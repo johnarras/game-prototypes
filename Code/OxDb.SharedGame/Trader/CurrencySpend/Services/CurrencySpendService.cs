@@ -19,9 +19,9 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.Services
 
     public interface ICurrencySpendService : IInjectable
     {
-        Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, long spendLocationId, bool useCurrentCity);
-        Task<SpendCurrencyResponse> SpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request);
-        Task<SpendCurrencyCheckResult> CheckCanSpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request);
+        ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, long spendLocationId, bool useCurrentCity);
+        ValueTask<SpendCurrencyResponse> SpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request);
+        ValueTask<SpendCurrencyCheckResult> CheckCanSpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request);
     }
 
     public class CurrencySpendService : ICurrencySpendService
@@ -31,7 +31,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.Services
 
         protected SetupDictionaryContainer<long, ISpendLocationHelper> _spendHelpers = new SetupDictionaryContainer<long, ISpendLocationHelper>();
 
-        public async Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, long spendLocationId, bool useCurrentCity)
+        public async ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, long spendLocationId, bool useCurrentCity)
         {
 
             if (!_spendHelpers.TryGetValue(spendLocationId, out ISpendLocationHelper helper))
@@ -48,7 +48,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.Services
             return result;
         }
 
-        public async Task<SpendCurrencyCheckResult> CheckCanSpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request)
+        public async ValueTask<SpendCurrencyCheckResult> CheckCanSpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request)
         {
 
             SpendCurrencyCheckResult result = new SpendCurrencyCheckResult();
@@ -101,7 +101,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.Services
             return SetSpendCurrencyResultState(result, ESpendCurrencyCheckState.Success);
         }
 
-        public async Task<SpendCurrencyResponse> SpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request)
+        public async ValueTask<SpendCurrencyResponse> SpendCurrency(IUnitDataLookup lookup, SpendCurrencyRequest request)
         {
 
             SpendCurrencyResponse response = new SpendCurrencyResponse()
@@ -125,22 +125,23 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.Services
 
             };
 
-            List<IEffect> rewards = spendResult.SpendType.Rewards.Cast<IEffect>().ToList();
+            List<IEffect> startEffects = spendResult.SpendType.Rewards.OfType<IEffect>().ToList();
 
-            if (rewards.Count == 1 && request.TargetEntityId > 0)
+            List<Reward> finalRewards = new List<Reward>();
+            if (startEffects.Count == 1 && request.TargetEntityId > 0)
             {
-                Reward rew = new Reward(rewards[0]);
+                Reward rew = new Reward(startEffects[0]);
                 rew.EntityId = request.TargetEntityId;
                 rew.UniqueId = ++coreData.UniqueId;
-                rewards = new List<IEffect>() { rew };
+                finalRewards.Add(rew);
             }
 
-            if (rewards.Count < 1)
+            if (finalRewards.Count < 1)
             {
                 response.State = ESpendCurrencyCheckState.NoSpendRewards;
                 return response;
             }
-            if (await _rewardService.GiveRewards(lookup, rewards, RewardSources.SpendCurrencyRewards, args))
+            if (await _rewardService.GiveRewards(lookup, startEffects, RewardSources.SpendCurrencyRewards, args))
             {
                 response.State = ESpendCurrencyCheckState.Success;
             }
@@ -151,22 +152,15 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.Services
 
             if (response.State == ESpendCurrencyCheckState.Success)
             {
-                RewardList rewardList = _rewardService.CreateRewardList(RewardSources.SpendCurrencyRewards, new List<Reward>(), request.SpendLocationId);
-                response.Rewards.Add(rewardList);
-                foreach (IEffect eff in rewards)
-                {
-                    rewardList.Rewards.Add(new Reward(eff));
-                }
-
-                RewardList spendList = _rewardService.CreateRewardList(RewardSources.SpendCurrencyCost, new List<Reward>(), request.SpendLocationId);
-                coreData.Currencies[spendResult.SpendType.SpendCoreCurrencyTypeId] -= spendResult.SpendType.SpendQuantity;
-                spendList.Rewards.Add(new Reward()
+                response.Rewards.AddRange(_rewardService.CreateListFromList(RewardSources.SpendCurrencyRewards, request.SpendLocationId, finalRewards));
+                Reward spendReward = new Reward()
                 {
                     EntityTypeId = EntityTypes.CoreCurrency,
                     EntityId = spendResult.SpendType.SpendCoreCurrencyTypeId,
                     Quantity = -spendResult.SpendType.SpendQuantity
-                });
+                };
 
+                response.Rewards.AddRange(_rewardService.CreateListFromReward(RewardSources.SpendCurrencyCost, request.SpendLocationId, spendReward));
             }
 
             return response;

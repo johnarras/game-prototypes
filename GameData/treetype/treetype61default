@@ -2,8 +2,8 @@
   "Id": "treetype61default",
   "ParentId": "default",
   "IdKey": 61,
-  "Name": "BanyanThin",
-  "Art": "BanyanThin",
-  "Scale": 1.5,
+  "Name": "RiverBirchFall",
+  "Art": "RiverBirchFall",
+  "Scale": 2.5,
   "VariationCount": 2
 }

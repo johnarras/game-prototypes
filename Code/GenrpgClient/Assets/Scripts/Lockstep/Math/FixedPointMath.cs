@@ -121,15 +121,15 @@ namespace Assets.Scripts.Lockstep.Math
             // We want the ratio to be between 0 and 1 for the approximation to work
             if (absX >= absY)
             {
-                // Ratio z = y/x
+                // Ratio z = z/x
                 FixedPoint64 z = y / x;
                 angle = FastAtanDegrees(z);
             }
             else
             {
-                // Ratio z = x/y
+                // Ratio z = x/z
                 FixedPoint64 z = x / y;
-                // atan(y/x) = 90 - atan(x/y)
+                // atan(z/x) = 90 - atan(x/z)
                 angle = 90 - FastAtanDegrees(z);
             }
 

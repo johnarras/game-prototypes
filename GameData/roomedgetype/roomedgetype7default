@@ -1,0 +1,10 @@
+{
+  "Id": "roomedgetype7default",
+  "ParentId": "default",
+  "IdKey": 7,
+  "Name": "Doors",
+  "Weight": 1.0,
+  "MinEndDoorChance": 1.0,
+  "MaxEndDoorChance": 1.0,
+  "MaxMissingChance": 0.4
+}

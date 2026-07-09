@@ -1,4 +1,5 @@
 using Assets.Scripts.DynamicUI.Services;
+using Assets.Scripts.Trader.Travel.UI;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
@@ -15,7 +16,7 @@ namespace Assets.Scripts.Rewards.Services
         private IDynamicUIService _dynamicUIService = null;
         private IAnalyticsService _analyticsService = null;
 
-        public override async Task<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp)
+        public override async ValueTask<bool> GiveReward(IUnitDataLookup obj, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp)
         {
             if (await base.GiveReward(obj, entityTypeId, entityId, quantity, rewardSourceId, extraData, uniqueId, rp))
             {
@@ -26,6 +27,14 @@ namespace Assets.Scripts.Rewards.Services
 
                 bool instant = crp?.InstantShow ?? false;
 
+                if (quantity != 0 && (crp == null || !crp.SuppressAnalytics))
+                {
+                    _analyticsService.TrackEconomyEvent(quantity > 0 ? AnalyticsEventNames.RewardInflow : AnalyticsEventNames.RewardOutflow,
+                        entityTypeId, entityId, quantity, rewardSourceId);
+                }
+
+                _dispatcher.Dispatch(new UpdateMaxPlayMult());
+
                 if (showDoober && quantity > 0 && _dynamicUIService.ShowDefaultEntityDoober(entityTypeId, entityId, quantity))
                 {
                     return true;
@@ -33,12 +42,6 @@ namespace Assets.Scripts.Rewards.Services
                 else if (showVisualUpdate)
                 {
                     _dynamicUIService.AddEntityQuantityVisual(entityTypeId, entityId, quantity, instant);
-                }
-
-                if (quantity != 0 && (crp == null || !crp.SuppressAnalytics))
-                {
-                    _analyticsService.TrackEconomyEvent(quantity > 0 ? AnalyticsEventNames.RewardInflow : AnalyticsEventNames.RewardOutflow,
-                        entityTypeId, entityId, quantity, rewardSourceId);
                 }
             }
 

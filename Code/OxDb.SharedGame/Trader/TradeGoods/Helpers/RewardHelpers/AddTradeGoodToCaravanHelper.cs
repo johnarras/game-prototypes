@@ -16,14 +16,14 @@ namespace OxDb.SharedGame.Trader.TradeGoods.Helpers.RewardHelpers
         private ITradeGoodService _tradeGoodService = null;
         public long HelperKey => EntityTypes.TradeGood;
 
-        public async Task<long> GetQuantity(IUnitDataLookup lookup, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup lookup, long entityId)
         {
             CaravanData caravanData = await lookup.GetAsync<CaravanData>();
 
             return caravanData.TradeGoods.Count(x => x.TradeGoodId == entityId);
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup lookup, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             AddTradeGoodToCaravanResponse result = await _tradeGoodService.AddTradeGoodToCaravan(lookup, entityId, uniqueId);
 

@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell101default",
+  "ParentId": "default",
+  "IdKey": 101,
+  "Name": "Hamstring",
+  "Desc": "Slow enemies so they attack later.",
+  "BaseCost": 25.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 1,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 2,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 4,
+      "ElementTypeId": 5,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      226
+    ]
+  },
+  "ItemEnchantWeight": 0.05
+}

@@ -10,7 +10,12 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
     {
         public override EAuthTypes HelperKey => EAuthTypes.Device;
 
-        public override async Task<AccountAuthResult> CheckAuthAsync(IWebContext context, IAccountAuthRequest request)
+        public override void Init()
+        {
+            
+        }
+
+        public override async Task<AccountAuthResult> CheckAuthAsync(IWebContext context, IAccountAuthRequest request, CancellationToken token)
         {
             AccountAuthResult result = CreateAuthResult();
 
@@ -20,15 +25,15 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
                 return result;
             }
 
-            Account acc = await _repoService.Load<Account>(request.AccountId);
+            Account account = await _repoService.Load<Account>(request.AccountId);
 
-            if (acc == null)
+            if (account == null)
             {
                 result.ErrorMessage = "Missing account Id for device login.";
                 return result;
             }
 
-            AuthRecord record = acc.AuthRecords.FirstOrDefault(x => x.DeviceId == request.UserIdentity)!;
+            DeviceAuthStatus record = account.AuthRecords.FirstOrDefault(x => x.DeviceId == request.UserIdentity)!;
 
             if (record == null)
             {
@@ -44,7 +49,7 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
                 return result;
             }
 
-            result.CurrentAccount = acc;
+            result.CurrentAccount = account;
             result.Success = true;
 
             return result;

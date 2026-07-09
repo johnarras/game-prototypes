@@ -9,6 +9,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 {
     public interface ICrawlerMoveHelper : IOrderedSetupDictionaryItem<Type>
     {
+        // Must be awaitable since some of this does happen over time.
         Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token);
     }
 }

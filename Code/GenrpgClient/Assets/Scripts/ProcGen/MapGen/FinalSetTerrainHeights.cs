@@ -10,13 +10,13 @@ public class SetfinalTerrainHeights : BaseZoneGenerator
         await base.Generate(token);
         for (int x = 0; x < _mapProvider.GetMap().GetHwid(); x++)
         {
-            for (int y = 0; y < _mapProvider.GetMap().GetHhgt(); y++)
+            for (int z = 0; z < _mapProvider.GetMap().GetHhgt(); z++)
             {
-                if (x == 0 || x == _mapProvider.GetMap().GetHwid() - 1 || y == 0 || y == _mapProvider.GetMap().GetHhgt() - 1)
+                if (x == 0 || x == _mapProvider.GetMap().GetHwid() - 1 || z == 0 || z == _mapProvider.GetMap().GetHhgt() - 1)
                 {
-                    _md.Heights[x, y] = 0;
+                    _md.Heights[x, z] = 0;
                 }
-                _md.Heights[x, y] = MathUtil.Clamp(0, _md.Heights[x, y], 1);
+                _md.Heights[x, z] = MathUtil.Clamp(0, _md.Heights[x, z], 1);
             }
         }
 

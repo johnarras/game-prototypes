@@ -2,9 +2,8 @@
   "Id": "treetype18default",
   "ParentId": "default",
   "IdKey": 18,
-  "Name": "Azalea",
-  "Art": "Azalea",
-  "Scale": 1.0,
-  "VariationCount": 2,
-  "Flags": 1
+  "Name": "CedarBare",
+  "Art": "CedarBare",
+  "Scale": 1.5,
+  "VariationCount": 2
 }

@@ -20,7 +20,6 @@ using OxDb.SharedCore.Interfaces;
 
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.GameObjects;
-using Assets.Scripts.Core;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Serialization.Interfaces;
 using Assets.Scripts.Repository;
@@ -65,7 +64,6 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
 {
     private ILogService _logService = null;
     private IFileDownloadService _fileDownloadService = null;
-    protected IClientRandom _rand = null;
     protected IClientGameState _gs = null;
     protected IClientEntityService _clientEntityService = null;
     private IClientConfigContainer _config = null;

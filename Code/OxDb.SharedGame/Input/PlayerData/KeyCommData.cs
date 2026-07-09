@@ -43,6 +43,7 @@ namespace OxDb.SharedGame.Input.PlayerData
         [Key(3)] public string KeyPress { get; set; }
         [Key(4)] public string KeyCommand { get; set; }
         [Key(5)] public int Modifiers { get; set; }
+        [Key(6)] public override string VersionTag { get; set; }
 
 
 
@@ -73,6 +74,7 @@ namespace OxDb.SharedGame.Input.PlayerData
     public class KeyCommData : OwnerObjectList<KeyComm>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
         public KeyComm GetKeyComm(string keyComm)
         {

@@ -21,7 +21,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
         protected IRoleService _roleService = null!;
         public override ECrawlerStates HelperKey => ECrawlerStates.SelectSpell;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -45,7 +45,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                 CrawlerSpell spell = spells[s];
 
                 long powerCost = _crawlerSpellService.GetPowerCost(party, data.Member, spell);
-                double spellLevel = _roleService.GetSpellScalingLevel(party, data.Member, spell);
+                double spellLevel = _roleService.GetSpellScalingLevel(party, data.Member, spell, true);
 
                 SelectSpellAction selectSpell = new SelectSpellAction()
                 {

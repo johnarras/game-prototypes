@@ -2,8 +2,8 @@
   "Id": "treetype40default",
   "ParentId": "default",
   "IdKey": 40,
-  "Name": "RedMapleFall",
-  "Art": "RedMapleFall",
-  "Scale": 1.5,
+  "Name": "Baobab",
+  "Art": "Baobab",
+  "Scale": 0.4,
   "VariationCount": 2
 }

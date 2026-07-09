@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class FXHandler : BaseMapObjectServerMapMessageHandler<FX>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, FX message)
+        protected override async ValueTask InnerProcess(MapObject obj, FX message)
         {
             obj.AddMessage(message);
         }

@@ -6,7 +6,7 @@ using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Website.Responses.Interfaces;
 using System;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts.Login.Messages.Core
 {
@@ -22,9 +22,9 @@ namespace Assets.Scripts.Login.Messages.Core
 
         virtual public int Priority() { return 0; }
 
-        protected abstract Awaitable InnerProcess(T response, CancellationToken token);
+        protected abstract ValueTask InnerProcess(T response, CancellationToken token);
 
-        public async Awaitable Process(IWebResponse response, CancellationToken token)
+        public async ValueTask Process(IWebResponse response, CancellationToken token)
         {
             await InnerProcess(response as T, token);
         }

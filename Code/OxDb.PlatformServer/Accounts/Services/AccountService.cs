@@ -1,3 +1,4 @@
+using MongoDB.Bson;
 using OxDb.PlatformServer.Accounts.Constants;
 using OxDb.PlatformServer.Accounts.PlayerData;
 using OxDb.ServerCore.Crypto.Services;
@@ -5,6 +6,7 @@ using OxDb.ServerCore.DataStores.Services;
 using OxDb.ServerCore.Platform.Constants;
 using OxDb.ServerCore.Platform.WebApi;
 using OxDb.SharedCore.DataStores.Indexes;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Names.Services;
 using OxDb.SharedCore.Tasks.Services;
 using OxDb.SharedCore.Utils;
@@ -12,6 +14,17 @@ using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 
 namespace OxDb.PlatformServer.Accounts.Services
 {
+    public interface IAccountService : IInitializable
+    {
+        void AddAccountToProductGraph(AddAccountConnectionArgs args);
+
+        Task<string> GetNewUserId();
+
+        Task<ProductToPlatformAuthResponse> HandleGameAuthRequest(ProductToPlatformAuthRequest request);
+
+        Task<Account> CreateNewAccount(IAccountAuthRequest request);
+    }
+
     public class AccountService : IAccountService
     {
 
@@ -24,10 +37,24 @@ namespace OxDb.PlatformServer.Accounts.Services
         {
             List<Task> tasks = new List<Task>();
             CreateIndexData data = new CreateIndexData(typeof(Account));
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerDisplayName), Unique = true });
-            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerEmail), Unique = true });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerDisplayName) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerEmail) });
+
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.DisplayName) });
             data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.ReferrerAccountId) });
+
+
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.GooglePlayUserId) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerGoogleEmail) });
+
+
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.AppleUserId) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerAppleEmail) });
+
+
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.FacebookUserId) });
+            data.Configs.Add(new IndexConfig() { MemberName = nameof(Account.LowerFacebookEmail) });
+
             await _repoService.CreateIndexes(data);
 
             data = new CreateIndexData(typeof(AccountConnection));
@@ -47,43 +74,43 @@ namespace OxDb.PlatformServer.Accounts.Services
         }
 
 
-        public void AddAccountToProductGraph(Account account, long accountProductId, string referrerId, bool justAddNewProduct)
+        public void AddAccountToProductGraph(AddAccountConnectionArgs args)
         {
-            _taskService.ForgetTask(AddAccountToProductGraphAsync(account, accountProductId, referrerId, justAddNewProduct), false);
+            _taskService.ForgetTask(AddAccountToProductGraphAsync(args), false);
         }
 
-        private async Task AddAccountToProductGraphAsync(Account account, long accountProductId, string referrerId, bool justAddNewProduct)
+        private async Task AddAccountToProductGraphAsync(AddAccountConnectionArgs args)
         {
             List<long> productIds = new List<long>();
 
-            if (!justAddNewProduct)
+            if (!args.JustAddedNewProduct)
             {
                 productIds.Add(AccountConstants.CompanyProductId);
             }
 
-            if (accountProductId > AccountConstants.CompanyProductId)
+            if (args.AccountProductId > AccountConstants.CompanyProductId)
             {
-                productIds.Add(accountProductId);
+                productIds.Add(args.AccountProductId);
             }
 
-            string referrerAccountId = account.ReferrerAccountId;
+            string referrerDisplayName = args.ReferrerDisplayName;
 
-            if (!String.IsNullOrEmpty(referrerId))
+            if (!string.IsNullOrEmpty(referrerDisplayName))
             {
-                Account referrerAccount = (await _repoService.Search<Account>(x => x.LowerDisplayName == referrerId.ToLower())).FirstOrDefault();
+                Account referrerAccount = (await _repoService.Search<Account>(x => x.LowerDisplayName == referrerDisplayName.ToLower())).FirstOrDefault()!;
                 if (referrerAccount != null)
                 {
-                    referrerAccountId = referrerAccount.Id;
+                    referrerDisplayName = referrerAccount.Id;
                 }
             }
 
-            if (string.IsNullOrEmpty(referrerAccountId))
+            if (string.IsNullOrEmpty(referrerDisplayName))
             {
                 foreach (long productId in productIds)
                 {
                     for (int index = AccountConstants.MinConnectionIndex; index <= AccountConstants.MaxConnectionIndex; index++)
                     {
-                        await AddConnections(account.Id, null, productId, index);
+                        await AddConnections(args.AccountId, null!, productId, index);
                     }
                 }
                 return;
@@ -94,8 +121,8 @@ namespace OxDb.PlatformServer.Accounts.Services
                 for (int index = AccountConstants.MinConnectionIndex; index <= AccountConstants.MaxConnectionIndex; index++)
                 {
                     List<AccountConnection> myConnections = await _repoService.Search<AccountConnection>(x =>
-                    x.AccountId == account.Id &&
-                    x.ProductId == accountProductId &&
+                    x.AccountId == args.AccountId &&
+                    x.ProductId == args.AccountProductId &&
                     x.Index == index);
 
                     if (myConnections.Count > 0)
@@ -104,15 +131,15 @@ namespace OxDb.PlatformServer.Accounts.Services
                     }
 
                     List<AccountConnection> referrerConnections = await _repoService.Search<AccountConnection>(x =>
-                           x.AccountId == referrerAccountId &&
+                           x.AccountId == referrerDisplayName &&
                            x.ProductId == productId &&
                            x.Index == index);
 
                     referrerConnections = referrerConnections.OrderBy(x => x.Depth).ToList();
 
-                    string finalReferrerId = await GetFinalReferrerId(referrerAccountId, referrerConnections, productId, index);
+                    string finalReferrerId = await GetFinalReferrerId(referrerDisplayName, referrerConnections, productId, index);
 
-                    await AddConnections(account.Id, finalReferrerId, productId, index);
+                    await AddConnections(args.AccountId, finalReferrerId, productId, index);
 
                 }
             }

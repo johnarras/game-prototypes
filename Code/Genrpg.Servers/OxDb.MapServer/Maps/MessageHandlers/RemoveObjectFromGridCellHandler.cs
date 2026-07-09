@@ -8,9 +8,9 @@ namespace OxDb.MapServer.Maps.MessageHandlers
 {
     public class RemoveObjectFromGridCellHandler : BaseMapObjectServerMapMessageHandler<RemoveObjectFromGridCell>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, RemoveObjectFromGridCell message)
+        protected override async ValueTask InnerProcess(MapObject obj, RemoveObjectFromGridCell message)
         {
-            _objectManager.FinalRemoveObjectFromOldGrid(rand.Rand, obj, message.GridData, message.GridItem);
+            _objectManager.FinalRemoveObjectFromOldGrid(obj, message.GridData, message.GridItem);
         }
     }
 }

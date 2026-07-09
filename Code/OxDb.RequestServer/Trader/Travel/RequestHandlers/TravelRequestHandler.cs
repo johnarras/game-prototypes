@@ -1,5 +1,5 @@
-﻿using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
-using OxDb.RequestServer.Core;
+﻿using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.RequestServer.Trader.Travel.Entities;
 using OxDb.RequestServer.Trader.Travel.Services;
 using OxDb.SharedGame.Trader.Travel.WebApi;
@@ -16,7 +16,6 @@ namespace OxDb.RequestServer.Trader.Travel.RequestHandlers
             TravelArgs args = new TravelArgs()
             {
             };
-
 
             context.AddResponse(await _travelService.Travel(context, args));
         }

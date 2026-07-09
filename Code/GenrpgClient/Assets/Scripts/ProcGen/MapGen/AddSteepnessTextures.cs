@@ -15,14 +15,14 @@ public class AddSteepnessTextures : BaseZoneGenerator
         await base.Generate(token);
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.ZMin, zone.XMax, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MinZ, zone.MaxX, zone.MaxZ);
         }
     }
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int starty, int endx, int endy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int startx, int startz, int endx, int endz)
     {
 
-        if (startx >= endx || starty >= endy)
+        if (startx >= endx || startz >= endz)
         {
             return;
         }
@@ -30,14 +30,13 @@ public class AddSteepnessTextures : BaseZoneGenerator
 
         startx = MathUtil.Clamp(0, startx, _mapProvider.GetMap().GetHwid() - 1);
         endx = MathUtil.Clamp(0, endx, _mapProvider.GetMap().GetHwid() - 1);
-        starty = MathUtil.Clamp(0, starty, _mapProvider.GetMap().GetHhgt() - 1);
-        endy = MathUtil.Clamp(0, endy, _mapProvider.GetMap().GetHhgt() - 1);
+        startz = MathUtil.Clamp(0, startz, _mapProvider.GetMap().GetHhgt() - 1);
+        endz = MathUtil.Clamp(0, endz, _mapProvider.GetMap().GetHhgt() - 1);
 
-
-        int maxLen = Math.Max(endx - startx, endy - starty);
+        int maxLen = Math.Max(endx - startx, endz - startz);
 
         int width = endx - startx + 1;
-        int height = endy - starty + 1;
+        int height = endz - startz + 1;
 
         MyRandom steepRandom = new MyRandom(zone.Seed + zone.IdKey + 99434);
         bool useCleftDirt = false;
@@ -45,7 +44,6 @@ public class AddSteepnessTextures : BaseZoneGenerator
         {
             useCleftDirt = true;
         }
-
 
         // We look at 100 points near a point to determine howmany are higher than
         // the central point. If the amount is >= 100/2+this number below, then
@@ -80,20 +78,20 @@ public class AddSteepnessTextures : BaseZoneGenerator
         int numGoodZone = 0;
         for (int x = startx; x <= endx; x++)
         {
-            for (int y = starty; y <= endy; y++)
+            for (int z = startz; z <= endz; z++)
             {
                 numCheck++;
-                if (_md.MapZoneIds[x, y] != zone.IdKey)
+                if (_md.MapZoneIds[x, z] != zone.IdKey)
                 {
                     numBadZone++;
                     continue;
                 }
                 numGoodZone++;
 
-                float edgePct = _md.EdgeHeightmapAdjustPercent(_mapProvider.GetMap(), x, y);
+                float edgePct = _md.EdgeHeightmapAdjustPercent(_mapProvider.GetMap(), x, z);
 
-                float steep = _terrainManager.GetSteepness(y, x);
-                float roadPercent = alphas[x, y, TerrainTexChannels.Road];
+                float steep = _terrainManager.GetSteepness(z, x);
+                float roadPercent = alphas[x, z, TerrainTexChannels.Road];
 
                 if (roadPercent > 0) // && steep < _md.MinSteepnessForTexture*1.5f)
                 {
@@ -125,11 +123,9 @@ public class AddSteepnessTextures : BaseZoneGenerator
                     dirtPercent *= RandUtils.DeltaScale(percentPerturb, steepRandom);
                     steepPercent *= RandUtils.DeltaScale(percentPerturb, steepRandom);
 
-
                     if (useCleftDirt)
                     {
-
-                        float midhgt = _terrainManager.SampleHeight(y, x);
+                        float midhgt = _terrainManager.SampleHeight(z, x);
 
                         int numAngles = 40;
                         int innerMinNumAboveMid = numAngles / 2 + extraRaisedPointsAmount;
@@ -143,19 +139,17 @@ public class AddSteepnessTextures : BaseZoneGenerator
                             float sinx = (float)Math.Sin(Math.PI * 2.0f * i / numAngles);
 
                             float xx = x + innerrad * cosx;
-                            float yy = y + innerrad * sinx;
-                            float xyhgt = _terrainManager.SampleHeight(yy, xx);
-                            if (xyhgt > midhgt + innerExtraHeight)
+                            float zz = z + innerrad * sinx;
+                            float xzhgt = _terrainManager.SampleHeight(zz, xx);
+                            if (xzhgt > midhgt + innerExtraHeight)
                             {
                                 innerNumAboveMid++;
                             }
-
                         }
-
 
                         int currInnerMinNumAboveMid = innerMinNumAboveMid;
 
-                        float currMidPerturb = midNoise[x - startx, y - starty];
+                        float currMidPerturb = midNoise[x - startx, z - startz];
 
                         // Adjust how many above/below are needed.
                         if (currMidPerturb <= -1)
@@ -170,8 +164,7 @@ public class AddSteepnessTextures : BaseZoneGenerator
 
                         if (innerNumAboveMid >= currInnerMinNumAboveMid)
                         {
-                            float currDirtNoise = cleftDirtNoise[x - startx, y - starty];
-
+                            float currDirtNoise = cleftDirtNoise[x - startx, z - startz];
 
                             float newDirtAmount = RandUtils.FloatRange(0.4, (1 - dirtPercent) * 0.9f, steepRandom);
                             newDirtAmount *= (1 + currDirtNoise);
@@ -208,11 +201,11 @@ public class AddSteepnessTextures : BaseZoneGenerator
                     }
                     // Add some mixture of dirt and whatnot in there.
 
-                    _md.ClearAlphasAt(x, y);
-                    alphas[x, y, TerrainTexChannels.Base] = groundPercent;
-                    alphas[x, y, TerrainTexChannels.Steep] = steepPercent;
-                    alphas[x, y, TerrainTexChannels.Road] = roadPercent;
-                    alphas[x, y, TerrainTexChannels.Dirt] = dirtPercent;
+                    _md.ClearAlphasAt(x, z);
+                    alphas[x, z, TerrainTexChannels.Base] = groundPercent;
+                    alphas[x, z, TerrainTexChannels.Steep] = steepPercent;
+                    alphas[x, z, TerrainTexChannels.Road] = roadPercent;
+                    alphas[x, z, TerrainTexChannels.Dirt] = dirtPercent;
                 }
             }
         }

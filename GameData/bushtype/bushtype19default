@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype19default",
+  "ParentId": "default",
+  "IdKey": 19,
+  "Name": "Poppy",
+  "Art": "Poppy",
+  "Scale": 3.0,
+  "VariationCount": 1,
+  "Flags": 13
+}

@@ -11,6 +11,7 @@ namespace OxDb.SharedGame.Spells.PlayerData.Spells
     public class SpellData : OwnerIdObjectList<Spell>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
         protected override bool CreateMissingChildOnGet() { return false; }
 

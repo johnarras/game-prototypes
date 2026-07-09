@@ -58,7 +58,7 @@ namespace OxDb.RequestServer.Trader.Travel.Services
 
             CoreData coreData = await context.GetAsync<CoreData>();
 
-            CaravanPosition position = _caravanService.GetPosition(coreData);
+            CaravanPosition position = await _caravanService.GetPosition(context);
 
             TravelSettings travelSettings = _gameData.Get<TravelSettings>(coreData);
 
@@ -76,7 +76,7 @@ namespace OxDb.RequestServer.Trader.Travel.Services
                 return response;
             }
 
-            CaravanTravelInfo travelInfo = _caravanService.GetTravelInfo(coreData);
+            CaravanTravelInfo travelInfo = await _caravanService.GetTravelInfo(context);
 
             TravelStatus status = new TravelStatus()
             {
@@ -229,15 +229,15 @@ namespace OxDb.RequestServer.Trader.Travel.Services
 
 
 
-            MyPointF endPoint = _traderMapService.GetMapCoordinate(coreData.Vars[TraderVars.FromX],
-                coreData.Vars[TraderVars.FromY],
+            Point2F endPoint = _traderMapService.GetMapCoordinate(coreData.Vars[TraderVars.FromX],
+                coreData.Vars[TraderVars.FromZ],
                 coreData.Vars[TraderVars.ToX],
-                coreData.Vars[TraderVars.ToY],
+                coreData.Vars[TraderVars.ToZ],
                 day.Vars[DayVars.EndDistance],
                 status.DistanceGone
                 );
 
-            bool onWater = _travelService.IsWater(endPoint.X, endPoint.Y);
+            bool onWater = _travelService.IsWater(endPoint.X, endPoint.Z);
 
             if (onWater)
             {

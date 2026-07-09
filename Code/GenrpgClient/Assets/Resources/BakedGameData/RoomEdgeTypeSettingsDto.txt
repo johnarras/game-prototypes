@@ -1,0 +1,154 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Flat",
+      "Weight": 1.0
+    },
+    {
+      "IdKey": 2,
+      "Name": "Triangle",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0
+    },
+    {
+      "IdKey": 3,
+      "Name": "Wedge",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0
+    },
+    {
+      "IdKey": 4,
+      "Name": "Oval",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0
+    },
+    {
+      "IdKey": 5,
+      "Name": "Random",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0
+    },
+    {
+      "IdKey": 6,
+      "Name": "Nooks",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0,
+      "MaxMissingChance": 0.4
+    },
+    {
+      "IdKey": 7,
+      "Name": "Doors",
+      "Weight": 1.0,
+      "MinEndDoorChance": 1.0,
+      "MaxEndDoorChance": 1.0,
+      "MaxMissingChance": 0.4
+    },
+    {
+      "IdKey": 8,
+      "Name": "Rooms",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0
+    },
+    {
+      "IdKey": 9,
+      "Name": "Maze",
+      "Weight": 1.0,
+      "OffsetChance": 0.5,
+      "NarrowChance": 0.5,
+      "MinDepthRatio": 0.5,
+      "MaxDepthRatio": 2.0,
+      "MaxEndDoorChance": 1.0
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "EdgePatterns": [
+      {
+        "IdKey": 1,
+        "Name": "Blank",
+        "Weight": 1.0
+      },
+      {
+        "IdKey": 2,
+        "Name": "One",
+        "Weight": 1.0,
+        "Quantity": 1,
+        "MinTypes": 1,
+        "MaxTypes": 1
+      },
+      {
+        "IdKey": 3,
+        "Name": "TwoSame",
+        "Weight": 1.0,
+        "Quantity": 2,
+        "SymmetricChance": 0.5,
+        "MinTypes": 1,
+        "MaxTypes": 1
+      },
+      {
+        "IdKey": 4,
+        "Name": "TwoAny",
+        "Weight": 1.0,
+        "Quantity": 2,
+        "SymmetricChance": 0.5,
+        "MinTypes": 1,
+        "MaxTypes": 2
+      },
+      {
+        "IdKey": 5,
+        "Name": "Three",
+        "Weight": 1.0,
+        "Quantity": 3,
+        "SymmetricChance": 0.5,
+        "MinTypes": 1,
+        "MaxTypes": 3
+      },
+      {
+        "IdKey": 6,
+        "Name": "FourAny",
+        "Weight": 1.0,
+        "Quantity": 4,
+        "SymmetricChance": 0.5,
+        "MinTypes": 1,
+        "MaxTypes": 4
+      },
+      {
+        "IdKey": 7,
+        "Name": "FourSymmetric",
+        "Weight": 1.0,
+        "Quantity": 4,
+        "SymmetricChance": 1.0,
+        "MinTypes": 2,
+        "MaxTypes": 2
+      }
+    ],
+    "Name": "RoomEdgeTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-07-04T23:21:39.062Z"
+}

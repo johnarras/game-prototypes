@@ -17,7 +17,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
     {
         public override int Order => 100;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
         {
             int xzBlockSize = mapRoot.XZBlockSize;
             int yBlockSize = mapRoot.YBlockSize;

@@ -1,4 +1,4 @@
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.MapTerrain;
 using Assets.Scripts.UI.Entities;
 using ClientEvents;
@@ -7,7 +7,6 @@ using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.MapServer.Services;
@@ -76,7 +75,6 @@ public class ZoneStateController : IZoneStateController
     private IClientGameState _gs = null;
     private IGameData _gameData = null;
     private IScreenService _screenService = null;
-    private IClientRandom _rand = null;
     private IInitClient _initClient = null;
 
 
@@ -243,22 +241,22 @@ public class ZoneStateController : IZoneStateController
             if (go != null)
             {
                 int wx = (int)go.transform.localPosition.x;
-                int wy = (int)go.transform.localPosition.z;
+                int wz = (int)go.transform.localPosition.z;
 
-                if (wx >= 0 && wy >= 0 && wx < _mapProvider.GetMap().GetHwid() && wy < _mapProvider.GetMap().GetHhgt())
+                if (wx >= 0 && wz >= 0 && wx < _mapProvider.GetMap().GetHwid() && wz < _mapProvider.GetMap().GetHhgt())
                 {
 
                     int gx = wx / (MapConstants.TerrainPatchSize - 1);
-                    int gy = wy / (MapConstants.TerrainPatchSize - 1);
+                    int gz = wz / (MapConstants.TerrainPatchSize - 1);
 
 
                     int zoneId = 0;
-                    TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gy);
+                    TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gz);
                     if (patch != null && patch.mainZoneIds != null)
                     {
                         wx %= (MapConstants.TerrainPatchSize - 1);
-                        wy %= (MapConstants.TerrainPatchSize - 1);
-                        zoneId = patch.mainZoneIds[wy, wx];
+                        wz %= (MapConstants.TerrainPatchSize - 1);
+                        zoneId = patch.mainZoneIds[wz, wx];
                     }
 
                     ActiveScreen hud = _screenService.GetScreen(ScreenNames.HUD);
@@ -427,9 +425,9 @@ public class ZoneStateController : IZoneStateController
         }
         if (nextWindBurst < DateTime.UtcNow)
         {
-            _coreData.Wind.windMain = RandUtils.FloatRange(0.66f, 1.33f, _rand.Rand) * WindScale.Current;
-            windBurstEnd = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(4.0f, 7.0f, _rand.Rand));
-            nextWindBurst = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(12.0f, 22.0f, _rand.Rand));
+            _coreData.Wind.windMain = RandUtils.FloatRange(0.66f, 1.33f, _gs.Rand) * WindScale.Current;
+            windBurstEnd = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(4.0f, 7.0f, _gs.Rand));
+            nextWindBurst = DateTime.UtcNow.AddSeconds(RandUtils.FloatRange(12.0f, 22.0f, _gs.Rand));
         }
     }
 }

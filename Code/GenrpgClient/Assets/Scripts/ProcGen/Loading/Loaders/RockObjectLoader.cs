@@ -13,7 +13,7 @@ public class RockObjectLoader : BaseObjectLoader
     public override long HelperKey => EntityTypes.Rock;
 
     public override bool LoadObject(PatchLoadData loadData, int entityId,
-        int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
+        int x, int z, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
         RockType rockType = _gameData.Get<RockTypeSettings>(_gs.ch).Get(entityId);
         if (rockType == null || rockType.Art == null)
@@ -21,7 +21,7 @@ public class RockObjectLoader : BaseObjectLoader
             return false;
         }
 
-        int indexHash = (loadData.gx * 113 + loadData.gy * 317 + x * 59 + y * 3141) % rockType.MaxIndex;
+        int indexHash = (loadData.gx * 113 + loadData.gz * 317 + x * 59 + z * 3141) % rockType.MaxIndex;
 
         int index = 0;
         if (rockType.MaxIndex > 0)
@@ -38,7 +38,7 @@ public class RockObjectLoader : BaseObjectLoader
         dlo.url = artName;
         dlo.loadData = loadData;
         dlo.x = x;
-        dlo.y = y;
+        dlo.z = z;
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Rocks;
@@ -88,7 +88,7 @@ public class RockObjectLoader : BaseObjectLoader
         go.transform.Rotate(xrot, yrot, zrot);
 
 
-        //go.transform.position = Gnew Vector3(dlo.x, go.transform.position.y, dlo.y);
+        //go.transform.position = Gnew Vector3(dlo.x, go.transform.position.z, dlo.z);
     }
 }
 

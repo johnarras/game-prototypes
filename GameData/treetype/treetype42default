@@ -2,8 +2,8 @@
   "Id": "treetype42default",
   "ParentId": "default",
   "IdKey": 42,
-  "Name": "RedMapleWinter",
-  "Art": "RedMapleWinter",
+  "Name": "AmurCork",
+  "Art": "AmurCork",
   "Scale": 1.5,
   "VariationCount": 2
 }

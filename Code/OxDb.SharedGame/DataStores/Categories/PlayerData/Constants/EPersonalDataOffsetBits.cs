@@ -5,7 +5,7 @@
     /// session token as a long int, and when data is loaded during the session, if it's missing and the bit is
     /// set here, it throws an exception meaning somehow we had a document and now it's gone.
     /// </summary>
-    public class EPersonalDataOffsetBits
+    public class PersonalDataOffsetBits
     {
         public const int None = 0;
         public const int Core = 1;
@@ -19,5 +19,6 @@
         public const int CurrentPurchases = 9;
         public const int StoreOffers = 10;
         public const int Resets = 11;
+        public const int Ads = 12;
     }
 }

@@ -2,9 +2,8 @@
   "Id": "treetype29default",
   "ParentId": "default",
   "IdKey": 29,
-  "Name": "LeafFern",
-  "Art": "LeafFern",
-  "Scale": 1.0,
-  "VariationCount": 2,
-  "Flags": 1
+  "Name": "RedMapleWinter",
+  "Art": "RedMapleWinter",
+  "Scale": 1.5,
+  "VariationCount": 2
 }

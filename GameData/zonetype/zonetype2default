@@ -266,15 +266,15 @@
   "BridgeTypes": [
     {
       "BridgeTypeId": 2,
-      "Chance": 100
+      "Weight": 100.0
     },
     {
       "BridgeTypeId": 3,
-      "Chance": 100
+      "Weight": 100.0
     },
     {
       "BridgeTypeId": 1,
-      "Chance": 100
+      "Weight": 100.0
     }
   ],
   "FenceTypes": [
@@ -298,103 +298,105 @@
   "TreeTypes": [
     {
       "TreeTypeId": 4,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 9,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 10,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 11,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 13,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 14,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 3,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 16,
-      "PopulationScale": 1.0
+      "TreeTypeId": 42,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 17,
-      "PopulationScale": 1.0
+      "TreeTypeId": 53,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 19,
-      "PopulationScale": 1.0
+      "TreeTypeId": 57,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 28,
-      "PopulationScale": 1.0
+      "TreeTypeId": 63,
+      "Weight": 1.0
+    }
+  ],
+  "BushTypes": [
+    {
+      "BushTypeId": 1,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 29,
-      "PopulationScale": 1.0
+      "BushTypeId": 2,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 23,
-      "PopulationScale": 1.0
+      "BushTypeId": 4,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 55,
-      "PopulationScale": 1.0
+      "BushTypeId": 12,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 66,
-      "PopulationScale": 1.0
+      "BushTypeId": 13,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 70,
-      "PopulationScale": 1.0
+      "BushTypeId": 8,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 76,
-      "PopulationScale": 1.0
+      "BushTypeId": 7,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 22,
-      "PopulationScale": 1.0
+      "BushTypeId": 14,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 80,
-      "PopulationScale": 1.0
+      "BushTypeId": 15,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 81,
-      "PopulationScale": 1.0
+      "BushTypeId": 16,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 82,
-      "PopulationScale": 1.0
+      "BushTypeId": 17,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 83,
-      "PopulationScale": 1.0
+      "BushTypeId": 18,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 84,
-      "PopulationScale": 1.0
+      "BushTypeId": 19,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 85,
-      "PopulationScale": 1.0
-    },
-    {
-      "TreeTypeId": 86,
-      "PopulationScale": 1.0
+      "BushTypeId": 20,
+      "Weight": 1.0
     }
   ],
   "CreatureNamePrefixes": [

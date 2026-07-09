@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3537246326063608889}
-  - component: {fileID: 145844137760864318}
+  - component: {fileID: 1464895710439355211}
   m_Layer: 0
   m_Name: TraderTerrainPatch
   m_TagString: Untagged
@@ -30,10 +30,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1486780053766979111}
+  - {fileID: 6129134306935932635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &145844137760864318
+--- !u!114 &1464895710439355211
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,102 +42,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1176503526685160520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3ab0ba28bb18f408e7f6e91aebc3da, type: 3}
+  m_Script: {fileID: 11500000, guid: 9260fc5b9f21f9b45946ae78fcd3ecc2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Trader.WorldMap.TraderTerrainPatch
-  GroundAsset: {fileID: 3549758369014687489}
-  GroundAssetObject: {fileID: 2299591428652328093}
-  StartY: -3
-  AnimateSeconds: 1
---- !u!1001 &6407040643862848945
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 3537246326063608889}
-    m_Modifications:
-    - target: {fileID: 5117122432002785580, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_Name
-      value: TraderTerrainPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0851
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.02278
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 64f36bd61cd228a4fabdbc490cb6dad9, type: 3}
---- !u!4 &1486780053766979111 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5496778661992717206, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6407040643862848945}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2299591428652328093 stripped
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Trader.WorldMap.Entities.TraderTerrainPatch
+  TerrainParent: {fileID: 2157912660874816534}
+--- !u!1 &2157912660874816534
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5117122432002785580, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6407040643862848945}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3549758369014687489 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7613660526080967344, guid: 64f36bd61cd228a4fabdbc490cb6dad9,
-    type: 3}
-  m_PrefabInstance: {fileID: 6407040643862848945}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6129134306935932635}
+  m_Layer: 0
+  m_Name: TerrainParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6129134306935932635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2299591428652328093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e25c59ebf52221e4c8a33d8b5c2272a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Dungeons.DungeonAsset
+  m_GameObject: {fileID: 2157912660874816534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3537246326063608889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,5 +1,6 @@
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;
+using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Spells.Constants;
 using OxDb.SharedGame.Spells.Settings.Effects;
 using OxDb.SharedGame.Stats.Constants;
@@ -10,14 +11,12 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
 {
     public abstract class HealthEffectHandler : BaseSpellEffectHandler
     {
-
-
         public override long HelperKey => -1;
         public override bool IsModifyStatEffect() { return false; }
         public override bool UseStatScaling() { return true; }
         public override float GetTickLength() { return SpellConstants.DotTickSeconds; }
 
-        public override bool HandleEffect(IRandom rand, ActiveSpellEffect eff)
+        public override bool HandleEffect(MapObject obj, ActiveSpellEffect eff)
         {
             if (!_objectManager.GetUnit(eff.TargetId, out Unit targ) || targ.HasFlag(UnitFlags.IsDead))
             {
@@ -26,7 +25,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
 
             bool isCrit = false;
             long quantity = eff.CurrQuantity;
-            if (rand.NextDouble() < eff.CritChance)
+            if (obj.Rand.NextDouble() < eff.CritChance)
             {
                 isCrit = true;
                 quantity = (long)(quantity * eff.CritMult);
@@ -55,7 +54,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
             _statService.Add(targ, StatTypes.Health, UnitStatValOffsets.Curr, quantity);
             if (targ.Stats.Curr(StatTypes.Health) <= 0)
             {
-                _unitService.CheckForDeath(rand, eff, targ);
+                _unitService.CheckForDeath(targ, eff);
             }
 
             return true;

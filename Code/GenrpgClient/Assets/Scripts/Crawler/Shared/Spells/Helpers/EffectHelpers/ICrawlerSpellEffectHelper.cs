@@ -4,13 +4,13 @@ using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Spells.Entities;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Spells.Helpers.SpellEffectHelpers
 {
     public interface ICrawlerSpellEffectHelper : ISetupDictionaryItem<long>
     {
-        Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token);
+        ValueTask ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token);
     }
 }
 

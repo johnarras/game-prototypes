@@ -16,7 +16,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
 
         public override ECrawlerStates HelperKey => ECrawlerStates.QuestDetail;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
             FullQuest fullQuest = action.ExtraData as FullQuest;

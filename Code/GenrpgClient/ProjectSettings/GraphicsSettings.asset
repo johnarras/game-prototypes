@@ -75,7 +75,7 @@ GraphicsSettings:
   m_LightmapStripping: 1
   m_FogStripping: 1
   m_InstancingStripping: 2
-  m_BrgStripping: 0
+  m_BrgStripping: 2
   m_DefaultLightBaker: 0
   m_LightmapKeepPlain: 0
   m_LightmapKeepDirCombined: 0
@@ -93,6 +93,7 @@ GraphicsSettings:
     keywordDeclarationOverrides: []
     numInternalDefines: 0
     defines: []
+    compilerSettings: []
   m_LightsUseLinearIntensity: 0
   m_LightsUseColorTemperature: 1
   m_LogWhenShaderIsCompiled: 1

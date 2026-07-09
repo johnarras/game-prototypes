@@ -7,14 +7,13 @@ using OxDb.SharedGame.Trader.Travel.WebApi;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Trader.MessageHandlers.Travelling
 {
     public class TravelResponseHandler : BaseClientWebResponseHandler<TravelResponse>
     {
         protected IUIService _uiService = null;
-        protected override async Awaitable InnerProcess(TravelResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(TravelResponse response, CancellationToken token)
         {
             if (!string.IsNullOrEmpty(response.ErrorMessage))
             {

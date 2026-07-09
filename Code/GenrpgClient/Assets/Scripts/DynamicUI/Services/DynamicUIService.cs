@@ -1,6 +1,5 @@
 using Assets.Scripts.Assets.Constants;
 using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Core;
 using Assets.Scripts.Core.Interfaces;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.Doobers.UI;
@@ -68,9 +67,8 @@ namespace Assets.Scripts.DynamicUI.Services
         private IClientAppService _appService = null;
         private ICameraController _cameraController = null;
         private IObjectPool _objectPool = null;
-        private IClientRandom _rand = null;
-        private IEntityService _entityService = null;
         private IClientGameState _gs = null;
+        private IEntityService _entityService = null;
 
         private Dictionary<long, List<DooberTarget>> _dooberTargets = new Dictionary<long, List<DooberTarget>>();
 
@@ -98,7 +96,7 @@ namespace Assets.Scripts.DynamicUI.Services
             if (randomPaths)
             {
                 result.PercentDonePowerMult = 0.5f;
-                result.StartOffsetSize = RandUtils.FloatRange(250, 500, _rand.Rand);
+                result.StartOffsetSize = RandUtils.FloatRange(250, 500, _gs.Rand);
             }
             return result;
         }

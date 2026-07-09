@@ -17,7 +17,7 @@ public class AddZoneCenters : BaseZoneGenerator
     {
         await base.Generate(token);
         SamplingData sdata = new SamplingData();
-        _md.ZoneCenters = new List<MyPoint>();
+        _md.ZoneCenters = new List<Point2I>();
         float edgeSize = MapConstants.TerrainPatchSize * 3 / 4;
 
         float blockSize = MapConstants.TerrainPatchSize;
@@ -51,37 +51,35 @@ public class AddZoneCenters : BaseZoneGenerator
 
 
 
-        sdata.XMin = -blockSize * 2;
-        sdata.XMax = _mapProvider.GetMap().GetHwid() + blockSize * 2;
-        sdata.YMin = -blockSize * 2;
-        sdata.YMax = _mapProvider.GetMap().GetHhgt() + blockSize * 2;
+        sdata.MinX = -(int)(blockSize * 2);
+        sdata.MaxX = (int)(_mapProvider.GetMap().GetHwid() + blockSize * 2);
+        sdata.MinZ = -(int)(blockSize * 2);
+        sdata.MaxZ = (int)(_mapProvider.GetMap().GetHhgt() + blockSize * 2);
         sdata.Seed = _mapProvider.GetMap().Seed % 1000000000 + 3824821;
 
-        sdata.NoiseAmp = RandUtils.FloatRange(0.3f, 0.8f, _rand.Rand);
-        sdata.NoiseFreq = RandUtils.FloatRange(3.0f, 10.0f, _rand.Rand);
+        sdata.NoiseAmp = RandUtils.FloatRange(0.3f, 0.8f, _gs.Rand);
+        sdata.NoiseFreq = RandUtils.FloatRange(3.0f, 10.0f, _gs.Rand);
 
-        List<MyPoint2> centers = _sampleService.PlanePoissonSample(sdata);
+        SamplingResult result = _sampleService.PlanePoissonSample(sdata);
+
+        List<Point2I> centers = result.Points.Cast<Point2I>().ToList();
 
         centers = centers.Where(p =>
         p.X >= edgeSize
-        && p.Y >= edgeSize
+        && p.Z >= edgeSize
         && p.X <= _mapProvider.GetMap().GetHwid() - edgeSize
-        && p.Y <= _mapProvider.GetMap().GetHhgt() - edgeSize).ToList();
+        && p.Z <= _mapProvider.GetMap().GetHhgt() - edgeSize).ToList();
 
         _logService.Info("Centers Wanted: " + sdata.Count + " Found: " + centers.Count);
 
         if (centers.Count < 1)
         {
-            MyPoint2 center = new MyPoint2(_mapProvider.GetMap().GetHwid() / 2, _mapProvider.GetMap().GetHhgt() / 2);
+            Point2I center = new Point2I(_mapProvider.GetMap().GetHwid() / 2, _mapProvider.GetMap().GetHhgt() / 2);
             centers.Add(center);
         }
         if (centers.Count > 0)
         {
-            for (int c = 0; c < centers.Count; c++)
-            {
-                MyPoint2 center = centers[c];
-                _md.ZoneCenters.Add(new MyPoint((int)center.X, (int)center.Y));
-            }
+            _md.ZoneCenters.AddRange(centers);
         }
     }
 }

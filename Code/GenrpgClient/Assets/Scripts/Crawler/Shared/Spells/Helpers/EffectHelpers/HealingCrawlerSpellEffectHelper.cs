@@ -9,7 +9,6 @@ using OxDb.SharedGame.Stats.Constants;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
@@ -17,7 +16,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
     {
         public override long HelperKey => EntityTypes.Healing;
 
-        public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
+        public override async ValueTask ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {
 
             long currHealth = target.Stats.Curr(StatTypes.Health);
@@ -29,7 +28,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             {
                 return;
             }
-            args.NewQuantity += RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand.Rand);
+            args.NewQuantity += RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _gs.Rand);
 
             long weakReductionPercent = _combatService.GetWeakReductionPercent(caster, spell.Spell.CombatActionId);
 

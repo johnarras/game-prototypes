@@ -4,47 +4,26 @@
   "IdKey": 91,
   "Name": "Parry",
   "Desc": "Gives a chance to use your weapon to deflect an attack.",
-  "PowerCost": 20.0,
-  "PowerPerLevel": 2.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 20.0,
+  "TierCost": 2.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 6,
-  "RoleScalingTypeId": 1,
-  "RoleScalingTier": 4,
-  "PointCost": 5,
+  "RoleScalingTypeId": 4,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 4,
   "Effects": [
     {
       "EntityTypeId": 101,
       "EntityId": 10,
-      "MinQuantity": 1,
-      "MaxQuantity": 1,
       "ElementTypeId": 1,
-      "Chance": 1.0
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    },
-    {
-      "RoleId": 10
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      226
+    ]
+  },
   "ItemEnchantWeight": 0.1
 }

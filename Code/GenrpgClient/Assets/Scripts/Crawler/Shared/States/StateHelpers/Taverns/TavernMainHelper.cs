@@ -22,7 +22,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Taverns
         public override ECrawlerStates HelperKey => ECrawlerStates.TavernMain;
         public override long TriggerBuildingId() { return BuildingTypes.Tavern; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

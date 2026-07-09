@@ -3,7 +3,7 @@
   "ParentId": "default",
   "IdKey": 7,
   "Name": "Willpower Bonus",
-  "Desc": "More Mana Per Level",
+  "Desc": "More Mana Per Level, Better Summons",
   "Icon": "",
   "Art": "",
   "BonusPerTier": 2.0,

@@ -9,7 +9,7 @@
   "AncientName": "Panyu / Canton",
   "Population": 500000,
   "MapPixelX": 6376,
-  "MapPixelY": 3045,
+  "MapPixelZ": 3045,
   "BiomeTypeId": 19,
   "CultureTypeId": 9,
   "TradeGoodsProduced": [
@@ -29,5 +29,12 @@
       "TradeGoodId": 119
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 9
+    }
+  ]
 }

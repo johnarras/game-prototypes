@@ -17,14 +17,10 @@
 
   <ItemGroup>
     <None Remove="AppData\WaterMask" />
-    <None Remove="AppData\WorldMapColorIndexes.bytes" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="..\..\AppConfig\App.config" Link="App.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="AppData\WorldMapColorIndexes.bytes">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

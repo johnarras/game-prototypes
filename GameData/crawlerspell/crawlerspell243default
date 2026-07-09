@@ -1,0 +1,31 @@
+{
+  "Id": "crawlerspell243default",
+  "ParentId": "default",
+  "IdKey": 243,
+  "Name": "Poison Blast",
+  "Desc": "Hit one or more enemies with nature damage.",
+  "BaseCost": 12.0,
+  "TierCost": 3.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 1,
+  "RoleScalingTypeId": 2,
+  "AttackQuantityScale": 2.0,
+  "UnlockTier": 3,
+  "Effects": [
+    {
+      "EntityTypeId": 33,
+      "EntityId": 3,
+      "ElementTypeId": 8,
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 2.0,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      804
+    ]
+  },
+  "ItemEnchantWeight": 1.0
+}

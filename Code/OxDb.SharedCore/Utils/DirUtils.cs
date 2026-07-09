@@ -26,23 +26,23 @@ namespace OxDb.SharedCore.Utils
             return 0;
         }
 
-        public static PointXZ AxisAngleToDirDelta(int axisAngle)
+        public static Point2I AxisAngleToDirDelta(int axisAngle)
         {
             if (axisAngle == 0)
             {
-                return new PointXZ(0, 1);
+                return new Point2I(0, 1);
             }
             else if (axisAngle == 180)
             {
-                return new PointXZ(0, -1);
+                return new Point2I(0, -1);
             }
             else if (axisAngle == 90)
             {
-                return new PointXZ(1, 0);
+                return new Point2I(1, 0);
             }
             else if (axisAngle == 270)
             {
-                return new PointXZ(-1, 0);
+                return new Point2I(-1, 0);
             }
             return null;
         }

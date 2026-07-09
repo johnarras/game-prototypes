@@ -27,9 +27,35 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
 
             StatSettings statSettings = _gameData.Get<StatSettings>(_gs.ch);
 
-            allLines.Add($"{role.HealthPerLevel} {_infoService.CreateInfoLink(statSettings.Get(StatTypes.Health))}/Lev,"
-                + $"{role.ManaPerLevel} {_infoService.CreateInfoLink(statSettings.Get(StatTypes.Mana))}/Lev,"
-                + $"{role.CritPercent}% {_infoService.CreateInfoLink(statSettings.Get(StatTypes.Crit))}");
+
+            StringBuilder statLine = new StringBuilder();
+            if (role.HealthPerLevel > 0)
+            {
+                statLine.Append($"{role.HealthPerLevel} {_infoService.CreateInfoLink(statSettings.Get(StatTypes.Health))}/Lev");
+            }
+
+            if (role.ManaPerLevel > 0)
+            {
+                if (statLine.Length > 0)
+                {
+                    statLine.Append(", ");
+                }
+                statLine.Append($"{role.ManaPerLevel} {_infoService.CreateInfoLink(statSettings.Get(StatTypes.Mana))}/Lev");
+            }
+
+            if (role.CritPercent > 0)
+            {
+                if (statLine.Length > 0)
+                {
+                    statLine.Append(", ");
+                }
+                statLine.Append($"{role.CritPercent}% {_infoService.CreateInfoLink(statSettings.Get(StatTypes.Crit))}");
+            }
+
+            if (statLine.Length > 0)
+            {
+                allLines.Add(statLine.ToString());
+            }
 
             List<RoleBonusAmount> statBonusAmounts = role.AmountBonuses.Where(x => x.EntityTypeId == EntityTypes.StatBonus)
                 .OrderBy(x => x.EntityId).ToList();
@@ -72,7 +98,7 @@ namespace OxDb.SharedGame.Crawler.Info.InfoHelpers
                         scalingBuilder.Append(_infoService.CreateInfoLink(scalingType) + ": " + amount.Amount);
                         didShowScaling = true;
                         roleScalingCount++;
-                        if (roleScalingCount == 3 || roleScalingCount == 7)
+                        if (roleScalingCount == 3 || roleScalingCount == 8)
                         {
                             allLines.Add(scalingBuilder.ToString());
                             scalingBuilder.Clear();

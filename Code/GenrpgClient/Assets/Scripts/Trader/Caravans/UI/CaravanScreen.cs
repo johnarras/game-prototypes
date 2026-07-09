@@ -4,7 +4,6 @@ using Assets.Scripts.Trader.Currencies.UI;
 using Assets.Scripts.Trader.Travel.UI;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.Services;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.CaravanMembers.Constants;
 using OxDb.SharedGame.Trader.CaravanMembers.Settings;
 using OxDb.SharedGame.Trader.CaravanMembers.WebApi;
@@ -79,7 +78,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
                 UpdateMembersSpendButton.SetSpendType(specialSpendLoc.Location, moveSpendType, OnClickUpdateMembers);
             }
             _uiService.SetButton(ResetButton, GetName(), ResetMembersAsync);
-            _uiService.SetButton(CancelButton, GetName(), ClickCancelAsync);
+            _uiService.SetButton(CancelButton, GetName(), ClickCancel);
             await ShowMembers();
             await Task.CompletedTask;
         }
@@ -112,9 +111,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
 
             HoldingsData holdingsData = _gs.ch.Get<HoldingsData>();
 
-            CoreData coreData = _gs.ch.Get<CoreData>();
-
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             List<CaravanMemberInitIconData> initIconList = new List<CaravanMemberInitIconData>();
 
@@ -195,9 +192,8 @@ namespace Assets.Scripts.Trader.Caravans.UI
             await Task.CompletedTask;
         }
 
-        public async Awaitable ClickCancelAsync(CancellationToken token)
+        public void ClickCancel()
         {
-            await Task.CompletedTask;
             StartClose();
         }
 
@@ -216,10 +212,10 @@ namespace Assets.Scripts.Trader.Caravans.UI
                 caravanData.CurrentMembers.Add(new CurrentCaravanMember() { CaravanMemberId = caravanMemberId });
             }
 
-            _awaitableService.ForgetAwaitable(UpdateAndShowData());
+            _ = UpdateAndShowData();
         }
 
-        private async Awaitable ResetMembersAsync(CancellationToken token)
+        private async ValueTask ResetMembersAsync(CancellationToken token)
         {
             CaravanData caravanData = _gs.ch.Get<CaravanData>();
             caravanData.CurrentMembers = new List<CurrentCaravanMember>(oldCaravanMembers);
@@ -289,16 +285,16 @@ namespace Assets.Scripts.Trader.Caravans.UI
 
             cdata.CurrentMembers = new List<CurrentCaravanMember>(oldCaravanMembers);
 
-            _awaitableService.ForgetAwaitable(UpdateBuffs());
+            _ = UpdateBuffs();
         }
 
-        private async Awaitable UpdateAndShowData()
+        private async ValueTask UpdateAndShowData()
         {
             await UpdateBuffs();
             await ShowMembers();
         }
 
-        private async Awaitable UpdateBuffs()
+        private async ValueTask UpdateBuffs()
         {
             await _attributeService.CalcAllAttributes(_gs.ch, false);
             _dispatcher.Dispatch(new UpdateTraderHUD());

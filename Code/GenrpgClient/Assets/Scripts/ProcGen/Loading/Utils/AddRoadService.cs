@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 public interface IAddRoadService : IInjectable
 {
-    void AddRoad(int sx, int sy, int cx, int cy, long extraSeed, MyRandom rand, bool primaryRoad,
+    void AddRoad(int sx, int sz, int cx, int cz, long extraSeed, MyRandom rand, bool primaryRoad,
         float roadTextureScale = 1.0f, int extraMapFlags = 0);
 }
 
@@ -22,20 +22,20 @@ public class AddRoadService : IAddRoadService
     protected IClientGameState _gs;
     protected IMapGenData _md;
 
-    protected MyPoint GetClosestEndpoint(List<MyPoint> list, int sx, int sy, int areaSize)
+    protected Point2F GetClosestEndpoint(List<Point2F> list, int sx, int sz, int areaSize)
     {
         if (list == null || list.Count < 1)
         {
-            return new MyPoint(areaSize / 2, areaSize / 2);
+            return new Point2F(areaSize / 2, areaSize / 2);
         }
 
         float minDist = areaSize * areaSize + 10000;
-        MyPoint closestPoint = null;
+        Point2F closestPoint = null;
 
-        foreach (MyPoint item in list)
+        foreach (Point2F item in list)
         {
             float dist = MathUtil.Sqrt((item.X - sx) * (item.X - sx) +
-                                    (item.Y - sy) * (item.Y - sy));
+                                    (item.Z - sz) * (item.Z - sz));
             if (dist < minDist)
             {
                 minDist = dist;
@@ -44,13 +44,13 @@ public class AddRoadService : IAddRoadService
         }
         if (closestPoint == null)
         {
-            closestPoint = new MyPoint(areaSize / 2, areaSize / 2);
+            closestPoint = new Point2F(areaSize / 2, areaSize / 2);
         }
         return closestPoint;
 
     }
 
-    public void AddRoad(int sx, int sy, int cx, int cy, long extraSeed, MyRandom rand, bool primaryRoad,
+    public void AddRoad(int sx, int sz, int cx, int cz, long extraSeed, MyRandom rand, bool primaryRoad,
         float roadTextureScale = 1.0f, int extraMapFlags = 0)
     {
         if (rand == null)
@@ -88,28 +88,28 @@ public class AddRoadService : IAddRoadService
                     cx--;
                 }
             }
-            if (sy < cy)
+            if (sz < cz)
             {
                 if (nextRand.Next() % 2 == 0)
                 {
-                    sy--;
+                    sz--;
                 }
 
                 if (nextRand.Next() % 2 == 0)
                 {
-                    cy++;
+                    cz++;
                 }
             }
-            if (sy > cy)
+            if (sz > cz)
             {
                 if (nextRand.Next() % 2 == 0)
                 {
-                    sy++;
+                    sz++;
                 }
 
                 if (nextRand.Next() % 2 == 0)
                 {
-                    cy--;
+                    cz--;
                 }
             }
         }
@@ -120,12 +120,12 @@ public class AddRoadService : IAddRoadService
         float[,,] alphamaps = _md.Alphas;
 
         int ex = cx;
-        int ey = cy;
+        int ez = cz;
 
 
 
-        MyPoint sp = new MyPoint(sx, sy);
-        MyPoint ep = new MyPoint(ex, ey);
+        Point2I sp = new Point2I(sx, sz);
+        Point2I ep = new Point2I(ex, ez);
 
         int startWidth = 4 + rand.Next() % 3 + rand.Next() % 3;
 
@@ -149,10 +149,10 @@ public class AddRoadService : IAddRoadService
 
 
         int extraBuffer = 8;
-        ld.XMin = MapConstants.MapEdgeSize + extraBuffer;
-        ld.YMin = MapConstants.MapEdgeSize + extraBuffer;
-        ld.XMax = _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize - extraBuffer;
-        ld.YMax = _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize - extraBuffer;
+        ld.MinX = MapConstants.MapEdgeSize + extraBuffer;
+        ld.MinZ = MapConstants.MapEdgeSize + extraBuffer;
+        ld.MaxX = _mapProvider.GetMap().GetHwid() - MapConstants.MapEdgeSize - extraBuffer;
+        ld.MaxZ = _mapProvider.GetMap().GetHhgt() - MapConstants.MapEdgeSize - extraBuffer;
 
         for (int times = 0; times < 3; times++)
         {
@@ -176,7 +176,7 @@ public class AddRoadService : IAddRoadService
 
         ld.InitialNoPosShiftLength = 5 + rand.Next() % 5;
 
-        ld.MaxWidthPosDrift = (Math.Abs(ey - sy) + Math.Abs(ex - sx)) / 4;
+        ld.MaxWidthPosDrift = (Math.Abs(ez - sz) + Math.Abs(ex - sx)) / 4;
 
         if (FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.VeryCurvedRoad))
         {
@@ -202,22 +202,22 @@ public class AddRoadService : IAddRoadService
 
         ld.Seed = _mapProvider.GetMap().Seed / 7 + 147 * extraSeed + 3 * extraSeed * extraSeed + 163;
 
-        List<MyPointF> line = _lineGenService.GetBressenhamLine(sp, ep, ld);
+        List<LineCell> line = _lineGenService.GetBressenhamLine(sp, ep, ld);
 
         MyRandom endpointRandom = new MyRandom(rand.Next());
 
-        List<MyPointF> centers = new List<MyPointF>();
+        List<LineCell> centers = new List<LineCell>();
         for (int l = 0; l < line.Count; l++)
         {
-            MyPointF pt = line[l];
+            LineCell pt = line[l];
             int px = (int)(pt.X);
-            int py = (int)(pt.Y);
-            if (pt.X < 0 || pt.Y < 0 || pt.X >= awid || pt.Y >= ahgt)
+            int pz = (int)(pt.Z);
+            if (pt.X < 0 || pt.Z < 0 || pt.X >= awid || pt.Z >= ahgt)
             {
                 continue;
             }
 
-            _md.Flags[px, py] |= extraMapFlags;
+            _md.Flags[px, pz] |= extraMapFlags;
 
             float roadPercent = (float)(rand.NextDouble() * 0.2 + 0.8f) * roadTextureScale;
 
@@ -239,17 +239,17 @@ public class AddRoadService : IAddRoadService
             }
 
 
-            if (primaryRoad || alphamaps[px, py, TerrainTexChannels.Road] == 0 ||
+            if (primaryRoad || alphamaps[px, pz, TerrainTexChannels.Road] == 0 ||
                 FlagUtils.MatchesAnyBits(extraMapFlags, MapGenFlags.MinorRoad))
             {
-                _md.ClearAlphasAt(px, py);
+                _md.ClearAlphasAt(px, pz);
 
-                alphamaps[px, py, TerrainTexChannels.Base] = basePercent;
-                alphamaps[px, py, TerrainTexChannels.Road] = roadPercent;
-                alphamaps[px, py, TerrainTexChannels.Dirt] = dirtPercent;
+                alphamaps[px, pz, TerrainTexChannels.Base] = basePercent;
+                alphamaps[px, pz, TerrainTexChannels.Road] = roadPercent;
+                alphamaps[px, pz, TerrainTexChannels.Dirt] = dirtPercent;
             }
 
-            if (pt.Z > 0)
+            if (pt.IsCenter)
             {
                 centers.Add(pt);
             }
@@ -257,24 +257,24 @@ public class AddRoadService : IAddRoadService
 
             if (_md.MaintainHeights != null)
             {
-                _md.MaintainHeights[px, py] = 0;
-                _md.RoadDistances[px, py] = 0;
+                _md.MaintainHeights[px, pz] = 0;
+                _md.RoadDistances[px, pz] = 0;
             }
             // Scan out up down and left right to make things near road get flattened.
             for (int x = Math.Max(0, px - MapConstants.MaxRoadCheckDistance); x <= Math.Min(_mapProvider.GetMap().GetHwid() - 1, px + MapConstants.MaxRoadCheckDistance); x++)
             {
                 float distFromRoad = Math.Abs(px - x);
-                if (_md.RoadDistances[x, py] > distFromRoad)
+                if (_md.RoadDistances[x, pz] > distFromRoad)
                 {
-                    _md.RoadDistances[x, py] = distFromRoad;
+                    _md.RoadDistances[x, pz] = distFromRoad;
                 }
             }
-            for (int y = Math.Max(0, py - MapConstants.MaxRoadCheckDistance); y <= Math.Min(_mapProvider.GetMap().GetHwid() - 1, py + MapConstants.MaxRoadCheckDistance); y++)
+            for (int z = Math.Max(0, pz - MapConstants.MaxRoadCheckDistance); z <= Math.Min(_mapProvider.GetMap().GetHwid() - 1, pz + MapConstants.MaxRoadCheckDistance); z++)
             {
-                float distFromRoad = Math.Abs(py - y);
-                if (_md.RoadDistances[px, y] > distFromRoad)
+                float distFromRoad = Math.Abs(pz - z);
+                if (_md.RoadDistances[px, z] > distFromRoad)
                 {
-                    _md.RoadDistances[px, y] = distFromRoad;
+                    _md.RoadDistances[px, z] = distFromRoad;
                 }
             }
         }
@@ -285,8 +285,8 @@ public class AddRoadService : IAddRoadService
         // Now add blobs around the endpoints
         if (centers.Count > 1)
         {
-            MyPointF firstCenter = centers[0];
-            MyPointF lastCenter = centers[centers.Count - 1];
+            LineCell firstCenter = centers[0];
+            LineCell lastCenter = centers[centers.Count - 1];
             AddRoadAroundPoint(firstCenter, endpointRadius, endpointRandom);
             AddRoadAroundPoint(lastCenter, endpointRadius, endpointRandom);
         }
@@ -298,23 +298,23 @@ public class AddRoadService : IAddRoadService
 
         if (_md.Roads == null)
         {
-            _md.Roads = new List<List<MyPointF>>();
+            _md.Roads = new List<List<LineCell>>();
         }
 
         _md.Roads.Add(centers);
-        if (ex != cx || ey != cy)
+        if (ex != cx || ez != cz)
         {
             int ex1 = ex;
-            int ey1 = ey;
+            int ez1 = ez;
             int cx1 = cx;
-            int cy1 = cy;
+            int cz1 = cz;
             int edist = 5;
             ex1 -= edist * Math.Sign(cx1 - ex1);
             cx1 += edist * Math.Sign(cx1 - ex1);
-            ey1 -= edist * Math.Sign(cy1 - ey1);
-            cy1 += edist * Math.Sign(cy1 - ey1);
+            ez1 -= edist * Math.Sign(cz1 - ez1);
+            cz1 += edist * Math.Sign(cz1 - ez1);
 
-            AddRoad(ex1, ey1, cx1, cy1, extraSeed + 101, rand, primaryRoad, extraMapFlags);
+            AddRoad(ex1, ez1, cx1, cz1, extraSeed + 101, rand, primaryRoad, extraMapFlags);
         }
 
         // Now draw a line from the mountains out to the edge
@@ -323,17 +323,12 @@ public class AddRoadService : IAddRoadService
         ld.Seed++;
     }
 
-    public void AddRoadAroundPoint(MyPointF pt, float radius, MyRandom rand)
+    public void AddRoadAroundPoint(LineCell pt, float radius, MyRandom rand)
     {
-        if (_md.Alphas == null || pt == null || radius <= 0 || rand == null)
-        {
-            return;
-        }
-
         int sz = (int)(Math.Abs(radius) + 1);
 
         int px = (int)(pt.X);
-        int py = (int)(pt.Y);
+        int pz = (int)(pt.Z);
 
         for (int x = px - sz; x <= px + sz; x++)
         {
@@ -342,29 +337,29 @@ public class AddRoadService : IAddRoadService
                 continue;
             }
 
-            for (int y = py - sz; y <= py + sz; y++)
+            for (int z = pz - sz; z <= pz + sz; z++)
             {
-                if (y < 0 || y >= _md.Ahgt)
+                if (z < 0 || z >= _md.Ahgt)
                 {
                     continue;
                 }
 
-                float dist = MathUtil.Sqrt((x - px) * (x - px) + (y - py) * (y - py));
+                float dist = MathUtil.Sqrt((x - px) * (x - px) + (z - pz) * (z - pz));
                 if (dist > radius)
                 {
                     continue;
                 }
 
                 float roadPct = RandUtils.FloatRange(0.8f, 1.0f, rand);
-                _md.ClearAlphasAt(x, y);
-                _md.Alphas[x, y, TerrainTexChannels.Base] = 1 - roadPct;
-                _md.Alphas[x, y, TerrainTexChannels.Road] = roadPct;
+                _md.ClearAlphasAt(x, z);
+                _md.Alphas[x, z, TerrainTexChannels.Base] = 1 - roadPct;
+                _md.Alphas[x, z, TerrainTexChannels.Road] = roadPct;
             }
         }
     }
 
 
-    public void SmoothRoadNearCenterline(List<MyPointF> line, List<MyPointF> centers, float distScaling = 0.1f)
+    public void SmoothRoadNearCenterline(List<LineCell> line, List<LineCell> centers, float distScaling = 0.1f)
     {
         if (line == null || centers == null)
         {
@@ -372,12 +367,12 @@ public class AddRoadService : IAddRoadService
         }
 
         bool xSame = false;
-        bool ySame = false;
+        bool zSame = false;
 
 
         for (int p = 0; p < line.Count; p++)
         {
-            MyPointF pt = line[p];
+            LineCell pt = line[p];
             if (pt.Z != 1)
             {
                 continue;
@@ -388,35 +383,35 @@ public class AddRoadService : IAddRoadService
             {
                 if (p1 != p && p1 >= 0 && p1 < line.Count)
                 {
-                    MyPointF pt1 = line[p1];
-                    if (pt1.Z == 0)
+                    LineCell pt1 = line[p1];
+                    if (!pt1.IsCenter && !pt1.IsEdge)
                     {
                         // vertical line
                         if (pt1.X == pt.X)
                         {
                             xSame = false;
-                            ySame = true;
+                            zSame = true;
                             break;
                         }
-                        if (pt1.Y == pt.Y)
+                        if (pt1.Z == pt.Z)
                         {
                             xSame = true;
-                            ySame = false;
+                            zSame = false;
                         }
                     }
                 }
-                if (xSame || ySame)
+                if (xSame || zSame)
                 {
                     break;
                 }
             }
-            if (xSame || ySame)
+            if (xSame || zSame)
             {
                 break;
             }
         }
 
-        if (!xSame && !ySame)
+        if (!xSame && !zSame)
         {
 
         }
@@ -430,8 +425,8 @@ public class AddRoadService : IAddRoadService
 
             int startx = (int)line[p].X;
             int endx = (int)line[p].X;
-            int starty = (int)line[p].Y;
-            int endy = (int)line[p].Y;
+            int startz = (int)line[p].Z;
+            int endz = (int)line[p].Z;
 
             for (int times = 0; times < 2; times++)
             {
@@ -441,13 +436,13 @@ public class AddRoadService : IAddRoadService
                 {
                     if (xSame && line[p1].X == line[p].X)
                     {
-                        int yval = (int)(line[p1].X);
-                        starty = Math.Min(yval, starty);
-                        endy = Math.Max(yval, endy);
+                        int zval = (int)(line[p1].X);
+                        startz = Math.Min(zval, startz);
+                        endz = Math.Max(zval, endz);
                     }
-                    else if (ySame && line[p1].Y == line[p].Y)
+                    else if (zSame && line[p1].Z == line[p].Z)
                     {
-                        int xval = (int)(line[p1].Y);
+                        int xval = (int)(line[p1].Z);
                         startx = Math.Min(xval, startx);
                         endx = Math.Max(xval, endx);
                     }
@@ -459,8 +454,8 @@ public class AddRoadService : IAddRoadService
             }
             startx = MathUtil.Clamp(0, startx, _mapProvider.GetMap().GetHwid() - 1);
             endx = MathUtil.Clamp(0, endx, _mapProvider.GetMap().GetHwid() - 1);
-            starty = MathUtil.Clamp(0, starty, _mapProvider.GetMap().GetHhgt() - 1);
-            endy = MathUtil.Clamp(0, endy, _mapProvider.GetMap().GetHhgt() - 1);
+            startz = MathUtil.Clamp(0, startz, _mapProvider.GetMap().GetHhgt() - 1);
+            endz = MathUtil.Clamp(0, endz, _mapProvider.GetMap().GetHhgt() - 1);
 
 
             int totalCells = 0;
@@ -472,26 +467,26 @@ public class AddRoadService : IAddRoadService
             {
                 for (int x = startx; x < endx; x++)
                 {
-                    totalHeight += _md.Heights[x, starty];
+                    totalHeight += _md.Heights[x, startz];
                     totalCells++;
                 }
                 aveHeight = totalHeight / totalCells;
                 for (int x = startx; x < endx; x++)
                 {
-                    _md.Heights[x, starty] = aveHeight;
+                    _md.Heights[x, startz] = aveHeight;
                 }
             }
-            else if (starty != endy)
+            else if (startz != endz)
             {
-                for (int y = starty; y <= endy; y++)
+                for (int z = startz; z <= endz; z++)
                 {
-                    totalHeight += _md.Heights[startx, y];
+                    totalHeight += _md.Heights[startx, z];
                     totalCells++;
                 }
                 aveHeight = totalHeight / totalCells;
-                for (int y = starty; y <= endy; y++)
+                for (int z = startz; z <= endz; z++)
                 {
-                    _md.Heights[startx, y] = aveHeight;
+                    _md.Heights[startx, z] = aveHeight;
                 }
             }
         }

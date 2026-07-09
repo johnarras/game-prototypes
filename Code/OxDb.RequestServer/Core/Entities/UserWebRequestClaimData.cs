@@ -1,4 +1,4 @@
-﻿namespace Genrpg.WebServer.Sessions
+﻿namespace OxDb.RequestServer.Core.Entities
 {
     public class UserWebRequestClaimData
     {

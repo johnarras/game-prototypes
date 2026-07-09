@@ -9,7 +9,7 @@
   "AncientName": "Tingis",
   "Population": 20000,
   "MapPixelX": 920,
-  "MapPixelY": 2465,
+  "MapPixelZ": 2465,
   "BiomeTypeId": 2,
   "CultureTypeId": 3,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 61
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

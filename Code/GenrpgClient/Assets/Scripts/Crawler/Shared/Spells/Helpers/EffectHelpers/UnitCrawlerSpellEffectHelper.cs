@@ -5,13 +5,13 @@ using OxDb.SharedGame.Crawler.Combat.Entities;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Roles.Settings;
+using OxDb.SharedGame.Crawler.Spells.Settings;
 using OxDb.SharedGame.Spells.Entities;
 using OxDb.SharedGame.Units.Settings;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
@@ -19,7 +19,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
     {
         public override long HelperKey => EntityTypes.Unit;
 
-        public override async Awaitable ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
+        public override async ValueTask ApplyEffectToUnit(PartyData party, ApplyEffectArgs args, FullSpell spell, FullEffect fullEffect, CrawlerUnit caster, CrawlerUnit target, CancellationToken token)
         {
 
 
@@ -41,11 +41,20 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
 
             if (party.Combat != null)
             {
-                long quantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _rand.Rand);
+                long quantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _gs.Rand);
+
+                SummonArgs summonArgs = null;
 
                 if (caster is PartyMember member)
                 {
-                    quantity = _spellService.GetSummonQuantity(party, member, unitType);
+                    quantity = 1;
+
+                    summonArgs = new SummonArgs()
+                    {
+                        SummonTier = _roleService.GetSpellScalingLevel(party, member, spell.Spell, true),
+                        SummonStatBonus = (long)(_crawlerStatService.GetStatBonus(party, member, spell.StatScalingTypeId) *
+                        _gameData.Get<CrawlerSpellSettings>(_gs.ch).SummonStatBonusScale),
+                    };
                 }
 
                 InitialCombatGroup icg = new InitialCombatGroup()
@@ -55,6 +64,7 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                     FactionTypeId = caster.FactionTypeId,
                     Level = caster.Level,
                     Range = CrawlerCombatConstants.MinRange,
+                    SummonArgs = summonArgs,
                 };
 
                 _combatService.AddCombatUnits(party, icg);

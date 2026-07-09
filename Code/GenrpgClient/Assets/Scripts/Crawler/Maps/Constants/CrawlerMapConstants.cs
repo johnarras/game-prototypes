@@ -1,0 +1,18 @@
+namespace Assets.Scripts.Crawler.Maps.Constants
+{
+    public class CrawlerMapConstants
+    {
+
+        public const int CityDirBitShiftSize = 5;
+
+        public const int DirToAngleMult = 90;
+
+        public const double TreeChanceScale = 1.5f;
+
+        public const int DefaultXZBlockSize = 8;
+
+        public const int DefaultYBlockSize = 8;
+    }
+}
+
+

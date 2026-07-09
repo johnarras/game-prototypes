@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.Maps.Entities;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Entities.Constants;
@@ -19,7 +18,7 @@ namespace OxDb.SharedGame.Crawler.Tavern.Services
 
     public class TavernService : ITavernService
     {
-        private IClientRandom _rand = null;
+        private IClientGameState _gs = null;
         private ICrawlerMapService _mapService = null;
 
         public string GetRumor(PartyData party, CrawlerWorld world)
@@ -30,7 +29,7 @@ namespace OxDb.SharedGame.Crawler.Tavern.Services
             }
 
             bool forceQuestItem = false;
-            WorldQuestItem questItem = world.QuestItems[_rand.Rand.Next(world.QuestItems.Count)];
+            WorldQuestItem questItem = world.QuestItems[_gs.Rand.Next(world.QuestItems.Count)];
 
             CrawlerMap partyMap = world.GetMap(party.CurrPos.MapId);
 
@@ -53,22 +52,22 @@ namespace OxDb.SharedGame.Crawler.Tavern.Services
 
                 if (dungeonExits.Count > 0)
                 {
-                    CrawlerMap finalMap = dungeonExits[_rand.Rand.Next() % dungeonExits.Count];
+                    CrawlerMap finalMap = dungeonExits[_gs.Rand.Next() % dungeonExits.Count];
 
                     questItem = world.QuestItems.FirstOrDefault(x => x.IdKey == finalMap.IdKey);
 
-                    if (_rand.Rand.NextDouble() < 0.80f)
+                    if (_gs.Rand.NextDouble() < 0.80f)
                     {
                         forceQuestItem = true;
                     }
                 }
             }
 
-            if (!forceQuestItem && _rand.Rand.NextDouble() < 0.35f)
+            if (!forceQuestItem && _gs.Rand.NextDouble() < 0.35f)
             {
                 List<CrawlerMap> subMaps = world.Maps.Where(x => x.CrawlerMapTypeId == CrawlerMapTypes.Dungeon).ToList();
 
-                CrawlerMap targetMap = subMaps[_rand.Rand.Next() % subMaps.Count];
+                CrawlerMap targetMap = subMaps[_gs.Rand.Next() % subMaps.Count];
 
                 EntranceMapData entranceMap = _mapService.GetEntranceMap(party, world, targetMap.IdKey);
 
@@ -93,7 +92,7 @@ namespace OxDb.SharedGame.Crawler.Tavern.Services
 
                 if (exitMaps.Count > 0)
                 {
-                    CrawlerMap exitMap = exitMaps[_rand.Rand.Next(exitMaps.Count)];
+                    CrawlerMap exitMap = exitMaps[_gs.Rand.Next(exitMaps.Count)];
 
                     EntranceMapData entranceData = _mapService.GetEntranceMap(party, world, exitMap.IdKey);
 

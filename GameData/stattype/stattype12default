@@ -4,6 +4,7 @@
   "IdKey": 12,
   "Name": "Intellect",
   "Desc": "Increases attack spell damage.",
+  "Icon": "Intellect",
   "Art": "OrangeCauldron",
   "ColorName": "Orange",
   "ColorCode": "#FF7F00",

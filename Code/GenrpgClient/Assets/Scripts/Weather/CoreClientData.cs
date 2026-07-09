@@ -19,6 +19,9 @@ public class CoreClientData : BaseBehaviour
     public float SunlightIntensityMultiplier = 1.1f;
     public float AmbientIntensityMultiplier = 0.5f;
 
+    public float DefaultSaturation = 0;
+    public float SaturationLerpSeconds = 0.5f;
+
 }
 
 

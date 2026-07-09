@@ -1,5 +1,6 @@
 
 using Assets.Scripts.Assets.Constants;
+using Assets.Scripts.Auth.Services;
 using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.FloatingText.ClientEvents;
 using Assets.Scripts.UI.Screens;
@@ -17,7 +18,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
 
 #if UNITY_EDITOR
     public GButton GenWorldButton;
-    public GButton TestAssetsButton;
 #endif
     public GameObject CharacterGridParent;
     public GButton CreateButton;
@@ -52,18 +52,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
         _uiService.SetButton(GenWorldButton, GetName(), ClickGenerate);
 
 
-        if (TestAssetsButton == null)
-        {
-            GameObject testsAssetsObj = (GameObject)_clientEntityService.FindChild(entity, "TestAssetsButton");
-            if (testsAssetsObj != null)
-            {
-                TestAssetsButton = _clientEntityService.GetComponent<GButton>(testsAssetsObj);
-            }
-        }
-
-        _uiService.SetButton(TestAssetsButton, GetName(), ClickTestAssets);
-
-
 #endif
         _clientEntityService.DestroyAllChildren(CharacterGridParent);
 
@@ -77,13 +65,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
     }
 
 #if UNITY_EDITOR
-
-    private void ClickTestAssets()
-    {
-        TestAssetDownloads dl = new TestAssetDownloads();
-
-        _awaitableService.ForgetAwaitable(dl.RunTests(_gs, GetToken()));
-    }
 
     private void ClickGenerate()
     {
@@ -100,12 +81,6 @@ public class CharacterSelectScreen : ErrorMessageScreen
             WorldDataEnv = _assetService.GetWorldDataEnv(),
         };
         _zoneGenService.LoadMap(lwd);
-    }
-
-
-    private int GetIndex(int x, int y, int noiseSize)
-    {
-        return x + y * noiseSize;
     }
 
 #endif
@@ -138,9 +113,9 @@ public class CharacterSelectScreen : ErrorMessageScreen
 
     }
 
-    private void ClickLogout()
+    private async ValueTask ClickLogout(CancellationToken token)
     {
-        _loginService.Logout();
+        await _loginService.Logout();
     }
 
 

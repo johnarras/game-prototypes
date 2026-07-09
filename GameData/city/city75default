@@ -9,7 +9,7 @@
   "AncientName": "Palembang (Srivijaya Empire)",
   "Population": 50000,
   "MapPixelX": 5984,
-  "MapPixelY": 4241,
+  "MapPixelZ": 4241,
   "BiomeTypeId": 16,
   "CultureTypeId": 12,
   "TradeGoodsProduced": [
@@ -29,5 +29,12 @@
       "TradeGoodId": 137
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

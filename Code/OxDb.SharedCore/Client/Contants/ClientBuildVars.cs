@@ -9,7 +9,8 @@
         public const string WEB_SERVER_URL = "WEB_SERVER_URL";
         public const string CONTENT_ROOT = "CONTENT_ROOT";
         public const string IOS_SECRET = "IOS_SECRET";
-        public const string GOOGLE_SECRET = "GOOGLE_SECRET";
+        public const string GOOGLE_PURCHASING_SECRET = "GOOGLE_PURCHASING_SECRET";
+        public const string GOOGLE_PLAY_ANDROID_CLIENT_ID = "GOOGLE_PLAY_ANDROID_CLIENT_ID";
         public const string WORLDS_ENV = "WORLDS_ENV";
         public const string ASSETS_ENV = "ASSETS_ENV";
         public const string CLIENT_PLATFORM = "CLIENT_PLATFORM";
@@ -28,9 +29,13 @@
         public const string ANDROID_KEYSTORE_PASS = "ANDROID_KEYSTORE_PASS";
         public const string ANDROID_KEY_ALIAS_NAME = "ANDROID_KEY_ALIAS_NAME";
         public const string ANDROID_KEY_ALIAS_PASS = "ANDROID_GAME_KEY_PASS";
-        public const string BUILD_FLAGS = "BUILD_FLAGS";
-        public const string OLD_BUILD_FLAGS = "OLD_BUILD_FLAGS";
+        public const string CLIENT_PLAYER_FLAGS = "CLIENT_PLAYER_FLAGS";
+        public const string OLD_CLIENT_PLAYER_FLAGS = "OLD_CLIENT_PLAYER_FLAGS";
+        public const string CLIENT_BUILD_VERSION = "CLIENT_BUILD_VERSION";
 
+
+        public const string ANDROID_ADS_GAME_KEY = "ANDROID_ADS_GAME_KEY";
+        public const string IOS_ADS_GAME_KEY = "IOS_ADS_GAME_KEY";
 
     }
 }

@@ -22,7 +22,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.Upgrades
         private ICrawlerUpgradeService _upgradeService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.UpgradeParty;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
 
             PartyData party = _crawlerService.GetParty();

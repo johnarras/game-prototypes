@@ -10,9 +10,9 @@ namespace OxDb.MapServer.Trades.MessageHandlers
     public class AcceptTradeHandler : BaseCharacterServerMapMessageHandler<AcceptTrade>
     {
         private ITradeService _tradeService = null;
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, AcceptTrade message)
+        protected override async ValueTask InnerProcess(Character ch, AcceptTrade message)
         {
-            _tradeService.HandleAcceptTrade(ch, message, rand.Rand);
+            _tradeService.HandleAcceptTrade(ch, message);
         }
     }
 }

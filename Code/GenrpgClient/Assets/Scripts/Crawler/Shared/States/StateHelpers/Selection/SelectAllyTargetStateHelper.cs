@@ -1,3 +1,5 @@
+using Assets.Scripts.Crawler.Shared.GameEvents;
+using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Entities;
@@ -16,7 +18,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
     {
         public override ECrawlerStates HelperKey => ECrawlerStates.SelectAllyTarget;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -25,6 +27,11 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
             SelectSpellAction selectSpellAction = action.ExtraData as SelectSpellAction;
 
             SelectAction selectAction = null;
+
+            Action clearAction = () =>
+            {
+                _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
+            };
 
             if (selectSpellAction != null)
             {
@@ -69,6 +76,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                     clickAction = delegate ()
                     {
                         selectAction.Member = partyMember;
+                        _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
 
                     };
                 }
@@ -78,14 +86,25 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                     {
                         selectAction.Action.FinalTargets.Add(partyMember);
                         selectAction.Member.AddAction(selectAction.Action);
+                        _dispatcher.Dispatch(new ClearSelectCrawlerUnitActions());
                     };
                 }
 
-                stateData.Actions.Add(new CrawlerStateAction(char.ToUpper(c) + " " + partyMember.Name, FromChar(c),
-                  nextAction, clickAction, action.ExtraData));
+                CrawlerStateAction clickCrawlerAction = new CrawlerStateAction(char.ToUpper(c) + " " + partyMember.Name, FromChar(c),
+                  nextAction, clickAction, action.ExtraData);
+
+                stateData.Actions.Add(clickCrawlerAction);
+
+                Action clickIconAction = () =>
+                {
+                    clickAction.Invoke();
+                    _crawlerService.ChangeState(stateData, clickCrawlerAction, token);
+                };
+
+                _dispatcher.Dispatch(new SelectPartyMemberIconAction() { ClickAction = clickIconAction, Member = partyMember });
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, selectAction.ReturnState));
+            stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, selectAction.ReturnState, clearAction));
 
 
             await Task.CompletedTask;

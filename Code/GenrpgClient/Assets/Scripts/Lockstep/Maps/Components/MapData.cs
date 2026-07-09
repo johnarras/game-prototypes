@@ -30,7 +30,7 @@ namespace Assets.Scripts.Lockstep.Maps.Components
         public FixedString32Bytes MapName; // For UI/Debug
         public int2 Size;
         public byte WrapX;
-        public byte WrapY;
+        public byte WrapZ;
         public float2 Offset;
 
         // Use FixedPoint64 for map boundaries/scale to avoid floats
@@ -44,13 +44,13 @@ namespace Assets.Scripts.Lockstep.Maps.Components
 
     public static class MapBlobUtils
     {
-        public static TileData GetTile(this ref MapBlob map, int x, int y)
+        public static TileData GetTile(this ref MapBlob map, int x, int z)
         {
             // Optional: Handle Wrapping
             if (map.WrapX == 1) x = (x % map.Size.x + map.Size.x) % map.Size.x;
-            if (map.WrapY == 1) y = (y % map.Size.y + map.Size.y) % map.Size.y;
+            if (map.WrapZ == 1) z = (z % map.Size.y + map.Size.y) % map.Size.y;
 
-            int index = (y * map.Size.x) + x;
+            int index = (z * map.Size.x) + x;
             return map.Tiles[index];
         }
     }

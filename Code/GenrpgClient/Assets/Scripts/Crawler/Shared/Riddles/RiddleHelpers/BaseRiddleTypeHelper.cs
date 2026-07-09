@@ -1,3 +1,4 @@
+using Assets.Scripts.Crawler.Maps.Loading;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -17,7 +18,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 
         public abstract long HelperKey { get; }
 
-        public virtual void SetPropPosition(object prop, object data, CancellationToken token)
+        public virtual void SetPropPosition(object prop, CrawlerObjectLoadData data, CancellationToken token)
         {
         }
 
@@ -26,7 +27,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
             return true;
         }
 
-        public async Task AddRiddle(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
+        public async Task AddRiddle(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand)
         {
             if (!DataIsOk(lookup, lockedFloor, prevFloor, openPoints, rand))
             {
@@ -45,13 +46,13 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
             await Task.CompletedTask;
         }
 
-        protected bool DataIsOk(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
+        protected bool DataIsOk(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand)
         {
             return lookup != null && lockedFloor != null && prevFloor != null && openPoints.Count > 0 && rand != null &&
                 prevFloor.RiddleHints == null && lockedFloor.EntranceRiddle == null;
         }
 
-        protected abstract Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand);
+        protected abstract Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand);
 
     }
 }

@@ -32,7 +32,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
             double randomChance = combatSettings.RandomEncounterChance;
 
-            if (_rand.Rand.NextDouble() > randomChance)
+            if (_gs.Rand.NextDouble() > randomChance)
             {
                 return;
             }

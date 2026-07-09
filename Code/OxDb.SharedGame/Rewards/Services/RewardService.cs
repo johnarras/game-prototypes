@@ -17,20 +17,25 @@ namespace OxDb.SharedGame.Rewards.Services
 
     public interface IRewardService : IInitializable
     {
-        Task<bool> GiveRewards(IUnitDataLookup context, List<RewardList> rewardLists, RewardParams rp);
-        Task<bool> GiveRewards<TReward>(IUnitDataLookup context, List<TReward> rewards, long rewardSourceId, RewardParams rp) where TReward : IEffect;
+        ValueTask<bool> GiveRewards(IUnitDataLookup context, List<RewardList> rewardLists, RewardParams rp);
+        ValueTask<bool> GiveRewards<TReward>(IUnitDataLookup context, List<TReward> rewards, long rewardSourceId, RewardParams rp) where TReward : IEffect;
 
-        Task<bool> GiveReward<TReward>(IUnitDataLookup context, TReward rew, long rewardSourceId, RewardParams rp) where TReward : IEffect;
+        ValueTask<bool> GiveReward<TReward>(IUnitDataLookup context, TReward rew, long rewardSourceId, RewardParams rp) where TReward : IEffect;
 
-        Task<bool> GiveReward(IUnitDataLookup context, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp);
+        ValueTask<bool> GiveReward(IUnitDataLookup context, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp);
 
-        RewardList CreateRewardList(long rewardSourceId, List<Reward> rewards, long entityId);
+        RewardList CreateRewardList(long rewardSourceId, long entityId, List<Reward> rewards = null);
+
+
+        List<RewardList> CreateListFromList(long rewardSourceId, long entityId, List<Reward> rewards = null);
+
+        List<RewardList> CreateListFromReward(long rewardSourceId, long entityId, Reward rew = null);
     }
 
 
     public class RewardService : IRewardService
     {
-        public RewardList CreateRewardList(long rewardSourceId, List<Reward> rewards, long entityId)
+        public RewardList CreateRewardList(long rewardSourceId, long entityId, List<Reward> rewards = null)
         {
             if (rewards == null)
             {
@@ -38,6 +43,26 @@ namespace OxDb.SharedGame.Rewards.Services
             }
             return new RewardList() { RewardSourceId = rewardSourceId, Rewards = rewards, EntityId = entityId };
         }
+
+        public List<RewardList> CreateListFromList(long rewardSourceId, long entityId, List<Reward> rewards)
+        {
+            return new List<RewardList>() { CreateRewardList(rewardSourceId, entityId, rewards) };
+        }
+
+        public List<RewardList> CreateListFromReward(long rewardSourceId,  long entityId, Reward rew = null)
+        {
+
+            RewardList rewardList = CreateRewardList(rewardSourceId, entityId);
+
+            if (rew != null)
+            {
+                rewardList.Rewards.Add(rew);
+            }
+
+            return new List<RewardList> { rewardList };
+
+        }
+
         private SetupDictionaryContainer<long, IRewardHelper> _rewardHelpers = new SetupDictionaryContainer<long, IRewardHelper>();
         public async Task Initialize(CancellationToken token)
         {
@@ -53,7 +78,7 @@ namespace OxDb.SharedGame.Rewards.Services
             return null!;
         }
 
-        public async Task<bool> GiveRewards<TReward>(IUnitDataLookup context, List<TReward> rewards, long rewardSourceId, RewardParams rp) where TReward : IEffect
+        public async ValueTask<bool> GiveRewards<TReward>(IUnitDataLookup context, List<TReward> rewards, long rewardSourceId, RewardParams rp) where TReward : IEffect
         {
             if (rp == null)
             {
@@ -70,7 +95,7 @@ namespace OxDb.SharedGame.Rewards.Services
             return allSuccess;
         }
 
-        public async Task<bool> GiveRewards(IUnitDataLookup context, List<RewardList> rewardLists, RewardParams rp)
+        public async ValueTask<bool> GiveRewards(IUnitDataLookup context, List<RewardList> rewardLists, RewardParams rp)
         {
             bool allSuccess = true;
             foreach (RewardList rewardList in rewardLists)
@@ -84,7 +109,7 @@ namespace OxDb.SharedGame.Rewards.Services
             return allSuccess;
         }
 
-        public async Task<bool> GiveReward<TReward>(IUnitDataLookup context, TReward rew, long rewardSourceId, RewardParams rp) where TReward : IEffect
+        public async ValueTask<bool> GiveReward<TReward>(IUnitDataLookup context, TReward rew, long rewardSourceId, RewardParams rp) where TReward : IEffect
         {
             Item extraData = null;
             long uniqueId = 0;
@@ -96,7 +121,7 @@ namespace OxDb.SharedGame.Rewards.Services
             return await GiveReward(context, rew.EntityTypeId, rew.EntityId, rew.Quantity, rewardSourceId, extraData, uniqueId, rp);
         }
 
-        public virtual async Task<bool> GiveReward(IUnitDataLookup context, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp)
+        public virtual async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityTypeId, long entityId, long quantity, long rewardSourceId, Item extraData, long uniqueId, RewardParams rp)
         {
             IRewardHelper helper = GetRewardHelper(entityTypeId);
             if (helper != null)

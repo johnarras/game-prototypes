@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Spells.Constants;
 using OxDb.SharedGame.Spells.Messages;
@@ -9,7 +8,7 @@ public class CombatTextUI : BaseBehaviour
 {
 
     private IClientAppService _appService = null;
-    protected IClientRandom _rand = null;
+
 
     public const string UIPrefabName = "CombatText";
 
@@ -51,8 +50,8 @@ public class CombatTextUI : BaseBehaviour
         if (CombatText != null)
         {
             float dmult = 0.03f;
-            float dx = RandUtils.FloatRange(-20, 20, _rand.Rand) * dmult;
-            float dy = RandUtils.FloatRange(0, 15, _rand.Rand) * dmult;
+            float dx = RandUtils.FloatRange(-20, 20, _gs.Rand) * dmult;
+            float dy = RandUtils.FloatRange(0, 15, _gs.Rand) * dmult;
             CombatText.transform.localPosition += new Vector3(dx, dy, 0);
 
             switch (text.TextColor)

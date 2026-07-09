@@ -66,9 +66,9 @@ namespace Assets.Editor.Utils
                 Texture2D tex = new Texture2D(textureSize, textureSize, TextureFormat.ARGB32, false, true);
                 for (int x = 0; x < textureSize; x++)
                 {
-                    for (int y = 0; y < textureSize; y++)
+                    for (int z = 0; z < textureSize; z++)
                     {
-                        tex.SetPixel(x, y, Color.white);
+                        tex.SetPixel(x, z, Color.white);
                     }
                 }
 

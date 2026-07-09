@@ -15,18 +15,18 @@ namespace OxDb.SharedGame.Ftue.Services
 {
     public interface IFtueService : IInjectable
     {
-        Task<bool> IsComplete(IUnitDataLookup lookup);
-        Task<FtueStep> GetCurrentStep(IUnitDataLookup lookup);
-        Task<FtueStep> StartNextStep(IUnitDataLookup lookup);
-        Task<bool> CanClickButton(IUnitDataLookup lookup, string screenName, string buttonName);
-        Task<FtueStep> CompleteStep(IUnitDataLookup lookup, long ftueStepId, IRandom rand);
-        Task<FtueStep> ForceStartStep(IUnitDataLookup lookup, long ftueStepId);
+        ValueTask<bool> IsComplete(IUnitDataLookup lookup);
+        ValueTask<FtueStep> GetCurrentStep(IUnitDataLookup lookup);
+        ValueTask<FtueStep> StartNextStep(IUnitDataLookup lookup);
+        ValueTask<bool> CanClickButton(IUnitDataLookup lookup, string screenName, string buttonName);
+        ValueTask<FtueStep> CompleteStep(IUnitDataLookup lookup, long ftueStepId);
+        ValueTask<FtueStep> ForceStartStep(IUnitDataLookup lookup, long ftueStepId);
     }
     public class FtueService : IFtueService
     {
         private IGameData _gameData = null;
 
-        public async Task<FtueStep> GetCurrentStep(IUnitDataLookup lookup)
+        public async ValueTask<FtueStep> GetCurrentStep(IUnitDataLookup lookup)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
 
@@ -40,7 +40,7 @@ namespace OxDb.SharedGame.Ftue.Services
             return _gameData.Get<FtueStepSettings>(coreData).Get(ftueData.CurrentFtueStepId);
         }
 
-        public async Task<bool> CanClickButton(IUnitDataLookup lookup, string screenName, string buttonName)
+        public async ValueTask<bool> CanClickButton(IUnitDataLookup lookup, string screenName, string buttonName)
         {
 
             if (await IsComplete(lookup))
@@ -63,11 +63,10 @@ namespace OxDb.SharedGame.Ftue.Services
                 }
             }
 
-
             return true;
         }
 
-        public async Task<FtueStep> CompleteStep(IUnitDataLookup lookup, long ftueStepId, IRandom rand)
+        public async ValueTask<FtueStep> CompleteStep(IUnitDataLookup lookup, long ftueStepId)
         {
 
             FtueStep ftueStep = await GetCurrentStep(lookup);
@@ -97,17 +96,14 @@ namespace OxDb.SharedGame.Ftue.Services
                 ShowAnalytics(AnalyticsEventNames.FtueCompleteStep, ftueStep);
             }
 
-
-
             ftueData.PrevFtueStepId = ftueData.CurrentFtueStepId;
             ftueData.CurrentFtueStepId = 0;
             return await StartNextStep(lookup);
 
         }
 
-        public virtual async Task<FtueStep> StartNextStep(IUnitDataLookup lookup)
+        public virtual async ValueTask<FtueStep> StartNextStep(IUnitDataLookup lookup)
         {
-
             FtueData ftueData = await lookup.GetAsync<FtueData>();
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -146,7 +142,7 @@ namespace OxDb.SharedGame.Ftue.Services
             return null;
         }
 
-        public async Task<bool> IsComplete(IUnitDataLookup lookup)
+        public async ValueTask<bool> IsComplete(IUnitDataLookup lookup)
         {
             if (lookup == null)
             {
@@ -168,7 +164,7 @@ namespace OxDb.SharedGame.Ftue.Services
 
         }
 
-        public async Task<FtueStep> SetCurrentStep(IUnitDataLookup lookup, long ftueStepId)
+        public async ValueTask<FtueStep> SetCurrentStep(IUnitDataLookup lookup, long ftueStepId)
         {
 
             if (await IsComplete(lookup))
@@ -205,7 +201,7 @@ namespace OxDb.SharedGame.Ftue.Services
             return currentFtueStep;
         }
 
-        public async Task<FtueStep> ForceStartStep(IUnitDataLookup lookup, long ftueStepId)
+        public async ValueTask<FtueStep> ForceStartStep(IUnitDataLookup lookup, long ftueStepId)
         {
             FtueStep currStep = await GetCurrentStep(lookup);
 

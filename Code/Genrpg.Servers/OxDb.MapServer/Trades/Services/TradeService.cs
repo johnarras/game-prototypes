@@ -2,6 +2,7 @@ using OxDb.MapServer.MapMessaging.Interfaces;
 using OxDb.MapServer.Maps;
 using OxDb.ServerCore.DataStores.Services;
 using OxDb.SharedCore.Entities.Constants;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Currencies.Constants;
@@ -18,9 +19,23 @@ using OxDb.SharedGame.Units.Constants;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.MapServer.Trades.Services
 {
+    public interface ITradeService : IInjectable
+    {
+        void HandleStartTrade(Character ch, StartTrade startTrade);
+        void HandleCancelTrade(Character ch, CancelTrade cancelTrade);
+        void HandleOnCancelTrade(Character ch, OnCancelTrade message);
+        void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade);
+        void HandleOnAcceptTrade(Character ch, OnAcceptTrade message);
+        void HandleUpdateTrade(Character ch, UpdateTrade updateTrade);
+        void HandleOnUpdateTrade(Character ch, OnUpdateTrade message);
+        void HandleOnCompleteTrade(Character ch, OnCompleteTrade message);
+        T SafeModifyObject<T>(MapObject obj, Func<T> modifyFunc, T failureResult);
+        void SafeModifyObject(MapObject obj, Action modifyFunc);
+    }
     public class TradeService : ITradeService
     {
         private IMapObjectManager _objManager = null;
@@ -124,15 +139,15 @@ namespace OxDb.MapServer.Trades.Services
         #endregion
 
         #region Accept
-        public void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade, IRandom rand)
+        public void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade)
         {
             ProcessExistingTrade(ch, delegate (FullTradeObject fullTrade)
                 {
-                    HandleAcceptTradeInternal(ch, acceptTrade, fullTrade, rand);
+                    HandleAcceptTradeInternal(ch, acceptTrade, fullTrade);
                 });
         }
 
-        private void HandleAcceptTradeInternal(Character ch, AcceptTrade acceptTrade, FullTradeObject fullTrade, IRandom rand)
+        private void HandleAcceptTradeInternal(Character ch, AcceptTrade acceptTrade, FullTradeObject fullTrade)
         {
             foreach (TradeChar tch in fullTrade.TradeObject.Chars)
             {
@@ -178,10 +193,28 @@ namespace OxDb.MapServer.Trades.Services
                 Character currChar = fullTrade.OrderedCharacters[c];
                 Character otherChar = fullTrade.OrderedCharacters[1 - c];
 
-                if (currTrade.Money > 0)
+                ValueTask<bool> removeTask = _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, RewardSources.PlayerTrade, null, 0, null);
+
+                // 2. Safely verify execution completed synchronously on the stack
+                if (removeTask.IsCompleted && removeTask.Result == true)
                 {
-                    _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, RewardSources.PlayerTrade, null, 0, null).Wait();
-                    _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, RewardSources.PlayerTrade, null, 0, null).Wait();
+                    // GetResult() on a completed ValueTask extracts the outcome/exceptions with zero wait
+                    removeTask.GetAwaiter().GetResult();
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Trade completion failed! Remove currency for CharId {currChar.Id} triggered an unintended asynchronous fallback thread yield inside an active transaction lock.");
+                }
+
+                ValueTask<bool> addTask = _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, RewardSources.PlayerTrade, null, 0, null);
+
+                if (addTask.IsCompleted && addTask.Result == true)
+                {
+                    addTask.GetAwaiter().GetResult();
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Trade completion failed! Add currency for CharId {otherChar.Id} triggered an unintended asynchronous fallback thread yield inside an active transaction lock.");
                 }
 
                 for (int i = 0; i < currTrade.Items.Length; i++)

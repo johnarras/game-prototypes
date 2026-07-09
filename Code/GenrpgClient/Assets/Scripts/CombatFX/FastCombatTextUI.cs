@@ -1,6 +1,3 @@
-
-
-using Assets.Scripts.Core;
 using Assets.Scripts.WorldCanvas.GameEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Combat.Constants;
@@ -27,7 +24,6 @@ namespace Assets.Scripts.UI.CombatTexts
     {
 
         private IClientAppService _appService = null;
-        protected IClientRandom _rand = null;
 
         public float AnimateTime = 1.0f;
         public float TextMoveSpeed = 30.0f;
@@ -108,10 +104,10 @@ namespace Assets.Scripts.UI.CombatTexts
                     textColor = new Color(0.66f, 0, 0.8f, 1);
                 }
 
-                float angle = RandUtils.FloatRange(-45, 225, _rand.Rand);
+                float angle = RandUtils.FloatRange(-45, 225, _gs.Rand);
                 float frameDy = Mathf.Sin(angle * Mathf.PI / 180) * TextMoveSpeed / _framesPerSecond;
                 float frameDx = Mathf.Cos(angle * Mathf.PI / 180) * TextMoveSpeed / _framesPerSecond;
-                float startFrames = RandUtils.FloatRange(0, 20, _rand.Rand);
+                float startFrames = RandUtils.FloatRange(0, 20, _gs.Rand);
 
                 Vector3 startPos = transform.position +
                     new Vector3(frameDx * startFrames, frameDy * startFrames, 0);

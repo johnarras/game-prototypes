@@ -361,6 +361,12 @@
       "Name": "Manifest",
       "ScreenLayerId": 20,
       "Subdirectory": "TraderShipments"
+    },
+    {
+      "IdKey": 62,
+      "Name": "AuthMenu",
+      "ScreenLayerId": 20,
+      "Subdirectory": "Login"
     }
   ],
   "Parent": {
@@ -368,5 +374,5 @@
     "Name": "ScreenNameSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-04-02T19:54:38.943Z"
+  "SaveTime": "2026-06-12T19:31:35.859Z"
 }

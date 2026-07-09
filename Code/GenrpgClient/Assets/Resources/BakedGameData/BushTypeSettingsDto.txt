@@ -1,0 +1,236 @@
+{
+  "Children": [
+    {
+      "IdKey": 1,
+      "Name": "Azalea",
+      "Art": "Azalea",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 2,
+      "Name": "AzaleaPink",
+      "Art": "AzaleaPink",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 3,
+      "Name": "Azalea",
+      "Art": "Azalea",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 4,
+      "Name": "AzaleaWhite",
+      "Art": "AzaleaWhite",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 5,
+      "Name": "CactusCylinder",
+      "Art": "CactusCylinder",
+      "Scale": 1.0,
+      "VariationCount": 4,
+      "Flags": 1
+    },
+    {
+      "IdKey": 6,
+      "Name": "CactusSphere",
+      "Art": "CactusSphere",
+      "Scale": 1.0,
+      "VariationCount": 4,
+      "Flags": 1
+    },
+    {
+      "IdKey": 7,
+      "Name": "Cattail",
+      "Art": "Cattail",
+      "Scale": 1.2,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 8,
+      "Name": "ElephantGrass",
+      "Art": "ElephantGrass",
+      "Scale": 0.5,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 9,
+      "Name": "Knapweed",
+      "Art": "Knapweed",
+      "Scale": 0.5,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 10,
+      "Name": "Snakeweed",
+      "Art": "Snakeweed",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 11,
+      "Name": "SnakeweedYellow",
+      "Art": "SnakeweedYellow",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 12,
+      "Name": "SwordFern",
+      "Art": "SwordFern",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 13,
+      "Name": "LeafFern",
+      "Art": "LeafFern",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 14,
+      "Name": "Buttercup",
+      "Art": "Buttercup",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 13
+    },
+    {
+      "IdKey": 15,
+      "Name": "Daisy",
+      "Art": "Daisy",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 13
+    },
+    {
+      "IdKey": 16,
+      "Name": "Dandelion",
+      "Art": "Dandelion",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 13
+    },
+    {
+      "IdKey": 17,
+      "Name": "Fern",
+      "Art": "Fern",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 9
+    },
+    {
+      "IdKey": 18,
+      "Name": "Foxglove",
+      "Art": "Foxglove",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 13
+    },
+    {
+      "IdKey": 19,
+      "Name": "Poppy",
+      "Art": "Poppy",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 13
+    },
+    {
+      "IdKey": 20,
+      "Name": "Thistle",
+      "Art": "Thistle",
+      "Scale": 3.0,
+      "VariationCount": 1,
+      "Flags": 13
+    },
+    {
+      "IdKey": 21,
+      "Name": "CactusSphere",
+      "Art": "CactusSphere",
+      "Scale": 1.0,
+      "VariationCount": 4,
+      "Flags": 1
+    },
+    {
+      "IdKey": 22,
+      "Name": "Cattail",
+      "Art": "Cattail",
+      "Scale": 1.2,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 23,
+      "Name": "ElephantGrass",
+      "Art": "ElephantGrass",
+      "Scale": 0.5,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 25,
+      "Name": "Knapweed",
+      "Art": "Knapweed",
+      "Scale": 0.5,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 26,
+      "Name": "Snakeweed",
+      "Art": "Snakeweed",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 27,
+      "Name": "SnakeweedYellow",
+      "Art": "SnakeweedYellow",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 3
+    },
+    {
+      "IdKey": 28,
+      "Name": "SwordFern",
+      "Art": "SwordFern",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    },
+    {
+      "IdKey": 29,
+      "Name": "LeafFern",
+      "Art": "LeafFern",
+      "Scale": 1.0,
+      "VariationCount": 2,
+      "Flags": 1
+    }
+  ],
+  "Parent": {
+    "Id": "default",
+    "TallChance": 0.5,
+    "TreeDirtRadius": 9.0,
+    "Name": "BushTypeSettings"
+  },
+  "Id": "default",
+  "SaveTime": "2026-07-06T00:10:29.714Z"
+}

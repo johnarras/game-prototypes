@@ -1,0 +1,8 @@
+{
+  "Parent": {
+    "Id": "default",
+    "CostPerMana": 5,
+    "Name": "ManaRegenSettings",
+    "SaveTime": "2026-07-02T00:58:12.308Z"
+  }
+}

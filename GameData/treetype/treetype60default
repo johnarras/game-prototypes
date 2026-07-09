@@ -2,8 +2,8 @@
   "Id": "treetype60default",
   "ParentId": "default",
   "IdKey": 60,
-  "Name": "CypressGold",
-  "Art": "CypressGold",
-  "Scale": 1.0,
+  "Name": "RiverBirch",
+  "Art": "RiverBirch",
+  "Scale": 2.5,
   "VariationCount": 2
 }

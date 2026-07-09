@@ -21,6 +21,7 @@ using OxDb.SharedCore.Website.Responses.Interfaces;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Characters.Utils;
 using OxDb.SharedGame.Time.Services;
+using OxDb.SharedGame.Trader.Cities.Settings;
 using OxDb.SharedGame.Versions.Settings;
 
 namespace OxDb.ServerCore.GameSettings.Services
@@ -84,7 +85,7 @@ namespace OxDb.ServerCore.GameSettings.Services
 
             gameData.SetupDataDict(true);
 
-            PolymorphicMongoRepository polyRepo = _repoService.FindRepo(typeof(SettingsNameSettings)) as PolymorphicMongoRepository;
+            PolymorphicMongoRepository? polyRepo = _repoService.FindRepo(typeof(SettingsNameSettings)) as PolymorphicMongoRepository;
 
             if (polyRepo == null)
             {
@@ -105,6 +106,8 @@ namespace OxDb.ServerCore.GameSettings.Services
 
                 typeListDict[settings.GetType()].Add(settings);
             }
+
+
 
             List<ITopLevelSettings> allTopLevelSettings = rawSettings.OfType<ITopLevelSettings>().ToList();
 
@@ -131,8 +134,21 @@ namespace OxDb.ServerCore.GameSettings.Services
                 }
             }
 
-            gameData.AddData(allTopLevelSettings);
+            if (CreateMissingData)
+            { 
+                foreach (IGameSettingsLoader loader in _loaderObjects.GetDict().Values)
+                {
+                    ITopLevelSettings topLevel = allTopLevelSettings.FirstOrDefault(x => x.GetType() == loader.HelperKey &&
+                    x.Id == GameDataConstants.DefaultFilename)!;
 
+                    if (topLevel == null)
+                    {
+                        allTopLevelSettings.Add(loader.CreateDefaultDocument());
+                    }
+                }                        
+            }
+
+            gameData.AddData(allTopLevelSettings);
 
             _gameData.CopyFrom(gameData);
 

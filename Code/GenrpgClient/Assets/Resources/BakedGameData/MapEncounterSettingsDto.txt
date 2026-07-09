@@ -9,21 +9,22 @@
       "IdKey": 2,
       "Name": "Treasure",
       "Icon": "Treasure",
-      "Weight": 0.01
+      "Weight": 0.1
     },
     {
       "IdKey": 3,
       "Name": "Monsters",
       "Icon": "Monsters",
-      "Weight": 0.9,
-      "CanRepeat": true
+      "Weight": 0.2,
+      "CanRepeat": true,
+      "IsCornerSmallRoomItem": true
     },
     {
       "IdKey": 4,
       "Name": "Trap",
       "Icon": "Trap",
       "Art": "",
-      "Weight": 0.08,
+      "Weight": 0.2,
       "CanRepeat": true,
       "CanBeCleansed": true
     },
@@ -32,7 +33,7 @@
       "Name": "Stats",
       "Desc": "",
       "Icon": "Stats",
-      "Weight": 0.01
+      "Weight": 0.1
     },
     {
       "IdKey": 6,
@@ -41,13 +42,25 @@
       "AtlasPrefix": "",
       "Icon": "LevelMap",
       "Art": ""
+    },
+    {
+      "IdKey": 7,
+      "Name": "JunkPile",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "JunkPile",
+      "Art": "",
+      "Weight": 0.4,
+      "CanRepeat": true,
+      "IsCornerSmallRoomItem": true
     }
   ],
   "Parent": {
     "Id": "default",
-    "EncounterChance": 0.15,
+    "EncounterChance": 0.03,
+    "CornerSmallRoomEncounterChance": 0.75,
     "Name": "MapEncounterSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-01-25T15:44:27.786Z"
+  "SaveTime": "2026-07-09T19:36:49.686Z"
 }

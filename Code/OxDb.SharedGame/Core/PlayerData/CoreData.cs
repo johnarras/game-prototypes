@@ -14,10 +14,6 @@ using System;
 
 namespace OxDb.SharedGame.Core.PlayerData
 {
-
-
-
-
     /// <summary>
     /// Core data about the board user
     /// </summary>
@@ -27,7 +23,7 @@ namespace OxDb.SharedGame.Core.PlayerData
 
 
 
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.Core; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.Core; }
         public override PersonalDataAccumulation GetAccumulation()
         {
             return new PersonalDataAccumulation();
@@ -41,21 +37,21 @@ namespace OxDb.SharedGame.Core.PlayerData
         [Key(1)] public DateTime Created { get; set; } = DateTime.UtcNow;
         [Key(2)] public string Client { get; set; } = VersionConstants.MinVersion.ToString();
 
-        [Key(11)] public string GameSessionId { get; set; }
-        [Key(3)] public ABList AB { get; set; } = new ABList();
-        [Key(4)] public DateTime NextHourlyUpdate { get; set; }
+        [Key(3)] public string GameSessionId { get; set; }
+        [Key(4)] public ABList AB { get; set; } = new ABList();
+        [Key(5)] public DateTime NextHourlyUpdate { get; set; }
 
-        [Key(5)] public DateTime NextBuffEndsTime { get; set; }
+        [Key(6)] public DateTime NextBuffEndsTime { get; set; }
 
-        [Key(6)] public long UniqueId { get; set; }
+        [Key(7)] public long UniqueId { get; set; }
 
-        [Key(7)] public long Level { get; set; }
+        [Key(8)] public long Level { get; set; }
 
-        [Key(8)] public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
+        [Key(9)] public SmallIdLongCollection Currencies { get; set; } = new SmallIdLongCollection();
 
-        [Key(9)] public SmallIdIntCollection Vars { get; set; } = new SmallIdIntCollection();
+        [Key(10)] public SmallIdIntCollection Vars { get; set; } = new SmallIdIntCollection();
 
-        [Key(10)] public SmallIdLongCollection TravelDayCurrencies { get; set; } = new SmallIdLongCollection();
+        [Key(11)] public SmallIdLongCollection TravelDayCurrencies { get; set; } = new SmallIdLongCollection();
 
         public bool HasFlag(long flagIndex) { return (Vars[CoreVars.Flags] & (1 << (int)flagIndex)) != 0; }
         public void AddFlag(long flagIndex) { Vars[CoreVars.Flags] = Vars[CoreVars.Flags] | (int)(1 << (int)flagIndex); }

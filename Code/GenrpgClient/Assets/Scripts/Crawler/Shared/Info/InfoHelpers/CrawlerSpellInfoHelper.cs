@@ -32,14 +32,15 @@ namespace OxDb.SharedGame.Crawler.Info.Helpers
             RoleScalingType scalingType = _gameData.Get<RoleScalingTypeSettings>(_gs.ch).Get(spell.RoleScalingTypeId);
 
             allLines.Add(_infoService.CreateHeaderLine(spell.Name, false));
-            allLines.Add("Tier " + spell.RoleScalingTier + " " + _infoService.CreateInfoLink(scalingType) + " Scaling");
-            if (spell.PowerPerLevel == 0)
+            allLines.Add("Tier " + spell.UnlockTier + " " + _infoService.CreateInfoLink(scalingType) + " Scaling");
+            allLines.Add("Receives " + (int)(spell.AttackQuantityScale * 100) + "% of the caster's Role tier in hits.");
+            if (spell.TierCost == 0)
             {
-                allLines.Add("Cost: " + spell.PowerCost);
+                allLines.Add("Cost: " + spell.BaseCost);
             }
             else
             {
-                allLines.Add("Cost: " + spell.PowerCost + " +" + spell.PowerPerLevel + "/Tier");
+                allLines.Add("Cost: " + spell.BaseCost + " +" + spell.TierCost + "/Tier");
             }
 
             TargetType ttype = _gameData.Get<TargetTypeSettings>(_gs.ch).Get(spell.TargetTypeId);

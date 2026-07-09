@@ -22,11 +22,11 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
 {
     public interface ICaravanService : IInitializable
     {
-        CaravanTravelInfo GetTravelInfo(CoreData coreData);
+        ValueTask<CaravanTravelInfo> GetTravelInfo(IUnitDataLookup lookup);
 
-        Task<UpdateCaravanMembersResponse> UpdateCaravanMembers(IUnitDataLookup lookup, List<long> caravanMemberIds);
+        ValueTask<UpdateCaravanMembersResponse> UpdateCaravanMembers(IUnitDataLookup lookup, List<long> caravanMemberIds);
 
-        CaravanPosition GetPosition(CoreData coreData);
+        ValueTask<CaravanPosition> GetPosition(IUnitDataLookup lookup);
     }
 
 
@@ -51,15 +51,18 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
         protected ICalcAttributeService _calcAttributeService = null;
 
 
-        public virtual async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public virtual async Task Initialize(CancellationToken token)
         {
 
 
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
-        public CaravanTravelInfo GetTravelInfo(CoreData coreData)
+        public async ValueTask<CaravanTravelInfo> GetTravelInfo(IUnitDataLookup lookup)
         {
+
+            CoreData coreData = await lookup.GetAsync<CoreData>();
+
             SmallIdLongCollection dailyCurrencies = coreData.TravelDayCurrencies;
 
             long rationsCost = 0;// Math.Max(1, coreData.Vars[TraderVars.RationsCost]);
@@ -79,7 +82,7 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
             return info;
         }
 
-        public async Task<UpdateCaravanMembersResponse> UpdateCaravanMembers(IUnitDataLookup lookup, List<long> caravanMemberIds)
+        public async ValueTask<UpdateCaravanMembersResponse> UpdateCaravanMembers(IUnitDataLookup lookup, List<long> caravanMemberIds)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -88,7 +91,7 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
                 Success = false,
             };
 
-            CaravanPosition position = GetPosition(coreData);
+            CaravanPosition position = await GetPosition(lookup);
 
 
             HoldingsData holdings = await lookup.GetAsync<HoldingsData>();
@@ -138,21 +141,23 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
             return response;
         }
 
-        public CaravanPosition GetPosition(CoreData coreData)
+        public async ValueTask<CaravanPosition> GetPosition(IUnitDataLookup lookup)
         {
+            CoreData coreData = await lookup.GetAsync<CoreData>();
+
             CaravanPosition pos = new CaravanPosition();
 
             pos.FromX = coreData.Vars[TraderVars.FromX];
-            pos.FromY = coreData.Vars[TraderVars.FromY];
+            pos.FromZ = coreData.Vars[TraderVars.FromZ];
             pos.ToX = coreData.Vars[TraderVars.ToX];
-            pos.ToY = coreData.Vars[TraderVars.ToY];
+            pos.ToZ = coreData.Vars[TraderVars.ToZ];
             pos.TargetCity = _gameData.Get<CitySettings>(coreData).Get(coreData.Vars[TraderVars.CityId]);
 
             pos.TotalDistanceToTarget = coreData.Vars[TraderVars.TotalDistanceToTarget];
             pos.DistanceGone = coreData.Vars[TraderVars.DistanceGone];
 
 
-            pos.Angle = _traderMapService.GetAngle(pos.FromX, pos.FromY, pos.ToX, pos.ToY);
+            pos.Angle = _traderMapService.GetAngle(pos.FromX, pos.FromZ, pos.ToX, pos.ToZ);
 
             double percentGone = 0;
 
@@ -161,15 +166,15 @@ namespace OxDb.SharedGame.Trader.Caravans.Services
                 percentGone = 1.0f * pos.DistanceGone / pos.TotalDistanceToTarget;
             }
 
-            MyPointF currPos = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, pos.DistanceGone, pos.TotalDistanceToTarget);
+            Point2F currPos = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromZ, pos.ToX, pos.ToZ, pos.DistanceGone, pos.TotalDistanceToTarget);
 
             pos.CurrX = (int)currPos.X;
-            pos.CurrY = (int)currPos.Y;
+            pos.CurrZ = (int)currPos.Z;
 
             if (pos.DistanceGone == 0)
             {
                 pos.PositionCity = _gameData.Get<CitySettings>(coreData).GetData()
-                    .FirstOrDefault(x => x.MapPixelX == pos.CurrX && x.MapPixelY == pos.CurrY);
+                    .FirstOrDefault(x => x.MapPixelX == pos.CurrX && x.MapPixelZ == pos.CurrZ);
             }
 
             return pos;

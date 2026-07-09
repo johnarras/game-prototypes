@@ -9,9 +9,9 @@ namespace OxDb.SharedGame.Currencies.Services
 {
     public interface ICoreCurrencyService : IInjectable
     {
-        Task<long> GetStorage(IUnitDataLookup lookup, long coreCurrencyTypeId);
+        ValueTask<long> GetStorage(IUnitDataLookup lookup, long coreCurrencyTypeId);
 
-        Task<long> GetRegen(IUnitDataLookup lookup, long coreCurrencyTypeId);
+        ValueTask<long> GetRegen(IUnitDataLookup lookup, long coreCurrencyTypeId);
     }
 
     public class CoreCurrencyService : ICoreCurrencyService
@@ -19,12 +19,12 @@ namespace OxDb.SharedGame.Currencies.Services
         protected IGameData _gameData = null;
         protected IAttributeService _attributeService = null;
 
-        public async Task<long> GetRegen(IUnitDataLookup lookup, long coreCurrencyTypeId)
+        public async ValueTask<long> GetRegen(IUnitDataLookup lookup, long coreCurrencyTypeId)
         {
             return await _attributeService.GetQuantity(lookup, EAttributeCategories.CurrencyRegen, EAttributeValIndex.Total, coreCurrencyTypeId);
         }
 
-        public async Task<long> GetStorage(IUnitDataLookup lookup, long coreCurrencyTypeId)
+        public async ValueTask<long> GetStorage(IUnitDataLookup lookup, long coreCurrencyTypeId)
         {
             return await _attributeService.GetQuantity(lookup, EAttributeCategories.CurrencyStorage, EAttributeValIndex.Total, coreCurrencyTypeId);
         }

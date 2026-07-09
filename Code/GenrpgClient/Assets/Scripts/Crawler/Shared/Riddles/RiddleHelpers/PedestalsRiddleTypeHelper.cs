@@ -33,13 +33,13 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 
         protected ILogService _logService = null;
 
-        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> startOpenPoints, IRandom rand)
+        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> startOpenPoints, IRandom rand)
         {
             int pedestalCount = rand.Next(3, 5);
 
-            List<PointXZ> horizPoints = new List<PointXZ>();
-            List<PointXZ> vertPoints = new List<PointXZ>();
-            foreach (PointXZ point in startOpenPoints)
+            List<Point2I> horizPoints = new List<Point2I>();
+            List<Point2I> vertPoints = new List<Point2I>();
+            foreach (Point2I point in startOpenPoints)
             {
                 if (IsOkStartingPoint(prevFloor, point.X, point.Z, startOpenPoints, pedestalCount, false))
                 {
@@ -51,7 +51,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
                 }
             }
 
-            PointXZ startPoint = null;
+            Point2I startPoint = null;
             bool isVertical = false;
 
             if (rand.NextDouble() < 0.5)
@@ -80,20 +80,20 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
                 return false;
             }
 
-            List<PointXZ> finalPoints = new List<PointXZ>();
+            List<Point2I> finalPoints = new List<Point2I>();
 
             if (isVertical)
             {
                 for (int i = 0; i < pedestalCount; i++)
                 {
-                    finalPoints.Add(new PointXZ(startPoint.X, startPoint.Z + i));
+                    finalPoints.Add(new Point2I(startPoint.X, startPoint.Z + i));
                 }
             }
             else
             {
                 for (int i = 0; i < pedestalCount; i++)
                 {
-                    finalPoints.Add(new PointXZ(startPoint.X + i, startPoint.Z));
+                    finalPoints.Add(new Point2I(startPoint.X + i, startPoint.Z));
                 }
             }
 
@@ -316,7 +316,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
                 {
                     clueText.Append("Activate only the orbs that I do not dislike.\n");
                 }
-                PointXZ openPoint = finalPoints[0];
+                Point2I openPoint = finalPoints[0];
                 finalPoints.RemoveAt(0);
                 prevFloor.Set(openPoint.X, openPoint.Z, CellIndex.Walls, 0);
 
@@ -354,7 +354,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
             return true;
         }
 
-        protected bool IsOkStartingPoint(CrawlerMap map, int sx, int sz, List<PointXZ> okPoints, int length, bool vertical)
+        protected bool IsOkStartingPoint(CrawlerMap map, int sx, int sz, List<Point2I> okPoints, int length, bool vertical)
         {
             int cx = sx;
             int cz = sz;

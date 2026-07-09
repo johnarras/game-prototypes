@@ -4,46 +4,26 @@
   "IdKey": 82,
   "Name": "Magic Compass",
   "Desc": "Gives you a compass.",
-  "PowerCost": 10.0,
-  "PowerPerLevel": 2.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 2.0,
+  "TierCost": 1.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 6,
   "RoleScalingTypeId": 6,
-  "RoleScalingTier": 3,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 3,
   "Effects": [
     {
       "EntityTypeId": 101,
       "EntityId": 3,
-      "MinQuantity": 1,
-      "MaxQuantity": 1,
-      "ElementTypeId": 2,
-      "Chance": 1.0
+      "ElementTypeId": 5,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1964
+    ]
+  },
   "ItemEnchantWeight": 1.0
 }

@@ -58,9 +58,9 @@ namespace OxDb.SharedGame.MapServer.Entities
             }
         }
 
-        public static PointXZ GetGridCoordinates(double x, double z, int gridSize)
+        public static Point2I GetGridCoordinates(double x, double z, int gridSize)
         {
-            return new PointXZ(GetGridIndexFromCoord(x, gridSize, false), GetGridIndexFromCoord(z, gridSize, false));
+            return new Point2I(GetGridIndexFromCoord(x, gridSize, false), GetGridIndexFromCoord(z, gridSize, false));
         }
 
         public static int GetMapObjectGridSize(Map map)

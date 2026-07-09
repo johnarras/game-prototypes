@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class CombatTextHandler : BaseMapObjectServerMapMessageHandler<CombatText>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, CombatText message)
+        protected override async ValueTask InnerProcess(MapObject obj, CombatText message)
         {
             obj.AddMessage(message);
         }

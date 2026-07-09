@@ -4,7 +4,6 @@ using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Bridges;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
-using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class BridgeObjectLoader : BaseObjectLoader
     public override long HelperKey => EntityTypes.Bridge;
 
     public override bool LoadObject(PatchLoadData loadData, int entityId,
-       int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
+       int x, int z, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
 
         BridgeType bridgeType = _gameData.Get<BridgeTypeSettings>(_gs.ch).Get(entityId);
@@ -22,7 +21,7 @@ public class BridgeObjectLoader : BaseObjectLoader
             return false;
         }
 
-        ExtendedWorldObjectData extData = loadData.patch.ExtendedObjects.FirstOrDefault(e => e.X == x && e.Z == y);
+        ExtendedWorldObjectData extData = loadData.patch.GetObjAtPos(loadData, x, z);
 
         if (extData == null)
         {
@@ -36,13 +35,13 @@ public class BridgeObjectLoader : BaseObjectLoader
         dlo.url = prefabName;
         dlo.loadData = loadData;
         dlo.x = x;
-        dlo.y = y;
-        dlo.finalZ = extData.Height;
+        dlo.z = z;
+        dlo.finalY = extData.Height;
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
 
-        dlo.rotation = new MyPointF(0, extData.Angle, 0);
+        dlo.rotation = new Point3F(0, extData.Angle, 0);
         dlo.AfterLoad = AfterLoadObject;
 
         _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
@@ -55,7 +54,7 @@ public class BridgeObjectLoader : BaseObjectLoader
         go.transform.localRotation = Quaternion.identity;
         if (dlo.rotation != null)
         {
-            go.transform.Rotate(dlo.rotation.X, dlo.rotation.Y, dlo.rotation.Z);
+            go.transform.Rotate(dlo.rotation.X, dlo.rotation.Z, dlo.rotation.Z);
         }
     }
 }

@@ -9,7 +9,7 @@
   "AncientName": "Margiana",
   "Population": 200000,
   "MapPixelX": 4020,
-  "MapPixelY": 2377,
+  "MapPixelZ": 2377,
   "BiomeTypeId": 13,
   "CultureTypeId": 11,
   "TradeGoodsProduced": [
@@ -26,5 +26,21 @@
       "TradeGoodId": 16
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 11
+    }
+  ]
 }

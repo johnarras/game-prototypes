@@ -57,7 +57,7 @@ public class UnitObjectLoader : BaseCrawlerMapObjectLoader
         Vector3 oldScale = go.transform.localScale;
         if (patch != null)
         {
-            Terrain terr = patch.terrain as Terrain;
+            Terrain terr = patch.Core.Terrain;
 
             if (terr != null)
             {

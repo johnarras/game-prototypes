@@ -4,6 +4,7 @@ using OxDb.RequestServer.Trader.Encounters.Services;
 using OxDb.RequestServer.Trader.Stats.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Attributes.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
@@ -17,6 +18,10 @@ using OxDb.SharedGame.UserEnergy.WebApi;
 
 namespace OxDb.RequestServer.Resets.Services
 {
+    public interface IHourlyUpdateService : IInjectable
+    {
+        ValueTask CheckHourlyCurrencyUpdates(WebContext context, HourlyResetArgs args);
+    }
     public class HourlyUpdateService : IHourlyUpdateService
     {
         private IGameData _gameData = null;
@@ -24,7 +29,7 @@ namespace OxDb.RequestServer.Resets.Services
         private IRewardService _rewardService = null;
         private ITravelEncounterService _encounterService = null;
         private IServerGameStatService _gameStatService = null;
-        public async Task CheckHourlyCurrencyUpdates(WebContext context, HourlyResetArgs args)
+        public async ValueTask CheckHourlyCurrencyUpdates(WebContext context, HourlyResetArgs args)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 

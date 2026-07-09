@@ -4,14 +4,13 @@ using OxDb.SharedGame.Characters.WebApi.DeleteChar;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Website.MessageHandlers
 {
     public class DeleteCharResponseHandler : BaseClientWebResponseHandler<DeleteCharResponse>
     {
         IScreenService _screenService = null;
-        protected override async Awaitable InnerProcess(DeleteCharResponse result, CancellationToken token)
+        protected override async ValueTask InnerProcess(DeleteCharResponse result, CancellationToken token)
         {
             _gs.characterStubs = result.AllCharacters;
             ActiveScreen screen = _screenService.GetScreen(ScreenNames.CharacterSelect);

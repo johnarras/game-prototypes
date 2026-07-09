@@ -5,7 +5,6 @@ using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Fences;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
-using System.Linq;
 using System.Threading;
 using UnityEngine;
 
@@ -15,7 +14,7 @@ public class FenceObjectLoader : BaseObjectLoader
     public override long HelperKey => EntityTypes.Fence;
 
     public override bool LoadObject(PatchLoadData loadData, int entityId,
-        int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
+        int x, int z, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
 
         FenceType fenceType = _gameData.Get<FenceTypeSettings>(_gs.ch).Get((int)entityId);
@@ -24,7 +23,7 @@ public class FenceObjectLoader : BaseObjectLoader
             return false;
         }
 
-        ExtendedWorldObjectData extData = loadData.patch.ExtendedObjects.FirstOrDefault(e => e.X == x && e.Z == y);
+        ExtendedWorldObjectData extData = loadData.patch.GetObjAtPos(loadData, x, z);
 
         if (extData == null)
         {
@@ -39,12 +38,12 @@ public class FenceObjectLoader : BaseObjectLoader
         dlo.url = artName;
         dlo.loadData = loadData;
         dlo.x = x;
-        dlo.y = y;
+        dlo.z = z;
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
         dlo.allowRandomPlacement = false;
-        dlo.rotation = new MyPointF(0, extData.Angle, extData.HAngle);
+        dlo.rotation = new Point3F(0, extData.Angle, extData.HAngle);
         dlo.AfterLoad = AfterLoadObject;
 
         _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
@@ -58,7 +57,7 @@ public class FenceObjectLoader : BaseObjectLoader
         go.transform.localPosition += Vector3.up;
         if (dlo.rotation != null)
         {
-            go.transform.Rotate(dlo.rotation.X, dlo.rotation.Y, dlo.rotation.Z);
+            go.transform.Rotate(dlo.rotation.X, dlo.rotation.Z, dlo.rotation.Z);
         }
     }
 }

@@ -9,7 +9,7 @@ using OxDb.SharedCore.Website.Interfaces;
 using OxDb.SharedCore.Website.Requests.Interfaces;
 using OxDb.SharedCore.Website.Responses.Errors;
 
-namespace OxDb.RequestServer.ClientUserRequests.RequestHandlers
+namespace OxDb.RequestServer.GameClientRequests.RequestHandlers
 {
     public abstract class BaseClientUserRequestHandler<TRequest> : IGameClientRequestHandler where TRequest : IClientUserRequest
     {

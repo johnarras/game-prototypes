@@ -4,38 +4,25 @@
   "IdKey": 31,
   "Name": "Pass Wall",
   "Desc": "Pass through a wall in front of you if the square behind it exists.",
-  "PowerCost": 50.0,
-  "StatBonusScaling": 1.0,
+  "BaseCost": 50.0,
   "MaxRange": 100,
   "CombatActionId": 4,
   "TargetTypeId": 8,
-  "RoleScalingTypeId": 6,
-  "RoleScalingTier": 1,
-  "PointCost": 5,
+  "RoleScalingTypeId": 8,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
   "Effects": [
     {
       "EntityTypeId": 37,
       "EntityId": 2,
-      "ElementTypeId": 9,
-      "Chance": 1.0
+      "ElementTypeId": 5,
+      "ProcChance": 1.0
     }
   ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 12
-    }
-  ],
+  "Roles": {
+    "Bits": [
+      1616
+    ]
+  },
   "ItemEnchantWeight": 0.1
 }

@@ -1,4 +1,5 @@
 using Assets.Scripts.Assets.Bundles;
+using Assets.Scripts.FileUploads;
 using Newtonsoft.Json;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Serialization.Services;
@@ -29,6 +30,8 @@ public class CreateAssetBundles
             Debug.LogError("Bad platform sent to bundle build: " + platformString);
             return null;
         }
+
+        EditorUserBuildSettings.SwitchActiveBuildTarget(target.NamedTarget.ToBuildTargetGroup(), target.Target);
 
         string basePath = target.GetBundleOutputPath();
         string textFilePath = target.GetTextFileOutputPath();
@@ -67,7 +70,8 @@ public class CreateAssetBundles
 
         BundleVersions versions = new BundleVersions() { UpdateInfo = updateData, ClientPlatform = target.ClientPlatform };
 
-        BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression | BuildAssetBundleOptions.RecurseDependencies;
+        BuildAssetBundleOptions options = BuildAssetBundleOptions.ChunkBasedCompression
+            | BuildAssetBundleOptions.RecurseDependencies;
 
         if (!Directory.Exists(basePath))
         {
@@ -75,15 +79,7 @@ public class CreateAssetBundles
         }
         ClearHashedFilenames(basePath);
 
-        AssetBundleManifest manifest = null;
-        try
-        {
-            manifest = BuildPipeline.BuildAssetBundles(basePath, options, target.Target);
-        }
-        catch (Exception e)
-        {
-            Debug.Log("Asset bundle exception: " + e.Message + "\n" + e.StackTrace);
-        }
+        AssetBundleManifest manifest = BuildPipeline.BuildAssetBundles(basePath, options, target.Target);
 
         // if the manifest exists, loop through all bundles and any that have 
         // changes, increment their versions.
@@ -116,11 +112,6 @@ public class CreateAssetBundles
             }
 
             List<string> dependencies = manifest.GetAllDependencies(bundle2).ToList();
-
-            if (dependencies.IndexOf("dungeonsmaterials") >= 0)
-            {
-                Debug.Log("Found DungeonMaterials");
-            }
 
             versions.Versions[bundle2].ChildDependencies = dependencies;
 

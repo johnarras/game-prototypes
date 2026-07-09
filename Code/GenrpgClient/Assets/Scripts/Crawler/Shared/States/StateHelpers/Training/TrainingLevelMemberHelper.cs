@@ -31,7 +31,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Training
         private IInfoService _infoService = null;
         public override ECrawlerStates HelperKey => ECrawlerStates.TrainingLevelMember;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

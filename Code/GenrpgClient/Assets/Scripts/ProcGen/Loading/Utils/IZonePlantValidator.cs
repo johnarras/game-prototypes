@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.MapServer.Services;
@@ -13,7 +12,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 {
     public interface IZonePlantValidator : IInjectable
     {
-        void UpdateValidPlantTypeList<DP>(Zone zone, int gx, int gy, List<DP> fullList,
+        void UpdateValidPlantTypeList<DP>(Zone zone, int gx, int gz, List<DP> fullList,
         bool isMainTerrain, CancellationToken token) where DP : BaseDetailPrototype, new();
     }
 
@@ -23,8 +22,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
         private IGameData _gameData;
         private IMapProvider _mapProvider;
         private IClientGameState _gs;
-        protected IClientRandom _rand;
-        public void UpdateValidPlantTypeList<DP>(Zone zone, int gx, int gy, List<DP> fullList,
+        public void UpdateValidPlantTypeList<DP>(Zone zone, int gx, int gz, List<DP> fullList,
         bool isMainTerrain, CancellationToken token) where DP : BaseDetailPrototype, new()
         {
             if (fullList.Count >= 2 * MapConstants.MaxGrass)
@@ -40,7 +38,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
 
             while (plist.Count > maxQuantity)
             {
-                plist.RemoveAt(_rand.Rand.Next() % plist.Count);
+                plist.RemoveAt(_gs.Rand.Next() % plist.Count);
             }
 
             for (int p = 0; p < plist.Count; p++)
@@ -66,7 +64,7 @@ namespace Assets.Scripts.ProcGen.Loading.Utils
                 full.plantType = pt;
                 full.Index = fullList.Count;
                 full.XGrid = gx;
-                full.YGrid = gy;
+                full.ZGrid = gz;
                 full.noiseSeed = zone.Seed % 12783428 + _mapProvider.GetMap().Seed % 543333 + p * 13231;
                 full.zoneIds.Add(zone.IdKey);
                 fullList.Add(full);

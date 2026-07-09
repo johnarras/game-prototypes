@@ -24,10 +24,10 @@ namespace OxDb.MapServer.AI.Services
 {
     public interface IAIService : IInjectable
     {
-        bool Update(IRandom rand, Unit unit);
-        void TargetMove(IRandom rand, Unit unit, string targetUnitId);
-        void EndCombat(IRandom rand, Unit unit, string killedUnitId, bool clearAllAttackers);
-        void BringFriends(IRandom rand, Unit unit, string targetId);
+        bool Update(Unit unit);
+        void TargetMove(Unit unit, string targetUnitId);
+        void EndCombat(Unit unit, string killedUnitId, bool clearAllAttackers);
+        void BringFriends(Unit unit, string targetId);
         long GetCastTimes();
         long GetUpdateTimes();
     }
@@ -55,11 +55,11 @@ namespace OxDb.MapServer.AI.Services
             return _castTimes;
         }
 
-        public virtual bool Update(IRandom rand, Unit unit)
+        public virtual bool Update(Unit unit)
         {
             if (!_unitService.IsOkUnit(unit, false))
             {
-                _objectManager.RemoveObject(rand, unit.Id, UnitConstants.CorpseDespawnSeconds);
+                _objectManager.RemoveObject(unit.Rand, unit.Id, UnitConstants.CorpseDespawnSeconds);
                 return false;
             }
 
@@ -74,56 +74,56 @@ namespace OxDb.MapServer.AI.Services
 
             if (unit.HasFlag(UnitFlags.Evading))
             {
-                KeepMoving(rand, unit);
+                KeepMoving(unit);
             }
             else if (unit.HasTarget())
             {
-                KeepMoving(rand, unit);
-                UpdateCombat(rand, unit);
+                KeepMoving(unit);
+                UpdateCombat(unit);
             }
             else
             {
-                ScanForTargets(rand, unit);
+                ScanForTargets(unit);
 
                 if (unit.HasTarget() || unit.Moving)
                 {
-                    KeepMoving(rand, unit);
+                    KeepMoving(unit);
                 }
                 else
                 {
-                    IdleWander(rand, unit);
+                    IdleWander(unit);
                 }
             }
 
-            UpdateAfterAIStep(rand, unit);
+            UpdateAfterAIStep(unit);
             return true;
         }
 
-        protected void IdleWander(IRandom rand, Unit unit)
+        protected void IdleWander(Unit unit)
         {
             if (!unit.Moving && !unit.HasFlag(UnitFlags.Evading) &&
                 !unit.GetAddons().Any() &&
                 !unit.HasTarget() &&
-                rand.NextDouble() < _gameData.Get<AISettings>(unit).IdleWanderChance &&
+                unit.Rand.NextDouble() < _gameData.Get<AISettings>(unit).IdleWanderChance &&
                 unit.Spawn != null)
             {
                 unit.ClearAttackers(_logService);
 
                 float wanderRange = AIConstants.IdleWanderRange;
 
-                float targetx = unit.Spawn.X + RandUtils.DeltaRange(wanderRange, rand);
-                float targetz = unit.Spawn.Z + RandUtils.DeltaRange(wanderRange, rand);
+                float targetx = unit.Spawn.X + RandUtils.DeltaRange(wanderRange, unit.Rand);
+                float targetz = unit.Spawn.Z + RandUtils.DeltaRange(wanderRange, unit.Rand);
 
-                LocationMove(rand, unit, targetx, targetz, RandUtils.FloatRange(0.2f, 0.3f, rand));
+                LocationMove(unit, targetx, targetz, RandUtils.FloatRange(0.2f, 0.3f, unit.Rand));
             }
         }
 
-        protected void UpdateCombat(IRandom rand, Unit unit)
+        protected void UpdateCombat(Unit unit)
         {
             if (!_objectManager.GetUnit(unit.TargetId, out Unit target) || target.HasFlag(UnitFlags.IsDead))
             {
-                SetTarget(rand, unit, "");
-                EndCombat(rand, unit, unit.TargetId, false);
+                SetTarget(unit, "");
+                EndCombat(unit, unit.TargetId, false);
                 return;
             }
 
@@ -133,7 +133,7 @@ namespace OxDb.MapServer.AI.Services
 
             if (spells.Count < 1)
             {
-                KeepMoving(rand, unit);
+                KeepMoving(unit);
                 return;
             }
 
@@ -148,10 +148,10 @@ namespace OxDb.MapServer.AI.Services
 
             _messageService.SendMessage(unit, castSpell);
 
-            KeepMoving(rand, unit);
+            KeepMoving(unit);
         }
 
-        protected void ScanForTargets(IRandom rand, Unit unit)
+        protected void ScanForTargets(Unit unit)
         {
             if (unit.HasFlag(UnitFlags.Evading))
             {
@@ -165,13 +165,13 @@ namespace OxDb.MapServer.AI.Services
 
             if (nearbyUnits.Count > 0)
             {
-                string newTargetId = nearbyUnits[rand.Next() % nearbyUnits.Count].Id;
-                TargetMove(rand, unit, newTargetId);
-                BringFriends(rand, unit, newTargetId); // When it finds a target, it brings friends.
+                string newTargetId = nearbyUnits[unit.Rand.Next() % nearbyUnits.Count].Id;
+                TargetMove(unit, newTargetId);
+                BringFriends(unit, newTargetId); // When it finds a target, it brings friends.
             }
         }
 
-        public void BringFriends(IRandom rand, Unit bringer, string targetId)
+        public void BringFriends(Unit bringer, string targetId)
         {
             if (!_objectManager.GetUnit(targetId, out Unit targetUnit) || targetUnit.HasFlag(UnitFlags.IsDead | UnitFlags.Evading))
             {
@@ -189,7 +189,7 @@ namespace OxDb.MapServer.AI.Services
             _messageService.SendMessageNear(targetUnit, bringAFriend, _gameData.Get<AISettings>(bringer).BringAFriendRadius, false);
         }
 
-        public void LocationMove(IRandom rand, Unit unit, float x, float z, float speedMult)
+        public void LocationMove(Unit unit, float x, float z, float speedMult)
         {
             unit.Speed = unit.BaseSpeed * speedMult;
             unit.Moving = true;
@@ -197,7 +197,7 @@ namespace OxDb.MapServer.AI.Services
             unit.FinalZ = z;
         }
 
-        public void TargetMove(IRandom rand, Unit unit, string targetUnitId)
+        public void TargetMove(Unit unit, string targetUnitId)
         {
             if (unit.HasFlag(UnitFlags.Evading))
             {
@@ -215,24 +215,24 @@ namespace OxDb.MapServer.AI.Services
                 speedMult = UnitConstants.CombatSpeedMult;
             }
 
-            SetTarget(rand, unit, targetUnit.Id);
+            SetTarget(unit, targetUnit.Id);
 
-            float targX = unit.X;
-            float targZ = unit.Z;
+            float targX = targetUnit.X;
+            float targZ = targetUnit.Z;
 
             float dx = unit.X - targetUnit.X;
             float dz = unit.Z - targetUnit.Z;
 
             float dist = (float)Math.Sqrt(dx * dx + dz * dz);
 
-            LocationMove(rand, unit, targX, targZ, speedMult);
+            LocationMove(unit, targX, targZ, speedMult);
 
-            StartCombat(rand, unit, targetUnit);
+            StartCombat(unit, targetUnit);
         }
-        public void EndCombat(IRandom rand, Unit unit, string killedUnitId, bool isLeashing)
+        public void EndCombat(Unit unit, string killedUnitId, bool isLeashing)
         {
             string oldTargetId = unit.TargetId;
-            SetTarget(rand, unit, null);
+            SetTarget(unit, null);
             if (!string.IsNullOrEmpty(killedUnitId))
             {
                 unit.RemoveAttacker(killedUnitId);
@@ -242,25 +242,25 @@ namespace OxDb.MapServer.AI.Services
             {
                 unit.AddFlag(UnitFlags.Evading);
                 unit.ClearAttackers(_logService);
-                LocationMove(rand, unit, unit.CombatStartX, unit.CombatStartZ, UnitConstants.EvadeSpeedMult);
+                LocationMove(unit, unit.CombatStartX, unit.CombatStartZ, UnitConstants.EvadeSpeedMult);
                 return;
             }
 
-            ScanForTargets(rand, unit);
+            ScanForTargets(unit);
             if (!unit.HasTarget() || unit.TargetId == oldTargetId || unit.TargetId == killedUnitId)
             {
-                SetTarget(rand, unit, null);
+                SetTarget(unit, null);
 
                 if (!(unit is Character ch))
                 {
                     unit.AddFlag(UnitFlags.Evading);
-                    LocationMove(rand, unit, unit.CombatStartX, unit.CombatStartZ, UnitConstants.EvadeSpeedMult);
+                    LocationMove(unit, unit.CombatStartX, unit.CombatStartZ, UnitConstants.EvadeSpeedMult);
                     return;
                 }
             }
         }
 
-        public void SetTarget(IRandom rand, Unit unit, string targetId)
+        public void SetTarget(Unit unit, string targetId)
         {
             if (unit.TargetId == targetId)
             {
@@ -293,7 +293,7 @@ namespace OxDb.MapServer.AI.Services
             _messageService.SendMessageNear(unit, onSet);
         }
 
-        public void StartCombat(IRandom rand, Unit attacker, Unit victim)
+        public void StartCombat(Unit attacker, Unit victim)
         {
             if (!attacker.HasFlag(UnitFlags.DidStartCombat))
             {
@@ -308,16 +308,18 @@ namespace OxDb.MapServer.AI.Services
             }
         }
 
-        public void KeepMoving(IRandom rand, Unit unit)
+        public void KeepMoving(Unit unit)
         {
             if (!unit.Moving || unit.Speed < 0.01f)
             {
-                if (unit.HasFlag(UnitFlags.Evading))
-                {
-                    unit.RemoveFlag(UnitFlags.Evading | UnitFlags.DidStartCombat);
-                }
                 if (!unit.HasTarget())
                 {
+                    // If it's trying to evade/return home, let it continue trying to move
+                    if (unit.HasFlag(UnitFlags.Evading))
+                    {
+                        // Re-trigger movement toward home if it somehow stopped prematurely
+                        LocationMove(unit, unit.CombatStartX, unit.CombatStartZ, UnitConstants.EvadeSpeedMult);
+                    }
                     return;
                 }
             }
@@ -336,7 +338,7 @@ namespace OxDb.MapServer.AI.Services
 
                 if (combatDist >= _gameData.Get<AISettings>(unit).LeashDistance)
                 {
-                    EndCombat(rand, unit, "", true);
+                    EndCombat(unit, "", true);
                     return;
                 }
             }
@@ -351,7 +353,7 @@ namespace OxDb.MapServer.AI.Services
                 unit.RemoveFlag(UnitFlags.Evading);
                 if (unit.HasTarget() && distToGo > AIConstants.CloseToTargetDistance)
                 {
-                    TargetMove(rand, unit, unit.TargetId);
+                    TargetMove(unit, unit.TargetId);
                 }
                 return;
             }
@@ -438,15 +440,15 @@ namespace OxDb.MapServer.AI.Services
             }
         }
 
-        private void UpdateAfterAIStep(IRandom rand, Unit unit)
+        private void UpdateAfterAIStep(Unit unit)
         {
-            _pathfindingService.UpdatePath(unit, rand, (int)unit.FinalX, (int)unit.FinalZ, OnUpdatePath);
+            _pathfindingService.UpdatePath(unit, (int)unit.FinalX, (int)unit.FinalZ, OnUpdatePath);
         }
 
-        private void OnUpdatePath(IRandom rand, Unit unit)
+        private void OnUpdatePath(Unit unit)
         {
             UnitUtils.TurnTowardNextPosition(unit);
-            _objectManager.UpdatePosition(rand, unit, 0);
+            _objectManager.UpdatePosition(unit, 0);
         }
     }
 }

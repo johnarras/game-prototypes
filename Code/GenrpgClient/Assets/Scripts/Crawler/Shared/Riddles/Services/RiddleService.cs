@@ -1,3 +1,5 @@
+using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
@@ -5,7 +7,6 @@ using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -31,7 +32,7 @@ namespace OxDb.SharedGame.Riddles.Services
     {
         Task GenerateRiddles(PartyData party, List<CrawlerMap> floors, CrawlerMapGenType genType, IRandom rand);
         bool ShouldDrawProp(PartyData party, int x, int z);
-        void SetPropPosition(object obj, object dat, CancellationToken token);
+        void SetPropPosition(object obj, CrawlerObjectLoadData data, CancellationToken token);
 
     }
 
@@ -231,7 +232,7 @@ namespace OxDb.SharedGame.Riddles.Services
             return true;
         }
 
-        public void SetPropPosition(object obj, object data, CancellationToken token)
+        public void SetPropPosition(object obj, CrawlerObjectLoadData data, CancellationToken token)
         {
             PartyData party = _crawlerService.GetParty();
             IRiddleTypeHelper helper = GetHelper(party.CurrPos.MapId);
@@ -283,7 +284,7 @@ namespace OxDb.SharedGame.Riddles.Services
                     continue;
                 }
 
-                List<PointXZ> openPoints = new List<PointXZ>();
+                List<Point2I> openPoints = new List<Point2I>();
 
                 for (int x = 0; x < prevFloor.Width; x++)
                 {
@@ -294,7 +295,7 @@ namespace OxDb.SharedGame.Riddles.Services
                             continue;
                         }
 
-                        openPoints.Add(new PointXZ(x, z));
+                        openPoints.Add(new Point2I(x, z));
                     }
                 }
 

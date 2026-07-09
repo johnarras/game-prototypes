@@ -9,7 +9,7 @@
   "AncientName": "Volubilis",
   "Population": 15000,
   "MapPixelX": 932,
-  "MapPixelY": 2541,
+  "MapPixelZ": 2541,
   "BiomeTypeId": 2,
   "CultureTypeId": 3,
   "TradeGoodsProduced": [
@@ -23,5 +23,18 @@
       "TradeGoodId": 10
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

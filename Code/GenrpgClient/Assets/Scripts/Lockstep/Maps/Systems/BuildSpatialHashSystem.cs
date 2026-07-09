@@ -87,20 +87,20 @@ namespace Assets.Scripts.Lockstep.Systems
                 // Calculate the bounding box in world units
                 FixedPoint64 range = shape.ShapeType == ECollisionShapeType.Circle
                     ? shape.Extents.X
-                    : FixedPoint64.Max(shape.Extents.X, shape.Extents.Y);
+                    : FixedPoint64.Max(shape.Extents.X, shape.Extents.Z);
 
                 // Convert world bounds to grid cell bounds
                 int minX = (int)((pos.Pos.X - range) / CellSize);
                 int maxX = (int)((pos.Pos.X + range) / CellSize);
-                int minY = (int)((pos.Pos.Y - range) / CellSize);
-                int maxY = (int)((pos.Pos.Y + range) / CellSize);
+                int minZ = (int)((pos.Pos.Z - range) / CellSize);
+                int maxZ = (int)((pos.Pos.Z + range) / CellSize);
 
                 // Add the entity to every cell it overlaps
                 for (int x = minX; x <= maxX; x++)
                 {
-                    for (int y = minY; y <= maxY; y++)
+                    for (int z = minZ; z <= maxZ; z++)
                     {
-                        int hash = SpatialMath.GetCellHash(new Vector2Fixed(x * CellSize, y * CellSize), CellSize); // Using your utility
+                        int hash = SpatialMath.GetCellHash(new Vector2Fixed(x * CellSize, z * CellSize), CellSize); // Using your utility
 
                         SpatialMap.Add(hash, new SpatialEntry
                         {

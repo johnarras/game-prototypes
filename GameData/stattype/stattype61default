@@ -4,6 +4,7 @@
   "IdKey": 61,
   "Name": "Crit",
   "Desc": "Chance to instantly kill a monster.",
+  "Icon": "Crit",
   "GenScalePct": 200,
   "IsCrawlerStat": true
 }

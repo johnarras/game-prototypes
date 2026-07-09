@@ -20,7 +20,7 @@ namespace OxDb.MapServer.Looting.MessageHandlers
 
         private IAchievementService _achievementService = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, LootCorpse message)
+        protected override async ValueTask InnerProcess(Character ch, LootCorpse message)
         {
             if (!_objectManager.GetUnit(message.UnitId, out Unit unit))
             {

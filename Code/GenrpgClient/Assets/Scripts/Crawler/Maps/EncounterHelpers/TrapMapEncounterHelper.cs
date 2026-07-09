@@ -23,7 +23,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 {
@@ -35,7 +34,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
         public override long HelperKey => MapEncounters.Trap;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
         {
 
             CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
@@ -49,7 +48,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
             await Task.CompletedTask;
         }
 
-        public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
+        public override async ValueTask OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
             if (party.Buffs[PartyBuffs.Levitate] == 0 && !party.CurrentMap.Cleansed.HasBitIndex(map.GetIndex(party.CurrPos.X, party.CurrPos.Z)))
             {
@@ -68,12 +67,12 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                 {
                     double luckBonus = _crawlerStatService.GetStatBonus(party, pm, StatTypes.Luck) / 100.0f;
 
-                    if (_rand.Rand.NextDouble() < mapSettings.TrapHitChance - luckBonus)
+                    if (_gs.Rand.NextDouble() < mapSettings.TrapHitChance - luckBonus)
                     {
                         continue;
                     }
 
-                    long damage = RandUtils.LongRange(minDam, maxDam, _rand.Rand);
+                    long damage = RandUtils.LongRange(minDam, maxDam, _gs.Rand);
                     _crawlerStatService.Add(party, pm, StatTypes.Health, UnitStatValOffsets.Curr, -damage, ElementTypes.Melee);
 
                     if (pm.Stats.Curr(StatTypes.Health) < 1)
@@ -82,9 +81,9 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
                         continue;
                     }
 
-                    if (_rand.Rand.NextDouble() < mapSettings.TrapDebuffChance && maxStatusEffectTier > 0)
+                    if (_gs.Rand.NextDouble() < mapSettings.TrapDebuffChance && maxStatusEffectTier > 0)
                     {
-                        long tier = Math.Min(RandUtils.LongRange(1, maxStatusEffectTier, _rand.Rand), RandUtils.LongRange(1, maxStatusEffectTier, _rand.Rand));
+                        long tier = Math.Min(RandUtils.LongRange(1, maxStatusEffectTier, _gs.Rand), RandUtils.LongRange(1, maxStatusEffectTier, _gs.Rand));
 
 
                         StatusEffect effect = effects.FirstOrDefault(x => x.IdKey == tier);

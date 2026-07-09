@@ -11,11 +11,11 @@ namespace OxDb.MapServer.Stats.MessageHandlers
     {
         private IStatService _statService = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, Regen message)
+        protected override async ValueTask InnerProcess(Unit unit, Regen message)
         {
             float regenSeconds = StatConstants.RegenTickSeconds;
 
-            _statService.RegenerateTick(rand.Rand, unit, regenSeconds);
+            _statService.RegenerateTick(unit, regenSeconds);
 
             if (unit.RegenMessage != null && !unit.RegenMessage.IsCancelled())
             {

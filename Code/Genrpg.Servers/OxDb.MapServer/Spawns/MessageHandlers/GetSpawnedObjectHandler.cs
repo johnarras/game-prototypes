@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spawns.MessageHandlers
 {
     public class GetSpawnedObjectHandler : BaseMapObjectServerMapMessageHandler<GetSpawnedObject>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, GetSpawnedObject message)
+        protected override async ValueTask InnerProcess(MapObject obj, GetSpawnedObject message)
         {
             if (!_objectManager.GetObject(message.ObjId, out MapObject mapObj))
             {

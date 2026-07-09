@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
@@ -106,6 +107,42 @@ namespace OxDb.SharedCore.Utils
             }
             return hex.ToString();
         }
+
+        public static int QuickHash(ReadOnlySpan<char> txt, Span<byte> destination)
+        {
+            const int Md5HashSize = 16;
+
+            if (destination.Length < Md5HashSize)
+            {
+                return -1;
+            }
+
+            int byteCount = Encoding.UTF8.GetByteCount(txt);
+            byte[] rentedArray = ArrayPool<byte>.Shared.Rent(byteCount);
+            Span<byte> utf8Buffer = rentedArray.AsSpan(0, byteCount);
+
+            try
+            {
+                Encoding.UTF8.GetBytes(txt, utf8Buffer);
+
+                // Use an MD5 instance instead of the static method
+                using (MD5 algo = MD5.Create())
+                {
+                    // .NET Standard 2.1 provides TryComputeHash on the instance
+                    if (algo.TryComputeHash(utf8Buffer, destination, out int bytesWritten))
+                    {
+                        return bytesWritten;
+                    }
+                }
+
+                return -1;
+            }
+            finally
+            {
+                ArrayPool<byte>.Shared.Return(rentedArray, clearArray: true);
+            }
+        }
+
     }
 }
 

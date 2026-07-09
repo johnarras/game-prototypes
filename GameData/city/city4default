@@ -9,7 +9,7 @@
   "AncientName": "Alexandria ad Aegyptum",
   "Population": 500000,
   "MapPixelX": 2552,
-  "MapPixelY": 2681,
+  "MapPixelZ": 2681,
   "BiomeTypeId": 2,
   "CultureTypeId": 4,
   "TradeGoodsProduced": [
@@ -32,5 +32,21 @@
       "TradeGoodId": 80
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 9
+    }
+  ]
 }

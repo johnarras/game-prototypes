@@ -15,7 +15,7 @@ namespace OxDb.ServerGame.Maps
     public interface IMapDataService : IInitializable
     {
         Task<List<MapStub>> GetMapStubs();
-        Task<Map> LoadMap(IRandom rand, string mapId);
+        Task<Map> LoadMap(string mapId);
         Task SaveMap(IFullRepositoryService repoService, Map map);
         string GetMapOwnerId(string mapId, int mapVersion);
     }
@@ -67,7 +67,7 @@ namespace OxDb.ServerGame.Maps
             return mapId + "-" + mapVersion;
         }
 
-        public async Task<Map> LoadMap(IRandom rand, string mapId)
+        public async Task<Map> LoadMap(string mapId)
         {
             MapRoot root = await _repoService.Load<MapRoot>(mapId);
 
@@ -85,9 +85,9 @@ namespace OxDb.ServerGame.Maps
 
             string mapOwnerId = GetMapOwnerId(map.Id, map.MapVersion);
 
-            map.Zones = await LoadMapDataList<Zone>(rand, mapOwnerId);
-            map.Quests = await LoadMapDataList<QuestType>(rand, mapOwnerId);
-            map.QuestItems = await LoadMapDataList<QuestItem>(rand, mapOwnerId);
+            map.Zones = await LoadMapDataList<Zone>(mapOwnerId);
+            map.Quests = await LoadMapDataList<QuestType>(mapOwnerId);
+            map.QuestItems = await LoadMapDataList<QuestItem>(mapOwnerId);
 
             return map;
         }
@@ -127,7 +127,7 @@ namespace OxDb.ServerGame.Maps
             await repoService.SaveAll(list);
         }
 
-        protected async Task<List<T>> LoadMapDataList<T>(IRandom rand, string ownerId) where T : class, IStringOwnerId
+        protected async Task<List<T>> LoadMapDataList<T>(string ownerId) where T : class, IStringOwnerId
         {
             List<T> retval = new List<T>();
 

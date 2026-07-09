@@ -5,7 +5,7 @@
   "Name": "Strength",
   "Abbrev": "",
   "Desc": "Increases melee damage.",
-  "Icon": "",
+  "Icon": "Strength",
   "Art": "RedCauldron",
   "ColorName": "Red",
   "ColorCode": "#FF0000",

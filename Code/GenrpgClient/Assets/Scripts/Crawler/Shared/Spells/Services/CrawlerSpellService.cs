@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
@@ -19,6 +18,7 @@ using OxDb.SharedGame.Crawler.Combat.Services;
 using OxDb.SharedGame.Crawler.Combat.Settings;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Info.Services;
+using OxDb.SharedGame.Crawler.Loot.Services;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -47,7 +47,6 @@ using OxDb.SharedGame.Spells.Settings.Targets;
 using OxDb.SharedGame.Stats.Constants;
 using OxDb.SharedGame.UnitEffects.Constants;
 using OxDb.SharedGame.Units.Entities;
-using OxDb.SharedGame.Units.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,7 +83,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
         bool IsEnemyTarget(long targetTypeId);
         bool IsNonCombatTarget(long targetTypeId);
         bool IsGroupTarget(long targetTypeId);
-        long GetSummonQuantity(PartyData party, PartyMember member, UnitType unitType);
         void PickRandomTarget(PartyData party, UnitAction unitAction);
         List<Role> RolesThatCanCast(long crawlerSpellId);
         string RolesThatCanCastString(long crawlerSpellId);
@@ -110,7 +108,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
         private ICrawlerCombatService _combatService = null;
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
-        protected IClientRandom _rand = null;
         private IDispatcher _dispatcher = null;
         protected ICrawlerStatService _crawlerStatService = null;
         private ITextService _textService = null;
@@ -118,6 +115,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
         private IInfoService _infoService = null;
         private ICrawlerOptionsService _optionsService = null;
         private ISharedItemService _sharedItemService = null;
+        private ILootGenService _lootGenService = null;
 
         private SetupDictionaryContainer<long, ISpecialMagicHelper> _specialMagicEffectHelpers = new SetupDictionaryContainer<long, ISpecialMagicHelper>();
         private SetupDictionaryContainer<long, ICrawlerSpellEffectHelper> _effectHelpers = new SetupDictionaryContainer<long, ICrawlerSpellEffectHelper>();
@@ -200,7 +198,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                         continue;
                     }
 
-                    if (spell.RoleScalingTier > roleScalingTiers[spell.RoleScalingTypeId])
+                    if (spell.UnlockTier > roleScalingTiers[spell.RoleScalingTypeId])
                     {
                         continue;
                     }
@@ -213,14 +211,14 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     foreach (UnitRole role in member.Roles)
                     {
                         // if a player role knows this and is high enough level, add it to the list.
-                        if (spell.RolesKnowingThis.Any(x => x.RoleId == role.RoleId))
+                        if (spell.Roles.HasBitIndex(role.RoleId) && role.Level >= spell.UnlockTier)
                         {
                             roleKnowsThis = true;
                             break;
                         }
                     }
 
-                    if (!roleKnowsThis)
+                    if (!roleKnowsThis && spell.IdKey > CrawlerSpells.ShootId)
                     {
                         continue;
                     }
@@ -273,19 +271,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
             List<CrawlerSpell> dupeList = new List<CrawlerSpell>(okSpells);
 
-            foreach (CrawlerSpell dupeSpell in dupeList)
-            {
-                if (dupeSpell.ReplacesCrawlerSpellId > 0)
-                {
-                    CrawlerSpell removeSpell = okSpells.FirstOrDefault(x => x.IdKey == dupeSpell.ReplacesCrawlerSpellId);
-
-                    if (removeSpell != null)
-                    {
-                        okSpells.Remove(removeSpell);
-                    }
-                }
-            }
-
             okSpells = okSpells.OrderBy(x => x.Name).ToList();
 
             if (!chooseSpells)
@@ -298,6 +283,8 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
         // Figure out what this unit's combat hit will look like.
         public FullSpell GetFullSpell(PartyData party, CrawlerUnit caster, CrawlerSpell spell, Item castingItem = null, long overrideLevel = 0)
         {
+
+            PartyBuffSettings buffSettings = _gameData.Get<PartyBuffSettings>(_gs.ch);
 
             FullSpell fullSpell = new FullSpell() { Spell = spell, CastingItem = castingItem };
 
@@ -327,9 +314,11 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
             double critChance = 0;
 
             double attackQuantity = 0;
+            double powerScaling = 1.0f;
 
             if (castingItem == null && caster is PartyMember member)
             {
+
                 critChance += _gameData.Get<RoleSettings>(_gs.ch).GetRoles(member.Roles).Sum(x => x.CritPercent);
                 if (spell.TargetTypeId == TargetTypes.Enemy && member.HideExtraRange > 0)
                 {
@@ -339,13 +328,29 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 {
                     member.HideExtraRange = 0;
                 }
-                critChance += spell.ExtraCritChance;
-
                 if (party.Combat != null)
                 {
                     member.LastCombatCrawlerSpellId = spell.IdKey;
                 }
             }
+
+            if (caster.IsPlayer())
+            {
+                double leadershipValue = party.Buffs[PartyBuffs.Command];
+                if (_gs.Rand.NextDouble() * 100 < buffSettings.GetProcChanceScale(PartyBuffs.Command) * leadershipValue)
+                {
+                    powerScaling = (1 + buffSettings.GetEffectScale(PartyBuffs.ApplyDoT) * leadershipValue);
+                    fullSpell.HasLeadership = true;
+                }
+                if (party.Inventory.Count - _lootGenService.GetPartyInventorySize(party) > 0)
+                {
+                    powerScaling *= combatSettings.OverburdenedDamageScale;
+                }
+            }
+
+            fullSpell.RoleScalingTypeId = scalingType.IdKey;
+            fullSpell.StatScalingTypeId = scalingType.ScalingStatTypeId;
+
 
             CombatAction action = _gameData.Get<CombatActionSettings>(_gs.ch).Get(spell.CombatActionId);
 
@@ -358,7 +363,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
             foreach (CrawlerSpellEffect effect in spell.Effects)
             {
-                startFullEffectList.Add(new FullEffect() { Effect = effect, Chance = effect.Chance, InitialEffect = true });
+                startFullEffectList.Add(new FullEffect() { Effect = effect, ProcChance = effect.ProcChance, InitialEffect = true });
             }
 
             List<FullEffect> endFullEffectList = new List<FullEffect>();
@@ -408,9 +413,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 endFullEffectList.AddRange(monster.ApplyEffects);
             }
 
-            long statUsedForScaling = scalingType.ScalingStatTypeId;
-
-
             foreach (FullEffect fullEffect in endFullEffectList)
             {
                 CrawlerSpellEffect effect = fullEffect.Effect;
@@ -425,13 +427,11 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 fullEffect.ElementType = elemType;
                 fullSpell.Effects.Add(fullEffect);
 
-                oneEffect.MinQuantity = CrawlerCombatConstants.BaseMinDamage;
-                oneEffect.MaxQuantity = CrawlerCombatConstants.BaseMaxDamage;
+                oneEffect.MinQuantity = 0;
+                oneEffect.MaxQuantity = 0;
 
 
                 List<long> equipSlotsToCheck = _gameData.Get<EquipSlotSettings>(_gs.ch).GetWeaponSlots();
-
-                bool finalQuantityIsNegativeAttackCount = false;
 
                 if (effect.EntityTypeId == EntityTypes.Attack)
                 {
@@ -444,10 +444,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 else
                 {
                     oneEffect.HitType = EHitTypes.Spell;
-                    if (effect.EntityTypeId == EntityTypes.StatusEffect && effect.MaxQuantity < 0)
-                    {
-                        finalQuantityIsNegativeAttackCount = true;
-                    }
                 }
 
                 if (fullEffect.InitialEffect)
@@ -464,22 +460,18 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     oneEffect.CritChance = (long)critChance;
                 }
 
-                if (action.QuantityIsBaseAmount)
+                double minEffectQuantity = CrawlerCombatConstants.BaseMinDamage;
+                double maxEffectQuantity = CrawlerCombatConstants.BaseMaxDamage;
+
+                if (monster != null)
                 {
-                    oneEffect.MinQuantity = effect.MinQuantity;
-                    oneEffect.MaxQuantity = effect.MaxQuantity;
+                    minEffectQuantity = monster.MinDam;
+                    maxEffectQuantity = monster.MaxDam;
                 }
                 else
                 {
-                    oneEffect.MinQuantity = 0;
-                    oneEffect.MaxQuantity = 0;
-                }
-
-
-                if (caster.IsPlayer())
-                {
-                    double minVal = 0;
-                    double maxVal = 0;
+                    minEffectQuantity = 0;
+                    maxEffectQuantity = 0;
                     List<WeaponRoleDamage> roleDamages = new List<WeaponRoleDamage>();
                     foreach (long equipSlot in equipSlotsToCheck)
                     {
@@ -491,64 +483,63 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
                             WeaponRoleDamage roleDamage = _sharedItemService.GetRoleDamage(_gs.ch, weapon.ItemTypeId, spell.RoleScalingTypeId, weapon.LootRankId);
 
-                            minVal += roleDamage.RawMinDam;
-                            maxVal += roleDamage.RawMaxDam;
+                            minEffectQuantity += roleDamage.RawMinDam;
+                            maxEffectQuantity += roleDamage.RawMaxDam;
                         }
                     }
-
-                    minVal *= action.WeaponDamageScale;
-                    maxVal *= action.WeaponDamageScale;
-
-                    oneEffect.MinQuantity += (long)(minVal);
-                    oneEffect.MaxQuantity += (long)(maxVal);
-
                 }
 
-                if (effect.EntityTypeId == EntityTypes.Attack && monster != null)
-                {
-                    oneEffect.MinQuantity = monster.MinDam;
-                    oneEffect.MaxQuantity = monster.MaxDam;
-                }
+                minEffectQuantity *= action.WeaponDamageScale;
+                maxEffectQuantity *= action.WeaponDamageScale;
 
-                double statBonus = _crawlerStatService.GetStatBonus(party, caster, statUsedForScaling) * targetType.StatBonusScale *
-                    (spell.StatBonusScaling > 0 ? spell.StatBonusScaling : 1);
-                oneEffect.MinQuantity += (long)(Math.Floor(action.StatBonusDamageScale * statBonus));
-                oneEffect.MaxQuantity += (long)Math.Ceiling(action.StatBonusDamageScale * statBonus);
+
+                minEffectQuantity *= fullEffect.Effect.WeaponDamageScale;
+                maxEffectQuantity *= fullEffect.Effect.WeaponDamageScale;
+
+                double statBonus = _crawlerStatService.GetStatBonus(party, caster, fullSpell.StatScalingTypeId) * targetType.StatBonusScale *
+                    (fullEffect.Effect.StatBonusDamageScale > 0 ? fullEffect.Effect.StatBonusDamageScale : 0);
+
+                statBonus *= action.StatBonusDamageScale;
+
+                minEffectQuantity += statBonus;
+                maxEffectQuantity += statBonus;
+
+                statBonus *= action.StatBonusDamageScale;
+                statBonus *= action.StatBonusDamageScale;
+
+                minEffectQuantity += statBonus;
+                maxEffectQuantity += statBonus;
 
                 long baseDamageBonus = _crawlerStatService.GetStatBonus(party, caster, StatTypes.DamagePower);
 
-                oneEffect.MinQuantity += baseDamageBonus;
-                oneEffect.MaxQuantity += baseDamageBonus;
+                minEffectQuantity += baseDamageBonus;
+                maxEffectQuantity += baseDamageBonus;
 
-                oneEffect.MinQuantity = Math.Max(oneEffect.MinQuantity, CrawlerCombatConstants.BaseMinDamage);
-                oneEffect.MaxQuantity = Math.Max(oneEffect.MaxQuantity, CrawlerCombatConstants.BaseMaxDamage);
-
-                if (fullEffect.InitialEffect)
+                if (fullSpell.HasLeadership)
                 {
-                    if (effect.MinQuantity > 0 && effect.MaxQuantity > 0 && !action.QuantityIsBaseAmount)
-                    {
-                        attackQuantity = RandUtils.LongRange(effect.MinQuantity, effect.MaxQuantity, _rand.Rand);
-                    }
-                    else
-                    {
-                        double currAttackQuantity = _roleService.GetSpellScalingLevel(party, caster, spell);
 
-                        if (currAttackQuantity > attackQuantity)
-                        {
-                            attackQuantity = currAttackQuantity;
-                        }
-                    }
-                    // Used for cures.
-                    if (finalQuantityIsNegativeAttackCount)
-                    {
-                        effect.MinQuantity = -(long)attackQuantity;
-                        effect.MaxQuantity = -(long)attackQuantity;
-                    }
+                    minEffectQuantity *= powerScaling;
+                    maxEffectQuantity *= powerScaling;
+                }
+
+
+
+                oneEffect.MinQuantity = (long)minEffectQuantity;
+                oneEffect.MaxQuantity = (long)Math.Ceiling(maxEffectQuantity);
+
+
+                oneEffect.MaxQuantity = Math.Max(oneEffect.MaxQuantity, oneEffect.MinQuantity + 1);
+
+                double currAttackQuantity = _roleService.GetSpellScalingLevel(party, caster, spell, true);
+
+                if (currAttackQuantity > attackQuantity)
+                {
+                    attackQuantity = currAttackQuantity;
                 }
             }
 
             long intAttackQuantity = (long)(attackQuantity);
-            if (_rand.Rand.NextDouble() < (attackQuantity - (long)attackQuantity))
+            if (_gs.Rand.NextDouble() < (attackQuantity - (long)attackQuantity))
             {
                 attackQuantity++;
             }
@@ -559,7 +550,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
             long luckyAttackCount = 0;
             for (int a = 0; a < attackQuantity; a++)
             {
-                if (_rand.Rand.NextDouble() * 100 < luckBonus)
+                if (_gs.Rand.NextDouble() * 100 < luckBonus)
                 {
                     luckyAttackCount++;
                 }
@@ -585,9 +576,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
         private List<IProc> GetProcsFromSlot(CrawlerUnit member, RoleScalingType scalingType)
         {
-
-
-
             Item item = null; //d member.GetEquipmentInSlot(equipSlotId);
 
             if (item == null || item.Procs == null || item.Procs.Count < 1)
@@ -606,12 +594,12 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 EntityTypeId = proc.EntityTypeId,
                 EntityId = proc.EntityId,
                 ElementTypeId = proc.ElementTypeId,
-                MinQuantity = proc.MinQuantity,
-                MaxQuantity = proc.MaxQuantity,
+                WeaponDamageScale = 1.0f,
+                StatBonusDamageScale = 1.0f,
             };
             FullEffect fullProcEffect = new FullEffect()
             {
-                Chance = proc.Chance,
+                ProcChance = proc.Chance,
                 Effect = procEffect,
             };
             return fullProcEffect;
@@ -631,9 +619,9 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
         public long GetPowerCost(PartyData party, CrawlerUnit unit, CrawlerSpell spell)
         {
-            long tier = (long)_roleService.GetSpellScalingLevel(party, unit, spell);
+            long tier = (long)_roleService.GetSpellScalingLevel(party, unit, spell, false);
 
-            return (long)(spell.PowerCost + ((tier) * spell.PowerPerLevel));
+            return (long)(spell.BaseCost + ((tier) * spell.TierCost));
         }
 
 
@@ -708,7 +696,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
                         if (possibleSpells.Count > 0)
                         {
-                            CrawlerSpell newSpell = possibleSpells[_rand.Rand.Next(possibleSpells.Count)];
+                            CrawlerSpell newSpell = possibleSpells[_gs.Rand.Next(possibleSpells.Count)];
 
                             UnitAction newUnitAction = _combatService.GetActionFromSpell(party, action.Caster, newSpell);
 
@@ -769,17 +757,22 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     return;
                 }
 
-                if (!action.SpellBeingCast.Spell.HasFlag(CrawlerSpellFlags.SuppressCastText) && action.SpellBeingCast.LuckyHitQuantity < 1)
+                if (action.Spell.IdKey != CrawlerSpells.AttackId && action.Spell.IdKey != CrawlerSpells.ShootId)
                 {
                     ShowCombatLogText($"{action.Caster.Name} casts {action.SpellBeingCast.Spell.Name}");
-                    if (action.SpellBeingCast.LuckyHitQuantity == 1)
-                    {
-                        ShowCombatLogText(_textService.HighlightText("1 Lucky Hit!", TextColors.ColorGold));
-                    }
-                    else if (action.SpellBeingCast.LuckyHitQuantity > 1)
-                    {
-                        ShowCombatLogText(_textService.HighlightText($"{action.SpellBeingCast.LuckyHitQuantity} Lucky Hits!", TextColors.ColorGold));
-                    }
+                }
+
+                if (action.SpellBeingCast.HasLeadership)
+                {
+                    ShowCombatLogText(_textService.HighlightText($"{action.Caster.Name} Gains Power From Great Leadership!", TextColors.ColorLightBlue));
+                }
+                if (action.SpellBeingCast.LuckyHitQuantity == 1)
+                {
+                    ShowCombatLogText(_textService.HighlightText("1 Lucky Hit!", TextColors.ColorGold));
+                }
+                else if (action.SpellBeingCast.LuckyHitQuantity > 1)
+                {
+                    ShowCombatLogText(_textService.HighlightText($"{action.SpellBeingCast.LuckyHitQuantity} Lucky Hits!", TextColors.ColorGold));
                 }
 
                 if (action.CastingItem == null && action.Caster is PartyMember pmember)
@@ -853,13 +846,13 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 CrawlerUnit currTarget = null;
 
                 if (action.Caster.FactionTypeId != FactionTypes.Player &&
-                    _rand.Rand.NextDouble() < combatSettings.HitPartyRandomMemberChance)
+                    _gs.Rand.NextDouble() < combatSettings.HitPartyRandomMemberChance)
                 {
                     List<PartyMember> targets = party.ActiveParty.Where(x => !x.StatusEffects.HasBitIndex(StatusEffects.Dead)).ToList();
 
                     if (targets.Count > 0)
                     {
-                        currTarget = targets[_rand.Rand.Next(targets.Count)];
+                        currTarget = targets[_gs.Rand.Next(targets.Count)];
                         ShowCombatLogText(action.Caster.Name + " Targets " + currTarget.Name);
                     }
                 }
@@ -925,7 +918,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
 
                         if (action.Caster.CombatActions.Count > 0)
                         {
-                            action.Caster.CombatPriority *= (1 - _rand.Rand.NextDouble() * combatSettings.SubsequentAttackPriorityLossPercent);
+                            action.Caster.CombatPriority *= (1 - _gs.Rand.NextDouble() * combatSettings.SubsequentAttackPriorityLossPercent);
 
                             bool didInsert = false;
                             for (int i = party.Combat.AttackSequence.Count - 1; i >= 0; i--)
@@ -1023,7 +1016,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 {
                     double parryValue = party.Buffs[PartyBuffs.Parry];
                     if (args.IsEnemyTarget && target.IsPlayer() &&
-                        _rand.Rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
+                        _gs.Rand.NextDouble() < parryValue * args.BuffSettings.GetProcChanceScale(PartyBuffs.Parry))
                     {
                         AddToActionDict(args.ActionList, target, caster, "Parries", 1, 0, true, ECombatTextTypes.Info, ElementTypes.Earth);
                         args.DidParry = true;
@@ -1034,7 +1027,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 {
                     if (!args.DidParry)
                     {
-                        if (_rand.Rand.NextDouble() > fullEffect.Chance)
+                        if (_gs.Rand.NextDouble() > fullEffect.ProcChance)
                         {
                             continue;
                         }
@@ -1065,11 +1058,11 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 if (target.FactionTypeId == FactionTypes.Player)
                 {
                     double autoHealValue = party.Buffs[PartyBuffs.Autoheal];
-                    if (_rand.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
+                    if (_gs.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Autoheal) * autoHealValue)
                     {
                         double maxVal = autoHealValue * args.BuffSettings.GetEffectScale(PartyBuffs.Autoheal);
 
-                        double healing = RandUtils.FloatRange(1, maxVal * maxVal, _rand.Rand);
+                        double healing = RandUtils.FloatRange(1, maxVal * maxVal, _gs.Rand);
 
                         long currHealth = target.Stats.Curr(StatTypes.Health);
                         long maxHealth = target.Stats.Max(StatTypes.Health);
@@ -1119,7 +1112,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                         if (args.TotalDamage > 0)
                         {
                             double lifeStealValue = party.Buffs[PartyBuffs.Lifesteal];
-                            if (_rand.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Lifesteal) * lifeStealValue)
+                            if (_gs.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.Lifesteal) * lifeStealValue)
                             {
                                 long totalLifesteal = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.Lifesteal));
 
@@ -1131,7 +1124,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                             }
 
                             double dotValue = party.Buffs[PartyBuffs.ApplyDoT];
-                            if (_rand.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.ApplyDoT) * dotValue)
+                            if (_gs.Rand.NextDouble() * 100 < args.BuffSettings.GetProcChanceScale(PartyBuffs.ApplyDoT) * dotValue)
                             {
                                 long totalDot = (long)(args.TotalDamage * args.BuffSettings.GetEffectScale(PartyBuffs.ApplyDoT));
 
@@ -1297,45 +1290,6 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 targetTypeId == TargetTypes.World;
         }
 
-        public long GetSummonQuantity(PartyData party, PartyMember member, UnitType unitType)
-        {
-            CrawlerSpell summonSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Effects.FastAny(e => e.EntityTypeId == EntityTypes.Unit && e.EntityId == unitType.IdKey));
-
-            double quantity = 1;
-            if (summonSpell != null)
-            {
-                quantity = _roleService.GetSpellScalingLevel(party, member, summonSpell);
-            }
-
-            quantity *= _gameData.Get<CrawlerCombatSettings>(_gs.ch).SummonQuantityScale;
-
-            if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
-            {
-                quantity *= 2;
-            }
-
-            // 1.5 here for rounding and not random scaling value combat to combat
-
-            if (_rand.Rand.NextDouble() < (quantity - (int)quantity))
-            {
-                quantity = Math.Ceiling(quantity);
-            }
-
-            long luckBonus = _crawlerStatService.GetStatBonus(party, member, StatTypes.Luck);
-
-            long luckySummonCount = 0;
-            for (int q = 0; q < quantity; q++)
-            {
-                if (_rand.Rand.NextDouble() * 100 < luckBonus)
-                {
-                    luckySummonCount++;
-                }
-            }
-            quantity += luckySummonCount;
-
-            return (int)Math.Max(1, Math.Sqrt(quantity));
-        }
-
         public void PickRandomTarget(PartyData party, UnitAction newUnitAction)
         {
             if (newUnitAction == null || newUnitAction.FinalTargets == null)
@@ -1360,7 +1314,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                 {
                     if (newUnitAction.PossibleTargetGroups.Count > 0)
                     {
-                        CombatGroup finalGroup = newUnitAction.PossibleTargetGroups[_rand.Rand.Next(newUnitAction.PossibleTargetGroups.Count)];
+                        CombatGroup finalGroup = newUnitAction.PossibleTargetGroups[_gs.Rand.Next(newUnitAction.PossibleTargetGroups.Count)];
                         newUnitAction.FinalTargets = finalGroup.Units.ToList();
                     }
                 }

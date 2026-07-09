@@ -39,15 +39,15 @@ namespace OxDb.MapServer.Maps
     public interface IMapObjectManager : IInitializable, IMessageTarget
     {
         MapObjectCounts GetCounts();
-        void Init(IRandom rand, CancellationToken token);
-        void UpdatePosition(IRandom rand, MapObject obj, int keysDown);
+        Task Init(IRandom rand, CancellationToken token);
+        void UpdatePosition(MapObject obj, int keysDown);
         MapObject SpawnObject(IRandom rand, IMapSpawn spawn);
         bool GetChar(string id, out Character ch, GetMapObjectParams objParams = null);
         bool GetUnit(string id, out Unit unit, GetMapObjectParams objParams = null);
         bool GetObject(string id, out MapObject item, GetMapObjectParams objParams = null);
-        void FinalRemoveObjectFromOldGrid(IRandom rand, MapObject obj, MapObjectGridData gridData, MapObjectGridItem item);
+        void FinalRemoveObjectFromOldGrid(MapObject obj, MapObjectGridData gridData, MapObjectGridItem item);
         MapObjectGridItem RemoveObject(IRandom rand, string objId, float delaySeconds = 0);
-        MapObjectGridItem AddObject(IRandom rand, MapObject obj, IMapSpawn spawn);
+        MapObjectGridItem AddObject(MapObject obj, IMapSpawn spawn);
         List<T> GetTypedObjectsNear<T>(float wx, float wz, MapObject filterObject,
             float distance = MessageConstants.DefaultGridDistance,
             bool enforceDistance = false, List<long> filters = null) where T : MapObject;
@@ -125,9 +125,9 @@ namespace OxDb.MapServer.Maps
                 _gridObjectCount = 0;
                 for (int x = 0; x < _gridSize; x++)
                 {
-                    for (int y = 0; y < _gridSize; y++)
+                    for (int z = 0; z < _gridSize; z++)
                     {
-                        _gridObjectCount += _objectGrid[x, y].GetObjects().Count;
+                        _gridObjectCount += _objectGrid[x, z].GetObjects().Count;
                     }
                 }
 
@@ -165,7 +165,7 @@ namespace OxDb.MapServer.Maps
             await Task.CompletedTask;
         }
 
-        public virtual void Init(IRandom rand, CancellationToken token)
+        public async Task Init(IRandom rand, CancellationToken token)
         {
             _token = token;
 
@@ -207,7 +207,7 @@ namespace OxDb.MapServer.Maps
             }
         }
 
-        public void FinalRemoveObjectFromOldGrid(IRandom rand, MapObject obj, MapObjectGridData gridData, MapObjectGridItem item)
+        public void FinalRemoveObjectFromOldGrid(MapObject obj, MapObjectGridData gridData, MapObjectGridItem item)
         {
             gridData.RemoveObj(item.Obj);
             // Should be ok to do thsi here becaue this will happen microseconds after the move between grid cells,
@@ -237,7 +237,7 @@ namespace OxDb.MapServer.Maps
             _totalGridLocks++;
         }
 
-        public void UpdatePosition(IRandom rand, MapObject obj, int keysDown)
+        public void UpdatePosition(MapObject obj, int keysDown)
         {
 
             OnUpdatePos posMessage = obj.GetCachedMessage<OnUpdatePos>(true);
@@ -253,7 +253,7 @@ namespace OxDb.MapServer.Maps
 
             _messageService.SendMessageNear(obj, posMessage, playersOnly: false);
 
-            PointXZ newGridPos = MapUtils.GetGridCoordinates(obj.X, obj.Z, _gridSize);
+            Point2I newGridPos = MapUtils.GetGridCoordinates(obj.X, obj.Z, _gridSize);
 
             if (GetGridItem(obj.Id, out MapObjectGridItem gridItem))
             {
@@ -278,7 +278,9 @@ namespace OxDb.MapServer.Maps
                     gridItem.OldGZ = gridItem.GZ;
                     gridItem.GX = newGridPos.X;
                     gridItem.GZ = newGridPos.Z;
-                    OnAddObjectToGrid(rand, obj, newGridPos.X, newGridPos.Z);
+
+
+                    OnAddObjectToGrid(obj, newGridPos.X, newGridPos.Z);
 
                     // Slight delay in removing grid item to allow for things processing nearby cells to complete.
                     _messageService.SendMessage(obj, new RemoveObjectFromGridCell() { GridItem = gridItem, GridData = oldGrid });
@@ -448,16 +450,16 @@ namespace OxDb.MapServer.Maps
 
         }
 
-        public virtual MapObjectGridItem AddObject(IRandom rand, MapObject obj, IMapSpawn spawn)
+        public virtual MapObjectGridItem AddObject(MapObject obj, IMapSpawn spawn)
         {
-            PointXZ pt = MapUtils.GetGridCoordinates(obj.X, obj.Z, _gridSize);
+            Point2I pt = MapUtils.GetGridCoordinates(obj.X, obj.Z, _gridSize);
 
             if (GetGridItem(obj.Id, out MapObjectGridItem currentGridItem))
             {
                 return currentGridItem;
             }
 
-            MapObjectGridItem newGridItem = CreateGridItem(rand, obj, pt.X, pt.Z);
+            MapObjectGridItem newGridItem = CreateGridItem(obj, pt.X, pt.Z);
 
             _idDict[obj.GetIdHash() % IdHashSize].TryAdd(obj.Id, newGridItem);
             obj.Spawn = spawn;
@@ -467,7 +469,7 @@ namespace OxDb.MapServer.Maps
                 _unitsAdded++;
                 if (obj is Character ch)
                 {
-                    OnAddObjectToGrid(rand, ch, pt.X, pt.Z);
+                    OnAddObjectToGrid(ch, pt.X, pt.Z);
                 }
             }
             else
@@ -540,7 +542,7 @@ namespace OxDb.MapServer.Maps
                 }
             }
 
-            OnRemove(rand, gridItem);
+            OnRemove(gridItem);
             return gridItem;
         }
 
@@ -549,14 +551,14 @@ namespace OxDb.MapServer.Maps
             return _messageTargets[++_messageTargetIndex % MessageTargetCount];
         }
 
-        protected virtual void OnRemove(IRandom rand, MapObjectGridItem gridItem)
+        protected virtual void OnRemove(MapObjectGridItem gridItem)
         {
 
             if (gridItem.Obj.Spawn != null)
             {
                 gridItem.Obj.Spawn.SpawnSeconds = 20;
                 _messageService.SendMessage(GetMessageTarget(), new RespawnObject() { Spawn = gridItem.Obj.Spawn },
-                    RandUtils.IntRange(gridItem.Obj.Spawn.SpawnSeconds, gridItem.Obj.Spawn.SpawnSeconds * 2, rand));
+                    RandUtils.IntRange(gridItem.Obj.Spawn.SpawnSeconds, gridItem.Obj.Spawn.SpawnSeconds * 2, gridItem.Obj.Rand));
             }
 
             DespawnObject despawn = new DespawnObject()
@@ -568,7 +570,7 @@ namespace OxDb.MapServer.Maps
 
         }
 
-        protected virtual MapObjectGridItem CreateGridItem(IRandom rand, MapObject obj, int gx, int gz)
+        protected virtual MapObjectGridItem CreateGridItem(MapObject obj, int gx, int gz)
         {
             MapObjectGridItem item = new MapObjectGridItem()
             {
@@ -583,9 +585,9 @@ namespace OxDb.MapServer.Maps
 
             for (int x = 0; x < _gridSize; x++)
             {
-                for (int y = 0; y < _gridSize; y++)
+                for (int z = 0; z < _gridSize; z++)
                 {
-                    _objectGrid[x, y].Spawns = new List<MapSpawn>();
+                    _objectGrid[x, z].Spawns = new List<MapSpawn>();
                 }
             }
             _totalUnits = _mapProvider.GetSpawns().Data
@@ -624,10 +626,13 @@ namespace OxDb.MapServer.Maps
 
             _mapProvider.GetSpawns().Data = copySpawns;
 
+
+            float mapSpawnChance = _gameData.Get<SpawnSettings>(null).MapSpawnChance;
+
             foreach (MapSpawn spawn in _mapProvider.GetSpawns().Data)
             {
 
-                if (rand.NextDouble() > _gameData.Get<SpawnSettings>(null).MapSpawnChance)
+                if (rand.NextDouble() > mapSpawnChance)
                 {
                     continue;
                 }
@@ -677,28 +682,28 @@ namespace OxDb.MapServer.Maps
             }
 
             MapObject obj = fact.Create(rand, spawn);
-            AfterSpawns(rand, obj);
+            AfterSpawns(obj);
             if (obj != null)
             {
-                AddObject(rand, obj, spawn);
+                AddObject(obj, spawn);
             }
 
             return obj;
         }
 
-        protected void AfterSpawns(IRandom rand, MapObject obj)
+        protected void AfterSpawns(MapObject obj)
         {
             if (obj is Unit unit)
             {
                 AIUpdate update = new AIUpdate();
 
-                _messageService.SendMessage(unit, update, RandUtils.FloatRange(0, _gameData.Get<AISettings>(obj).UpdateSeconds, rand));
+                _messageService.SendMessage(unit, update, RandUtils.FloatRange(0, _gameData.Get<AISettings>(obj).UpdateSeconds, obj.Rand));
             }
         }
 
-        protected virtual void SendGridItemsToClient(IRandom rand, Character ch, int gx, int gz)
+        protected virtual void SendGridItemsToClient(Character ch, int gx, int gz)
         {
-            if (SpawnGridObjects(rand, gx, gz))
+            if (SpawnGridObjects(ch.Rand, gx, gz))
             {
                 return;
             }
@@ -725,7 +730,7 @@ namespace OxDb.MapServer.Maps
             return _filters.TryGetValue(filterTypeId, out filter);
         }
 
-        protected void OnAddObjectToGrid(IRandom rand, MapObject obj, int gx, int gz)
+        protected void OnAddObjectToGrid(MapObject obj, int gx, int gz)
         {
             if (!(obj is Character ch))
             {
@@ -757,14 +762,14 @@ namespace OxDb.MapServer.Maps
                         continue;
                     }
 
-                    PointXZ currentCell = ch.NearbyGridsSeen.FirstOrDefault(p => p.X == x && p.Z == z);
+                    Point2I currentCell = ch.NearbyGridsSeen.FirstOrDefault(p => p.X == x && p.Z == z);
                     if (currentCell != null)
                     {
                         continue;
                     }
 
-                    ch.NearbyGridsSeen.Add(new PointXZ(x, z));
-                    SendGridItemsToClient(rand, ch, x, z);
+                    ch.NearbyGridsSeen.Add(new Point2I(x, z));
+                    SendGridItemsToClient(ch, x, z);
                 }
             }
             ch.NearbyGridsSeen =

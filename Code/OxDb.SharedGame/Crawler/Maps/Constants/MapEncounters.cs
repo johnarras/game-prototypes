@@ -9,6 +9,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Constants
         public const int Trap = 4;
         public const int Stats = 5;
         public const int LevelMap = 6;
+        public const int JunkPile = 7;
     }
 }
 

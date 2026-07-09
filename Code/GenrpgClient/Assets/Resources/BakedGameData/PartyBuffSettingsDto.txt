@@ -112,6 +112,16 @@
       "Art": "Lifesteal",
       "ProcChanceScale": 3.0,
       "EffectScale": 0.25
+    },
+    {
+      "IdKey": 13,
+      "Name": "Command",
+      "Desc": "Sometimes increase damage/healing of an ability.",
+      "AtlasPrefix": "",
+      "Icon": "Command",
+      "Art": "Command",
+      "ProcChanceScale": 2.0,
+      "EffectScale": 0.25
     }
   ],
   "Parent": {
@@ -120,5 +130,5 @@
     "Name": "PartyBuffSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-12-14T01:05:41.92Z"
+  "SaveTime": "2026-06-29T21:37:54.637Z"
 }

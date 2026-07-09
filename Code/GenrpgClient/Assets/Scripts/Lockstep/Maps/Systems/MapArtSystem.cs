@@ -51,17 +51,17 @@ namespace Assets.Scripts.Lockstep.Maps.Systems
             int width = map.Size.x;
             int height = map.Size.y;
 
-            for (int y = 0; y < height; y++)
+            for (int z = 0; z < height; z++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    TileData tile = map.Tiles[y * width + x];
+                    TileData tile = map.Tiles[z * width + x];
 
                     // Convert sim position to visual position including the map's offset
                     float3 visualPos = new float3(
                         (float)(x * (int)map.CellSize) + worldOffset.x,
                         worldOffset.y,
-                        (float)(y * (int)map.CellSize) + worldOffset.z
+                        (float)(z * (int)map.CellSize) + worldOffset.z
                     );
 
                     LockstepVisualFactory.Instance.SpawnMapTile(tile.BiomeTypeId, visualPos, map.CellSize);

@@ -9,7 +9,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class InterruptCastHandler : BaseMapObjectServerMapMessageHandler<InterruptCast>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, InterruptCast message)
+        protected override async ValueTask InnerProcess(MapObject obj, InterruptCast message)
         {
 
             ICastTimeMessage castTimeMessage = obj.ActionMessage as ICastTimeMessage;

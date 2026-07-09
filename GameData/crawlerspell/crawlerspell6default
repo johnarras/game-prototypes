@@ -2,28 +2,29 @@
   "Id": "crawlerspell6default",
   "ParentId": "default",
   "IdKey": 6,
-  "Name": "Hide",
-  "Desc": "Meld into the shadows to allow next single target ability to crit.",
-  "StatBonusScaling": 1.0,
-  "MaxRange": 100,
-  "CombatActionId": 5,
-  "TargetTypeId": 9,
-  "RoleScalingTypeId": 6,
-  "RoleScalingTier": 3,
-  "PointCost": 5,
-  "Effects": [],
-  "RolesKnowingThis": [
+  "Name": "Pummel",
+  "Desc": "Extra powerful set of melee attacks.",
+  "BaseCost": 5.0,
+  "TierCost": 2.0,
+  "MaxRange": 10,
+  "CombatActionId": 1,
+  "TargetTypeId": 1,
+  "RoleScalingTypeId": 1,
+  "AttackQuantityScale": 2.0,
+  "UnlockTier": 2,
+  "Effects": [
     {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
+      "EntityTypeId": 38,
+      "EntityId": 1,
+      "ElementTypeId": 1,
+      "WeaponDamageScale": 1.0,
+      "StatBonusDamageScale": 1.0,
+      "ProcChance": 100.0
     }
-  ]
+  ],
+  "Roles": {
+    "Bits": [
+      230
+    ]
+  }
 }

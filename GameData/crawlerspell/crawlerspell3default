@@ -2,60 +2,18 @@
   "Id": "crawlerspell3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Shoot",
-  "Desc": "Attack one or more enemies that are out of melee range.",
-  "StatBonusScaling": 1.0,
-  "MinRange": 20,
+  "Name": "Defend",
+  "Desc": "Take half damage this turn if you get hit.",
   "MaxRange": 100,
-  "CombatActionId": 3,
-  "TargetTypeId": 1,
-  "RoleScalingTypeId": 2,
-  "RoleScalingTier": 1,
-  "Effects": [
-    {
-      "EntityTypeId": 39,
-      "EntityId": 2,
-      "ElementTypeId": 11,
-      "Chance": 1.0
-    }
-  ],
-  "RolesKnowingThis": [
-    {
-      "RoleId": 1
-    },
-    {
-      "RoleId": 2
-    },
-    {
-      "RoleId": 3
-    },
-    {
-      "RoleId": 4
-    },
-    {
-      "RoleId": 5
-    },
-    {
-      "RoleId": 6
-    },
-    {
-      "RoleId": 7
-    },
-    {
-      "RoleId": 8
-    },
-    {
-      "RoleId": 9
-    },
-    {
-      "RoleId": 10
-    },
-    {
-      "RoleId": 11
-    },
-    {
-      "RoleId": 12
-    }
-  ],
-  "Flags": 1
+  "CombatActionId": 2,
+  "TargetTypeId": 9,
+  "RoleScalingTypeId": 1,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
+  "Effects": [],
+  "Roles": {
+    "Bits": [
+      2046
+    ]
+  }
 }

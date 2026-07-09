@@ -5,6 +5,7 @@ using OxDb.SharedGame.UI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,12 +27,12 @@ namespace Assets.Scripts.UI.Interfaces
         object GetImageTexture(IRawImage image);
         int GetImageHeight(IRawImage image);
         int GetImageWidth(IRawImage image);
-        void SetUVRect(IRawImage image, float xpos, float ypos, float xsize, float ysize);
+        void SetUVRect(IRawImage image, float xpos, float zpos, float xsize, float zsize);
         object GetSelected();
         void SetColor(IText text, object color);
         void SetButton(IButton button, string screenName, Action action, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
         void ClearButton(IButton button);
-        void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
+        void SetButton(IButton button, string screenName, Func<CancellationToken, ValueTask> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null);
         void SetAlpha(IText text, float alpha);
         void SetAutoSizing(IText text, bool autoSizing);
         void ResizeGridLayout(IGridLayoutGroup group, float xscale, float yscale);

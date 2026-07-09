@@ -1,5 +1,6 @@
 using OxDb.RequestServer.Core;
 using OxDb.SharedCore.GameSettings;
+using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.MobileGame.Constants;
@@ -11,12 +12,16 @@ using OxDb.SharedGame.Trader.Constants;
 
 namespace OxDb.RequestServer.PlayMultiplier.Services
 {
+    public interface IServerPlayMultService : IInjectable
+    {
+        ValueTask SetPlayMult(WebContext context, int newPlayMult);
+    }
     public class ServerPlayMultService : IServerPlayMultService
     {
         private ISharedPlayMultService _sharedPlayMultService = null;
         private ICaravanService _caravanService = null;
         private IGameData _gameData = null;
-        public async Task SetPlayMult(WebContext context, int newPlayMult)
+        public async ValueTask SetPlayMult(WebContext context, int newPlayMult)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
 
@@ -28,7 +33,7 @@ namespace OxDb.RequestServer.PlayMultiplier.Services
             {
                 coreData.Level = 1;
             }
-            int maxMult = _sharedPlayMultService.GetMaxMult(coreData);
+            int maxMult = await _sharedPlayMultService.GetMaxMult(context);
 
             long totalSpend = 0;
             for (int i = 0; i < coreData.TravelDayCurrencies.Count(); i++)

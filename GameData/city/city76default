@@ -9,7 +9,7 @@
   "AncientName": "Oc Eo (Funan Kingdom)",
   "Population": 20000,
   "MapPixelX": 6000,
-  "MapPixelY": 3637,
+  "MapPixelZ": 3637,
   "BiomeTypeId": 16,
   "CultureTypeId": 12,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 163
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

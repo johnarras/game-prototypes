@@ -9,7 +9,7 @@
   "AncientName": "Bolghar (Volga Bulgaria)",
   "Population": 50000,
   "MapPixelX": 3432,
-  "MapPixelY": 1589,
+  "MapPixelZ": 1589,
   "BiomeTypeId": 17,
   "CultureTypeId": 13,
   "TradeGoodsProduced": [
@@ -29,5 +29,21 @@
       "TradeGoodId": 166
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 2
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 14
+    }
+  ]
 }

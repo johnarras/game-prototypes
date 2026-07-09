@@ -9,7 +9,7 @@
   "AncientName": "Shushan",
   "Population": 80000,
   "MapPixelX": 3400,
-  "MapPixelY": 2633,
+  "MapPixelZ": 2633,
   "BiomeTypeId": 12,
   "CultureTypeId": 11,
   "TradeGoodsProduced": [
@@ -26,5 +26,24 @@
       "TradeGoodId": 53
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 5
+    },
+    {
+      "CaravanMemberId": 10
+    }
+  ]
 }

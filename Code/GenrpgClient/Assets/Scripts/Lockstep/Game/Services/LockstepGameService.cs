@@ -230,7 +230,7 @@ namespace Assets.Scripts.Lockstep.Game.Services
             int minSize = 15;
             int maxSize = 25;
 
-            int yOffset = maxSize + 10;
+            int zOffset = maxSize + 10;
 
             IReadOnlyList<BiomeType> biomes = _gameData.Get<BiomeTypeSettings>(_gs.ch).GetData();
 
@@ -243,13 +243,13 @@ namespace Assets.Scripts.Lockstep.Game.Services
 
                 for (int x = 0; x < width; x++)
                 {
-                    for (int y = 0; y < height; y++)
+                    for (int z = 0; z < height; z++)
                     {
                         TileConfig tile = new TileConfig()
                         {
                             BiomeTypeId = biomes[rand.Next() % biomes.Count].IdKey,
                         };
-                        tiles[x, y] = tile;
+                        tiles[x, z] = tile;
                     }
                 }
 
@@ -258,9 +258,9 @@ namespace Assets.Scripts.Lockstep.Game.Services
                     MapId = m,
                     MapName = "Map " + m,
                     Tiles = tiles,
-                    Offset = new float2(0, yOffset * (m - 1)),
+                    Offset = new float2(0, zOffset * (m - 1)),
                     WrapX = rand.Next() % 2 == 0,
-                    WrapY = rand.Next() % 2 == 0,
+                    WrapZ = rand.Next() % 2 == 0,
                     CellSize = 1,
                 };
 

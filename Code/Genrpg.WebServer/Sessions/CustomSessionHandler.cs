@@ -1,4 +1,5 @@
-﻿using Genrpg.WebServer.Handlers;
+﻿using CommunityToolkit.HighPerformance.Buffers; // For ArrayPoolBufferWriter
+using Genrpg.WebServer.Handlers;
 using Google.Apis.Json;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -7,8 +8,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OxDb.SharedCore.Utils;
 using System;
+using System.Buffers;
 using System.Security.Claims;
-using System.Security.Cryptography; // Added for FixedTimeEquals
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -53,8 +55,8 @@ public class CustomSessionHandler : AuthenticationHandler<CustomSessionOptions>
             return AuthenticateResult.Fail("Invalid Authorization Scheme");
         }
 
-        // Slice instead of Replace to reduce allocation overhead
-        string bearerToken = authHeaderValue.Substring(7);
+        ReadOnlySpan<char> authSpan = authHeaderValue.AsSpan();
+        ReadOnlySpan<char> bearerToken = authSpan.Slice(7);
 
         int underscoreIndex = bearerToken.IndexOf('_');
         if (underscoreIndex == -1)
@@ -62,33 +64,66 @@ public class CustomSessionHandler : AuthenticationHandler<CustomSessionOptions>
             return AuthenticateResult.Fail("Token missing signature separator");
         }
 
-        string payload = bearerToken.Substring(0, underscoreIndex);
-        string incomingHash = bearerToken.Substring(underscoreIndex + 1);
+        ReadOnlySpan<char> payload = bearerToken.Slice(0, underscoreIndex);
+        ReadOnlySpan<char> incomingHashText = bearerToken.Slice(underscoreIndex + 1);
 
-        // 3. Constant-Time Cryptographic Validation
-        string calcedHash = HashUtils.QuickHash(payload + "." + Options.TokenSecret);
+        // 3. Constant-Time Cryptographic Validation (Zero-Allocation)
+        Span<byte> calcedBytes = stackalloc byte[16];
 
-        byte[] calcedBytes = Encoding.UTF8.GetBytes(calcedHash);
-        byte[] incomingBytes = Encoding.UTF8.GetBytes(incomingHash);
+        // Safely combine payload and secret using ArrayPoolBufferWriter
+        int combinedLength = payload.Length + 1 + Options.TokenSecret.Length;
+        using (ArrayPoolBufferWriter<char> writer = new ArrayPoolBufferWriter<char>(combinedLength))
+        {
+            writer.Write(payload);
+            writer.Write(".");
+            writer.Write(Options.TokenSecret);
+
+            // Compute the raw hash bytes directly into our stack buffer using the rented buffer view
+            if (HashUtils.QuickHash(writer.WrittenSpan, calcedBytes) != 16)
+            {
+                return AuthenticateResult.Fail("Hash generation failed.");
+            }
+        }
+
+        // Convert the hex/base64 string incoming hash into raw bytes for comparison
+        int incomingByteCount = incomingHashText.Length / 2;
+        Span<byte> incomingBytes = stackalloc byte[incomingByteCount];
+
+        // Note: Using a direct string conversion helper here since Convert methods typically accept strings/spans.
+        // If your incoming text is hex-encoded, use Convert.FromHexString instead.
+
+        OperationStatus status = Convert.FromHexString(incomingHashText, incomingBytes, out int bytesConsumed, out int bytesWritten);
+
+        if (status != OperationStatus.Done)
+
+        {
+            return AuthenticateResult.Fail("Invalid hash to byte array decoding.");
+        }
 
         if (!CryptographicOperations.FixedTimeEquals(calcedBytes, incomingBytes))
         {
             return AuthenticateResult.Fail("Incoming hash did not match.");
         }
 
-        // 4. Parse Plaintext Payload
-        string[] dataWords = payload.Split('.');
-        if (dataWords.Length != 4)
-        {
-            return AuthenticateResult.Fail("Payload structurally invalid.");
-        }
+        // 4. Parse Plaintext Payload sequentially without arrays
+        ReadOnlySpan<char> remainingPayload = payload;
 
-        string userId = dataWords[0];
-        string sessionRand = dataWords[1];
-        string timestampTicksString = dataWords[2];
-        string existingData = dataWords[3];
+        int dotIndex1 = remainingPayload.IndexOf('.');
+        if (dotIndex1 == -1) return AuthenticateResult.Fail("Payload structurally invalid.");
+        ReadOnlySpan<char> userId = remainingPayload.Slice(0, dotIndex1);
+        remainingPayload = remainingPayload.Slice(dotIndex1 + 1);
 
-        if (string.IsNullOrEmpty(userId))
+        int dotIndex2 = remainingPayload.IndexOf('.');
+        if (dotIndex2 == -1) return AuthenticateResult.Fail("Payload structurally invalid.");
+        ReadOnlySpan<char> sessionRand = remainingPayload.Slice(0, dotIndex2);
+        remainingPayload = remainingPayload.Slice(dotIndex2 + 1);
+
+        int dotIndex3 = remainingPayload.IndexOf('.');
+        if (dotIndex3 == -1) return AuthenticateResult.Fail("Payload structurally invalid.");
+        ReadOnlySpan<char> timestampTicksString = remainingPayload.Slice(0, dotIndex3);
+        ReadOnlySpan<char> existingData = remainingPayload.Slice(dotIndex3 + 1);
+
+        if (userId.IsEmpty)
         {
             return AuthenticateResult.Fail("UserId was blank.");
         }
@@ -106,10 +141,10 @@ public class CustomSessionHandler : AuthenticationHandler<CustomSessionOptions>
         }
 
         // 6. Assemble Identity and Ticket
-        Claim[] claims = new[] {
-            new Claim(ClaimTypes.NameIdentifier, userId),
-            new Claim(CustomClaimTypes.GameSessionId, sessionRand),
-            new Claim(CustomClaimTypes.ExistingData, existingData)
+        Claim[] claims = new Claim[] {
+            new Claim(ClaimTypes.NameIdentifier, userId.ToString()),
+            new Claim(CustomClaimTypes.GameSessionId, sessionRand.ToString()),
+            new Claim(CustomClaimTypes.ExistingData, existingData.ToString())
         };
 
         ClaimsIdentity identity = new ClaimsIdentity(claims, Scheme.Name);

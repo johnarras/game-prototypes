@@ -19,7 +19,7 @@ namespace OxDb.SharedCore.LineGen
 
         public int XRadius { get; set; }
 
-        public int YRadius { get; set; }
+        public int ZRadius { get; set; }
 
 
         public float LinePathNoiseScale { get; set; }
@@ -28,11 +28,11 @@ namespace OxDb.SharedCore.LineGen
 
         public bool UseOvalWidth { get; set; }
 
-        public int XMin { get; set; }
-        public int YMin { get; set; }
+        public int MinX { get; set; }
+        public int MinZ { get; set; }
 
-        public int XMax { get; set; }
-        public int YMax { get; set; }
+        public int MaxX { get; set; }
+        public int MaxZ { get; set; }
 
         public LineGenParameters()
         {
@@ -49,10 +49,10 @@ namespace OxDb.SharedCore.LineGen
             Seed = 0;
             MinOverlap = 1;
 
-            XMin = -1000;
-            YMin = -1000;
-            XMax = 100000;
-            YMax = 100000;
+            MinX = -1000;
+            MinZ = -1000;
+            MaxX = 100000;
+            MaxZ = 100000;
 
         }
     }

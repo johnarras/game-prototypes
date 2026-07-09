@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using OxDb.SharedCore.DataStores.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings.PlayerData;
+using OxDb.SharedCore.PlayerFiltering.Interfaces;
 using OxDb.SharedCore.Serialization.Attributes;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -19,17 +20,19 @@ using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.MapObjects.Entities
 {
     [MessagePackIgnoreType]
-    public class MapObject : IMapObject, IDisposable, IUnitDataLookup
+    public class MapObject : IMapObject, IDisposable, IUnitDataLookup, IRandomContainer
     {
         public string Id { get; set; }
         public string GetId() { return Id; }
         public string Name { get; set; }
+        public IRandom Rand { get; private set; } = new MyRandom();
         public long EntityTypeId { get; set; }
         public long EntityId { get; set; }
         public float X { get; set; }
@@ -39,7 +42,7 @@ namespace OxDb.SharedGame.MapObjects.Entities
         public float Speed { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public string Client { get; set; } = VersionConstants.MinVersion.ToString();
-        public Version ClientVersion { get; set; }
+        public Version ClientVersion { get; set; } = VersionConstants.MinVersion;
         public string ClientPlatform { get; set; }
 
         public long ZoneId { get; set; }
@@ -232,9 +235,9 @@ namespace OxDb.SharedGame.MapObjects.Entities
             }
         }
 
-        public MyPointF GetPos()
+        public Point3F GetPos()
         {
-            return new MyPointF(X, Y, Z);
+            return new Point3F(X, Y, Z);
         }
 
         public void CopyDataToMapObjectFromMapSpawn(IMapSpawn spawn)
@@ -271,24 +274,31 @@ namespace OxDb.SharedGame.MapObjects.Entities
         virtual protected bool AlwaysCreateMissingData() { return true; }
 
 
-        public async Task<T> GetAsync<T>() where T : class, IUnitData, new()
+        public ValueTask<T> GetAsync<T>() where T : class, IUnitData, new()
         {
-            return Get<T>();
+            return new ValueTask<T>(Get<T>());
+        }
+
+        public ValueTask<IFilteredObject> GetFilteredObject()
+        {
+            return new ValueTask<IFilteredObject>(this);
         }
 
         public virtual T Get<T>() where T : class, IUnitData, new()
         {
-            Type t = typeof(T);
+            Type currType = typeof(T);
 
-            if (_dataDict.ContainsKey(t))
+            if (_dataDict.ContainsKey(currType))
             {
-                return (T)_dataDict[t];
+                return (T)_dataDict[currType];
             }
 
             if (!IsPlayer() || AlwaysCreateMissingData())
             {
-                Set((T)Activator.CreateInstance(typeof(T)));
-                return (T)_dataDict[t];
+                T t = (T)Activator.CreateInstance(typeof(T));
+                t.Id = Id;
+                Set(t);
+                return t;
             }
 
             return default;

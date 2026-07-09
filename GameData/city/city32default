@@ -9,7 +9,7 @@
   "AncientName": "Sparta",
   "Population": 25000,
   "MapPixelX": 2208,
-  "MapPixelY": 2409,
+  "MapPixelZ": 2409,
   "BiomeTypeId": 1,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -20,5 +20,15 @@
       "TradeGoodId": 50
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    }
+  ]
 }

@@ -34,7 +34,7 @@ namespace OxDb.ServerCore.AzureImpl.DataStores.Mongo.Mongo
             CancellationToken token)
         {
             _token = token;
-            string databaseName = DbUtils.GetDbName(args.Category.ToString(), args.Env);
+            string databaseName = DbUtils.GetDbName(args.ProductName, args.Category.ToString(), args.Env);
             _logService = logService;
             _client = client;
             _database = _client.GetDatabase(databaseName);

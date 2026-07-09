@@ -4,5 +4,6 @@
   "IdKey": 42,
   "Name": "SpellMult",
   "Desc": "Spell Dam Mult",
+  "Icon": "SpellMult",
   "GenScalePct": 10
 }

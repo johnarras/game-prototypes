@@ -1,55 +1,50 @@
 namespace OxDb.SharedCore.Utils.Data
 {
-    public class MyPoint
-    {
-        public int X { get; set; }
-        public int Y { get; set; }
+   
 
-        public MyPoint()
-        {
-
-        }
-        public MyPoint(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-    }
-
-
-    public class PointXZ
+    /// <summary>
+    /// It's weird that it goes XZ and not XY, but this is for mapgen in Unity3d where the flat part of the map is in the XZ plane,
+    /// and Z is the up direction, and since this is pretty much always used for mapgen, it's easier to see what coord maps to what
+    /// in this way.
+    /// </summary>
+    public class Point2I
     {
         public int X { get; set; }
         public int Z { get; set; }
 
-        public PointXZ()
+        public Point2I()
         {
 
         }
-        public PointXZ(int x, int z)
+        public Point2I(int x, int z)
         {
             X = x;
             Z = z;
         }
     }
 
-    public class MyPoint2
+    /// <summary>
+    /// It's weird that it goes XZ and not XY, but this is for mapgen in Unity3d where the flat part of the map is in the XZ plane,
+    /// and Z is the up direction, and since this is pretty much always used for mapgen, it's easier to see what coord maps to what
+    /// in this way.
+    /// </summary>
+    public class Point2F
     {
         public float X { get; set; }
-        public float Y { get; set; }
+        public float Z { get; set; }
 
-        public MyPoint2()
+        public Point2F()
         {
 
         }
 
-        public MyPoint2(float x, float y)
+        public Point2F(float x, float y)
         {
             X = x;
-            Y = y;
+            Z = y;
         }
 
-        public MyPoint2(MyPointF pt)
+        public Point2F(Point3F pt)
         {
             if (pt == null)
             {
@@ -57,30 +52,30 @@ namespace OxDb.SharedCore.Utils.Data
             }
 
             X = pt.X;
-            Y = pt.Y;
+            Z = pt.Y;
         }
 
 
     }
 
-    public class MyPointF
+    public class Point3F
     {
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
 
-        public MyPointF()
+        public Point3F()
         {
 
         }
-        public MyPointF(float x, float y, float z = 0)
+        public Point3F(float x, float y, float z = 0)
         {
             X = x;
             Y = y;
             Z = z;
         }
 
-        public MyPointF(MyPointF pt)
+        public Point3F(Point3F pt)
         {
             if (pt == null)
             {
@@ -93,27 +88,27 @@ namespace OxDb.SharedCore.Utils.Data
         }
     }
 
-    public class MyRect
+    public class RectF
     {
         public float X { get; set; }
-        public float Y { get; set; }
+        public float Z { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
 
-        public MyRect()
+        public RectF()
         {
         }
 
-        public MyRect(float x, float y, float w, float h)
+        public RectF(float x, float z, float w, float h)
         {
             X = x;
-            Y = y;
+            Z = z;
             Width = w;
             Height = h;
         }
     }
 
-    public class MySize
+    public class SizeF
     {
         public float Width { get; set; }
         public float Height { get; set; }

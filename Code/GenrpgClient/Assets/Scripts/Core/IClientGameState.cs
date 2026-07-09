@@ -11,6 +11,7 @@ using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.GameAuth.Interfaces;
 using OxDb.SharedGame.MapServer.Entities;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -73,6 +74,8 @@ public class ClientGameState : GameState, IInjectable, IClientGameState
         reflectionService.AddSearchAssembly(GetType().Assembly);
 
         _logService.Verbose("Reflection2: All: " + reflectionService.GetAllAssemblies().Length + " Search: " + reflectionService.GetSearchAssemblies(GetType().Assembly).Count);
+
+        Rand = new MyRandom(DateTime.UtcNow.Ticks);
 
         _loc = new ServiceLocator(_logService, reflectionService, new ClientGameData());
         loc.Set(initClient);

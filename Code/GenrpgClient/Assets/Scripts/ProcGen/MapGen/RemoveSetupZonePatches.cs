@@ -10,11 +10,11 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
     {
 
         await base.Generate(token);
-        List<MyPoint2> deltas = new List<MyPoint2>();
-        deltas.Add(new MyPoint2(-1, 0));
-        deltas.Add(new MyPoint2(1, 0));
-        deltas.Add(new MyPoint2(0, 1));
-        deltas.Add(new MyPoint2(0, -1));
+        List<Point2I> deltas = new List<Point2I>();
+        deltas.Add(new Point2I(-1, 0));
+        deltas.Add(new Point2I(1, 0));
+        deltas.Add(new Point2I(0, 1));
+        deltas.Add(new Point2I(0, -1));
 
         MyRandom rand = new MyRandom(_mapProvider.GetMap().Seed / 5);
 
@@ -25,18 +25,18 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
         {
             somethingchanged = false;
             numIterations++;
-            List<MyPointF> addedVals = new List<MyPointF>();
+            List<Point3F> addedVals = new List<Point3F>();
             for (int x = 1; x < _mapProvider.GetMap().GetHwid() - 1; x++)
             {
 
-                for (int y = 1; y < _mapProvider.GetMap().GetHhgt() - 1; y++)
+                for (int z = 1; z < _mapProvider.GetMap().GetHhgt() - 1; z++)
                 {
-                    if (_md.MapZoneIds[x, y] <= MapConstants.MountainZoneId)
+                    if (_md.MapZoneIds[x, z] <= MapConstants.MountainZoneId)
                     {
                         List<int> choices = new List<int>();
-                        foreach (MyPoint2 d in deltas)
+                        foreach (Point2I d in deltas)
                         {
-                            short nearZoneId = _md.MapZoneIds[x + (int)(d.X), y + (int)(d.Y)];
+                            short nearZoneId = _md.MapZoneIds[x + (int)(d.X), z + (int)(d.Z)];
                             if (nearZoneId > MapConstants.MountainZoneId)
                             {
                                 choices.Add(nearZoneId);
@@ -45,16 +45,16 @@ public class RemoveSetupZonePatches : BaseZoneGenerator
                         if (choices.Count > 0)
                         {
                             int choice = choices[rand.Next() % choices.Count];
-                            addedVals.Add(new MyPointF(x, y, choice));
+                            addedVals.Add(new Point3F(x, z, choice));
                             somethingchanged = true;
                         }
                     }
                 }
             }
 
-            foreach (MyPointF val in addedVals)
+            foreach (Point3F val in addedVals)
             {
-                _md.MapZoneIds[(int)(val.X), (int)(val.Y)] = (short)(val.Z);
+                _md.MapZoneIds[(int)(val.X), (int)(val.Z)] = (short)(val.Z);
             }
         }
         while (somethingchanged);

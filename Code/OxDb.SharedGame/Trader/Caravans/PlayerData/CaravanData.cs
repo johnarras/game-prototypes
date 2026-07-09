@@ -19,7 +19,7 @@ namespace OxDb.SharedGame.Trader.Caravans.PlayerData
 
 
 
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.Caravan; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.Caravan; }
         public override PersonalDataAccumulation GetAccumulation()
         {
             return new PersonalDataAccumulation();

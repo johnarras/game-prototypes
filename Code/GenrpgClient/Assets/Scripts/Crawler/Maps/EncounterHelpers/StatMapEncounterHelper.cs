@@ -13,7 +13,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 {
@@ -21,7 +20,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
     {
         public override long HelperKey => MapEncounters.Stats;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
         {
 
             List<StatType> okStats = _gameData.Get<StatSettings>(_gs.ch).GetData().Where(x => x.IdKey >= StatConstants.PrimaryStatStart && x.IdKey <= StatConstants.PrimaryStatEnd).ToList();
@@ -43,7 +42,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
             await Task.CompletedTask;
         }
 
-        public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
+        public override async ValueTask OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
             _crawlerService.ChangeState(ECrawlerStates.GainStats, token);
             moveStatus.MoveIsComplete = true;

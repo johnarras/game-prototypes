@@ -9,7 +9,7 @@
   "AncientName": "Dura-Europos",
   "Population": 15000,
   "MapPixelX": 3040,
-  "MapPixelY": 2505,
+  "MapPixelZ": 2505,
   "BiomeTypeId": 3,
   "CultureTypeId": 6,
   "TradeGoodsProduced": [
@@ -23,5 +23,18 @@
       "TradeGoodId": 68
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 5
+    },
+    {
+      "CaravanMemberId": 12
+    }
+  ]
 }

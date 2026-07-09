@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core;
 using Assets.Scripts.Doobers.Events;
 using Assets.Scripts.DynamicUI.Services;
 using Assets.Scripts.FloatingText.ClientEvents;
@@ -16,7 +15,6 @@ using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
-using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Attributes.PlayerData;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Core.PlayerData;
@@ -28,7 +26,6 @@ using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.PlayerData;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Constants;
-using OxDb.SharedGame.Trader.Maps.Services;
 using OxDb.SharedGame.Trader.Travel.Entities;
 using OxDb.SharedGame.Trader.Travel.Services;
 using OxDb.SharedGame.Trader.Travel.WebApi;
@@ -44,7 +41,7 @@ namespace Assets.Scripts.Trader.Travel.Services
 {
     public interface IClientTravelService : IInitializable
     {
-        void ClickTravelButton();
+        ValueTask ClickTravelButton(CancellationToken token);
 
     }
 
@@ -57,11 +54,9 @@ namespace Assets.Scripts.Trader.Travel.Services
         private IClientWebService _webService = null;
         private IAwaitableService _awaitableService = null;
         private IRewardService _rewardService = null;
-        private IClientRandom _rand = null;
         private ILogService _logService = null;
         private ICaravanService _caravanService = null;
         private IUIService _uiService = null;
-        private ITraderMapService _traderMapService = null;
         private IAttributeService _attributeService = null;
         private ITraderLevelService _traderLevelService = null;
         private IDynamicUIService _dynamicUIService = null;
@@ -71,7 +66,7 @@ namespace Assets.Scripts.Trader.Travel.Services
 
         private CancellationToken _token;
 
-        public const int FramesPerUnitOfDistance = 5;
+        public const int VisualFramesPerUnitOfDistance = 5;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -80,10 +75,10 @@ namespace Assets.Scripts.Trader.Travel.Services
             await Task.CompletedTask;
         }
 
-        public void ClickTravelButton()
+        public async ValueTask ClickTravelButton(CancellationToken token)
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             if (pos.GetCurrentCity() != null && pos.TargetCity == pos.PositionCity)
             {
@@ -172,7 +167,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                 CaravanData caravanData = _gs.ch.Get<CaravanData>();
                 AttributesData AttributesData = _gs.ch.Get<AttributesData>();
 
-                CaravanPosition pos = _caravanService.GetPosition(coreData);
+                CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
                 if (pos.TotalDistanceToTarget < 1)
                 {
@@ -191,12 +186,12 @@ namespace Assets.Scripts.Trader.Travel.Services
                     {
                         if (td.Currencies[i] != 0)
                         {
-                            await _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, i, td.Currencies[i], RewardSources.TravelSpend, null, 0,
+                            _ = _rewardService.GiveReward(_gs.ch, EntityTypes.CoreCurrency, i, td.Currencies[i], RewardSources.TravelSpend, null, 0,
                                 new ClientRewardParams(false, true, true));
                         }
                     }
 
-                    await _attributeService.AddDebuffDaysPlayed(_gs.ch, 1);
+                    _ = _attributeService.AddDebuffDaysPlayed(_gs.ch, 1);
                     _dispatcher.Dispatch(td);
                     long distanceGoneToday = td.Vars[DayVars.EndDistance] - startDist;
                     double currDist = startDist;
@@ -244,7 +239,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                         {
                             rewardDoobers.Add(_dynamicUIService.CheckoutSimpleEntityDooberArgs(rew.EntityTypeId, rew.EntityId, 1));
                         }
-                        await _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelReward, new ClientRewardParams(false, false, true));
+                        _ = _rewardService.GiveReward(_gs.ch, rew, RewardSources.TravelReward, new ClientRewardParams(false, false, true));
 
                     }
 
@@ -258,23 +253,18 @@ namespace Assets.Scripts.Trader.Travel.Services
                     rewardDoobers = rewardDoobers.OrderBy(x => Guid.NewGuid()).ToList();
 
                     float x = 0;
-                    float y = 0;
+                    float z = 0;
 
-                    long totalTicks = distanceGoneToday * FramesPerUnitOfDistance;
+                    long totalTicks = distanceGoneToday * VisualFramesPerUnitOfDistance;
                     long ticksLeft = totalTicks;
                     for (int distToday = 0; distToday < distanceGoneToday; distToday++)
                     {
-                        double viewDist = currDist;
-                        for (int viewTicks = 0; viewTicks < FramesPerUnitOfDistance; viewTicks++)
+                        double viewTickDist = currDist;
+                        for (int viewTicks = 0; viewTicks < VisualFramesPerUnitOfDistance; viewTicks++)
                         {
-                            viewDist = currDist + ((viewTicks + 1) * 1.0f / FramesPerUnitOfDistance);
-                            MyPointF mapCoord = _traderMapService.GetMapCoordinate(pos.FromX, pos.FromY, pos.ToX, pos.ToY, viewDist, pos.TotalDistanceToTarget);
+                            viewTickDist = currDist + ((viewTicks + 1) * 1.0f / VisualFramesPerUnitOfDistance);
 
-                            x = mapCoord.X;
-                            y = mapCoord.Y;
-
-                            _dispatcher.Dispatch(new ShowTraderMapPosition() { X = x, Y = y });
-
+                            _dispatcher.Dispatch(new ShowTraderMapPosition() { Pos = pos, DistanceGone = viewTickDist });
                             ticksLeft--;
 
                             ShowMoreDoobers(rewardDoobers, ticksLeft);
@@ -282,20 +272,23 @@ namespace Assets.Scripts.Trader.Travel.Services
 
                             await Awaitable.NextFrameAsync(token);
                         }
-                        currDist = viewDist;
+                        currDist = viewTickDist;
                     }
+
+                    pos = await _caravanService.GetPosition(_gs.ch);
+
 
                     if (td.Vars[DayVars.EndFlags] != coreData.Vars[TraderVars.Flags])
                     {
                         coreData.Vars[TraderVars.Flags] = td.Vars[DayVars.EndFlags];
-                        await _calcAttributeService.CalcBuffs(_gs.ch);
+                        _ = _calcAttributeService.CalcBuffs(_gs.ch);
                     }
                     _dispatcher.Dispatch(new UpdateTraderHUD());
-                    bool isWater = _travelService.IsWater(x, y);
+                    bool isWater = _travelService.IsWater(x, z);
 
                     startDist = td.Vars[DayVars.EndDistance];
 
-                    await _encounterService.ShowEncounterResult(td.EncounterResult);
+                    _awaitableService.ForgetAwaitable(_encounterService.ShowEncounterResult(td.EncounterResult));
 
                     await _traderLevelService.ShowLevelGain(td.ExpResponse, false, RewardSources.TravelReward);
 
@@ -312,6 +305,15 @@ namespace Assets.Scripts.Trader.Travel.Services
 
                 bool atEndOfRoad = coreData.Vars[TraderVars.DistanceGone] >= coreData.Vars[TraderVars.TotalDistanceToTarget];
                 _dispatcher.Dispatch(new UpdateTraderHUD() { FullRefresh = atEndOfRoad });
+
+                if (atEndOfRoad)
+                {
+                    pos = await _caravanService.GetPosition(_gs.ch);
+                    if (pos.GetCurrentCity() != null)
+                    {
+                        _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCity));
+                    }
+                }
 
                 foreach (string msg in response.Messages)
                 {
@@ -336,7 +338,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                 if (ticksLeft > 0)
                 {
                     if (doobers.Count < ticksLeft &&
-                            _rand.Rand.Next() % ticksLeft < doobers.Count)
+                            _gs.Rand.Next() % ticksLeft < doobers.Count)
                     {
                         currentDooberCount = 1;
                     }

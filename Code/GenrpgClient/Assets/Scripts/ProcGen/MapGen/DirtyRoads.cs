@@ -13,12 +13,12 @@ public class DirtyRoads : BaseZoneGenerator
         await base.Generate(token);
         foreach (Zone zone in _mapProvider.GetMap().Zones)
         {
-            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.XMin, zone.XMax, zone.ZMin, zone.ZMax);
+            GenerateOne(zone, _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zone.ZoneTypeId), zone.MinX, zone.MaxX, zone.MinZ, zone.MaxZ);
         }
 
     }
 
-    public void GenerateOne(Zone zone, ZoneType zoneType, int minx, int maxx, int miny, int maxy)
+    public void GenerateOne(Zone zone, ZoneType zoneType, int minx, int maxx, int minz, int maxz)
     {
         if (zone == null)
         {
@@ -26,14 +26,14 @@ public class DirtyRoads : BaseZoneGenerator
         }
 
         int sizex = maxx - minx + 1;
-        int sizey = maxy - miny + 1;
+        int sizez = maxz - minz + 1;
 
-        if (sizex < 10 || sizey < 10)
+        if (sizex < 10 || sizez < 10)
         {
             return;
         }
 
-        int size = Math.Max(sizex, sizey);
+        int size = Math.Max(sizex, sizez);
 
         MyRandom rand = new MyRandom(zone.Seed + 724334);
 
@@ -44,7 +44,7 @@ public class DirtyRoads : BaseZoneGenerator
         float pers = RandUtils.FloatRange(0.4f, 0.7f, rand) * globalScale;
         int octaves = 2;
 
-        float[,] dirtHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizey);
+        float[,] dirtHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizez);
 
         float minRoadPercent = 0.20f;
 
@@ -54,7 +54,7 @@ public class DirtyRoads : BaseZoneGenerator
         freq = RandUtils.FloatRange(0.15f, 0.25f, rand) * size * globalScale;
         pers = RandUtils.FloatRange(0.4f, 0.7f, rand) * globalScale;
         octaves = 2;
-        float[,] baseHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizey);
+        float[,] baseHeights = _noiseService.Generate(pers, freq, amp, octaves, rand.Next(), sizex, sizez);
 
 
         float startMaxPct = 0.85f;
@@ -63,7 +63,7 @@ public class DirtyRoads : BaseZoneGenerator
         float pctfreq = RandUtils.FloatRange(0.1f, 0.2f, rand) * size * globalScale;
         float pctpers = RandUtils.FloatRange(0.0f, 0.4f, rand) * globalScale;
         int pctoctaves = 2;
-        float[,] maxPcts = _noiseService.Generate(pctpers, pctfreq, pctamp, pctoctaves, rand.Next(), sizex, sizey);
+        float[,] maxPcts = _noiseService.Generate(pctpers, pctfreq, pctamp, pctoctaves, rand.Next(), sizex, sizez);
 
 
         float generalPerturb = 0.1f;
@@ -75,7 +75,7 @@ public class DirtyRoads : BaseZoneGenerator
                 continue;
             }
 
-            for (int z = miny; z <= maxy; z++)
+            for (int z = minz; z <= maxz; z++)
             {
                 if (z < 0 || z >= _mapProvider.GetMap().GetHhgt())
                 {
@@ -95,16 +95,13 @@ public class DirtyRoads : BaseZoneGenerator
                 // Get height > 0
                 //float dirtPct = Math.Abs (dirtHeights[x,z]);
                 //float basePct = Math.Abs (baseHeights[x,z]);
-                float dirtPct = MathUtil.Clamp(0, dirtHeights[x - minx, z - miny] + RandUtils.DeltaRange(generalPerturb, rand), maxOtherPercent);
-                float basePct = MathUtil.Clamp(0, baseHeights[x - minx, z - miny] + RandUtils.DeltaRange(generalPerturb, rand), maxOtherPercent);
-
-
-
+                float dirtPct = MathUtil.Clamp(0, dirtHeights[x - minx, z - minz] + RandUtils.DeltaRange(generalPerturb, rand), maxOtherPercent);
+                float basePct = MathUtil.Clamp(0, baseHeights[x - minx, z - minz] + RandUtils.DeltaRange(generalPerturb, rand), maxOtherPercent);
 
                 float totalPct = dirtPct + basePct;
 
 
-                float maxPct = maxPcts[x - minx, z - miny] + startMaxPct;
+                float maxPct = maxPcts[x - minx, z - minz] + startMaxPct;
 
                 if (totalPct > maxPct)
                 {

@@ -9,7 +9,7 @@
   "AncientName": "Tisfun",
   "Population": 500000,
   "MapPixelX": 3228,
-  "MapPixelY": 2585,
+  "MapPixelZ": 2585,
   "BiomeTypeId": 3,
   "CultureTypeId": 6,
   "TradeGoodsProduced": [
@@ -26,5 +26,27 @@
       "TradeGoodId": 56
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 12
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

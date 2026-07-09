@@ -4,14 +4,13 @@ using OxDb.SharedGame.Trader.TradeGoods.Services;
 using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Trader.TradeGoods.ResponseHandlers
 {
     public class RemoveTradeGoodFromCaravanResultHandler : BaseClientWebResponseHandler<RemoveTradeGoodFromCaravanResponse>
     {
         protected ITradeGoodService _tradeGoodService = null;
-        protected override async Awaitable InnerProcess(RemoveTradeGoodFromCaravanResponse response, CancellationToken token)
+        protected override async ValueTask InnerProcess(RemoveTradeGoodFromCaravanResponse response, CancellationToken token)
         {
 
             if (!response.Success)

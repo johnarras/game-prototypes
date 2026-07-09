@@ -1,15 +1,23 @@
 ﻿using Assets.Scripts.Awaitables;
 using Assets.Scripts.Trader.ClientEvents;
+using OxDb.SharedCore.Client.Interfaces;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.PlayMultiplier.Services;
 using OxDb.SharedGame.PlayMultiplier.WebApi;
 using OxDb.SharedGame.Trader.Constants;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Trader.Travel.UI
 {
+    public class UpdateMaxPlayMult : IClientEvent
+    {
+
+    }
+
     public class PlayMultButton : BaseBehaviour
     {
 
@@ -35,15 +43,17 @@ namespace Assets.Scripts.Trader.Travel.UI
 
             _uiService.SetButton(SetMultButton, GetName(), ClickSetMultButton);
 
-            ShowData();
+            _dispatcher.AddListener<UpdateMaxPlayMult>(OnUpdateMaxPlayMult, GetToken());
+
+            _ = ShowData();
         }
 
         private int _queuedPlayMult = -1;
 
-        private void ClickSetMultButton()
+        private async ValueTask ClickSetMultButton(CancellationToken token)
         {
-            CoreData coreData = _gs.ch.Get<CoreData>();
-            int maxMult = _playMultService.GetMaxMult(coreData);
+            CoreData coreData = await _gs.ch.GetAsync<CoreData>();
+            int maxMult = await _playMultService.GetMaxMult(_gs.ch);
 
             if (coreData.Vars[TraderVars.Mult] < maxMult)
             {
@@ -54,7 +64,7 @@ namespace Assets.Scripts.Trader.Travel.UI
                 coreData.Vars[TraderVars.Mult] = 1;
             }
 
-            ShowData();
+            _ = ShowData();
 
             if (_playMultRequestsSent > 0)
             {
@@ -86,16 +96,21 @@ namespace Assets.Scripts.Trader.Travel.UI
                 CoreData coreData = _gs.ch.Get<CoreData>();
                 coreData.Vars[TraderVars.Mult] = response.NewPlayMult;
                 coreData.Vars[TraderVars.MultBonusSpeed] = response.MultBonusSpeed;
-                ShowData();
+                _ = ShowData();
             }
         }
 
-        private void ShowData()
+        private void OnUpdateMaxPlayMult(UpdateMaxPlayMult updateMult)
+        {
+            _ = ShowData();
+        }
+
+        private async ValueTask ShowData()
         {
             CoreData coreData = _gs.ch.Get<CoreData>();
             _uiService.SetText(PlayMultText, "Travel " + coreData.Vars[TraderVars.Mult] + " Day" + (coreData.Vars[TraderVars.Mult] > 1 ? "s" : ""));
 
-            long maxMult = _playMultService.GetMaxMult(coreData);
+            long maxMult = await _playMultService.GetMaxMult(_gs.ch);
 
             PlayMultBG?.SetColor(coreData.Vars[TraderVars.Mult] < maxMult ? LowerTierColor : MaxTierColor);
 

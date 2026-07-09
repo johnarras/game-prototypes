@@ -15,7 +15,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
     {
         public override long HelperKey => RiddleTypes.PositionWordFind;
 
-        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
+        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand)
         {
             await Task.CompletedTask;
 
@@ -98,7 +98,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
 
                 clueText.Append($"The {offsetName} letter is heavily scratched....\n\n");
 
-                PointXZ openPoint = openPoints[rand.Next(openPoints.Count)];
+                Point2I openPoint = openPoints[rand.Next(openPoints.Count)];
                 openPoints.Remove(openPoint);
 
                 prevFloor.SetEntity(openPoint.X, openPoint.Z, EntityTypes.Riddle, l + 1);

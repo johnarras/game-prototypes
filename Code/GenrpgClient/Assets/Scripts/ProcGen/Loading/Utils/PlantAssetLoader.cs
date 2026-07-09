@@ -20,7 +20,7 @@ public class FullDetailPrototype : BaseDetailPrototype
 
 public interface IPlantAssetLoader : IInjectable
 {
-    void SetupOneMapGrass(int gx, int gy, CancellationToken token);
+    void SetupOneMapGrass(int gx, int gz, CancellationToken token);
 }
 public class PlantAssetLoader : IPlantAssetLoader
 {
@@ -32,30 +32,30 @@ public class PlantAssetLoader : IPlantAssetLoader
     protected IClientEntityService _clientEntityService = null;
     private IAwaitableService _awaitableService = null;
 
-    public void SetupOneMapGrass(int gx, int gy, CancellationToken token)
+    public void SetupOneMapGrass(int gx, int gz, CancellationToken token)
     {
-        _awaitableService.ForgetAwaitable(InnerSetupOneMapGrass(gx, gy, token));
+        _awaitableService.ForgetAwaitable(InnerSetupOneMapGrass(gx, gz, token));
     }
-    private async Awaitable InnerSetupOneMapGrass(int gx, int gy, CancellationToken token)
+    private async Awaitable InnerSetupOneMapGrass(int gx, int gz, CancellationToken token)
     {
-        TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gy);
+        TerrainPatchData patch = _terrainManager.GetTerrainPatch(gx, gz);
 
         if (patch == null)
         {
             return;
         }
 
-        TerrainData tdata = patch.terrainData as TerrainData;
+        TerrainData tdata = patch.Core.TerrainData as TerrainData;
 
         if (tdata == null)
         {
-            _logService.Error("Tdata missing: " + gx + " " + gy);
+            _logService.Error("Tdata missing: " + gx + " " + gz);
 
             return;
         }
         if (patch.grassAmounts == null || patch.mainZoneIds == null)
         {
-            _logService.Error("Core Data missing: " + patch.grassAmounts + " " + patch.mainZoneIds + " " + gx + " " + gy);
+            _logService.Error("Core Data missing: " + patch.grassAmounts + " " + patch.mainZoneIds + " " + gx + " " + gz);
 
             return;
         }
@@ -87,7 +87,7 @@ public class PlantAssetLoader : IPlantAssetLoader
                 }
                 currentZones.Add(zone);
                 bool isMainTerrain = patch.MainZoneIdList.Contains(zid);
-                _zonePlantValidator.UpdateValidPlantTypeList(zone, gx, gy, fullProtoList, isMainTerrain, token);
+                _zonePlantValidator.UpdateValidPlantTypeList(zone, gx, gz, fullProtoList, isMainTerrain, token);
 
             }
 
@@ -99,11 +99,11 @@ public class PlantAssetLoader : IPlantAssetLoader
             }
 
 
-            AfterUpdateValidPrototypes(fullProtoList, gx, gy, token);
+            AfterUpdateValidPrototypes(fullProtoList, gx, gz, token);
         }
         else
         {
-            _logService.Error("No zones for grass: " + gx + " " + gy);
+            _logService.Error("No zones for grass: " + gx + " " + gz);
             return;
         }
 
@@ -120,7 +120,7 @@ public class PlantAssetLoader : IPlantAssetLoader
         {
             if (protos[i] == null)
             {
-                _logService.Error("No proto: " + gx + " " + gy + " idx " + i);
+                _logService.Error("No proto: " + gx + " " + gz + " idx " + i);
                 return;
             }
         }
@@ -169,26 +169,26 @@ public class PlantAssetLoader : IPlantAssetLoader
 
         for (int x = 0; x < MapConstants.TerrainPatchSize - 1; x++)
         {
-            for (int y = 0; y < MapConstants.TerrainPatchSize - 1; y++)
+            for (int z = 0; z < MapConstants.TerrainPatchSize - 1; z++)
             {
                 int finalX = x;
-                int finalY = y;
+                int finalZ = z;
 
-                int offsetX = x + ((x * 11 + y * 17 + gx * 31 + gy * 47) % totalOffset - maxOffset);
-                int offsetY = y + ((x * 43 + y * 59 + gx * 37 + gy * 53) % totalOffset - maxOffset);
+                int offsetX = x + ((x * 11 + z * 17 + gx * 31 + gz * 47) % totalOffset - maxOffset);
+                int offsetZ = z + ((x * 43 + z * 59 + gx * 37 + gz * 53) % totalOffset - maxOffset);
 
                 if (offsetX >= 0 && offsetX < MapConstants.TerrainPatchSize - 1 &&
-                    offsetY >= 0 && offsetY < MapConstants.TerrainPatchSize - 1)
+                    offsetZ >= 0 && offsetZ < MapConstants.TerrainPatchSize - 1)
                 {
                     finalX = offsetX;
-                    finalY = offsetY;
+                    finalZ = offsetZ;
                 }
 
-                long zoneId = patch.subZoneIds[finalX, finalY];
+                long zoneId = patch.subZoneIds[finalX, finalZ];
 
                 if (zoneId < 1)
                 {
-                    zoneId = patch.mainZoneIds[finalX, finalY];
+                    zoneId = patch.mainZoneIds[finalX, finalZ];
                 }
 
                 List<FullDetailPrototype> currentProtos = fullProtoList.Where(x => x.zoneIds.Contains(zoneId)).ToList();
@@ -218,10 +218,10 @@ public class PlantAssetLoader : IPlantAssetLoader
                     {
                         offset = MapConstants.MaxGrass;
                     }
-                    if (patch.grassAmounts[x, y, i] > 0)
+                    if (patch.grassAmounts[x, z, i] > 0)
                     {
                         FullDetailPrototype proto = currentProtos[i + offset];
-                        detailblock[proto.Index][x, y] = (int)patch.grassAmounts[x, y, i];
+                        detailblock[proto.Index][x, z] = (int)patch.grassAmounts[x, z, i];
                     }
                 }
             }
@@ -233,7 +233,7 @@ public class PlantAssetLoader : IPlantAssetLoader
         }
     }
 
-    private void AfterUpdateValidPrototypes(List<FullDetailPrototype> fullList, int gx, int gy, CancellationToken token)
+    private void AfterUpdateValidPrototypes(List<FullDetailPrototype> fullList, int gx, int gz, CancellationToken token)
     {
         foreach (FullDetailPrototype full in fullList)
         {
@@ -254,7 +254,7 @@ public class PlantAssetLoader : IPlantAssetLoader
 
             dp.noiseSpread = 1.0f;
             full.proto = dp;
-            if (gx >= 0 && gy >= 0)
+            if (gx >= 0 && gz >= 0)
             {
                 _assetService.LoadAsset(AssetCategoryNames.Grass, full.plantType.Art, OnDownloadGrass, null, token, full);
             }
@@ -291,13 +291,13 @@ public class PlantAssetLoader : IPlantAssetLoader
             full.proto.dryColor = Color.white;
         }
 
-        TerrainPatchData grid = _terrainManager.GetMapGrid(full.XGrid, full.YGrid) as TerrainPatchData;
+        TerrainPatchData grid = _terrainManager.GetMapGrid(full.XGrid, full.ZGrid) as TerrainPatchData;
         if (grid == null)
         {
             _clientEntityService.Destroy(go);
             return;
         }
-        Terrain terr = grid.terrain as Terrain;
+        Terrain terr = grid.Core.Terrain;
         if (terr == null)
         {
             _clientEntityService.Destroy(go);

@@ -14,7 +14,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting
     public class SpecialSpellCastingStateHelper : BaseStateHelper
     {
         public override ECrawlerStates HelperKey => ECrawlerStates.SpecialSpellCast;
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

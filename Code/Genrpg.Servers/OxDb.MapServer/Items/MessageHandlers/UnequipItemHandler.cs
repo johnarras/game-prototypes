@@ -12,7 +12,7 @@ namespace OxDb.MapServer.Items.MessageHandlers
 
         private IInventoryService _inventoryService = null;
 
-        protected override async Task InnerProcess(IRandomContainer rand, Unit unit, UnequipItem message)
+        protected override async ValueTask InnerProcess(Unit unit, UnequipItem message)
         {
             if (!_inventoryService.UnequipItem(unit, message.ItemId))
             {

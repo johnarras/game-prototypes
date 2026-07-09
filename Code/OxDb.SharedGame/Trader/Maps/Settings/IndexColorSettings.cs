@@ -9,6 +9,7 @@ namespace OxDb.SharedGame.Trader.Maps.Settings
     public class IndexedColorSettings : ParentSettings<IndexedColor>
     {
         public override string Id { get; set; }
+        public long RoadTextureTypeId { get; set; }
     }
 
     public class IndexedColor : ChildSettings, IIdName

@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.Build;
+using UnityEngine;
 
 public class PlatformBuildData
 {
@@ -16,14 +17,13 @@ public class PlatformBuildData
 
     public string GetBundleOutputPath()
     {
-
         return BuildConfiguration.AssetBundleRoot + FilePath;
     }
 
     public string GetTextFileOutputPath()
     {
         Assembly assemb = Assembly.GetExecutingAssembly();
-        string loc = assemb.Location;
+        string loc = assemb.GetLoadedAssemblyPath();
         return Path.GetDirectoryName(loc) + "/../../" + GetBundleOutputPath();
     }
 }
@@ -39,7 +39,7 @@ public class BuildConfiguration
 
         list.Add(new PlatformBuildData()
         {
-            Target = BuildTarget.StandaloneWindows,
+            Target = BuildTarget.StandaloneWindows64,
             NamedTarget = NamedBuildTarget.Standalone,
             FilePath = ClientPlatformNames.Win,
             ClientPlatform = ClientPlatformNames.Win,

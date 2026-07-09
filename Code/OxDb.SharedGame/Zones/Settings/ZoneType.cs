@@ -51,10 +51,13 @@ namespace OxDb.SharedGame.Zones.Settings
         public List<WeightedName> ZoneNames { get; set; } = new List<WeightedName>();
         public List<WeightedName> ZoneAdjectives { get; set; } = new List<WeightedName>();
 
+
+        
         public List<ZoneBridgeType> BridgeTypes { get; set; } = new List<ZoneBridgeType>();
         public List<ZoneFenceType> FenceTypes { get; set; } = new List<ZoneFenceType>();
         public List<ZoneRockType> RockTypes { get; set; } = new List<ZoneRockType>();
         public List<ZoneTreeType> TreeTypes { get; set; } = new List<ZoneTreeType>();
+        public List<ZoneBushType> BushTypes { get; set; } = new List<ZoneBushType>();
 
         public List<WeightedName> CreatureNamePrefixes { get; set; } = new List<WeightedName>();
         public List<WeightedName> CreatureDoubleNamePrefixes { get; set; } = new List<WeightedName>();

@@ -1,3 +1,4 @@
+using Assets.Scripts.Crawler.Maps.Constants;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Maps.Loading;
 using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
@@ -10,7 +11,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
 {
@@ -18,7 +18,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
     {
         public override int Order => 700;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
         {
             List<MapCellDetail> cellDetails = mapRoot.Map.Details.Where(d => d.X == cell.MapX && d.Z == cell.MapZ).ToList();
             if (mapRoot.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)

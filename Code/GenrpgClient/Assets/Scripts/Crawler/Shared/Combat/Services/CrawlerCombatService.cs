@@ -1,8 +1,9 @@
 using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Core;
+using Assets.Scripts.Cameras.Constants;
 using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
 using Assets.Scripts.Crawler.Constants;
 using Assets.Scripts.Crawler.Items.Services;
+using Assets.Scripts.Crawler.Maps.Services;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
 using Assets.Scripts.Crawler.Shared.Combat.Constants;
 using Assets.Scripts.Dungeons.Audio;
@@ -22,7 +23,6 @@ using OxDb.SharedGame.Crawler.Info.Services;
 using OxDb.SharedGame.Crawler.Items.Entities;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Monsters.Settings;
 using OxDb.SharedGame.Crawler.Options.Constants;
@@ -84,7 +84,6 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
         private ICrawlerSpellService _crawlerSpellService = null;
         protected IGameData _gameData = null;
         protected IClientGameState _gs = null;
-        protected IClientRandom _rand = null;
         private ICrawlerMapService _crawlerMapService = null;
         private ICrawlerService _crawlerService = null;
         private ICrawlerWorldService _worldService = null;
@@ -98,6 +97,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
         private ICrawlerItemService _crawlerItemService = null;
         private ICrawlerOptionsService _optionsService = null;
         private ICrawlerUpgradeService _crawlerUpgradeService = null;
+        private ICameraController _cameraController = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -224,7 +224,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                     startSettings.BaseGroupCountIncreaseChance + startSettings.GroupCountIncreaseChancePerLevel * difficulty,
                     startSettings.MaxGroupCountIncreaseChance);
 
-                while (_rand.Rand.NextDouble() < groupCountIncreaseChance && groupCount < startSettings.MaxGroupCount)
+                while (_gs.Rand.NextDouble() < groupCountIncreaseChance && groupCount < startSettings.MaxGroupCount)
                 {
                     // Make this mult < 1 so it's less liekly to keep adding groups as you add more.
                     groupCountIncreaseChance *= startSettings.GroupCountIncreaseMultPerGroupAdded;
@@ -251,11 +251,11 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 {
                     ZoneUnitSpawn chosenSpawn = null;
 
-                    if (_rand.Rand.NextDouble() > startSettings.SelectRandomUnitForCombatGroupChance)
+                    if (_gs.Rand.NextDouble() > startSettings.SelectRandomUnitForCombatGroupChance)
                     {
                         double chanceSum = spawns.Sum(x => x.Weight);
 
-                        double chanceChosen = _rand.Rand.NextDouble() * chanceSum;
+                        double chanceChosen = _gs.Rand.NextDouble() * chanceSum;
 
                         foreach (ZoneUnitSpawn sp in spawns)
                         {
@@ -269,7 +269,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                     }
                     else
                     {
-                        chosenSpawn = spawns[_rand.Rand.Next() % spawns.Count];
+                        chosenSpawn = spawns[_gs.Rand.Next() % spawns.Count];
                     }
 
                     UnitType newUnitType = allUnitTypes.FirstOrDefault(x => x.IdKey == chosenSpawn.UnitTypeId);
@@ -298,11 +298,11 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
                     if (currRange < CrawlerCombatConstants.MaxRange - CrawlerCombatConstants.RangeDelta * 2)
                     {
-                        if (_rand.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
+                        if (_gs.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
                         {
                             currRange += CrawlerCombatConstants.RangeDelta;
 
-                            if (u > 0 && _rand.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
+                            if (u > 0 && _gs.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
                             {
                                 currRange += CrawlerCombatConstants.RangeDelta;
                             }
@@ -312,7 +312,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                     // Second chance to push back if this failed.
                     if (u > 0 && currRange == CrawlerCombatConstants.MinRange)
                     {
-                        if (_rand.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
+                        if (_gs.Rand.NextDouble() < startSettings.RangeIncreaseChancePerGroup)
                         {
                             currRange += CrawlerCombatConstants.RangeDelta;
                         }
@@ -323,7 +323,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                         currRange = unitType.MinRange;
                     }
 
-                    long quantity = RandUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _rand.Rand);
+                    long quantity = RandUtils.LongRange(CrawlerCombatConstants.MinGroupSize, maxGroupSize, _gs.Rand);
 
                     InitialCombatGroup initialGroup = new InitialCombatGroup()
                     {
@@ -355,7 +355,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 {
                     UnitTypeId = wqi.GuardUnitTypeId,
                     Range = CrawlerCombatConstants.MaxRange,
-                    Quantity = RandUtils.IntRange(5, 10, _rand.Rand),
+                    Quantity = RandUtils.IntRange(5, 10, _gs.Rand),
                     Level = combatState.Level,
                     FactionTypeId = FactionTypes.Faction1,
                 });
@@ -375,13 +375,14 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
             {
                 foreach (InitialCombatGroup initialGroup in initialState.CombatGroups)
                 {
-                    initialGroup.Quantity += RandUtils.LongRange(0, initialGroup.Quantity, _rand.Rand);
+                    initialGroup.Quantity += RandUtils.LongRange(0, initialGroup.Quantity, _gs.Rand);
                 }
             }
 
             // Now save party so players have to come back and fight the monsters even if they quit.
             await _crawlerService.SaveGame();
             party.Combat = combatState;
+            _cameraController.SetSaturation(GraphicsConstants.MinSaturation, false);
             _dispatcher.Dispatch(new SetAmbientSoundCategory(AmbientSoundCategoryNames.Combat));
             party.InitialCombat = null;
 
@@ -433,7 +434,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
             long suffixKeywordId = 0;
             UnitKeyword suffixKeyword = null;
 
-            if (_rand.Rand.NextDouble() < monsterSettings.UnitKeywordChance && unitType.Keywords.Count > 0)
+            if (_gs.Rand.NextDouble() < monsterSettings.UnitKeywordChance && unitType.Keywords.Count > 0)
             {
                 List<long> possibleKeywordIds = unitType.Keywords.Select(x => x.UnitKeywordId).ToList();
 
@@ -441,7 +442,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
                 if (possibleKeywords.Count > 0)
                 {
-                    UnitKeyword chosenKeyword = RandUtils.GetRandomElement(possibleKeywords, _rand.Rand);
+                    UnitKeyword chosenKeyword = RandUtils.GetRandomElement(possibleKeywords, _gs.Rand);
 
                     suffixKeywordId = chosenKeyword.IdKey;
                     suffixKeyword = chosenKeyword;
@@ -457,9 +458,9 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
                 List<CurrentUnitKeyword> okMapKeywords = map.UnitKeywords.Where(k => k.UnitKeywordId != suffixKeywordId).ToList();
 
-                if (okMapKeywords.Count > 0 && _rand.Rand.NextDouble() < monsterSettings.MapUnitKeywordChance)
+                if (okMapKeywords.Count > 0 && _gs.Rand.NextDouble() < monsterSettings.MapUnitKeywordChance)
                 {
-                    CurrentUnitKeyword mapKeyword = okMapKeywords[_rand.Rand.Next(okMapKeywords.Count)];
+                    CurrentUnitKeyword mapKeyword = okMapKeywords[_gs.Rand.Next(okMapKeywords.Count)];
 
                     UnitKeyword unitKeyword = allUnitKeywords.FirstOrDefault(x => x.IdKey == mapKeyword.UnitKeywordId);
                     if (unitKeyword != null)
@@ -522,8 +523,8 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 {
                     EntityTypeId = aeffect.EntityTypeId,
                     EntityId = aeffect.EntityId,
-                    MaxQuantity = 1,
-                    MinQuantity = 1,
+                    WeaponDamageScale = 1,
+                    StatBonusDamageScale = 1,
                     ElementTypeId = statusEffect.ElementTypeId,
                 };
 
@@ -532,7 +533,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 {
                     Effect = spellEffect,
                     InitialEffect = true,
-                    Chance = effectChance,
+                    ProcChance = effectChance,
                     ElementType = elementSettings.Get(statusEffect.ElementTypeId),
                 };
 
@@ -608,7 +609,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
                 if (okNameKeywords.Count > 0)
                 {
-                    UnitKeyword chosenWord = okNameKeywords[_rand.Rand.Next(okNameKeywords.Count)];
+                    UnitKeyword chosenWord = okNameKeywords[_gs.Rand.Next(okNameKeywords.Count)];
                     namePrefix = chosenWord.Name + " ";
                 }
             }
@@ -680,6 +681,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                     CombatGroupId = group.Id,
                     ExtraKeywords = fullStats.ExtraKeywords,
                     BonusCount = fullStats.BonusCount,
+                    SummonArgs = initial.SummonArgs,
                 };
                 _statService.CalcUnitStats(party, monster, true);
 
@@ -699,25 +701,27 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 return false;
             }
 
+            List<CrawlerUnit> notReadyUnits = new List<CrawlerUnit>();
             foreach (CombatGroup group in party.Combat.Allies)
             {
                 if (group.CombatGroupAction != ECombatGroupActions.Fight)
                 {
                     continue;
                 }
+
                 foreach (CrawlerUnit unit in group.Units)
                 {
                     if (unit.CombatActions.Count < unit.ActionsThisRound)
                     {
                         if (!IsDisabled(unit))
                         {
-                            return false;
+                            notReadyUnits.Add(unit);
                         }
                     }
                 }
             }
 
-            return true;
+            return notReadyUnits.Count == 0;
         }
 
         public async Task<ECombatStepResults> EndCombatRound(PartyData party, CancellationToken token)
@@ -918,7 +922,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
                 if (spell != null)
                 {
-                    double spellLevel = _roleService.GetSpellScalingLevel(party, caster, spell);
+                    double spellLevel = _roleService.GetSpellScalingLevel(party, caster, spell, true);
                     newAction.Text += " [" + spellLevel + "x]";
                 }
 
@@ -1147,7 +1151,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                 return false;
             }
 
-            return _rand.Rand.Next(100) < _gameData.Get<StatusEffectSettings>(_gs.ch).Get(statusEffectId).Amount;
+            return _gs.Rand.Next(100) < _gameData.Get<StatusEffectSettings>(_gs.ch).Get(statusEffectId).Amount;
         }
 
         public void InitPartyCombatActions(PartyData party)

@@ -9,7 +9,7 @@
   "AncientName": "Lutetia Parisiorum",
   "Population": 200000,
   "MapPixelX": 1296,
-  "MapPixelY": 1869,
+  "MapPixelZ": 1869,
   "BiomeTypeId": 6,
   "CultureTypeId": 1,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 12
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 6
+    },
+    {
+      "CaravanMemberId": 3
+    }
+  ]
 }

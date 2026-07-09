@@ -9,7 +9,7 @@ namespace Assets.Scripts.Lockstep.Collisions.Components
         public ECollisionShapeType ShapeType;
 
         // For Circle: X is Radius.
-        // For Rectangle: X is HalfWidth, Y is HalfHeight (Extents).
+        // For Rectangle: X is HalfWidth, Z is HalfHeight (Extents).
         public Vector2Fixed Extents;
 
         public static CollisionShape CreateCircle(FixedPoint64 radius)

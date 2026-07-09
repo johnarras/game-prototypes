@@ -1,10 +1,9 @@
-using Assets.Scripts.Core;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.MapMessages.Interfaces;
 using System;
 using System.Threading;
-using UnityEngine;
+using System.Threading.Tasks;
 
 public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler where T : class, IMapApiMessage
 {
@@ -17,11 +16,10 @@ public abstract class BaseClientMapMessageHandler<T> : IClientMapMessageHandler 
     protected IDispatcher _dispatcher;
     protected CancellationToken _token;
     protected IClientGameState _gs;
-    protected IClientRandom _rand;
 
-    protected abstract Awaitable InnerProcess(T msg, CancellationToken token);
+    protected abstract ValueTask InnerProcess(T msg, CancellationToken token);
 
-    public async Awaitable Process(IMapApiMessage msg, CancellationToken token)
+    public async ValueTask Process(IMapApiMessage msg, CancellationToken token)
     {
         await InnerProcess(msg as T, token);
     }

@@ -1,6 +1,8 @@
 using MessagePack;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.NoChild;
+using OxDb.SharedGame.Purchasing.PlayerData;
+using OxDb.SharedGame.Units.Loaders;
 using OxDb.SharedGame.Units.Mappers;
 
 namespace OxDb.SharedGame.Currencies.PlayerData
@@ -15,18 +17,20 @@ namespace OxDb.SharedGame.Currencies.PlayerData
         [Key(0)] public override string Id { get; set; }
 
         [Key(1)] public SmallIdLongCollection Data { get; set; } = new SmallIdLongCollection();
+        [Key(2)] public override string VersionTag { get; set; }
 
     }
 
+    public class CharCurrencyLoader : UnitDataLoader<CharCurrencyData> { }
     [MessagePackObject]
-    public class CurrencyDto : NoChildPlayerDataDto<CharCurrencyData>
+    public class CharCurrencyDto : NoChildPlayerDataDto<CharCurrencyData>
     {
         [Key(0)] public override CharCurrencyData Parent { get; set; }
         [Key(1)] public override string Id { get; set; }
     }
 
 
-    public class CurrencyDataMapper : NoChildUnitDataMapper<CharCurrencyData, CurrencyDto> { }
+    public class CharCurrencyDataMapper : NoChildUnitDataMapper<CharCurrencyData, CharCurrencyDto> { }
 }
 
 

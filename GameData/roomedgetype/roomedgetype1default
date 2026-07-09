@@ -1,0 +1,7 @@
+{
+  "Id": "roomedgetype1default",
+  "ParentId": "default",
+  "IdKey": 1,
+  "Name": "Flat",
+  "Weight": 1.0
+}

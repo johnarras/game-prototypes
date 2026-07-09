@@ -19,7 +19,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
     {
         public override long HelperKey => SpendLocations.CaravanMembers;
 
-        public override async Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
+        public override async ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
         {
             List<SpendType> validSpendTypes = new List<SpendType>();
 
@@ -36,7 +36,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
 
             IReadOnlyList<CaravanMember> allCaravanMembers = CaravanMemberSettings.GetData();
 
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(lookup);
 
             List<CityCaravanMember> currCaravanMembers = new List<CityCaravanMember>();
 

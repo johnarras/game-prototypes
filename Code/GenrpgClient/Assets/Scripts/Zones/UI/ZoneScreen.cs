@@ -53,8 +53,8 @@ public class ZoneScreen : BaseScreen
     private long _lastZoneShown = -1;
     float xminpct = 0;
     float xmaxpct = 0;
-    float yminpct = 0;
-    float ymaxpct = 0;
+    float zminpct = 0;
+    float zmaxpct = 0;
 
 
     const float ZonePadPercent = 0.05f;
@@ -96,23 +96,23 @@ public class ZoneScreen : BaseScreen
         Zone currZone = _mapProvider.GetMap().Get<Zone>(_zoneStateController.GetCurrentZoneShown());
 
         float oldminx = 0;
-        float oldminy = 0;
+        float oldminz = 0;
         float oldmaxx = 0;
-        float oldmaxy = 0;
+        float oldmaxz = 0;
 
         if (currZone != null)
         {
-            float minx = currZone.ZMin; float miny = currZone.XMin; float maxx = currZone.ZMax; float maxy = currZone.XMax;
+            float minx = currZone.MinZ; float minz = currZone.MinX; float maxx = currZone.MaxZ; float maxz = currZone.MaxX;
 
             xminpct = minx * 1.0f / _mapProvider.GetMap().GetHwid();
             xmaxpct = maxx * 1.0f / _mapProvider.GetMap().GetHhgt();
-            yminpct = miny * 1.0f / _mapProvider.GetMap().GetHhgt();
-            ymaxpct = maxy * 1.0f / _mapProvider.GetMap().GetHhgt();
+            zminpct = minz * 1.0f / _mapProvider.GetMap().GetHhgt();
+            zmaxpct = maxz * 1.0f / _mapProvider.GetMap().GetHhgt();
 
             oldminx = xminpct;
-            oldminy = yminpct;
+            oldminz = zminpct;
             oldmaxx = xmaxpct;
-            oldmaxy = ymaxpct;
+            oldmaxz = zmaxpct;
 
             float numBlocks = _mapProvider.GetMap().GetHwid() / MapConstants.TerrainPatchSize;
 
@@ -125,12 +125,12 @@ public class ZoneScreen : BaseScreen
             edgeSize = 0;
 
             float xdiff = xmaxpct - xminpct;
-            float ydiff = ymaxpct - yminpct;
+            float zdiff = zmaxpct - zminpct;
 
             float xmid = (xminpct + xmaxpct) / 2;
-            float ymid = (yminpct + ymaxpct) / 2;
+            float zmid = (zminpct + zmaxpct) / 2;
 
-            float maxDiff = Math.Max(xdiff, ydiff);
+            float maxDiff = Math.Max(xdiff, zdiff);
 
             maxDiff *= (1 + ZonePadPercent);
 
@@ -138,8 +138,6 @@ public class ZoneScreen : BaseScreen
             {
                 //dmaxDiff = minPercentSize;
             }
-
-
 
             xminpct = xmid - maxDiff / 2;
             xmaxpct = xmid + maxDiff / 2;
@@ -154,25 +152,24 @@ public class ZoneScreen : BaseScreen
                 xminpct -= (xmaxpct - 1);
                 xmaxpct = 1;
             }
-            yminpct = ymid - maxDiff / 2;
-            ymaxpct = ymid + maxDiff / 2;
-            if (yminpct < 0)
+            zminpct = zmid - maxDiff / 2;
+            zmaxpct = zmid + maxDiff / 2;
+            if (zminpct < 0)
             {
-                ymaxpct += -yminpct;
-                yminpct = 0;
+                zmaxpct += -zminpct;
+                zminpct = 0;
             }
-            if (ymaxpct > 1)
+            if (zmaxpct > 1)
             {
-                yminpct -= (ymaxpct - 1);
-                ymaxpct = 1;
+                zminpct -= (zmaxpct - 1);
+                zmaxpct = 1;
             }
             xdiff = maxDiff;
-            ydiff = maxDiff;
-
+            zdiff = maxDiff;
 
             if (mapTexture != null)
             {
-                MapImage.uvRect = new Rect(new Vector2(xminpct, yminpct), new Vector2(xdiff, ydiff));
+                MapImage.uvRect = new Rect(new Vector2(xminpct, zminpct), new Vector2(xdiff, zdiff));
             }
 
             _lastZoneShown = currZone.IdKey;
@@ -187,32 +184,30 @@ public class ZoneScreen : BaseScreen
 
 
 
-        if (xminpct >= xmaxpct || yminpct >= ymaxpct)
+        if (xminpct >= xmaxpct || zminpct >= zmaxpct)
         {
             return;
         }
 
         // Player pct goes from -0.5 to 0.5.
         float xpctstart = pos.x / _mapProvider.GetMap().GetHwid();
-        float ypctstart = pos.z / _mapProvider.GetMap().GetHhgt();
+        float zpctstart = pos.z / _mapProvider.GetMap().GetHhgt();
 
         float newdx = xmaxpct - xminpct;
-        float newdy = ymaxpct - yminpct;
+        float newdz = zmaxpct - zminpct;
 
         float xpct = MathUtil.Clamp(0, (xpctstart - xminpct) / (xmaxpct - xminpct), 1) - 0.5f;
-        float ypct = MathUtil.Clamp(0, (ypctstart - yminpct) / (ymaxpct - yminpct), 1) - 0.5f;
+        float zpct = MathUtil.Clamp(0, (zpctstart - zminpct) / (zmaxpct - zminpct), 1) - 0.5f;
 
         float rot = player.transform.eulerAngles.y;
 
         float sx = xpct * imageSize;
-        float sy = ypct * imageSize;
+        float sz = zpct * imageSize;
 
         Vector3 cpos = arrow.transform.localPosition;
-        arrow.transform.localPosition = new Vector3(sx, sy, cpos.z);
+        arrow.transform.localPosition = new Vector3(sx, sz, cpos.z);
 
         arrow.transform.eulerAngles = new Vector3(0, 0, -rot);
-
-
     }
 
 }

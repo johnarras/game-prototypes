@@ -9,7 +9,7 @@
   "AncientName": "Philippopolis",
   "Population": 100000,
   "MapPixelX": 2320,
-  "MapPixelY": 2177,
+  "MapPixelZ": 2177,
   "BiomeTypeId": 10,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -23,5 +23,21 @@
       "TradeGoodId": 38
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 2
+    }
+  ]
 }

@@ -23,7 +23,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
 
         public override ECrawlerStates HelperKey => ECrawlerStates.ChooseClass;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentState, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
             PartyMember member = action.ExtraData as PartyMember;

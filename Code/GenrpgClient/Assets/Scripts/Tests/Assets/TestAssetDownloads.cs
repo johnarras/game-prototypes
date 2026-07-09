@@ -36,13 +36,11 @@ public class TestAssetDownloads : IInjectable
 
         TestAssetCategory<UnitTypeSettings, UnitType>(AssetCategoryNames.Monsters, token);
 
-        TestAssetCategory<TextureTypeSettings, TextureType>(AssetCategoryNames.TerrainTex, token);
+        TestAssetCategory<TextureTypeSettings, TextureType>(AssetCategoryNames.TextureLists, token);
 
-        TestAssetCategory<TreeTypeSettings, TreeType>(AssetCategoryNames.Trees, token,
-            x => !x.HasFlag(TreeFlags.IsBush));
+        TestAssetCategory<TreeTypeSettings, TreeType>(AssetCategoryNames.Trees, token);
 
-        TestAssetCategory<TreeTypeSettings, TreeType>(AssetCategoryNames.Bushes, token,
-            x => x.HasFlag(TreeFlags.IsBush));
+        TestAssetCategory<BushTypeSettings, BushType>(AssetCategoryNames.Bushes, token);
 
         _logService.Info("Download Tests Complete");
 

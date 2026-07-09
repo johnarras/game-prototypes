@@ -32,7 +32,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
         public const int ViewRadius = 8;
         public async Awaitable DrawNearbyMap(PartyData _party, CrawlerWorld _world, CrawlerMapRoot _crawlerMapRoot, CancellationToken token)
         {
-            await Awaitable.MainThreadAsync();
             try
             {
                 if (_crawlerMapRoot == null || !_crawlerMapRoot.AssetsAreReady())

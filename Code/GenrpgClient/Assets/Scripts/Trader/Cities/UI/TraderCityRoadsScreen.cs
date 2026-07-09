@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.ClientEvents.UI;
 using Assets.Scripts.UI.ScreenSystem;
-using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Cities.Settings;
@@ -35,10 +34,7 @@ namespace Assets.Scripts.Trader.UI.Cities
 
         protected override async Task OnStartOpen(TraderCityRoadsScreenArgs data, CancellationToken token)
         {
-
-            CoreData coreData = _gs.ch.Get<CoreData>();
-
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             _clientEntityService.SetActive(EnterCityButtonParent, pos.GetCurrentCity() != null);
             _uiService.SetButton(EnterCityButton, GetName(), ShowCity);
@@ -100,8 +96,8 @@ namespace Assets.Scripts.Trader.UI.Cities
                     DistanceToTarget = (int)distance.Distance,
                     TargetCity = distance.City,
                     TargetX = distance.City.MapPixelX,
-                    TargetY = distance.City.MapPixelY,
-                    Angle = _traderMapService.GetAngle(pos.CurrX, pos.CurrY, distance.City.MapPixelX, distance.City.MapPixelY),
+                    TargetY = distance.City.MapPixelZ,
+                    Angle = _traderMapService.GetAngle(pos.CurrX, pos.CurrZ, distance.City.MapPixelX, distance.City.MapPixelZ),
                 };
 
 
@@ -113,15 +109,13 @@ namespace Assets.Scripts.Trader.UI.Cities
             }
         }
 
-        private void ShowCity()
+        private async ValueTask ShowCity(CancellationToken token)
         {
-            CoreData coreData = _gs.ch.Get<CoreData>();
-
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             if (pos.GetCurrentCity() != null)
             {
-                _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCity, new TraderCityScreenArgs() { CityId = pos.GetCurrentCity().IdKey }));
+                _dispatcher.Dispatch(new OpenScreen(ScreenNames.TraderCity));
                 StartClose();
             }
         }

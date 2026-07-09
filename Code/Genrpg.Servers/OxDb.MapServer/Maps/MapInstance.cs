@@ -13,6 +13,7 @@ using OxDb.ServerGame.Maps;
 using OxDb.ServerGame.MapSpawns;
 using OxDb.ServerGame.PlayerData.Services;
 using OxDb.SharedCore.Config.Constants;
+using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.GameSettings;
@@ -24,6 +25,7 @@ using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
+using OxDb.SharedGame.DataStores.Utils;
 using OxDb.SharedGame.GameSettings.Messages;
 using OxDb.SharedGame.MapMessages.Interfaces;
 using OxDb.SharedGame.MapObjects.Entities;
@@ -154,12 +156,12 @@ namespace OxDb.MapServer.Maps
             _instanceTokenSource = CancellationTokenSource.CreateLinkedTokenSource(args.Token, _currServerToken.Token);
 
             // Step 2: Load map before setting up messaging and object manager
-            _mapProvider.SetMap(await _mapDataService.LoadMap(_rand, _mapId));
+            _mapProvider.SetMap(await _mapDataService.LoadMap(_mapId));
             _mapProvider.SetSpawns(await _mapSpawnDataService.LoadMapSpawnData(_repoService, _mapProvider.GetMap().Id, _mapProvider.GetMap().MapVersion));
 
             // Step 3: Setup messaging and object systems
             _messageService.Init(_currServerToken.Token);
-            _objectManager.Init(_rand, _currServerToken.Token);
+            await _objectManager.Init(_rand, _currServerToken.Token);
             _port = initData.Port;
             _serializerType = initData.SerializerType;
             _host = "127.0.0.1";
@@ -182,8 +184,11 @@ namespace OxDb.MapServer.Maps
             _taskService.ForgetTask(ProcessMap(_currServerToken.Token), true);
 
             await _pathfindingService.LoadPathfinding(
-                _config.GetConfigVal(AppConfigKeys.ContentRoot) + "/" + _config.GetConfigVal(AppConfigKeys.ProductName) +
-                _config.DataEnvs[EDataCategories.Worlds.ToString()] + "/");
+                  _config.GetConfigVal(AppConfigKeys.ContentRoot) + "/" +
+                  BlobUtils.GetBlobContainerName(EGameModes.MMO.ToString().ToLower(),
+                 _config.DataEnvs[EDataCategories.Worlds.ToString()], EDataCategories.Worlds.ToString()));
+
+
         }
 
         public void SendAddInstanceMessage()
@@ -351,7 +356,7 @@ namespace OxDb.MapServer.Maps
                     ch.MapId = _mapId;
                 }
 
-                ch.NearbyGridsSeen = new List<PointXZ>();
+                ch.NearbyGridsSeen = new List<Point2I>();
                 connState.ch = ch;
                 List<IUnitData> allUnitData = await _playerDataService.LoadAllPlayerData(loadRand, gameAcct.Id, new List<IUnitData>(), ch);
                 foreach (IUnitData unitData in allUnitData)
@@ -359,7 +364,7 @@ namespace OxDb.MapServer.Maps
                     ch.Set(unitData);
                 }
                 _gameDataService.SetGameDataOverrides(ch, true);
-                MapObjectGridItem gridItem = _objectManager.AddObject(loadRand, ch, null);
+                MapObjectGridItem gridItem = _objectManager.AddObject(ch, null);
 
                 didLoad = true;
             }
@@ -368,7 +373,7 @@ namespace OxDb.MapServer.Maps
                 Character ch = mapObj as Character;
                 ch.SetConn(connState.conn);
                 connState.ch = ch;
-                ch.NearbyGridsSeen = new List<PointXZ>();
+                ch.NearbyGridsSeen = new List<Point2I>();
             }
 
             if (connState.ch == null)

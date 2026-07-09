@@ -14,6 +14,7 @@ namespace OxDb.SharedGame.Crawler.Buffs.Constants
         public const long Parry = 10;
         public const long ApplyDoT = 11;
         public const long Lifesteal = 12;
+        public const long Command = 13;
 
     }
 }

@@ -25,6 +25,7 @@ namespace OxDb.SharedGame.Inventory.PlayerData
         [Key(11)] public List<ItemProc> Procs { get; set; } = new List<ItemProc>();
 
 
+        [Key(12)] public override string VersionTag { get; set; }
         private string _art;
         public string GetArt() { return _art; }
         public void SetArt(string art) { _art = art; }

@@ -14,7 +14,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Helpers
 
         public override void AddEnchantToItem(PartyData party, Item item, ItemGenArgs args)
         {
-            MapMagicType magicType = RandUtils.GetRandomEnchant(_gameData.Get<MapMagicSettings>(_gs.ch).GetData(), _rand.Rand);
+            MapMagicType magicType = RandUtils.GetRandomEnchant(_gameData.Get<MapMagicSettings>(_gs.ch).GetData(), _gs.Rand);
 
             if (magicType != null)
             {

@@ -4,5 +4,6 @@
   "IdKey": 40,
   "Name": "PowerMult",
   "Desc": "All Dam Mult",
+  "Icon": "PowerMult",
   "GenScalePct": 10
 }

@@ -16,7 +16,7 @@ namespace OxDb.SharedGame.Ftue.PlayerData
     [MessagePackObject]
     public class FtueData : UniquePersonalUserData, IUserData
     {
-        public override int GetOffsetBit() { return EPersonalDataOffsetBits.Ftue; }
+        public override int GetOffsetBit() { return PersonalDataOffsetBits.Ftue; }
 
 
         public override PersonalDataAccumulation GetAccumulation()

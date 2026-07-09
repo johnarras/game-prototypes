@@ -1,0 +1,13 @@
+{
+  "Id": "roomedgetype6default",
+  "ParentId": "default",
+  "IdKey": 6,
+  "Name": "Nooks",
+  "Weight": 1.0,
+  "OffsetChance": 0.5,
+  "NarrowChance": 0.5,
+  "MinDepthRatio": 0.5,
+  "MaxDepthRatio": 2.0,
+  "MaxEndDoorChance": 1.0,
+  "MaxMissingChance": 0.4
+}

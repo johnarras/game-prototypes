@@ -21,7 +21,7 @@ namespace OxDb.SharedGame.Crawler.Loot.Helpers
                 return;
             }
 
-            ElementType etype = etypes[_rand.Rand.Next(etypes.Count)];
+            ElementType etype = etypes[_gs.Rand.Next(etypes.Count)];
 
             item.Effects.Add(new Effect()
             {

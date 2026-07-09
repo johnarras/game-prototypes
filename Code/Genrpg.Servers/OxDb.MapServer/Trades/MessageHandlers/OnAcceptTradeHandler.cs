@@ -10,7 +10,7 @@ namespace OxDb.MapServer.Trades.MessageHandlers
     public class OnAcceptTradeHandler : BaseCharacterServerMapMessageHandler<OnAcceptTrade>
     {
         private ITradeService _tradeService = null;
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, OnAcceptTrade message)
+        protected override async ValueTask InnerProcess(Character ch, OnAcceptTrade message)
         {
             _tradeService.HandleOnAcceptTrade(ch, message);
         }

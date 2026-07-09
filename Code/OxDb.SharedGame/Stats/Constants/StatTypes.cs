@@ -15,6 +15,7 @@ namespace OxDb.SharedGame.Stats.Constants
         public const long Stamina = 15; // health
         public const long Luck = 16; // Extra attacks
         public const long Willpower = 17; // + Mana
+        public const long Leadership = 18; // Makes summons and some party buffs better.
 
         // For 20-60 make sure the offsets for +power, +defense, +powerMult , +defenseMult are all offset the same at 2x 3x 4x 5x
         // to simplify calculations.

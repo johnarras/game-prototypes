@@ -37,13 +37,13 @@ namespace OxDb.MapServer.MapMessaging.MessageHandlers
         {
         }
 
-        protected abstract Task InnerProcess(IRandomContainer rand, TMapObject obj, TMapMessage message);
+        protected abstract ValueTask InnerProcess(TMapObject obj, TMapMessage message);
 
-        public async Task Process(MapMessagePackage pack)
+        public async ValueTask Process(MapMessagePackage pack)
         {
             if (!pack.Message.IsCancelled() && pack.MapObject is TMapObject tMapObject && pack.Message is TMapMessage tMapMessage)
             {
-                await InnerProcess(pack, tMapObject, tMapMessage);
+                await InnerProcess(tMapObject, tMapMessage);
             }
         }
     }

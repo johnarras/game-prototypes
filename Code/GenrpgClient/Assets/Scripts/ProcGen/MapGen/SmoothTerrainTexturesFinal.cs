@@ -19,18 +19,18 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
 
         for (int x = 0; x < awid; x++)
         {
-            for (int y = 0; y < ahgt; y++)
+            for (int z = 0; z < ahgt; z++)
             {
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
-                    alphas2[x, y, i] = _md.Alphas[x, y, i];
+                    alphas2[x, z, i] = _md.Alphas[x, z, i];
                 }
             }
         }
 
         for (int x = 0; x < awid; x++)
         {
-            for (int y = 0; y < ahgt; y++)
+            for (int z = 0; z < ahgt; z++)
             {
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
@@ -44,37 +44,37 @@ public class SmoothTerrainTexturesFinal : BaseZoneGenerator
                         }
 
                         int dx = Math.Abs(xx - x);
-                        for (int yy = y - radius; yy <= y + radius; yy++)
+                        for (int zz = z - radius; zz <= z + radius; zz++)
                         {
-                            if (yy < 0 || yy >= _md.Ahgt)
+                            if (zz < 0 || zz >= _md.Ahgt)
                             {
                                 continue;
                             }
 
-                            int dy = Math.Abs(yy - y);
-                            int dist = dx + dy;
+                            int dz = Math.Abs(zz - z);
+                            int dist = dx + dz;
                             float currWeight = (float)Math.Pow(smoothScale, dist);
                             totalWeight += currWeight;
-                            totalVal += _md.Alphas[xx, yy, i] * currWeight;
+                            totalVal += _md.Alphas[xx, zz, i] * currWeight;
                         }
                     }
-                    alphas2[x, y, i] = totalVal / totalWeight;
+                    alphas2[x, z, i] = totalVal / totalWeight;
                 }
             }
         }
 
         for (int x = 0; x < _md.Awid; x++)
         {
-            for (int y = 0; y < _md.Ahgt; y++)
+            for (int z = 0; z < _md.Ahgt; z++)
             {
                 float total = 0;
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
-                    total += alphas2[x, y, i];
+                    total += alphas2[x, z, i];
                 }
                 for (int i = 0; i < TerrainTexChannels.Max; i++)
                 {
-                    alphas2[x, y, i] /= total;
+                    alphas2[x, z, i] /= total;
                 }
             }
         }

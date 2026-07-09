@@ -25,7 +25,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelper
 
             CrawlerMap map = _worldService.GetMap(party.CurrPos.MapId);
 
-            PointXZ dir = DirUtils.AxisAngleToDirDelta((party.CurrPos.Rot + 90) % 360 / 90 * 90);
+            Point2I dir = DirUtils.AxisAngleToDirDelta((party.CurrPos.Rot + 90) % 360 / 90 * 90);
 
             if (dir == null)
             {

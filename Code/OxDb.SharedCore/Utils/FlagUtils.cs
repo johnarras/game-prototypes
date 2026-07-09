@@ -2,7 +2,7 @@ using System;
 
 namespace OxDb.SharedCore.Utils
 {
-    public class FlagUtils
+    public static class FlagUtils
     {
         public static bool MatchesAnyBits(long val, long flag)
         {

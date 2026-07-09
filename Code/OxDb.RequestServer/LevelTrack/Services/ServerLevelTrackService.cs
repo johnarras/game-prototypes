@@ -15,7 +15,7 @@ namespace OxDb.RequestServer.LevelTrack.Services
 
     public interface IServerLevelTrackService : IInjectable
     {
-        Task<GainExpResponse> GainExp(WebContext context, long newExp, bool sendResponseToClient);
+        ValueTask<GainExpResponse> GainExp(WebContext context, long newExp, bool sendResponseToClient);
     }
 
     public class ServerLevelTrackService : IServerLevelTrackService
@@ -25,7 +25,7 @@ namespace OxDb.RequestServer.LevelTrack.Services
         private IGameData _gameData = null;
         private ICalcAttributeService _calcAttributeService = null;
 
-        public async Task<GainExpResponse> GainExp(WebContext context, long expGained, bool sendResponseToClient)
+        public async ValueTask<GainExpResponse> GainExp(WebContext context, long expGained, bool sendResponseToClient)
         {
 
             if (expGained == 0)

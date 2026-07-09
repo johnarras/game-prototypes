@@ -1,5 +1,6 @@
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Spells.Messages;
 using OxDb.SharedGame.Spells.Settings.Effects;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
         bool UseStatScaling();
         float GetTickLength();
 
-        List<ActiveSpellEffect> CreateEffects(IRandom rand, SpellHit spellHit);
+        List<ActiveSpellEffect> CreateEffects(MapObject obj, SpellHit spellHit);
 
-        bool HandleEffect(IRandom rand, ActiveSpellEffect eff);
+        bool HandleEffect(MapObject obj, ActiveSpellEffect eff);
 
     }
 }

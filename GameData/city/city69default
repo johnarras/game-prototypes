@@ -9,7 +9,7 @@
   "AncientName": "Barygaza",
   "Population": 30000,
   "MapPixelX": 4516,
-  "MapPixelY": 3113,
+  "MapPixelZ": 3113,
   "BiomeTypeId": 14,
   "CultureTypeId": 8,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 91
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 9
+    },
+    {
+      "CaravanMemberId": 10
+    },
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

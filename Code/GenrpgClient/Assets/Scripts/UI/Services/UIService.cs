@@ -1,7 +1,6 @@
 using Assets.Scripts.Audio.ClientEvents;
 using Assets.Scripts.Audio.Constants;
 using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core;
 using Assets.Scripts.GameObjects;
 using Assets.Scripts.UI.Abstractions;
 using Assets.Scripts.UI.Animations;
@@ -40,7 +39,6 @@ namespace Assets.Scripts.UI.Services
         protected IRealtimeNetworkService _realtimeNetworkService = null;
         protected IAnalyticsService _analyticsService = null;
         protected IGameData _gameData = null;
-        protected IClientRandom _rand = null;
         protected IClientGameState _gs = null;
         protected IClientEntityService _clientEntityService = null;
         protected IEntityService _entityService = null;
@@ -164,7 +162,7 @@ namespace Assets.Scripts.UI.Services
                 gbutton.onClick.AddListener(
                    () =>
                    {
-                       _awaitableService.ForgetAwaitable(InnerButtonClick(gbutton, screenName, action, null, properties, measurements));
+                       _ = InnerButtonClick(gbutton, screenName, action, null, properties, measurements);
 
                    });
                 _clientEntityService.RegisterDestroyCallback(gbutton, () => { gbutton.onClick.RemoveAllListeners(); });
@@ -172,7 +170,9 @@ namespace Assets.Scripts.UI.Services
             }
         }
 
-        public void SetButton(IButton button, string screenName, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
+
+
+        public void SetButton(IButton button, string screenName, Func<CancellationToken, ValueTask> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
             if (button is GButton gbutton)
             {
@@ -180,7 +180,7 @@ namespace Assets.Scripts.UI.Services
                 gbutton.onClick.AddListener(
                    () =>
                    {
-                       _awaitableService.ForgetAwaitable(InnerButtonClick(gbutton, screenName, null, awaitableAction, properties, measurements));
+                       _ = InnerButtonClick(gbutton, screenName, null, awaitableAction, properties, measurements);
 
                    });
                 _clientEntityService.RegisterDestroyCallback(gbutton, () => { gbutton.onClick.RemoveAllListeners(); });
@@ -223,7 +223,7 @@ namespace Assets.Scripts.UI.Services
         }
 
         private int _blockButtonCount = 0;
-        private async Awaitable InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, Awaitable> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
+        private async ValueTask InnerButtonClick(GButton button, string screenName, Action action, Func<CancellationToken, ValueTask> awaitableAction, Dictionary<string, string> properties = null, Dictionary<string, double> measurements = null)
         {
             if (_blockButtonCount > 0)
             {
@@ -267,7 +267,7 @@ namespace Assets.Scripts.UI.Services
                         }
                         if (step != null)
                         {
-                            await _ftueService.CompleteStep(_gs.ch, step.IdKey, _rand.Rand);
+                            await _ftueService.CompleteStep(_gs.ch, step.IdKey);
                             _realtimeNetworkService.SendMapMessage(new CompleteFtueStepMessage() { FtueStepId = step.IdKey });
                         }
                     }

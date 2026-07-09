@@ -11,7 +11,7 @@ namespace Assets.Scripts.Assets.Materials
         public const string BaseColorPropertyName = "_BaseColor";
         public const string EnableNormalMapKeyword = "_NORMALMAP";
         public const string SpecularColorPropertyName = "_SpecColor";
-        public const string EmissionColorPropertyName = "_Emission";
+        public const string EmissionColorPropertyName = "_EmissionColor";
 
 
         public static Texture2D GetMainTexture(Material mat)

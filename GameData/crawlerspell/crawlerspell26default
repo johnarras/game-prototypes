@@ -1,0 +1,30 @@
+{
+  "Id": "crawlerspell26default",
+  "ParentId": "default",
+  "IdKey": 26,
+  "Name": "First Aid",
+  "Desc": "Minor healing on an allly.",
+  "BaseCost": 10.0,
+  "TierCost": 3.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 2,
+  "RoleScalingTypeId": 4,
+  "AttackQuantityScale": 0.5,
+  "UnlockTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 34,
+      "ElementTypeId": 7,
+      "WeaponDamageScale": 0.5,
+      "StatBonusDamageScale": 0.5,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      422
+    ]
+  },
+  "ItemEnchantWeight": 1.0
+}

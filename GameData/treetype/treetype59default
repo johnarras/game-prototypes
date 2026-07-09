@@ -2,8 +2,8 @@
   "Id": "treetype59default",
   "ParentId": "default",
   "IdKey": 59,
-  "Name": "CypressThin",
-  "Art": "CypressThin",
-  "Scale": 1.0,
+  "Name": "AppleBare",
+  "Art": "AppleBare",
+  "Scale": 2.5,
   "VariationCount": 2
 }

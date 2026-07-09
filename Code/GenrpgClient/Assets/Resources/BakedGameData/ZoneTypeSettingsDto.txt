@@ -192,15 +192,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -224,95 +224,97 @@
       "TreeTypes": [
         {
           "TreeTypeId": 13,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 14,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 9,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 10,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 16,
-          "PopulationScale": 1.0
+          "TreeTypeId": 42,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 17,
-          "PopulationScale": 1.0
+          "TreeTypeId": 53,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 19,
-          "PopulationScale": 1.0
+          "TreeTypeId": 57,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "TreeTypeId": 63,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "TreeTypeId": 64,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 55,
-          "PopulationScale": 1.0
+          "TreeTypeId": 65,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 1,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 66,
-          "PopulationScale": 1.0
+          "BushTypeId": 2,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 70,
-          "PopulationScale": 1.0
+          "BushTypeId": 4,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 76,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 77,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 78,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -973,15 +975,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -1005,103 +1007,105 @@
       "TreeTypes": [
         {
           "TreeTypeId": 4,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 9,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 10,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 11,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 13,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 14,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 3,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 16,
-          "PopulationScale": 1.0
+          "TreeTypeId": 42,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 17,
-          "PopulationScale": 1.0
+          "TreeTypeId": 53,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 19,
-          "PopulationScale": 1.0
+          "TreeTypeId": 57,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 28,
-          "PopulationScale": 1.0
+          "TreeTypeId": 63,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 1,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 2,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "BushTypeId": 4,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 55,
-          "PopulationScale": 1.0
+          "BushTypeId": 12,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 66,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 70,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 76,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -1724,15 +1728,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -1756,75 +1760,77 @@
       "TreeTypes": [
         {
           "TreeTypeId": 1,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 2,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 5,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 7,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 8,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 12,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 24,
-          "PopulationScale": 1.0
+          "TreeTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "TreeTypeId": 50,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 28,
-          "PopulationScale": 1.0
+          "BushTypeId": 12,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 63,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -2500,15 +2506,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -2536,60 +2542,62 @@
       ],
       "TreeTypes": [
         {
-          "TreeTypeId": 28,
-          "PopulationScale": 1.0
+          "TreeTypeId": 45,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "TreeTypeId": 47,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 58,
-          "PopulationScale": 1.0
+          "TreeTypeId": 46,
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 60,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 59,
-          "PopulationScale": 1.0
+          "TreeTypeId": 48,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 73,
-          "PopulationScale": 1.0
+          "TreeTypeId": 49,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 12,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 61,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 62,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -3193,15 +3201,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -3230,63 +3238,65 @@
       "TreeTypes": [
         {
           "TreeTypeId": 15,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 20,
-          "PopulationScale": 1.0
+          "TreeTypeId": 40,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 21,
-          "PopulationScale": 1.0
+          "TreeTypeId": 41,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 5,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 26,
-          "PopulationScale": 1.0
+          "BushTypeId": 6,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 27,
-          "PopulationScale": 1.0
+          "BushTypeId": 10,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 25,
-          "PopulationScale": 1.0
+          "BushTypeId": 11,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 53,
-          "PopulationScale": 1.0
+          "BushTypeId": 9,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 54,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -3883,15 +3893,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -3920,67 +3930,69 @@
       "TreeTypes": [
         {
           "TreeTypeId": 15,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 6,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 20,
-          "PopulationScale": 1.0
+          "TreeTypeId": 40,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 21,
-          "PopulationScale": 1.0
+          "TreeTypeId": 41,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 5,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 26,
-          "PopulationScale": 1.0
+          "BushTypeId": 6,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 27,
-          "PopulationScale": 1.0
+          "BushTypeId": 10,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 53,
-          "PopulationScale": 1.0
+          "BushTypeId": 11,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 54,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -4586,15 +4598,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -4618,107 +4630,109 @@
       "TreeTypes": [
         {
           "TreeTypeId": 2,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 3,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 4,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 9,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 10,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 11,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 13,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 14,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 55,
-          "PopulationScale": 1.0
+          "TreeTypeId": 42,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 66,
-          "PopulationScale": 1.0
+          "TreeTypeId": 53,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 70,
-          "PopulationScale": 1.0
+          "TreeTypeId": 57,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 76,
-          "PopulationScale": 1.0
+          "TreeTypeId": 63,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 77,
-          "PopulationScale": 1.0
+          "TreeTypeId": 64,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 78,
-          "PopulationScale": 1.0
+          "TreeTypeId": 65,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "BushTypeId": 1,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 16,
-          "PopulationScale": 1.0
+          "BushTypeId": 2,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 17,
-          "PopulationScale": 1.0
+          "BushTypeId": 4,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 19,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -5262,15 +5276,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -5303,60 +5317,62 @@
       ],
       "TreeTypes": [
         {
-          "TreeTypeId": 25,
-          "PopulationScale": 1.0
+          "TreeTypeId": 40,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "TreeTypeId": 41,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 9,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 26,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 27,
-          "PopulationScale": 1.0
+          "BushTypeId": 10,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 53,
-          "PopulationScale": 1.0
+          "BushTypeId": 11,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 54,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -5896,15 +5912,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -5937,60 +5953,62 @@
       ],
       "TreeTypes": [
         {
-          "TreeTypeId": 25,
-          "PopulationScale": 1.0
+          "TreeTypeId": 40,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "TreeTypeId": 41,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 9,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 26,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 27,
-          "PopulationScale": 1.0
+          "BushTypeId": 10,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 53,
-          "PopulationScale": 1.0
+          "BushTypeId": 11,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 54,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -6573,15 +6591,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -6605,75 +6623,77 @@
       "TreeTypes": [
         {
           "TreeTypeId": 1,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 2,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 5,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 7,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 8,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 12,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 24,
-          "PopulationScale": 1.0
+          "TreeTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "TreeTypeId": 50,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 28,
-          "PopulationScale": 1.0
+          "BushTypeId": 12,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 63,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -7330,15 +7350,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -7362,75 +7382,77 @@
       "TreeTypes": [
         {
           "TreeTypeId": 1,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 2,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 5,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 7,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 8,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 12,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 24,
-          "PopulationScale": 1.0
+          "TreeTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "TreeTypeId": 50,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 28,
-          "PopulationScale": 1.0
+          "BushTypeId": 12,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 29,
-          "PopulationScale": 1.0
+          "BushTypeId": 13,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 63,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 17,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 83,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -7798,6 +7820,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -8095,6 +8118,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -8150,6 +8174,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -8377,6 +8402,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -8794,6 +8820,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -9145,6 +9172,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -9581,15 +9609,15 @@
       "BridgeTypes": [
         {
           "BridgeTypeId": 2,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 3,
-          "Chance": 100
+          "Weight": 100.0
         },
         {
           "BridgeTypeId": 1,
-          "Chance": 100
+          "Weight": 100.0
         }
       ],
       "FenceTypes": [
@@ -9618,67 +9646,69 @@
       "TreeTypes": [
         {
           "TreeTypeId": 15,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
           "TreeTypeId": 6,
-          "PopulationScale": 1.0
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 20,
-          "PopulationScale": 1.0
+          "TreeTypeId": 40,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 21,
-          "PopulationScale": 1.0
+          "TreeTypeId": 41,
+          "Weight": 1.0
+        }
+      ],
+      "BushTypes": [
+        {
+          "BushTypeId": 5,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 26,
-          "PopulationScale": 1.0
+          "BushTypeId": 6,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 27,
-          "PopulationScale": 1.0
+          "BushTypeId": 10,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 53,
-          "PopulationScale": 1.0
+          "BushTypeId": 11,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 54,
-          "PopulationScale": 1.0
+          "BushTypeId": 7,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 22,
-          "PopulationScale": 1.0
+          "BushTypeId": 8,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 23,
-          "PopulationScale": 1.0
+          "BushTypeId": 14,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 80,
-          "PopulationScale": 1.0
+          "BushTypeId": 15,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 81,
-          "PopulationScale": 1.0
+          "BushTypeId": 16,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 82,
-          "PopulationScale": 1.0
+          "BushTypeId": 18,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 84,
-          "PopulationScale": 1.0
+          "BushTypeId": 19,
+          "Weight": 1.0
         },
         {
-          "TreeTypeId": 85,
-          "PopulationScale": 1.0
-        },
-        {
-          "TreeTypeId": 86,
-          "PopulationScale": 1.0
+          "BushTypeId": 20,
+          "Weight": 1.0
         }
       ],
       "CreatureNamePrefixes": [
@@ -10232,6 +10262,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -10449,6 +10480,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -10683,6 +10715,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -11075,6 +11108,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],
@@ -11202,6 +11236,7 @@
       "FenceTypes": [],
       "RockTypes": [],
       "TreeTypes": [],
+      "BushTypes": [],
       "CreatureNamePrefixes": [],
       "CreatureDoubleNamePrefixes": [],
       "Overrides": [],

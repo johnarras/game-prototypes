@@ -15,7 +15,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
     {
         public override long HelperKey => RiddleTypes.FirstLetter;
 
-        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
+        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand)
         {
             Dictionary<char, List<string>> dict = lookup.LetterPositionWords[0];
 

@@ -60,11 +60,9 @@ namespace Assets.Scripts.Trader.Currencies.UI
 
             CoreData coreData = _gs.ch.Get<CoreData>();
 
-
             string desc = fullSpendLocation.Location.Desc;
 
-
-            CaravanPosition pos = _caravanService.GetPosition(coreData);
+            CaravanPosition pos = await _caravanService.GetPosition(_gs.ch);
 
             City namedCity = null;
 

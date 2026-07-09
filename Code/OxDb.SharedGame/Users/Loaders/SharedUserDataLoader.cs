@@ -3,6 +3,7 @@ using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Users.Loaders
 {
@@ -12,7 +13,7 @@ namespace OxDb.SharedGame.Users.Loaders
 
         [IgnoreMember] public Type HelperKey => typeof(TServer);
 
-        public async System.Threading.Tasks.Task CreateDefaultData(string userId)
+        public async Task CreateDefaultData(string userId)
         {
             TServer obj = await _repoService.Load<TServer>(userId);
 
@@ -23,9 +24,9 @@ namespace OxDb.SharedGame.Users.Loaders
             }
         }
 
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            await System.Threading.Tasks.Task.CompletedTask;
+            await Task.CompletedTask;
         }
     }
 }

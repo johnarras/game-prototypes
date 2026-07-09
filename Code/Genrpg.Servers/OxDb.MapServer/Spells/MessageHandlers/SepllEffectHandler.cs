@@ -8,9 +8,9 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class SepllEffectHandler : BaseMapObjectServerMapMessageHandler<ActiveSpellEffect>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, ActiveSpellEffect message)
+        protected override async ValueTask InnerProcess(MapObject obj, ActiveSpellEffect message)
         {
-            _spellService.ApplyOneEffect(rand.Rand, message);
+            _spellService.ApplyOneEffect(message);
             await Task.CompletedTask;
         }
     }

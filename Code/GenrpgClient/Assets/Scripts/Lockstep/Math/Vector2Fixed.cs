@@ -8,36 +8,36 @@ namespace Assets.Scripts.Lockstep.Math
     public struct Vector2Fixed
     {
         public FixedPoint64 X;
-        public FixedPoint64 Y;
+        public FixedPoint64 Z;
 
         public static readonly Vector2Fixed Zero = new Vector2Fixed(0, 0);
 
-        public Vector2Fixed(FixedPoint64 x, FixedPoint64 y)
+        public Vector2Fixed(FixedPoint64 x, FixedPoint64 z)
         {
             X = x;
-            Y = y;
+            Z = z;
         }
 
         // Convenience constructor for raw longs
-        public Vector2Fixed(long rawX, long rawY)
+        public Vector2Fixed(long rawX, long rawZ)
         {
             X = FixedPoint64.FromRaw(rawX);
-            Y = FixedPoint64.FromRaw(rawY);
+            Z = FixedPoint64.FromRaw(rawZ);
         }
 
         public static Vector2Fixed operator +(Vector2Fixed a, Vector2Fixed b)
-            => new Vector2Fixed(a.X + b.X, a.Y + b.Y);
+            => new Vector2Fixed(a.X + b.X, a.Z + b.Z);
 
         public static Vector2Fixed operator -(Vector2Fixed a, Vector2Fixed b)
-            => new Vector2Fixed(a.X - b.X, a.Y - b.Y);
+            => new Vector2Fixed(a.X - b.X, a.Z - b.Z);
 
         public static Vector2Fixed operator *(Vector2Fixed a, FixedPoint64 b)
-            => new Vector2Fixed(a.X * b, a.Y * b);
+            => new Vector2Fixed(a.X * b, a.Z * b);
 
-        public static Vector2Fixed operator /(Vector2Fixed a, FixedPoint64 b) => new Vector2Fixed(a.X / b, a.Y / b);
+        public static Vector2Fixed operator /(Vector2Fixed a, FixedPoint64 b) => new Vector2Fixed(a.X / b, a.Z / b);
 
-        public FixedPoint64 Magnitude => FixedPointMath.Sqrt((X * X) + (Y * Y));
+        public FixedPoint64 Magnitude => FixedPointMath.Sqrt((X * X) + (Z * Z));
 
-        public override string ToString() => $"({X}, {Y})";
+        public override string ToString() => $"({X}, {Z})";
     }
 }

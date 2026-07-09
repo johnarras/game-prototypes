@@ -39,6 +39,11 @@ namespace OxDb.SharedCore.GameSettings.Loaders
             await Task.CompletedTask;
         }
 
+        public ITopLevelSettings CreateDefaultDocument()
+        {
+            return new TParent() { Id = GameDataConstants.DefaultFilename };       
+        }
+
         public virtual async Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing)
         {
 
@@ -56,7 +61,7 @@ namespace OxDb.SharedCore.GameSettings.Loaders
             {
                 if (createDefaultIfMissing)
                 {
-                    defaultObject = new TParent() { Id = GameDataConstants.DefaultFilename };
+                    defaultObject = (TParent)CreateDefaultDocument();
                     parents.Add(defaultObject);
                 }
                 else

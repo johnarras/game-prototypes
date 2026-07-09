@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Dungeons.DungeonDoor
   <Weight>k__BackingField: 0
-  WoodMaterialChance: 0.5
+  OpenSound: 0
+  WoodMaterialChance: 1
   Anchor: {fileID: 1050622370872278391}
   Panels:
   - AnimateFrames: 15

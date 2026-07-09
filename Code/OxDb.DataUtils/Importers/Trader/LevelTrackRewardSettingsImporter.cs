@@ -6,7 +6,7 @@ namespace OxDb.DataUtils.Importers.Trader
 {
     public class LevelTrackRewardSettingsImporter : ParentChildImporter<LevelTrackRewardSettings, LevelTrackReward>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, LevelTrackReward current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, LevelTrackRewardSettings settings, LevelTrackReward current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

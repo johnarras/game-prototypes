@@ -10,7 +10,7 @@ namespace OxDb.SharedGame.Crawler.Parties.PlayerData
         public int TotalCells { get; set; }
         public long RiddleStatus { get; set; }
         public SmallIndexBitList Visited { get; set; } = new SmallIndexBitList();
-        public List<PointXZ> OneTimeEncounters { get; set; } = new List<PointXZ>();
+        public SmallIndexBitList Encounters { get; set; } = new SmallIndexBitList();
     }
 }
 

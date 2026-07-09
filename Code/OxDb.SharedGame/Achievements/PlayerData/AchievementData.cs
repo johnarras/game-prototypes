@@ -1,6 +1,8 @@
 using MessagePack;
 using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.Currencies.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.NoChild;
+using OxDb.SharedGame.Units.Loaders;
 using OxDb.SharedGame.Units.Mappers;
 namespace OxDb.SharedGame.Achievements.PlayerData
 {
@@ -14,9 +16,11 @@ namespace OxDb.SharedGame.Achievements.PlayerData
         [Key(0)] public override string Id { get; set; }
 
         [Key(1)] public SmallIdLongCollection Data { get; set; } = new SmallIdLongCollection();
+        [Key(2)] public override string VersionTag { get; set; }
 
     }
 
+    public class AchievementLoader : UnitDataLoader<AchievementData> { }
     [MessagePackObject]
     public class AchievementDto : NoChildPlayerDataDto<AchievementData>
     {

@@ -16,8 +16,8 @@ namespace OxDb.RequestServer.Trader.Travel.Services
 
     public interface IServerCaravanService : IInjectable
     {
-        Task<HeadToTargetResponse> HeadToTarget(WebContext context, HeadToTargetRequest request, bool force);
-        Task EnterCity(WebContext context, long cityId, bool force);
+        ValueTask<HeadToTargetResponse> HeadToTarget(WebContext context, HeadToTargetRequest request, bool force);
+        ValueTask EnterCity(WebContext context, long cityId, bool force);
     }
 
     public class ServerCaravanService : IServerCaravanService
@@ -26,7 +26,7 @@ namespace OxDb.RequestServer.Trader.Travel.Services
         private ICaravanService _caravanService = null;
         private ITraderMapService _traderMapService = null;
 
-        public async Task<HeadToTargetResponse> HeadToTarget(WebContext context, HeadToTargetRequest request, bool force)
+        public async ValueTask<HeadToTargetResponse> HeadToTarget(WebContext context, HeadToTargetRequest request, bool force)
         {
             HeadToTargetResponse response = new HeadToTargetResponse()
             {
@@ -35,37 +35,37 @@ namespace OxDb.RequestServer.Trader.Travel.Services
 
             CoreData coreData = await context.GetAsync<CoreData>();
 
-            CaravanPosition position = _caravanService.GetPosition(coreData);
+            CaravanPosition position = await _caravanService.GetPosition(context);
 
-            if (request.ToX < 1 || request.ToY < 1)
+            if (request.ToX < 1 || request.ToZ < 1)
             {
                 response.ErrorMessage = "Need to set coordinates.";
             }
 
             long fromX = coreData.Vars[TraderVars.FromX];
-            long fromY = coreData.Vars[TraderVars.FromY];
+            long fromZ = coreData.Vars[TraderVars.FromZ];
 
             bool onRoad = coreData.HasFlag(TraderFlags.OnRoad);
 
             coreData.Vars[TraderVars.ToX] = request.ToX;
-            coreData.Vars[TraderVars.ToY] = request.ToY;
+            coreData.Vars[TraderVars.ToZ] = request.ToZ;
             coreData.Vars[TraderVars.FromX] = position.CurrX;
-            coreData.Vars[TraderVars.FromY] = position.CurrY;
+            coreData.Vars[TraderVars.FromZ] = position.CurrZ;
             coreData.Vars[TraderVars.DistanceGone] = 0;
             coreData.Vars[TraderVars.TotalDistanceToTarget] = await _traderMapService.GetDistanceBetweenPoints(
-                context, position.CurrX, position.CurrY, request.ToX, request.ToY);
+                context, position.CurrX, position.CurrZ, request.ToX, request.ToZ);
             coreData.Vars[TraderVars.CityId] = 0;
             City toCity = _gameData.Get<CitySettings>(coreData).GetData().FirstOrDefault(
-                x => x.MapPixelX == request.ToX && x.MapPixelY == request.ToY);
+                x => x.MapPixelX == request.ToX && x.MapPixelZ == request.ToZ);
 
             if (toCity != null)
             {
                 coreData.Vars[TraderVars.CityId] = (int)toCity.IdKey;
 
                 City currCity = _gameData.Get<CitySettings>(coreData).GetData().FirstOrDefault(x => x.MapPixelX == position.CurrX &&
-                x.MapPixelY == position.CurrY);
+                x.MapPixelZ == position.CurrZ);
                 if (position.GetCurrentCity() != null || currCity != null ||
-                    (fromX == toCity.MapPixelX && fromY == toCity.MapPixelY))
+                    (fromX == toCity.MapPixelX && fromZ == toCity.MapPixelZ))
                 {
                     coreData.AddFlag(TraderFlags.OnRoad);
                 }
@@ -80,9 +80,9 @@ namespace OxDb.RequestServer.Trader.Travel.Services
             }
 
             response.FromX = coreData.Vars[TraderVars.FromX];
-            response.FromY = coreData.Vars[TraderVars.FromY];
+            response.FromZ = coreData.Vars[TraderVars.FromZ];
             response.ToX = coreData.Vars[TraderVars.ToX];
-            response.ToY = coreData.Vars[TraderVars.ToY];
+            response.ToZ = coreData.Vars[TraderVars.ToZ];
             response.TotalDistanceToTarget = coreData.Vars[TraderVars.TotalDistanceToTarget];
             response.ToCityId = coreData.Vars[TraderVars.CityId];
             response.NewTraderFlags = coreData.Vars[TraderVars.Flags];
@@ -91,10 +91,10 @@ namespace OxDb.RequestServer.Trader.Travel.Services
         }
 
 
-        public async Task EnterCity(WebContext context, long cityId, bool force)
+        public async ValueTask EnterCity(WebContext context, long cityId, bool force)
         {
             CoreData coreData = await context.GetAsync<CoreData>();
-            CaravanPosition position = _caravanService.GetPosition(coreData);
+            CaravanPosition position = await _caravanService.GetPosition(context);
 
             HoldingsData holdings = await context.GetAsync<HoldingsData>();
 
@@ -117,9 +117,9 @@ namespace OxDb.RequestServer.Trader.Travel.Services
             }
 
             coreData.Vars[TraderVars.FromX] = city.MapPixelX;
-            coreData.Vars[TraderVars.FromY] = city.MapPixelY;
+            coreData.Vars[TraderVars.FromZ] = city.MapPixelZ;
             coreData.Vars[TraderVars.ToX] = city.MapPixelX;
-            coreData.Vars[TraderVars.ToY] = city.MapPixelY;
+            coreData.Vars[TraderVars.ToZ] = city.MapPixelZ;
             coreData.Vars[TraderVars.DistanceGone] = 0;
             coreData.Vars[TraderVars.TotalDistanceToTarget] = 0;
             coreData.Vars[TraderVars.CityId] = (int)cityId;

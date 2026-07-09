@@ -7,9 +7,9 @@ namespace OxDb.SharedGame.Crawler.Temples.Settings
     public class TempleSettings : NoChildSettings // No List
     {
         public override string Id { get; set; }
-        public long HealingCostPerLevel { get; set; } = 10;
-        public long StatusEffectCostPerLevel { get; set; } = 100;
-        public long MaxCostLevel { get; set; } = 25;
+        public long CostPerMissingHealth { get; set; } 
+        public long StatusEffectCostPerLevel { get; set; } 
+        public long MaxCostLevel { get; set; } 
     }
 
 

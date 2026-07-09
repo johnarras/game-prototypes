@@ -162,15 +162,15 @@
   "BridgeTypes": [
     {
       "BridgeTypeId": 2,
-      "Chance": 100
+      "Weight": 100.0
     },
     {
       "BridgeTypeId": 3,
-      "Chance": 100
+      "Weight": 100.0
     },
     {
       "BridgeTypeId": 1,
-      "Chance": 100
+      "Weight": 100.0
     }
   ],
   "FenceTypes": [
@@ -199,67 +199,69 @@
   "TreeTypes": [
     {
       "TreeTypeId": 15,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
       "TreeTypeId": 6,
-      "PopulationScale": 1.0
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 20,
-      "PopulationScale": 1.0
+      "TreeTypeId": 40,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 21,
-      "PopulationScale": 1.0
+      "TreeTypeId": 41,
+      "Weight": 1.0
+    }
+  ],
+  "BushTypes": [
+    {
+      "BushTypeId": 5,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 26,
-      "PopulationScale": 1.0
+      "BushTypeId": 6,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 27,
-      "PopulationScale": 1.0
+      "BushTypeId": 10,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 53,
-      "PopulationScale": 1.0
+      "BushTypeId": 11,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 54,
-      "PopulationScale": 1.0
+      "BushTypeId": 7,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 22,
-      "PopulationScale": 1.0
+      "BushTypeId": 8,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 23,
-      "PopulationScale": 1.0
+      "BushTypeId": 14,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 80,
-      "PopulationScale": 1.0
+      "BushTypeId": 15,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 81,
-      "PopulationScale": 1.0
+      "BushTypeId": 16,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 82,
-      "PopulationScale": 1.0
+      "BushTypeId": 18,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 84,
-      "PopulationScale": 1.0
+      "BushTypeId": 19,
+      "Weight": 1.0
     },
     {
-      "TreeTypeId": 85,
-      "PopulationScale": 1.0
-    },
-    {
-      "TreeTypeId": 86,
-      "PopulationScale": 1.0
+      "BushTypeId": 20,
+      "Weight": 1.0
     }
   ],
   "CreatureNamePrefixes": [

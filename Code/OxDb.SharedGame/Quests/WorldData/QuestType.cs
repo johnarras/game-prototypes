@@ -64,7 +64,7 @@ namespace OxDb.SharedGame.Quests.WorldData
             return IdKey == other.IdKey && MapId == other.MapId && ZoneId == other.ZoneId && MapVersion == other.MapVersion;
         }
 
-        public string PrintTaskText(IRandom rand, Character ch, IGameData gameData, IMapProvider mapProvider, int index)
+        public string PrintTaskText(Character ch, IGameData gameData, IMapProvider mapProvider, int index)
         {
             if (mapProvider.GetMap() == null || Tasks == null)
             {

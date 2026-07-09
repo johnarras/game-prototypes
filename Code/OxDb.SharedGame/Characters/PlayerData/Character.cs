@@ -17,12 +17,12 @@ namespace OxDb.SharedGame.Characters.PlayerData
         public string UserId { get; set; }
         public int Version { get; set; }
 
-        public string _etag { get; set; }
+        public string VersionTag { get; set; }
 
         public int AbilityPoints { get; set; }
         public string MapId { get; set; }
 
-        public List<PointXZ> NearbyGridsSeen { get; set; } = new List<PointXZ>();
+        public List<Point2I> NearbyGridsSeen { get; set; } = new List<Point2I>();
 
         public DateTime LastServerStatTime { get; set; } = DateTime.UtcNow;
 

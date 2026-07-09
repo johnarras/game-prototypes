@@ -28,12 +28,14 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
 
         public override ECrawlerStates HelperKey => ECrawlerStates.PartyOrder;
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
             PartyData party = _crawlerService.GetParty();
             List<PartyMember> partyMembers = party.ActiveParty;
+
+            ECrawlerStates nextState = _crawlerService.GetTopLevelState().Id;
 
             PartyArrangement arrangement = currentData.ExtraData as PartyArrangement;
 
@@ -74,13 +76,13 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
                         {
                             arrangement.NewOrder.AddRange(arrangement.OldOrder);
                             _partyService.RearrangePartySlots(party, arrangement.NewOrder);
-                            _crawlerService.ChangeState(_crawlerService.GetPrevState(ECrawlerStates.GuildMain), token);
+                            _crawlerService.ChangeState(_crawlerService.GetPrevState(nextState), token);
                         }
 
                     }, arrangement));
             }
 
-            stateData.Actions.Add(new CrawlerStateAction("\nExit Without Saving", Key.Escape, _crawlerService.GetPrevState(ECrawlerStates.GuildMain)));
+            stateData.Actions.Add(new CrawlerStateAction("\nExit Without Saving", Key.Escape, _crawlerService.GetPrevState(nextState)));
 
 
             await Task.CompletedTask;

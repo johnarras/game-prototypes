@@ -3,6 +3,6 @@
   "ParentId": "default",
   "IdKey": 5,
   "Name": "Summon",
-  "Desc": "Increases the quantity and power of summoned creatures.",
-  "ScalingStatTypeId": 17
+  "Desc": "Increases the power of summoned creatures.",
+  "ScalingStatTypeId": 18
 }

@@ -12,7 +12,7 @@ namespace OxDb.MapServer.Spellcrafting.MessageHandlers
 {
     public class DeleteSpellHandler : BaseCharacterServerMapMessageHandler<DeleteSpell>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, Character ch, DeleteSpell message)
+        protected override async ValueTask InnerProcess(Character ch, DeleteSpell message)
         {
             await Task.CompletedTask;
             SpellData spellData = ch.Get<SpellData>();

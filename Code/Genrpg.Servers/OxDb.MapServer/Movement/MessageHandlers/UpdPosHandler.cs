@@ -14,7 +14,7 @@ namespace OxDb.MapServer.Movement.MessageHandlers
 {
     public class UpdPosHandler : BaseMapObjectServerMapMessageHandler<UpdatePos>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, UpdatePos message)
+        protected override async ValueTask InnerProcess(MapObject obj, UpdatePos message)
         {
             obj.X = message.GetX();
             obj.Y = message.GetY();
@@ -44,7 +44,7 @@ namespace OxDb.MapServer.Movement.MessageHandlers
                     ch.LastServerStatTime = DateTime.UtcNow;
                 }
             }
-            _objectManager.UpdatePosition(rand.Rand, obj, message.GetKeysDown());
+            _objectManager.UpdatePosition(obj, message.GetKeysDown());
 
         }
     }

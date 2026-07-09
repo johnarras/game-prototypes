@@ -4,5 +4,6 @@
   "IdKey": 50,
   "Name": "DefenseMult",
   "Desc": "All Dam Reduced",
+  "Icon": "DefenseMult",
   "GenScalePct": 10
 }

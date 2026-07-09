@@ -9,7 +9,7 @@
   "AncientName": "Halicarnassus",
   "Population": 30000,
   "MapPixelX": 2448,
-  "MapPixelY": 2409,
+  "MapPixelZ": 2409,
   "BiomeTypeId": 7,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 104
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

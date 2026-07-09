@@ -8,9 +8,9 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class SpellHitHandler : BaseMapObjectServerMapMessageHandler<SpellHit>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, SpellHit message)
+        protected override async ValueTask InnerProcess(MapObject obj, SpellHit message)
         {
-            _spellService.OnSpellHit(rand.Rand, message);
+            _spellService.OnSpellHit(obj, message);
         }
     }
 }

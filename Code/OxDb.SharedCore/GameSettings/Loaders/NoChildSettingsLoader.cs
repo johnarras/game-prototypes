@@ -11,19 +11,25 @@ using System.Threading.Tasks;
 
 namespace OxDb.SharedCore.GameSettings.Loaders
 {
-    public abstract class NoChildSettingsLoader<TServer> : IGameSettingsLoader where TServer : NoChildSettings, new()
+    public abstract class NoChildSettingsLoader<TParent> : IGameSettingsLoader where TParent : NoChildSettings, new()
     {
-        public virtual Type GetChildType() { return typeof(TServer); }
+        public virtual Type GetChildType() { return typeof(TParent); }
         public virtual bool SendToClient() { return true; }
-        [IgnoreMember] public virtual Type HelperKey => typeof(TServer);
+        [IgnoreMember] public virtual Type HelperKey => typeof(TParent);
 
         public virtual List<CreateIndexData> GetIndexes() { return new List<CreateIndexData>(); }
         public virtual async Task Initialize(CancellationToken token) { await Task.CompletedTask; }
 
+
+        public ITopLevelSettings CreateDefaultDocument()
+        {
+            return new TParent() { Id = GameDataConstants.DefaultFilename };
+        }
+
         public virtual async Task<List<ITopLevelSettings>> LoadAll(ISearchRepositoryService repoSystem, bool createDefaultIfMissing)
         {
 
-            List<ITopLevelSettings> list = (await repoSystem.Search<TServer>(x => true)).Cast<ITopLevelSettings>().ToList();
+            List<ITopLevelSettings> list = (await repoSystem.Search<TParent>(x => true)).Cast<ITopLevelSettings>().ToList();
 
             ITopLevelSettings defaultItem = list.FirstOrDefault(x => x.Id == GameDataConstants.DefaultFilename);
 
@@ -32,11 +38,11 @@ namespace OxDb.SharedCore.GameSettings.Loaders
 
                 if (createDefaultIfMissing)
                 {
-                    list.Add(new TServer() { Id = GameDataConstants.DefaultFilename });
+                    list.Add(CreateDefaultDocument());
                 }
                 else
                 {
-                    throw new Exception("Missing NoChildSettings: " + typeof(TServer).FullName);
+                    throw new Exception("Missing NoChildSettings: " + typeof(TParent).FullName);
                 }
             }
 

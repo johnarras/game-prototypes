@@ -9,7 +9,7 @@
   "AncientName": "Meroë",
   "Population": 25000,
   "MapPixelX": 2736,
-  "MapPixelY": 3341,
+  "MapPixelZ": 3341,
   "BiomeTypeId": 3,
   "CultureTypeId": 4,
   "TradeGoodsProduced": [
@@ -29,5 +29,15 @@
       "TradeGoodId": 93
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 15
+    }
+  ]
 }

@@ -24,7 +24,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
         protected Texture2D CreateTexture(int width, int height)
         {
             Texture2D tex = new Texture2D(width, height, TextureFormat.RGBAFloat, true, false, true);
-            tex.filterMode = FilterMode.Trilinear;
+            tex.filterMode = FilterMode.Bilinear;
             return tex;
         }
     }

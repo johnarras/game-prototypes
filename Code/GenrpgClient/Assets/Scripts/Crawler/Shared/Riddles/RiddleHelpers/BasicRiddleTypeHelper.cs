@@ -17,7 +17,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
     {
         public override long HelperKey => RiddleTypes.Basic;
 
-        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<PointXZ> openPoints, IRandom rand)
+        protected override async Task<bool> AddRiddleInternal(RiddleLookup lookup, CrawlerMap lockedFloor, CrawlerMap prevFloor, List<Point2I> openPoints, IRandom rand)
         {
             await Task.CompletedTask;
             IReadOnlyList<Riddle> riddles = _gameData.Get<RiddleSettings>(_gs.ch).GetData();
@@ -82,7 +82,7 @@ namespace OxDb.SharedGame.Riddles.EntranceRiddleHelpers
                     }
                     clueText.Append("\n\n");
 
-                    PointXZ openPoint = openPoints[rand.Next(openPoints.Count)];
+                    Point2I openPoint = openPoints[rand.Next(openPoints.Count)];
                     openPoints.Remove(openPoint);
                     prevFloor.SetEntity(openPoint.X, openPoint.Z, EntityTypes.Riddle, l + 1);
                     prevFloor.RiddleHints.Hints.Add(new RiddleHint() { Index = l + 1, Text = clueText.ToString() });

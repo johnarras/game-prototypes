@@ -6,11 +6,13 @@ using OxDb.ServerCore.Core;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.PlayerFiltering.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Website.Responses.Core;
 using OxDb.SharedCore.Website.Responses.Errors;
 using OxDb.SharedCore.Website.Responses.Interfaces;
+using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Users;
 
@@ -163,19 +165,30 @@ namespace OxDb.RequestServer.Core
             }
         }
 
-        public async Task<T> GetAsync<T>() where T : class, IUnitData, new()
+        public ValueTask<T> GetAsync<T>() where T : class, IUnitData, new()
         {
-
             if (string.IsNullOrEmpty(_gameUserId))
             {
-                throw new Exception("GameAccount was not set!");
+                throw new InvalidOperationException("GameAccount was not set!");
             }
 
+            // Fast Path: Zero allocations on cache hit
             if (_unitData.TryGetValue(typeof(T), out UnitDataSnapShotMustDispose snapshot))
             {
-                return (T)snapshot.UnitData;
+                return new ValueTask<T>((T)snapshot.UnitData);
             }
 
+            // Slow Path: Defer to async state machine execution
+            return FetchAndCacheAsync<T>();
+        }
+
+        public async ValueTask<IFilteredObject> GetFilteredObject()
+        {
+            return await GetAsync<CoreData>();
+        }
+
+        private async ValueTask<T> FetchAndCacheAsync<T>() where T : class, IUnitData, new()
+        {
             T item = await _repoService.Load<T>(_gameUserId);
 
             if (item == null)
@@ -186,13 +199,13 @@ namespace OxDb.RequestServer.Core
                 {
                     if (FlagUtils.HasBitIndex(_existingData, personalData.GetOffsetBit()))
                     {
-                        throw new Exception($"Existing document of type {personalData.GetType().Name} for UserId {_gameUserId} failed to load");
+                        throw new InvalidOperationException($"Existing document of type {personalData.GetType().Name} for UserId {_gameUserId} failed to load");
                     }
                 }
                 item = newItem;
             }
-            Set(item);
 
+            Set(item);
             return item;
         }
 

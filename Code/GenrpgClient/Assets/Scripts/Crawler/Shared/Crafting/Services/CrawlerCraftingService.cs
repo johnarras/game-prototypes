@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.DynamicUI.Services;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
@@ -25,7 +24,6 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
     {
         private IClientGameState _gs = null;
         private IGameData _gameData = null;
-        private IClientRandom _rand = null;
         private IDynamicUIService _dynamicUIService = null;
 
         public bool ScrapItem(PartyData party, Item item, Vector3 startPos)
@@ -54,7 +52,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
                         }
                         for (int i = 0; i < eff.Quantity; i++)
                         {
-                            if (_rand.Rand.NextDouble() < craftingSettings.ScrapReagentChance)
+                            if (_gs.Rand.NextDouble() < craftingSettings.ScrapReagentChance)
                             {
                                 currencyCounts[ctype.IdKey]++;
                             }
@@ -65,7 +63,7 @@ namespace Assets.Scripts.Crawler.Shared.Crafting.Services
 
             if (currencyCounts.Keys.Count > 0 && currencyCounts.Values.Sum() < 1)
             {
-                long randId = currencyCounts.Keys.ToList()[_rand.Rand.Next(currencyCounts.Keys.Count)];
+                long randId = currencyCounts.Keys.ToList()[_gs.Rand.Next(currencyCounts.Keys.Count)];
                 currencyCounts[randId]++;
             }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Assets.Scripts.Cameras
 {
@@ -19,6 +20,9 @@ namespace Assets.Scripts.Cameras
 
         public List<Camera> Cameras => _cameras;
         [SerializeField] private List<Camera> _cameras;
+
+        public Volume Volume => _volume;
+        [SerializeField] private Volume _volume;
     }
 }
 

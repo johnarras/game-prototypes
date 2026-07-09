@@ -17,23 +17,23 @@ namespace OxDb.SharedGame.Attributes.Services
 {
     public interface IAttributeService : IInitializable
     {
-        System.Threading.Tasks.Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup);
+        ValueTask UpdateBuffsAndDebuffs(IUnitDataLookup lookup);
 
-        System.Threading.Tasks.Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds);
-        Task<long> GetBuffSeconds(IUnitDataLookup lookup, long gameplayBuffId);
+        ValueTask AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds);
+        ValueTask<long> GetBuffSeconds(IUnitDataLookup lookup, long gameplayBuffId);
 
-        System.Threading.Tasks.Task AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled);
-        Task<long> GetDebuffDays(IUnitDataLookup lookup, long gameplayDebuffId);
+        ValueTask AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled);
+        ValueTask<long> GetDebuffDays(IUnitDataLookup lookup, long gameplayDebuffId);
 
-        System.Threading.Tasks.Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc);
-        System.Threading.Tasks.Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded);
+        ValueTask CheckBuffs(IUnitDataLookup lookup, bool forceRecalc);
+        ValueTask AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded);
 
-        Task<long> GetQuantity(IUnitDataLookup lookup, long entityTypeId, long entityId);
-        Task<long> GetQuantity(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId);
-        Task<bool> GiveReward(IUnitDataLookup lookup, long entityTypeId, long entityId, long quantity);
-        Task<bool> GiveReward(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId, long quantity);
+        ValueTask<long> GetQuantity(IUnitDataLookup lookup, long entityTypeId, long entityId);
+        ValueTask<long> GetQuantity(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId);
+        ValueTask<bool> GiveReward(IUnitDataLookup lookup, long entityTypeId, long entityId, long quantity);
+        ValueTask<bool> GiveReward(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId, long quantity);
 
-        Task<bool> ApplyAttributeIndexEffect(IUnitDataLookup lookup, IEffect effect, EAttributeValIndex index);
+        ValueTask<bool> ApplyAttributeIndexEffect(IUnitDataLookup lookup, IEffect effect, EAttributeValIndex index);
         bool EntityTypeHasValIndex(long entityTypeId, EAttributeValIndex index);
     }
 
@@ -54,9 +54,9 @@ namespace OxDb.SharedGame.Attributes.Services
 
         Dictionary<long, EntityToAttributeMapping> _mappingDict = new Dictionary<long, EntityToAttributeMapping>();
 
-        public async System.Threading.Tasks.Task Initialize(CancellationToken token)
+        public async Task Initialize(CancellationToken token)
         {
-            _mappingDict.Clear();
+            _mappingDict.Clear();   
 
             _mappingDict[EntityTypes.BaseGameplayStat] = new EntityToAttributeMapping()
             {
@@ -126,7 +126,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
         }
 
-        public async System.Threading.Tasks.Task AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds)
+        public async ValueTask AddBuff(IUnitDataLookup lookup, long gameplayBuffId, long seconds)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -154,7 +154,7 @@ namespace OxDb.SharedGame.Attributes.Services
             await UpdateBuffsAndDebuffs(lookup);
         }
 
-        public async System.Threading.Tasks.Task AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled)
+        public async ValueTask AddDebuff(IUnitDataLookup lookup, long gameplayDebuffId, long daysUntilDispelled)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -184,7 +184,7 @@ namespace OxDb.SharedGame.Attributes.Services
 
 
 
-        public virtual async System.Threading.Tasks.Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
+        public virtual async ValueTask UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             AttributesData attributeData = await lookup.GetAsync<AttributesData>();
@@ -256,7 +256,7 @@ namespace OxDb.SharedGame.Attributes.Services
             await _calcAttributeService.CalcBuffs(lookup);
         }
 
-        public async System.Threading.Tasks.Task CheckBuffs(IUnitDataLookup lookup, bool forceRecalc)
+        public async ValueTask CheckBuffs(IUnitDataLookup lookup, bool forceRecalc)
         {
             CoreData coreData = await lookup.GetAsync<CoreData>();
             if (forceRecalc || (coreData.Vars[TraderVars.BuffBits] != 0 && coreData.NextBuffEndsTime <= DateTime.UtcNow))
@@ -265,7 +265,7 @@ namespace OxDb.SharedGame.Attributes.Services
             }
         }
 
-        public virtual async System.Threading.Tasks.Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long debuffDaysAdded)
+        public virtual async ValueTask AddDebuffDaysPlayed(IUnitDataLookup lookup, long debuffDaysAdded)
         {
 
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -286,14 +286,14 @@ namespace OxDb.SharedGame.Attributes.Services
             await UpdateBuffsAndDebuffs(lookup);
         }
 
-        public async Task<long> GetBuffSeconds(IUnitDataLookup lookup, long gameplayBuffId)
+        public async ValueTask<long> GetBuffSeconds(IUnitDataLookup lookup, long gameplayBuffId)
         {
 
             AttributesData attributeData = await lookup.GetAsync<AttributesData>();
             return (long)Math.Max(0, (attributeData.Buffs[gameplayBuffId].EndTime - DateTime.UtcNow).TotalSeconds);
         }
 
-        public async Task<long> GetDebuffDays(IUnitDataLookup lookup, long gameplayDebuffId)
+        public async ValueTask<long> GetDebuffDays(IUnitDataLookup lookup, long gameplayDebuffId)
         {
             AttributesData attributeData = await lookup.GetAsync<AttributesData>();
             CoreData coreData = await lookup.GetAsync<CoreData>();
@@ -309,14 +309,14 @@ namespace OxDb.SharedGame.Attributes.Services
             return null;
         }
 
-        protected async Task<AttributeStatus> GetStatus(IUnitDataLookup lookup, EAttributeCategories category, long entityId)
+        protected async ValueTask<AttributeStatus> GetStatus(IUnitDataLookup lookup, EAttributeCategories category, long entityId)
         {
             AttributesData attributeData = await lookup.GetAsync<AttributesData>();
 
             return attributeData.GetStatus(category, entityId);
         }
 
-        public async Task<long> GetQuantity(IUnitDataLookup lookup, long entityTypeId, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup lookup, long entityTypeId, long entityId)
         {
             if (_mappingDict.TryGetValue(entityTypeId, out EntityToAttributeMapping mapping))
             {
@@ -325,14 +325,14 @@ namespace OxDb.SharedGame.Attributes.Services
             return 0;
         }
 
-        public async Task<long> GetQuantity(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId)
+        public async ValueTask<long> GetQuantity(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId)
         {
             AttributeStatus status = await GetStatus(lookup, category, entityId);
 
             return status.GetQuantity(index);
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup lookup, long entityTypeId, long entityId, long quantity)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup lookup, long entityTypeId, long entityId, long quantity)
         {
             if (_mappingDict.TryGetValue(entityTypeId, out EntityToAttributeMapping mapping))
             {
@@ -341,7 +341,7 @@ namespace OxDb.SharedGame.Attributes.Services
             return false;
         }
 
-        public async Task<bool> GiveReward(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId, long quantity)
+        public async ValueTask<bool> GiveReward(IUnitDataLookup lookup, EAttributeCategories category, EAttributeValIndex index, long entityId, long quantity)
         {
             AttributeStatus status = await GetStatus(lookup, category, entityId);
 
@@ -358,7 +358,7 @@ namespace OxDb.SharedGame.Attributes.Services
             return false;
         }
 
-        public async Task<bool> ApplyAttributeIndexEffect(IUnitDataLookup lookup, IEffect effect, EAttributeValIndex index)
+        public async ValueTask<bool> ApplyAttributeIndexEffect(IUnitDataLookup lookup, IEffect effect, EAttributeValIndex index)
         {
             if (!EntityTypeHasValIndex(effect.EntityTypeId, index))
             {

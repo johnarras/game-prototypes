@@ -11,13 +11,13 @@ namespace Assets.Scripts.Trader.Stats.Services
     {
         private IDispatcher _dispatcher = null;
 
-        public override async Task UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
+        public override async ValueTask UpdateBuffsAndDebuffs(IUnitDataLookup lookup)
         {
             await base.UpdateBuffsAndDebuffs(lookup);
             _dispatcher.Dispatch(new UpdateTraderHUD());
         }
 
-        public override async Task AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded)
+        public override async ValueTask AddDebuffDaysPlayed(IUnitDataLookup lookup, long daysAdded)
         {
             await base.AddDebuffDaysPlayed(lookup, daysAdded);
             _dispatcher.Dispatch(new UpdateTraderHUD());

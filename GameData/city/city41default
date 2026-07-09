@@ -9,7 +9,7 @@
   "AncientName": "Sidon",
   "Population": 40000,
   "MapPixelX": 2808,
-  "MapPixelY": 2573,
+  "MapPixelZ": 2573,
   "BiomeTypeId": 1,
   "CultureTypeId": 5,
   "TradeGoodsProduced": [
@@ -26,5 +26,18 @@
       "TradeGoodId": 9
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

@@ -3,7 +3,7 @@ using OxDb.RequestServer.Maps;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Website.Requests.Core;
 
-namespace OxDb.RequestServer.ClientUserRequests.Services
+namespace OxDb.RequestServer.GameClientRequests.Services
 {
     public interface IGameClientRequestService : IInitializable
     {

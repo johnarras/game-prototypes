@@ -1,0 +1,45 @@
+using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.Loading;
+using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.SharedGame.Crawler.Loot.Services;
+using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
+using OxDb.SharedGame.Crawler.Parties.PlayerData;
+using OxDb.SharedGame.Crawler.States.Constants;
+using OxDb.SharedGame.Crawler.Worlds.Entities;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
+{
+    public class JunkPileMapEncounterHelper : BaseClientMapEncounterHelper
+    {
+        protected ILootGenService _lootGenService = null;
+
+        public override long HelperKey => MapEncounters.JunkPile;
+
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
+        {
+            CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
+            {
+                MapRoot = mapRoot,
+                Cell = cell,
+            };
+
+            _mapService.LoadProp(loadData, "JunkPile", token);
+
+            await Task.CompletedTask;
+        }
+
+        public override async ValueTask OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
+        {
+            if (!party.CompletedMaps.HasBitIndex(party.CurrPos.MapId))
+            {
+                _crawlerService.ChangeState(ECrawlerStates.FindJunkPile, token);
+                moveStatus.MoveIsComplete = true;
+            }
+        }
+    }
+}
+
+

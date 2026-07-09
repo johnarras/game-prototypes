@@ -16,6 +16,7 @@ namespace OxDb.SharedGame.Chests.PlayerData
     public class ChestData : OwnerObjectList<ChestStatus>
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
 
     }
 
@@ -27,6 +28,7 @@ namespace OxDb.SharedGame.Chests.PlayerData
         [Key(2)] public long IdKey { get; set; }
         [Key(3)] public int Slot { get; set; }
         [Key(4)] public DateTime UnlockTime { get; set; } = DateTime.MinValue;
+        [Key(5)] public override string VersionTag { get; set; }
 
     }
 

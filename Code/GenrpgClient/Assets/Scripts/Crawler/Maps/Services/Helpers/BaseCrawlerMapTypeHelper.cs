@@ -1,5 +1,5 @@
-
-using Assets.Scripts.Core;
+using Assets.Scripts.Crawler.MapGen.Services;
+using Assets.Scripts.Crawler.Maps.Constants;
 using Assets.Scripts.Crawler.Maps.GameObjects;
 using Assets.Scripts.Crawler.Quests.ClientEvents;
 using Assets.Scripts.Crawler.Services.CrawlerMaps;
@@ -10,7 +10,6 @@ using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
@@ -30,7 +29,6 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
         protected ICrawlerMapService _mapService = null;
         protected ICrawlerMapGenService _mapGenService = null;
         protected IDispatcher _dispatcher = null;
-        protected IClientRandom _rand = null;
 
         public abstract long HelperKey { get; }
 
@@ -61,8 +59,8 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
 
             GameObject go = new GameObject() { name = "Map" + mapData.MapId.ToString() };
             CrawlerMapRoot mapRoot = _clientEntityService.GetOrAddComponent<CrawlerMapRoot>(go);
-            mapRoot.AssetRoot = new GameObject() { name = "AssetRoot" };
-            _clientEntityService.AddToParent(mapRoot.AssetRoot, go);
+            mapRoot.Core.AssetRoot = new GameObject() { name = "AssetRoot" };
+            _clientEntityService.AddToParent(mapRoot.Core.AssetRoot, go);
 
             mapRoot.SetupFromMap(map);
             mapRoot.DrawX = party.CurrPos.X * mapRoot.XZBlockSize;

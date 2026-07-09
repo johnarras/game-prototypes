@@ -1,16 +1,16 @@
-using Assets.Scripts.Assets.Materials;
 using Assets.Scripts.Crawler.Maps.GameObjects;
+using Assets.Scripts.Crawler.Maps.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Buildings.Constants;
 using OxDb.SharedGame.Buildings.Settings;
 using OxDb.SharedGame.Crawler.Maps.Entities;
-using OxDb.SharedGame.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using OxDb.SharedGame.MapObjects.Messages;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Buildings
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Buildings
         };
 
 
-        public async Awaitable SetData(BuildingType btype, long seed, CrawlerMapRoot mapRoot, ClientMapCell mapCell, BuildingMats mats)
+        public async ValueTask SetData(BuildingType btype, long seed, CrawlerMapRoot mapRoot, ClientMapCell mapCell, BuildingMats mats)
         {
             string overrideName = null;
 
@@ -73,21 +73,19 @@ namespace Assets.Scripts.Buildings
             base.Init(btype, new OnSpawn(), overrideName);
             MyRandom rand = new MyRandom(seed);
 
-            SetMaterialToSlot(btype, Walls, mats.GetMatsFromSlot(EBuildingMatSlots.Walls), rand);
-            SetMaterialToSlot(btype, RoofPeaks, mats.GetMatsFromSlot(EBuildingMatSlots.Walls), rand);
-            SetMaterialToSlot(btype, Doors, mats.GetMatsFromSlot(EBuildingMatSlots.Doors), rand);
-            SetMaterialToSlot(btype, Windows, mats.GetMatsFromSlot(EBuildingMatSlots.Windows), rand);
-            SetMaterialToSlot(btype, Shingles, mats.GetMatsFromSlot(EBuildingMatSlots.Shingles), rand);
+            SetMaterialToSlot(btype, Walls, mats, EBuildingMatSlots.Walls, rand);
+            SetMaterialToSlot(btype, RoofPeaks, mats, EBuildingMatSlots.Walls, rand);
+            SetMaterialToSlot(btype, Doors, mats, EBuildingMatSlots.Doors, rand);
+            SetMaterialToSlot(btype, Windows, mats, EBuildingMatSlots.Windows, rand);
+            SetMaterialToSlot(btype, Shingles, mats, EBuildingMatSlots.Shingles, rand);
 
-            StoreSign sign = _clientEntityService.GetComponent<StoreSign>(gameObject);
-            if (sign != null)
-            {
-                //sign.BGImage.SetColor(redRemap);
-            }
         }
 
-        public void SetMaterialToSlot(BuildingType btype, List<MeshRenderer> meshes, List<WeightedBuildingMaterial> mats, IRandom rand)
+        public void SetMaterialToSlot(BuildingType btype, List<MeshRenderer> meshes, BuildingMats buildingMats, EBuildingMatSlots slot, IRandom rand)
+
         {
+
+            List<WeightedBuildingMaterial> mats = buildingMats.GetMatsFromSlot(slot);
             if (mats.Count < 1)
             {
                 return;
@@ -104,24 +102,19 @@ namespace Assets.Scripts.Buildings
                 if (weightChosen <= 0)
                 {
                     chosenMat = mat;
+                    break;
                 }
             }
+
+
 
             if (chosenMat == null)
             {
                 chosenMat = mats[0];
             }
-            MaterialPropertyBlock mainBlock = new MaterialPropertyBlock();
-
-            float colorScale = RandUtils.FloatRange(0.3f, 1.0f, rand);
-
-            Color newColor = new Color(colorScale, colorScale, colorScale, 1.0f);
-
-            mainBlock.SetColor(MaterialUtils.BaseColorPropertyName, newColor);
             foreach (MeshRenderer renderer in meshes)
             {
                 renderer.sharedMaterial = chosenMat.Mat;
-                renderer.SetPropertyBlock(mainBlock);
             }
         }
     }

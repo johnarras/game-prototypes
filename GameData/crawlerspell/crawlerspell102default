@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell102default",
+  "ParentId": "default",
+  "IdKey": 102,
+  "Name": "Warp Mind",
+  "Desc": "Make enemies less able to effectively cast spells.",
+  "BaseCost": 25.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 3,
+  "RoleScalingTypeId": 4,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 2,
+  "Effects": [
+    {
+      "EntityTypeId": 36,
+      "EntityId": 5,
+      "ElementTypeId": 6,
+      "ProcChance": 1.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      1616
+    ]
+  },
+  "ItemEnchantWeight": 0.05
+}

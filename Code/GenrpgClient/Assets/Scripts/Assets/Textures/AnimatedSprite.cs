@@ -1,9 +1,7 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.TextureLists.Services;
 using OxDb.SharedCore.Entities.Assets;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Utils;
-using OxDb.SharedGame.Crawler.TextureLists.Services;
 using UnityEngine;
 
 namespace Assets.Scripts.Assets.Textures
@@ -11,9 +9,9 @@ namespace Assets.Scripts.Assets.Textures
     public class AnimatedSprite : BaseBehaviour
     {
 
-        private ITextureListCache _textureListCache;
-        protected IClientRandom _rand = null;
+        private ISpriteListCache _spriteListCache;
         protected IEntityService _entityService = null;
+        private IClientAppService _clientAppService = null;
 
         private CachedSpriteList _cachedSpriteList;
 
@@ -26,7 +24,9 @@ namespace Assets.Scripts.Assets.Textures
         public int FramesBetweenSequenceStep = 2;
         public float InitialFrameTimeScale = 1.0f;
 
-        const float ChangeToBaseFrameChance = 0.2f;
+
+        public float MinTimeBetweenRandomFrames = 0.2f;
+        public float MaxTimeBetweenRandomFrames = 1.0f;
 
         private string _currentSpriteName = null;
         private string _newSpriteName = null;
@@ -70,9 +70,9 @@ namespace Assets.Scripts.Assets.Textures
 
         }
 
-        private void OnLoadTextureList(object textureList, object data)
+        private void OnLoadSpriteList(object textureList, object data)
         {
-            if (data is DownloadTextureListData downloadData)
+            if (data is DownloadSpriteListArgs downloadData)
             {
                 if (_currentSpriteName == downloadData.TextureName)
                 {
@@ -89,10 +89,12 @@ namespace Assets.Scripts.Assets.Textures
                 {
                     _cachedSpriteList.AddRef(this);
                 }
-                ShowTextureFrame(0);
+                ShowSpriteFrame(0);
             }
         }
 
+        float _elapsedFrameSeconds = 0;
+        float _nextFrameChangeSeconds = 0;
         private void LateUpdateImage()
         {
             string spriteName = _newSpriteName;
@@ -102,14 +104,14 @@ namespace Assets.Scripts.Assets.Textures
                 {
                     _cachedSpriteList = null;
                     _currentSpriteName = spriteName;
-                    ShowTextureFrame(0);
+                    ShowSpriteFrame(0);
                     return;
                 }
                 if (_currentSpriteName == spriteName)
                 {
                     return;
                 }
-                _textureListCache.LoadTextureList(spriteName, OnLoadTextureList, spriteName, GetToken());
+                _spriteListCache.LoadSpriteList(spriteName, OnLoadSpriteList, spriteName, GetToken());
                 return;
             }
 
@@ -128,16 +130,21 @@ namespace Assets.Scripts.Assets.Textures
             {
                 if (!OnlyShowFirstFrame)
                 {
-                    if (_currentImageFrame > 0 && _rand.Rand.NextDouble() < ChangeToBaseFrameChance)
+                    _elapsedFrameSeconds += _clientAppService.GetDeltaTime();
+                    if (_elapsedFrameSeconds >= _nextFrameChangeSeconds)
                     {
-                        ShowTextureFrame(0);
-                        return;
-                    }
-
-                    if (_currentImageFrame == 0 && _rand.Rand.NextDouble() < ChangeToBaseFrameChance)
-                    {
-                        ShowTextureFrame(RandUtils.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _rand.Rand));
-                        return;
+                        _elapsedFrameSeconds = 0;
+                        _nextFrameChangeSeconds = RandUtils.FloatRange(MinTimeBetweenRandomFrames, MaxTimeBetweenRandomFrames, _gs.Rand);
+                        if (_currentImageFrame > 0)
+                        {
+                            ShowSpriteFrame(0);
+                            return;
+                        }
+                        else
+                        {
+                            ShowSpriteFrame(RandUtils.IntRange(1, _cachedSpriteList.SpriteList.Sprites.Count - 1, _gs.Rand));
+                            return;
+                        }
                     }
                 }
             }
@@ -147,7 +154,7 @@ namespace Assets.Scripts.Assets.Textures
                 {
                     if (_currentImageFrame > 0)
                     {
-                        ShowTextureFrame(0);
+                        ShowSpriteFrame(0);
                     }
                     return;
                 }
@@ -166,7 +173,7 @@ namespace Assets.Scripts.Assets.Textures
                     {
                         _currentImageFrame = 0;
                     }
-                    ShowTextureFrame(_currentImageFrame);
+                    ShowSpriteFrame(_currentImageFrame);
                     _ticksBetweenFrameUpdate = 0;
                 }
             }
@@ -186,7 +193,7 @@ namespace Assets.Scripts.Assets.Textures
             _newSpriteName = null;
         }
 
-        private void ShowTextureFrame(int frame)
+        private void ShowSpriteFrame(int frame)
         {
             if ((_cachedSpriteList == null || _cachedSpriteList.SpriteList == null || _cachedSpriteList.SpriteList.Sprites.Count < 1))
             {

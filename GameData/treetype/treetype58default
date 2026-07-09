@@ -2,8 +2,8 @@
   "Id": "treetype58default",
   "ParentId": "default",
   "IdKey": 58,
-  "Name": "CypressFull",
-  "Art": "CypressFull",
-  "Scale": 1.0,
+  "Name": "AppleFall",
+  "Art": "AppleFall",
+  "Scale": 2.5,
   "VariationCount": 2
 }

@@ -21,7 +21,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Temples
         public override ECrawlerStates HelperKey => ECrawlerStates.Temple;
         public override long TriggerBuildingId() { return BuildingTypes.Temple; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 

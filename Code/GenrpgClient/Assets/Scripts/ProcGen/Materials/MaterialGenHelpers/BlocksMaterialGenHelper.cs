@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.ProcGen.Materials.Constants;
 using OxDb.SharedCore.Utils;
-using OxDb.SharedCore.Utils.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,47 +34,45 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 averageRowHeight = 4;
             }
 
-            List<PointXZ> blockCenters = new List<PointXZ>();
-
             float heightDelta = 0.2f;
 
-            List<int> rowYValues = new List<int>();
+            List<int> rowZValues = new List<int>();
 
-            int startRowYValue = RandUtils.IntRange(0, state.Height - 1, state.Rand);
+            int startRowZValue = RandUtils.IntRange(0, state.Height - 1, state.Rand);
 
-            float currRowYValue = startRowYValue;
+            float currRowZValue = startRowZValue;
 
-            float yValuesUsed = 0;
+            float zValuesUsed = 0;
 
             Dictionary<int, List<int>> rowColumnPoints = new Dictionary<int, List<int>>();
 
-            rowYValues.Add(startRowYValue);
+            rowZValues.Add(startRowZValue);
             while (true)
             {
-                float yValueSkip = averageRowHeight * RandUtils.FloatRange(1, 1 + heightDelta, state.Rand);
+                float zValueSkip = averageRowHeight * RandUtils.FloatRange(1, 1 + heightDelta, state.Rand);
 
-                float maxSkip = (state.Height - yValuesUsed) / 2;
+                float maxSkip = (state.Height - zValuesUsed) / 2;
 
-                if (yValueSkip > maxSkip)
+                if (zValueSkip > maxSkip)
                 {
-                    yValueSkip = maxSkip;
+                    zValueSkip = maxSkip;
                 }
 
-                currRowYValue += yValueSkip;
+                currRowZValue += zValueSkip;
 
-                yValuesUsed += yValueSkip;
+                zValuesUsed += zValueSkip;
 
-                int currYValueInt = (int)currRowYValue;
+                int currZValueInt = (int)currRowZValue;
 
-                rowYValues.Add(currYValueInt % state.Height);
+                rowZValues.Add(currZValueInt % state.Height);
 
-                if (currRowYValue - startRowYValue > state.Height - averageRowHeight * 1.5f)
+                if (currRowZValue - startRowZValue > state.Height - averageRowHeight * 1.5f)
                 {
                     break;
                 }
             }
 
-            foreach (int rowValue in rowYValues)
+            foreach (int rowValue in rowZValues)
             {
                 rowColumnPoints[rowValue] = new List<int>();
 
@@ -134,14 +131,14 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
             List<CornerPoint> corners = new List<CornerPoint>();
 
             // Now iterate over all rows and prepare to be able to move points, once we have all points listed.
-            for (int row = 0; row < rowYValues.Count; row++)
+            for (int row = 0; row < rowZValues.Count; row++)
             {
-                int currYVal = rowYValues[row];
-                int nextYVal = rowYValues[(row + 1) % rowYValues.Count];
+                int currZVal = rowZValues[row];
+                int nextZVal = rowZValues[(row + 1) % rowZValues.Count];
 
-                List<int> currXValues = rowColumnPoints[currYVal];
+                List<int> currXValues = rowColumnPoints[currZVal];
 
-                List<int> nextXValues = rowColumnPoints[nextYVal];
+                List<int> nextXValues = rowColumnPoints[nextZVal];
 
                 for (int xx = 0; xx < currXValues.Count; xx++)
                 {
@@ -150,17 +147,22 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                     int nextXVal = currXValues[(xx + 1) % currXValues.Count];
 
                     int xmid = MathUtil.LerpInModRange(currXVal, nextXVal, state.Width, 0.5f);
-                    int ymid = MathUtil.LerpInModRange(currYVal, nextYVal, state.Height, 0.5f);
+                    int zmid = MathUtil.LerpInModRange(currZVal, nextZVal, state.Height, 0.5f);
 
-                    blockCenters.Add(new PointXZ(xmid, ymid));
-
-                    if (!corners.Any(x => x.X == currXVal && x.Y == currYVal))
+                    state.Block.Blocks.Add(new TextureBlock()
                     {
-                        corners.Add(new CornerPoint(currXVal, currYVal));
+                        CX = MathUtil.ModClamp(xmid, state.Width),
+                        CZ = MathUtil.ModClamp(zmid, state.Height),
+                        Index = state.Block.GetNextBlockIndex(),
+                    });
+
+                    if (!corners.Any(x => x.X == currXVal && x.Z == currZVal))
+                    {
+                        corners.Add(new CornerPoint(currXVal, currZVal));
                     }
-                    if (!corners.Any(x => x.X == currXVal && x.Y == nextYVal))
+                    if (!corners.Any(x => x.X == currXVal && x.Z == nextZVal))
                     {
-                        corners.Add(new CornerPoint(currXVal, nextYVal));
+                        corners.Add(new CornerPoint(currXVal, nextZVal));
                     }
                 }
             }
@@ -171,12 +173,12 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
             {
                 cp.Index = ++cornerIndex;
                 cp.OrigX = cp.X;
-                cp.OrigY = cp.Y;
+                cp.OrigZ = cp.Z;
             }
 
             foreach (CornerPoint cp in corners)
             {
-                List<CornerPoint> sameRow = corners.Where(x => x.Y == cp.Y && x.X != cp.X).ToList();
+                List<CornerPoint> sameRow = corners.Where(x => x.Z == cp.Z && x.X != cp.X).ToList();
 
                 sameRow = sameRow.OrderBy(x => x.X).ToList();
 
@@ -212,7 +214,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 }
                 else
                 {
-                    _logService.Info("No left point for " + cp.X + " " + cp.Y);
+                    _logService.Info("No left point for " + cp.X + " " + cp.Z);
                 }
                 if (rightPoint != null)
                 {
@@ -220,10 +222,10 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 }
                 else
                 {
-                    _logService.Info("No right point for " + cp.X + " " + cp.Y);
+                    _logService.Info("No right point for " + cp.X + " " + cp.Z);
                 }
 
-                int myRowIndex = rowYValues.IndexOf(cp.Y);
+                int myRowIndex = rowZValues.IndexOf(cp.Z);
 
                 if (myRowIndex < 0)
                 {
@@ -231,22 +233,22 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                     continue;
                 }
 
-                int upRowIndex = (myRowIndex + 1 + rowYValues.Count) % rowYValues.Count;
+                int upRowIndex = (myRowIndex + 1 + rowZValues.Count) % rowZValues.Count;
 
-                int downRowIndex = (myRowIndex - 1 + rowYValues.Count) % rowYValues.Count;
+                int downRowIndex = (myRowIndex - 1 + rowZValues.Count) % rowZValues.Count;
 
-                int upYValue = rowYValues[upRowIndex];
+                int upYValue = rowZValues[upRowIndex];
 
-                int downYValue = rowYValues[downRowIndex];
+                int downYValue = rowZValues[downRowIndex];
 
-                CornerPoint upPoint = corners.FirstOrDefault(x => x.X == cp.X && x.Y == upYValue);
+                CornerPoint upPoint = corners.FirstOrDefault(x => x.X == cp.X && x.Z == upYValue);
 
                 if (upPoint != null)
                 {
                     cp.UpIndex = upPoint.Index;
                 }
 
-                CornerPoint downPoint = corners.FirstOrDefault(x => x.X == cp.X && x.Y == downYValue);
+                CornerPoint downPoint = corners.FirstOrDefault(x => x.X == cp.X && x.Z == downYValue);
 
                 if (downPoint != null)
                 {
@@ -255,7 +257,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
 
             }
 
-            corners = corners.OrderBy(x => x.X + x.Y * 12345).ToList();
+            corners = corners.OrderBy(x => x.X + x.Z * 12345).ToList();
 
             List<CornerPoint> cornerCopy = new List<CornerPoint>(corners);
             foreach (CornerPoint cp in cornerCopy)
@@ -279,9 +281,9 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                     if (otherPoint != null)
                     {
                         float dx = otherPoint.OrigX - cp.OrigX;
-                        float dy = otherPoint.OrigY - cp.OrigY;
+                        float dz = otherPoint.OrigZ - cp.OrigZ;
 
-                        double dist = Math.Sqrt(dx * dx + dy * dy);
+                        double dist = Math.Sqrt(dx * dx + dz * dz);
 
                         if (minDist == 0 || dist < minDist)
                         {
@@ -302,7 +304,7 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                     if (!didVerticalPerturb)
                     {
                         cp.X += (int)RandUtils.DeltaRange(maxPerturb, state.Rand);
-                        cp.Y += (int)RandUtils.DeltaRange(maxPerturb, state.Rand);
+                        cp.Z += (int)RandUtils.DeltaRange(maxPerturb, state.Rand);
                         cp.WasPerturbed = true;
                     }
                 }
@@ -325,26 +327,27 @@ namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
                 _materialGenUtilsService.RoundCreviceCorner(state, corners, currentPoint, currentPoint.UpIndex, currentPoint.LeftIndex);
                 _materialGenUtilsService.RoundCreviceCorner(state, corners, currentPoint, currentPoint.LeftIndex, currentPoint.DownIndex);
                 _materialGenUtilsService.RoundCreviceCorner(state, corners, currentPoint, currentPoint.DownIndex, currentPoint.RightIndex);
-
             }
 
-            foreach (PointXZ blockCenter in blockCenters)
+            foreach (TextureBlock block in state.Block.Blocks)
             {
-                if (_materialGenUtilsService.MakeBlockVeryRound(state, blockCenter.X, blockCenter.Z))
-                {
-                    continue;
-                }
-                if (_materialGenUtilsService.ChangeBrightnessInForegroundRegion(state, blockCenter.X, blockCenter.Z))
-                {
-                    continue;
-                }
-                if (_materialGenUtilsService.RemoveBlockFromWall(state, blockCenter.X, blockCenter.Z))
-                {
-                    continue;
-                }
+                _materialGenUtilsService.SetupColorBlockRegion(state, block);
 
+                if (_materialGenUtilsService.MakeBlockVeryRound(state, block))
+                {
+                    continue;
+                }
+                if (_materialGenUtilsService.ChangeBrightnessInForegroundRegion(state, block))
+                {
+                    continue;
+                }
+                if (_materialGenUtilsService.RemoveBlockFromWall(state, block))
+                {
+                    continue;
+                }
             }
-            //_materialGenUtilsService.AddCracksToFrontRegions(state);
+
+            _materialGenUtilsService.AddCracksToFrontRegions(state);
 
             _materialGenUtilsService.RoundEdgesNearCrevices(state);
 

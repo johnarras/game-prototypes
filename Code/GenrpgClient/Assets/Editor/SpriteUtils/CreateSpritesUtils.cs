@@ -9,7 +9,7 @@ namespace Assets.Editor.SpriteUtils
         [MenuItem("Tools/Crawler/Setup Monster Sprites")]
         public static void SetupCrawlerMonsterImages()
         {
-            SpritePrefabBuilder.ProcessSpritesToPrefabs("FullAssets/Crawler/Images/Monsters", "BundledAssets/TextureLists");
+            SpritePrefabBuilder.ProcessSpritesToPrefabs("FullAssets/Crawler/Images/Monsters", "BundledAssets/SpriteLists");
         }
 
         [MenuItem("Tools/Crawler/Copy Minimap Terrain To 3D")]

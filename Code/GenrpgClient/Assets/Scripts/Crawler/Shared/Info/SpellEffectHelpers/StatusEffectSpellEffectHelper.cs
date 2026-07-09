@@ -14,7 +14,7 @@ namespace OxDb.SharedGame.Crawler.Info.SpellEffectHelpers
         {
             CrawlerCombatSettings settings = _gameData.Get<CrawlerCombatSettings>(_gs.ch);
             StringBuilder sb = new StringBuilder();
-            if (effect.MinQuantity < 0)
+            if (effect.WeaponDamageScale < 0)
             {
                 sb.Append($"Removes weakest status effect (1 + {settings.ExtraCureStatusEffectsRemovedPerTier} per tier) up to {GetRoleScalingText(spell, effect, " your ")} Tier.");
             }

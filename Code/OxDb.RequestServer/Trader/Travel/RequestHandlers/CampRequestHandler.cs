@@ -1,5 +1,5 @@
-﻿using OxDb.RequestServer.ClientUserRequests.RequestHandlers;
-using OxDb.RequestServer.Core;
+﻿using OxDb.RequestServer.Core;
+using OxDb.RequestServer.GameClientRequests.RequestHandlers;
 using OxDb.RequestServer.Resets.Entities;
 using OxDb.RequestServer.Resets.Services;
 using OxDb.SharedGame.Core.PlayerData;
@@ -18,7 +18,7 @@ namespace OxDb.RequestServer.Trader.Travel.RequestHandlers
 
             CoreData coreData = await context.GetAsync<CoreData>();
 
-            CaravanPosition position = _caravanService.GetPosition(coreData);
+            CaravanPosition position = await _caravanService.GetPosition(context);
 
             await _hourlyUpdateService.CheckHourlyCurrencyUpdates(context, new HourlyResetArgs()
             {

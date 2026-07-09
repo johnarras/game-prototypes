@@ -14,7 +14,7 @@ public class ClutterObjectLoader : BaseObjectLoader
     public override long HelperKey => EntityTypes.Prop;
 
     public override bool LoadObject(PatchLoadData loadData, int entityId,
-       int x, int y, Zone currZone, ZoneType currZoneType, CancellationToken token)
+       int x, int z, Zone currZone, ZoneType currZoneType, CancellationToken token)
     {
         ClutterType ctype = _gameData.Get<ClutterTypeSettings>(_gs.ch).Get(entityId);
         if (ctype == null)
@@ -23,7 +23,7 @@ public class ClutterObjectLoader : BaseObjectLoader
         }
 
         string artName = ctype.Art;
-        int indexHash = loadData.gx * y + loadData.gy * x + x * 13 + loadData.gy * 19 + loadData.gx * 31 + y * 47;
+        int indexHash = loadData.gx * z + loadData.gz * x + x * 13 + loadData.gz * 19 + loadData.gx * 31 + z * 47;
         int indexChoice = 1;
         if (ctype.NumChoices > 0)
         {
@@ -36,13 +36,13 @@ public class ClutterObjectLoader : BaseObjectLoader
         dlo.url = prefabName;
         dlo.loadData = loadData;
         dlo.x = x;
-        dlo.y = y;
-        dlo.zOffset = RandUtils.FloatRange(0, 1, _rand.Rand);
+        dlo.z = z;
+        dlo.zOffset = RandUtils.FloatRange(0, 1, _gs.Rand);
         dlo.zone = currZone;
         dlo.zoneType = currZoneType;
         dlo.assetCategory = AssetCategoryNames.Props;
 
-        dlo.rotation = new MyPointF(((indexHash * 37) % 4) * 90, (indexHash * 23) % 360, ((indexHash * 59) % 4) * 90);
+        dlo.rotation = new Point3F(((indexHash * 37) % 4) * 90, (indexHash * 23) % 360, ((indexHash * 59) % 4) * 90);
 
         _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
 
@@ -55,14 +55,14 @@ public class ClutterObjectLoader : BaseObjectLoader
             dlo.loadData = loadData;
 
             dlo.x = x + ((indexHash / 7) % 3 - 1);
-            dlo.y = y + ((indexHash / 131) % 3 - 1);
-            dlo.zOffset = RandUtils.FloatRange(0, 1, _rand.Rand);
+            dlo.z = z + ((indexHash / 131) % 3 - 1);
+            dlo.zOffset = RandUtils.FloatRange(0, 1, _gs.Rand);
             dlo.zone = currZone;
             dlo.zoneType = currZoneType;
             dlo.assetCategory = AssetCategoryNames.Props;
             dlo.AfterLoad = AfterLoadObject;
 
-            dlo.rotation = new MyPointF(((indexHash * 37) % 4) * 90, (indexHash * 23) % 360, ((indexHash * 59) % 4) * 90);
+            dlo.rotation = new Point3F(((indexHash * 37) % 4) * 90, (indexHash * 23) % 360, ((indexHash * 59) % 4) * 90);
 
             _assetService.LoadAsset(AssetCategoryNames.Props, dlo.url, OnDownloadObject, null, token, dlo);
 
@@ -82,10 +82,10 @@ public class ClutterObjectLoader : BaseObjectLoader
             collider.convex = true;
         }
 
-        go.transform.localPosition = new Vector3(dlo.x + dlo.ddx * ddscale, dlo.height + dlo.zOffset, dlo.y + dlo.ddy * ddscale);
+        go.transform.localPosition = new Vector3(dlo.x + dlo.ddx * ddscale, dlo.height + dlo.zOffset, dlo.z + dlo.ddz * ddscale);
         if (dlo.rotation != null)
         {
-            go.transform.eulerAngles = new Vector3(dlo.rotation.X, dlo.rotation.Y, dlo.rotation.Z);
+            go.transform.eulerAngles = new Vector3(dlo.rotation.X, dlo.rotation.Z, dlo.rotation.Z);
         }
     }
 }

@@ -9,7 +9,7 @@
   "AncientName": "Tarsus",
   "Population": 50000,
   "MapPixelX": 2784,
-  "MapPixelY": 2413,
+  "MapPixelZ": 2413,
   "BiomeTypeId": 7,
   "CultureTypeId": 2,
   "TradeGoodsProduced": [
@@ -23,5 +23,21 @@
       "TradeGoodId": 1
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 8
+    },
+    {
+      "CaravanMemberId": 11
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

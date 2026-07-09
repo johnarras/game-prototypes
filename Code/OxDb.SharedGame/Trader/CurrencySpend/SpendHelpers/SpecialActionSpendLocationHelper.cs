@@ -15,7 +15,7 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
     {
         public override long HelperKey => SpendLocations.SpecialActions;
 
-        public override async Task<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
+        public override async ValueTask<FullSpendLocation> GetFullSpendLocation(IUnitDataLookup lookup, bool useCurrentCity)
         {
             List<SpendType> validSpendTypes = new List<SpendType>();
 
@@ -33,11 +33,9 @@ namespace OxDb.SharedGame.Trader.CurrencySpend.SpendHelpers
                     continue;
                 }
 
-
-
                 if (stype.Rewards.Any(x => x.EntityTypeId == EntityTypes.UpdateCaravanMembers))
                 {
-                    CaravanPosition pos = _caravanService.GetPosition(coreData);
+                    CaravanPosition pos = await _caravanService.GetPosition(lookup);
 
                     // Can do this in one step with != instead of && but it's a bit confusing
                     if (pos.GetCurrentCity() != null && stype.Name.ToLower().Contains("city"))

@@ -4,6 +4,7 @@
   "IdKey": 13,
   "Name": "Devotion",
   "Desc": "Increases healing power.",
+  "Icon": "Devotion",
   "Art": "BlueCauldron",
   "ColorName": "Blue",
   "ColorCode": "#0000FF",

@@ -8,7 +8,7 @@ namespace OxDb.MapServer.Spells.MessageHandlers
 {
     public class OnRemoveEffectHandler : BaseMapObjectServerMapMessageHandler<OnRemoveEffect>
     {
-        protected override async Task InnerProcess(IRandomContainer rand, MapObject obj, OnRemoveEffect message)
+        protected override async ValueTask InnerProcess(MapObject obj, OnRemoveEffect message)
         {
             obj.AddMessage(message);
             await Task.CompletedTask;

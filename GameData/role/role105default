@@ -3,24 +3,14 @@
   "ParentId": "default",
   "IdKey": 105,
   "Name": "Halfling",
-  "Desc": "More Crit",
+  "Desc": "They are a lucky race that can better see how to find a lethal weakness in enemies.",
   "Abbrev": "Hf",
   "RoleCategoryId": 2,
-  "CritPercent": 5,
+  "CritPercent": 3,
   "StartSkillPoints": 1,
   "StartUpgradePoints": 1,
-  "BinaryBonuses": [
-    {
-      "EntityTypeId": 100,
-      "EntityId": 38
-    }
-  ],
+  "BinaryBonuses": [],
   "AmountBonuses": [
-    {
-      "EntityTypeId": 43,
-      "EntityId": 14,
-      "Amount": 1.0
-    },
     {
       "EntityTypeId": 43,
       "EntityId": 16,

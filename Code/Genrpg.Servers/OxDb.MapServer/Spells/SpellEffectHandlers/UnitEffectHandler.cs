@@ -1,6 +1,7 @@
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
+using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Spells.Messages;
 using OxDb.SharedGame.Spells.Settings.Effects;
 using OxDb.SharedGame.Spells.Settings.Elements;
@@ -15,7 +16,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
         public override bool IsModifyStatEffect() { return false; }
         public override bool UseStatScaling() { return false; }
 
-        public override List<ActiveSpellEffect> CreateEffects(IRandom rand, SpellHit hitData)
+        public override List<ActiveSpellEffect> CreateEffects(MapObject obj, SpellHit hitData)
         {
             List<ActiveSpellEffect> retval = new List<ActiveSpellEffect>();
 
@@ -36,7 +37,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
             return retval;
         }
 
-        public override bool HandleEffect(IRandom rand, ActiveSpellEffect eff)
+        public override bool HandleEffect(MapObject obj, ActiveSpellEffect eff)
         {
 
             if (!_objectManager.GetUnit(eff.TargetId, out Unit targ))
@@ -44,7 +45,7 @@ namespace OxDb.MapServer.Spells.SpellEffectHandlers
                 return false;
             }
 
-            MyPointF pos = targ.GetPos();
+            Point3F pos = targ.GetPos();
             pos.Z += 2;
 
             int statPct = (int)eff.Quantity;

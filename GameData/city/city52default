@@ -9,7 +9,7 @@
   "AncientName": "Caesarea Mauretaniae",
   "Population": 30000,
   "MapPixelX": 1292,
-  "MapPixelY": 2437,
+  "MapPixelZ": 2437,
   "BiomeTypeId": 2,
   "CultureTypeId": 3,
   "TradeGoodsProduced": [
@@ -26,5 +26,15 @@
       "TradeGoodId": 38
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    }
+  ]
 }

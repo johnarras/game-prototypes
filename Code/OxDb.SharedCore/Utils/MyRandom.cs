@@ -1,13 +1,14 @@
+using OxDb.SharedCore.Interfaces;
 using System;
+using System.Runtime.ConstrainedExecution;
 
 namespace OxDb.SharedCore.Utils
 {
 
     public interface IRandomContainer
     {
-        IRandom Rand { get; set; }
+        IRandom Rand { get; }
     }
-
     /// <summary>
     /// I am not using Random.Shared because I want more control over the random numbers,
     /// so this interface is passed everywhere since the environment is multithreaded
@@ -28,99 +29,108 @@ namespace OxDb.SharedCore.Utils
         double Weight { get; }
     }
 
+    public interface IWeightedItemId : IWeightedItem
+    {
+        long GetId();
+    }
+
     public interface IItemEnchantWeight
     {
         double ItemEnchantWeight { get; }
     }
 
-    public class RandomContainer : IRandomContainer
-    {
-        public IRandom Rand { get; set; }
-    }
-
     public class MyRandom : IRandom
     {
+        private uint _s0;
+        private uint _s1;
+        private uint _s2;
+        private uint _s3;
 
-        private System.Random _rand;
-        public MyRandom(long seed)
+        /// <summary>
+        /// Initializes the PRNG. If no seed is provided, defaults to DateTime.UtcNow.Ticks.
+        /// </summary>
+        public MyRandom(long seed = 0)
         {
-            _rand = new System.Random((int)seed);
+            if (seed == 0)
+            {
+                seed = DateTime.UtcNow.Ticks;
+            }
+
+            uint low = (uint)(seed & 0xFFFFFFFF);
+            uint high = (uint)(seed >> 32);
+
+            _s0 = low;
+            _s1 = high;
+            _s2 = low + 0x9E3779B9;
+            _s3 = high + 0xBB67AE85;
         }
 
-        public MyRandom()
+        /// <summary>
+        /// Core 32-bit PRNG advancement step.
+        /// </summary>
+        public uint NextUint()
         {
-            Reset();
-        }
+            uint result = Rotl(_s1 * 5, 7) * 9;
+            uint t = _s1 << 9;
 
-        private void Reset()
-        {
-            _rand = new System.Random((int)(DateTime.UtcNow.Ticks));
+            _s2 ^= _s0;
+            _s3 ^= _s1;
+            _s1 ^= _s2;
+            _s0 ^= _s3;
+
+            _s2 ^= t;
+            _s3 = Rotl(_s3, 11);
+
+            return result;
         }
 
         public int Next()
         {
-            int val = _rand.Next();
-            if (val == 0)
-            {
-                //Reset();
-            }
-            return val;
+            // Mask out the sign bit to ensure a non-negative integer
+            return (int)(NextUint() & 0x7FFFFFFF);
         }
-
 
         public long NextLong()
         {
-            byte[] bytes = new byte[8];
-            _rand.NextBytes(bytes);
-            long val = BitConverter.ToInt64(bytes, 0);
-            if (val == 0)
-            {
-                //Reset();
-            }
-            return val >= 0 ? val : -val;
+            // Combine two 32-bit generations into one non-negative 64-bit long
+            ulong high = NextUint();
+            ulong low = NextUint();
+            return (long)(((high << 32) | low) & 0x7FFFFFFFFFFFFFFF);
         }
 
-        public int Next(int maxValue)
+        public int Next(int maxVal)
         {
-            if (maxValue < 1)
-            {
-                return 0;
-            }
-
-            return Next() % maxValue;
+            if (maxVal <= 0) return 0;
+            return (int)(NextUint() % (uint)maxVal);
         }
 
-        public long NextLong(long maxValue)
-        {
-            if (maxValue < 1)
-            {
-                return 0;
-            }
-
-            return NextLong() % maxValue;
-        }
-
-        /// <summary>
-        /// Returns a MyRandom number between minValue and maxValue
-        /// </summary>
-        /// <param name="minValue"></param>
-        /// <param name="maxValue"></param>
-        /// <returns></returns>
         public int Next(int minValue, int maxValue)
         {
-            return minValue + Next(maxValue - minValue + 1);
+            if (minValue >= maxValue) return minValue;
+            uint range = (uint)(maxValue - minValue);
+            return minValue + (int)(NextUint() % range);
         }
 
         public long NextLong(long minValue, long maxValue)
         {
-            return minValue + NextLong(maxValue - minValue + 1);
+            if (minValue >= maxValue) return minValue;
+            ulong range = (ulong)(maxValue - minValue);
+
+            ulong high = NextUint();
+            ulong low = NextUint();
+            ulong combined = (high << 32) | low;
+
+            return minValue + (long)(combined % range);
         }
 
         public double NextDouble()
         {
-            return Next() * (1.0 / 0x7FFFFFFF);
+            return (NextUint() & 0xFFFFFFFF) / (double)uint.MaxValue;
+        }
+
+        private static uint Rotl(uint x, int k)
+        {
+            return (x << k) | (x >> (32 - k));
         }
     }
 }
-
-

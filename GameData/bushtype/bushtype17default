@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype17default",
+  "ParentId": "default",
+  "IdKey": 17,
+  "Name": "Fern",
+  "Art": "Fern",
+  "Scale": 3.0,
+  "VariationCount": 1,
+  "Flags": 9
+}

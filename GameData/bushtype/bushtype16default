@@ -1,0 +1,10 @@
+{
+  "Id": "bushtype16default",
+  "ParentId": "default",
+  "IdKey": 16,
+  "Name": "Dandelion",
+  "Art": "Dandelion",
+  "Scale": 3.0,
+  "VariationCount": 1,
+  "Flags": 13
+}

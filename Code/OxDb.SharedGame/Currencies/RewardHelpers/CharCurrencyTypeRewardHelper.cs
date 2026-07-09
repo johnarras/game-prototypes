@@ -19,13 +19,13 @@ namespace OxDb.SharedGame.Currencies.RewardHelpers
     {
         public override long HelperKey => EntityTypes.CharCurrency;
 
-        public override async Task<long> GetQuantity(IUnitDataLookup context, long entityId)
+        public override async ValueTask<long> GetQuantity(IUnitDataLookup context, long entityId)
         {
             CharCurrencyData currencyData = await context.GetAsync<CharCurrencyData>();
             return currencyData.Data[entityId];
         }
 
-        public override async Task<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
+        public override async ValueTask<bool> GiveReward(IUnitDataLookup context, long entityId, long quantity, object extraData, long uniqueId, RewardParams rp)
         {
             CharCurrencyData currencyData = await context.GetAsync<CharCurrencyData>();
             currencyData.Data.Add(entityId, quantity);

@@ -45,7 +45,7 @@ namespace Assets.Scripts.Trader.UI.Cities
 
         private void OnClickButton()
         {
-            _webService.SendWebRequest(new HeadToTargetRequest() { ToX = _args.TargetX, ToY = _args.TargetY, ToCityId = (int)(_args.TargetCity?.IdKey ?? 0) }, GetToken());
+            _webService.SendWebRequest(new HeadToTargetRequest() { ToX = _args.TargetX, ToZ = _args.TargetY, ToCityId = (int)(_args.TargetCity?.IdKey ?? 0) }, GetToken());
         }
     }
 }

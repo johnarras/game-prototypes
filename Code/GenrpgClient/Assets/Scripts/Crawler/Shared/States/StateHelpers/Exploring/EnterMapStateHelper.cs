@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps;
+using Assets.Scripts.Crawler.MapGen.Services;
 using Assets.Scripts.UI.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
@@ -34,7 +34,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
         public override long TriggerDetailEntityTypeId() { return EntityTypes.Map; }
         protected override bool OnlyUseBGImage() { return true; }
 
-        public override async Task<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
+        public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
 
@@ -103,7 +103,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
                     foreach (long mapId in mapIds)
                     {
 
-                        world.Seed = _rand.Rand.Next();
+                        world.Seed = _gs.Rand.Next();
 
                         int enterX = party.CurrPos.X;
                         int enterZ = party.CurrPos.Z;

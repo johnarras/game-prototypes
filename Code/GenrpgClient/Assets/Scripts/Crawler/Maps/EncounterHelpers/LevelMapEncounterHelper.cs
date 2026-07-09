@@ -8,7 +8,6 @@ using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 {
@@ -16,7 +15,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
     {
         public override long HelperKey => MapEncounters.LevelMap;
 
-        public override async Awaitable DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int x, int z, CancellationToken token)
         {
 
             CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
@@ -31,7 +30,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
             await Task.CompletedTask;
         }
 
-        public override async Awaitable OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
+        public override async ValueTask OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
             if (!party.CompletedMaps.HasBitIndex(party.CurrPos.MapId))
             {

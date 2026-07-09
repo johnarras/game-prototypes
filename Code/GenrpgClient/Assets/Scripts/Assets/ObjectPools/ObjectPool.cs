@@ -16,7 +16,7 @@ namespace Assets.Scripts.Assets.ObjectPools
             AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null);
         Task<GameObject> CheckoutObjectAsync<T>(object parent, string assetCategory, string assetPath,
             AssetDownloadHandler<T> handler, T data, CancellationToken token, string subdirectory = null);
-        void ReturnObject(object pooled);
+        void ReturnObject(object pooled, int maxStorage = 20);
         void Clear();
 
     }
@@ -72,7 +72,7 @@ namespace Assets.Scripts.Assets.ObjectPools
         }
 
 
-        public void ReturnObject(object obj)
+        public void ReturnObject(object obj, int maxStorage = 20)
         {
             GameObject go = obj as GameObject;
 
@@ -99,10 +99,16 @@ namespace Assets.Scripts.Assets.ObjectPools
                 return;
             }
 
-            cache.Cache.Add(go);
-            _clientEntityService.SetActive(go, false);
-            _clientEntityService.AddToParent(go, cache.Parent);
-
+            if (cache.Cache.Count < maxStorage)
+            {
+                cache.Cache.Add(go);
+                _clientEntityService.SetActive(go, false);
+                _clientEntityService.AddToParent(go, cache.Parent);
+            }
+            else
+            {
+                _clientEntityService.Destroy(go);
+            }
             _activeMap.Remove(go);
 
         }

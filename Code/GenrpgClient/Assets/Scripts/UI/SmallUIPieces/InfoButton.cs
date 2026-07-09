@@ -1,4 +1,3 @@
-using Assets.Scripts.Core;
 using Assets.Scripts.UI.Interfaces;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedGame.Ftue.Constants;
@@ -9,7 +8,6 @@ public class InfoButton : BaseBehaviour
 {
     private IFtueService _ftueService = null;
     protected IRepositoryService _repoService = null;
-    protected IClientRandom _rand = null;
     public GButton Button;
 
     private string _screenName = null;
@@ -34,7 +32,7 @@ public class InfoButton : BaseBehaviour
             if (step != null)
             {
 
-                _ftueService.ForceStartStep(_gs.ch, step.IdKey).Wait();
+                _ = _ftueService.ForceStartStep(_gs.ch, step.IdKey);
 
                 _logService.Info("Show Info for " + _screenName);
             }

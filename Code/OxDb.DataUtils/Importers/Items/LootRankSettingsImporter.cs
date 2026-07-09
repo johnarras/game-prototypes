@@ -6,7 +6,7 @@ namespace OxDb.DataUtils.Importers.Items
 {
     public class LootRankSettingsImporter : ParentChildImporter<LootRankSettings, LootRank>
     {
-        protected override void ImportChildSubObject(EditorGameState gs, LootRank current, int row, string firstColumn, string[] headers, string[] rowWords)
+        protected override void ImportSubobject(EditorGameState gs, LootRankSettings settings, LootRank current, int row, string firstColumn, string[] headers, string[] rowWords)
         {
         }
     }

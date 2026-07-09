@@ -13,6 +13,7 @@ namespace OxDb.SharedGame.UserMail.PlayerData
         [Key(0)] public override string Id { get; set; }
         [Key(1)] public override string OwnerId { get; set; }
         [Key(2)] public long UserMailTypeId { get; set; }
+        [Key(3)] public override string VersionTag { get; set; }
     }
 
 
@@ -20,6 +21,7 @@ namespace OxDb.SharedGame.UserMail.PlayerData
     public class UserMailData : OwnerObjectList<UserLetter>, IServerOnlyData
     {
         [Key(0)] public override string Id { get; set; }
+        [Key(1)] public override string VersionTag { get; set; }
     }
     [MessagePackObject]
     public class UserMailDto : OwnerDtoList<UserMailData, UserLetter>

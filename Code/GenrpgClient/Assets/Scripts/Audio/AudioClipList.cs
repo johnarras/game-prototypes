@@ -1,5 +1,4 @@
 using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Core;
 using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
@@ -23,8 +22,6 @@ public class WeightedAudioClip : IWeightedItem
 
 public class AudioClipList : BaseBehaviour
 {
-
-    protected IClientRandom _rand = null;
 
     public float Volume = AudioConstants.MaxVolume;
     public bool Is3D = false;
@@ -101,7 +98,7 @@ public class AudioClipList : BaseBehaviour
         AudioClip clip = null;
         if (index < 0 || index >= AudioClips.Count)
         {
-            WeightedAudioClip weightedClip = RandUtils.GetRandomElement(AudioClips, _rand.Rand);
+            WeightedAudioClip weightedClip = RandUtils.GetRandomElement(AudioClips, _gs.Rand);
             if (weightedClip != null)
             {
                 clip = weightedClip.Clip;
@@ -130,8 +127,8 @@ public class AudioClipList : BaseBehaviour
 
         if (playData.VarianceScale > 0)
         {
-            source.volume *= (1 + RandUtils.DeltaRange(playData.VarianceScale, _rand.Rand));
-            source.pitch *= (1 + RandUtils.DeltaRange(playData.VarianceScale, _rand.Rand));
+            source.volume *= (1 + RandUtils.DeltaRange(playData.VarianceScale, _gs.Rand));
+            source.pitch *= (1 + RandUtils.DeltaRange(playData.VarianceScale, _gs.Rand));
         }
 
         if (playData.MusicData != null || !Is3D)

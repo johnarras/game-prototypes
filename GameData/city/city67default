@@ -9,7 +9,7 @@
   "AncientName": "Ecbatana",
   "Population": 50000,
   "MapPixelX": 3404,
-  "MapPixelY": 2513,
+  "MapPixelZ": 2513,
   "BiomeTypeId": 12,
   "CultureTypeId": 11,
   "TradeGoodsProduced": [
@@ -20,5 +20,21 @@
       "TradeGoodId": 32
     }
   ],
-  "CaravanMembersForSale": []
+  "CaravanMembersForSale": [
+    {
+      "CaravanMemberId": 1
+    },
+    {
+      "CaravanMemberId": 3
+    },
+    {
+      "CaravanMemberId": 4
+    },
+    {
+      "CaravanMemberId": 7
+    },
+    {
+      "CaravanMemberId": 12
+    }
+  ]
 }
