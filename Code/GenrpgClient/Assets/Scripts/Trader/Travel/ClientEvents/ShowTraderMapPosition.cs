@@ -1,7 +1,7 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 
-namespace Assets.Scripts.Trader.Travel.ClientEvents
+namespace OxDb.Client.Trader.Travel.ClientEvents
 {
     public class ShowTraderMapPosition : IClientEvent
     {

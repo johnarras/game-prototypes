@@ -3,7 +3,7 @@ using OxDb.SharedCore.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Auth.Services
+namespace OxDb.Client.Auth.Services
 {
     public interface IFacebookAuthService : IInitializable
     {

@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Interfaces;
@@ -88,9 +88,8 @@ public class TreeObjectLoader : BaseObjectLoader
             long placementSeed = 17041 + x * 9479 + z * 2281 + loadData.gx * 5281 + loadData.gz * 719 +
                 loadData.gx * z + loadData.gz * x;
 
-            treeType.Scale = 1.0f; // TODO Fix
-            float minScale = treeType.Scale;
-            float maxScale = treeType.Scale * 1.50f;
+            float minScale = 1.0f;
+            float maxScale = 1.50f;
             float finalScale = minScale + (maxScale - minScale) * (placementSeed % (ScaleStepCount + 1)) / ScaleStepCount;
 
             finalScale *= AddTrees.TreeSizeScale;
@@ -217,8 +216,7 @@ public class TreeObjectLoader : BaseObjectLoader
         if (tt != null)
         {
 
-            tt.Scale = 1.0f; // TODO Fix
-            float minScale = tt.Scale;
+            float minScale = 1.0f;
             float maxScale = minScale * 1.5f;
 
             maxScale *= AddTrees.TreeSizeScale;
@@ -254,17 +252,6 @@ public class TreeObjectLoader : BaseObjectLoader
             return;
         }
 
-        List<MeshRenderer> renderers = _clientEntityService.GetComponents<MeshRenderer>(go);
-
-        foreach (MeshRenderer renderer in renderers)
-        {
-            List<Material> oldList = new List<Material>();
-            renderer.GetMaterials(oldList);
-            foreach (Material mat in oldList)
-            {
-            }
-        }
-
         go = op.terrManager.AddOrReuseTerrainProtoObject(op.Name, go);
 
 
@@ -295,9 +282,11 @@ public class TreeObjectLoader : BaseObjectLoader
                 _md.zoneTreeIds[zoneType.IdKey] = treeList;
                 _md.zoneBushIds[zoneType.IdKey] = bushList;
 
-                foreach (ZoneTreeType ztt in zoneType.TreeTypes)
+                List<WeightedEntity> zoneTrees = zoneType.GetPropsOfType(EntityTypes.Tree);
+
+                foreach (WeightedEntity tree in zoneTrees)
                 {
-                    TreeType treeType = treeSettings.Get(ztt.TreeTypeId);
+                    TreeType treeType = treeSettings.Get(tree.EntityId);
 
                     treeList.Add(treeType.IdKey);
                 }

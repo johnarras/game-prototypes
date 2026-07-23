@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
@@ -90,7 +90,6 @@ namespace OxDb.SharedGame.Riddles.Services
                 allZoneTypeWords.AddRange(ztype.CreatureDoubleNamePrefixes.Select(x => x.Name));
                 allZoneTypeWords.AddRange(ztype.ZoneAdjectives.Select(x => x.Name));
                 allZoneTypeWords.AddRange(ztype.ZoneNames.Select(x => x.Name));
-                allZoneTypeWords.AddRange(ztype.TreeTypes.Select(x => x.Name));
             }
 
             foreach (string ztypeWord in allZoneTypeWords)

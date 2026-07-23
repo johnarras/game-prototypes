@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Sprites.Services;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Sprites.Services;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;

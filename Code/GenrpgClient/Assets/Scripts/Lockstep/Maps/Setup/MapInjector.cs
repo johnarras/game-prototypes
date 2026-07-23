@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Maps.Entities;
-using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Maps.Components;
+using OxDb.Client.Lockstep.Maps.Entities;
+using OxDb.Client.Lockstep.Math;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Assets.Scripts.Lockstep.Maps.Setup
+namespace OxDb.Client.Lockstep.Maps.Setup
 {
     public class MapInjector
     {
@@ -47,14 +47,14 @@ namespace Assets.Scripts.Lockstep.Maps.Setup
             {
                 Entity mapEntity = em.CreateEntity();
 
-                // The "Key" for logic systems to find map data
+                // The "Header" for logic systems to find map data
                 em.AddComponentData(mapEntity, new ActiveMap
                 {
                     MapRef = libraryRef.Value[i]
                 });
 
                 float2 offset = libraryRef.Value[i].Value.Offset;
-                // The "Key" for the presentation system to place the art
+                // The "Header" for the presentation system to place the art
                 // Overworld at (0,0,0), Underworld at (0, -1000, 0), etc.
                 em.AddComponentData(mapEntity, new MapVisualOffset
                 {

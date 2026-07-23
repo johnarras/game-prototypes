@@ -1,4 +1,4 @@
-namespace Assets.Scripts.UI.Constants
+namespace OxDb.Client.UI.Constants
 {
     public class TextColors
     {

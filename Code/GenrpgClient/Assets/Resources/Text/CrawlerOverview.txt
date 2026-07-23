@@ -32,12 +32,17 @@ D = Turn Right
 
 Other Hotkeys:
 
-M = Show Current Map
-H = Show Help/Info Screen
-R = Emergency Recall to Town (Lose Gold)
-O = Options/Main Menu
 C = Cast Spell
-L = Show Quest Log
+M = Show Map
+L = Quest Log
+I = Info/Help Panel
+R = Recall to Safety
+P = Change Party Order
+B = Cast Party Buffs
+U = Use Item
+K = Camp
+O = Options
+Esc = Main Menu
 
 
 ======== Role listall
@@ -91,10 +96,6 @@ Stats determine how hard skills hit, and how well you defend against them.
 
 There are many monsters in the game with varied skills and attributes. 
 They get access to skills as they level up.
-
-======== CrawlerSpell listall
-
-These are all of the abilities that you can learn depending on your class.
 
 ======== PartyUpgrade listall
 
@@ -199,3 +200,5 @@ longer to move each cell in the map, but you can look at a
 character sheet and drag items into the "Drop Item" icon
 to drop items anywhere in the world, or you can go to a town
 and sell the items.
+
+========

@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.UI.ClientEvents;
+﻿using OxDb.Client.UI.ClientEvents;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.ClientEventListeners
+namespace OxDb.Client.UI.ClientEventListeners
 {
     public class BackScreenToggle : BaseBehaviour
     {

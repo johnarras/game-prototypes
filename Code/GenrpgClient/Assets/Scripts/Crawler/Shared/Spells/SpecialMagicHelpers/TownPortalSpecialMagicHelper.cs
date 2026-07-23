@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;

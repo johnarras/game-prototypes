@@ -1,18 +1,18 @@
-using Assets.Scripts.Crawler.Maps.EncounterHelpers;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
+using OxDb.Client.Crawler.Maps.EncounterHelpers;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Services.DrawEntityHelpers;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
+namespace OxDb.Client.Crawler.Maps.Services.DrawCellHelpers
 {
     public class EncounterDrawCellHelper : BaseCrawlerDrawCellHelper
     {
-        public override int Order => 500;
+        public override ECrawlerDrawCellOrder HelperKey => ECrawlerDrawCellOrder.Encounters;
 
-        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, CancellationToken token)
         {
             long encounterId = _mapService.GetCurrentEncounterAtCell(party, mapRoot.Map, cell.MapX, cell.MapZ, true);
 
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 IClientMapEncounterHelper helper = _mapService.GetEncounterHelper(encounterId);
                 if (helper != null)
                 {
-                    await helper.DrawCell(party, world, mapRoot, cell, realCellX, realCellZ, token);
+                    await helper.DrawCell(party, world, mapRoot, cell, cell.MapX, cell.MapZ, token);
                 }
             }
 

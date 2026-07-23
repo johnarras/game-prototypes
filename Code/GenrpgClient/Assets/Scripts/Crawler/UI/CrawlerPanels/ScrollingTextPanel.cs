@@ -1,15 +1,15 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Assets.Scripts.UI.Abstractions;
-using Assets.Scripts.UI.Crawler.ActionUI;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.Crawler.ClientEvents.ActionPanelEvents;
+using OxDb.Client.UI.Abstractions;
+using OxDb.Client.UI.Crawler.ActionUI;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Crawler.CrawlerPanels
+namespace OxDb.Client.UI.Crawler.CrawlerPanels
 {
     public class ScrollingTextPanel : BaseBehaviour
     {

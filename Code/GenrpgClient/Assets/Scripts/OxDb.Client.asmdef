@@ -1,0 +1,28 @@
+{
+    "name": "OxDb.Client",
+    "rootNamespace": "OxDb.Client",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:15fc0a57446b3144c949da3e2b9737a9",
+        "GUID:760a4c7888534400e882b82c5b3fba06",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:a5baed0c9693541a5bd947d336ec7659",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:fe25561d224ed4743af4c60938a59d0b",
+        "GUID:60bfecf5cb232594891bc622f40d6bed",
+        "GUID:68bd7fdb68ef2684e982e8a9825b18a5",
+        "GUID:df380645f10b7bc4b97d4f5eb6303d95",
+        "GUID:70ea675efa2644cef98c7ece24158333",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

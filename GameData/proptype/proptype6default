@@ -1,9 +1,0 @@
-{
-  "Id": "proptype6default",
-  "ParentId": "default",
-  "IdKey": 6,
-  "Name": "DesertProp",
-  "Icon": "DesertProp",
-  "Art": "DesertProp",
-  "NumChoices": 1
-}

@@ -1,9 +1,9 @@
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.Purchasing.WebApi.RefreshStores;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Website.MessageHandlers
+namespace OxDb.Client.Website.MessageHandlers
 {
     public class RefreshStoresResponseHandler : BaseClientWebResponseHandler<RefreshStoresResponse>
     {

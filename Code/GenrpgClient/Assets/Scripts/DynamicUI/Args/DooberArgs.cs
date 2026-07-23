@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Doobers.Events
+namespace OxDb.Client.Doobers.Events
 {
     public class DooberArgs
     {

@@ -1,9 +1,9 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Services;
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Options.Services;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Services;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Audio.Constants;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Options.Services;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;

@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Travel.ClientEvents;
+﻿using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.Trader.ClientEvents;
+using OxDb.Client.Trader.Travel.ClientEvents;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Constants;
@@ -11,7 +11,7 @@ using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.MessageHandlers.Travelling
+namespace OxDb.Client.Trader.MessageHandlers.Travelling
 {
     public class HeadToTargetResponseHandler : BaseClientWebResponseHandler<HeadToTargetResponse>
     {

@@ -1,9 +1,9 @@
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.GameAuth.WebApi.NewVersions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Website.MessageHandlers
+namespace OxDb.Client.Website.MessageHandlers
 {
     public class NewVersionResponseHandler : BaseClientWebResponseHandler<NewVersionResponse>
     {

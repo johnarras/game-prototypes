@@ -1,6 +1,6 @@
 
 
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedGame.ProcGen.Constants;
 using System.Collections.Generic;
 using System.Threading;

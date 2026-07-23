@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Entities;
+using OxDb.Client.Assets.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.MapServer.Messages;
 using OxDb.SharedGame.MapServer.Services;
@@ -6,7 +6,7 @@ using OxDb.SharedGame.Networking.Messages;
 using System.Text;
 using System.Threading;
 
-namespace Assets.Scripts.UI
+namespace OxDb.Client.UI
 {
     public class NetworkStatusUI : BaseBehaviour
     {

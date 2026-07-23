@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.MapGen.RoomGen.Entities;
+﻿using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.RoomGen.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.MapGen.Constants;
@@ -9,7 +9,7 @@ using OxDb.SharedGame.Zones.Constants;
 using System;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.RoomGen.Helpers
 {
 
     public class RoomsEdgeGenHelper : BaseEdgeGenHelper
@@ -24,6 +24,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
 
         public override async ValueTask GenerateEdge(RoomEdgeGenArgs edgeArgs, CrawlerMapGenData genData, DungeonLevelGenArgs levelArgs)
         {
+            await Task.CompletedTask;
             EdgeStartEndPoints startEndPoints = edgeArgs.Corners.GetStartEndPoints(edgeArgs.DX, edgeArgs.DZ);
 
             Point2I start = startEndPoints.Start;
@@ -36,8 +37,6 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
             int wallDz = Math.Sign(wallZLen);
 
             int len = Math.Abs(wallXLen) + Math.Abs(wallZLen);
-
-            int roomCount = 0;
 
             int xOffset = 1;
             int zOffset = 1;
@@ -108,7 +107,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
 
 
                         levelArgs.RoomIds[x, z] = edgeArgs.RoomId;
-                        map.Set(x, z, CellIndex.Terrain, ZoneTypes.Badlands);
+                        map.Set(x, z, CellIndex.Terrain, genData.ZoneType.IdKey);
 
                         levelArgs.SetFlag(x, z, DungeonLevelFlags.EdgeCell);
                         if (w == xOffset)

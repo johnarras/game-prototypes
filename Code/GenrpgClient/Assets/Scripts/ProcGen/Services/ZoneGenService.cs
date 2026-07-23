@@ -1,7 +1,8 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.MapTerrain;
-using Assets.Scripts.Setup.Interfaces;
+using OxDb.Client;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.MapTerrain;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -17,7 +18,6 @@ using OxDb.SharedGame.ProcGen.Entities;
 using OxDb.SharedGame.ProcGen.Settings.Locations;
 using OxDb.SharedGame.ProcGen.Settings.Plants;
 using OxDb.SharedGame.ProcGen.Settings.Textures;
-using OxDb.SharedGame.ProcGen.Settings.Trees;
 using OxDb.SharedGame.RpgLevels.Settings;
 using OxDb.SharedGame.Spawns.Settings;
 using OxDb.SharedGame.UI.Constants;
@@ -382,31 +382,10 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
 
         GenZone genZone = _md.GetGenZone(zone.IdKey);
 
-        if (zt.RockTypes == null)
-        {
-            zt.RockTypes = new List<ZoneRockType>();
-        }
-
-        if (zt.TreeTypes == null)
-        {
-            zt.TreeTypes = new List<ZoneTreeType>();
-        }
-
         if (zone.PlantTypes == null)
         {
             zone.PlantTypes = new List<ZonePlantType>();
         }
-
-        if (genZone.RockTypes == null)
-        {
-            genZone.RockTypes = new List<ZoneRockType>();
-        }
-
-        if (genZone.TreeTypes == null)
-        {
-            genZone.TreeTypes = new List<ZoneTreeType>();
-        }
-
 
         float plantPerturbSize = 0.1f;
         float minPlantPerturb = 1 - plantPerturbSize;
@@ -498,113 +477,14 @@ public class ZoneGenService : IZoneGenService, IGameTokenService
         int maxNumRocks = 10 + rand.Next() % 10;
 
 
-        // Copy plant types to zone and perturb.
-        foreach (ZoneRockType rt in zt.RockTypes)
+        foreach (WeightedEntity we in zt.Props)
         {
-            ZoneRockType rt2 = new ZoneRockType();
-            rt2.RockTypeId = rt.RockTypeId;
-
-            rt2.Weight = RandUtils.FloatRange(0.3f, 2f, rand);
-
-            genZone.RockTypes.Add(rt2);
-        }
-
-
-        while (genZone.RockTypes.Count > maxNumRocks)
-        {
-            genZone.RockTypes.RemoveAt(rand.Next() % genZone.RockTypes.Count);
-        }
-
-
-
-        // Now set up trees
-        int maxNumTrees = 4 + rand.Next() % 4;
-        int maxNumBushes = 7 + rand.Next() % 7;
-
-        float minPopulationScale = 0.3f;
-        float maxPopulationScale = 2.0f;
-
-        // Copy Tree types to zone and perturb.
-
-        List<ZoneTreeType> treeTypes = new List<ZoneTreeType>();
-        foreach (ZoneTreeType ztt in zt.TreeTypes)
-        {
-            TreeType tt = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(ztt.TreeTypeId);
-            if (tt == null)
+            genZone.Props.Add(new WeightedEntity()
             {
-                continue;
-            }
-            treeTypes.Add(ztt);
-        }
-
-        List<ZoneBushType> bushTypes = new List<ZoneBushType>();
-        List<ZoneBushType> waterTypes = new List<ZoneBushType>();
-        foreach (ZoneBushType zbt in zt.BushTypes)
-        {
-            BushType btype = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zbt.BushTypeId);
-            if (btype == null)
-            {
-                continue;
-            }
-
-            if (btype.HasFlag(BushFlags.IsWaterItem))
-            {
-                waterTypes.Add(zbt);
-            }
-            else
-            {
-                bushTypes.Add(zbt);
-            }
-        }
-
-        int maxNum = maxNumTrees;
-
-        List<ZoneTreeType> newTreeList = new List<ZoneTreeType>();
-
-        foreach (ZoneTreeType tt in treeTypes)
-        {
-            ZoneTreeType tt2 = new ZoneTreeType();
-            tt2.TreeTypeId = tt.TreeTypeId;
-            tt2.Weight = RandUtils.FloatRange(minPopulationScale, maxPopulationScale, rand);
-            newTreeList.Add(tt2);
-            while (newTreeList.Count > maxNum)
-            {
-                newTreeList.RemoveAt(rand.Next() % newTreeList.Count);
-            }
-        }
-        foreach (ZoneTreeType newItem in newTreeList)
-        {
-            genZone.TreeTypes.Add(newItem);
-        }
-        maxNum = maxNumBushes;
-
-        List<ZoneBushType> newBushList = new List<ZoneBushType>();
-
-        foreach (ZoneBushType tt in bushTypes)
-        {
-            ZoneBushType tt2 = new ZoneBushType();
-            tt2.BushTypeId = tt.BushTypeId;
-            tt2.Weight = RandUtils.FloatRange(minPopulationScale, maxPopulationScale, rand);
-            newBushList.Add(tt2);
-            while (newBushList.Count > maxNum)
-            {
-                newBushList.RemoveAt(rand.Next() % newTreeList.Count);
-            }
-        }
-        foreach (ZoneBushType newItem in newBushList)
-        {
-            genZone.BushTypes.Add(newItem);
-        }
-
-
-        foreach (ZoneBushType waterZtt in waterTypes)
-        {
-            ZoneBushType wtt2 = new ZoneBushType()
-            {
-                BushTypeId = waterZtt.BushTypeId,
-                Weight = 1.0f,
-            };
-            genZone.BushTypes.Add(wtt2);
+                EntityId = we.EntityId,
+                EntityTypeId = we.EntityTypeId,
+                Weight = RandUtils.DeltaRange(0.5f, rand) * we.Weight,
+            });
         }
     }
 

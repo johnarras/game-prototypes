@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Bundles;
-using Assets.Scripts.FileUploads;
 using Newtonsoft.Json;
+using OxDb.Client.Assets.Bundles;
+using OxDb.Client.FileUploads;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Serialization.Services;
 using OxDb.SharedCore.Utils;

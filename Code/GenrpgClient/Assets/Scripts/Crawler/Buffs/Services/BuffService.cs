@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Items.Services;
+using OxDb.Client.Crawler.Items.Services;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
@@ -27,7 +27,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Buffs.Services
+namespace OxDb.Client.Crawler.Buffs.Services
 {
     public interface IBuffService : IInjectable
     {

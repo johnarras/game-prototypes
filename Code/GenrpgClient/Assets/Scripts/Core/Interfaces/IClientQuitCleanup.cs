@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Interfaces;
 
-namespace Assets.Scripts.Core.Interfaces
+namespace OxDb.Client.Core.Interfaces
 {
     public interface IClientQuitCleanup : IInjectable
     {

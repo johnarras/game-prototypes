@@ -1,4 +1,5 @@
-using Assets.Scripts.GameSettings.Services;
+using OxDb.Client;
+using OxDb.Client.GameSettings.Services;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Interfaces;
 using System;

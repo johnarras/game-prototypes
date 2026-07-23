@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Quests.Entities;
@@ -8,7 +8,7 @@ using OxDb.SharedGame.Crawler.States.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Quests.UI
+namespace OxDb.Client.Crawler.Quests.UI
 {
     public class CrawlerQuestRow : BaseBehaviour
     {

@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents
+namespace OxDb.Client.Crawler.ClientEvents.StatusPanelEvents
 {
     internal class RefreshPartyStatus : IClientEvent
     {

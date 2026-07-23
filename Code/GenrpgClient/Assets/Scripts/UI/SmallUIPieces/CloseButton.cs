@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.UI.Interfaces;
 
 public class CloseButton : BaseBehaviour
 {

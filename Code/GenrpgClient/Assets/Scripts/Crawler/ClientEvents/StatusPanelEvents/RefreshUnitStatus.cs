@@ -1,7 +1,7 @@
 using OxDb.SharedCore.Client.Interfaces;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 
-namespace Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents
+namespace OxDb.Client.Crawler.ClientEvents.StatusPanelEvents
 {
     public class RefreshUnitStatus : IClientEvent
     {

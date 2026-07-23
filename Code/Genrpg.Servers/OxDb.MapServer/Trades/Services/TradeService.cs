@@ -25,17 +25,18 @@ namespace OxDb.MapServer.Trades.Services
 {
     public interface ITradeService : IInjectable
     {
-        void HandleStartTrade(Character ch, StartTrade startTrade);
-        void HandleCancelTrade(Character ch, CancelTrade cancelTrade);
+        ValueTask HandleStartTrade(Character ch, StartTrade startTrade);
+        ValueTask HandleCancelTrade(Character ch, CancelTrade cancelTrade);
         void HandleOnCancelTrade(Character ch, OnCancelTrade message);
-        void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade);
+        ValueTask HandleAcceptTrade(Character ch, AcceptTrade acceptTrade);
         void HandleOnAcceptTrade(Character ch, OnAcceptTrade message);
-        void HandleUpdateTrade(Character ch, UpdateTrade updateTrade);
+        ValueTask HandleUpdateTrade(Character ch, UpdateTrade updateTrade);
         void HandleOnUpdateTrade(Character ch, OnUpdateTrade message);
-        void HandleOnCompleteTrade(Character ch, OnCompleteTrade message);
-        T SafeModifyObject<T>(MapObject obj, Func<T> modifyFunc, T failureResult);
-        void SafeModifyObject(MapObject obj, Action modifyFunc);
+        ValueTask HandleOnCompleteTrade(Character ch, OnCompleteTrade message);
+        ValueTask<T> SafeModifyObjectAsync<T>(MapObject obj, Func<ValueTask<T>> modifyFunc, T failureResult);
+        ValueTask SafeModifyObjectAsync(MapObject obj, Func<ValueTask> modifyFunc);
     }
+
     public class TradeService : ITradeService
     {
         private IMapObjectManager _objManager = null;
@@ -44,13 +45,17 @@ namespace OxDb.MapServer.Trades.Services
         private IFullRepositoryService _repoService = null;
         private IRewardService _rewardService = null;
 
+        // Assuming a shared lock object for global trade state coordination if needed, 
+        // or using the individual character semaphores.
+        private static readonly SemaphoreSlim _globalTradeStateLock = new SemaphoreSlim(1, 1);
+
         #region Utils
         private void SendError(Character ch, string message)
         {
             ch.SendError(message);
         }
 
-        private void ProcessExistingTrade(Character ch, Action<FullTradeObject> internalTradeAction)
+        private async ValueTask ProcessExistingTrade(Character ch, Func<FullTradeObject, ValueTask> internalTradeAction)
         {
             FullTradeObject fullTrade = GetFullTradeObject(ch);
 
@@ -60,24 +65,40 @@ namespace OxDb.MapServer.Trades.Services
                 return;
             }
 
-            lock (fullTrade.TradeObject)
+            // Await locks sequentially in a sorted, deterministic order to prevent deadlocks
+            await _globalTradeStateLock.WaitAsync();
+            try
             {
-                lock (fullTrade.OrderedCharacters[0].TradeLock)
+                await fullTrade.OrderedCharacters[0].TradeLock.WaitAsync();
+                try
                 {
-                    lock (fullTrade.OrderedCharacters[1].TradeLock)
+                    await fullTrade.OrderedCharacters[1].TradeLock.WaitAsync();
+                    try
                     {
                         if (!fullTrade.IsOkToUpdate())
                         {
                             foreach (Character tch in fullTrade.OrderedCharacters)
                             {
                                 CancelCharTrade(tch);
-                                return;
                             }
+                            return;
                         }
 
-                        internalTradeAction(fullTrade);
+                        await internalTradeAction(fullTrade);
+                    }
+                    finally
+                    {
+                        fullTrade.OrderedCharacters[1].TradeLock.Release();
                     }
                 }
+                finally
+                {
+                    fullTrade.OrderedCharacters[0].TradeLock.Release();
+                }
+            }
+            finally
+            {
+                _globalTradeStateLock.Release();
             }
         }
 
@@ -132,22 +153,20 @@ namespace OxDb.MapServer.Trades.Services
             }
 
             fullTrade.TradeObject = ch.Trade;
-
             return fullTrade;
-
         }
         #endregion
 
         #region Accept
-        public void HandleAcceptTrade(Character ch, AcceptTrade acceptTrade)
+        public async ValueTask HandleAcceptTrade(Character ch, AcceptTrade acceptTrade)
         {
-            ProcessExistingTrade(ch, delegate (FullTradeObject fullTrade)
-                {
-                    HandleAcceptTradeInternal(ch, acceptTrade, fullTrade);
-                });
+            await ProcessExistingTrade(ch, async delegate (FullTradeObject fullTrade)
+            {
+                await HandleAcceptTradeInternal(ch, acceptTrade, fullTrade);
+            });
         }
 
-        private void HandleAcceptTradeInternal(Character ch, AcceptTrade acceptTrade, FullTradeObject fullTrade)
+        private async ValueTask HandleAcceptTradeInternal(Character ch, AcceptTrade acceptTrade, FullTradeObject fullTrade)
         {
             foreach (TradeChar tch in fullTrade.TradeObject.Chars)
             {
@@ -159,7 +178,6 @@ namespace OxDb.MapServer.Trades.Services
             }
 
             bool allAccepted = true;
-
             foreach (TradeChar tch in fullTrade.TradeObject.Chars)
             {
                 if (!tch.Accepted)
@@ -173,6 +191,7 @@ namespace OxDb.MapServer.Trades.Services
             {
                 tch.AddMessage(new OnAcceptTrade() { CharId = ch.Id });
             }
+
             if (!allAccepted)
             {
                 return;
@@ -189,32 +208,20 @@ namespace OxDb.MapServer.Trades.Services
             for (int c = 0; c < fullTrade.TradeObject.Chars.Length; c++)
             {
                 TradeChar currTrade = fullTrade.TradeObject.Chars[c];
-
                 Character currChar = fullTrade.OrderedCharacters[c];
                 Character otherChar = fullTrade.OrderedCharacters[1 - c];
 
-                ValueTask<bool> removeTask = _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, RewardSources.PlayerTrade, null, 0, null);
-
-                // 2. Safely verify execution completed synchronously on the stack
-                if (removeTask.IsCompleted && removeTask.Result == true)
+                // Safely await the reward updates natively without hacky synchronous stack checks
+                bool removeSuccess = await _rewardService.GiveReward(currChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -currTrade.Money, RewardSources.PlayerTrade, null, 0, null);
+                if (!removeSuccess)
                 {
-                    // GetResult() on a completed ValueTask extracts the outcome/exceptions with zero wait
-                    removeTask.GetAwaiter().GetResult();
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Trade completion failed! Remove currency for CharId {currChar.Id} triggered an unintended asynchronous fallback thread yield inside an active transaction lock.");
+                    throw new InvalidOperationException($"Trade completion failed! Unable to deduct currency for CharId {currChar.Id}.");
                 }
 
-                ValueTask<bool> addTask = _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, RewardSources.PlayerTrade, null, 0, null);
-
-                if (addTask.IsCompleted && addTask.Result == true)
+                bool addSuccess = await _rewardService.GiveReward(otherChar, EntityTypes.CharCurrency, CharCurrencyTypes.Money, currTrade.Money, RewardSources.PlayerTrade, null, 0, null);
+                if (!addSuccess)
                 {
-                    addTask.GetAwaiter().GetResult();
-                }
-                else
-                {
-                    throw new InvalidOperationException($"Trade completion failed! Add currency for CharId {otherChar.Id} triggered an unintended asynchronous fallback thread yield inside an active transaction lock.");
+                    throw new InvalidOperationException($"Trade completion failed! Unable to add currency for CharId {otherChar.Id}.");
                 }
 
                 for (int i = 0; i < currTrade.Items.Length; i++)
@@ -226,6 +233,7 @@ namespace OxDb.MapServer.Trades.Services
                     }
                 }
             }
+
             foreach (Character tch in fullTrade.OrderedCharacters)
             {
                 _messageService.SendMessage(tch, new OnCompleteTrade() { TradeObject = fullTrade.TradeObject });
@@ -239,15 +247,14 @@ namespace OxDb.MapServer.Trades.Services
         #endregion
 
         #region Cancel
-        public void HandleCancelTrade(Character ch, CancelTrade cancelTrade)
+        public async ValueTask HandleCancelTrade(Character ch, CancelTrade cancelTrade)
         {
-            ProcessExistingTrade(ch, delegate (FullTradeObject fullTrade)
-            {
-                HandleCancelTradeInternal(ch, cancelTrade, fullTrade);
-            });
+            await ProcessExistingTrade(ch, (FullTradeObject fullTrade) =>            
+                HandleCancelTradeInternal(ch, cancelTrade, fullTrade)
+            );
         }
 
-        private void HandleCancelTradeInternal(Character ch, CancelTrade cancelTrade, FullTradeObject fullTrade)
+        private async ValueTask HandleCancelTradeInternal(Character ch, CancelTrade cancelTrade, FullTradeObject fullTrade)
         {
             foreach (Character tradeChar in fullTrade.OrderedCharacters)
             {
@@ -273,7 +280,7 @@ namespace OxDb.MapServer.Trades.Services
         #endregion
 
         #region Start
-        public void HandleStartTrade(Character ch, StartTrade startTrade)
+        public async ValueTask HandleStartTrade(Character ch, StartTrade startTrade)
         {
             if (ch.Id == startTrade.CharId)
             {
@@ -284,11 +291,10 @@ namespace OxDb.MapServer.Trades.Services
             if (!_objManager.GetChar(startTrade.CharId, out Character ch2))
             {
                 ch.SendError("That player does not exist.");
+                return;
             }
 
-            List<Character> orderedChars = new List<Character>();
-
-            orderedChars.Add(ch);
+            List<Character> orderedChars = new List<Character> { ch };
             if (string.Compare(ch.Id, startTrade.CharId) < 0)
             {
                 orderedChars.Add(ch2);
@@ -298,35 +304,22 @@ namespace OxDb.MapServer.Trades.Services
                 orderedChars.Insert(0, ch2);
             }
 
-            lock (orderedChars[0].TradeLock)
+            await orderedChars[0].TradeLock.WaitAsync();
+            try
             {
                 if (orderedChars[0].Trade != null)
                 {
-                    if (orderedChars[0] == ch)
-                    {
-                        ch.SendError("You are already trading.");
-                        return;
-                    }
-                    else
-                    {
-                        ch.SendError("They are already trading.");
-                        return;
-                    }
+                    ch.SendError(orderedChars[0] == ch ? "You are already trading." : "They are already trading.");
+                    return;
                 }
-                lock (orderedChars[1].TradeLock)
+
+                await orderedChars[1].TradeLock.WaitAsync();
+                try
                 {
                     if (orderedChars[1].Trade != null)
                     {
-                        if (orderedChars[1] == ch)
-                        {
-                            ch.SendError("You are already trading.");
-                            return;
-                        }
-                        else
-                        {
-                            ch.SendError("They are already trading.");
-                            return;
-                        }
+                        ch.SendError(orderedChars[1] == ch ? "You are already trading." : "They are already trading.");
+                        return;
                     }
 
                     if (ch.FactionTypeId != ch2.FactionTypeId)
@@ -361,79 +354,75 @@ namespace OxDb.MapServer.Trades.Services
                     {
                         Character currChar = orderedChars[i];
                         Character otherChar = orderedChars[1 - i];
-
                         currChar.AddMessage(new OnStartTrade() { CharId = otherChar.Id, Name = otherChar.Name });
                     }
                 }
+                finally
+                {
+                    orderedChars[1].TradeLock.Release();
+                }
+            }
+            finally
+            {
+                orderedChars[0].TradeLock.Release();
             }
         }
-
         #endregion
 
         #region SafeModifyObject
-        /// <summary>
-        /// Try to safely modify inventory in the face of trades. This probably has issues
-        /// due to race conditions, so I expect to have to revisit this often.
-        /// Not sure how to do the "lock once and don't re lock"
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="obj"></param>
-        /// <param name="modifyFunc"></param>
-        /// <param name="failValue"></param>
-        /// <returns></returns>
-        public T SafeModifyObject<T>(MapObject obj, Func<T> modifyFunc, T failValue)
+        public async ValueTask<T> SafeModifyObjectAsync<T>(MapObject obj, Func<ValueTask<T>> modifyFunc, T failureResult)
         {
             if (obj is Character ch)
             {
                 if (Interlocked.Read(ref ch.TradeModifyLockCount) > 0)
                 {
-                    // This may race, not sure how to fix as of now.
-                    // OTOH all inventory messages to this player will go through
-                    // the same queue, even the trade result messages,
-                    // so probably this isn't an issue.
-                    return modifyFunc();
+                    return await modifyFunc();
                 }
                 else
                 {
-                    lock (ch.TradeLock)
+                    await ch.TradeLock.WaitAsync();
+                    try
                     {
                         Interlocked.Increment(ref ch.TradeModifyLockCount);
 
                         if (ch.Trade != null)
                         {
                             ch.SendError("You are trading.");
-                            return default(T);
+                            return failureResult;
                         }
 
-                        T returnVal = modifyFunc();
+                        T returnVal = await modifyFunc();
                         Interlocked.Decrement(ref ch.TradeModifyLockCount);
                         return returnVal;
+                    }
+                    finally
+                    {
+                        ch.TradeLock.Release();
                     }
                 }
             }
             else
             {
-                return modifyFunc();
+                return await modifyFunc();
             }
         }
 
-        public void SafeModifyObject(MapObject obj, Action modifyFunc)
+        public async ValueTask SafeModifyObjectAsync(MapObject obj, Func<ValueTask> modifyFunc)
         {
-            Func<bool> wrapper = delegate { modifyFunc(); return true; };
-            SafeModifyObject(obj, wrapper, false);
+            await SafeModifyObjectAsync<bool>(obj, async () => { await modifyFunc(); return true; }, false);
         }
         #endregion
 
         #region Update
-        public void HandleUpdateTrade(Character ch, UpdateTrade updateTrade)
+        public async ValueTask HandleUpdateTrade(Character ch, UpdateTrade updateTrade)
         {
-            ProcessExistingTrade(ch, delegate (FullTradeObject fullTrade)
+            await ProcessExistingTrade(ch, async delegate (FullTradeObject fullTrade)
             {
-                HandleUpdateTradeInternal(ch, updateTrade, fullTrade);
+                await HandleUpdateTradeInternal(ch, updateTrade, fullTrade);
             });
         }
 
-        private void HandleUpdateTradeInternal(Character ch, UpdateTrade updateTrade, FullTradeObject fullTrade)
+        private async ValueTask HandleUpdateTradeInternal(Character ch, UpdateTrade updateTrade, FullTradeObject fullTrade)
         {
             TradeChar tradeChar = null;
             for (int i = 0; i < fullTrade.TradeObject.Chars.Length; i++)
@@ -455,17 +444,15 @@ namespace OxDb.MapServer.Trades.Services
 
             if (charMoney < updateTrade.Money)
             {
-                HandleCancelTradeInternal(ch, new CancelTrade() { CharId = ch.Id }, fullTrade);
+                await HandleCancelTradeInternal(ch, new CancelTrade() { CharId = ch.Id }, fullTrade);
                 ch.SendError("You don't have enough money.");
                 return;
             }
 
             InventoryData inventoryData = ch.Get<InventoryData>();
-
             Item[] newItems = new Item[TradeConstants.MaxItems];
-
-
             List<string> itemIds = new List<string>();
+
             for (int i = 0; i < updateTrade.ItemIds.Length; i++)
             {
                 if (string.IsNullOrEmpty(updateTrade.ItemIds[i]))
@@ -475,18 +462,20 @@ namespace OxDb.MapServer.Trades.Services
 
                 if (itemIds.Contains(updateTrade.ItemIds[i]))
                 {
-                    HandleCancelTradeInternal(ch, new CancelTrade() { CharId = ch.Id }, fullTrade);
+                    await HandleCancelTradeInternal(ch, new CancelTrade() { CharId = ch.Id }, fullTrade);
                     ch.SendError("The same item is in the trade twice.");
+                    return;
                 }
 
                 Item myItem = inventoryData.GetItem(updateTrade.ItemIds[i]);
                 if (myItem == null)
                 {
-                    HandleCancelTradeInternal(ch, new CancelTrade() { CharId = ch.Id }, fullTrade);
+                    await HandleCancelTradeInternal(ch, new CancelTrade() { CharId = ch.Id }, fullTrade);
                     ch.SendError("You are missing an item.");
                     return;
                 }
                 newItems[i] = myItem;
+                itemIds.Add(updateTrade.ItemIds[i]);
             }
 
             tradeChar.Money = updateTrade.Money;
@@ -510,30 +499,25 @@ namespace OxDb.MapServer.Trades.Services
         #endregion
 
         #region Complete
-
-        public void HandleOnCompleteTrade(Character ch, OnCompleteTrade onCompleteTrade)
+        public async ValueTask HandleOnCompleteTrade(Character ch, OnCompleteTrade onCompleteTrade)
         {
             ch.Trade = null;
-            // Safe modify this object still with a trade object
-            SafeModifyObject(ch,
-                () => { SafeHandleOnCompleteTrade(ch, onCompleteTrade); });
-            // Then set the object to null;
+            await SafeModifyObjectAsync(ch, () => SafeHandleOnCompleteTrade(ch, onCompleteTrade));
+                          
             ch.AddMessage(onCompleteTrade);
         }
 
-        private void SafeHandleOnCompleteTrade(Character ch, OnCompleteTrade onCompleteTrade)
+        private async ValueTask SafeHandleOnCompleteTrade(Character ch, OnCompleteTrade onCompleteTrade)
         {
-
             foreach (TradeChar tradeChar in onCompleteTrade.TradeObject.Chars)
             {
-                // Remove all items from your inven
                 if (tradeChar.CharId == ch.Id)
                 {
                     for (int i = 0; i < tradeChar.Items.Length; i++)
                     {
                         if (tradeChar.Items[i] != null)
                         {
-                            _inventoryService.RemoveItem(ch, tradeChar.Items[i].Id, false);
+                            await _inventoryService.RemoveItem(ch, tradeChar.Items[i].Id, false);
                         }
                     }
                 }
@@ -543,14 +527,12 @@ namespace OxDb.MapServer.Trades.Services
                     {
                         if (tradeChar.Items[i] != null)
                         {
-                            _inventoryService.AddItem(ch, tradeChar.Items[i], true);
+                            await _inventoryService.AddItem(ch, tradeChar.Items[i], true);
                         }
                     }
                 }
             }
         }
-
         #endregion
     }
 }
-

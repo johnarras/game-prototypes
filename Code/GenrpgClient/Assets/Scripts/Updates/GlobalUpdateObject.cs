@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Updates
+namespace OxDb.Client.Updates
 {
     public class GlobalUpdateObject : BaseBehaviour
     {

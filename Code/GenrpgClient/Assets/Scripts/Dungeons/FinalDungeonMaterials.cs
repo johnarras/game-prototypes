@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Dungeons
+namespace OxDb.Client.Dungeons
 {
     public class FinalDungeonMaterials
     {

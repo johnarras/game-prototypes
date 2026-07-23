@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Minigames.Controllers;
-using Assets.Scripts.Setup.Interfaces;
+﻿using OxDb.Client.Assets.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Minigames.Controllers;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Minigames.Games.Settings;
@@ -14,7 +15,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Minigames.Services
+namespace OxDb.Client.Minigames.Services
 {
     public interface IClientMinigameService : IInitializable, IGameTokenService
     {
@@ -38,7 +39,7 @@ namespace Assets.Scripts.Minigames.Services
         private IAwaitableService _awaitableService = null;
         private IScreenService _screenService = null;
         private ICameraController _cameraController = null;
-        private IClientWebService _webService = null;
+        private IClientWebRequestService _webService = null;
 
         private GameObject _minigameAnchor;
 
@@ -128,7 +129,7 @@ namespace Assets.Scripts.Minigames.Services
             MinigameType mtype = _gameData.Get<MinigameTypeSettings>(_gs.ch).Get(minigameTypeId);
             _dispatcher.Dispatch(new ShowFloatingText("Won " + mtype.Name));
             ShowLobby(minigameTypeId);
-            _webService.SendWebRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = true }, _token);
+            _webService.SendMainServerRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = true }, _token);
         }
 
         public void ClickLose(long minigameTypeId)
@@ -136,7 +137,7 @@ namespace Assets.Scripts.Minigames.Services
             MinigameType mtype = _gameData.Get<MinigameTypeSettings>(_gs.ch).Get(minigameTypeId);
             _dispatcher.Dispatch(new ShowFloatingText("Lost " + mtype.Name));
             ShowLobby(minigameTypeId);
-            _webService.SendWebRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = false }, _token);
+            _webService.SendMainServerRequest(new EndMinigameRequest() { MinigameTypeId = minigameTypeId, WonGame = false }, _token);
         }
     }
 }

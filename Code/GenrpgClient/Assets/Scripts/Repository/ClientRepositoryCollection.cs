@@ -1,4 +1,4 @@
-using Assets.Scripts.Repository;
+using OxDb.Client.Repository;
 using OxDb.SharedCore.DataStores.Entities;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;

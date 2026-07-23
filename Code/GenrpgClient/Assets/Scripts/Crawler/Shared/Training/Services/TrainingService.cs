@@ -1,4 +1,5 @@
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Assets.Scripts.Crawler.Demo.Constants;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
@@ -31,10 +32,11 @@ namespace OxDb.SharedGame.Crawler.Training.Services
         public long NextLevel { get; set; }
         public long TotalExp { get; set; }
         public long ExpLeft { get; set; }
+        public bool ReachedLevelCap { get; set; }
 
         public bool CanLevelUp()
         {
-            return Cost <= PartyGold && ExpLeft == 0;
+            return Cost <= PartyGold && ExpLeft == 0 && !ReachedLevelCap;
         }
     }
 
@@ -69,6 +71,7 @@ namespace OxDb.SharedGame.Crawler.Training.Services
         private ICrawlerUpgradeService _upgradeService = null;
         private IDispatcher _dispatcher = null;
         private IPartyService _partyService = null;
+        private IClientConfigContainer _configContainer = null;
 
         public async Task Initialize(CancellationToken token)
         {
@@ -175,6 +178,13 @@ namespace OxDb.SharedGame.Crawler.Training.Services
 
             long exp = GetExpForNextLevel(member);
 
+            bool reachedLevelCap = false;
+
+            if (_configContainer.Config.Flags.HasFlag(ClientPlayerFlags.IsDemo) && member.Level >= DemoConstants.MaxLevel)
+            {
+                reachedLevelCap = false;
+            }
+
             TrainingInfo info = new TrainingInfo()
             {
                 Cost = cost,
@@ -182,6 +192,7 @@ namespace OxDb.SharedGame.Crawler.Training.Services
                 ExpLeft = Math.Max(0, exp - member.Exp),
                 PartyGold = party.Currencies[CoreCurrencyTypes.Coins],
                 NextLevel = member.Level + 1,
+                ReachedLevelCap = reachedLevelCap,
             };
 
             return info;

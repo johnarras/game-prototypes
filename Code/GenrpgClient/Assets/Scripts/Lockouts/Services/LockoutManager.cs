@@ -1,7 +1,7 @@
 using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Lockouts.Services
+namespace OxDb.Client.Lockouts.Services
 {
 
     public interface ILockoutManager : IInjectable

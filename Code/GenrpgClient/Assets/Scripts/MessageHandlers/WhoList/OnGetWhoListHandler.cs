@@ -1,7 +1,7 @@
 using OxDb.SharedGame.WhoList.Messages;
 
 
-namespace Assets.Scripts.MessageHandlers.WhoList
+namespace OxDb.Client.MessageHandlers.WhoList
 {
     public class OnGetWhoListHandler : DispatchClientMapMessageHandler<OnGetWhoList> { }
 }

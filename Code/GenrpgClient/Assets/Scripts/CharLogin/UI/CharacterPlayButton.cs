@@ -1,7 +1,7 @@
 
 
-using Assets.Scripts.PlayerSearch;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.PlayerSearch;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.MapServer.WebApi.LoadIntoMap;

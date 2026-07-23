@@ -3,12 +3,12 @@
   "MaxFilledPercent": 0.4,
   "MinSize": 2,
   "MaxSize": 4,
-  "SquareRoomChance": 0.3,
+  "SquareRoomChance": 0.2,
   "AxisNoiseChance": 0.1,
   "UseRoomChance": 0.8,
   "SizeIncreaseChance": 0.1,
-  "SmallRoomChance": 0.7,
+  "SmallRoomChance": 0.05,
   "RemoveCellChance": 0.1,
   "Name": "RoomGenSettings",
-  "SaveTime": "2026-07-09T19:33:04.456Z"
+  "SaveTime": "2026-07-22T20:38:01.824Z"
 }

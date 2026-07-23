@@ -4,7 +4,7 @@ using OxDb.SharedGame.Spells.Settings.Skills;
 using OxDb.SharedGame.Spells.Settings.Spells;
 using System;
 
-namespace Assets.Scripts.UI.Spells
+namespace OxDb.Client.UI.Spells
 {
     public class SpellEffectEdit : BaseBehaviour
     {

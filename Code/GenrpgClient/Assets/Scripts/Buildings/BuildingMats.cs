@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Buildings
+namespace OxDb.Client.Buildings
 {
     public class BuildingMats : BaseBehaviour
     {

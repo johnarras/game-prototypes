@@ -1,4 +1,6 @@
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.WebRequests.Services;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
@@ -12,9 +14,9 @@ public class ClientWebRequest
     private string _postData;
     private WebResultsHandler _handler = null;
     private ILogService _logService = null;
-    private IClientWebService _clientWebService = null;
+    private IClientWebRequestService _clientWebService = null;
     const int MaxTimes = 3;
-    public async Awaitable SendRequest(ILogService logService, IClientWebService webService, string uri, object postData, List<FullWebRequest> commands, WebResultsHandler handler, SecurityData security, CancellationToken token)
+    public async Awaitable SendRequest(ILogService logService, IClientWebRequestService webService, string uri, object postData, List<FullWebRequest> commands, WebResultsHandler handler, SecurityData security, CancellationToken token)
     {
         _logService = logService;
         _clientWebService = webService;
@@ -24,9 +26,9 @@ public class ClientWebRequest
         for (int times = 0; times < MaxTimes; times++)
         {
             ResponseEnvelope<string> responseEnvelope = await _clientWebService.SendRawWebRequest<string>(_uri, HttpMethod.Post, postData, security);
-            if (!string.IsNullOrEmpty(responseEnvelope.ResponseData))
+            if (!string.IsNullOrEmpty(responseEnvelope.Response))
             {
-                await handler(responseEnvelope.ResponseData, commands, token);
+                await handler(responseEnvelope.Response, commands, token);
                 break;
             }
             else

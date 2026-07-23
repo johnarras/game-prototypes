@@ -1,13 +1,13 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 
-namespace Assets.Scripts.Crawler.Maps.Services.Entities
+namespace OxDb.Client.Crawler.Maps.Services.Entities
 {
     public class CrawlerMoveStatus
     {
         public MovementKeyCode KeyCode;
-        public bool MoveIsComplete;
+        public bool MoveIsStopped;
         public bool MovedPosition;
         public bool IsRotation;
         public CrawlerWorld World;

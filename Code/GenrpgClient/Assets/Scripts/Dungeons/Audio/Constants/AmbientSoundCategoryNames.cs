@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Dungeons.Audio.Constants
+﻿namespace OxDb.Client.Dungeons.Audio.Constants
 {
     public class AmbientSoundCategoryNames
     {

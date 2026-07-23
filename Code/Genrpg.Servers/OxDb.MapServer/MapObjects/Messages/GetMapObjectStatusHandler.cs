@@ -18,7 +18,7 @@ namespace OxDb.MapServer.MapObjects.Messages
             if (_objectManager.GetObject(message.ObjId, out MapObject mapObject))
             {
                 result.Addons = mapObject.GetAddons();
-                _vendorService.UpdateItems(mapObject);
+                await _vendorService.UpdateItems(mapObject);
             }
 
             _messageService.SendMessage(obj, result);

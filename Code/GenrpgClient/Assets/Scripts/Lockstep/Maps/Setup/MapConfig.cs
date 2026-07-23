@@ -1,6 +1,6 @@
-﻿namespace Assets.Scripts.Lockstep.Maps.Entities
+﻿namespace OxDb.Client.Lockstep.Maps.Entities
 {
-    using global::Assets.Scripts.Lockstep.Maps.Components;
+    using global::OxDb.Client.Lockstep.Maps.Components;
     using Unity.Mathematics;
 
     public class MapConfig

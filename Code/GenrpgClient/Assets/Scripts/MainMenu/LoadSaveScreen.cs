@@ -1,6 +1,6 @@
 
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.UI.MainMenu;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.UI.MainMenu;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.LoadSave.Constants;

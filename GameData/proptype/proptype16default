@@ -1,9 +1,0 @@
-{
-  "Id": "proptype16default",
-  "ParentId": "default",
-  "IdKey": 16,
-  "Name": "CaveProp",
-  "Icon": "CaveProp",
-  "Art": "CaveProp",
-  "NumChoices": 1
-}

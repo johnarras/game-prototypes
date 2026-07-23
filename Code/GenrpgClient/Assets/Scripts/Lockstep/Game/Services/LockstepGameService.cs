@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Config.Core;
-using Assets.Scripts.Lockstep.Config.Games;
-using Assets.Scripts.Lockstep.Factions.Setup;
-using Assets.Scripts.Lockstep.Maps.Entities;
-using Assets.Scripts.Lockstep.Maps.Setup;
+﻿using OxDb.Client.Lockstep.Config.Core;
+using OxDb.Client.Lockstep.Config.Games;
+using OxDb.Client.Lockstep.Factions.Setup;
+using OxDb.Client.Lockstep.Maps.Entities;
+using OxDb.Client.Lockstep.Maps.Setup;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -17,7 +17,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using static ActorSpawnSystem;
 
-namespace Assets.Scripts.Lockstep.Game.Services
+namespace OxDb.Client.Lockstep.Game.Services
 {
     public interface ILockstepGameService : IInitializable
     {

@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Factions.Components
+namespace OxDb.Client.Lockstep.Factions.Components
 {
     public struct FactionData : IComponentData
     {

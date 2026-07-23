@@ -25,9 +25,7 @@ namespace OxDb.MapServer.Items.Services
     public interface IItemService : IInjectable
     {
         ValueTask<UseItemResult> UseItem(Character ch, Item item);
-
     }
-
 
     public class ItemService : IItemService
     {
@@ -42,14 +40,11 @@ namespace OxDb.MapServer.Items.Services
         // Eventually split these cases into separate functions.
         public async ValueTask<UseItemResult> UseItem( Character ch, Item item)
         {
-            return _tradeService.SafeModifyObject(ch, delegate
-            {
-                return UseItemInternal(ch, item);
-            },
+            return await _tradeService.SafeModifyObjectAsync(ch, () => UseItemInternal(ch, item),            
             new UseItemResult() { ItemUsed = item, Success = false });
         }
 
-        private UseItemResult UseItemInternal(Character ch, Item item)
+        private async ValueTask<UseItemResult> UseItemInternal(Character ch, Item item)
         {
             UseItemResult res = new UseItemResult() { ItemUsed = item, Success = false };
             if (item == null)
@@ -67,7 +62,7 @@ namespace OxDb.MapServer.Items.Services
             {
                 theProc = recipeProc;
                 shouldRemoveItem = true;
-                res = _craftingService.LearnRecipe(ch, item);
+                res = await _craftingService.LearnRecipe(ch, item);
             }
 
             if (theProc == null)
@@ -135,7 +130,7 @@ namespace OxDb.MapServer.Items.Services
             {
                 if (shouldRemoveItem)
                 {
-                    _inventoryService.RemoveItem(ch, item.Id, true);
+                    await _inventoryService.RemoveItem(ch, item.Id, true);
                 }
             }
 

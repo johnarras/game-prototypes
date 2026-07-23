@@ -9,7 +9,8 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
     {
         private ICharmService _charmService = null;
         private IStatService _statService = null;
-        public override int Order => 3;
+        public override ECharacterLoadUpdateOrder HelperKey => ECharacterLoadUpdateOrder.Charms;
+
 
         public override async Task Update(WebContext context, Character ch)
         {

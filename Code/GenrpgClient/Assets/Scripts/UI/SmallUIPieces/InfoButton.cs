@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedGame.Ftue.Constants;
 using OxDb.SharedGame.Ftue.Services;

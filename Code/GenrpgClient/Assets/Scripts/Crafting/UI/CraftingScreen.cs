@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedGame.Crafting.PlayerData.Recipes;
 using OxDb.SharedGame.Crafting.Settings.Recipes;
 using OxDb.SharedGame.Inventory.Constants;

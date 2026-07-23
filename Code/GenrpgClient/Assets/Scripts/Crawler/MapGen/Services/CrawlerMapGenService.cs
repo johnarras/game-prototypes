@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
@@ -18,6 +18,7 @@ using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.MapServer.Entities;
 using OxDb.SharedGame.ProcGen.Entities;
 using OxDb.SharedGame.Units.Entities;
 using OxDb.SharedGame.Units.Settings;
@@ -28,9 +29,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-namespace Assets.Scripts.Crawler.MapGen.Services
+namespace OxDb.Client.Crawler.MapGen.Services
 {
 
     public interface ICrawlerMapGenService : IInitializable
@@ -40,7 +44,7 @@ namespace Assets.Scripts.Crawler.MapGen.Services
         void OneWayLink(CrawlerWorld world, long fromMapId, int fromX, int fromZ, long toMapId, int toX, int toZ);
         Task<CrawlerMap> GenerateRoguelikeDungeonLevel(PartyData party, CrawlerWorld world, long mapId, int enterX, int enterZ, CancellationToken token);
         bool RoomAreaIsBlank(int[,] roomIds, int minx, int maxx, int minz, int maxz);
-
+        void RemoveInnerWallsFromOutdoorDungeons(CrawlerMap map);
         void AddMapBoundaryWalls(CrawlerMap map);
         void AddBoundaryWallsAtPoint(CrawlerMap map, int x, int z);
 
@@ -49,8 +53,8 @@ namespace Assets.Scripts.Crawler.MapGen.Services
         void ConnectPairOfPoints(CrawlerMap map, ConnectedPairData pairData, int mapEdgeSize,
             List<long> skipZoneTypeIds, long newZoneTypeId,
             IRandom rand);
-
-        void SetEntranceAndExitPoints(CrawlerMap map, DungeonLevelGenArgs levelArgs);
+        void RemoveEdgePoints(CrawlerMap map, int edgeDistance);
+        void SetDungeonEntranceAndExitPoints(CrawlerMap map, DungeonLevelGenArgs levelArgs);
 
         void AddRoomWithDoor(DungeonLevelGenArgs levelArgs, int x, int z, EMapDirs doorDir, long zoneTypeId);
 
@@ -59,6 +63,8 @@ namespace Assets.Scripts.Crawler.MapGen.Services
         void AddSmallRoomsAndBlankSpaces(DungeonLevelGenArgs levelArgs);
 
         void SetWallBitsFromDeltas(CrawlerMap map, int x, int z, int dx, int dz, int wallType);
+
+        void AddOutdoorDungeonZoneEdges(CrawlerMap map);
     }
 
     public class CrawlerMapGenService : ICrawlerMapGenService
@@ -107,43 +113,44 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                 genData.GenType = RandUtils.GetRandomElement(mtype.GenTypes, rand);
             }
 
+            if (genData.MapType.ForcedZoneTypeId > 0)
+            {
+                genData.ZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(genData.MapType.ForcedZoneTypeId);
+            }
+
             if (genData.ZoneType == null)
             {
-                if (genData.GenType != null && genData.GenType.WeightedZones.Count > 0)
+
+                bool isOutdoorMap = rand.NextDouble() < mapSettings.OutdoorDungeonChance;
+                isOutdoorMap = true;
+                List<ZoneType> zoneTypes = _gameData.Get<ZoneTypeSettings>(_gs.ch).GetData().Where(x => x.IsDungeon && x.IsOutdoors == isOutdoorMap).ToList();
+
+                genData.ZoneType = zoneTypes[rand.Next() % zoneTypes.Count];
+
+                int keywordCount = 0;
+                while (rand.NextDouble() < mapSettings.UnitKeywordChance && keywordCount < 3)
                 {
-                    long zoneTypeId = RandUtils.GetRandomElement(genData.GenType.WeightedZones, rand).ZoneTypeId;
-
-                    genData.ZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zoneTypeId);
-
-                    int keywordCount = 0;
-                    while (rand.NextDouble() < mapSettings.UnitKeywordChance && keywordCount < 3)
-                    {
-                        keywordCount++;
-                    }
-
-                    keywordCount = 1;
-
-                    if (keywordCount > 0)
-                    {
-                        List<ZoneUnitKeyword> zoneKeywords = genData.ZoneType.UnitKeyWords.ToList();
-
-                        while (keywordCount > 0 && zoneKeywords.Count > 0)
-                        {
-                            ZoneUnitKeyword zk = RandUtils.GetRandomElement(zoneKeywords, rand);
-                            UnitKeyword uk = _gameData.Get<UnitKeywordSettings>(_gs.ch).Get(zk.UnitKeywordId);
-
-                            if (uk != null)
-                            {
-                                genData.UnitKeywords.Add(new CurrentUnitKeyword() { UnitKeywordId = uk.IdKey });
-                            }
-                            zoneKeywords.Remove(zk);
-                            keywordCount--;
-                        }
-                    }
+                    keywordCount++;
                 }
-                else
+
+                keywordCount = 1;
+
+                if (keywordCount > 0)
                 {
-                    return null;
+                    List<ZoneUnitKeyword> zoneKeywords = genData.ZoneType.UnitKeyWords.ToList();
+
+                    while (keywordCount > 0 && zoneKeywords.Count > 0)
+                    {
+                        ZoneUnitKeyword zk = RandUtils.GetRandomElement(zoneKeywords, rand);
+                        UnitKeyword uk = _gameData.Get<UnitKeywordSettings>(_gs.ch).Get(zk.UnitKeywordId);
+
+                        if (uk != null)
+                        {
+                            genData.UnitKeywords.Add(new CurrentUnitKeyword() { UnitKeywordId = uk.IdKey });
+                        }
+                        zoneKeywords.Remove(zk);
+                        keywordCount--;
+                    }
                 }
             }
 
@@ -157,12 +164,12 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                 genData.ArtSeed = _gs.Rand.Next(1000000000); // Use global rand here to make it random each time we generate
             }
 
-            ICrawlerMapGenHelper helper = GetGenHelper(genData.MapTypeId);
+            ICrawlerMapGenHelper helper = GetGenHelper(genData.MapType.IdKey);
             NewCrawlerMap newMap = await helper.Generate(party, world, genData, token);
 
             if (newMap == null || newMap.Map == null)
             {
-                _logService.Info("NullMap? " + genData.MapTypeId);
+                _logService.Info("NullMap? " + genData.MapType.IdKey);
                 return null;
             }
 
@@ -175,6 +182,40 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                     LinkTwoMaps(world, genData.FromMapId, genData.FromMapX, genData.FromMapZ, newMap.Map.IdKey, newMap.EnterX, newMap.EnterZ);
                 }
             }
+
+
+            ZoneTypeSettings zoneSettings = _gameData.Get<ZoneTypeSettings>(_gs.ch);
+
+            for (int x = 0; x < newMap.Map.Width; x++)
+            {
+                for (int z = 0; z < newMap.Map.Height; z++)
+                {
+                    ZoneType ztype = zoneSettings.Get(newMap.Map.Get(x, z, CellIndex.Terrain));
+
+                    if (ztype != null)
+                    {
+                        if (!newMap.Map.IsOutdoorDungeon())
+                        {
+                            long entityTypeId = newMap.Map.Get(x, z, CellIndex.EntityType);
+                            long entityId = newMap.Map.Get(x, z, CellIndex.EntityId);
+
+                            if (entityTypeId == 0 && entityId == 0)
+                            {
+                                if (rand.NextDouble() < ztype.LargePropChance)
+                                {
+                                    newMap.Map.SetEntity(x, z, EntityTypes.Prop, 1);
+                                }
+                            }
+                        }
+                    }
+                    else if (newMap.Map.IsOutdoorDungeon())
+                    {
+                        newMap.Map.SetEntity(x, z, EntityTypes.Prop, 1);
+                    }
+                }
+            }
+
+            AddOutdoorDungeonZoneEdges(newMap.Map);
 
             return newMap.Map;
         }
@@ -221,6 +262,13 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                     }
                     nearbyRoads.Add(new Point2I(xx, zz));
                 }
+            }
+
+            List<Point2I> innerRoads = nearbyRoads.Where(r => r.X > 0 && r.Z > 0 && r.X < toMap.Width - 1 && r.Z < toMap.Height - 1).ToList();
+
+            if (innerRoads.Count > 0)
+            {
+                nearbyRoads = innerRoads;
             }
 
             if (nearbyRoads.Count > 0)
@@ -270,6 +318,15 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                     {
                         fromMap.SetEntity(xx, zz, 0, 0);
                     }
+                }
+            }
+
+            foreach (ZoneEdge edge in fromMap.EdgePoints)
+            {
+                int dist = Math.Abs(edge.X - fromX) + Math.Abs(edge.Z - fromZ);
+                if (dist <= 1)
+                {
+                    edge.ZoneTypeId = toMap.ZoneTypeId;
                 }
             }
         }
@@ -354,10 +411,9 @@ namespace Assets.Scripts.Crawler.MapGen.Services
             CrawlerMapGenData genData = new CrawlerMapGenData()
             {
                 FromMapId = mapId - 1,
-                CurrFloor = mapId - 1,
-                MaxFloor = mapId,
+                CurrFloor = (int)mapId - 1,
+                MaxFloor = (int)mapId,
                 Level = mapId - 1,
-                LevelDelta = 0,
                 MapTypeId = CrawlerMapTypes.Dungeon,
                 World = world,
                 FromMapX = enterX,
@@ -404,6 +460,35 @@ namespace Assets.Scripts.Crawler.MapGen.Services
             }
         }
 
+        public void RemoveInnerWallsFromOutdoorDungeons(CrawlerMap map)
+        {
+
+            if (!map.IsOutdoorDungeon())
+            {
+                return;
+            }
+
+            for (int x = 0; x < map.Width; x++)
+            {
+                for (int z = 0; z < map.Height; z++)
+                {
+                    map.Set(x, z, CellIndex.Walls, 0);
+
+                    if (map.Get(x, z, CellIndex.Terrain) > 0)
+                    {
+                        if (map.GetEntityId(x, z, EntityTypes.Prop) > 0)
+                        {
+                            map.SetEntity(x, z, 0, 0);
+                        }
+                    }
+                    else
+                    {
+                        map.SetEntity(x, z, EntityTypes.Prop, 1);
+                    }
+                }
+            }
+        }
+
         public void AddBoundaryWallsAtPoint(CrawlerMap map, int x, int z)
         {
 
@@ -415,8 +500,6 @@ namespace Assets.Scripts.Crawler.MapGen.Services
 
         private void CheckCellDir(CrawlerMap map, int x, int z, int nx, int nz)
         {
-            bool looping = map.HasFlag(CrawlerMapFlags.IsLooping);
-
             int dx = nx - x;
             int dz = nz - z;
 
@@ -425,25 +508,11 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                 bool placeWall = false;
                 if (nx < 0)
                 {
-                    if (!looping)
-                    {
-                        placeWall = true;
-                    }
-                    else
-                    {
-                        nx = map.Width - 1;
-                    }
+                    placeWall = true;
                 }
                 if (nx >= map.Width)
                 {
-                    if (!looping)
-                    {
-                        placeWall = true;
-                    }
-                    else
-                    {
-                        nx = 0;
-                    }
+                    placeWall = true;
                 }
 
                 if (!placeWall)
@@ -467,25 +536,11 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                 bool placeWall = false;
                 if (nz < 0)
                 {
-                    if (!looping)
-                    {
-                        placeWall = true;
-                    }
-                    else
-                    {
-                        nz = map.Height - 1;
-                    }
+                    placeWall = true;
                 }
                 if (nz >= map.Height)
                 {
-                    if (!looping)
-                    {
-                        placeWall = true;
-                    }
-                    else
-                    {
-                        nz = 0;
-                    }
+                    placeWall = true;
                 }
 
                 if (!placeWall)
@@ -643,8 +698,26 @@ namespace Assets.Scripts.Crawler.MapGen.Services
             }
         }
 
-        public void SetEntranceAndExitPoints(CrawlerMap map, DungeonLevelGenArgs levelArgs)
+        public void RemoveEdgePoints(CrawlerMap map, int edgeDistance)
         {
+
+            for (int x = 0; x < map.Width; x++)
+            {
+
+                for (int z = 0; z < map.Height; z++)
+                {
+                    if (x < edgeDistance || x >= map.Width - 1 - edgeDistance || z < edgeDistance || z >= map.Height - 1 - edgeDistance)
+                    {
+                        map.Set(x, z, CellIndex.Terrain, 0);
+                    }
+                }
+            }
+        }
+
+        public void SetDungeonEntranceAndExitPoints(CrawlerMap map, DungeonLevelGenArgs levelArgs)
+        {
+
+
             List<Point2I> openPoints = new List<Point2I>();
 
             for (int x = 0; x < map.Width; x++)
@@ -659,16 +732,104 @@ namespace Assets.Scripts.Crawler.MapGen.Services
             }
 
 
+            if (map.IsOutdoorDungeon())
+            {
+
+                int minx = openPoints.Min(p => p.X);
+                int maxx = openPoints.Max(p => p.X);
+                int minz = openPoints.Min(p => p.Z);
+                int maxz = openPoints.Max(p => p.Z);
+
+                List<Point2I> edgePoints = openPoints.Where(p => p.X == minx || p.Z == minz || p.X == maxx || p.Z == maxz).ToList();
+
+                edgePoints = edgePoints.Where(p => p.X > 0 && p.X < map.Width - 1 && p.Z > 0 && p.Z < map.Height - 1).ToList();
+
+                if (edgePoints.Count > 1)
+                {
+                    // If minx or maxx or minz or maxz are bad, there should be no points in here with
+                    // those values so it should be safe to move the point toward the outer edges a bit.
+                    foreach (Point2I pt in edgePoints)
+                    {
+                        if (pt.X == minx)
+                        {
+                            pt.X--;
+                        }
+                        else if (pt.X == maxx)
+                        {
+                            pt.X++;
+                        }
+                        else if (pt.Z == minz)
+                        {
+                            pt.Z--;
+                        }
+                        else if (pt.Z == maxz)
+                        {
+                            pt.Z++;
+                        }
+                    }
+
+                    openPoints = edgePoints;
+                }
+            }
+
+
+            List<Point2I> entrances = new List<Point2I>();
 
             Point2I entrance = openPoints[levelArgs.Rand.Next() % openPoints.Count];
+            entrances.Add(entrance);
             openPoints.Remove(entrance);
-            Point2I exit = openPoints[levelArgs.Rand.Next() % openPoints.Count];
 
+
+            List<Point2I> farPoints = openPoints.Where(p => Math.Abs(p.X - entrance.X) + Math.Abs(p.Z - entrance.Z) >= 10).ToList();
+
+            if (farPoints.Count > 0)
+            {
+                openPoints = farPoints;
+            }
+
+            Point2I exit = openPoints[levelArgs.Rand.Next() % openPoints.Count];
+            entrances.Add(exit);
+
+            foreach (Point2I pt in entrances)
+            {
+                map.Set(pt.X, pt.Z, CellIndex.Terrain, map.IsOutdoorDungeon() ? ZoneTypes.Road : map.ZoneTypeId);
+            }
             levelArgs.EnterX = entrance.X;
             levelArgs.EnterZ = entrance.Z;
             levelArgs.ExitX = exit.X;
             levelArgs.ExitZ = exit.Z;
 
+            if (map.IsOutdoorDungeon())
+            {
+
+                foreach (Point2I pt in entrances)
+                {
+                    SampledPoint closestCenter = null;
+                    double closestDist = 100000;
+                    foreach (SampledPoint center in levelArgs.RoomCenters)
+                    {
+                        float dx = center.X - pt.X;
+                        float dz = center.Z - pt.Z;
+
+                        float dist = dx * dx + dz * dz;
+
+                        if (closestCenter == null || dist < closestDist)
+                        {
+                            closestCenter = center;
+                            closestDist = dist;
+                        }
+                    }
+
+                    if (closestCenter != null)
+                    {
+                        ConnectPairOfPoints(map, new ConnectedPairData()
+                        {
+                            Point1 = new ConnectPointData() { X = pt.X, Z = pt.Z },
+                            Point2 = new ConnectPointData() { X = closestCenter.X, Z = closestCenter.Z },
+                        }, 1, new List<long>(), ZoneTypes.Road, levelArgs.Rand);
+                    }
+                }
+            }
         }
 
         public void AddRoomWithDoor(DungeonLevelGenArgs args, int x, int z, EMapDirs doorDir, long zoneTypeId)
@@ -808,6 +969,12 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                     {
                         if (componentIds[x, z] != maxQuantityComponentId)
                         {
+                            if (map.Details.Any(d => d.X == x && d.Z == z))
+                            {
+                                int compId = componentIds[x, z];
+                                int compCount = counts[compId];
+                                _logService.Info("Removing cell with detail? " + compId + " " + maxQuantityComponentId + " " + compCount + " " + counts.Keys.Count());
+                            }
                             map.Set(x, z, CellIndex.Terrain, 0);
                         }
                     }
@@ -831,7 +998,7 @@ namespace Assets.Scripts.Crawler.MapGen.Services
         {
             RoomGenSettings settings = _gameData.Get<RoomGenSettings>(_gs.ch);
 
-            List<EMapDirs> allMapDirs = MapDirUtils.GetDirs().Keys.ToList();
+            Dictionary<EMapDirs, MapDir> allMapDirs = MapDirUtils.GetDirs();
 
             bool[,] openCells = new bool[3, 3];
 
@@ -839,6 +1006,11 @@ namespace Assets.Scripts.Crawler.MapGen.Services
             {
                 for (int z = 1; z < levelArgs.Map.Height - 1; z++)
                 {
+                    if (!levelArgs.Map.IsValidEmptyCell(x, z))
+                    {
+                        continue;
+                    }
+
                     for (int xx = 0; xx < 3; xx++)
                     {
                         for (int zz = 0; zz < 3; zz++)
@@ -846,6 +1018,7 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                             openCells[xx, zz] = true;
                         }
                     }
+
                     int openCellCount = 0;
                     int blockedCellCount = 0;
 
@@ -863,7 +1036,9 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                         continue;
                     }
                     bool doNotAllowBlock = false;
-                    bool allCellsOpen = true;
+
+                    int adjacentOpenCount = 0;
+
                     for (int xx = x - 1; xx <= x + 1; xx++)
                     {
                         for (int zz = z - 1; zz <= z + 1; zz++)
@@ -873,7 +1048,6 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                                 levelArgs.Map.Get(xx, zz, CellIndex.Walls) != 0)
                             {
                                 openCells[xx - (x - 1), zz - (z - 1)] = false;
-                                allCellsOpen = false;
                                 blockedCellCount++;
 
                                 if (levelArgs.HasFlag(xx, zz, DungeonLevelFlags.RoomWithDoor) ||
@@ -885,57 +1059,147 @@ namespace Assets.Scripts.Crawler.MapGen.Services
                             else
                             {
                                 openCellCount++;
+                                if (Math.Abs(xx - x) + Math.Abs(zz - z) == 1)
+                                {
+                                    adjacentOpenCount++;
+                                }
                             }
                         }
                     }
 
-                    EMapDirs chosenDir = allMapDirs[levelArgs.Rand.Next() % allMapDirs.Count];
-
-                    if (!doNotAllowBlock && !allCellsOpen && openCells[1, 1] && openCellCount == 4 && blockedCellCount == 5)
+                    if (!openCells[1, 1] || doNotAllowBlock)
                     {
+                        continue;
+                    }
+
+                    if (modType == EModCellTypes.SmallRoom)
+                    {
+
                         List<EMapDirs> dirChoices = new List<EMapDirs>();
 
-                        if (openCells[0, 1])
+                        foreach (MapDir md in allMapDirs.Values)
                         {
-                            if (openCells[0, 2] && openCells[1, 2])
+                            if (openCells[md.DX + 1, md.DZ + 1])
                             {
-                                dirChoices = new List<EMapDirs>() { EMapDirs.West, EMapDirs.North };
-                            }
-                            else if (openCells[0, 0] && openCells[1, 0])
-                            {
-                                dirChoices = new List<EMapDirs>() { EMapDirs.West, EMapDirs.South };
-                            }
-                        }
-                        else if (openCells[2, 1])
-                        {
-                            if (openCells[2, 2] && openCells[1, 2])
-                            {
-                                dirChoices = new List<EMapDirs>() { EMapDirs.East, EMapDirs.North };
-                            }
-                            else if (openCells[1, 0] && openCells[2, 0])
-                            {
-                                dirChoices = new List<EMapDirs>() { EMapDirs.East, EMapDirs.South };
+                                dirChoices.Add(md.Dir);
                             }
                         }
 
                         if (dirChoices.Count > 0)
                         {
-                            chosenDir = dirChoices[levelArgs.Rand.Next() % dirChoices.Count];
-                            allCellsOpen = true;
+                            EMapDirs chosenDir = dirChoices[levelArgs.Rand.Next() % dirChoices.Count];
+                            AddRoomWithDoor(levelArgs, x, z, chosenDir, levelArgs.Map.ZoneTypeId);
                         }
                     }
-
-                    if (allCellsOpen)
+                    else if (modType == EModCellTypes.RemoveCell && openCellCount >= 4)
                     {
-                        if (modType == EModCellTypes.SmallRoom)
+
+                        bool blockOfFourIsOpen = false;
+                        for (int nx = 0; nx <= 1; nx++)
                         {
-                            AddRoomWithDoor(levelArgs, x, z, chosenDir, ZoneTypes.Desert);
+                            if (blockOfFourIsOpen)
+                            {
+                                break;
+                            }
+                            for (int nz = 0; nz <= 1; nz++)
+                            {
+                                if (blockOfFourIsOpen)
+                                {
+                                    break;
+                                }
+
+                                bool currentFourAllOpen = true;
+                                for (int xx = nx; xx <= nx + 1; xx++)
+                                {
+                                    for (int zz = nz; zz <= nz + 1; zz++)
+                                    {
+                                        if (!openCells[xx, zz])
+                                        {
+                                            currentFourAllOpen = false;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (currentFourAllOpen)
+                                {
+                                    blockOfFourIsOpen = true;
+                                    break;
+                                }
+                            }
                         }
-                        else if (modType == EModCellTypes.RemoveCell)
+                    }
+                }
+            }
+        }
+
+
+        public void AddOutdoorDungeonZoneEdges(CrawlerMap map)
+        {
+            if (!map.IsOutdoorDungeon())
+            {
+                return;
+            }
+
+            int edgeSize = 2;
+            foreach (MapCellDetail detail in map.Details)
+            {
+                if (detail.EntityTypeId != EntityTypes.Map)
+                {
+                    continue;
+                }
+
+                int dx = 0;
+                int dz = 0;
+                int x = detail.X;
+                int z = detail.Z;
+                if (detail.X <= edgeSize)
+                {
+                    dx = -1;
+                    x = detail.X - 1;
+                }
+                else if (detail.X >= map.Width - 1 - edgeSize)
+                {
+                    dx = 1;
+                    x = detail.X + 1;
+                }
+                else if (detail.Z <= edgeSize)
+                {
+                    dz = -1;
+                    z = detail.Z - 1;
+                }
+                else if (detail.Z >= map.Height - 1 - edgeSize)
+                {
+                    dz = 1;
+                    z = detail.Z + 1;
+                }
+                else
+                {
+                    _logService.Info("Bad Detail? " + detail.X + " " + detail.Z + " " + map.Width + " " + map.Height);
+                }
+
+                if (Math.Abs(dx) + Math.Abs(dz) == 1)
+                {
+                    map.EdgePoints.Add(new ZoneEdge()
+                    {
+                        X = x,
+                        Z = z,
+                        DX = dx,
+                        DZ = dz,
+                        ZoneTypeId = map.ZoneTypeId,
+                    });
+
+                    int cx = x;
+                    int cz = z;
+
+                    while (cx >= 0 && cz >= 0 && cx < map.Width && cz < map.Height)
+                    {
+                        long entityTypeId = map.Get(cx, cz, CellIndex.EntityType);
+                        if (entityTypeId == 0 || entityTypeId == EntityTypes.Prop)
                         {
-                            levelArgs.Map.Set(x, z, CellIndex.Terrain, 0);
-                            levelArgs.SetFlag(x, z, DungeonLevelFlags.RemovedBlock);
+                            map.SetEntity(cx, cz, EntityTypes.RoomEdge, 1);
                         }
+                        cx += dx;
+                        cz += dz;
                     }
                 }
             }

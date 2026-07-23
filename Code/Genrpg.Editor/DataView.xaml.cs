@@ -53,7 +53,7 @@ namespace Genrpg.Editor
         protected CanvasBase _singleGrid = null;
         protected CommunityToolkit.WinUI.UI.Controls.DataGrid _multiGrid = null;
 
-        public const int MaxButtonsPerRow = 8;
+        public const int MaxButtonsPerRow = 10;
         public const int SingleItemWidth = 120;
         public const int SingleItemHeight = 40;
         public const int SingleItemWidthPad = 5;

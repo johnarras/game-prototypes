@@ -1,9 +1,9 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Crawler.Buffs.Services;
-using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
-using Assets.Scripts.Crawler.Tilemaps;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Crawler.Buffs.Services;
+using OxDb.Client.Crawler.Shared.States.StateHelpers.Selection;
+using OxDb.Client.Crawler.Tilemaps;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedGame.Crawler.Buffs.Constants;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -12,7 +12,7 @@ using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.UI.Constants;
 
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class CrawlerHUDButtons : BaseBehaviour
     {
@@ -33,7 +33,6 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
         public GButton CastPartyBuffsButton;
         public GButton UseItemButton;
         public GButton CampingButton;
-        public GButton SnapshotButton;
         public GButton OptionsButton;
 
         public override void Init()
@@ -47,7 +46,6 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
             _uiService.SetButton(PartyOrderButton, name, ClickPartyOrder);
             _uiService.SetButton(CastPartyBuffsButton, name, CastAllPartyBuffs);
             _uiService.SetButton(UseItemButton, name, ClickUseItem);
-            _uiService.SetButton(SnapshotButton, name, ClickTakeSnapshot);
             _uiService.SetButton(OptionsButton, name, ClickOptions);
 
             PartyData party = _crawlerService.GetParty();

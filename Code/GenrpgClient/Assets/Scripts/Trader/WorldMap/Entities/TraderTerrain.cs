@@ -1,13 +1,13 @@
 ﻿
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Crawler.Maps.Props;
-using Assets.Scripts.MapTerrain;
-using Assets.Scripts.Trader.Travel.ClientEvents;
-using Assets.Scripts.Trader.WorldMap.Constants;
-using Assets.Scripts.Trader.WorldMap.Entities;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Crawler.Maps.Props;
+using OxDb.Client.MapTerrain;
+using OxDb.Client.Trader.Travel.ClientEvents;
+using OxDb.Client.Trader.WorldMap.Constants;
+using OxDb.Client.Trader.WorldMap.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Core.PlayerData;
@@ -82,7 +82,7 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
 
     private float[] _zoneTypePropChances = null;
 
-    private List<WeightedObject>[] _zoneTypeProps = null;
+    private List<WeightedEntity>[] _zoneTypeProps = null;
 
     private Dictionary<long, long> _textureTypeToZoneTypeDict = new Dictionary<long, long>();
 
@@ -91,7 +91,7 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
 
     private List<TraderTerrainPatch> _currPatches = new List<TraderTerrainPatch>();
 
-    private List<CrawlerProp> _props = new List<CrawlerProp>();
+    private List<MapProp> _props = new List<MapProp>();
 
     public float PropVisibilityRadius = 2;
 
@@ -112,15 +112,23 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
         long maxZoneTypeId = zoneTypeSettings.GetData().Max(x => x.IdKey);
 
         _zoneTypePropChances = new float[maxZoneTypeId + 1];
-        _zoneTypeProps = new List<WeightedObject>[maxZoneTypeId + 1];
+        _zoneTypeProps = new List<WeightedEntity>[maxZoneTypeId + 1];
 
 
         foreach (ZoneType zoneType in zoneTypeSettings.GetData())
         {
-            if (zoneType.PropChance > 0 && zoneType.Props.Count > 0)
+
+            if (zoneType.LargePropChance <= 0)
             {
-                _zoneTypePropChances[zoneType.IdKey] = (float)zoneType.PropChance * PropChanceScale;
-                _zoneTypeProps[zoneType.IdKey] = zoneType.Props;
+                continue;
+            }
+
+            List<WeightedEntity> entities = zoneType.Props.Where(x => x.EntityTypeId == EntityTypes.Tree).ToList();
+
+            if (entities.Count > 0)
+            {
+                _zoneTypePropChances[zoneType.IdKey] = (float)zoneType.LargePropChance * PropChanceScale;
+                _zoneTypeProps[zoneType.IdKey] = entities;
             }
         }
 
@@ -468,9 +476,9 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
         int minz = (int)(cz - PropVisibilityRadius);
         int maxz = (int)(cz + PropVisibilityRadius);
 
-        List<CrawlerProp> removeList = new List<CrawlerProp>();
+        List<MapProp> removeList = new List<MapProp>();
 
-        foreach (CrawlerProp prop in _props)
+        foreach (MapProp prop in _props)
         {
             float dx = prop.X - cx;
             float dz = prop.Z - cz;
@@ -482,7 +490,7 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
             }
         }
 
-        foreach (CrawlerProp prop in removeList)
+        foreach (MapProp prop in removeList)
         {
 
             _props.Remove(prop);
@@ -508,7 +516,7 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
 
                 if (dist <= PropVisibilityRadius)
                 {
-                    CrawlerProp prop = _props.FirstOrDefault(p => p.X == x && p.Z == z);
+                    MapProp prop = _props.FirstOrDefault(p => p.X == x && p.Z == z);
 
                     if (prop == null)
                     {
@@ -534,7 +542,9 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
 
                         ZoneType zoneType = zoneTypeSettings.Get(_zoneTypeIds[x, z]);
 
-                        WeightedObject obj = zoneType.Props[propSeedOffset % zoneType.Props.Count];
+                        List<WeightedEntity> currProps = _zoneTypeProps[_zoneTypeIds[x, z]];
+
+                        WeightedEntity obj = currProps[propSeedOffset % currProps.Count];
 
                         if (obj.EntityTypeId == EntityTypes.Prop)
                         {
@@ -542,7 +552,7 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
 
                             propSeedOffset *= 19;
 
-                            string propArtName = propType.Art + (1 + propSeedOffset % Math.Max(1, propType.NumChoices));
+                            string propArtName = propType.Art + (1 + propSeedOffset % Math.Max(1, propType.VariationCount));
 
 
                             int angle = (int)(propSeed * 17) % 360;
@@ -579,7 +589,7 @@ public class TraderTerrain : BaseBehaviour, IClientResetCleanup
         {
             return;
         }
-        CrawlerProp prop = go.GetComponent<CrawlerProp>();
+        MapProp prop = go.GetComponent<MapProp>();
 
         if (prop == null)
         {

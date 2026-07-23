@@ -1,6 +1,6 @@
-using Assets.Scripts.Entities.UI;
+using OxDb.Client.Entities.UI;
 
-namespace Assets.Scripts.Crawler.UI.Currencies
+namespace OxDb.Client.Crawler.UI.Currencies
 {
     public class CrawlerCurrencyIcon : EntityIcon
     {

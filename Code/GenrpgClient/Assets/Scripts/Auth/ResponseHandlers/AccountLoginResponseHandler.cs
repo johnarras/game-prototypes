@@ -1,10 +1,10 @@
-using Assets.Scripts.Auth.Services;
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.Auth.Services;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Auth.ResponseHandlers
+namespace OxDb.Client.Auth.ResponseHandlers
 {
     public class AccountAuthResponseHandler : BaseClientWebResponseHandler<AccountAuthResponse>
     {

@@ -26,7 +26,7 @@ namespace OxDb.SharedGame.Sexes.Settings
         public long Damage { get; set; }
 
 
-        public long CostPercent { get; set; } = 100;
+        public long CostPercent { get; set; }
 
     }
 
@@ -34,21 +34,21 @@ namespace OxDb.SharedGame.Sexes.Settings
     {
         public override string Id { get; set; }
 
-        public double LevelsPerQuality { get; set; } = 5.0f;
+        public double LevelsPerQuality { get; set; }
 
-        public double ExtraQualityChance { get; set; } = 0.25f;
+        public double ExtraQualityChance { get; set; }
+
+        public class SexTypeSettingsDto : ParentSettingsDto<SexTypeSettings, SexType>
+        {
+            public override List<SexType> Children { get; set; }
+            public override SexTypeSettings Parent { get; set; }
+            public override string Id { get; set; }
+        }
+        public class SexTypeSettingsLoader : ParentSettingsLoader<SexTypeSettings, SexType> { }
+
+        public class SexTypeSettingsMapper : ParentSettingsMapper<SexTypeSettings, SexType, SexTypeSettingsDto> { }
+
     }
-
-    public class SexTypeSettingsDto : ParentSettingsDto<SexTypeSettings, SexType>
-    {
-        public override List<SexType> Children { get; set; }
-        public override SexTypeSettings Parent { get; set; }
-        public override string Id { get; set; }
-    }
-    public class SexTypeSettingsLoader : ParentSettingsLoader<SexTypeSettings, SexType> { }
-
-    public class SexTypeSettingsMapper : ParentSettingsMapper<SexTypeSettings, SexType, SexTypeSettingsDto> { }
-
 }
 
 

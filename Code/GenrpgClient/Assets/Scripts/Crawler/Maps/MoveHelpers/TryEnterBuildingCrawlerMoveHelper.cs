@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Buildings.Settings;
 using OxDb.SharedGame.Crawler.Maps.Constants;
@@ -12,11 +12,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class TryEnterBuildingCrawlerMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 200;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.TryEnterBuilding;
+
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
@@ -28,7 +29,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 if (TryEnterBuilding(party, status, token))
                 {
                     _mapService.MarkCellVisitedAndCheckForCompletion(status.MapRoot.Map.IdKey, ex, ez);
-                    status.MoveIsComplete = true;
+                    status.MoveIsStopped = true;
                     return;
                 }
             }
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 _party.CurrPos.Z = status.SZ;
                 status.EX = status.SX;
                 status.EZ = status.SZ;
-                status.MoveIsComplete = true;
+                status.MoveIsStopped = true;
 
                 _moveService.SetFullRot(_party.CurrPos.Rot + 180);
                 _mapService.UpdateCameraPos(token);

@@ -3,7 +3,7 @@ using OxDb.SharedGame.Crawler.Info.InfoHelpers;
 using OxDb.SharedGame.Trader.Cities.Settings;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Trader.Info.Helpers
+namespace OxDb.Client.Trader.Info.Helpers
 {
     public class CityInfoHelper : BaseInfoHelper<CitySettings, City>
     {

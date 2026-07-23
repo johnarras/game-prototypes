@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Loot.Settings;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;

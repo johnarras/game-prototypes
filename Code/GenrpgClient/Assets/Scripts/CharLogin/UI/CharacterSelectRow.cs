@@ -1,5 +1,6 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Sprites.Services;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Characters.WebApi.DeleteChar;
 using OxDb.SharedGame.MapServer.Entities;
@@ -8,7 +9,7 @@ using UnityEngine;
 
 public class CharacterSelectRow : BaseBehaviour
 {
-    private IClientWebService _webNetworkService = null;
+    private IClientWebRequestService _webNetworkService = null;
     private ISpriteService _spriteService = null;
 
     public GText NameText;
@@ -58,7 +59,7 @@ public class CharacterSelectRow : BaseBehaviour
             CharId = _characterStub.Id,
         };
 
-        _webNetworkService.SendWebRequest(com, _token);
+        _webNetworkService.SendMainServerRequest(com, _token);
     }
 
     private void OnDownloadPlayButton(GameObject go, MapStub stub, CancellationToken token)

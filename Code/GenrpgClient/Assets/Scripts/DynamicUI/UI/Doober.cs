@@ -1,11 +1,11 @@
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.Entities.UI;
-using Assets.Scripts.WorldCanvas.Interfaces;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.Entities.UI;
+using OxDb.Client.WorldCanvas.Interfaces;
 using OxDb.SharedCore.Utils;
 using UnityEngine;
 
-namespace Assets.Scripts.Doobers.UI
+namespace OxDb.Client.Doobers.UI
 {
     public class Doober : EntityIcon, IDynamicUIItem
     {

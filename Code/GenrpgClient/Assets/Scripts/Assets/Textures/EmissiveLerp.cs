@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Assets.Materials;
+﻿using OxDb.Client.Assets.Materials;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Textures
+namespace OxDb.Client.Assets.Textures
 {
     public class EmissiveLerp : BaseBehaviour
     {

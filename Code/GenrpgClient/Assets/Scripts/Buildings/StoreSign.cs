@@ -1,7 +1,7 @@
 using OxDb.SharedGame.Buildings.Settings;
 using OxDb.SharedGame.MapObjects.Messages;
 
-namespace Assets.Scripts.Buildings
+namespace OxDb.Client.Buildings
 {
     public class StoreSign : BaseBehaviour
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Trader.UI.Cities
+﻿namespace OxDb.Client.Trader.UI.Cities
 {
     public class TraderCityScreenArgs
     {

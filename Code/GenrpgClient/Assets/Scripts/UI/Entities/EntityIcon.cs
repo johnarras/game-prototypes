@@ -1,9 +1,9 @@
-using Assets.Scripts.Assets.Sprites.Services;
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Interfaces;
-using Assets.Scripts.Info.UI;
+using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.DynamicUI.Interfaces;
+using OxDb.Client.Info.UI;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Interfaces;
@@ -11,7 +11,7 @@ using OxDb.SharedCore.Utils;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Entities.UI
+namespace OxDb.Client.Entities.UI
 {
     public class EntityIcon : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler, IEntityQuantityIcon
     {

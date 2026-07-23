@@ -1,11 +1,11 @@
-using Assets.Scripts.Core.Interfaces;
+using OxDb.Client.Core.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.GameObjects
+namespace OxDb.Client.GameObjects
 {
     public interface ISingletonContainer : IInitializable, IClientResetCleanup
     {

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace OxDb.SharedGame.ProcGen.Settings.Props
 {
-    public class PropType : ChildSettings, IIndexedGameItem
+    public class PropType : ChildSettings, IVariationIndexedGameItem
     {
         public override string Id { get; set; }
         public override string ParentId { get; set; }
@@ -18,7 +18,8 @@ namespace OxDb.SharedGame.ProcGen.Settings.Props
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
         public string Art { get; set; }
-        public int NumChoices { get; set; }
+        public bool MustUse { get; set; }
+        public int VariationCount { get; set; }
     }
     public class PropTypeSettings : ParentSettings<PropType>
     {

@@ -1,9 +1,9 @@
 using OxDb.RequestServer.Purchasing.Entities;
 using OxDb.ServerCore.Config;
-using OxDb.ServerCore.WebRequests.Services;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.WebRequests.Services;
 using OxDb.SharedGame.Purchasing.Constants;
 
 
@@ -73,6 +73,7 @@ namespace OxDb.RequestServer.Purchasing.ValidationHelpers
         private ReadOnlyString _iosSecret;
         private string _buyURL;
         private string _sandboxURL;
+        private CancellationToken _token = default;
         public async Task Initialize(CancellationToken token)
         {
             _iosSecret = new ReadOnlyString(_serverConfig.GetConfigVal(AppConfigKeys.IOSSecret));
@@ -87,61 +88,51 @@ namespace OxDb.RequestServer.Purchasing.ValidationHelpers
         {
 
             PurchaseValidationResult result = null;
-            using (HttpClient client = new HttpClient())
-            {
-                Dictionary<string, object> requestPayload =
-                    new Dictionary<string, object>()
+
+
+            Dictionary<string, object> postData = new Dictionary<string, object>()
                     {
                     { "password", _iosSecret.GetString()},
                     { "receipt-data", receiptData },
                     { "exclude-old-transactions", true }
-                    };
-
-                StringContent content = new StringContent(_serializer.SerializeToString(requestPayload));
-
-                if (!_sandboxFailed)
-                {
-                    result = await CheckReceiptVsEndpoint(client, _sandboxURL, content);
-                }
-
-                if (_sandboxFailed || result == null || result.Status == NoSandboxInProdStatus)
-                {
-                    _sandboxFailed = true;
-                    result = await CheckReceiptVsEndpoint(client, _buyURL, content);
-                }
-
-                return result;
-            }
-        }
-
-        private async Task<PurchaseValidationResult> CheckReceiptVsEndpoint(HttpClient client, string endpoint, StringContent content)
-        {
-            HttpResponseMessage httpResponse = await client.PostAsync(endpoint, content);
-
-            if (!httpResponse.IsSuccessStatusCode)
-            {
-                throw new Exception("HTTP request failed with status code: " + httpResponse.StatusCode);
-            }
-
-            string responseString = await httpResponse.Content.ReadAsStringAsync();
-
-            IOSValidationResponse validationResponse = _serializer.Deserialize<IOSValidationResponse>(responseString);
-
-            int status = validationResponse.Status;
-
-            if (status == 0)
-            {
-                return new PurchaseValidationResult() { State = EPurchaseValidationStates.Success };
-            }
-
-            PurchaseValidationResult result = new PurchaseValidationResult()
-            {
-                ErrorMessage = $"Validation failed with status: {status}",
-                State = EPurchaseValidationStates.Failed,
-                Status = status,
             };
+            if (!_sandboxFailed)
+            {
+                result = await CheckReceiptVsEndpoint(_sandboxURL, postData);
+            }
+
+            if (_sandboxFailed || result == null || result.Status == NoSandboxInProdStatus)
+            {
+                _sandboxFailed = true;
+                result = await CheckReceiptVsEndpoint(_buyURL,postData);
+            }
 
             return result;
+        }
+
+        private async Task<PurchaseValidationResult> CheckReceiptVsEndpoint(string endpoint, Dictionary<string,object> postData)
+        {
+
+            WebRequestOptions opts = new WebRequestOptions()
+            {
+                ContentType = HttpContentType.Json,
+                JsonBody = postData,
+                Method = HttpMethodType.Post,
+            };
+
+            ResponseEnvelope<IOSValidationResponse> validationEnvelope = await _webRequestSevice.SendAsync<IOSValidationResponse>(endpoint, opts, _token);
+                
+            if (!validationEnvelope.Success || validationEnvelope.Response == null || validationEnvelope.Response.Status != 0)
+            {
+                int status = validationEnvelope?.Response.Status ?? -1;
+                PurchaseValidationResult result = new PurchaseValidationResult()
+                {
+                    ErrorMessage = $"Validation failed with status: {status} -- {validationEnvelope.ErrorMessage} ",
+                    State = EPurchaseValidationStates.Failed,
+                    Status = status,
+                };
+            }
+            return new PurchaseValidationResult() { State = EPurchaseValidationStates.Success };
         }
     }
 }

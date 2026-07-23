@@ -1,4 +1,4 @@
-using Assets.Scripts.Inventory.UI;
+using OxDb.Client.Inventory.UI;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

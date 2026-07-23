@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Buildings
+namespace OxDb.Client.Buildings
 {
     [Serializable]
     public class WeightedBuildingMaterial

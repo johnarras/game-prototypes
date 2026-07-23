@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Trader.Cities.UI;
-using Assets.Scripts.UI.ScreenSystem;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Trader.Cities.UI;
+using OxDb.Client.UI.ScreenSystem;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Cities.Settings;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.Cities
+namespace OxDb.Client.Trader.UI.Cities
 {
     public class TraderCityScreen : TypedArgScreen<TraderCityScreenArgs>
     {

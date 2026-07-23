@@ -1,5 +1,5 @@
-using Assets.Scripts.Stores;
-using Assets.Scripts.UI.ScreenSystem;
+using OxDb.Client.Stores;
+using OxDb.Client.UI.ScreenSystem;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Purchasing.PlayerData;
 using OxDb.SharedGame.Purchasing.Settings;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Stores
+namespace OxDb.Client.UI.Stores
 {
     public class StoreScreen : TypedArgScreen<PlayerStoreOffer>
     {

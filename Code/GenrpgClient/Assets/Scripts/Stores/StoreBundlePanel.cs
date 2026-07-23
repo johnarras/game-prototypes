@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Stores;
+using OxDb.Client.Stores;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Purchasing.PlayerData;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Stores
+namespace OxDb.Client.UI.Stores
 {
     public class StoreBundlePanel : BaseBehaviour
     {

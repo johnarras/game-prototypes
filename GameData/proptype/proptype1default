@@ -2,7 +2,8 @@
   "Id": "proptype1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "FieldProp",
-  "Icon": "FieldProp",
-  "Art": "FieldProp"
+  "Name": "WaterProp",
+  "Icon": "WaterProp",
+  "Art": "WaterProp",
+  "VariationCount": 1
 }

@@ -3,7 +3,7 @@ using OxDb.SharedGame.Stats.Constants;
 using OxDb.SharedGame.UnitEffects.Constants;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Combat
+namespace OxDb.Client.Crawler.Combat
 {
     public class GroupHealthIcon : BaseBehaviour
     {

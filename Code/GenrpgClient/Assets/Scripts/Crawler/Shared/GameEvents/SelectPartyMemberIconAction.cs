@@ -2,7 +2,7 @@
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System;
 
-namespace Assets.Scripts.Crawler.Shared.GameEvents
+namespace OxDb.Client.Crawler.Shared.GameEvents
 {
     public class SelectPartyMemberIconAction : IClientEvent
     {

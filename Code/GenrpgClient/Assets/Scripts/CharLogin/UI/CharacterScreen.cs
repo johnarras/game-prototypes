@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedGame.Crawler.Crawlers.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
@@ -279,10 +279,10 @@ public class CharacterScreen : ItemIconScreen
             return;
         }
 
-        TryEquip(origItem, newEquipSlotId);
+        _ = TryEquipAsync(origItem, newEquipSlotId);
     }
 
-    protected virtual void TryEquip(Item origItem, long equipSlotId)
+    protected virtual async ValueTask TryEquipAsync(Item origItem, long equipSlotId)
     {
         EquipItem equip = new EquipItem()
         {
@@ -291,9 +291,15 @@ public class CharacterScreen : ItemIconScreen
         };
 
         _networkService.SendMapMessage(equip);
+        await Task.CompletedTask;
     }
 
     protected void OnEquip(OnEquipItem equip)
+    {
+        _ = OnEquipAsync(equip);
+    }
+
+    private async ValueTask OnEquipAsync(OnEquipItem equip)
     {
         if (equip.Item == null)
         {
@@ -336,7 +342,8 @@ public class CharacterScreen : ItemIconScreen
 
         Item existingEquipmentInNewSlot = inventory.GetEquipBySlot(newEquipSlotId);
 
-        if (!_inventoryService.EquipItem(_unit, equip.Item.Id, newEquipSlotId, CalcStatsOnEquipUnequip()))
+
+        if (!await _inventoryService.EquipItem(_unit, equip.Item.Id, newEquipSlotId, CalcStatsOnEquipUnequip()))
         {
             return;
         }
@@ -397,6 +404,11 @@ public class CharacterScreen : ItemIconScreen
 
     protected void OnUnequip(OnUnequipItem unequipItem)
     {
+        _ = OnUnequipAsync(unequipItem);
+    }
+
+    private async ValueTask OnUnequipAsync(OnUnequipItem unequipItem)
+    {
         if (unequipItem == null || _unit == null)
         {
             return;
@@ -408,7 +420,7 @@ public class CharacterScreen : ItemIconScreen
 
         PartyData party = _crawlerService.GetParty();
 
-        if (!_inventoryService.UnequipItem(_unit, unequipItem.ItemId, CalcStatsOnEquipUnequip()))
+        if (!await _inventoryService.UnequipItem(_unit, unequipItem.ItemId, CalcStatsOnEquipUnequip()))
         {
             return;
         }
@@ -446,6 +458,12 @@ public class CharacterScreen : ItemIconScreen
     }
 
     protected override void ShowDragTargetIconsGlow(bool visible)
+    {
+
+        _ = ShowDragTargetIconsGlowAsync(visible);
+    }
+
+    protected async ValueTask ShowDragTargetIconsGlowAsync(bool visible)
     {
         if (EquipmentIcons == null)
         {
@@ -496,7 +514,7 @@ public class CharacterScreen : ItemIconScreen
         {
             color = Color.yellow;
 
-            if (item != null && !_inventoryService.CanEquipItem(_unit, item))
+            if (item != null && !await _inventoryService.CanEquipItem(_unit, item))
             {
                 color = Color.red;
             }

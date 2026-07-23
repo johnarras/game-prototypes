@@ -1,5 +1,5 @@
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.Trader.Travel.UI;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.Trader.Travel.UI;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
@@ -8,7 +8,7 @@ using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Rewards.Services;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Rewards.Services
+namespace OxDb.Client.Rewards.Services
 {
     public class ClientRewardService : RewardService
     {

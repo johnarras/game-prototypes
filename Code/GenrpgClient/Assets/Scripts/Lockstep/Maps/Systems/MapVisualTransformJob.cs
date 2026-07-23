@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Maps.Components;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Maps.Components;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;

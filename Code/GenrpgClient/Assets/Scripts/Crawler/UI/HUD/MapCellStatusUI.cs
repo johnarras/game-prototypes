@@ -1,11 +1,11 @@
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 
-namespace Assets.Scripts.Crawler.UI.HUD
+namespace OxDb.Client.Crawler.UI.HUD
 {
     public class MapCellStatusUI : BaseBehaviour
     {

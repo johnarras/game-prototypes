@@ -20,8 +20,7 @@ internal class FullBushPrototype
     public string Name = "";
     public BushType treeType { get; set; }
     public IDictionary<string, OverrideBushType> overrideBushTypes { get; set; }
-    public ZoneBushType zoneBush = null;
-    public ZoneBushType zoneTypeBush = null;
+    public WeightedEntity zoneTypeBush = null;
     public int prototypeIndex = 0;
     public MyRandom posRand;
     public MyRandom chanceRand;
@@ -167,56 +166,33 @@ public class AddBushes : BaseZoneGenerator
 
         GenZone genZone = _md.GetGenZone(zone.IdKey);
 
-        if (genZone.BushTypes == null)
-        {
-            return null;
-        }
 
-        List<ZoneBushType> tlist = new List<ZoneBushType>(genZone.BushTypes);
-
+        List<WeightedEntity> bushTypes = genZone.GetPropsOfType(EntityTypes.Bush);
 
         // Get valid list of trees and set up some
         // objects so we can modify values later on.
-        for (int t = 0; t < tlist.Count; t++)
+        for (int t = 0; t < bushTypes.Count; t++)
         {
 
-            ZoneBushType zoneBush = tlist[t];
-            BushType treeType = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zoneBush.BushTypeId);
+            WeightedEntity zoneTypeBush = bushTypes[t];
+            BushType bushType = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zoneTypeBush.EntityId);
 
-
-            if (treeType == null || string.IsNullOrEmpty(treeType.Art))
+            if (bushType == null || string.IsNullOrEmpty(bushType.Art))
             {
                 continue;
             }
-
-            ZoneBushType zoneTypeBush = null;
-
-            if (genZone.BushTypes != null)
-            {
-                zoneTypeBush = genZone.BushTypes.FirstOrDefault(x => x.BushTypeId == zoneBush.BushTypeId);
-            }
-
-            // If we fail to find the proper tree, make it appear at a lower percent
-            // chance.
-            if (zoneTypeBush == null)
-            {
-                continue;
-            }
-
-
 
             FullBushPrototype full = new FullBushPrototype();
-            full.zoneBush = zoneBush;
             full.zoneTypeBush = zoneTypeBush;
-            full.treeType = treeType;
+            full.treeType = bushType;
             full.Name = full.treeType.Name;
-            full.posRand = new MyRandom(zone.Seed + treeType.IdKey * 23423 + 324);
+            full.posRand = new MyRandom(zone.Seed + bushType.IdKey * 23423 + 324);
             full.prototypeIndex = t;
-            full.chanceRand = new MyRandom(zone.Seed + treeType.IdKey * 23 + 43535);
-            full.bareRand = new MyRandom(zone.Seed % 23423243 + treeType.IdKey * 234231);
+            full.chanceRand = new MyRandom(zone.Seed + bushType.IdKey * 23 + 43535);
+            full.bareRand = new MyRandom(zone.Seed % 23423243 + bushType.IdKey * 234231);
             full.overrideChance = RandUtils.FloatRange(MapConstants.MaxOverrideTreeTypeChance / 2,
                 MapConstants.MaxOverrideTreeTypeChance, choiceRand);
-            full.chanceMult = zoneBush.Weight * zoneTypeBush.Weight;
+            full.chanceMult = zoneTypeBush.Weight;
 
             if (choiceRand.NextDouble() < 0.35f)
             {
@@ -226,7 +202,7 @@ public class AddBushes : BaseZoneGenerator
             {
                 full.chanceMult *= RandUtils.FloatRange(0.5f, 5.0f, choiceRand);
             }
-            SetupBushTypeOverrides(full, treeType);
+            SetupBushTypeOverrides(full, bushType);
 
             if (full.Name == null)
             {

@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Dungeons.Constants;
+﻿using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Dungeons.Constants;
 using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Dungeons
+namespace OxDb.Client.Dungeons
 {
     [Serializable]
     public class DungeonDoor : BaseBehaviour, IWeightedItem

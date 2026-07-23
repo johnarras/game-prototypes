@@ -5,7 +5,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.TMP
+namespace OxDb.Client.Assets.TMP
 {
 
     public class RenderTextMeshProToFile : MonoBehaviour

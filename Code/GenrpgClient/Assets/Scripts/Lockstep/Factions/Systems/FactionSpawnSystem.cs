@@ -1,17 +1,17 @@
-﻿using Assets.Scripts.Lockstep.Collisions.Components;
-using Assets.Scripts.Lockstep.Collisions.Constants;
-using Assets.Scripts.Lockstep.Factions.Components;
-using Assets.Scripts.Lockstep.Game;
-using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Math.Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Spawns;
-using Assets.Scripts.Lockstep.Systems.Constants;
+﻿using OxDb.Client.Lockstep.Collisions.Components;
+using OxDb.Client.Lockstep.Collisions.Constants;
+using OxDb.Client.Lockstep.Factions.Components;
+using OxDb.Client.Lockstep.Game;
+using OxDb.Client.Lockstep.Maps.Components;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Math.OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Spawns;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Systems
+namespace OxDb.Client.Lockstep.Systems
 {
     [DisableAutoCreation]
     [BurstCompile]

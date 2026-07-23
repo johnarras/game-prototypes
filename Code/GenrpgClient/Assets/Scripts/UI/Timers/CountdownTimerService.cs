@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.GameObjects;
+﻿using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Timers
+namespace OxDb.Client.UI.Timers
 {
 
     public interface ICountdownTimerService : IInitializable

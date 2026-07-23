@@ -1,11 +1,11 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.Characters.WebApi.CreateChar;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Website.MessageHandlers
+namespace OxDb.Client.Website.MessageHandlers
 {
     public class CreateCharResponseHandler : BaseClientWebResponseHandler<CreateCharResponse>
     {

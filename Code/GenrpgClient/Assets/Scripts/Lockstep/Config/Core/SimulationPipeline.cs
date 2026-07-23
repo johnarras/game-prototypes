@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Config.Core
+namespace OxDb.Client.Lockstep.Config.Core
 {
     public class SimulationPipeline
     {

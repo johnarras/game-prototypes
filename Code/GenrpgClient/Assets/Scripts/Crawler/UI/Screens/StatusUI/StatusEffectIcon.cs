@@ -1,7 +1,7 @@
-using Assets.Scripts.Entities.UI;
+using OxDb.Client.Entities.UI;
 using OxDb.SharedCore.Entities.Constants;
 
-namespace Assets.Scripts.Crawler.UI.StatusUI
+namespace OxDb.Client.Crawler.UI.StatusUI
 {
     public class StatusEffectIcon : EntityIcon
     {

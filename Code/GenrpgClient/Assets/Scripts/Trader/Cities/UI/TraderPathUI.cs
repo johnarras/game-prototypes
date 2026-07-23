@@ -1,10 +1,11 @@
-﻿using OxDb.SharedGame.Trader.Cities.Settings;
+﻿using OxDb.Client.Networking.Services;
+using OxDb.SharedGame.Trader.Cities.Settings;
 using OxDb.SharedGame.Trader.Constants;
 using OxDb.SharedGame.Trader.Travel.WebApi;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.Cities
+namespace OxDb.Client.Trader.UI.Cities
 {
 
     public class TraderRoadArgs
@@ -19,7 +20,7 @@ namespace Assets.Scripts.Trader.UI.Cities
     public class TraderPathUI : BaseBehaviour
     {
 
-        private IClientWebService _webService = null;
+        private IClientWebRequestService _webService = null;
         public GText InfoText;
         public GButton Button;
         public GImage CompassImage;
@@ -45,7 +46,7 @@ namespace Assets.Scripts.Trader.UI.Cities
 
         private void OnClickButton()
         {
-            _webService.SendWebRequest(new HeadToTargetRequest() { ToX = _args.TargetX, ToZ = _args.TargetY, ToCityId = (int)(_args.TargetCity?.IdKey ?? 0) }, GetToken());
+            _webService.SendMainServerRequest(new HeadToTargetRequest() { ToX = _args.TargetX, ToZ = _args.TargetY, ToCityId = (int)(_args.TargetCity?.IdKey ?? 0) }, GetToken());
         }
     }
 }

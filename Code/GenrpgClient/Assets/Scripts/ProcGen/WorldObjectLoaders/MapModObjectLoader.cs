@@ -1,6 +1,6 @@
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.GroundObjects;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.GroundObjects;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Constants;
 using OxDb.SharedGame.MapObjects.Entities;

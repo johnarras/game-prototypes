@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Chat;
+using OxDb.Client.UI.Chat;
 using OxDb.SharedGame.Chat.Constants;
 using OxDb.SharedGame.Chat.Messages;
 using OxDb.SharedGame.Chat.Settings;

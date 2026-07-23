@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.UI.Stores;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.UI.Stores;
 using OxDb.SharedGame.Purchasing.PlayerData;
 using OxDb.SharedGame.Purchasing.Settings;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Stores
+namespace OxDb.Client.Stores
 {
     public class StorePanel : BaseBehaviour
     {

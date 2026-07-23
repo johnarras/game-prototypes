@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Tilemaps;
-using Assets.Scripts.UI.ScreenSystem;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Tilemaps;
+using OxDb.Client.UI.ScreenSystem;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
@@ -8,7 +8,7 @@ using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.UI.Screens.Maps
+namespace OxDb.Client.Crawler.UI.Screens.Maps
 {
     public class CrawlerMapScreen : TypedArgScreen<CrawlerMapScreenArgs>
     {

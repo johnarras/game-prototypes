@@ -105,9 +105,41 @@
   "ZoneAdjectives": [],
   "BridgeTypes": [],
   "FenceTypes": [],
-  "RockTypes": [],
-  "TreeTypes": [],
-  "BushTypes": [],
+  "LargePropChance": 0.75,
+  "SmallPropChance": 0.3,
+  "MaxSmallPropQuantity": 3,
+  "Props": [
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 50,
+      "EntityId": 2
+    },
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 50,
+      "EntityId": 3
+    },
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 50,
+      "EntityId": 1
+    },
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 88,
+      "EntityId": 1
+    },
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 97,
+      "EntityId": 2
+    },
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 97,
+      "EntityId": 3
+    }
+  ],
   "CreatureNamePrefixes": [],
   "CreatureDoubleNamePrefixes": [],
   "Overrides": [],
@@ -219,18 +251,12 @@
       "Weight": 100.0
     }
   ],
-  "PropChance": 0.3,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 20
-    }
-  ],
   "PlantChoices": "",
-  "WeatherTypeId": 11,
+  "WeatherTypeId": 9,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0,
-  "ZoneCategoryId": 3
+  "ZoneCategoryId": 3,
+  "IsOutdoors": true,
+  "IsDungeon": true
 }

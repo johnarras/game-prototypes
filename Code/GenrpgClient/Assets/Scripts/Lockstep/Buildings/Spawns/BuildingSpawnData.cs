@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Unity.Collections;
 
-namespace Assets.Scripts.Lockstep.Buildings.Spawns
+namespace OxDb.Client.Lockstep.Buildings.Spawns
 {
     [GenerateTestsForBurstCompatibility]
     public struct BuildingSpawnData

@@ -46,9 +46,8 @@ namespace OxDb.SharedCore.Interfaces
         T HelperKey { get; }
     }
 
-    public interface IOrderedSetupDictionaryItem<T> : ISetupDictionaryItem<T>
+    public interface IOrderedSetupDictionaryItem<T> : ISetupDictionaryItem<T> where T : System.Enum
     {
-        int Order { get; }
     }
 }
 

@@ -779,115 +779,37 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: monsterszombie
     IsLocal: 0
-  - BundleName: portraitsportraitab
-    IsLocal: 0
-  - BundleName: portraitsportraitac
-    IsLocal: 0
   - BundleName: portraitsportraitb
-    IsLocal: 0
-  - BundleName: portraitsportraitbb
-    IsLocal: 0
-  - BundleName: portraitsportraitbc
     IsLocal: 0
   - BundleName: portraitsportraitc
     IsLocal: 0
-  - BundleName: portraitsportraitcb
-    IsLocal: 0
-  - BundleName: portraitsportraitcc
-    IsLocal: 0
   - BundleName: portraitsportraitd
-    IsLocal: 0
-  - BundleName: portraitsportraitdb
-    IsLocal: 0
-  - BundleName: portraitsportraitdc
     IsLocal: 0
   - BundleName: portraitsportraite
     IsLocal: 0
-  - BundleName: portraitsportraiteb
-    IsLocal: 0
   - BundleName: portraitsportraitf
-    IsLocal: 0
-  - BundleName: portraitsportraitfb
     IsLocal: 0
   - BundleName: portraitsportraitg
     IsLocal: 0
-  - BundleName: portraitsportraitgb
-    IsLocal: 0
   - BundleName: portraitsportraith
-    IsLocal: 0
-  - BundleName: portraitsportraithb
     IsLocal: 0
   - BundleName: portraitsportraiti
     IsLocal: 0
-  - BundleName: portraitsportraitib
-    IsLocal: 0
   - BundleName: portraitsportraitj
-    IsLocal: 0
-  - BundleName: portraitsportraitjb
     IsLocal: 0
   - BundleName: portraitsportraitk
     IsLocal: 0
-  - BundleName: portraitsportraitkb
-    IsLocal: 0
   - BundleName: portraitsportraitl
-    IsLocal: 0
-  - BundleName: portraitsportraitlb
     IsLocal: 0
   - BundleName: portraitsportraitm
     IsLocal: 0
-  - BundleName: portraitsportraitmb
-    IsLocal: 0
   - BundleName: portraitsportraitn
-    IsLocal: 0
-  - BundleName: portraitsportraitnb
     IsLocal: 0
   - BundleName: portraitsportraito
     IsLocal: 0
-  - BundleName: portraitsportraitob
-    IsLocal: 0
   - BundleName: portraitsportraitp
     IsLocal: 0
-  - BundleName: portraitsportraitpb
-    IsLocal: 0
   - BundleName: portraitsportraitq
-    IsLocal: 0
-  - BundleName: portraitsportraitqb
-    IsLocal: 0
-  - BundleName: portraitsportraitr
-    IsLocal: 0
-  - BundleName: portraitsportraitrb
-    IsLocal: 0
-  - BundleName: portraitsportraits
-    IsLocal: 0
-  - BundleName: portraitsportraitsb
-    IsLocal: 0
-  - BundleName: portraitsportraitt
-    IsLocal: 0
-  - BundleName: portraitsportraittb
-    IsLocal: 0
-  - BundleName: portraitsportraitu
-    IsLocal: 0
-  - BundleName: portraitsportraitub
-    IsLocal: 0
-  - BundleName: portraitsportraitv
-    IsLocal: 0
-  - BundleName: portraitsportraitvb
-    IsLocal: 0
-  - BundleName: portraitsportraitw
-    IsLocal: 0
-  - BundleName: portraitsportraitwb
-    IsLocal: 0
-  - BundleName: portraitsportraitx
-    IsLocal: 0
-  - BundleName: portraitsportraitxb
-    IsLocal: 0
-  - BundleName: portraitsportraity
-    IsLocal: 0
-  - BundleName: portraitsportraityb
-    IsLocal: 0
-  - BundleName: portraitsportraitz
-    IsLocal: 0
-  - BundleName: portraitsportraitzb
     IsLocal: 0
   - BundleName: prefabskillcollider
     IsLocal: 0
@@ -944,6 +866,8 @@ MonoBehaviour:
   - BundleName: propsherbnode
     IsLocal: 0
   - BundleName: propshillsprop
+    IsLocal: 0
+  - BundleName: propsjunkpile
     IsLocal: 0
   - BundleName: propslavaprop
     IsLocal: 0
@@ -1037,309 +961,313 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: skinszebu
     IsLocal: 0
+  - BundleName: spritelistsairelemental
+    IsLocal: 0
+  - BundleName: spritelistsapplydot
+    IsLocal: 0
+  - BundleName: spritelistsassassin
+    IsLocal: 0
+  - BundleName: spritelistsautoheal
+    IsLocal: 0
+  - BundleName: spritelistsbarbarian
+    IsLocal: 0
+  - BundleName: spritelistsbarrier
+    IsLocal: 0
+  - BundleName: spritelistsbasemonster
+    IsLocal: 0
+  - BundleName: spritelistsbasilisk
+    IsLocal: 0
+  - BundleName: spritelistsbat
+    IsLocal: 0
+  - BundleName: spritelistsbattlefield
+    IsLocal: 0
+  - BundleName: spritelistsbear
+    IsLocal: 0
+  - BundleName: spritelistsbeholder
+    IsLocal: 0
+  - BundleName: spritelistsblackdragon
+    IsLocal: 0
+  - BundleName: spritelistsbladesman
+    IsLocal: 0
+  - BundleName: spritelistsbluedragon
+    IsLocal: 0
+  - BundleName: spritelistsbuck
+    IsLocal: 0
+  - BundleName: spritelistsbuildingbg
+    IsLocal: 0
+  - BundleName: spritelistsbull
+    IsLocal: 0
+  - BundleName: spritelistscat
+    IsLocal: 0
+  - BundleName: spritelistscave
+    IsLocal: 0
+  - BundleName: spritelistschimera
+    IsLocal: 0
+  - BundleName: spritelistscitybg
+    IsLocal: 0
+  - BundleName: spritelistscleric
+    IsLocal: 0
+  - BundleName: spritelistscommand
+    IsLocal: 0
+  - BundleName: spritelistsconjurer
+    IsLocal: 0
+  - BundleName: spritelistscoyote
+    IsLocal: 0
+  - BundleName: spritelistscrab
+    IsLocal: 0
+  - BundleName: spritelistscrocodile
+    IsLocal: 0
+  - BundleName: spritelistscursedarrows
+    IsLocal: 0
+  - BundleName: spritelistscyclops
+    IsLocal: 0
+  - BundleName: spritelistsdangersense
+    IsLocal: 0
+  - BundleName: spritelistsdefaultworldbg
+    IsLocal: 0
+  - BundleName: spritelistsdemon
+    IsLocal: 0
+  - BundleName: spritelistsdemonlord
+    IsLocal: 0
+  - BundleName: spritelistsdesert
+    IsLocal: 0
+  - BundleName: spritelistsdoe
+    IsLocal: 0
+  - BundleName: spritelistsdog
+    IsLocal: 0
+  - BundleName: spritelistsdreadsteed
+    IsLocal: 0
+  - BundleName: spritelistsdungeonbg
+    IsLocal: 0
+  - BundleName: spritelistsdwarf
+    IsLocal: 0
+  - BundleName: spritelistsearthelemental
+    IsLocal: 0
+  - BundleName: spritelistselemental
+    IsLocal: 0
+  - BundleName: spritelistself
+    IsLocal: 0
+  - BundleName: spritelistselfarcher
+    IsLocal: 0
+  - BundleName: spritelistselfmage
+    IsLocal: 0
+  - BundleName: spritelistsfaerie
+    IsLocal: 0
+  - BundleName: spritelistsfighter
+    IsLocal: 0
+  - BundleName: spritelistsfireelemental
+    IsLocal: 0
+  - BundleName: spritelistsfleshgolem
+    IsLocal: 0
+  - BundleName: spritelistsfrog
+    IsLocal: 0
+  - BundleName: spritelistsghost
+    IsLocal: 0
+  - BundleName: spritelistsghoul
+    IsLocal: 0
+  - BundleName: spritelistsgiant
+    IsLocal: 0
+  - BundleName: spritelistsgnoll
+    IsLocal: 0
+  - BundleName: spritelistsgnome
+    IsLocal: 0
+  - BundleName: spritelistsgoblin
+    IsLocal: 0
+  - BundleName: spritelistsgreendragon
+    IsLocal: 0
+  - BundleName: spritelistsgriffon
+    IsLocal: 0
+  - BundleName: spritelistsguard
+    IsLocal: 0
+  - BundleName: spritelistshalfling
+    IsLocal: 0
+  - BundleName: spritelistsharpy
+    IsLocal: 0
+  - BundleName: spritelistshobgoblin
+    IsLocal: 0
+  - BundleName: spritelistshound
+    IsLocal: 0
+  - BundleName: spritelistshuman
+    IsLocal: 0
+  - BundleName: spritelistshydra
+    IsLocal: 0
+  - BundleName: spritelistsirongolem
+    IsLocal: 0
+  - BundleName: spritelistskobold
+    IsLocal: 0
+  - BundleName: spritelistslevitate
+    IsLocal: 0
+  - BundleName: spritelistslich
+    IsLocal: 0
+  - BundleName: spritelistslifesteal
+    IsLocal: 0
+  - BundleName: spritelistslight
+    IsLocal: 0
+  - BundleName: spritelistslion
+    IsLocal: 0
+  - BundleName: spritelistslizardman
+    IsLocal: 0
+  - BundleName: spritelistsmage
+    IsLocal: 0
+  - BundleName: spritelistsmagiccompass
+    IsLocal: 0
+  - BundleName: spritelistsmagician
+    IsLocal: 0
+  - BundleName: spritelistsmanticore
+    IsLocal: 0
+  - BundleName: spritelistsmedusa
+    IsLocal: 0
+  - BundleName: spritelistsmongrel
+    IsLocal: 0
+  - BundleName: spritelistsmonk
+    IsLocal: 0
+  - BundleName: spritelistsmummy
+    IsLocal: 0
+  - BundleName: spritelistsmummylord
+    IsLocal: 0
+  - BundleName: spritelistsnecromancer
+    IsLocal: 0
+  - BundleName: spritelistsogre
+    IsLocal: 0
+  - BundleName: spritelistsorc
+    IsLocal: 0
+  - BundleName: spritelistsoutdoorsbg
+    IsLocal: 0
+  - BundleName: spritelistsparry
+    IsLocal: 0
+  - BundleName: spritelistsrat
+    IsLocal: 0
+  - BundleName: spritelistsreddragon
+    IsLocal: 0
+  - BundleName: spritelistsretaliate
+    IsLocal: 0
+  - BundleName: spritelistsrogue
+    IsLocal: 0
+  - BundleName: spritelistssalamander
+    IsLocal: 0
+  - BundleName: spritelistsscorpion
+    IsLocal: 0
+  - BundleName: spritelistsscrapper
+    IsLocal: 0
+  - BundleName: spritelistsskeleton
+    IsLocal: 0
+  - BundleName: spritelistsslime
+    IsLocal: 0
+  - BundleName: spritelistssnail
+    IsLocal: 0
+  - BundleName: spritelistssnake
+    IsLocal: 0
+  - BundleName: spritelistssnow
+    IsLocal: 0
+  - BundleName: spritelistssorcerer
+    IsLocal: 0
+  - BundleName: spritelistsspectre
+    IsLocal: 0
+  - BundleName: spritelistsspider
+    IsLocal: 0
+  - BundleName: spritelistssteed
+    IsLocal: 0
+  - BundleName: spritelistsstonegolem
+    IsLocal: 0
+  - BundleName: spritelistsswordsman
+    IsLocal: 0
+  - BundleName: spriteliststavernbuilding
+    IsLocal: 0
+  - BundleName: spriteliststhief
+    IsLocal: 0
+  - BundleName: spriteliststiger
+    IsLocal: 0
+  - BundleName: spriteliststraderworldmap
+    IsLocal: 0
+  - BundleName: spriteliststreant
+    IsLocal: 0
+  - BundleName: spriteliststreasure
+    IsLocal: 0
+  - BundleName: spriteliststroll
+    IsLocal: 0
+  - BundleName: spritelistsunicorn
+    IsLocal: 0
+  - BundleName: spritelistsvampire
+    IsLocal: 0
+  - BundleName: spritelistswarrior
+    IsLocal: 0
+  - BundleName: spritelistswaterelemental
+    IsLocal: 0
+  - BundleName: spritelistswerewolf
+    IsLocal: 0
+  - BundleName: spritelistswhitedragon
+    IsLocal: 0
+  - BundleName: spritelistswight
+    IsLocal: 0
+  - BundleName: spritelistswizard
+    IsLocal: 0
+  - BundleName: spritelistswolf
+    IsLocal: 0
+  - BundleName: spritelistswraith
+    IsLocal: 0
+  - BundleName: spritelistswyvern
+    IsLocal: 0
+  - BundleName: spritelistszombie
+    IsLocal: 0
   - BundleName: storesdefaultstoreartpanel
     IsLocal: 0
   - BundleName: storesmanastoreartpanel
     IsLocal: 0
   - BundleName: storessuppliesstoreartpanel
     IsLocal: 0
-  - BundleName: terraintexarcane
+  - BundleName: texturelistsarcane
     IsLocal: 0
-  - BundleName: terraintexbadlands
-    IsLocal: 0
-  - BundleName: terraintexcave
-    IsLocal: 0
-  - BundleName: terraintexcity
-    IsLocal: 0
-  - BundleName: terraintexdarkforest
-    IsLocal: 0
-  - BundleName: terraintexdesert
-    IsLocal: 0
-  - BundleName: terraintexdirt
-    IsLocal: 0
-  - BundleName: terraintexdungeon
-    IsLocal: 0
-  - BundleName: terraintexfield
-    IsLocal: 0
-  - BundleName: terraintexforest
-    IsLocal: 0
-  - BundleName: terraintexgrass
-    IsLocal: 0
-  - BundleName: terraintexhills
-    IsLocal: 0
-  - BundleName: terraintexlava
-    IsLocal: 0
-  - BundleName: terraintexmountains
-    IsLocal: 0
-  - BundleName: terraintexnatural
-    IsLocal: 0
-  - BundleName: terraintexoutdoors
-    IsLocal: 0
-  - BundleName: terraintexpointofinterest
-    IsLocal: 0
-  - BundleName: terraintexroad
-    IsLocal: 0
-  - BundleName: terraintexrock
-    IsLocal: 0
-  - BundleName: terraintexsavannah
-    IsLocal: 0
-  - BundleName: terraintexsnow
-    IsLocal: 0
-  - BundleName: terraintexstars
-    IsLocal: 0
-  - BundleName: terraintexswamp
-    IsLocal: 0
-  - BundleName: terraintextower
-    IsLocal: 0
-  - BundleName: terraintexunholy
-    IsLocal: 0
-  - BundleName: terraintexwasteland
-    IsLocal: 0
-  - BundleName: terraintexwater
-    IsLocal: 0
-  - BundleName: texturelistsairelemental
-    IsLocal: 0
-  - BundleName: texturelistsapplydot
-    IsLocal: 0
-  - BundleName: texturelistsassassin
-    IsLocal: 0
-  - BundleName: texturelistsautoheal
-    IsLocal: 0
-  - BundleName: texturelistsbarbarian
-    IsLocal: 0
-  - BundleName: texturelistsbarrier
-    IsLocal: 0
-  - BundleName: texturelistsbasemonster
-    IsLocal: 0
-  - BundleName: texturelistsbasilisk
-    IsLocal: 0
-  - BundleName: texturelistsbat
-    IsLocal: 0
-  - BundleName: texturelistsbattlefield
-    IsLocal: 0
-  - BundleName: texturelistsbear
-    IsLocal: 0
-  - BundleName: texturelistsbeholder
-    IsLocal: 0
-  - BundleName: texturelistsblackdragon
-    IsLocal: 0
-  - BundleName: texturelistsbladesman
-    IsLocal: 0
-  - BundleName: texturelistsbluedragon
-    IsLocal: 0
-  - BundleName: texturelistsbuck
-    IsLocal: 0
-  - BundleName: texturelistsbuildingbg
-    IsLocal: 0
-  - BundleName: texturelistsbull
-    IsLocal: 0
-  - BundleName: texturelistscat
+  - BundleName: texturelistsbadlands
     IsLocal: 0
   - BundleName: texturelistscave
     IsLocal: 0
-  - BundleName: texturelistschimera
+  - BundleName: texturelistscity
     IsLocal: 0
-  - BundleName: texturelistscitybg
-    IsLocal: 0
-  - BundleName: texturelistscleric
-    IsLocal: 0
-  - BundleName: texturelistsconjurer
-    IsLocal: 0
-  - BundleName: texturelistscoyote
-    IsLocal: 0
-  - BundleName: texturelistscrab
-    IsLocal: 0
-  - BundleName: texturelistscrocodile
-    IsLocal: 0
-  - BundleName: texturelistscursedarrows
-    IsLocal: 0
-  - BundleName: texturelistscyclops
-    IsLocal: 0
-  - BundleName: texturelistsdangersense
-    IsLocal: 0
-  - BundleName: texturelistsdefaultworldbg
-    IsLocal: 0
-  - BundleName: texturelistsdemon
-    IsLocal: 0
-  - BundleName: texturelistsdemonlord
+  - BundleName: texturelistsdarkforest
     IsLocal: 0
   - BundleName: texturelistsdesert
     IsLocal: 0
-  - BundleName: texturelistsdoe
+  - BundleName: texturelistsdirt
     IsLocal: 0
-  - BundleName: texturelistsdog
+  - BundleName: texturelistsdungeon
     IsLocal: 0
-  - BundleName: texturelistsdreadsteed
+  - BundleName: texturelistsfield
     IsLocal: 0
-  - BundleName: texturelistsdungeonbg
+  - BundleName: texturelistsforest
     IsLocal: 0
-  - BundleName: texturelistsdwarf
+  - BundleName: texturelistsgrass
     IsLocal: 0
-  - BundleName: texturelistsearthelemental
+  - BundleName: texturelistshills
     IsLocal: 0
-  - BundleName: texturelistselemental
+  - BundleName: texturelistslava
     IsLocal: 0
-  - BundleName: texturelistself
+  - BundleName: texturelistsmountains
     IsLocal: 0
-  - BundleName: texturelistselfarcher
+  - BundleName: texturelistsnatural
     IsLocal: 0
-  - BundleName: texturelistselfmage
+  - BundleName: texturelistsoutdoors
     IsLocal: 0
-  - BundleName: texturelistsfaerie
+  - BundleName: texturelistspointofinterest
     IsLocal: 0
-  - BundleName: texturelistsfighter
+  - BundleName: texturelistsroad
     IsLocal: 0
-  - BundleName: texturelistsfireelemental
+  - BundleName: texturelistsrock
     IsLocal: 0
-  - BundleName: texturelistsfleshgolem
-    IsLocal: 0
-  - BundleName: texturelistsfrog
-    IsLocal: 0
-  - BundleName: texturelistsghost
-    IsLocal: 0
-  - BundleName: texturelistsghoul
-    IsLocal: 0
-  - BundleName: texturelistsgiant
-    IsLocal: 0
-  - BundleName: texturelistsgnoll
-    IsLocal: 0
-  - BundleName: texturelistsgnome
-    IsLocal: 0
-  - BundleName: texturelistsgoblin
-    IsLocal: 0
-  - BundleName: texturelistsgreendragon
-    IsLocal: 0
-  - BundleName: texturelistsgriffon
-    IsLocal: 0
-  - BundleName: texturelistsguard
-    IsLocal: 0
-  - BundleName: texturelistshalfling
-    IsLocal: 0
-  - BundleName: texturelistsharpy
-    IsLocal: 0
-  - BundleName: texturelistshobgoblin
-    IsLocal: 0
-  - BundleName: texturelistshound
-    IsLocal: 0
-  - BundleName: texturelistshuman
-    IsLocal: 0
-  - BundleName: texturelistshydra
-    IsLocal: 0
-  - BundleName: texturelistsirongolem
-    IsLocal: 0
-  - BundleName: texturelistskobold
-    IsLocal: 0
-  - BundleName: texturelistslich
-    IsLocal: 0
-  - BundleName: texturelistslifesteal
-    IsLocal: 0
-  - BundleName: texturelistslion
-    IsLocal: 0
-  - BundleName: texturelistslizardman
-    IsLocal: 0
-  - BundleName: texturelistsmage
-    IsLocal: 0
-  - BundleName: texturelistsmagiccarpet
-    IsLocal: 0
-  - BundleName: texturelistsmagician
-    IsLocal: 0
-  - BundleName: texturelistsmanticore
-    IsLocal: 0
-  - BundleName: texturelistsmedusa
-    IsLocal: 0
-  - BundleName: texturelistsmongrel
-    IsLocal: 0
-  - BundleName: texturelistsmonk
-    IsLocal: 0
-  - BundleName: texturelistsmummy
-    IsLocal: 0
-  - BundleName: texturelistsmummylord
-    IsLocal: 0
-  - BundleName: texturelistsnecromancer
-    IsLocal: 0
-  - BundleName: texturelistsogre
-    IsLocal: 0
-  - BundleName: texturelistsorc
-    IsLocal: 0
-  - BundleName: texturelistsoutdoorsbg
-    IsLocal: 0
-  - BundleName: texturelistsparry
-    IsLocal: 0
-  - BundleName: texturelistsrat
-    IsLocal: 0
-  - BundleName: texturelistsreddragon
-    IsLocal: 0
-  - BundleName: texturelistsretaliation
-    IsLocal: 0
-  - BundleName: texturelistsrogue
-    IsLocal: 0
-  - BundleName: texturelistssalamander
-    IsLocal: 0
-  - BundleName: texturelistsscorpion
-    IsLocal: 0
-  - BundleName: texturelistsscrapper
-    IsLocal: 0
-  - BundleName: texturelistsskeleton
-    IsLocal: 0
-  - BundleName: texturelistsslime
-    IsLocal: 0
-  - BundleName: texturelistssnail
-    IsLocal: 0
-  - BundleName: texturelistssnake
+  - BundleName: texturelistssavannah
     IsLocal: 0
   - BundleName: texturelistssnow
     IsLocal: 0
-  - BundleName: texturelistssorcerer
+  - BundleName: texturelistsstars
     IsLocal: 0
-  - BundleName: texturelistsspectre
+  - BundleName: texturelistsswamp
     IsLocal: 0
-  - BundleName: texturelistsspider
+  - BundleName: textureliststower
     IsLocal: 0
-  - BundleName: texturelistssteed
+  - BundleName: texturelistsunholy
     IsLocal: 0
-  - BundleName: texturelistsstonegolem
+  - BundleName: texturelistswasteland
     IsLocal: 0
-  - BundleName: texturelistsswordsman
-    IsLocal: 0
-  - BundleName: textureliststavernbuilding
-    IsLocal: 0
-  - BundleName: textureliststhief
-    IsLocal: 0
-  - BundleName: textureliststiger
-    IsLocal: 0
-  - BundleName: textureliststorchlight
-    IsLocal: 0
-  - BundleName: textureliststraderworldmap
-    IsLocal: 0
-  - BundleName: textureliststreant
-    IsLocal: 0
-  - BundleName: textureliststreasure
-    IsLocal: 0
-  - BundleName: textureliststroll
-    IsLocal: 0
-  - BundleName: texturelistsunicorn
-    IsLocal: 0
-  - BundleName: texturelistsvampire
-    IsLocal: 0
-  - BundleName: texturelistswarrior
-    IsLocal: 0
-  - BundleName: texturelistswaterelemental
-    IsLocal: 0
-  - BundleName: texturelistswerewolf
-    IsLocal: 0
-  - BundleName: texturelistswhitedragon
-    IsLocal: 0
-  - BundleName: texturelistswight
-    IsLocal: 0
-  - BundleName: texturelistswizard
-    IsLocal: 0
-  - BundleName: texturelistswolf
-    IsLocal: 0
-  - BundleName: texturelistswraith
-    IsLocal: 0
-  - BundleName: texturelistswyvern
-    IsLocal: 0
-  - BundleName: texturelistszombie
+  - BundleName: texturelistswater
     IsLocal: 0
   - BundleName: treesamurcork
     IsLocal: 0
@@ -1571,307 +1499,11 @@ MonoBehaviour:
     IsLocal: 0
   - BundleName: uizones
     IsLocal: 0
-  - BundleName: spritelistsairelemental
+  - BundleName: prefabsclientmapcell
     IsLocal: 0
-  - BundleName: spritelistsapplydot
+  - BundleName: prefabscrawlermaproot
     IsLocal: 0
-  - BundleName: spritelistsassassin
+  - BundleName: propsdesertpropsmall
     IsLocal: 0
-  - BundleName: spritelistsautoheal
-    IsLocal: 0
-  - BundleName: spritelistsbarbarian
-    IsLocal: 0
-  - BundleName: spritelistsbarrier
-    IsLocal: 0
-  - BundleName: spritelistsbasemonster
-    IsLocal: 0
-  - BundleName: spritelistsbasilisk
-    IsLocal: 0
-  - BundleName: spritelistsbat
-    IsLocal: 0
-  - BundleName: spritelistsbattlefield
-    IsLocal: 0
-  - BundleName: spritelistsbear
-    IsLocal: 0
-  - BundleName: spritelistsbeholder
-    IsLocal: 0
-  - BundleName: spritelistsblackdragon
-    IsLocal: 0
-  - BundleName: spritelistsbladesman
-    IsLocal: 0
-  - BundleName: spritelistsbluedragon
-    IsLocal: 0
-  - BundleName: spritelistsbuck
-    IsLocal: 0
-  - BundleName: spritelistsbuildingbg
-    IsLocal: 0
-  - BundleName: spritelistsbull
-    IsLocal: 0
-  - BundleName: spritelistscat
-    IsLocal: 0
-  - BundleName: spritelistscave
-    IsLocal: 0
-  - BundleName: spritelistschimera
-    IsLocal: 0
-  - BundleName: spritelistscitybg
-    IsLocal: 0
-  - BundleName: spritelistscleric
-    IsLocal: 0
-  - BundleName: spritelistsconjurer
-    IsLocal: 0
-  - BundleName: spritelistscoyote
-    IsLocal: 0
-  - BundleName: spritelistscrab
-    IsLocal: 0
-  - BundleName: spritelistscrocodile
-    IsLocal: 0
-  - BundleName: spritelistscursedarrows
-    IsLocal: 0
-  - BundleName: spritelistscyclops
-    IsLocal: 0
-  - BundleName: spritelistsdangersense
-    IsLocal: 0
-  - BundleName: spritelistsdefaultworldbg
-    IsLocal: 0
-  - BundleName: spritelistsdemon
-    IsLocal: 0
-  - BundleName: spritelistsdemonlord
-    IsLocal: 0
-  - BundleName: spritelistsdesert
-    IsLocal: 0
-  - BundleName: spritelistsdoe
-    IsLocal: 0
-  - BundleName: spritelistsdog
-    IsLocal: 0
-  - BundleName: spritelistsdreadsteed
-    IsLocal: 0
-  - BundleName: spritelistsdungeonbg
-    IsLocal: 0
-  - BundleName: spritelistsdwarf
-    IsLocal: 0
-  - BundleName: spritelistsearthelemental
-    IsLocal: 0
-  - BundleName: spritelistselemental
-    IsLocal: 0
-  - BundleName: spritelistself
-    IsLocal: 0
-  - BundleName: spritelistselfarcher
-    IsLocal: 0
-  - BundleName: spritelistselfmage
-    IsLocal: 0
-  - BundleName: spritelistsfaerie
-    IsLocal: 0
-  - BundleName: spritelistsfighter
-    IsLocal: 0
-  - BundleName: spritelistsfireelemental
-    IsLocal: 0
-  - BundleName: spritelistsfleshgolem
-    IsLocal: 0
-  - BundleName: spritelistsfrog
-    IsLocal: 0
-  - BundleName: spritelistsghost
-    IsLocal: 0
-  - BundleName: spritelistsghoul
-    IsLocal: 0
-  - BundleName: spritelistsgiant
-    IsLocal: 0
-  - BundleName: spritelistsgnoll
-    IsLocal: 0
-  - BundleName: spritelistsgnome
-    IsLocal: 0
-  - BundleName: spritelistsgoblin
-    IsLocal: 0
-  - BundleName: spritelistsgreendragon
-    IsLocal: 0
-  - BundleName: spritelistsgriffon
-    IsLocal: 0
-  - BundleName: spritelistsguard
-    IsLocal: 0
-  - BundleName: spritelistshalfling
-    IsLocal: 0
-  - BundleName: spritelistsharpy
-    IsLocal: 0
-  - BundleName: spritelistshobgoblin
-    IsLocal: 0
-  - BundleName: spritelistshound
-    IsLocal: 0
-  - BundleName: spritelistshuman
-    IsLocal: 0
-  - BundleName: spritelistshydra
-    IsLocal: 0
-  - BundleName: spritelistsirongolem
-    IsLocal: 0
-  - BundleName: spritelistskobold
-    IsLocal: 0
-  - BundleName: spritelistslich
-    IsLocal: 0
-  - BundleName: spritelistslifesteal
-    IsLocal: 0
-  - BundleName: spritelistslion
-    IsLocal: 0
-  - BundleName: spritelistslizardman
-    IsLocal: 0
-  - BundleName: spritelistsmage
-    IsLocal: 0
-  - BundleName: spritelistsmagiccarpet
-    IsLocal: 0
-  - BundleName: spritelistsmagician
-    IsLocal: 0
-  - BundleName: spritelistsmanticore
-    IsLocal: 0
-  - BundleName: spritelistsmedusa
-    IsLocal: 0
-  - BundleName: spritelistsmongrel
-    IsLocal: 0
-  - BundleName: spritelistsmonk
-    IsLocal: 0
-  - BundleName: spritelistsmummy
-    IsLocal: 0
-  - BundleName: spritelistsmummylord
-    IsLocal: 0
-  - BundleName: spritelistsnecromancer
-    IsLocal: 0
-  - BundleName: spritelistsogre
-    IsLocal: 0
-  - BundleName: spritelistsorc
-    IsLocal: 0
-  - BundleName: spritelistsoutdoorsbg
-    IsLocal: 0
-  - BundleName: spritelistsparry
-    IsLocal: 0
-  - BundleName: spritelistsrat
-    IsLocal: 0
-  - BundleName: spritelistsreddragon
-    IsLocal: 0
-  - BundleName: spritelistsretaliation
-    IsLocal: 0
-  - BundleName: spritelistsrogue
-    IsLocal: 0
-  - BundleName: spritelistssalamander
-    IsLocal: 0
-  - BundleName: spritelistsscorpion
-    IsLocal: 0
-  - BundleName: spritelistsscrapper
-    IsLocal: 0
-  - BundleName: spritelistsskeleton
-    IsLocal: 0
-  - BundleName: spritelistsslime
-    IsLocal: 0
-  - BundleName: spritelistssnail
-    IsLocal: 0
-  - BundleName: spritelistssnake
-    IsLocal: 0
-  - BundleName: spritelistssnow
-    IsLocal: 0
-  - BundleName: spritelistssorcerer
-    IsLocal: 0
-  - BundleName: spritelistsspectre
-    IsLocal: 0
-  - BundleName: spritelistsspider
-    IsLocal: 0
-  - BundleName: spritelistssteed
-    IsLocal: 0
-  - BundleName: spritelistsstonegolem
-    IsLocal: 0
-  - BundleName: spritelistsswordsman
-    IsLocal: 0
-  - BundleName: spriteliststavernbuilding
-    IsLocal: 0
-  - BundleName: spriteliststhief
-    IsLocal: 0
-  - BundleName: spriteliststiger
-    IsLocal: 0
-  - BundleName: spriteliststorchlight
-    IsLocal: 0
-  - BundleName: spriteliststraderworldmap
-    IsLocal: 0
-  - BundleName: spriteliststreant
-    IsLocal: 0
-  - BundleName: spriteliststreasure
-    IsLocal: 0
-  - BundleName: spriteliststroll
-    IsLocal: 0
-  - BundleName: spritelistsunicorn
-    IsLocal: 0
-  - BundleName: spritelistsvampire
-    IsLocal: 0
-  - BundleName: spritelistswarrior
-    IsLocal: 0
-  - BundleName: spritelistswaterelemental
-    IsLocal: 0
-  - BundleName: spritelistswerewolf
-    IsLocal: 0
-  - BundleName: spritelistswhitedragon
-    IsLocal: 0
-  - BundleName: spritelistswight
-    IsLocal: 0
-  - BundleName: spritelistswizard
-    IsLocal: 0
-  - BundleName: spritelistswolf
-    IsLocal: 0
-  - BundleName: spritelistswraith
-    IsLocal: 0
-  - BundleName: spritelistswyvern
-    IsLocal: 0
-  - BundleName: spritelistszombie
-    IsLocal: 0
-  - BundleName: texturelistsarcane
-    IsLocal: 0
-  - BundleName: texturelistsbadlands
-    IsLocal: 0
-  - BundleName: texturelistscity
-    IsLocal: 0
-  - BundleName: texturelistsdarkforest
-    IsLocal: 0
-  - BundleName: texturelistsdirt
-    IsLocal: 0
-  - BundleName: texturelistsdungeon
-    IsLocal: 0
-  - BundleName: texturelistsfield
-    IsLocal: 0
-  - BundleName: texturelistsforest
-    IsLocal: 0
-  - BundleName: texturelistsgrass
-    IsLocal: 0
-  - BundleName: texturelistshills
-    IsLocal: 0
-  - BundleName: texturelistslava
-    IsLocal: 0
-  - BundleName: texturelistsmountains
-    IsLocal: 0
-  - BundleName: texturelistsnatural
-    IsLocal: 0
-  - BundleName: texturelistsoutdoors
-    IsLocal: 0
-  - BundleName: texturelistspointofinterest
-    IsLocal: 0
-  - BundleName: texturelistsroad
-    IsLocal: 0
-  - BundleName: texturelistsrock
-    IsLocal: 0
-  - BundleName: texturelistssavannah
-    IsLocal: 0
-  - BundleName: texturelistsstars
-    IsLocal: 0
-  - BundleName: texturelistsswamp
-    IsLocal: 0
-  - BundleName: textureliststower
-    IsLocal: 0
-  - BundleName: texturelistsunholy
-    IsLocal: 0
-  - BundleName: texturelistswasteland
-    IsLocal: 0
-  - BundleName: texturelistswater
-    IsLocal: 0
-  - BundleName: spritelistscommand
-    IsLocal: 0
-  - BundleName: spritelistslevitate
-    IsLocal: 0
-  - BundleName: spritelistslight
-    IsLocal: 0
-  - BundleName: spritelistsmagiccompass
-    IsLocal: 0
-  - BundleName: spritelistsretaliate
-    IsLocal: 0
-  - BundleName: propsjunkpile
+  - BundleName: propslavapropsmall
     IsLocal: 0

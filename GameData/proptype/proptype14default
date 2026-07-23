@@ -1,9 +1,0 @@
-{
-  "Id": "proptype14default",
-  "ParentId": "default",
-  "IdKey": 14,
-  "Name": "CityProp",
-  "Icon": "CityProp",
-  "Art": "CityProp",
-  "NumChoices": 1
-}

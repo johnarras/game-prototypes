@@ -1,8 +1,9 @@
-using Assets.Scripts.Buildings;
-using Assets.Scripts.Crawler.Maps.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
+using OxDb.Client.Buildings;
+using OxDb.Client.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.MoveHelpers;
+using OxDb.Client.Crawler.Maps.Services.DrawEntityHelpers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Buildings.Settings;
@@ -13,14 +14,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
+namespace OxDb.Client.Crawler.Maps.Services.DrawCellHelpers
 {
 
     public class BuildingDrawCellHelper : BaseCrawlerDrawCellHelper
     {
-        public override int Order => 300;
+        public override ECrawlerDrawCellOrder HelperKey => ECrawlerDrawCellOrder.Buildings;
 
-        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, CancellationToken token)
         {
             long buildingTypeId = mapRoot.Map.GetEntityId(cell.MapX, cell.MapZ, EntityTypes.Building);
 

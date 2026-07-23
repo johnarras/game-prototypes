@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.ClientEvents;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.ClientEvents;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;

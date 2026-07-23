@@ -1,13 +1,13 @@
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.WorldCanvas.GameEvents;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.GameObjects;
+using OxDb.Client.WorldCanvas.GameEvents;
 using OxDb.SharedCore.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Tooltips
+namespace OxDb.Client.UI.Tooltips
 {
 
     public interface ITextTooltipService : IInitializable

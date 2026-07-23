@@ -8,7 +8,7 @@ using OxDb.SharedGame.ProcGen.Settings.Trees;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.ProcGen.Loading.Utils
+namespace OxDb.Client.ProcGen.Loading.Utils
 {
     public interface IAddPoolService : IInjectable
     {

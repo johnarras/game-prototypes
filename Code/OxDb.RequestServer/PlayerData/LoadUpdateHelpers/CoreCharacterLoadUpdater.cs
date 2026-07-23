@@ -11,7 +11,8 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
     public class CoreCharacterLoadUpdater : BaseCharacterLoadUpdater
     {
         private IGameData _gameData = null;
-        public override int Order => 1;
+        public override ECharacterLoadUpdateOrder HelperKey => ECharacterLoadUpdateOrder.Core;
+
 
         public override async Task Update(WebContext context, Character ch)
         {

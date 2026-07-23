@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using Unity.Burst;
 
-namespace Assets.Scripts.Lockstep.Math
+namespace OxDb.Client.Lockstep.Math
 {
     [BurstCompile]
     [StructLayout(LayoutKind.Sequential)]

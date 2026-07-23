@@ -1,7 +1,7 @@
 ﻿using OxDb.SharedCore.Utils;
 using System;
 
-namespace Assets.Scripts.UI.Timers
+namespace OxDb.Client.UI.Timers
 {
     public class CountdownTimer : BaseBehaviour
     {

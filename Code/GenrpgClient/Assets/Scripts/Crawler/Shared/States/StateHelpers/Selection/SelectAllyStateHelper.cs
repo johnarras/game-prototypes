@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Shared.GameEvents;
+using OxDb.Client.Crawler.Shared.GameEvents;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -28,7 +28,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
             CrawlerStateData stateData = CreateStateData();
 
             PartyData party = _crawlerService.GetParty();
-            List<PartyMember> partyMembers = party.ActiveParty;
+            List<PartyMember> partyMembers = party.ActiveParty.OrderBy(x => x.PartySlot).ToList();
 
             SelectSpellAction spellAction = new SelectSpellAction();
 

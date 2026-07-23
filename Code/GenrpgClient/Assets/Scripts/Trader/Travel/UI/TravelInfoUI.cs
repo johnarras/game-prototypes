@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Entities.UI;
-using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.UI.Entities;
+﻿using OxDb.Client.Entities.UI;
+using OxDb.Client.Trader.ClientEvents;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.Constants;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.Travel.UI
+namespace OxDb.Client.Trader.Travel.UI
 {
     public class TravelInfoUI : BaseBehaviour
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Crawler.ClientEvents.ActionPanelEvents;
+using OxDb.Client.Crawler.ClientEvents.CombatEvents;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
@@ -245,7 +245,11 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                         continue;
                     }
 
-                    if (spell.Effects.FastAny(x => x.EntityTypeId == EntityTypes.Stat || x.EntityTypeId == EntityTypes.Unit))
+                    if (spell.Effects.FastAny(x => x.EntityTypeId == EntityTypes.Stat
+
+                        // || x.EntityTypeId == EntityTypes.Unit
+
+                        ))
                     {
                         continue;
                     }
@@ -688,7 +692,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                         long mana = action.Caster.Stats.Curr(StatTypes.Mana);
                         foreach (CrawlerSpell spell in allSpells)
                         {
-                            if (GetPowerCost(party, action.Caster, spell) <= mana)
+                            if (GetPowerCost(party, action.Caster, spell) <= mana || action.NoCost)
                             {
                                 possibleSpells.Add(spell);
                             }
@@ -775,7 +779,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     ShowCombatLogText(_textService.HighlightText($"{action.SpellBeingCast.LuckyHitQuantity} Lucky Hits!", TextColors.ColorGold));
                 }
 
-                if (action.CastingItem == null && action.Caster is PartyMember pmember)
+                if (action.CastingItem == null && action.Caster is PartyMember pmember && !action.NoCost)
                 {
                     RemoveSpellPowerCost(party, pmember, action.Spell);
                 }
@@ -1266,7 +1270,7 @@ namespace OxDb.SharedGame.Crawler.Spells.Services
                     TargetId = target.IsPlayer() ? target.Id : target.CombatGroupId,
                     ElementTypeId = elementTypeId,
                     Seconds = Math.Min(infoDelayTime, CrawlerClientCombatConstants.CombatDooberFlyTime),
-                    SizeScale = Math.Max(1, 1 + Math.Log10(damage) / 3),
+                    SizeScale = 2 * Math.Max(1, 1 + Math.Log10(damage) / 3),
                 });
             }
         }

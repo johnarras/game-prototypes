@@ -1,6 +1,6 @@
 using OxDb.SharedGame.Quests.Messages;
 
-namespace Assets.Scripts.MessageHandlers.Quests
+namespace OxDb.Client.MessageHandlers.Quests
 {
     public class OnGetQuestsHandler : DispatchClientMapMessageHandler<OnGetQuests> { }
 }

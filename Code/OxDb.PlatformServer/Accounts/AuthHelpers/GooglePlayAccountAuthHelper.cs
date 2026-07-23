@@ -1,8 +1,8 @@
 ﻿using Google.Apis.Auth;
 using OxDb.PlatformServer.Accounts.Entities;
 using OxDb.PlatformServer.Accounts.PlayerData;
-using OxDb.ServerCore.WebRequests.Services;
 using OxDb.SharedCore.Config.Constants;
+using OxDb.SharedCore.WebRequests.Services;
 using OxDb.SharedCore.Website.Responses.Core;
 using OxDb.SharedPlatform.Accounts.Constants;
 using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
@@ -64,7 +64,15 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
 
             bool didSucceed = false;
 
-            ResponseEnvelope<GoogleTokenPayload> tokenResponse = await _webRequestService.SendFormAsync<GoogleTokenPayload>(AuthEndpoint, formParameters);
+
+            WebRequestOptions opts = new WebRequestOptions()
+            {
+                Method = HttpMethodType.Post,
+                FormBody = formParameters,
+                ContentType = HttpContentType.FormUrlEncoded,
+            };
+
+            ResponseEnvelope<GoogleTokenPayload> tokenResponse = await _webRequestService.SendAsync<GoogleTokenPayload>(AuthEndpoint, opts, token);
 
             if (tokenResponse == null || 
                 !tokenResponse.Success ||

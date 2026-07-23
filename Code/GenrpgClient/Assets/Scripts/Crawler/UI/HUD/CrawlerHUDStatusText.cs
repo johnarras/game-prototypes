@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Maps.Services;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Maps.Entities;
@@ -6,7 +6,7 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using System;
 
-namespace Assets.Scripts.Crawler.UI.HUD
+namespace OxDb.Client.Crawler.UI.HUD
 {
     public class CrawlerHUDStatusText : BaseBehaviour
     {
@@ -50,7 +50,11 @@ namespace Assets.Scripts.Crawler.UI.HUD
             else
             {
                 _uiService.SetText(MapNameText, map.GetName(party.CurrPos.X, party.CurrPos.Z));
-                _uiService.SetText(PosLevelText, "Lev: " + map.GetMapLevelAtPoint(party.CurrPos.X, party.CurrPos.Z) + " @(" + party.CurrPos.X + "," + party.CurrPos.Z + ")");
+                _uiService.SetText(PosLevelText, "Lev: " +
+                    _worldService.GetMapLevelAtParty(party) + " @(" + party.CurrPos.X + "," + party.CurrPos.Z + ") "
+                     + map.Get(party.CurrPos.X, party.CurrPos.Z, CellIndex.Terrain)
+
+                    );
             }
         }
 

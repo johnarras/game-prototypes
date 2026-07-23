@@ -1,6 +1,6 @@
 
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Ftue.Services
+namespace OxDb.Client.Ftue.Services
 {
     public class ClientFtueService : FtueService
     {

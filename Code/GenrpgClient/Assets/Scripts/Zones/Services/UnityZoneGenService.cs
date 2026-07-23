@@ -1,10 +1,12 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.ClientEvents.DataUpdates;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.MapTerrain;
-using Assets.Scripts.Minimap.Services;
-using Assets.Scripts.Setup.Interfaces;
 using ClientEvents;
+using OxDb.Client;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.ClientEvents.DataUpdates;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.MapTerrain;
+using OxDb.Client.Minimap.Services;
+using OxDb.Client.Networking.Services; // Needed
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;
@@ -22,7 +24,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine; // Needed
+using UnityEngine;
 
 public class UnityZoneGenService : ZoneGenService
 {
@@ -32,7 +34,7 @@ public class UnityZoneGenService : ZoneGenService
 
     protected IScreenService _screenService = null;
     protected IMapTerrainManager _terrainManager = null;
-    private IClientWebService _webNetworkService = null;
+    private IClientWebRequestService _webNetworkService = null;
     private IRealtimeNetworkService _networkService = null;
     protected ITextSerializer _serializer = null;
 
@@ -311,6 +313,7 @@ public class UnityZoneGenService : ZoneGenService
         await Awaitable.NextFrameAsync(cancellationToken: token);
 
 
+        RenderSettings.fog = true;
         _assetService.SetLoadSpeed(ELoadSpeed.Normal);
     }
 
@@ -773,7 +776,7 @@ public class UnityZoneGenService : ZoneGenService
 
         string postData = _serializer.SerializeToString(loadData);
 
-        _webNetworkService.SendWebRequest(loadData, _gameToken);
+        _webNetworkService.SendMainServerRequest(loadData, _gameToken);
     }
 
     public override async Awaitable OnLoadIntoMap(LoadIntoMapResponse data, CancellationToken token)

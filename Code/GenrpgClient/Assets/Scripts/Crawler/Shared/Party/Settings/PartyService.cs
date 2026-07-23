@@ -1,18 +1,17 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Crawler.ClientEvents.CombatEvents;
+using OxDb.Client.Crawler.ClientEvents.StatusPanelEvents;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Combat.Services;
 using OxDb.SharedGame.Crawler.Constants;
-using OxDb.SharedGame.Crawler.Crawlers.Services;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -22,7 +21,6 @@ using OxDb.SharedGame.Crawler.States.Entities;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.Crawler.States.StateHelpers.Exploring;
 using OxDb.SharedGame.Crawler.Training.Services;
-using OxDb.SharedGame.Crawler.Upgrades.Constants;
 using OxDb.SharedGame.Currencies.Constants;
 using OxDb.SharedGame.Inventory.PlayerData;
 using System;
@@ -66,24 +64,21 @@ namespace OxDb.SharedGame.Crawler.Party.Services
         private ITrainingService _trainingService = null;
         private IInputService _inputService = null;
         private ICrawlerMapService _mapService = null;
-        private ICrawlerUpgradeService _upgradeService = null;
         private ICrawlerCombatService _combatService = null;
         private IDynamicUIService _dynamicUIService = null;
 
         public long GetMaxPartySize(PartyData party)
         {
 
-            long upgradeBonus = (long)_upgradeService.GetPartyBonus(party, PartyUpgrades.PartySize);
-
             if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
-                return 1 + upgradeBonus;
+                return 1;
             }
 
             CrawlerSettings settings = _gameData.Get<CrawlerSettings>(_gs.ch);
 
 
-            return settings.MaxPartySize + upgradeBonus;
+            return settings.MaxPartySize;
         }
 
         public void AddPartyMemberToGuild(PartyData party, PartyMember member)

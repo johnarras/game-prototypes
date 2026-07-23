@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
+﻿using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.Trader.CaravanMembers.WebApi;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.Caravans.MessageHandlers
+namespace OxDb.Client.Trader.Caravans.MessageHandlers
 {
     public class UpdateCaravanMembersResponseHandler : BaseClientWebResponseHandler<UpdateCaravanMembersResponse>
     {

@@ -1,10 +1,11 @@
-using Assets.Scripts.Crawler.MapGen.Services;
-using Assets.Scripts.Crawler.Maps.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Quests.ClientEvents;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Crawler.MapGen.Services;
+using OxDb.Client.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Quests.ClientEvents;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.GameObjects;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -15,7 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.Services.Helpers
+namespace OxDb.Client.Crawler.Maps.Services.Helpers
 {
     public abstract class BaseCrawlerMapTypeHelper : ICrawlerMapTypeHelper
     {
@@ -57,10 +58,10 @@ namespace Assets.Scripts.Crawler.Maps.Services.Helpers
                 CrawlerMapStatus status = party.GetMapStatus(mapData.Map.IdKey, true);
             }
 
-            GameObject go = new GameObject() { name = "Map" + mapData.MapId.ToString() };
-            CrawlerMapRoot mapRoot = _clientEntityService.GetOrAddComponent<CrawlerMapRoot>(go);
-            mapRoot.Core.AssetRoot = new GameObject() { name = "AssetRoot" };
-            _clientEntityService.AddToParent(mapRoot.Core.AssetRoot, go);
+            CrawlerMapRoot mapRoot = await _assetService.LoadAssetAsync<CrawlerMapRoot>(AssetCategoryNames.Prefabs, typeof(CrawlerMapRoot).Name, null, token);
+
+            mapRoot.name = "Map" + mapData.MapId;
+            mapRoot.Core.AssetRoot = mapRoot.AssetRoot;
 
             mapRoot.SetupFromMap(map);
             mapRoot.DrawX = party.CurrPos.X * mapRoot.XZBlockSize;

@@ -1,6 +1,6 @@
 
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;

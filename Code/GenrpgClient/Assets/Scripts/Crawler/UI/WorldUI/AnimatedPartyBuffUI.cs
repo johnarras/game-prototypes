@@ -1,7 +1,7 @@
-using Assets.Scripts.Assets.Textures;
+using OxDb.Client.Assets.Textures;
 using OxDb.SharedGame.Crawler.Buffs.Settings;
 
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class AnimatedPartyBuffUI : PartyBuffUI
     {

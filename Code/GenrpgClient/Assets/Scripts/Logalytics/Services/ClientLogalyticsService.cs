@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Logalytics.ClientEvents;
+﻿using OxDb.Client.Logalytics.ClientEvents;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Constants;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Logalytics.Services
+namespace OxDb.Client.Logalytics.Services
 {
     public interface IClientLogalyticsService : IInitializable
     {
@@ -18,7 +19,7 @@ namespace Assets.Scripts.Logalytics.Services
     {
         private IClientGameState _gs = null;
         private IClientAppService _appService = null;
-        private IClientWebService _webService = null;
+        private IClientWebRequestService _webService = null;
         private IClientConfigContainer _configContainer = null;
         private IDispatcher _dispatcher = null;
 

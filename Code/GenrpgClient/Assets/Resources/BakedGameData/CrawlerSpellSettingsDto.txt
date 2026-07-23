@@ -22,7 +22,7 @@
       ],
       "Roles": {
         "Bits": [
-          2046
+          32766
         ]
       }
     },
@@ -49,7 +49,7 @@
       ],
       "Roles": {
         "Bits": [
-          2046
+          32766
         ]
       }
     },
@@ -66,7 +66,7 @@
       "Effects": [],
       "Roles": {
         "Bits": [
-          2046
+          32766
         ]
       }
     },
@@ -83,7 +83,7 @@
       "Effects": [],
       "Roles": {
         "Bits": [
-          4
+          4100
         ]
       }
     },
@@ -100,7 +100,7 @@
       "Effects": [],
       "Roles": {
         "Bits": [
-          2
+          2050
         ]
       }
     },
@@ -128,7 +128,7 @@
       ],
       "Roles": {
         "Bits": [
-          230
+          6374
         ]
       }
     },
@@ -157,7 +157,7 @@
       ],
       "Roles": {
         "Bits": [
-          806
+          6950
         ]
       }
     },
@@ -185,7 +185,7 @@
       ],
       "Roles": {
         "Bits": [
-          226
+          2274
         ]
       }
     },
@@ -214,7 +214,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       }
     },
@@ -298,7 +298,7 @@
       ],
       "Roles": {
         "Bits": [
-          1624
+          26200
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -354,7 +354,7 @@
       ],
       "Roles": {
         "Bits": [
-          1624
+          26200
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -417,7 +417,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -480,7 +480,7 @@
       ],
       "Roles": {
         "Bits": [
-          422
+          6566
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -506,7 +506,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -532,7 +532,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -584,7 +584,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -610,7 +610,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -636,7 +636,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -711,13 +711,13 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.1
     },
     {
-      "IdKey": 80,
+      "IdKey": 40,
       "Name": "Reveal Area",
       "Desc": "Reveal surrounding map cells.",
       "BaseCost": 2.0,
@@ -737,10 +737,114 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          0
         ]
       },
       "ItemEnchantWeight": 1.0
+    },
+    {
+      "IdKey": 50,
+      "Name": "Summon Scrapper",
+      "Desc": "Summon a scrapper.",
+      "BaseCost": 25.0,
+      "TierCost": 5.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 13,
+          "ElementTypeId": 1,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
+    },
+    {
+      "IdKey": 51,
+      "Name": "Summon Bear",
+      "Desc": "Summon a bear.",
+      "BaseCost": 25.0,
+      "TierCost": 5.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 55,
+          "ElementTypeId": 11,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
+    },
+    {
+      "IdKey": 52,
+      "Name": "Summon Elemental",
+      "Desc": "Summon an earth elemental.",
+      "BaseCost": 25.0,
+      "TierCost": 5.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 13,
+          "ElementTypeId": 5,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
+    },
+    {
+      "IdKey": 53,
+      "Name": "Summon Monk",
+      "Desc": "Summon a monk.",
+      "BaseCost": 25.0,
+      "TierCost": 5.0,
+      "MaxRange": 100,
+      "CombatActionId": 4,
+      "TargetTypeId": 8,
+      "RoleScalingTypeId": 5,
+      "AttackQuantityScale": 1.0,
+      "UnlockTier": 1,
+      "Effects": [
+        {
+          "EntityTypeId": 4,
+          "EntityId": 55,
+          "ElementTypeId": 7,
+          "ProcChance": 100.0
+        }
+      ],
+      "Roles": {
+        "Bits": [
+          0
+        ]
+      }
     },
     {
       "IdKey": 81,
@@ -764,7 +868,7 @@
       ],
       "Roles": {
         "Bits": [
-          2046
+          32766
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -791,7 +895,7 @@
       ],
       "Roles": {
         "Bits": [
-          1964
+          14252
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -818,7 +922,7 @@
       ],
       "Roles": {
         "Bits": [
-          2008
+          26584
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -845,7 +949,7 @@
       ],
       "Roles": {
         "Bits": [
-          998
+          7142
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -872,7 +976,7 @@
       ],
       "Roles": {
         "Bits": [
-          1778
+          20210
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -899,7 +1003,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -926,7 +1030,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -953,7 +1057,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -980,7 +1084,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -1007,7 +1111,7 @@
       ],
       "Roles": {
         "Bits": [
-          226
+          2274
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -1034,7 +1138,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -1061,7 +1165,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -1088,7 +1192,7 @@
       ],
       "Roles": {
         "Bits": [
-          226
+          2274
         ]
       },
       "ItemEnchantWeight": 0.1
@@ -1114,7 +1218,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.05
@@ -1140,7 +1244,7 @@
       ],
       "Roles": {
         "Bits": [
-          226
+          2274
         ]
       },
       "ItemEnchantWeight": 0.05
@@ -1166,7 +1270,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.05
@@ -1192,7 +1296,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 0.05
@@ -1218,7 +1322,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.025
@@ -1244,7 +1348,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.025
@@ -1270,7 +1374,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 0.025
@@ -1296,7 +1400,7 @@
       ],
       "Roles": {
         "Bits": [
-          226
+          2274
         ]
       },
       "ItemEnchantWeight": 0.025
@@ -1322,7 +1426,7 @@
       ],
       "Roles": {
         "Bits": [
-          2
+          2050
         ]
       },
       "ItemEnchantWeight": 0.01
@@ -1348,7 +1452,7 @@
       ],
       "Roles": {
         "Bits": [
-          8
+          8200
         ]
       },
       "ItemEnchantWeight": 0.01
@@ -1374,7 +1478,7 @@
       ],
       "Roles": {
         "Bits": [
-          16
+          16400
         ]
       },
       "ItemEnchantWeight": 0.01
@@ -1400,7 +1504,7 @@
       ],
       "Roles": {
         "Bits": [
-          4
+          4100
         ]
       },
       "ItemEnchantWeight": 0.01
@@ -1429,7 +1533,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1458,7 +1562,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 0.2
@@ -1516,7 +1620,7 @@
       ],
       "Roles": {
         "Bits": [
-          1616
+          18000
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1545,7 +1649,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1574,7 +1678,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.2
@@ -1632,7 +1736,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1661,7 +1765,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1690,7 +1794,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 0.2
@@ -1748,7 +1852,7 @@
       ],
       "Roles": {
         "Bits": [
-          1416
+          9608
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1777,7 +1881,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1806,7 +1910,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 0.2
@@ -1864,7 +1968,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1893,7 +1997,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -1922,7 +2026,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 0.2
@@ -1980,7 +2084,7 @@
       ],
       "Roles": {
         "Bits": [
-          804
+          4900
         ]
       },
       "ItemEnchantWeight": 1.0
@@ -4733,5 +4837,5 @@
     "Name": "CrawlerSpellSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-07-01T23:51:54.619Z"
+  "SaveTime": "2026-07-15T18:26:38.646Z"
 }

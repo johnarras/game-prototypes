@@ -1,10 +1,10 @@
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Users.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Users.WebApi
+namespace OxDb.Client.Users.WebApi
 {
     public class UpdateClientUserResponseHandler : BaseClientWebResponseHandler<UpdateClientUserResponse>
     {

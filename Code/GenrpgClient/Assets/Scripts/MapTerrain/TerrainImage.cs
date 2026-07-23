@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.MapTerrain
+namespace OxDb.Client.MapTerrain
 {
     public class TerrainImage : BaseBehaviour
     {

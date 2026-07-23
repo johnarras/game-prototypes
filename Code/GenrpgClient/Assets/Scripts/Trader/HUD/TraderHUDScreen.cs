@@ -1,12 +1,12 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Trader.WorldMap.Services;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Trader.WorldMap.Services;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.UI.TraderHUD
+namespace OxDb.Client.Trader.UI.TraderHUD
 {
     public class TraderHUDScreen : BaseScreen
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.DynamicUI.Interfaces
+﻿namespace OxDb.Client.DynamicUI.Interfaces
 {
     public interface IEntityQuantityIcon
     {

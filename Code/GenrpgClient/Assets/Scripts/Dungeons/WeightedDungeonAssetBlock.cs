@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Assets.Scripts.Dungeons
+namespace OxDb.Client.Dungeons
 {
     [Serializable]
     public class WeightedDungeonAssetBlock : IWeightedItem

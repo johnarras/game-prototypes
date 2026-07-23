@@ -1,9 +1,10 @@
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Auth.Services;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.UI.Screens;
+using OxDb.Client;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Auth.Services;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.UI.Screens;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.MapServer.WebApi.LoadIntoMap;
 using OxDb.SharedGame.ProcGen.Services;

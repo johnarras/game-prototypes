@@ -11,13 +11,14 @@ using OxDb.SharedGame.MapMessages.Interfaces;
 using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OxDb.SharedGame.Inventory.Services
 {
     public class InventoryService : IInventoryService
     {
-        private IStatService _statService = null;
-        protected IGameData _gameData;
+        private IStatService _statService = null!;
+        protected IGameData _gameData = null!;
 
         public virtual int InventorySpaceLeft(MapObject unit, Item item)
         {
@@ -38,7 +39,7 @@ namespace OxDb.SharedGame.Inventory.Services
 
         }
 
-        public virtual bool AddItem(MapObject unit, Item item, bool forceAdd)
+        public virtual async ValueTask<bool> AddItem(MapObject unit, Item item, bool forceAdd)
         {
             InventoryData idata = unit.Get<InventoryData>();
             if (idata == null)
@@ -65,31 +66,33 @@ namespace OxDb.SharedGame.Inventory.Services
             item.OwnerId = unit.Id;
 
             AddMessage(unit, idata, item, new OnAddItem() { ItemId = item.Id, UnitId = unit.Id });
+            await Task.CompletedTask;
             return true;
         }
 
-        public virtual Item RemoveItem(MapObject unit, string itemId, bool deleteItem)
+        public virtual async ValueTask<Item> RemoveItem(MapObject unit, string itemId, bool deleteItem)
         {
             InventoryData idata = unit.Get<InventoryData>();
 
             Item item = idata.GetItem(itemId);
             if (item == null)
             {
-                return null;
+                return null!;
             }
 
             if (idata.GetItem(item.Id) == null)
             {
-                return null;
+                return null!;
             }
 
             idata.RemoveInventory(item);
             AddMessage(unit, idata, item, new OnRemoveItem() { ItemId = item.Id, UnitId = unit.Id },
                 deleteItem ? EDataUpdateTypes.Delete : EDataUpdateTypes.Save);
+            await Task.CompletedTask;
             return item;
         }
 
-        public virtual bool EquipItem(MapObject obj, string itemId, long equipSlotId, bool calcStatsNow = true)
+        public virtual async ValueTask<bool> EquipItem(MapObject obj, string itemId, long equipSlotId, bool calcStatsNow = true)
         {
 
             EquipSlot eqslot = _gameData.Get<EquipSlotSettings>(obj).Get(equipSlotId);
@@ -108,7 +111,7 @@ namespace OxDb.SharedGame.Inventory.Services
                 if (item != null)
                 {
                     oldEquipSlot = item.EquipSlotId;
-                    UnequipItem(obj, itemId, false);
+                    await UnequipItem(obj, itemId, false);
                 }
                 else
                 {
@@ -116,7 +119,7 @@ namespace OxDb.SharedGame.Inventory.Services
                 }
             }
 
-            if (!CanEquipItem(obj, item))
+            if (!await CanEquipItem(obj, item))
             {
                 return false;
             }
@@ -142,7 +145,7 @@ namespace OxDb.SharedGame.Inventory.Services
             {
                 if (itype.HasFlag(ItemFlags.FlagTwoHandedItem) || oldEquipSlot < 1)
                 {
-                    UnequipItem(obj, currEquip.Id, false);
+                    await UnequipItem(obj, currEquip.Id, false);
                 }
                 else
                 {
@@ -150,7 +153,7 @@ namespace OxDb.SharedGame.Inventory.Services
                     if (currItemType == null || currItemType.HasFlag(ItemFlags.FlagTwoHandedItem) ||
                         currItemType.EquipSlotId == EquipSlots.OffHand)
                     {
-                        UnequipItem(obj, currEquip.Id, false);
+                        await UnequipItem(obj, currEquip.Id, false);
                     }
                     else
                     {
@@ -164,7 +167,7 @@ namespace OxDb.SharedGame.Inventory.Services
             }
 
             // Remove from inventory.
-            RemoveItem(obj, itemId, false);
+            await RemoveItem(obj, itemId, false);
 
             // Two handed weapons remove offhand items.
             if (FlagUtils.MatchesAnyBits(itype.Flags, ItemFlags.FlagTwoHandedItem))
@@ -172,7 +175,7 @@ namespace OxDb.SharedGame.Inventory.Services
                 Item offhandEquip = idata.GetEquipBySlot(EquipSlots.OffHand);
                 if (offhandEquip != null)
                 {
-                    UnequipItem(obj, offhandEquip.Id, false);
+                    await UnequipItem(obj, offhandEquip.Id, false);
                 }
             }
 
@@ -184,7 +187,7 @@ namespace OxDb.SharedGame.Inventory.Services
                     ItemType mainHandItemType = _gameData.Get<ItemTypeSettings>(obj).Get(mainHandEquip.ItemTypeId);
                     if (mainHandItemType != null && FlagUtils.MatchesAnyBits(mainHandItemType.Flags, ItemFlags.FlagTwoHandedItem))
                     {
-                        UnequipItem(obj, mainHandEquip.Id, false);
+                        await UnequipItem(obj, mainHandEquip.Id, false);
                     }
                 }
             }
@@ -197,10 +200,11 @@ namespace OxDb.SharedGame.Inventory.Services
             {
                 _statService.CalcStats(unit, false);
             }
+            await Task.CompletedTask;
             return true;
         }
 
-        public virtual bool UnequipItem(MapObject obj, string itemId, bool calcStatsNow = true)
+        public virtual async ValueTask<bool> UnequipItem(MapObject obj, string itemId, bool calcStatsNow = true)
         {
             InventoryData idata = obj.Get<InventoryData>();
             Item item = idata.GetEquipById(itemId);
@@ -223,7 +227,7 @@ namespace OxDb.SharedGame.Inventory.Services
                 }
             }
 
-            AddItem(obj, item, true);
+            await AddItem(obj, item, true);
 
 
             return true;
@@ -241,7 +245,7 @@ namespace OxDb.SharedGame.Inventory.Services
             return idata.GetItemsByItemTypeId(itemTypeId);
         }
 
-        public bool CanEquipItem(MapObject unit, Item item)
+        public async ValueTask<bool> CanEquipItem(MapObject unit, Item item)
         {
             ItemType itype = _gameData.Get<ItemTypeSettings>(unit).Get(item.ItemTypeId);
 

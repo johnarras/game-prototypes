@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
+using OxDb.Client.Crawler.ClientEvents.ActionPanelEvents;
 
-namespace Assets.Scripts.UI.Crawler.ActionUI
+namespace OxDb.Client.UI.Crawler.ActionUI
 {
     public class ActionPanelText : BaseBehaviour
     {

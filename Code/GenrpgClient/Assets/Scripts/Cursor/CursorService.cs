@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets;
+using OxDb.Client.Assets;
 using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;

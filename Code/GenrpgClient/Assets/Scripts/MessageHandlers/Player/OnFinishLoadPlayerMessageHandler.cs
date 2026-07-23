@@ -1,11 +1,11 @@
 
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.Players.Messages;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Player
+namespace OxDb.Client.MessageHandlers.Player
 {
     public class OnFinishLoadPlayerMessageHandler : BaseClientMapMessageHandler<OnFinishLoadPlayer>
     {

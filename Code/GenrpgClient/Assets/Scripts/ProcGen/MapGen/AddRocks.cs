@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -14,8 +14,7 @@ using UnityEngine;
 internal class FullRockType
 {
     public RockType rockType;
-    public ZoneRockType zoneTypeRock;
-    public ZoneRockType zoneRock;
+    public WeightedEntity zoneTypeRock;
     public int numPlaced;
 
     public double Weight;
@@ -67,35 +66,24 @@ public class AddRocks : BaseZoneGenerator
 
         List<FullRockType> list = new List<FullRockType>();
 
-        foreach (ZoneRockType zrt in genZone.RockTypes)
+
+        List<WeightedEntity> rockTypes = genZone.GetPropsOfType(EntityTypes.Rock);
+
+        foreach (WeightedEntity zrt in rockTypes)
         {
-            ZoneRockType ztrt = null;
-            foreach (ZoneRockType item in zoneType.RockTypes)
-            {
-                if (item.RockTypeId == zrt.RockTypeId)
-                {
-                    ztrt = item;
-                    break;
-                }
-            }
 
-            if (ztrt == null)
-            {
-                continue;
-            }
-
-            RockType rt = _gameData.Get<RockTypeSettings>(_gs.ch).Get(zrt.RockTypeId);
+            RockType rt = _gameData.Get<RockTypeSettings>(_gs.ch).Get(zrt.EntityId);
             if (rt == null)
             {
                 continue;
             }
 
-            if (rt.ChanceScale <= 0.0f || ztrt.Weight <= 0.0f)
+            if (rt.ChanceScale <= 0.0f || zrt.Weight <= 0)
             {
                 continue;
             }
 
-            float weight = (float)(rt.ChanceScale * ztrt.Weight * zrt.Weight);
+            float weight = (float)(rt.ChanceScale * zrt.Weight);
 
             if (weight <= 0)
             {
@@ -103,8 +91,7 @@ public class AddRocks : BaseZoneGenerator
             }
 
             FullRockType full = new FullRockType();
-            full.zoneRock = zrt;
-            full.zoneTypeRock = ztrt;
+            full.zoneTypeRock = zrt;
             full.rockType = rt;
             full.Weight = weight;
             full.assetName = rt.Name;

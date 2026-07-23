@@ -1,8 +1,8 @@
-using Assets.Scripts.ClientEvents.DataUpdates;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Input;
-using Assets.Scripts.Input.Interfaces;
-using Assets.Scripts.Setup.Interfaces;
+using OxDb.Client.ClientEvents.DataUpdates;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Input;
+using OxDb.Client.Input.Interfaces;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Input.PlayerData;
 using OxDb.SharedGame.Targets.Messages;

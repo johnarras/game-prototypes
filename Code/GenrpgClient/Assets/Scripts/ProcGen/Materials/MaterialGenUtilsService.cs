@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Assets.Utils;
-using Assets.Scripts.ProcGen.Materials.Constants;
+﻿using OxDb.Client.Assets.Utils;
+using OxDb.Client.ProcGen.Materials.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.LineGen;
 using OxDb.SharedCore.Utils;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials
+namespace OxDb.Client.ProcGen.Materials
 {
     public interface IMaterialGenUtilsService : IInjectable
     {

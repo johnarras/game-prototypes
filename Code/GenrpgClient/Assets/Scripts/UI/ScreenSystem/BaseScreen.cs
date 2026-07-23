@@ -1,6 +1,6 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
 using System.Threading;

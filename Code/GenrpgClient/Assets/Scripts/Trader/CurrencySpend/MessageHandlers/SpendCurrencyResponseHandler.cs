@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.Trader.ClientEvents;
+﻿using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.Trader.ClientEvents;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Rewards.Services;
@@ -9,7 +9,7 @@ using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.CurrencySpend.MessageHandlers
+namespace OxDb.Client.Trader.CurrencySpend.MessageHandlers
 {
     public class SpendCurrencyResponseHandler : BaseClientWebResponseHandler<SpendCurrencyResponse>
     {

@@ -16,7 +16,6 @@ namespace OxDb.SharedGame.Crawler.Upgrades.Constants
         public const long GoldPercent = 12;
         public const long MemberUpgradePoints = 13;
         public const long ItemUsesPerCombat = 14;
-        public const long PartySize = 15;
     }
 }
 

@@ -1,15 +1,15 @@
 ﻿// ... existing imports
-using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Collisions.Components;
-using Assets.Scripts.Lockstep.Collisions.Constants;
-using Assets.Scripts.Lockstep.Factions.Components;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Systems.Constants;
+using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Collisions.Components;
+using OxDb.Client.Lockstep.Collisions.Constants;
+using OxDb.Client.Lockstep.Factions.Components;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Systems
+namespace OxDb.Client.Lockstep.Systems
 {
     // Added ShapeType to the entry for faster narrow-phase branching
     public struct SpatialEntry
@@ -62,7 +62,7 @@ namespace Assets.Scripts.Lockstep.Systems
         {
             var singleton = SystemAPI.GetSingletonRW<SpatialHashSingleton>();
 
-            // 1. Clear the map from the previous tick
+            // 1. ClearFullCell the map from the previous tick
             singleton.ValueRW.SpatialMap.Clear();
 
             // 2. Schedule the build job in parallel

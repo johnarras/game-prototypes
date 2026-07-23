@@ -5,7 +5,7 @@ using OxDb.SharedGame.Crawler.Upgrades.Settings;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
+namespace OxDb.Client.Crawler.UI.Screens.Characters.Upgrades
 {
     public class MemberUpgradesUI : BaseBehaviour
     {

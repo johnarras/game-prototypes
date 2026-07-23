@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.ProcGen.Materials.Constants;
+﻿using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.GameObjects;
+using OxDb.Client.ProcGen.Materials.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.ProcGen.Services;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
+namespace OxDb.Client.ProcGen.Materials.MaterialGenHelpers
 {
     public abstract class BaseMaterialGenHelper : IMaterialGenHelper
     {

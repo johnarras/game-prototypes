@@ -3,7 +3,7 @@ using OxDb.SharedGame.SpellCrafting.Settings;
 using OxDb.SharedGame.SpellCrafting.SpellModifierHelpers;
 using System;
 
-namespace Assets.Scripts.UI.Spells
+namespace OxDb.Client.UI.Spells
 {
     public class SpellModInputField : BaseBehaviour
     {

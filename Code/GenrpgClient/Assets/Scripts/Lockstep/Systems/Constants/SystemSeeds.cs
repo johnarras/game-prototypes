@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Systems.Constants
+﻿namespace OxDb.Client.Lockstep.Systems.Constants
 {
     public class SystemSeeds
     {

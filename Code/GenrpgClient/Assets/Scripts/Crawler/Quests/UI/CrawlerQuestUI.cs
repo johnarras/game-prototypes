@@ -1,6 +1,6 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Quests.ClientEvents;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Quests.ClientEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Quests.Entities;
 using OxDb.SharedGame.Crawler.States.Constants;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Quests.UI
+namespace OxDb.Client.Crawler.Quests.UI
 {
     public class CrawlerQuestUI : BaseBehaviour
     {

@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Trader.Travel.Services;
+﻿using OxDb.Client.Trader.Travel.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.UI.Travel
+namespace OxDb.Client.Trader.UI.Travel
 {
     public class TravelButton : BaseBehaviour
     {

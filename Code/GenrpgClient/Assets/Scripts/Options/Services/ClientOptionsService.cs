@@ -1,6 +1,6 @@
-using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Repository;
+using OxDb.Client.Audio.Constants;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Repository;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Options.Services
+namespace OxDb.Client.Options.Services
 {
     public interface IClientOptionsService : IInitializable, IExplicitInject, IClientQuitCleanup
     {

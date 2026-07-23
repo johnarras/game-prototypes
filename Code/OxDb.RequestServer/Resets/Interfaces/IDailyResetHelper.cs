@@ -3,7 +3,13 @@ using OxDb.SharedCore.Interfaces;
 
 namespace OxDb.RequestServer.Resets.Interfaces
 {
-    public interface IDailyResetHelper : IOrderedSetupDictionaryItem<Type>
+
+    public enum EDailyResetOrder
+    {
+
+    }
+
+    public interface IDailyResetHelper : IOrderedSetupDictionaryItem<EDailyResetOrder>
     {
         Task DailyReset(WebContext context, int consecutiveResetDays, int daysMissed);
     }

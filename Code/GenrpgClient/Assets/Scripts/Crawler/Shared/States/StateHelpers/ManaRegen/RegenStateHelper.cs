@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedGame.Buildings.Constants;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.ManaRegen.Services;

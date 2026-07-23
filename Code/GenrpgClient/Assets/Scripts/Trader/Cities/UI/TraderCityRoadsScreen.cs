@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.UI.ScreenSystem;
+﻿using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.UI.ScreenSystem;
 using OxDb.SharedGame.Trader.Caravans.Entities;
 using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.Trader.Cities.Settings;
@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.Cities
+namespace OxDb.Client.Trader.UI.Cities
 {
     public class TraderCityRoadsScreen : TypedArgScreen<TraderCityRoadsScreenArgs>
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.UI.Interfaces;
 
-namespace Assets.Scripts.UI.Interfaces
+namespace OxDb.Client.UI.Interfaces
 {
     public interface ITextService : IInjectable
     {

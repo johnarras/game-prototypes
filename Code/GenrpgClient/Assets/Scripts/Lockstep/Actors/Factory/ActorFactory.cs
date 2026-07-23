@@ -1,15 +1,15 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Actors.Constants;
-using Assets.Scripts.Lockstep.Buildings.Components;
-using Assets.Scripts.Lockstep.Factions.Components;
-using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Projectiles.Components;
-using Assets.Scripts.Lockstep.Spawns;
-using Assets.Scripts.Lockstep.Units.Components;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Actors.Constants;
+using OxDb.Client.Lockstep.Buildings.Components;
+using OxDb.Client.Lockstep.Factions.Components;
+using OxDb.Client.Lockstep.Maps.Components;
+using OxDb.Client.Lockstep.Projectiles.Components;
+using OxDb.Client.Lockstep.Spawns;
+using OxDb.Client.Lockstep.Units.Components;
 using Unity.Burst;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Actors.Factory
+namespace OxDb.Client.Lockstep.Actors.Factory
 {
     [BurstCompile]
     public static class ActorFactory

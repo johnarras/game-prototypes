@@ -9,6 +9,7 @@ using OxDb.SharedGame.Units.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace OxDb.SharedGame.Characters.PlayerData
 {
@@ -28,7 +29,8 @@ namespace OxDb.SharedGame.Characters.PlayerData
 
         public TradeObject Trade { get; set; }
         public ulong TradeModifyLockCount = 0;
-        public object TradeLock { get; private set; } = new object();
+        public SemaphoreSlim TradeLock { get; } = new SemaphoreSlim(1,1);
+            
 
         public CoreCharacter Core { get; }
 

@@ -1,11 +1,8 @@
-﻿using Google.Apis.Auth;
-using Microsoft.AspNetCore.SignalR.Protocol;
-using Microsoft.Azure.Cosmos.Linq;
+﻿
 using OxDb.PlatformServer.Accounts.Entities;
 using OxDb.PlatformServer.Accounts.PlayerData;
-using OxDb.ServerCore.WebRequests.Services;
 using OxDb.SharedCore.Config.Constants;
-using OxDb.SharedCore.Logalytics.Interfaces;
+using OxDb.SharedCore.WebRequests.Services;
 using OxDb.SharedCore.Website.Responses.Core;
 using OxDb.SharedPlatform.Accounts.Constants;
 using OxDb.SharedPlatform.Accounts.WebApi.AccountAuth;
@@ -78,6 +75,7 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
 
         private string _endpointSuffix = null;
 
+        private CancellationToken _token = default;
         public override void Init()
         {
             _facebookAppId = _serverConfig.GetConfigVal(AppConfigKeys.FacebookAppId);
@@ -109,18 +107,23 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
 
             string userEmail = null;
 
+
+            WebRequestOptions authOpts = new WebRequestOptions()
+            {
+                Method = HttpMethodType.Get,
+            };
             try
             {
 
-                ResponseEnvelope<FacebookTokenPayload> payloadEnvelope = await _webRequestService.GetAsync<FacebookTokenPayload>(url);
+                ResponseEnvelope<FacebookTokenPayload> payloadEnvelope = await _webRequestService.SendAsync<FacebookTokenPayload>(url, authOpts, _token);
 
                 if (!payloadEnvelope.Success)
                 {
-                    result.ErrorMessage = payloadEnvelope.ErrorMessage;
+                    result.ErrorMessage = payloadEnvelope?.ErrorMessage ?? string.Empty;
                     return result;
                 }
 
-                FacebookTokenPayload payload = payloadEnvelope.Response;
+                FacebookTokenPayload? payload = payloadEnvelope?.Response ?? null;
 
                 if (payload?.Data == null)
                 {
@@ -157,8 +160,14 @@ namespace OxDb.PlatformServer.Accounts.AuthHelpers
 
                 string profileUrl = $"https://graph.facebook.com/me?fields=id,name,email&access_token={request.UserSecret}";
 
+
+                WebRequestOptions profileOpts = new WebRequestOptions()
+                {
+                    Method = HttpMethodType.Get,
+                };
+
                 // Use your general GET method to fetch the profile
-                ResponseEnvelope<FacebookUserProfile> profileEnvelope = await _webRequestService.GetAsync<FacebookUserProfile>(profileUrl);
+                ResponseEnvelope<FacebookUserProfile> profileEnvelope = await _webRequestService.SendAsync<FacebookUserProfile>(profileUrl, profileOpts, _token);
 
                 if (!profileEnvelope.Success)
                 {

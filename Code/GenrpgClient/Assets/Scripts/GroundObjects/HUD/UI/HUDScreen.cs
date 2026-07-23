@@ -1,6 +1,6 @@
 
-using Assets.Scripts.Resets.ClientEvents;
-using Assets.Scripts.UI;
+using OxDb.Client.Resets.ClientEvents;
+using OxDb.Client.UI;
 using System.Threading;
 using System.Threading.Tasks;
 using UI;

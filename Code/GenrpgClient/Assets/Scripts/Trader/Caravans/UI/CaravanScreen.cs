@@ -1,7 +1,7 @@
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Currencies.UI;
-using Assets.Scripts.Trader.Travel.UI;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Trader.ClientEvents;
+using OxDb.Client.Trader.Currencies.UI;
+using OxDb.Client.Trader.Travel.UI;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Trader.CaravanMembers.Constants;
@@ -24,7 +24,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Caravans.UI
+namespace OxDb.Client.Trader.Caravans.UI
 {
     public class CaravanScreen : BaseScreen
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.MapGen.Services;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Quests.ClientEvents;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.Services;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Quests.ClientEvents;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;

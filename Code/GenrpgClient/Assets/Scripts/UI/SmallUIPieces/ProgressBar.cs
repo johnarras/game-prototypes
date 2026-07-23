@@ -1,4 +1,4 @@
-using Assets.Scripts.Awaitables;
+using OxDb.Client.Awaitables;
 using OxDb.SharedCore.Utils;
 using System;
 using UnityEngine;

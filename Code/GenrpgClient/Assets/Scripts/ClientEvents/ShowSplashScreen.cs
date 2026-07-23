@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.ClientEvents
+namespace OxDb.Client.ClientEvents
 {
     public class ShowSplashScreen : IClientEvent
     {

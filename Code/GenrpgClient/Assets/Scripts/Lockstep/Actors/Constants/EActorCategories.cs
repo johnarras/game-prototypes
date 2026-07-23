@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Actors.Constants
+﻿namespace OxDb.Client.Lockstep.Actors.Constants
 {
     public enum EActorCategories
     {

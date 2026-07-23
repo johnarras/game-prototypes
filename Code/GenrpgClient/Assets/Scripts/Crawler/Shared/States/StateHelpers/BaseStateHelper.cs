@@ -1,6 +1,6 @@
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;

@@ -3,7 +3,7 @@ using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Spells
+namespace OxDb.Client.MessageHandlers.Spells
 {
     public class OnAddEffectHandler : BaseClientMapMessageHandler<OnAddEffect>
     {

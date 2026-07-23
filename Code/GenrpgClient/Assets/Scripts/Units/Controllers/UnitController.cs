@@ -1,6 +1,7 @@
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Input;
+using OxDb.Client;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Input;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Dungeons
+namespace OxDb.Client.Dungeons
 {
     [Serializable]
     public class DungeonDoorPanel

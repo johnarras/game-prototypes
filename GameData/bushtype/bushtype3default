@@ -2,8 +2,11 @@
   "Id": "bushtype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "Azalea",
-  "Art": "Azalea",
+  "Name": "Cactus",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "Cactus",
   "Scale": 1.0,
   "VariationCount": 2,
   "Flags": 1

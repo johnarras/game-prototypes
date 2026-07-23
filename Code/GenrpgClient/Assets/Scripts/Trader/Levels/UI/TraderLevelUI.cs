@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Interfaces;
+﻿using OxDb.Client.Doobers.Events;
+using OxDb.Client.DynamicUI.Interfaces;
 using OxDb.SharedCore.Client.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Core.PlayerData;
@@ -7,7 +7,7 @@ using OxDb.SharedGame.Currencies.Constants;
 using OxDb.SharedGame.Trader.Constants;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Levels.UI
+namespace OxDb.Client.Trader.Levels.UI
 {
     public class TraderLevelUI : BaseBehaviour, IEntityQuantityIcon, IClientEvent
     {

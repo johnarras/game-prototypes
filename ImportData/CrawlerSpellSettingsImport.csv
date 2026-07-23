@@ -68,8 +68,42 @@ spell,38,Pick Lock,Open a locked door or chest.,1,0,0,cast,divination,1,0,100,sp
 effect,specialmagic,pick lock,0,0,1,,melee,,,,,,
 spell,39,Cleanse Area,Disarm traps and negate nearby room effects.,2,50,5,cast,divination,1,0,100,special,0.1
 effect,specialmagic,cleanse area,0,0,1,,light,,,,,,
-spell,80,Reveal Area,Reveal surrounding map cells.,2,2,0,cast,divination,1,0,100,special,1
+spell,40,Reveal Area,Reveal surrounding map cells.,2,2,0,cast,divination,1,0,100,special,1
 effect,specialmagic,reveal area,0,0,1,,fire,,,,,,
+,,,,,,,,,,,,,
+spell,50,Summon Scrapper,Summon a scrapper.,1,25,5,cast,summon,1,0,100,special,0
+effect,unit,scrapper,,0,100,0,melee,,,,,,
+spell,51,Summon Bear,Summon a bear.,1,25,5,cast,summon,1,0,100,special,0
+effect,unit,bear,,0,100,0,ranged,,,,,,
+spell,52,Summon Elemental,Summon an earth elemental.,1,25,5,cast,summon,1,0,100,special,0
+effect,unit,scrapper,,0,100,0,earth,,,,,,
+spell,53,Summon Monk,Summon a monk.,1,25,5,cast,summon,1,0,100,special,0
+effect,unit,bear,,0,100,0,light,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
+,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,
 ,,,,,,,,,,,,,

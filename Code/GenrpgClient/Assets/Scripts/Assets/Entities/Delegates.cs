@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Entities
+namespace OxDb.Client.Assets.Entities
 {
     public delegate void AssetDownloadHandler<T>(GameObject obj, T data, CancellationToken token);
 

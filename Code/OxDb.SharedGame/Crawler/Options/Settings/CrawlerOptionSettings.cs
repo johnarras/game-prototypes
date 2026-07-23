@@ -24,7 +24,7 @@ namespace OxDb.SharedGame.Crawler.Options.Settings
         public string Icon { get; set; }
         public string Art { get; set; }
         public bool DefaultForNewGame { get; set; }
-
+        public bool ForceDefault { get; set; }
     }
 
 

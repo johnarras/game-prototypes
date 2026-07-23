@@ -401,7 +401,7 @@ MonoBehaviour:
   _skyboxMaterial: {fileID: 2100000, guid: 4e57d50f472456649871890354f264d9, type: 2}
   _cameraSettings: {fileID: 6301978552445663155}
   PauseUpdates: 0
-  LinearFogEnd: 300
+  LinearFogEnd: 100
   SunlightIntensityMultiplier: 1.1
   AmbientIntensityMultiplier: 0.65
   DefaultSaturation: 0

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Config
+namespace OxDb.Client.Config
 {
     public class ConfigConstants
     {

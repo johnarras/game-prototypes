@@ -3,39 +3,32 @@
     {
       "IdKey": 1,
       "Name": "RockRock",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "",
       "Art": "RockRock",
       "ChanceScale": 1.0,
-      "BaseColor": {
-        "R": 1.0,
-        "G": 1.0,
-        "B": 1.0,
-        "A": 1.0
-      },
-      "MaxIndex": 10
+      "VariationCount": 10
     },
     {
       "IdKey": 2,
-      "Name": "RockSand",
-      "Art": "RockSand",
+      "Name": "RockRed",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "RockRed",
       "ChanceScale": 1.0,
-      "BaseColor": {},
-      "MaxIndex": 10
+      "VariationCount": 10
     },
     {
       "IdKey": 3,
-      "Name": "RockRed",
-      "Art": "RockRed",
+      "Name": "RockSand",
+      "Desc": "",
+      "AtlasPrefix": "",
+      "Icon": "",
+      "Art": "RockSand",
       "ChanceScale": 1.0,
-      "BaseColor": {},
-      "MaxIndex": 10
-    },
-    {
-      "IdKey": 4,
-      "Name": "RockSwamp",
-      "Art": "RockSwamp",
-      "ChanceScale": 1.0,
-      "BaseColor": {},
-      "MaxIndex": 10
+      "VariationCount": 6
     }
   ],
   "Parent": {
@@ -43,5 +36,5 @@
     "Name": "RockTypeSettings"
   },
   "Id": "default",
-  "SaveTime": "2025-05-31T10:32:08.35Z"
+  "SaveTime": "2026-07-19T21:42:26.912Z"
 }

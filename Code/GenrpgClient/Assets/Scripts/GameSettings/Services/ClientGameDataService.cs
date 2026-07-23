@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets;
-using Assets.Scripts.GameSettings.Entities;
-using Assets.Scripts.Repository;
+using OxDb.Client.Assets;
+using OxDb.Client.GameSettings.Entities;
+using OxDb.Client.Repository;
 using OxDb.SharedCore.DataStores.Entities;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.GameSettings.Interfaces;
@@ -16,7 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.GameSettings.Services
+namespace OxDb.Client.GameSettings.Services
 {
     public interface IClientGameDataService : IGameDataService, IInitializable
     {

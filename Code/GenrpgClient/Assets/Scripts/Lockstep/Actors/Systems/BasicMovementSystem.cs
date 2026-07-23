@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Game;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Systems;
-using Assets.Scripts.Lockstep.Systems.Constants;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Game;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Systems;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Burst;
 using Unity.Entities;
 

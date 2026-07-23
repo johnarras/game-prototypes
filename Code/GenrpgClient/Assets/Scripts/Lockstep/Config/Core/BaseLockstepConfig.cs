@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Lockstep.Factions.Setup;
-using Assets.Scripts.Lockstep.Maps.Entities;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Spawns;
+﻿using OxDb.Client.Lockstep.Factions.Setup;
+using OxDb.Client.Lockstep.Maps.Entities;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Spawns;
 using OxDb.SharedCore.Core.Constants;
 using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Config.Core
+namespace OxDb.Client.Lockstep.Config.Core
 {
     public abstract class BaseLockstepConfig
     {

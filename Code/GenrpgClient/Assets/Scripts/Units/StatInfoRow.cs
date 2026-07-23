@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.UI.WorldUI;
+using OxDb.Client.Crawler.UI.WorldUI;
 using OxDb.SharedGame.Stats.Constants;
 using OxDb.SharedGame.Stats.Settings.Stats;
 using OxDb.SharedGame.Units.Entities;

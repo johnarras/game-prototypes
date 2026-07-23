@@ -1,4 +1,5 @@
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Currencies.Constants;
 using OxDb.SharedGame.Trader.Caravans.Entities;
@@ -8,14 +9,14 @@ using OxDb.SharedGame.Trader.TradeGoods.Services;
 using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.Icons
+namespace OxDb.Client.Trader.UI.Icons
 {
     public class TradeGoodIcon : RowEntityIcon
     {
 
         protected ICaravanService _caravanService = null;
         protected ITradeGoodService _tradeGoodService = null;
-        protected IClientWebService _webService = null;
+        protected IClientWebRequestService _webService = null;
 
         public long UniqueId => _uniqueId;
         private long _uniqueId { get; set; }
@@ -66,7 +67,7 @@ namespace Assets.Scripts.Trader.UI.Icons
                 SellValue = _sellPrice,
                 TradeGoodId = _entityId,
             };
-            _webService.SendWebRequest(request, GetToken());
+            _webService.SendMainServerRequest(request, GetToken());
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Assets.Scripts.Trader.UI.Icons
                 SellValue = _sellPrice,
                 TradeGoodId = _entityId,
             };
-            _webService.SendWebRequest(request, GetToken());
+            _webService.SendMainServerRequest(request, GetToken());
 
         }
     }

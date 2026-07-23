@@ -1,7 +1,7 @@
 using OxDb.SharedGame.Chat.Messages;
 using OxDb.SharedGame.Chat.Settings;
 
-namespace Assets.Scripts.UI.Chat
+namespace OxDb.Client.UI.Chat
 {
     public class ChatRow : BaseBehaviour
     {

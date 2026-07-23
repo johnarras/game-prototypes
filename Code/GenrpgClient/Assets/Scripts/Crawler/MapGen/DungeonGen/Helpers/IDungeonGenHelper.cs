@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Crawler.MapGen.Helpers;
+﻿using OxDb.Client.Crawler.MapGen.Helpers;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.MapGen.DungeonGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.DungeonGen.Helpers
 {
     public interface IDungeonGenHelper : ISetupDictionaryItem<long>
     {

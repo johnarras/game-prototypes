@@ -17,6 +17,7 @@ namespace OxDb.SharedCore.Entities.Services
     {
         IEntityHelper GetEntityHelper(long entityTypeId);
         IIdName Find(IFilteredObject obj, long entityType, long entityId);
+        T Find<T>(IFilteredObject obj, long entityTypeId, long entityId);
         List<IIdName> GetChildList(IFilteredObject obj, long entityTypeId);
         List<IIdName> GetChildList(IFilteredObject obj, string tableName);
         EntityAtlasIcon TryGetEntityIcon(IFilteredObject obj, long entityTypeId, long entityId, string forcedIconName = "",
@@ -140,6 +141,17 @@ namespace OxDb.SharedCore.Entities.Services
                 }
             }
             return null;
+        }
+
+        public T Find<T>(IFilteredObject obj, long entityTypeId, long entityId)
+        {
+            IIdName idn = Find(obj, entityTypeId, entityId);
+
+            if (idn is T t)
+            {
+                return t;
+            }
+            return default(T)!;
         }
     }
 }

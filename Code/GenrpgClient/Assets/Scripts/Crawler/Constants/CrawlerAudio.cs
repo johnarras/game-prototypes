@@ -1,6 +1,6 @@
 
 
-namespace Assets.Scripts.Crawler.Constants
+namespace OxDb.Client.Crawler.Constants
 {
     public class CrawlerAudio
     {

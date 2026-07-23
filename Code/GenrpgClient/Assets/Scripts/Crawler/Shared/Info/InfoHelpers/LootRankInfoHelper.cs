@@ -3,7 +3,7 @@ using OxDb.SharedGame.Crawler.Info.InfoHelpers;
 using OxDb.SharedGame.Inventory.Settings.Ranks;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Crawler.Shared.Info.InfoHelpers
+namespace OxDb.Client.Crawler.Shared.Info.InfoHelpers
 {
     public class LootRankInfoHelper : BaseInfoHelper<LootRankSettings, LootRank>
     {

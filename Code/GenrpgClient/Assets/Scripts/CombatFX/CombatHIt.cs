@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.CombatFX
+namespace OxDb.Client.CombatFX
 {
     public class CombatHit : BaseBehaviour
     {

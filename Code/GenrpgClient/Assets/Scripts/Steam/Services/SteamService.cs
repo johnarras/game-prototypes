@@ -1,6 +1,6 @@
 ﻿
 #if !DISABLESTEAMWORKS
-using Assets.Scripts.GameObjects;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using Steamworks;
@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Steam.Services
+namespace OxDb.Client.Steam.Services
 {
 
     public interface ISteamService : IInitializable

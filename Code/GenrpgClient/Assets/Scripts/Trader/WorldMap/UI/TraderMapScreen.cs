@@ -1,11 +1,11 @@
-using Assets.Scripts.Trader.UI.TraderMapUI;
+using OxDb.Client.Trader.UI.TraderMapUI;
 using OxDb.SharedGame.Trader.Cities.Settings;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.TradeMapUI
+namespace OxDb.Client.Trader.UI.TradeMapUI
 {
     public class TraderMapScreen : BaseScreen
     {

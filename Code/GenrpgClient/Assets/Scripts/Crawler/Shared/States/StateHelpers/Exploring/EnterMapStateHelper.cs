@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.MapGen.Services;
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.Crawler.MapGen.Services;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Constants;

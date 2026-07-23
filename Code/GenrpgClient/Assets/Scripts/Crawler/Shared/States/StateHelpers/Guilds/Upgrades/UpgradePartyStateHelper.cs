@@ -1,5 +1,5 @@
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedGame.Crawler.Crawlers.Services;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;

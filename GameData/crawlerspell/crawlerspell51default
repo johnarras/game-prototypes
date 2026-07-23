@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell51default",
+  "ParentId": "default",
+  "IdKey": 51,
+  "Name": "Summon Bear",
+  "Desc": "Summon a bear.",
+  "BaseCost": 25.0,
+  "TierCost": 5.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 5,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 55,
+      "ElementTypeId": 11,
+      "ProcChance": 100.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  }
+}

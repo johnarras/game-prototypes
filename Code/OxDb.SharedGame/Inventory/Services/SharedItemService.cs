@@ -24,7 +24,7 @@ namespace OxDb.SharedGame.Inventory.Services
         public long ScalingTypeId { get; set; }
         public long Level { get; set; }
 
-        public double ExtraScaling { get; set; } = 1.0;
+        public double ExtraScaling { get; set; }
     }
 
     public class WeaponRoleDamage

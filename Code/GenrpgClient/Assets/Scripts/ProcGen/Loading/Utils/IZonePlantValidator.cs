@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace Assets.Scripts.ProcGen.Loading.Utils
+namespace OxDb.Client.ProcGen.Loading.Utils
 {
     public interface IZonePlantValidator : IInjectable
     {

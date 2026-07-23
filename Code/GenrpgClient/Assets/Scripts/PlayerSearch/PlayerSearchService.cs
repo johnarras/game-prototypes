@@ -1,5 +1,5 @@
 
-using Assets.Scripts.PlayerSearch;
+using OxDb.Client.PlayerSearch;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
@@ -7,7 +7,7 @@ using OxDb.SharedPlatform.Accounts.PublicData;
 using System;
 using System.Threading;
 
-namespace Assets.Scripts.PlayerSearches
+namespace OxDb.Client.PlayerSearches
 {
     public class PlayerSearchService : IPlayerSearchService
     {

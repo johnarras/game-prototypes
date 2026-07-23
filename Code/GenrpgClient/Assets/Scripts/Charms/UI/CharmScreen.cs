@@ -1,10 +1,10 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedGame.Charms.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Charms
+namespace OxDb.Client.UI.Charms
 {
 
     public class CharmScreen : BaseScreen

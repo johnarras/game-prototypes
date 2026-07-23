@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Assets.Constants
+﻿namespace OxDb.Client.Assets.Constants
 {
     public class AtlasNames
     {

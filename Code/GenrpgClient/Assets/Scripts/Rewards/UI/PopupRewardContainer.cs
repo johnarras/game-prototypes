@@ -1,12 +1,12 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.WorldCanvas.GameEvents;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.WorldCanvas.GameEvents;
 using OxDb.SharedCore.Rewards.Entities;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Rewards.UI
+namespace OxDb.Client.Rewards.UI
 {
 
 

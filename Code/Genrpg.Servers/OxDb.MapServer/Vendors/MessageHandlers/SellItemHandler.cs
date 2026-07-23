@@ -14,7 +14,7 @@ namespace OxDb.MapServer.Vendors.MessageHandlers
 
         protected override async ValueTask InnerProcess(MapObject obj, SellItem message)
         {
-            _vendorService.SellItem(obj, message);
+            await _vendorService.SellItem(obj, message);
         }
     }
 }

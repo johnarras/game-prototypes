@@ -1,4 +1,4 @@
-using Assets.Scripts.WorldCanvas.GameEvents;
+using OxDb.Client.WorldCanvas.GameEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.CombatTexts
+namespace OxDb.Client.UI.CombatTexts
 {
 
     public class FastCombatTextArgs

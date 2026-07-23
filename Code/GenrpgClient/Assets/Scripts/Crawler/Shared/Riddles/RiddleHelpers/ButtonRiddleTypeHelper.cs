@@ -1,7 +1,7 @@
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Crawler.UI.Dungeons;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.UI.Dungeons;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -17,7 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Shared.Riddles.RiddleHelpers
+namespace OxDb.Client.Crawler.Shared.Riddles.RiddleHelpers
 {
     public class ButtonRiddleTypeHelper : BaseRiddleTypeHelper
     {

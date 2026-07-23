@@ -21,8 +21,7 @@ internal class FullTreePrototype
     public string Name = "";
     public TreeType treeType { get; set; }
     public IDictionary<string, OverrideTreeType> overrideTreeTypes { get; set; }
-    public ZoneTreeType zoneTree = null;
-    public ZoneTreeType zoneTypeTree = null;
+    public WeightedEntity zoneTypeTree = null;
     public int prototypeIndex = 0;
     public MyRandom posRand;
     public MyRandom chanceRand;
@@ -172,21 +171,15 @@ public class AddTrees : BaseZoneGenerator
 
         GenZone genZone = _md.GetGenZone(zone.IdKey);
 
-        if (genZone.TreeTypes == null)
-        {
-            return null;
-        }
-
-        List<ZoneTreeType> tlist = new List<ZoneTreeType>(genZone.TreeTypes);
-
+        List<WeightedEntity> treeTypes = genZone.GetPropsOfType(EntityTypes.Tree);
 
         // Get valid list of trees and set up some
         // objects so we can modify values later on.
-        for (int t = 0; t < tlist.Count; t++)
+        for (int t = 0; t < treeTypes.Count; t++)
         {
 
-            ZoneTreeType zoneTree = tlist[t];
-            TreeType treeType = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(zoneTree.TreeTypeId);
+            WeightedEntity zoneTree = treeTypes[t];
+            TreeType treeType = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(zoneTree.EntityId);
 
 
             if (treeType == null || string.IsNullOrEmpty(treeType.Art))
@@ -194,25 +187,8 @@ public class AddTrees : BaseZoneGenerator
                 continue;
             }
 
-            ZoneTreeType zoneTypeTree = null;
-
-            if (genZone.TreeTypes != null)
-            {
-                zoneTypeTree = genZone.TreeTypes.FirstOrDefault(x => x.TreeTypeId == zoneTree.TreeTypeId);
-            }
-
-            // If we fail to find the proper tree, make it appear at a lower percent
-            // chance.
-            if (zoneTypeTree == null)
-            {
-                continue;
-            }
-
-
-
             FullTreePrototype full = new FullTreePrototype();
-            full.zoneTree = zoneTree;
-            full.zoneTypeTree = zoneTypeTree;
+            full.zoneTypeTree = zoneTree;
             full.treeType = treeType;
             full.prototypeIndex = t;
             full.Name = full.treeType.Name;
@@ -221,7 +197,7 @@ public class AddTrees : BaseZoneGenerator
             full.bareRand = new MyRandom(zone.Seed % 23423243 + treeType.IdKey * 234231);
             full.overrideChance = RandUtils.FloatRange(MapConstants.MaxOverrideTreeTypeChance / 2,
                 MapConstants.MaxOverrideTreeTypeChance, choiceRand);
-            full.chanceMult = zoneTree.Weight * zoneTypeTree.Weight;
+            full.chanceMult = zoneTree.Weight;
 
             if (choiceRand.NextDouble() < 0.35f)
             {

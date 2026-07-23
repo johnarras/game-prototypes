@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
+namespace OxDb.Client.Crawler.Maps.EncounterHelpers
 {
     public class StatMapEncounterHelper : BaseClientMapEncounterHelper
     {
@@ -45,7 +45,7 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
         public override async ValueTask OnEnterCell(PartyData party, CrawlerMap map, CrawlerMapStatus mapStatus, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
             _crawlerService.ChangeState(ECrawlerStates.GainStats, token);
-            moveStatus.MoveIsComplete = true;
+            moveStatus.MoveIsStopped = true;
             await Task.CompletedTask;
         }
     }

@@ -1,4 +1,4 @@
-namespace Assets.Scripts.WorldCanvas.Interfaces
+namespace OxDb.Client.WorldCanvas.Interfaces
 {
     public interface IDynamicUIItem
     {

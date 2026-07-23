@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Entities.UI;
+﻿using OxDb.Client.Entities.UI;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Entities
+namespace OxDb.Client.UI.Entities
 {
     public class CapacityEntityIcon : EntityIcon
     {

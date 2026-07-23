@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace Assets.Scripts.Setup.Interfaces
+namespace OxDb.Client.Setup.Interfaces
 {
     public interface IMapTokenService
     {

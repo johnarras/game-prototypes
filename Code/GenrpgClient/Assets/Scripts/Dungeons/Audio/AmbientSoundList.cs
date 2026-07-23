@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Dungeons.Audio
+namespace OxDb.Client.Dungeons.Audio
 {
 
     [Serializable]

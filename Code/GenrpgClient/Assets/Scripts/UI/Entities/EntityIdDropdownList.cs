@@ -3,7 +3,7 @@ using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Entities
+namespace OxDb.Client.UI.Entities
 {
     public abstract class EntityIdDropdownList : ScriptableObject
     {

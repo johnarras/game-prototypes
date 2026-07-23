@@ -37,9 +37,7 @@ namespace OxDb.SharedGame.ProcGen.Settings.Trees
         public string Icon { get; set; }
         public string Art { get; set; }
 
-        public float Scale { get; set; } = 1.0f;
-
-        public int VariationCount { get; set; } = 1;
+        public int VariationCount { get; set; }
 
         public int Flags { get; set; }
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }

@@ -1,6 +1,6 @@
 using OxDb.SharedGame.SpellCrafting.Messages;
 
-namespace Assets.Scripts.MessageHandlers.SpellCrafting
+namespace OxDb.Client.MessageHandlers.SpellCrafting
 {
     public class OnSetActionBarItemHandler : DispatchClientMapMessageHandler<OnSetActionBarItem> { }
 }

@@ -1,7 +1,7 @@
 ﻿using OxDb.SharedCore.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Ads.AdHelpers
+namespace OxDb.Client.Ads.AdHelpers
 {
 
     public enum EAdTypes

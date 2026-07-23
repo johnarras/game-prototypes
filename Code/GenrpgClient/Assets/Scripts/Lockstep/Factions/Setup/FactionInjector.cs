@@ -1,9 +1,9 @@
 ﻿
-using Assets.Scripts.Lockstep.Factions.Components;
+using OxDb.Client.Lockstep.Factions.Components;
 using System.Collections.Generic;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Factions.Setup
+namespace OxDb.Client.Lockstep.Factions.Setup
 {
     public class FactionInjector
     {

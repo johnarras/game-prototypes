@@ -1,5 +1,5 @@
 ﻿
-using Assets.Scripts.Config;
+using OxDb.Client.Config;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Utils;
@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Assets.Scripts.FileUploads
+namespace OxDb.Client.FileUploads
 {
     public static class FileUploader
     {

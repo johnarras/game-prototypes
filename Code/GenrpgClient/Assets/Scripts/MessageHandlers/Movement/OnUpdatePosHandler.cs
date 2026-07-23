@@ -1,4 +1,4 @@
-using Assets.Scripts.Pathfinding.Utils;
+using OxDb.Client.Pathfinding.Utils;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Movement.Messages;
@@ -9,7 +9,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.ResultHandlers.TypedHandlers
+namespace OxDb.Client.ResultHandlers.TypedHandlers
 {
     public class OnUpdatePosHandler : BaseClientMapMessageHandler<OnUpdatePos>
     {

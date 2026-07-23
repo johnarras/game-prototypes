@@ -2,7 +2,7 @@ using OxDb.SharedGame.UI.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.Abstractions
+namespace OxDb.Client.UI.Abstractions
 {
     public class GScrollRect : ScrollRect, IScrollRect
     {

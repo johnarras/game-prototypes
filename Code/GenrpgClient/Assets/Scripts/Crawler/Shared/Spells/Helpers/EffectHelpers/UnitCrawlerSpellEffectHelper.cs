@@ -5,7 +5,6 @@ using OxDb.SharedGame.Crawler.Combat.Entities;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Roles.Settings;
-using OxDb.SharedGame.Crawler.Spells.Settings;
 using OxDb.SharedGame.Spells.Entities;
 using OxDb.SharedGame.Units.Settings;
 using System.Collections.Generic;
@@ -13,7 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
+namespace OxDb.Client.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
     public class UnitCrawlerSpellEffectHelper : BaseCrawlerSpellEffectHelper
     {
@@ -43,18 +42,12 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
             {
                 long quantity = RandUtils.LongRange(fullEffect.Hit.MinQuantity, fullEffect.Hit.MaxQuantity, _gs.Rand);
 
-                SummonArgs summonArgs = null;
 
+                CrawlerUnit summoner = null;
                 if (caster is PartyMember member)
                 {
                     quantity = 1;
-
-                    summonArgs = new SummonArgs()
-                    {
-                        SummonTier = _roleService.GetSpellScalingLevel(party, member, spell.Spell, true),
-                        SummonStatBonus = (long)(_crawlerStatService.GetStatBonus(party, member, spell.StatScalingTypeId) *
-                        _gameData.Get<CrawlerSpellSettings>(_gs.ch).SummonStatBonusScale),
-                    };
+                    summoner = member;
                 }
 
                 InitialCombatGroup icg = new InitialCombatGroup()
@@ -64,8 +57,12 @@ namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
                     FactionTypeId = caster.FactionTypeId,
                     Level = caster.Level,
                     Range = CrawlerCombatConstants.MinRange,
-                    SummonArgs = summonArgs,
                 };
+
+                if (summoner != null)
+                {
+                    icg.Summoners.Add(summoner);
+                }
 
                 _combatService.AddCombatUnits(party, icg);
 

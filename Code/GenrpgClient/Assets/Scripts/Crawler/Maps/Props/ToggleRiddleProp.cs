@@ -1,11 +1,11 @@
-using Assets.Scripts.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Loading;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Riddles.Services;
 using OxDb.SharedGame.Riddles.Settings;
 
-namespace Assets.Scripts.Crawler.Maps.Props
+namespace OxDb.Client.Crawler.Maps.Props
 {
-    public class ToggleRiddleProp : CrawlerProp
+    public class ToggleRiddleProp : MapProp
     {
 
         protected IRiddleService _riddleService = null;

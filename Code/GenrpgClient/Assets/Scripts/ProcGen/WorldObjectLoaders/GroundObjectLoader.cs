@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Constants;
 using OxDb.SharedGame.GroundObjects.Settings;

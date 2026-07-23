@@ -1,4 +1,5 @@
 using OxDb.SharedCore.MapServer.Constants;
+using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Zones.Entities;
 using OxDb.SharedGame.Zones.Settings;
 using OxDb.SharedGame.Zones.WorldData;
@@ -36,30 +37,16 @@ namespace OxDb.SharedGame.ProcGen.Entities
 
         public float SpreadChance { get; set; }
 
-        public List<ZoneRockType> RockTypes { get; set; } = new List<ZoneRockType>();
-        public List<ZoneTreeType> TreeTypes { get; set; } = new List<ZoneTreeType>();
-        public List<ZoneBushType> BushTypes { get; set; } = new List<ZoneBushType>();
+        public List<WeightedEntity> Props { get; set; } = new List<WeightedEntity>(); 
+
+        public List<WeightedEntity> GetPropsOfType(long entityTypeId)
+        {
+            return Props.Where(x=>x.EntityTypeId == entityTypeId).ToList();
+        }
 
         public List<ZoneRelation> ZonesNearLevel { get; set; } = new List<ZoneRelation>();
         public List<ZoneRelation> ZonesNearPos { get; set; } = new List<ZoneRelation>();
 
-
-        public ZoneTreeType GetTree(int treeTypeId)
-        {
-            if (TreeTypes == null)
-            {
-                return null;
-            }
-
-            for (int t = 0; t < TreeTypes.Count; t++)
-            {
-                if (TreeTypes[t].TreeTypeId == treeTypeId)
-                {
-                    return TreeTypes[t];
-                }
-            }
-            return null;
-        }
 
         public void AddNearbyZone(Zone zone, float distance)
         {

@@ -1,8 +1,8 @@
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Props;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Props;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -10,9 +10,9 @@ using OxDb.SharedGame.Riddles.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Crawler.UI.Dungeons
+namespace OxDb.Client.Crawler.UI.Dungeons
 {
-    public class WallButton : CrawlerProp, IPointerClickHandler
+    public class WallButton : MapProp, IPointerClickHandler
     {
         public EmissiveLerp EmissiveLerp;
         public MeshRenderer MeshRenderer;
@@ -48,7 +48,7 @@ namespace Assets.Scripts.Crawler.UI.Dungeons
                 party.AddRiddleBitIndex(index - 1);
             }
 
-            _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
+            _mapService.ClearCellProps(party.CurrPos.X, party.CurrPos.Z);
         }
     }
 }

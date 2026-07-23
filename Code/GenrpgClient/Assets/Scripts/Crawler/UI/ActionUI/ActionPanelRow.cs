@@ -1,6 +1,6 @@
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.UI.Crawler.CrawlerPanels;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Entities;
@@ -8,7 +8,7 @@ using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.UI.Crawler.ActionUI
+namespace OxDb.Client.UI.Crawler.ActionUI
 {
     public class ActionPanelRow : BaseBehaviour
     {

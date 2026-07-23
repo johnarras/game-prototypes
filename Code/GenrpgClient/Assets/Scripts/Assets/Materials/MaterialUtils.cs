@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
-namespace Assets.Scripts.Assets.Materials
+namespace OxDb.Client.Assets.Materials
 {
     public static class MaterialUtils
     {
@@ -12,6 +13,8 @@ namespace Assets.Scripts.Assets.Materials
         public const string EnableNormalMapKeyword = "_NORMALMAP";
         public const string SpecularColorPropertyName = "_SpecColor";
         public const string EmissionColorPropertyName = "_EmissionColor";
+
+        public static readonly int BaseColorPropertyId = Shader.PropertyToID(BaseColorPropertyName);
 
 
         public static Texture2D GetMainTexture(Material mat)
@@ -26,6 +29,36 @@ namespace Assets.Scripts.Assets.Materials
                 return (Texture2D)mat.GetTexture(NormalMapPropertyName);
             }
             return null;
+        }
+
+        public static Material CreateTransparentVariant(Material sourceOpaqueMaterial)
+        {
+            // Create a perfect duplicate clone of the base material
+            Material transparentMaterial = new Material(sourceOpaqueMaterial);
+            transparentMaterial.name = sourceOpaqueMaterial.name + "_Transparent_Clone";
+
+            // 1. Change Surface Type to Transparent (1 = Transparent, 0 = Opaque)
+            transparentMaterial.SetFloat("_Surface", 1f);
+
+            // 2. Set Blend Modes (SrcBlend = SrcAlpha, DstBlend = OneMinusSrcAlpha)
+            transparentMaterial.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+            transparentMaterial.SetFloat("_DstBlend", (float)BlendMode.OneMinusSrcAlpha);
+
+            // 3. Turn off ZWrite (Standard transparency does not write to depth buffer)
+            transparentMaterial.SetFloat("_ZWrite", 0f);
+
+            // 4. Update URP Pipeline Render Queue tags
+            transparentMaterial.renderQueue = (int)RenderQueue.Transparent;
+            transparentMaterial.SetOverrideTag("RenderType", "Transparent");
+
+            // 5. Enable/Disable the correct URP Shader Keywords
+            transparentMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            transparentMaterial.DisableKeyword("_SURFACE_TYPE_OPAQUE");
+
+            // Disable Alpha Clipping features just in case they were active on the opaque source
+            transparentMaterial.DisableKeyword("_ALPHATEST_ON");
+
+            return transparentMaterial;
         }
     }
 }

@@ -1,9 +1,10 @@
-using Assets.Scripts.Dungeons;
+using OxDb.Client.Assets.Scripts.Assets.Materials;
+using OxDb.Client.Dungeons;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.GameObjects
+namespace OxDb.Client.Crawler.Maps.GameObjects
 {
 
     public class DungeonAssetPosition
@@ -20,6 +21,9 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
     }
 
 
+
+
+
     public class ClientMapCell : BaseBehaviour
     {
         public bool DidInit { get; set; }
@@ -29,18 +33,32 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public int MapX { get; set; }
         public int MapZ { get; set; }
         public List<MapCellDetail> Details { get; set; } = new List<MapCellDetail>();
-        public GameObject Content { get; set; }
-        public List<GameObject> Props { get; set; } = new List<GameObject>();
+        public GameObject Content;
+        public ObjectFader Fader;
+        public bool KeepActive { get; set; }
+
+
 
         public DungeonAsset[] AssetPositions { get; set; } = new DungeonAsset[DungeonAssetPosition.Max];
 
 
-        public void Clear()
+        public override void Init()
         {
+            base.Init();
+        }
 
+        protected override void OnDestroy()
+        {
+            ClearFullCell();
+
+            base.OnDestroy();
+        }
+
+
+        public void ClearFullCell()
+        {
+            ClearProps();
             _clientEntityService?.DestroyAllChildren(Content);
-
-            Props.Clear();
 
             for (int a = 0; a < AssetPositions.Length; a++)
             {
@@ -48,16 +66,21 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             }
         }
 
-
-        protected override void OnDestroy()
+        public void ClearProps()
         {
-            Clear();
-
-            base.OnDestroy();
+            Fader.ClearObjects();
         }
 
-    }
+        public void SetPropAlphas(float alpha)
+        {
+            Fader.SetObjectAlphas(alpha);
+        }
 
+        public void AddProp(GameObject go)
+        {
+            Fader.AddObject(go);
+        }
+    }
 }
 
 

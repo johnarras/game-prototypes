@@ -2,7 +2,7 @@
 using OxDb.SharedCore.Client.Interfaces;
 using System;
 
-namespace Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents
+namespace OxDb.Client.Crawler.ClientEvents.ActionPanelEvents
 {
     public class AddActionPanelText : IClientEvent
     {

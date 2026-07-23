@@ -1,7 +1,7 @@
-using Assets.Scripts.Crawler.Maps.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
+using OxDb.Client.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services.DrawEntityHelpers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -11,15 +11,16 @@ using OxDb.SharedGame.Riddles.Settings;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
+namespace OxDb.Client.Crawler.Maps.Services.DrawCellHelpers
 {
     public class RiddleDrawCellHelper : BaseCrawlerDrawCellHelper
     {
 
         private IRiddleService _riddleService = null;
-        public override int Order => 600;
+        
+        public override ECrawlerDrawCellOrder HelperKey => ECrawlerDrawCellOrder.Riddles;
 
-        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, CancellationToken token)
         {
             int riddleIndex = mapRoot.Map.GetEntityId(cell.MapX, cell.MapZ, EntityTypes.Riddle);
 
@@ -27,7 +28,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
             {
                 RiddleType riddleType = _gameData.Get<RiddleTypeSettings>(_gs.ch).Get(mapRoot.Map.RiddleHints?.RiddleTypeId ?? 0);
 
-                if (riddleType != null && _riddleService.ShouldDrawProp(party, realCellX, realCellZ))
+                if (riddleType != null && _riddleService.ShouldDrawProp(party, cell.MapX, cell.MapZ))
                 {
                     CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
                     {

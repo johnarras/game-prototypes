@@ -9,21 +9,25 @@ using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using System.Threading.Tasks;
 using OxDb.SharedGame.DataStores.Utils;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Assets;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Assets;
 using System.Collections.Concurrent;
-using Assets.Scripts.Assets.Entities;
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Bundles;
-using Assets.Scripts.Assets.Services;
+using OxDb.Client.Assets.Entities;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Bundles;
+using OxDb.Client.Assets.Services;
 using OxDb.SharedCore.Interfaces;
 
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Serialization.Interfaces;
-using Assets.Scripts.Repository;
+using OxDb.Client.Repository;
 using OxDb.SharedCore.DataStores.Entities;
+using OxDb.Client;
+using OxDb.SharedCore.Entities.Constants;
+
+
 
 
 
@@ -58,6 +62,7 @@ public interface IAssetService : IInitializable, IClientResetCleanup
     Awaitable UnloadUnusedAssetsAsync();
     string GetAssetPath(string assetCategoryName);
     void SetLoadSpeed(ELoadSpeed speed);
+    string GetAssetCategoryFromEntityTypeId(long entityTypeId);
 
 }
 public class UnityAssetService : IAssetService, IAssetSubsystem
@@ -942,116 +947,111 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
             return;
         }
 
-        BundleVersion version = GetBundleVersion(bad.bundleName);
-
-        if (version != null)
+        using (CancellationTokenSource linkedCts = CancellationTokenSource.CreateLinkedTokenSource(_token, bad.Token))
         {
-            foreach (string dep in version.ChildDependencies)
+            CancellationToken ct = linkedCts.Token;
+
+            try
             {
-
-                BundleCacheData childData = null;
-
-                while (childData == null)
+                BundleVersion version = GetBundleVersion(bad.bundleName);
+                if (version != null)
                 {
-                    childData = GetBundleCacheData(dep);
-
-                    if (childData == null)
+                    foreach (string dep in version.ChildDependencies)
                     {
-                        await Awaitable.NextFrameAsync();
-                        if (!TokenUtils.IsValid(_token) || !TokenUtils.IsValid(bad.Token))
+                        while (GetBundleCacheData(dep) == null)
                         {
-                            return;
+                            await Awaitable.NextFrameAsync(cancellationToken: ct);
                         }
                     }
                 }
-            }
-        }
 
-        for (int i = 0; i < _retryTimes; i++)
-        {
-
-            if (!_config.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient) && !bad.isLocal)
-            {
-                string bundleHash = GetBundleHash(bad.bundleName);
-                if (string.IsNullOrEmpty(bundleHash))
+                for (int i = 0; i < _retryTimes; i++)
                 {
-                    _logService.Debug("No bundle hash for: " + bad.url);
-                    return;
-                }
-
-                using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(bad.url,
-                    GetBundleHash128(bad.bundleName)))
-                {
-                    UnityWebRequestAsyncOperation asyncOp = request.SendWebRequest();
-                    while (!asyncOp.isDone)
+                    if (!_config.Config.Flags.HasFlag(ClientPlayerFlags.SelfContainedClient) && !bad.isLocal)
                     {
-                        await Awaitable.NextFrameAsync();
-                        if (!TokenUtils.IsValid(_token) || !TokenUtils.IsValid(bad.Token))
+                        string bundleHash = GetBundleHash(bad.bundleName);
+                        if (string.IsNullOrEmpty(bundleHash))
                         {
+                            _logService.Debug("No bundle hash for: " + bad.url);
                             return;
                         }
-                    }
 
-                    AssetBundle downloadedBundle = null;
-
-                    if (request.result != UnityWebRequest.Result.ProtocolError)
-                    {
-                        try
+                        using (UnityWebRequest request = UnityWebRequestAssetBundle.GetAssetBundle(bad.url, GetBundleHash128(bad.bundleName)))
                         {
-                            downloadedBundle = DownloadHandlerAssetBundle.GetContent(request);
+                            UnityWebRequestAsyncOperation asyncOp = request.SendWebRequest();
+
+                            // Register the token to abort the request immediately if cancelled
+                            using (ct.Register(() => request.Abort()))
+                            {
+                                // Await the operation directly. If aborted via token, 
+                                // it breaks out or sets request.result to WebRequestResult.ConnectionError/Aborted
+                                await asyncOp;
+                            }
+
+                            // Check token status immediately upon waking up
+                            ct.ThrowIfCancellationRequested();
+
+                            if (request.result == UnityWebRequest.Result.Success)
+                            {
+                                AssetBundle downloadedBundle = null;
+                                try
+                                {
+                                    downloadedBundle = DownloadHandlerAssetBundle.GetContent(request);
+                                }
+                                catch (Exception e)
+                                {
+                                    _logService.Exception(e, "Failed bundle content extraction: " + bad.url);
+                                }
+
+                                if (downloadedBundle != null)
+                                {
+                                    AddBundleToCache(bad, downloadedBundle);
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                _logService.Warning($"[Bundle Download] Failure on attempt {i} to fetch {bad.url}. Error: {request.error}");
+                            }
                         }
-                        catch (Exception e)
+
+                        if (i < _retryTimes - 1)
                         {
-                            _logService.Exception(e, "FailedbundleDownload: " + bad.url + " " + bad.assetName);
+                            await Awaitable.WaitForSecondsAsync(0.4f, cancellationToken: ct);
                         }
-                    }
-
-                    if (downloadedBundle != null)
-                    {
-                        AddBundleToCache(bad, downloadedBundle);
-
-                        request.Dispose();
-                        return;
                     }
                     else
                     {
-                        request.Dispose();
-                        await Awaitable.WaitForSecondsAsync(0.4f);
-                        if (!TokenUtils.IsValid(_token) || !TokenUtils.IsValid(bad.Token))
+                        AssetBundleCreateRequest request = AssetBundle.LoadFromFileAsync(_clientAppService.StreamingAssetsPath + "/" + bad.bundleName);
+
+                        // Directly await the AssetBundle file load operation safely
+                        await request;
+
+                        ct.ThrowIfCancellationRequested();
+
+                        if (request.assetBundle != null)
                         {
+                            AddBundleToCache(bad, request.assetBundle);
                             return;
                         }
                     }
                 }
             }
-            else
+            catch (OperationCanceledException)
             {
-                AssetBundleCreateRequest request = AssetBundle.LoadFromFileAsync(_clientAppService.StreamingAssetsPath + "/" + bad.bundleName);
-
-                while (!request.isDone)
-                {
-                    await Awaitable.NextFrameAsync();
-                    if (!TokenUtils.IsValid(_token) || !TokenUtils.IsValid(bad.Token))
-                    {
-                        return;
-                    }
-                }
-
-
-                if (request.assetBundle != null)
-                {
-
-                    AddBundleToCache(bad, request.assetBundle);
-                    return;
-                }
+                return;
+            }
+            catch (Exception ex)
+            {
+                _logService.Exception(ex, "Unexpected error in DownloadOneBundle pipeline for: " + bad.url);
             }
         }
+
         if (!_bundleFailedDownloads.Contains(bad.bundleName))
         {
             _bundleFailedDownloads.Add(bad.bundleName);
         }
     }
-
 
     protected GameObject InstantiateBundledAsset(BundleCacheData bundleCache, GameObject loadedAsset, GameObject parent)
     {
@@ -1229,6 +1229,32 @@ public class UnityAssetService : IAssetService, IAssetSubsystem
         {
             Resources.UnloadAsset(uobj);
         }
+    }
+
+    public string GetAssetCategoryFromEntityTypeId(long entityTypeId)
+    {
+        if (entityTypeId == EntityTypes.Tree)
+        {
+            return AssetCategoryNames.Trees;
+        }
+        else if (entityTypeId == EntityTypes.Unit)
+        {
+            return AssetCategoryNames.Monsters;
+        }
+        else if (entityTypeId == EntityTypes.Bush)
+        {
+            return AssetCategoryNames.Bushes;
+        }
+        else if (entityTypeId == EntityTypes.Prop)
+        {
+            return AssetCategoryNames.Props;
+        }
+        else if (entityTypeId == EntityTypes.Rock)
+        {
+            return AssetCategoryNames.Rocks;
+        }
+
+        return "";
     }
 }
 

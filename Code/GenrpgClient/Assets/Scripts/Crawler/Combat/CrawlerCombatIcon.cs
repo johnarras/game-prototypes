@@ -1,7 +1,7 @@
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Crawler.UI.Units;
-using Assets.Scripts.UI.CombatTexts;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.Crawler.UI.Units;
+using OxDb.Client.UI.CombatTexts;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Combat.Entities;
 using OxDb.SharedGame.Crawler.GameEvents;
@@ -9,12 +9,11 @@ using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.UnitEffects.Constants;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Crawler.Combat
+namespace OxDb.Client.Crawler.Combat
 {
     public class CrawlerCombatIcon : BaseUnitUI, IPointerEnterHandler, IPointerExitHandler
     {
@@ -68,8 +67,7 @@ namespace Assets.Scripts.Crawler.Combat
             _uiService.SetText(Quantity, "x" + okUnitCount);
             if (!_didInit)
             {
-                List<string> iconNames = new List<string>() { "AirElemental", "Bat", "Bear", "Cat", "Giant" };
-                Icon.SetImage(iconNames[_gs.Rand.Next() % iconNames.Count]);// Group.UnitType.Icon);
+                Icon.SetImage(Group.UnitType.Icon);
             }
             _didInit = true;
 

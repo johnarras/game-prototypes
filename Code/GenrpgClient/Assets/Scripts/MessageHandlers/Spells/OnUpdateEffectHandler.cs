@@ -1,6 +1,6 @@
 using OxDb.SharedGame.Spells.Messages;
 
-namespace Assets.Scripts.MessageHandlers.Spells
+namespace OxDb.Client.MessageHandlers.Spells
 {
     public class OnUpdateEffectHandler : DispatchClientMapMessageHandler<OnUpdateEffect> { }
 }

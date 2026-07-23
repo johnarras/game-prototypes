@@ -1,4 +1,4 @@
-using Assets.Scripts.DynamicUI.Services;
+using OxDb.Client.DynamicUI.Services;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Shared.Crafting.Services
+namespace OxDb.Client.Crawler.Shared.Crafting.Services
 {
     public interface ICrawlerCraftingService : IInjectable
     {

@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Utils.Data;
 
-namespace Assets.Scripts.Crawler.MapGen.RoomGen.Entities
+namespace OxDb.Client.Crawler.MapGen.RoomGen.Entities
 {
     public class EdgeStartEndPoints
     {

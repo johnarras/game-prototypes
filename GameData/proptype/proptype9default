@@ -1,9 +1,0 @@
-{
-  "Id": "proptype9default",
-  "ParentId": "default",
-  "IdKey": 9,
-  "Name": "WaterProp",
-  "Icon": "WaterProp",
-  "Art": "WaterProp",
-  "NumChoices": 1
-}

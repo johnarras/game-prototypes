@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedGame.Characters.PlayerData;
 using OxDb.SharedGame.MapObjects.Messages;
 using OxDb.SharedGame.Units.Settings;

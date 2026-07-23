@@ -1,12 +1,12 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Entities.UI;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Entities.UI;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class PartyBuffUI : EntityIcon
     {

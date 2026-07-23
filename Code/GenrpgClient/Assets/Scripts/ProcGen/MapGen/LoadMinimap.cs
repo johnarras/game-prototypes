@@ -1,4 +1,4 @@
-using Assets.Scripts.Minimap.Services;
+using OxDb.Client.Minimap.Services;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedGame.MapServer.Entities;
 using System;

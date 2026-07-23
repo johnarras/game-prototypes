@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Lockstep.Actors.Factory;
-using Assets.Scripts.Lockstep.Game;
-using Assets.Scripts.Lockstep.Spawns;
+﻿using OxDb.Client.Lockstep.Actors.Factory;
+using OxDb.Client.Lockstep.Game;
+using OxDb.Client.Lockstep.Spawns;
 using Unity.Burst;
 using Unity.Entities;
 
@@ -48,7 +48,7 @@ public partial struct ActorSpawnSystem : ISystem
         globalState.NextActorId += (uint)spawnQueue.Length;
         SystemAPI.SetSingleton(globalState);
 
-        // Clear for the next tick
+        // ClearFullCell for the next tick
         spawnQueue.Clear();
     }
     [InternalBufferCapacity(16)] // Initial memory allocation for 16 requests before heap expansion

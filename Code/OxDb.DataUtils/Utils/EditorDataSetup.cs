@@ -14,6 +14,7 @@ using OxDb.SharedCore.SettingsNames.Settings;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.ProcGen.Settings.Trees;
 using OxDb.SharedGame.Zones.Settings;
+using ZstdSharp.Unsafe;
 
 namespace OxDb.DataUtils.Utils
 {

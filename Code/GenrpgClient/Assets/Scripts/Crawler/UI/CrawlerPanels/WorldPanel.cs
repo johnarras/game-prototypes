@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.UI.Crawler.CrawlerPanels
+namespace OxDb.Client.UI.Crawler.CrawlerPanels
 {
 
     public class ShowWorldPanelImage : IClientEvent

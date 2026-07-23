@@ -1,7 +1,7 @@
 ﻿using OxDb.SharedCore.Interfaces;
 using Unity.Mathematics;
 
-namespace Assets.Scripts.Lockstep.Presentation.Services
+namespace OxDb.Client.Lockstep.Presentation.Services
 {
     public interface ILockstepVisualFactory : IInjectable
     {

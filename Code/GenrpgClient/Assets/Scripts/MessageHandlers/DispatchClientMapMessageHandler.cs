@@ -2,7 +2,7 @@ using OxDb.SharedGame.MapMessages.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers
+namespace OxDb.Client.MessageHandlers
 {
     public abstract class DispatchClientMapMessageHandler<T> : BaseClientMapMessageHandler<T> where T : class, IMapApiMessage
     {

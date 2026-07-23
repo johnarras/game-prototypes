@@ -40,7 +40,7 @@ public enum ClientPlayerFlags
     IsCouldBuild = 1 << 6,
     SideloadBuild = 1 << 7,
     AllowDebugging = 1 << 8,
-    Demo = 1 << 9,
+    IsDemo = 1 << 9,
 }
 
 

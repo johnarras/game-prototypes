@@ -1,8 +1,8 @@
-using Assets.Scripts.Crawler.MapGen.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Repository;
-using Assets.Scripts.Repository.Constants;
-using Assets.Scripts.Setup.Interfaces;
+using OxDb.Client.Crawler.MapGen.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Repository;
+using OxDb.Client.Repository.Constants;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -29,7 +29,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.Services
+namespace OxDb.Client.Crawler.Maps.Services
 {
 
 
@@ -43,8 +43,8 @@ namespace Assets.Scripts.Crawler.Maps.Services
         ValueTask SaveWorld(CrawlerWorld world);
 
         ValueTask<ZoneType> GetCurrentZone(PartyData party, long mapId = 0, int x = -1, int z = -1);
-        ValueTask<long> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z);
-        ValueTask<long> GetMapLevelAtParty(PartyData party);
+        int GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z);
+        ValueTask<int> GetMapLevelAtParty(PartyData party);
         CrawlerMap CreateMap(CrawlerMapGenData genData, int width, int height);
         ValueTask<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z);
     }
@@ -76,6 +76,8 @@ namespace Assets.Scripts.Crawler.Maps.Services
         public async ValueTask<CrawlerWorld> GenerateWorld(PartyData party)
         {
 
+            DateTime startTime = DateTime.UtcNow;
+
             long oldWorldId = party.WorldId;
             _partyService.ResetMaps(party);
 
@@ -98,6 +100,8 @@ namespace Assets.Scripts.Crawler.Maps.Services
             await _crawlerService.SaveGame();
 
             _dispatcher.Dispatch(new UpdateCrawlerUI());
+
+            _logService.Info("GenerateWorld End Time: " + (DateTime.UtcNow - startTime).TotalSeconds.ToString("F2") + " MapCount: " + world.Maps.Count);
             return world;
         }
 
@@ -125,7 +129,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 Width = width,
                 Height = height,
                 Level = (int)genData.Level,
-                LevelDelta = (int)genData.LevelDelta,
                 IdKey = mapId,
                 MapFloor = genData.CurrFloor,
                 ArtSeed = genData.ArtSeed,
@@ -134,13 +137,10 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 BuildingArtId = genData.BuildingArtId,
             };
 
-            if (genData.GenType.IsIndoors)
+
+            if (!genData.ZoneType.IsOutdoors && genData.ZoneType.IsDungeon && genData.MapType.IdKey == CrawlerMapTypes.Dungeon)
             {
-                map.AddFlags(CrawlerMapFlags.IsIndoors);
-            }
-            if (genData.Looping)
-            {
-                map.AddFlags(CrawlerMapFlags.IsLooping);
+                map.AddFlags(CrawlerMapFlags.IsIndoorDungeon);
             }
 
             if (genData.BaseCrawlerMapId == 0)
@@ -243,6 +243,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 world = await GenerateInternal(worldId, _source.Token);
             }
 
+            _logService.Info("WORLD ZONE COUNT: " + world.Maps.Count);
             _world = world;
             return world;
         }
@@ -274,7 +275,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     MapTypeId = !_optionsService.HasOption(party, CrawlerOptions.FullWorld) ? CrawlerMapTypes.City : CrawlerMapTypes.Outdoors,
                     World = world,
                     Level = 1,
-                    Looping = false,
                 };
 
                 CrawlerMap outdoorMap = await _mapGenService.Generate(_crawlerService.GetParty(), world, genData, token);
@@ -350,12 +350,12 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
         }
 
-        public async ValueTask<long> GetMapLevelAtParty(PartyData party)
+        public async ValueTask<int> GetMapLevelAtParty(PartyData party)
         {
-            return await GetMapLevelAtPoint(await GetWorld(party.WorldId), party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z);
+            return GetMapLevelAtPoint(await GetWorld(party.WorldId), party.CurrPos.MapId, party.CurrPos.X, party.CurrPos.Z);
         }
 
-        public async ValueTask<long> GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
+        public int GetMapLevelAtPoint(CrawlerWorld world, long mapId, int x, int z)
         {
             CrawlerMap map = world.GetMap(mapId);
 
@@ -364,8 +364,25 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 return 1;
             }
 
-            await Task.CompletedTask;
-            return map.GetMapLevelAtPoint(x, z);
+
+
+            if (map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors || map.Regions.Count < 1)
+            {
+                return map.Level;
+            }
+
+            ZoneRegion firstRegion = map.GetRegion(x, z);
+
+            if (firstRegion != null)
+            {
+                return firstRegion.Level;
+            }
+
+            // Otherwise find closest region.
+
+            firstRegion = map.Regions.OrderBy(r => Math.Abs(r.CenterX - x) + Math.Abs(r.CenterZ - z)).First();
+
+            return firstRegion.Level;
         }
 
         public async ValueTask<List<ZoneUnitSpawn>> GetSpawnsAtPoint(PartyData party, long mapId, int x, int z)

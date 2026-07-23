@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Buffs.Services;
+using OxDb.Client.Crawler.Buffs.Services;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedGame.Crawler.Combat.Entities;
 using OxDb.SharedGame.Crawler.Combat.Services;
@@ -13,7 +13,7 @@ using OxDb.SharedGame.Spells.Helpers.SpellEffectHelpers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
+namespace OxDb.Client.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
     public abstract class BaseCrawlerSpellEffectHelper : ICrawlerSpellEffectHelper
     {

@@ -1,8 +1,8 @@
-using Assets.Scripts.Crawler.MapGen.Services;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Crawler.MapGen.Services;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.GameObjects;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -28,7 +28,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.MapGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.Helpers
 {
 
     public class NpcQuestMaps
@@ -156,6 +156,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
         protected async Task AddMapNpcs<TPoint>(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CrawlerMap map, List<TPoint> okPoints, IRandom rand) where TPoint : Point2I
         {
+            await Task.CompletedTask;
             if (!_optionsService.HasOption(party, CrawlerOptions.Quests))
             {
                 return;
@@ -167,6 +168,18 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                     return;
                 }
             }
+
+            List<TPoint> nonWaterOpenPoints = new List<TPoint>();
+
+            foreach (TPoint tpt in okPoints)
+            {
+                if (map.Get(tpt.X, tpt.Z, CellIndex.Terrain) != ZoneTypes.Water)
+                {
+                    nonWaterOpenPoints.Add(tpt);
+                }
+            }
+
+            okPoints = nonWaterOpenPoints;
 
             List<MapCellDetail> entrances = map.Details.Where(x => x.EntityTypeId == EntityTypes.Map).ToList();
 
@@ -235,7 +248,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                     UnitTypeId = unitType.IdKey,
                     IdKey = nextIdkey,
                     Name = _nameGenService.GenerateUnitName(rand, true),
-                    Level = await _worldService.GetMapLevelAtPoint(world, map.IdKey, chosenPoint.X, chosenPoint.Z),
+                    Level = _worldService.GetMapLevelAtPoint(world, map.IdKey, chosenPoint.X, chosenPoint.Z),
                     MapId = map.IdKey,
                     X = chosenPoint.X,
                     Z = chosenPoint.Z,
@@ -248,7 +261,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 map.SetEntity(chosenPoint.X, chosenPoint.Z, EntityTypes.Building, BuildingTypes.Npc);
             }
         }
-
     }
 }
 

@@ -1,9 +1,9 @@
 
-using Assets.Scripts.DynamicUI.Interfaces;
+using OxDb.Client.DynamicUI.Interfaces;
 using OxDb.SharedCore.Client.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Doobers.Events
+namespace OxDb.Client.Doobers.Events
 {
     public class SetDooberTarget : IClientEvent
     {

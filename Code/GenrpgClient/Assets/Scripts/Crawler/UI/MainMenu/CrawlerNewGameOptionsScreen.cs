@@ -1,5 +1,5 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedGame.Crawler.Options.Settings;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.UI.Constants;
@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.MainMenu
+namespace OxDb.Client.Crawler.UI.MainMenu
 {
     public class CrawlerNewGameOptionsScreen : BaseScreen
     {
@@ -30,6 +30,12 @@ namespace Assets.Scripts.Crawler.UI.MainMenu
 
             foreach (CrawlerOption option in options)
             {
+
+                if (option.ForceDefault)
+                {
+                    continue;
+                }
+
                 NewGameOptionRow newRow = _clientEntityService.FullInstantiate<NewGameOptionRow>(RowPrefab);
 
                 _clientEntityService.AddToParent(newRow, Anchor);

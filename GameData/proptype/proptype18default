@@ -1,9 +1,0 @@
-{
-  "Id": "proptype18default",
-  "ParentId": "default",
-  "IdKey": 18,
-  "Name": "LavaProp",
-  "Icon": "LavaProp",
-  "Art": "LavaProp",
-  "NumChoices": 1
-}

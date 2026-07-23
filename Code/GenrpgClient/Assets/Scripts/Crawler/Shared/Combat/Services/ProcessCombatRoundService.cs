@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Assets.Scripts.Crawler.Shared.Combat.Constants;
-using Assets.Scripts.Crawler.Shared.Combat.Services;
+using OxDb.Client.Crawler.ClientEvents.ActionPanelEvents;
+using OxDb.Client.Crawler.Shared.Combat.Constants;
+using OxDb.Client.Crawler.Shared.Combat.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;

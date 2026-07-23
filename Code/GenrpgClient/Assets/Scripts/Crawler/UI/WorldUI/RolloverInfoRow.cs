@@ -1,10 +1,10 @@
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedGame.Crawler.Info.Services;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class RolloverInfoRow : BaseBehaviour, IPointerMoveHandler
     {

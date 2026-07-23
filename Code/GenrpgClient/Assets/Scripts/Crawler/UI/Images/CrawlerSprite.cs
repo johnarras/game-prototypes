@@ -1,7 +1,7 @@
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.UI.Crawler.CrawlerPanels;
 
-namespace Assets.Scripts.Crawler.UI.Images
+namespace OxDb.Client.Crawler.UI.Images
 {
     public class CrawlerSprite : BaseBehaviour
     {

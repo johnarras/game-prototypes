@@ -1,6 +1,6 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -10,15 +10,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class DetailCrawlerMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 300;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.ProcessDetails;
+
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            if (!status.MovedPosition || status.MoveIsComplete)
+            if (!status.MovedPosition || status.MoveIsStopped)
             {
                 return;
             }
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 if (detail.EntityTypeId == EntityTypes.Map)
                 {
                     _crawlerService.ChangeState(ECrawlerStates.EnterMap, token, detail);
-                    status.MoveIsComplete = true;
+                    status.MoveIsStopped = true;
                 }
                 else if (detail.EntityTypeId == EntityTypes.TeleportIn)
                 {
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                         else
                         {
                             _crawlerService.ChangeState(ECrawlerStates.TeleportConfirmation, token, detail);
-                            status.MoveIsComplete = true;
+                            status.MoveIsStopped = true;
                         }
                     }
                 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Textures
+namespace OxDb.Client.Assets.Textures
 {
     public class TextureList : BaseBehaviour
     {

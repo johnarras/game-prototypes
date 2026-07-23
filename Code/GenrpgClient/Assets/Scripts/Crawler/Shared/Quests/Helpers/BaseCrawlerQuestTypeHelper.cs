@@ -1,8 +1,8 @@
-using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;

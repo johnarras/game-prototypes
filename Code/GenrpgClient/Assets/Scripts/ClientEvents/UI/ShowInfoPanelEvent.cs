@@ -1,8 +1,8 @@
-using Assets.Scripts.Info.UI;
+using OxDb.Client.Info.UI;
 using OxDb.SharedCore.Client.Interfaces;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.ClientEvents
+namespace OxDb.Client.ClientEvents
 {
     public class ShowInfoPanelArgs : IClientEvent
     {

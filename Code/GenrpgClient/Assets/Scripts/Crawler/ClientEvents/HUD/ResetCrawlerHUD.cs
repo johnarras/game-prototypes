@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Crawler.ClientEvents.HUD
+namespace OxDb.Client.Crawler.ClientEvents.HUD
 {
     public class ResetCrawlerHUD : IClientEvent
     {

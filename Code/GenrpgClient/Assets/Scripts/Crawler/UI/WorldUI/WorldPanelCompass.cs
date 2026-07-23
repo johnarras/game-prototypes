@@ -1,7 +1,7 @@
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class WorldPanelCompass : PartyBuffUI
     {

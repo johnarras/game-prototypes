@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Crawlers.Services;
 using OxDb.SharedGame.Crawler.Loot.Services;
@@ -104,11 +104,17 @@ public class CrawlerVendorScreen : ItemIconScreen
                 }
                 ItemGenArgs lootGenData = new ItemGenArgs()
                 {
-                    Level = level,
-                    QualityTypeId = qualityTypeId
+                    Level = level + 3,
+                    QualityTypeId = qualityTypeId,
+                    PowerIncrease = 2,
                 };
 
                 _party.VendorItems.Add(_lootGenService.GenerateItem(lootGenData));
+
+                foreach (Item item in _party.VendorItems)
+                {
+                    item.Level = level;
+                }
             }
         }
 

@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace Assets.Scripts.MessageHandlers.Corpses
+namespace OxDb.Client.MessageHandlers.Corpses
 {
     public class ClearLootHandler : BaseClientMapMessageHandler<ClearLoot>
     {

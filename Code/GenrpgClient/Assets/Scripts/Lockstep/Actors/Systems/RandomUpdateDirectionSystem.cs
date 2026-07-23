@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Systems.Constants;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Maps.Components;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Burst;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Systems
+namespace OxDb.Client.Lockstep.Systems
 {
     [DisableAutoCreation]
     [BurstCompile]

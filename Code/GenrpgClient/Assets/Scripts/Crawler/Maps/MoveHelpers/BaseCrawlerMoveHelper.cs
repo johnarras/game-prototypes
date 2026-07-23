@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Options.Services;
@@ -12,7 +12,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public abstract class BaseCrawlerMoveHelper : ICrawlerMoveHelper
     {
@@ -29,8 +29,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
         protected ILogService _logService = null;
         protected ICrawlerOptionsService _optionService = null;
 
-        public abstract int Order { get; }
-        public Type HelperKey => GetType();
+        public abstract ECrawlerMoveOrder HelperKey { get; }
         public abstract Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token);
     }
 }

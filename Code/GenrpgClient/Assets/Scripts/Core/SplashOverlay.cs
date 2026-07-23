@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.Core
+namespace OxDb.Client.Core
 {
     public class SplashOverlay : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Crawler.Maps.ClientEvents
+namespace OxDb.Client.Crawler.Maps.ClientEvents
 {
     public class RedrawMapCell : IClientEvent
     {

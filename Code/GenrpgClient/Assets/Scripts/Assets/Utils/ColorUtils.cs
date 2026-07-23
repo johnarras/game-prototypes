@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Utils
+namespace OxDb.Client.Assets.Utils
 {
     public static class ColorUtils
     {

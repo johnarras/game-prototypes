@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Crawler.Maps.Constants
+namespace OxDb.Client.Crawler.Maps.Constants
 {
     public class CrawlerMapConstants
     {

@@ -1,14 +1,14 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Entities.UI;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.Entities.UI;
 using OxDb.SharedGame.Crawler.Info.Services;
 using OxDb.SharedGame.Input.PlayerData;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Info.UI
+namespace OxDb.Client.Info.UI
 {
 
     public enum EInfoPanelDisplayReason

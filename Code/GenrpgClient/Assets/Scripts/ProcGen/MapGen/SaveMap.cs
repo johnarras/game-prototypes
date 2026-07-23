@@ -1,4 +1,4 @@
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Utils;

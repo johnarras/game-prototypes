@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Minigames.Controllers;
+﻿using OxDb.Client.Minigames.Controllers;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Minigames.Types.Clickers
+namespace OxDb.Client.Minigames.Types.Clickers
 {
     public class ClickerMinigameController : BaseMinigameController
     {

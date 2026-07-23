@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.GameObjects;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
@@ -96,7 +96,7 @@ public class DownloadObjectData
     public PatchLoadData loadData;
     public int x;
     public int z;
-    public float finalY;
+    public float finalY; // This really is the y (up) value in 3d space to it's fine.
     public float zOffset;
     public Point3F rotation;
     public object data;
@@ -705,7 +705,8 @@ public class MapTerrainManager : IMapTerrainManager
         {
             await Awaitable.NextFrameAsync(cancellationToken: token);
         }
-        terr.terrainData.baseMapResolution = (patchSize - 1) / 2;
+        // This is clamped from 16-4096 internally
+        terr.terrainData.baseMapResolution = MathUtil.Clamp(16, (patchSize - 1) / 2, 4096);
         terr.terrainData.heightmapResolution = patchSize;
         terr.terrainData.SetHeights(0, 0, patchHeights);
 

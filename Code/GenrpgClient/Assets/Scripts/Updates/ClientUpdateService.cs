@@ -1,7 +1,7 @@
 
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Setup.Interfaces;
-using Assets.Scripts.Updates;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Setup.Interfaces;
+using OxDb.Client.Updates;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using System;

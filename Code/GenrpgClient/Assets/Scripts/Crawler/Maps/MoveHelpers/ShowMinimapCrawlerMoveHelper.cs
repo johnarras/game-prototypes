@@ -1,16 +1,17 @@
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
 
     public class ShowMinimapCrawlerMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 1100;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.ShowMinimap;
+
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {

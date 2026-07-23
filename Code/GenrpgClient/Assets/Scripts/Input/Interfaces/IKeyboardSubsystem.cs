@@ -1,6 +1,6 @@
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Input.Interfaces
+namespace OxDb.Client.Input.Interfaces
 {
     public interface IKeyboardSubsystem
     {

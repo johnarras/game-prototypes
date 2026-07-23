@@ -1,9 +1,8 @@
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.UI.Crawler.CrawlerPanels;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.Combat.Entities;
-using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -27,7 +26,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
         public override async ValueTask<CrawlerStateData> Init(CrawlerStateData currentData, CrawlerStateAction action, CancellationToken token)
         {
             CrawlerStateData stateData = CreateStateData();
-            stateData.BGSpriteName = CrawlerClientConstants.BattlefieldImage;
+            //stateData.BGSpriteName = CrawlerClientConstants.BattlefieldImage;
             PartyData party = _crawlerService.GetParty();
 
             if (party.Combat == null)
@@ -129,7 +128,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Combat
             }
 
 
-            _moveService.ClearMovement();
+            _moveService.StopMovement();
 
             await Task.CompletedTask;
             return stateData;

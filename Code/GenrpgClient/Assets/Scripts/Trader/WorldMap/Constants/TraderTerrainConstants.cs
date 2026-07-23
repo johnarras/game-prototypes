@@ -1,5 +1,5 @@
 ﻿
-namespace Assets.Scripts.Trader.WorldMap.Constants
+namespace OxDb.Client.Trader.WorldMap.Constants
 {
     public class TraderTerrainConstants
     {

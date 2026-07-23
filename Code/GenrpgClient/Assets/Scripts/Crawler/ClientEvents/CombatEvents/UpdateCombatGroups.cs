@@ -2,7 +2,7 @@
 
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Crawler.ClientEvents.CombatEvents
+namespace OxDb.Client.Crawler.ClientEvents.CombatEvents
 {
     public class UpdateCombatGroups : IClientEvent
     {

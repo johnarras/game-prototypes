@@ -1,8 +1,8 @@
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedGame.Crawler.Info.Constants;
 using OxDb.SharedGame.Crawler.Info.Services;
 
-namespace Assets.Scripts.Info.UI
+namespace OxDb.Client.Info.UI
 {
     public class InfoPanelRow : BaseBehaviour
     {

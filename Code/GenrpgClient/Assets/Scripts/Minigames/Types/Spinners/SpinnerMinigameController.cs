@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Minigames.Controllers;
+﻿using OxDb.Client.Minigames.Controllers;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Minigames.Types.Spinners
+namespace OxDb.Client.Minigames.Types.Spinners
 {
     public class SpinnerMinigameController : BaseMinigameController
     {

@@ -6,7 +6,7 @@ using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Targets
+namespace OxDb.Client.MessageHandlers.Targets
 {
     public class OnTargetIsDeadHandler : BaseClientMapMessageHandler<OnTargetIsDead>
     {

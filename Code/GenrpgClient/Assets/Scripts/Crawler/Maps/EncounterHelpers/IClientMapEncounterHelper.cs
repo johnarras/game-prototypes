@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -7,7 +7,7 @@ using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
+namespace OxDb.Client.Crawler.Maps.EncounterHelpers
 {
     public interface IClientMapEncounterHelper : ISetupDictionaryItem<long>
     {

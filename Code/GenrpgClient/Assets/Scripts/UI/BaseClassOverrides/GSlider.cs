@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.Abstractions
+namespace OxDb.Client.UI.Abstractions
 {
     public class GSlider : Slider
     {

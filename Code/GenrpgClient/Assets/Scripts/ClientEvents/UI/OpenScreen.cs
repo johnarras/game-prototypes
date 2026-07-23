@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.ClientEvents.UI
+namespace OxDb.Client.ClientEvents.UI
 {
     public class OpenScreen : IClientEvent
     {

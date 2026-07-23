@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Loading;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;

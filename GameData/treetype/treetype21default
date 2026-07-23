@@ -1,9 +1,0 @@
-{
-  "Id": "treetype21default",
-  "ParentId": "default",
-  "IdKey": 21,
-  "Name": "SpruceWinter",
-  "Art": "SpruceWinter",
-  "Scale": 1.5,
-  "VariationCount": 2
-}

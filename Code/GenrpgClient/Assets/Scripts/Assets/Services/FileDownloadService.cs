@@ -1,16 +1,17 @@
-using Assets.Scripts.Assets.Entities;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Repository;
+using OxDb.Client.Assets.Entities;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.Repository;
 using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
+using OxDb.SharedCore.WebRequests.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class DownloadFileData
 {
@@ -49,6 +50,7 @@ public class FileDownloadService : IFileDownloadService
     private ILogService _logService = null;
     private IAssetService _assetService = null;
     private IClientRepositoryService _clientRepoService = null;
+    private IClientWebRequestService _webRequestService = null;
 
     public async Task Initialize(CancellationToken token)
     {
@@ -150,17 +152,14 @@ public class FileDownloadService : IFileDownloadService
             _awaitableService.ForgetAwaitable(DownloadFileInternal(fileDownLoad, token));
         }
     }
-
     private async Awaitable DownloadFileInternal(InternalFileDownload fileDownload, CancellationToken token)
     {
-
         if (fileDownload == null)
         {
             return;
         }
         Texture2D tex = null;
         string txt = null;
-
         System.Object obj = null;
 
         if (!fileDownload.DownloadData.ForceDownload)
@@ -177,73 +176,58 @@ public class FileDownloadService : IFileDownloadService
                     await Awaitable.NextFrameAsync(cancellationToken: token);
                 }
                 _fileDownloadingCount++;
-                using (UnityWebRequest request = UnityWebRequest.Get(fileDownload.FullURL))
+
+                // Build options for requesting direct byte array streaming
+                WebRequestOptions options = new WebRequestOptions
                 {
-                    if (request == null)
+                    Method = HttpMethodType.Get,
+                    ContentType = HttpContentType.None,
+                    MaxRetries = 1 // Retries are handled here explicitly by the loop logic
+                };
+
+                ResponseEnvelope<byte[]> responseEnvelope = null;
+                try
+                {
+                    // Swapping out raw UnityWebRequest for the zero-allocation base pipeline
+                    responseEnvelope = await _webRequestService.SendAsync<byte[]>(fileDownload.FullURL, options, token);
+                }
+                catch (Exception e)
+                {
+                    _logService.Exception(e, "DownloadFile Exception: " + fileDownload.FullURL);
+                }
+
+                if (responseEnvelope != null && responseEnvelope.Success && responseEnvelope.RawBytes != null)
+                {
+                    fileDownload.DownloadData.StartBytes = responseEnvelope.RawBytes;
+                    txt = responseEnvelope.RawString;
+
+                    // Handle edge cases where remote stores successfully serve a text error description block
+                    if (fileDownload.DownloadData.StartBytes.Length < 300 && txt != null && txt.Contains("BlobNotFound"))
                     {
-                        _downloading.Remove(fileDownload.FilePath);
+                        fileDownload.DownloadData.StartBytes = null;
                         _fileDownloadingCount--;
-                        return;
-                    }
-                    try
-                    {
-                        UnityWebRequestAsyncOperation asyncOp = request.SendWebRequest();
 
-                        while (!asyncOp.isDone)
+                        if (i < _retryTimes - 1)
                         {
-                            await Awaitable.NextFrameAsync(cancellationToken: token);
+                            _downloading.Remove(fileDownload.FilePath);
+                            await Awaitable.WaitForSecondsAsync(1.0f, cancellationToken: token);
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        _logService.Exception(e, "DownloadFile :" + fileDownload.FullURL);
+                        continue;
                     }
 
-                    DownloadHandler handler = request.downloadHandler;
-                    fileDownload.DownloadData.StartBytes = handler.data;
+                    byte[] finalBytes = fileDownload.DownloadData.StartBytes;
 
-                    txt = handler.text;
-                    if (fileDownload.DownloadData.StartBytes != null &&
-                        fileDownload.DownloadData.StartBytes.Length < 300)
-                    {
-                        try
-                        {
-                            txt = Encoding.UTF8.GetString(fileDownload.DownloadData.StartBytes);
-                        }
-                        catch (Exception e)
-                        {
-                            _logService.Exception(e, "DownloadToBytesToText");
-                        }
-                        if (txt == null || txt.IndexOf("BlobNotFound") >= 0)
-                        {
-                            fileDownload.DownloadData.StartBytes = null;
-                            request.Dispose();
-                            if (i < _retryTimes - 1)
-                            {
-                                _downloading.Remove(fileDownload.FilePath);
-                                _fileDownloadingCount--;
-                                await Awaitable.WaitForSecondsAsync(1.0f, cancellationToken: token);
-                            }
-                        }
-                    }
+                    await Awaitable.NextFrameAsync(cancellationToken: token);
+                    await _clientRepoService.SaveBytes(fileDownload.FilePath, finalBytes);
+                    await Awaitable.NextFrameAsync(cancellationToken: token);
 
-                    if (fileDownload.DownloadData.StartBytes != null)
-                    {
-                        byte[] finalBytes = fileDownload.DownloadData.StartBytes;
-
-                        await Awaitable.NextFrameAsync(cancellationToken: token);
-                        await _clientRepoService.SaveBytes(fileDownload.FilePath, finalBytes);
-                        await Awaitable.NextFrameAsync(cancellationToken: token);
-                        fileDownload.DownloadData.UncompressedBytes = finalBytes;
-
-                        request.Dispose();
-                        _fileDownloadingCount--;
-                        break;
-                    }
-                    else
-                    {
-                        _fileDownloadingCount--;
-                    }
+                    fileDownload.DownloadData.UncompressedBytes = finalBytes;
+                    _fileDownloadingCount--;
+                    break;
+                }
+                else
+                {
+                    _fileDownloadingCount--;
                 }
             }
         }
@@ -262,12 +246,11 @@ public class FileDownloadService : IFileDownloadService
                 _modTextureService.SetupTexture(tex);
                 obj = tex;
             }
-            else if (fileDownload.DownloadData.IsText ||
-                fileDownload.FilePath.IndexOf(".txt") > 0)
+            else if (fileDownload.DownloadData.IsText || fileDownload.FilePath.IndexOf(".txt") > 0)
             {
                 if (string.IsNullOrEmpty(txt))
                 {
-                    txt = System.Text.Encoding.UTF8.GetString(fileDownload.DownloadData.UncompressedBytes);
+                    txt = Encoding.UTF8.GetString(fileDownload.DownloadData.UncompressedBytes);
                 }
                 obj = txt;
             }

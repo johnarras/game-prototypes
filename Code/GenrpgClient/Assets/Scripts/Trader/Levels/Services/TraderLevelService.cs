@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.Rewards.Services;
-using Assets.Scripts.Trader.Levels.UI;
+﻿using OxDb.Client.Awaitables;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.Rewards.Services;
+using OxDb.Client.Trader.Levels.UI;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -20,7 +20,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Levels.Services
+namespace OxDb.Client.Trader.Levels.Services
 {
     public interface ITraderLevelService : IInitializable
     {

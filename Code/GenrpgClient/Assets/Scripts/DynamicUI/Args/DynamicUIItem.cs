@@ -1,11 +1,11 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Entities;
-using Assets.Scripts.WorldCanvas.Interfaces;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Entities;
+using OxDb.Client.WorldCanvas.Interfaces;
 using OxDb.SharedCore.Client.Interfaces;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.WorldCanvas.GameEvents
+namespace OxDb.Client.WorldCanvas.GameEvents
 {
     public enum DynamicUILocation
     {

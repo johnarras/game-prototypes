@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
-using Assets.Scripts.UI.Timers;
+﻿using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.UI.Timers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.PlayerData;
 using OxDb.SharedGame.Attributes.Settings;
 
-namespace Assets.Scripts.Trader.Stats.UI
+namespace OxDb.Client.Trader.Stats.UI
 {
     public class GameplayBuffIcon : BaseBehaviour
     {

@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.ProcGen.Materials.Constants;
+﻿using OxDb.Client.ProcGen.Materials.Constants;
 using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials
+namespace OxDb.Client.ProcGen.Materials
 {
 
     public class ScaledColor

@@ -13,7 +13,7 @@ namespace OxDb.MapServer.Items.MessageHandlers
         private IInventoryService _inventoryService = null;
         protected override async ValueTask InnerProcess(Character ch, EquipItem message)
         {
-            if (!_inventoryService.EquipItem(ch, message.ItemId, message.EquipSlot))
+            if (!(await _inventoryService.EquipItem(ch, message.ItemId, message.EquipSlot)))
             {
                 ch.SendError("You can't equip that there");
                 return;

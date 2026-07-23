@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.Estates.UI
+namespace OxDb.Client.Trader.Estates.UI
 {
     public class EstateScreen : BaseScreen
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.ProcGen.Materials.Constants
+﻿namespace OxDb.Client.ProcGen.Materials.Constants
 {
     public enum EMaterialGenTypes
     {

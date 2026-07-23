@@ -1,9 +1,9 @@
-using Assets.Scripts.Info.UI;
+using OxDb.Client.Info.UI;
 using OxDb.SharedCore.Entities.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.UI.InfoScreen
+namespace OxDb.Client.Trader.UI.InfoScreen
 {
     public class TraderInfoScreen : BaseInfoScreen
     {

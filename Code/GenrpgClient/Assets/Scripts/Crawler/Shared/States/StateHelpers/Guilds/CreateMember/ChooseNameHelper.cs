@@ -146,12 +146,17 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds.CreateMember
                     List<CrawlerSpell> summonSpells = spells.Where(x => x.Effects.FastAny(y => y.EntityTypeId == EntityTypes.Unit) &&
                     x.UnlockTier == 1).ToList();
 
-
                     if (summonSpells.Count > 0)
                     {
                         foreach (CrawlerSpell summonSpell in summonSpells)
                         {
-                            _crawlerSpellService.CastSpell(party, new Spells.Entities.UnitAction() { Caster = member, Spell = summonSpell, FinalTargets = new List<CrawlerUnit>() { member } }, token);
+                            _crawlerSpellService.CastSpell(party, new Spells.Entities.UnitAction()
+                            {
+                                NoCost = true,
+                                Caster = member,
+                                Spell = summonSpell,
+                                FinalTargets = new List<CrawlerUnit>() { member }
+                            }, token);
                         }
                     }
                     _statService.CalcUnitStats(party, member, true);

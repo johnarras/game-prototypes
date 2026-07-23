@@ -1,9 +1,9 @@
-using Assets.Scripts.ProcGen.Materials.Constants;
+using OxDb.Client.ProcGen.Materials.Constants;
 using OxDb.SharedCore.Utils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-namespace Assets.Scripts.Dungeons
+namespace OxDb.Client.Dungeons
 {
 
     [Serializable]

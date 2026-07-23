@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Accounts.Constants
+﻿namespace OxDb.Client.Accounts.Constants
 {
     public class AccountConstants
     {

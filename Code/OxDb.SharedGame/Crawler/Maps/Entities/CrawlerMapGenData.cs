@@ -12,13 +12,11 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         public CrawlerWorld World { get; set; }
         public long MapTypeId { get; set; }
         public long Level { get; set; }
-        public long LevelDelta { get; set; }
-        public bool Looping { get; set; }
         public long FromMapId { get; set; }
         public int FromMapX { get; set; }
         public int FromMapZ { get; set; }
-        public long CurrFloor { get; set; } = 1;
-        public long MaxFloor { get; set; } = 1;
+        public int CurrFloor { get; set; }
+        public int MaxFloor { get; set; } 
         public string Name { get; set; }
         public long DungeonTypeId { get; set; }
         public CrawlerMap PrevMap { get; set; }

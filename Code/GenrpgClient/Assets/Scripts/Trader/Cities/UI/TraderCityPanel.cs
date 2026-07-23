@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.ClientEvents.UI;
+﻿using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.Trader.Cities.Settings;
 using OxDb.SharedGame.UI.Constants;
 
-namespace Assets.Scripts.Trader.Cities.UI
+namespace OxDb.Client.Trader.Cities.UI
 {
     public class TraderCityPanel : BaseBehaviour
     {

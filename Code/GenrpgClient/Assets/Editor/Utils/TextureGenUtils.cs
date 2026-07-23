@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Assets.TMP;
-using Assets.Scripts.Awaitables;
+﻿using OxDb.Client.Assets.TMP;
+using OxDb.Client.Awaitables;
 using OxDb.SharedCore.Entities.Settings;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.GameSettings.BaseDataStores;
@@ -98,56 +98,56 @@ namespace Assets.Editor.Utils
         public static void CreateNameTexturesFromFolder(string assetFolderPath, Color bgColor, int textureSize = 256)
         {
             return;
-            IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
+            //IClientGameState gs = EditorGameDataUtils.GetEditorGameState();
 
-            TextureGenList genList = new TextureGenList()
-            {
-                TextureSize = textureSize,
-                BGColor = bgColor,
-            };
-
-
-            IClientAppService _appService = gs.loc.Get<IClientAppService>();
+            //TextureGenList genList = new TextureGenList()
+            //{
+            //    TextureSize = textureSize,
+            //    BGColor = bgColor,
+            //};
 
 
-            string fullPath = _appService.DataPath + assetFolderPath;
+            //IClientAppService _appService = gs.loc.Get<IClientAppService>();
 
-            if (!Directory.Exists(fullPath))
-            {
-                Directory.CreateDirectory(fullPath);
-            }
 
-            string[] allFiles = Directory.GetFiles(fullPath);
+            //string fullPath = _appService.DataPath + assetFolderPath;
 
-            foreach (string startFullFilePath in allFiles)
-            {
+            //if (!Directory.Exists(fullPath))
+            //{
+            //    Directory.CreateDirectory(fullPath);
+            //}
 
-                string fullFilePath = startFullFilePath.Replace("\\", "/");
+            //string[] allFiles = Directory.GetFiles(fullPath);
 
-                string filename = Path.GetFileName(startFullFilePath);
+            //foreach (string startFullFilePath in allFiles)
+            //{
 
-                if (filename.LastIndexOf(".png") != filename.Length - 4)
-                {
-                    continue;
-                }
+            //    string fullFilePath = startFullFilePath.Replace("\\", "/");
 
-                string innerName = filename.Replace(".png", "");
+            //    string filename = Path.GetFileName(startFullFilePath);
 
-                string finalName = StrUtils.SplitOnCapitalLetters(StrUtils.GetAlphaChars(innerName));
+            //    if (filename.LastIndexOf(".png") != filename.Length - 4)
+            //    {
+            //        continue;
+            //    }
 
-                finalName = finalName.Replace(" ", "\n");
+            //    string innerName = filename.Replace(".png", "");
 
-                if (!string.IsNullOrEmpty(finalName))
-                {
-                    genList.FilenameTextPairs.Add(new FilenameTextPair()
-                    {
-                        FullFilePath = fullFilePath,
-                        PrintedText = finalName,
-                    });
-                }
-            }
+            //    string finalName = StrUtils.SplitOnCapitalLetters(StrUtils.GetAlphaChars(innerName));
 
-            GenerateTextures(gs, genList);
+            //    finalName = finalName.Replace(" ", "\n");
+
+            //    if (!string.IsNullOrEmpty(finalName))
+            //    {
+            //        genList.FilenameTextPairs.Add(new FilenameTextPair()
+            //        {
+            //            FullFilePath = fullFilePath,
+            //            PrintedText = finalName,
+            //        });
+            //    }
+            //}
+
+            //GenerateTextures(gs, genList);
         }
 
 

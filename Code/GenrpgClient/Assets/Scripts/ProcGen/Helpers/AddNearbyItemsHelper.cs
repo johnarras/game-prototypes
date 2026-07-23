@@ -20,7 +20,7 @@ public interface IAddNearbyItemsHelper : IInjectable
 
 
 /// <summary>
-/// Add items nearby a tree or a rock or something of that sort.
+/// Add items nearby a zoneTree or a rock or something of that sort.
 /// </summary>
 public class AddNearbyItemsHelper : IAddNearbyItemsHelper
 {
@@ -67,38 +67,38 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
 
         GenZone genZone = _mapGenData.GetGenZone(zone.IdKey);
 
-        if (zoneType.TreeTypes == null || genZone.TreeTypes == null)
+
+        List<WeightedEntity> treeList = genZone.GetPropsOfType(EntityTypes.Tree);
+        List<WeightedEntity> bushList = genZone.GetPropsOfType(EntityTypes.Bush);
+
+
+        if (treeList.Count < 1 || bushList.Count < 1)
         {
             return;
         }
 
-        List<ZoneBushType> bushList = new List<ZoneBushType>();
-        List<ZoneTreeType> treeList = new List<ZoneTreeType>();
-
-
-
-        foreach (ZoneTreeType zt in zoneType.TreeTypes)
+        foreach (WeightedEntity zoneTree in treeList)
         {
-            if (zt.Weight <= 0)
+            if (zoneTree.Weight <= 0)
             {
                 continue;
             }
-            TreeType tt = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(zt.TreeTypeId);
+            TreeType tt = _gameData.Get<TreeTypeSettings>(_gs.ch).Get(zoneTree.EntityId);
             if (tt == null || tt.Name == null)
             {
                 continue;
             }
-            treeList.Add(zt);
+            treeList.Add(zoneTree);
 
         }
 
-        foreach (ZoneBushType zbt in zoneType.BushTypes)
+        foreach (WeightedEntity zoneBush in bushList)
         {
-            if (zbt.Weight <= 0)
+            if (zoneBush.Weight <= 0)
             {
                 continue;
             }
-            BushType btype = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zbt.BushTypeId);
+            BushType btype = _gameData.Get<BushTypeSettings>(_gs.ch).Get(zoneBush.EntityId);
             if (btype == null || btype.Name == null)
             {
                 continue;
@@ -108,7 +108,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
                 continue;
             }
 
-            bushList.Add(zbt);
+            bushList.Add(zoneBush);
         }
 
 
@@ -116,7 +116,7 @@ public class AddNearbyItemsHelper : IAddNearbyItemsHelper
 
         if (!canPlaceTrees)
         {
-            treeList = new List<ZoneTreeType>();
+            treeList = new List<WeightedEntity>();
         }
 
         if (minOffset < 0.99f)

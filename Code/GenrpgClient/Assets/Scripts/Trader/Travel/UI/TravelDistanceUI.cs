@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
-using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Travel.Services;
+﻿using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Trader.ClientEvents;
+using OxDb.Client.Trader.Travel.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Trader.CaravanMembers.Settings;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Travel.UI
+namespace OxDb.Client.Trader.Travel.UI
 {
     public class TravelDistanceUI : BaseBehaviour
     {

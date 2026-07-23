@@ -1,7 +1,7 @@
 using OxDb.SharedCore.Client.Interfaces;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.ClientEvents.UI
+namespace OxDb.Client.ClientEvents.UI
 {
     public class CloseAllScreens : IClientEvent
     {

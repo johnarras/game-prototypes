@@ -1,0 +1,24 @@
+header zonetype,ZoneTypeId,IsOutdoors,IsDungeon,LargePropChance,SmallPropChance,MaxSmallPropQuantity,Trees,Bushes,Rocks,Props
+zonetype,field,TRUE,TRUE,0.2,0.3,2,TreeShort,Bush,RockRock,
+zonetype,forest,TRUE,TRUE,0.8,0.2,2,TreeMid TreeShort,Bush,RockRock,
+zonetype,hills,TRUE,TRUE,0.5,0.2,2,TreeTall TreeDry,Bush BushDry,RockRock RockRed,
+zonetype,swamp,TRUE,TRUE,0.9,0.3,2,TreeMid TreeWet,BushDry,RockRock RockSand,
+zonetype,badlands,TRUE,TRUE,0.25,0.2,2,TreeDry TreePalm,BushDry Cactus,RockRed,
+zonetype,desert,TRUE,TRUE,0.2,0.2,2,TreePalm,Cactus,RockSand,
+zonetype,darkforest,TRUE,TRUE,0.9,0.2,2,TreeMid TreeTall TreeShort,BushDry Bush,RockSand,
+zonetype,savannah,TRUE,TRUE,0.4,0.2,2,TreeDry TreeShort,BushDry,RockRock,
+zonetype,water,TRUE,TRUE,0.03,0.2,1,,,RockRock,WaterProp
+zonetype,mountains,FALSE,FALSE,1,0,0,TreeTall,Bush,RockRock,MountainsProp
+zonetype,snow,TRUE,TRUE,0.15,0.2,2,TreeTall,Bush,RockRock,
+zonetype,road,FALSE,FALSE,0,0,0,,,,
+zonetype,pointofinterest,FALSE,FALSE,0,0,0,,,,
+zonetype,city,FALSE,FALSE,0,0,0,,,,
+zonetype,dungeon,FALSE,TRUE,0,0,0,,,,
+zonetype,cave,FALSE,TRUE,0,0,0,,,,
+zonetype,tower,FALSE,TRUE,0,0,0,,,,
+zonetype,lava,TRUE,TRUE,0,0.7,5,,,,LavaProp
+zonetype,arcane,TRUE,TRUE,0.2,0.2,2,,,,ArcaneProp
+zonetype,natural,TRUE,TRUE,0.7,0.4,2,TreeDry TreeTall,BushDry Bush,RockRock,
+zonetype,unholy,TRUE,TRUE,0.75,0.3,3,TreeMid TreeTall TreeShort,Bush,RockRed RockSand,
+zonetype,outdoors,FALSE,FALSE,0,0,0,,,,
+zonetype,stars,FALSE,FALSE,0,0,0,,,,

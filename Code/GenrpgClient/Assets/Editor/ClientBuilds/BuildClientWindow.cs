@@ -1,4 +1,4 @@
-using Assets.Scripts.Logalytics.Utils;
+using OxDb.Client.Logalytics.Utils;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Utils;

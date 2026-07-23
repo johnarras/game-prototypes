@@ -1,10 +1,10 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Crawler.ClientEvents.StatusPanelEvents;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services.Entities;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Buffs.Constants;
 using OxDb.SharedGame.Crawler.Maps.Constants;
@@ -24,7 +24,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
+namespace OxDb.Client.Crawler.Maps.EncounterHelpers
 {
     public class TrapMapEncounterHelper : BaseClientMapEncounterHelper
     {
@@ -97,11 +97,11 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
                 if (await _partyService.CheckIfPartyIsDead(party, token))
                 {
-                    moveStatus.MoveIsComplete = true;
+                    moveStatus.MoveIsStopped = true;
                 }
                 _dispatcher.Dispatch(new RefreshPartyStatus());
             }
-            _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
+            _mapService.ClearCellProps(party.CurrPos.X, party.CurrPos.Z);
         }
     }
 }

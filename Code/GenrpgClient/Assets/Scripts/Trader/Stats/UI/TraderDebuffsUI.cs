@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Trader.ClientEvents;
+﻿using OxDb.Client.Trader.ClientEvents;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Attributes.PlayerData;
 using OxDb.SharedGame.Attributes.Settings;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Stats.UI
+namespace OxDb.Client.Trader.Stats.UI
 {
     public class GameplayDebuffsUI : BaseBehaviour
     {

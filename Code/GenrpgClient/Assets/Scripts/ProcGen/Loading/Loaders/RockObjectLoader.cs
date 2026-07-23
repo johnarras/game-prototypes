@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.ProcGen.Settings.Rocks;
@@ -21,12 +21,12 @@ public class RockObjectLoader : BaseObjectLoader
             return false;
         }
 
-        int indexHash = (loadData.gx * 113 + loadData.gz * 317 + x * 59 + z * 3141) % rockType.MaxIndex;
+        int indexHash = (loadData.gx * 113 + loadData.gz * 317 + x * 59 + z * 3141) % rockType.VariationCount;
 
         int index = 0;
-        if (rockType.MaxIndex > 0)
+        if (rockType.VariationCount > 0)
         {
-            index = (indexHash / 2) % rockType.MaxIndex;
+            index = (indexHash / 2) % rockType.VariationCount;
         }
 
         string artName = rockType.Art + (indexHash.ToString("D3"));

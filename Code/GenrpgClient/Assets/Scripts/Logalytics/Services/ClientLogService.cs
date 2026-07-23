@@ -1,11 +1,13 @@
-﻿using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Logalytics.Utils;
+﻿using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Logalytics.Utils;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Logalytics.Constants;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Serialization.Services;
 using OxDb.SharedCore.Setup.Constants;
+using OxDb.SharedCore.WebRequests.Services;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -15,9 +17,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 
-namespace Assets.Scripts.Logalytics.Services
+namespace OxDb.Client.Logalytics.Services
 {
     [Serializable]
     public struct TraceEnvelope
@@ -58,7 +59,7 @@ namespace Assets.Scripts.Logalytics.Services
     public class ClientLogService : IClientQuitCleanup, ILogService
     {
         private IClientLogalyticsService _logalyticsService = null;
-        private IClientWebService _webService = null;
+        protected IClientWebRequestService _webRequestService = null;
 
         protected string IngestionEndpoint { get; set; }
         protected string InstrumentationKey { get; set; }
@@ -164,9 +165,9 @@ namespace Assets.Scripts.Logalytics.Services
                 properties = new Dictionary<string, string>();
             }
 
-            if (_webService != null)
+            if (_webRequestService != null)
             {
-                properties[LogalyticsKeys.RequestId] = _webService.GetUserRequestId();
+                properties[LogalyticsKeys.RequestId] = _webRequestService.GetUserRequestId();
             }
             // Strip null tracking properties before serialization to prevent engine 400 validation drops
             if (properties.Any(x => x.Value == null))
@@ -227,23 +228,27 @@ namespace Assets.Scripts.Logalytics.Services
 
             List<TraceEnvelope> envList = new List<TraceEnvelope>() { nextEnvelope };
 
-            string jsonPayload = serializer.SerializeToString(envList);
-            byte[] rawBytes = Encoding.UTF8.GetBytes(jsonPayload);
 
-            UnityWebRequest request = new UnityWebRequest(IngestionEndpoint, "POST");
-            request.uploadHandler = new UploadHandlerRaw(rawBytes);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+            // Configure the request options for the telemetry payload
+            WebRequestOptions options = new WebRequestOptions
+            {
+                Method = HttpMethodType.Post,
+                ContentType = HttpContentType.Json,
+                JsonBody = envList,
+                MaxRetries = 1
+            };
 
-            UnityWebRequestAsyncOperation operation = request.SendWebRequest();
+            // Include the specific encoding requirements in the custom headers dictionary if required by ingest
+            options.Headers["Content-Type"] = "application/json; charset=utf-8";
 
-            operation.completed += _ =>
+            // Use SendSync with a completion callback to mirror the previous fire-and-forget logic
+            _webRequestService.SendSync<string>(IngestionEndpoint, options, response =>
             {
                 try
                 {
-                    if (request.result != UnityWebRequest.Result.Success)
+                    if (!response.Success)
                     {
-                        UnityEngine.Debug.LogWarning($"[Logging System] Ingestion failure: {request.error} | Response Code: {request.responseCode}");
+                        UnityEngine.Debug.LogWarning($"[Logging System] Ingestion failure: {response.ErrorMessage}");
                     }
                 }
                 catch (Exception ex)
@@ -252,10 +257,10 @@ namespace Assets.Scripts.Logalytics.Services
                 }
                 finally
                 {
-                    request.Dispose();
+                    IsProcessingQueue = false;
                     ProcessQueue();
                 }
-            };
+            });
         }
 
         public int SetupPriorityAscending()

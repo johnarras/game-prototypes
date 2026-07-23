@@ -1,7 +1,7 @@
 ﻿using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Actors.Components
+namespace OxDb.Client.Lockstep.Actors.Components
 {
     [GenerateTestsForBurstCompatibility]
     public struct Lifetime : IComponentData

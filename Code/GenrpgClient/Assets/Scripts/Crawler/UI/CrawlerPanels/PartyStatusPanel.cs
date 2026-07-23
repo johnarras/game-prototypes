@@ -1,12 +1,12 @@
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Assets.Scripts.UI.Crawler.StatusUI;
+using OxDb.Client.Crawler.ClientEvents.StatusPanelEvents;
+using OxDb.Client.UI.Crawler.StatusUI;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Crawler.CrawlerPanels
+namespace OxDb.Client.UI.Crawler.CrawlerPanels
 {
     public class PartyStatusPanel : BaseBehaviour
     {

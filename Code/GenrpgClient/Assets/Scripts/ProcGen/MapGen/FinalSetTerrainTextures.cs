@@ -1,4 +1,4 @@
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedGame.ProcGen.Constants;
 using System.Threading;
 using UnityEngine; // Needed

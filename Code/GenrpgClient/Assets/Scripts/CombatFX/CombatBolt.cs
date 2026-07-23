@@ -1,7 +1,7 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Sprites.Services;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Sprites.Services;
 
-namespace Assets.Scripts.CombatFX
+namespace OxDb.Client.CombatFX
 {
     public class CombatBolt : BaseBehaviour
     {

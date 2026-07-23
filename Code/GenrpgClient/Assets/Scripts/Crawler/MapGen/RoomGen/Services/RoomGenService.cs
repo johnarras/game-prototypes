@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.MapGen.RoomGen.Entities;
-using Assets.Scripts.Crawler.MapGen.RoomGen.Helpers;
+﻿using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.RoomGen.Entities;
+using OxDb.Client.Crawler.MapGen.RoomGen.Helpers;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
@@ -14,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
+namespace OxDb.Client.Crawler.MapGen.RoomGen.Services
 {
 
     public class RoomGenArgs
@@ -53,6 +53,8 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
 
             CrawlerMap map = levelArgs.Map;
 
+            levelArgs.RoomCenters.Add(center);
+
             RoomGenSettings roomGenSettings = _gameData.Get<RoomGenSettings>(_gs.ch);
             RoomEdgeTypeSettings roomTypeSettings = _gameData.Get<RoomEdgeTypeSettings>(_gs.ch);
 
@@ -60,7 +62,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
 
             int zsize = RandUtils.IntRange(roomGenSettings.MinSize, roomGenSettings.MaxSize, rand);
 
-            if (rand.NextDouble() < roomGenSettings.SizeIncreaseChance)
+            if (rand.NextDouble() < roomGenSettings.SizeIncreaseChance && !map.IsOutdoorDungeon())
             {
                 if (rand.NextDouble() < 0.5)
                 {
@@ -78,7 +80,6 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
                         xsize += RandUtils.IntRange(roomGenSettings.MinSize, roomGenSettings.MaxSize, rand);
                     }
                 }
-
             }
 
 
@@ -94,11 +95,12 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
                 zsize = 7;
             }
 #endif
+            int edgeSize = (map.IsOutdoorDungeon() ? 3 : 1);
 
-            int xmin = MathUtil.Clamp(1, center.X - xsize / 2, map.Width - 2);
-            int xmax = MathUtil.Clamp(1, center.X + (xsize + 1) / 2, map.Width - 2);
-            int zmin = MathUtil.Clamp(1, center.Z - zsize / 2, map.Height - 2);
-            int zmax = MathUtil.Clamp(1, center.Z + (zsize + 1) / 2, map.Height - 2);
+            int xmin = MathUtil.Clamp(edgeSize, center.X - xsize / 2, map.Width - edgeSize-1);
+            int xmax = MathUtil.Clamp(edgeSize, center.X + (xsize + 1) / 2, map.Width - edgeSize - 1);
+            int zmin = MathUtil.Clamp(edgeSize, center.Z - zsize / 2, map.Height - edgeSize - 1);
+            int zmax = MathUtil.Clamp(edgeSize, center.Z + (zsize + 1) / 2, map.Height - edgeSize - 1);
 
             bool xminIsOk = true;
             bool xmaxIsOk = true;
@@ -150,6 +152,11 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
                         }
                     }
                 }
+            }
+
+            if (map.IsOutdoorDungeon())
+            {
+                return;
             }
 
             EdgePattern edgePattern = RandUtils.GetRandomElement(roomTypeSettings.EdgePatterns, levelArgs.Rand);
@@ -310,7 +317,6 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
                 }
             }
 
-
             foreach (RoomEdgeGenArgs edgeArgs in finalEdges)
             {
 
@@ -319,8 +325,6 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Services
                     await helper.GenerateEdge(edgeArgs, genData, levelArgs);
                 }
             }
-
-
 
             await Task.CompletedTask;
         }

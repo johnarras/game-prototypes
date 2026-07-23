@@ -1,7 +1,7 @@
 
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Setup.Interfaces;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils.Data;

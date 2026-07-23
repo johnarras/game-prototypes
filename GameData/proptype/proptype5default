@@ -1,9 +1,0 @@
-{
-  "Id": "proptype5default",
-  "ParentId": "default",
-  "IdKey": 5,
-  "Name": "BadlandsProp",
-  "Icon": "BadlandsProp",
-  "Art": "BadlandsProp",
-  "NumChoices": 1
-}

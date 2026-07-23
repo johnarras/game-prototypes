@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameObjects;
+﻿using OxDb.Client.Assets.Constants;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.WorldMap.Services
+namespace OxDb.Client.Trader.WorldMap.Services
 {
 
     public interface ITraderTerrainService : IInitializable, IClientResetCleanup

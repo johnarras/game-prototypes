@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Crawler.Shared.Combat.Constants
+namespace OxDb.Client.Crawler.Shared.Combat.Constants
 {
     public enum ECombatStepResults
     {

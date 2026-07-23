@@ -118,16 +118,6 @@
       "MaxTier": 2,
       "BonusPerTier": 1.0,
       "BasePointCost": 20
-    },
-    {
-      "IdKey": 15,
-      "Name": "PartySize",
-      "Desc": "Increases the max number of party members",
-      "Icon": "",
-      "Art": "",
-      "MaxTier": 2,
-      "BonusPerTier": 1.0,
-      "BasePointCost": 100
     }
   ],
   "Parent": {
@@ -135,5 +125,5 @@
     "Name": "PartyUpgradeSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-06-29T21:30:00.911Z"
+  "SaveTime": "2026-07-14T13:25:54.812Z"
 }

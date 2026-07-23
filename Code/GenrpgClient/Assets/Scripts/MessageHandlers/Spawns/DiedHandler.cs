@@ -4,7 +4,7 @@ using OxDb.SharedGame.Units.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Spawns
+namespace OxDb.Client.MessageHandlers.Spawns
 {
     public class DiedHandler : BaseClientMapMessageHandler<Died>
     {

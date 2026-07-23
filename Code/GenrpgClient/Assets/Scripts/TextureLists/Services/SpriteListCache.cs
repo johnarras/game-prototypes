@@ -1,8 +1,8 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Services;
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Services;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.TextureLists.Services
+namespace OxDb.Client.TextureLists.Services
 {
 
     public delegate void DownloadSpriteListHandler(object spriteList, object data);

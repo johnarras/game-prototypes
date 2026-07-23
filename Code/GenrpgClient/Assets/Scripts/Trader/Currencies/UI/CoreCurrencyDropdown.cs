@@ -1,7 +1,7 @@
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedGame.Currencies.Settings;
 
-namespace Assets.Scripts.Trader.UI.Currencies
+namespace OxDb.Client.Trader.UI.Currencies
 {
     public class CoreCurrencyDropdown : TypedEntityIdDropdownScript<CoreCurrencyTypeSettings, CoreCurrencyType>
     {

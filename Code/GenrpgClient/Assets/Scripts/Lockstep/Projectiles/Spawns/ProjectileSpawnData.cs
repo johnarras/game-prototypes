@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 using Unity.Collections;
 
-namespace Assets.Scripts.Lockstep.Projectiles.Spawns
+namespace OxDb.Client.Lockstep.Projectiles.Spawns
 {
     [GenerateTestsForBurstCompatibility]
     public struct ProjectileSpawnData

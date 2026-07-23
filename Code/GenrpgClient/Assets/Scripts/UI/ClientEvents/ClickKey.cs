@@ -2,7 +2,7 @@
 using OxDb.SharedCore.Client.Interfaces;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.UI.ClientEvents
+namespace OxDb.Client.UI.ClientEvents
 {
     public class ClickKey : IClientEvent
     {

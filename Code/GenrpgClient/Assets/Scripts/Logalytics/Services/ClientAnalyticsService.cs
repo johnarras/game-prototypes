@@ -1,5 +1,6 @@
-﻿using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Logalytics.Utils;
+﻿using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Logalytics.Utils;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Entities.Settings;
@@ -11,6 +12,7 @@ using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedCore.Setup.Constants;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.WebRequests.Services;
 using OxDb.SharedGame.Rewards.Settings;
 using System;
 using System.Collections.Concurrent;
@@ -20,9 +22,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Networking;
 
-namespace Assets.Scripts.Logalytics.Services
+namespace OxDb.Client.Logalytics.Services
 {
     #region Telemetry JSON Schema Structures
 
@@ -64,6 +65,7 @@ namespace Assets.Scripts.Logalytics.Services
         private IGameData _gameData = null;
         private IEntityService _entityService = null;
         private IClientLogalyticsService _logalyticsService = null;
+        private IClientWebRequestService _webRequestService = null;
 
         protected string IngestionEndpoint { get; set; }
         protected string InstrumentationKey { get; set; }
@@ -252,7 +254,6 @@ namespace Assets.Scripts.Logalytics.Services
                 ProcessQueue();
             }
         }
-
         protected void ProcessQueue()
         {
             if (TelemetryQueue.IsEmpty)
@@ -277,29 +278,30 @@ namespace Assets.Scripts.Logalytics.Services
                 return;
             }
 
-            // Route through your native text serializer tool to output a clean telemetry JSON array structure ([...])
-            string jsonPayload = _textSerializer.SerializeToString(batchList);
-            byte[] rawBytes = Encoding.UTF8.GetBytes(jsonPayload);
+            // Configure the request options for the telemetry payload
+            WebRequestOptions options = new WebRequestOptions
+            {
+                Method = HttpMethodType.Post,
+                ContentType = HttpContentType.Json,
+                JsonBody = batchList,
+                MaxRetries = 1 // Prevent aggressive telemetry blocking retries inside the queue frame loop
+            };
 
-            UnityWebRequest request = new UnityWebRequest(IngestionEndpoint, "POST");
-            request.uploadHandler = new UploadHandlerRaw(rawBytes);
-            request.downloadHandler = new DownloadHandlerBuffer();
-            request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+            // Include the specific encoding requirements in the custom headers dictionary if required by ingest
+            options.Headers["Content-Type"] = "application/json; charset=utf-8";
 
-            UnityWebRequestAsyncOperation operation = request.SendWebRequest();
-
-            operation.completed += _ =>
+            // Use SendSync with a completion callback to mirror the previous fire-and-forget logic
+            _webRequestService.SendSync<string>(IngestionEndpoint, options, response =>
             {
                 try
                 {
-                    if (request.result != UnityWebRequest.Result.Success)
+                    if (!response.Success)
                     {
-                        _logService.Warning($"[Telemetry Pipeline] Batch drop failure. Azure Endpoint responded with error: {request.error}");
+                        _logService.Warning($"[Telemetry Pipeline] Batch drop failure. Azure Endpoint responded with error: {response.ErrorMessage}");
                     }
                 }
                 finally
                 {
-                    request.Dispose();
                     IsProcessingQueue = false;
 
                     // Immediately re-evaluate pipeline loop if a substantial queue backlog is still waiting
@@ -308,7 +310,7 @@ namespace Assets.Scripts.Logalytics.Services
                         ProcessQueue();
                     }
                 }
-            };
+            });
         }
 
         public int SetupPriorityAscending()

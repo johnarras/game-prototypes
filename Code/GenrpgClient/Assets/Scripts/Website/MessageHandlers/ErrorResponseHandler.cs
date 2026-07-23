@@ -1,15 +1,15 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.UI.Entities;
-using Assets.Scripts.UI.Screens;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.UI.Entities;
+using OxDb.Client.UI.Screens;
 using OxDb.SharedCore.Website.Responses.Errors;
 using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Website.MessageHandlers
+namespace OxDb.Client.Website.MessageHandlers
 {
     public class ErrorResponseHandler : BaseClientWebResponseHandler<ErrorResponse>
     {

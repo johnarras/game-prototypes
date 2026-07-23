@@ -1,6 +1,6 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -11,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Exploring
 {
     public class TeleportConfirmationStateHelper : BaseStateHelper
     {

@@ -4,7 +4,7 @@ using OxDb.SharedGame.Rewards.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Rewards
+namespace OxDb.Client.MessageHandlers.Rewards
 {
     public class SendRewardsHandler : BaseClientMapMessageHandler<SendRewards>
     {

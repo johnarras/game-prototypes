@@ -1,7 +1,7 @@
 
 using OxDb.SharedGame.Interfaces;
 
-namespace Assets.Scripts.UI.MainMenu
+namespace OxDb.Client.UI.MainMenu
 {
     public class LoadSaveButton : BaseBehaviour
     {

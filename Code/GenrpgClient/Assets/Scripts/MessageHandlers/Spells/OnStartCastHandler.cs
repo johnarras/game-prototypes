@@ -2,7 +2,7 @@ using OxDb.SharedGame.Spells.Messages;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Spells
+namespace OxDb.Client.MessageHandlers.Spells
 {
     public class OnStartCastHandler : BaseClientMapMessageHandler<OnStartCast>
     {

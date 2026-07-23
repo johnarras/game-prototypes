@@ -4,7 +4,7 @@ using OxDb.SharedGame.Units.Entities;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.StatusUI
+namespace OxDb.Client.Crawler.UI.StatusUI
 {
     public class StatusEffectsUI : BaseBehaviour
     {

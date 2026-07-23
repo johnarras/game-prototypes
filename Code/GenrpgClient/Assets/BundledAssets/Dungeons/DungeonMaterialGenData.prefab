@@ -74,15 +74,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ColorSets.Array.data[0].Foreground.b
-      value: 0
+      value: 0.8113208
       objectReference: {fileID: 0}
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ColorSets.Array.data[0].Foreground.g
-      value: 0.42131945
+      value: 0.8113208
       objectReference: {fileID: 0}
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ColorSets.Array.data[0].Foreground.r
-      value: 0.764151
+      value: 0.8113208
       objectReference: {fileID: 0}
     - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
       propertyPath: ColorSets.Array.data[1].Background.b

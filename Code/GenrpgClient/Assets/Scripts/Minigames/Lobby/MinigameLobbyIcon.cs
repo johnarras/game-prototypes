@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
-using Assets.Scripts.Minigames.Services;
+﻿using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Minigames.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Minigames.Games.Settings;
 
-namespace Assets.Scripts.Minigames.Lobby
+namespace OxDb.Client.Minigames.Lobby
 {
     public class MinigameLobbyIcon : BaseBehaviour
     {

@@ -8,7 +8,7 @@ using OxDb.SharedGame.Crawler.TimeOfDay.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Exploring
 {
     public class CampingStateHelper : BaseStateHelper
     {

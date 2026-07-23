@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
+namespace OxDb.Client.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
     public class PolymorphCrawlerSpellEffectHelper : BaseCrawlerSpellEffectHelper
     {

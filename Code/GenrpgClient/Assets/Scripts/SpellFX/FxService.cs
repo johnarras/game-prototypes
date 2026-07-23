@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.MapObjects.Entities;
 using OxDb.SharedGame.Spells.Messages;

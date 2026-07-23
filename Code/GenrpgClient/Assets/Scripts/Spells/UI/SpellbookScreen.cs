@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.UI.Spells;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.UI.Spells;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedGame.SpellCrafting.Constants;
 using OxDb.SharedGame.SpellCrafting.Messages;

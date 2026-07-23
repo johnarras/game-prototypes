@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.Helpers;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Maps.Entities;

@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Logalytics.ClientEvents
+namespace OxDb.Client.Logalytics.ClientEvents
 {
     public class UpdateDefaultLogalyticsPayload : IClientEvent
     {

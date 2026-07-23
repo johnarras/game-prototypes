@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Info.UI;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Info.UI;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.UI.Screens.Info
+namespace OxDb.Client.Crawler.UI.Screens.Info
 {
     public class CrawlerInfoScreen : BaseInfoScreen
     {

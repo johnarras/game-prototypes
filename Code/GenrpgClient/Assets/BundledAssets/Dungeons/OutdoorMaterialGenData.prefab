@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &781940869455178507
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 214490968233204535, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_Name
+      value: CityMaterialGenData
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: MainMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ce978bd419c10aa4181254994598e5bd, type: 2}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ForegroundColors.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.b
+      value: 0.21698111
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.g
+      value: 0.21698111
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Background.r
+      value: 0.21698111
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.b
+      value: 0.6556604
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.g
+      value: 0.8747856
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].Foreground.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Background.b
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Background.g
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Background.r
+      value: 0.3018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Foreground.b
+      value: 0.9386792
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Foreground.g
+      value: 0.9386792
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].Foreground.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[0].<Weight>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658895150554955245, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: ColorSets.Array.data[1].<Weight>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955369627717100474, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9e17227d4a3d93244999debb0546aa0d, type: 3}

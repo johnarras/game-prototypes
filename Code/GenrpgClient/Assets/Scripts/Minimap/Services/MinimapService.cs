@@ -1,12 +1,12 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Minimap.Services
+namespace OxDb.Client.Minimap.Services
 {
     public interface IMinimapService : IInjectable, IClientResetCleanup
     {

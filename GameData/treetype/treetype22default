@@ -1,9 +1,0 @@
-{
-  "Id": "treetype22default",
-  "ParentId": "default",
-  "IdKey": 22,
-  "Name": "DouglasFirBare",
-  "Art": "DouglasFirBare",
-  "Scale": 1.5,
-  "VariationCount": 2
-}

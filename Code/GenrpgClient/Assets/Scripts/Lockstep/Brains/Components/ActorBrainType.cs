@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Brains.Constants;
+﻿using OxDb.Client.Lockstep.Brains.Constants;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Brains.Components
+namespace OxDb.Client.Lockstep.Brains.Components
 {
     [GenerateTestsForBurstCompatibility]
     public struct ActorBrainType : IComponentData

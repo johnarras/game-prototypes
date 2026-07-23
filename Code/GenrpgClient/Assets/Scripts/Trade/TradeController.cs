@@ -1,11 +1,11 @@
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Trades.Messages;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trade
+namespace OxDb.Client.Trade
 {
     public interface ITradeController : IInitializable
     {

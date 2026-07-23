@@ -1,6 +1,6 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameObjects;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Characters.PlayerData;

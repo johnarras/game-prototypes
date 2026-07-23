@@ -1,4 +1,4 @@
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.MapServer.Constants;
 using System.Collections.Generic;
 using System.Linq;

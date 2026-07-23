@@ -14,134 +14,186 @@
   "ZoneNames": [
     {
       "Weight": 1000.0,
-      "Name": "Grassland",
+      "Name": "Lake",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Grasslands",
+      "Name": "Mere",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Llano",
+      "Name": "Loch",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Meadow",
+      "Name": "Lagoon",
       "Desc": ""
     },
     {
       "Weight": 2000.0,
-      "Name": "Plain",
+      "Name": "Sea",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Plains",
+      "Name": "Fjord",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Prairie",
+      "Name": "Bay",
       "Desc": ""
     },
     {
       "Weight": 5000.0,
-      "Name": "Savanna",
+      "Name": "Gulf",
       "Desc": ""
     },
     {
       "Weight": 2000.0,
-      "Name": "Savannah",
-      "Desc": ""
-    },
-    {
-      "Weight": 5000.0,
-      "Name": "Steppe",
-      "Desc": ""
-    },
-    {
-      "Weight": 1000.0,
-      "Name": "Veldt",
+      "Name": "Sound",
       "Desc": ""
     }
   ],
   "ZoneAdjectives": [
     {
       "Weight": 1000.0,
-      "Name": "Arid",
+      "Name": "Vast",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Barren",
+      "Name": "Fathomless",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Damp",
+      "Name": "Abyssal",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Dry",
+      "Name": "Colossal",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Fertile",
+      "Name": "Boundless",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Flat",
+      "Name": "Expansive",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Hilly",
+      "Name": "Churning",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Lush",
+      "Name": "Turbulent",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Open",
+      "Name": "Stagnant",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Rolling",
+      "Name": "Surging",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Sloped",
+      "Name": "Restless",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Sunny",
+      "Name": "Murky",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Verdant",
+      "Name": "Turbid",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Wet",
+      "Name": "Pellucid",
       "Desc": ""
     },
     {
       "Weight": 1000.0,
-      "Name": "Wide",
+      "Name": "Crystalline",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Crystalline",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Opaque",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Luminous"
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Incandescent"
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Somber",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Serene",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Tempestuous",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Tranquil",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Boding",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Primeval"
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Briny",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Ominous",
+      "Desc": ""
+    },
+    {
+      "Weight": 1000.0,
+      "Name": "Foamy",
       "Desc": ""
     }
   ],
@@ -165,86 +217,19 @@
       "Weight": 1.0
     }
   ],
-  "RockTypes": [
+  "LargePropChance": 0.03,
+  "SmallPropChance": 0.2,
+  "MaxSmallPropQuantity": 1,
+  "Props": [
     {
-      "RockTypeId": 1,
       "Weight": 1.0,
-      "BaseColor": {
-        "R": 1.0,
-        "G": 1.0,
-        "B": 1.0,
-        "A": 1.0
-      }
+      "EntityTypeId": 97,
+      "EntityId": 1
     },
     {
-      "RockTypeId": 2,
       "Weight": 1.0,
-      "BaseColor": {}
-    },
-    {
-      "RockTypeId": 3,
-      "Weight": 1.0,
-      "BaseColor": {}
-    }
-  ],
-  "TreeTypes": [
-    {
-      "TreeTypeId": 40,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 41,
-      "Weight": 1.0
-    }
-  ],
-  "BushTypes": [
-    {
-      "BushTypeId": 9,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 8,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 10,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 11,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 7,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 13,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 13,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 14,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 15,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 16,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 18,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 19,
-      "Weight": 1.0
+      "EntityTypeId": 11,
+      "EntityId": 1
     }
   ],
   "CreatureNamePrefixes": [
@@ -620,19 +605,13 @@
     }
   ],
   "UnitKeyWords": [],
-  "PropChance": 0.2,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 9
-    }
-  ],
   "PlantChoices": "0",
   "FenceChance": 0.1,
   "WeatherTypeId": 8,
   "MusicTypeId": 3,
   "AmbientMusicTypeId": 8,
   "TraveralTimeScale": 20.0,
-  "ZoneCategoryId": 1
+  "ZoneCategoryId": 1,
+  "IsOutdoors": true,
+  "IsDungeon": true
 }

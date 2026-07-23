@@ -1,5 +1,5 @@
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.GameObjects;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;

@@ -1,7 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.Constants;
 using OxDb.SharedCore.Entities.Constants;
-using OxDb.SharedCore.Entities.Services;
-using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -28,13 +26,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.MapGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.Helpers
 {
     public class OutdoorCrawlerMapGenHelper : BaseCrawlerMapGenHelper
     {
         private ILootGenService _lootGenService = null;
         private IRiddleService _riddleService = null;
-        private IEntityService _entityService = null;
 
         public override long HelperKey => CrawlerMapTypes.Outdoors;
 
@@ -45,7 +42,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             int height = RandUtils.IntRange(genData.GenType.MinHeight, genData.GenType.MaxHeight, rand);
 
             CrawlerMap outdoorMap = _worldService.CreateMap(genData, width, height);
-            outdoorMap.ZoneTypeId = 0;
             outdoorMap.ZoneUnits = new List<ZoneUnitSpawn>();
 
             byte[,] overrides = new byte[outdoorMap.Width, outdoorMap.Height];
@@ -59,7 +55,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
             List<ZoneType> allZoneTypes = zoneSettings.GetData().OrderBy(x => x.MinLevel).ToList();
 
-            List<long> okZoneTypeIds = allZoneTypes.Where(x => x.GenChance > 0).Select(x => x.IdKey).ToList();
+            List<long> okZoneTypeIds = allZoneTypes.Where(x => x.IsOutdoors).Select(x => x.IdKey).ToList();
 
             int startMapEdgeSize = 4;
 
@@ -71,7 +67,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             int cellCount = genWidth * genHeight;
 
 
-            double density = (int)RandUtils.FloatRange(genData.GenType.MinBuildingDensity, genData.GenType.MaxBuildingDensity, rand);
+            double density = RandUtils.IntRange(100, 300, rand);
 
             int regionCount = (int)(cellCount / density);
 
@@ -129,17 +125,20 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             }
 
 
-
-            int level = 1;
-            int levelDelta = 4;
-            float spreadDelta = 0.4f;
-            float dirDelta = 0.3f;
+            long maxLevel = _gameData.Get<CrawlerMapSettings>(_gs.ch).MaxLevel;
 
 
             List<ZoneType> allOkZones = allZoneTypes.Where(x => x.GenChance > 0 && x.IdKey != ZoneTypes.Mountains).ToList();
 
             int maxRegionId = 0;
             List<ZoneType> currentOkZones = new List<ZoneType>(allOkZones);
+
+
+            float startRegionX = points[0].X;
+            float startRegionZ = points[0].Z;
+
+            points = points.OrderBy(p => Mathf.Sqrt((p.X - startRegionX) * (p.X - startRegionX) + (p.Z - startRegionZ) * (p.Z - startRegionZ))).ToList();
+
             while (points.Count > 0)
             {
                 if (currentOkZones.Count < 1)
@@ -153,9 +152,11 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
                 ZoneType biomeType = currentOkZones[rand.Next() % currentOkZones.Count];
 
+                bool isWaterRegion = false;
                 if (waterPoints.Contains(centerPoint))
                 {
                     biomeType = zoneSettings.Get(ZoneTypes.Water);
+                    isWaterRegion = true;
                 }
 
                 currentOkZones.Remove(biomeType);
@@ -163,23 +164,28 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 ZoneRegion region = new ZoneRegion()
                 {
                     CenterX = (int)centerPoint.X,
-                    CenterY = (int)centerPoint.Z,
-                    SpreadX = RandUtils.DeltaScale(spreadDelta, rand),
-                    SpreadY = RandUtils.DeltaScale(spreadDelta, rand),
+                    CenterZ = (int)centerPoint.Z,
                     ZoneTypeId = biomeType.IdKey,
-                    DirX = RandUtils.DeltaRange(dirDelta, rand),
-                    DirY = RandUtils.DeltaRange(dirDelta, rand),
-                    Level = level,
                     RegionId = ++maxRegionId,
+                    IsWaterRegion = isWaterRegion,
                 };
-
-                level += levelDelta;
 
                 regions.Add(region);
             }
 
+            double levelDelta = 1.0f * maxLevel / regions.Count;
 
-            long cityZoneId = 0;
+            if (levelDelta > 2)
+            {
+                levelDelta = 2;
+            }
+
+            for (int r = 0; r < regions.Count; r++)
+            {
+                regions[r].Level = 1 + (int)(r * levelDelta);
+            }
+
+            long cityZoneTypeId = allZoneTypes.FirstOrDefault(x => x.Name == "City").IdKey;
             long waterZoneTypeId = allZoneTypes.FirstOrDefault(x => x.Name == "Water").IdKey;
             long waterRegionId = ++maxRegionId;
             long roadZoneTypeId = allZoneTypes.FirstOrDefault(x => x.Name == "Road").IdKey;
@@ -187,9 +193,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             long mountainZoneTypeId = allZoneTypes.FirstOrDefault(x => x.Name == "Mountains").IdKey;
             long mountainRegionId = ++maxRegionId;
 
-
-
-            outdoorMap.LevelDelta = level + levelDelta;
 
             if (regions.Count < 1)
             {
@@ -227,18 +230,20 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
                 outdoorMap.Regions = regions;
 
+                float spreadDelta = 0.4f;
+                float dirDelta = 0.3f;
                 foreach (ZoneRegion region in regions)
                 {
                     region.Name = _zoneGenService.GenerateZoneName(region.ZoneTypeId, rand.Next(), false);
                     float currRadius = RandUtils.FloatRange(radius * (1 - radiusDelta), radius * (1 + radiusDelta), rand);
 
-                    float xrad = currRadius * region.SpreadX;
-                    float zrad = currRadius * region.SpreadY;
-                    float xcenter = region.CenterX + region.DirX * currRadius;
-                    float zcenter = region.CenterY * region.DirY * currRadius;
+                    float xrad = currRadius * RandUtils.DeltaScale(spreadDelta, rand);
+                    float zrad = currRadius * RandUtils.DeltaScale(spreadDelta, rand);
+                    float xcenter = region.CenterX + RandUtils.DeltaScale(dirDelta,rand) * currRadius;
+                    float zcenter = region.CenterZ * RandUtils.DeltaScale(dirDelta, rand) * currRadius;
 
                     xcenter = region.CenterX;
-                    zcenter = region.CenterY;
+                    zcenter = region.CenterZ;
 
                     int xmin = MathUtil.Clamp(0, (int)(xcenter - xrad - 1), outdoorMap.Width - 1);
                     int xmax = MathUtil.Clamp(0, (int)(xcenter + xrad + 1), outdoorMap.Width - 1);
@@ -478,15 +483,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             }
 
 
-            for (int x = 0; x < outdoorMap.Width; x++)
-            {
-                for (int z = 0; z < outdoorMap.Height; z++)
-                {
-                    outdoorMap.Set(x, z, CellIndex.Terrain, (short)(zoneTypeIds[x, z]));
-                    outdoorMap.Set(x, z, CellIndex.Region, (short)regionIds[x, z]);
-                }
-            }
-
             ZoneType cityZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.City);
 
             for (int c = 0; c < origPoints.Count; c++)
@@ -494,14 +490,15 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 Point2I pt = origPoints[c];
 
                 int cityLevel = 1;
-                ZoneRegion zoneRegion = regions.FirstOrDefault(x => x.CenterX == (int)pt.X && x.CenterY == (int)pt.Z);
+                ZoneRegion zoneRegion = regions.FirstOrDefault(x => x.CenterX == (int)pt.X && x.CenterZ == (int)pt.Z);
 
                 if (zoneRegion != null)
                 {
                     cityLevel = (int)zoneRegion.Level;
                 }
 
-                zoneTypeIds[(int)pt.X, (int)pt.Z] = cityZoneId;
+                zoneTypeIds[(int)pt.X, (int)pt.Z] = cityZoneTypeId;
+                outdoorMap.Set((int)pt.X, (int)pt.Z, CellIndex.Terrain, cityZoneTypeId);
                 CrawlerMapGenData cityGenData = new CrawlerMapGenData()
                 {
                     World = genData.World,
@@ -550,14 +547,14 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
                 cityMap.FromPlaceName = outdoorMap.GetName(xx, zz);
 
-                cityLevel += levelDelta;
+                cityMap.Level = _worldService.GetMapLevelAtPoint(world, outdoorMap.IdKey, xx, zz);
             }
 
             // Add random dungeons and stuff on the map
             samplingData = new SamplingData()
             {
-                Count = outdoorMap.Width * outdoorMap.Height / 100,
-                MaxAttemptsPerItem = 20,
+                Count = outdoorMap.Width * outdoorMap.Height / 500,
+                MaxAttemptsPerItem = 5,
                 MinX = cityDistanceFromEdge,
                 MaxX = outdoorMap.Width - cityDistanceFromEdge,
                 MinZ = cityDistanceFromEdge,
@@ -590,7 +587,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 foreach (ZoneRegion region in outdoorMap.Regions)
                 {
                     double ddx = region.CenterX - xx;
-                    double ddz = region.CenterY - zz;
+                    double ddz = region.CenterZ - zz;
 
                     if (Math.Sqrt(ddx * ddx + ddz * ddz) < minDistFromCity)
                     {
@@ -604,7 +601,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                     continue;
                 }
 
-                long dungeonLevel = 2 + await _worldService.GetMapLevelAtPoint(world, outdoorMap.IdKey, xx, zz) * 5 / 4;
+                long dungeonLevel = 2 + _worldService.GetMapLevelAtPoint(world, outdoorMap.IdKey, xx, zz) * 5 / 4;
                 CrawlerMapGenData dungeonGenData = new CrawlerMapGenData()
                 {
                     World = genData.World,
@@ -786,6 +783,24 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 await _riddleService.GenerateRiddles(party, floors, genData.GenType, rand);
             }
 
+
+            for (int x = 0; x < outdoorMap.Width; x++)
+            {
+                for (int z = 0; z < outdoorMap.Height; z++)
+                {
+                    outdoorMap.Set(x, z, CellIndex.Terrain, (short)(zoneTypeIds[x, z]));
+                    outdoorMap.Set(x, z, CellIndex.Region, (short)regionIds[x, z]);
+
+                    ZoneRegion region = outdoorMap.GetRegion(x, z);
+                        
+                    if (region == null || region.ZoneTypeId != zoneTypeIds[x,z])
+                    {
+                        _logService.Info("Mismatched Zone and Region Zone at : " + x + " -- " + z + " RZ: " + region.ZoneTypeId + " CZ: " + zoneTypeIds[x,z]);
+                    }
+                }
+            }
+
+
             // Now remove all empty quest item detail slots.
 
             foreach (CrawlerMap map2 in world.Maps)
@@ -813,6 +828,31 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 if (cmap.CrawlerMapTypeId != CrawlerMapTypes.Dungeon)
                 {
                     await AddProps(cmap, rand);
+                }
+            }
+
+            // Set city edge zone types
+
+            foreach (CrawlerMap map in world.Maps)
+            {
+                if (map.CrawlerMapTypeId != CrawlerMapTypes.City)
+                {
+                    continue;
+                }
+
+                foreach (ZoneEdge edge in map.EdgePoints)
+                {
+                    MapCellDetail detail = map.Details.FirstOrDefault(d => d.EntityTypeId == EntityTypes.Map &&  Math.Abs(d.X - edge.X) + Math.Abs(d.Z - edge.Z) <= 2);
+
+                    if (detail != null)
+                    {
+                        CrawlerMap otherMap = world.GetMap(detail.EntityId);
+
+                        if (otherMap != null)
+                        {
+                            edge.ZoneTypeId = otherMap.Get(detail.ToX, detail.ToZ, CellIndex.Terrain);
+                        }
+                    }
                 }
             }
 
@@ -882,6 +922,8 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
                     ZoneType ztype = zoneSettings.Get(centerTerrain);
 
+
+
                     if (ztype != null && ztype.Props != null && ztype.Props.Count > 0)
                     {
 
@@ -911,25 +953,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                                 continue;
                             }
 
-                        }
-                        if (rand.NextDouble() < ztype.PropChance)
-                        {
-
-                            WeightedObject obj = RandUtils.GetRandomElement(ztype.Props, rand);
-
-                            if (obj == null)
-                            {
-                                continue;
-                            }
-
-                            IIdName entity = _entityService.Find(_gs.ch, obj.EntityTypeId, obj.EntityId);
-
-                            if (entity != null && entity is IIndexedGameItem indexed && !string.IsNullOrEmpty(indexed.Art))
-                            {
-
-                                map.SetEntity(x, z, obj.EntityTypeId, obj.EntityId);
-                                map.Set(x, z, CellIndex.Dir, _crawlerMapService.GetMapCellHash(map.IdKey, x, z, 77) % 4);
-                            }
                         }
                     }
                 }

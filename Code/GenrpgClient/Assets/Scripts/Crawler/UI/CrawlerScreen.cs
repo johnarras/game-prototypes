@@ -1,6 +1,6 @@
 
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Crawler.ClientEvents.StatusPanelEvents;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
@@ -9,7 +9,7 @@ using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Crawler
+namespace OxDb.Client.UI.Crawler
 {
     public class CrawlerScreen : BaseScreen
     {

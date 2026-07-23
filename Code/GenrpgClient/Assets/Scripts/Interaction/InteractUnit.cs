@@ -1,5 +1,5 @@
 
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.Crafting.Settings.Crafters;
 using OxDb.SharedGame.Factions.Services;
 using OxDb.SharedGame.Loot.Messages;

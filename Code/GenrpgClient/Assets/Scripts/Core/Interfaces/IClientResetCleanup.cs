@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Core.Interfaces
+namespace OxDb.Client.Core.Interfaces
 {
     public interface IClientResetCleanup
     {

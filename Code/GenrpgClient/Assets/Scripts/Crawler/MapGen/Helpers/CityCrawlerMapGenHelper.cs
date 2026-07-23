@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -21,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.MapGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.Helpers
 {
     public class CityCrawlerMapGenHelper : BaseCrawlerMapGenHelper
     {
@@ -52,6 +52,10 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
             int gateX = -1;
             int gateZ = -1;
+
+            ZoneEdge edge = new ZoneEdge();
+
+
             if (_optionsService.HasOption(party, CrawlerOptions.FullWorld))
             {
                 if (rand.NextDouble() < 0.5f)
@@ -59,26 +63,40 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                     if (rand.NextDouble() < 0.5f)
                     {
                         gateX = edgeSize;
+                        edge.X = 0;
+                        edge.DX = -1;
                     }
                     else
                     {
                         gateX = map.Width - 1 - edgeSize;
+                        edge.X = map.Width - 1;
+                        edge.DX = 1;
                     }
+
+                   
                     gateZ = RandUtils.IntRange(height / 3, height * 2 / 3, rand);
+                    edge.Z = gateZ;
                 }
                 else
                 {
                     if (rand.NextDouble() < 0.5f)
                     {
                         gateZ = edgeSize;
+                        edge.Z = 0;
+                        edge.DZ = -1;
                     }
                     else
                     {
                         gateZ = map.Height - 1 - edgeSize;
+                        edge.Z = map.Height - 1;
+                        edge.DZ = 1;
                     }
                     gateX = RandUtils.IntRange(width / 3, width * 2 / 3, rand);
+                    edge.X = gateX;
                 }
             }
+
+            map.EdgePoints.Add(edge);
 
             float minSeparation = RandUtils.FloatRange(2.5f, 3.5f, rand);
 
@@ -257,7 +275,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
             List<Point2I> fillerBuildingPositions = new List<Point2I>();
 
-            float buildingChance = RandUtils.FloatRange(genType.MinBuildingDensity, genType.MaxBuildingDensity, rand);
+            float buildingChance = RandUtils.FloatRange(0.5f,1.0f, rand);
 
             if (fillerBuildings.Count > 0)
             {
@@ -365,10 +383,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             {
                 dungeonCount++;
             }
-            if (rand.NextDouble() < 0.25f)
-            {
-                dungeonCount++;
-            }
 
             if (map.IdKey < 4)
             {
@@ -444,7 +458,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
             await AddMapNpcs(party, world, genData, map, fillerBuildingPositions, rand);
 
-            return new NewCrawlerMap() { Map = map, EnterX = gateX, EnterZ = gateZ };
+            return new NewCrawlerMap() { Map = map, EnterX = gateX, EnterZ = gateZ};
         }
 
         public override NpcQuestMaps GetQuestMapsForNpc(PartyData party, CrawlerWorld world, CrawlerMap map, MapCellDetail npcDetail, IRandom rand)

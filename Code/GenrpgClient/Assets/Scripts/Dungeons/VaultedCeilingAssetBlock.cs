@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Dungeons
+namespace OxDb.Client.Dungeons
 {
     [Serializable]
     public class VaultedCeilingAssetBlock : BaseBehaviour, IWeightedItem

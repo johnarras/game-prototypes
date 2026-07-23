@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Abstractions;
+using OxDb.Client.UI.Abstractions;
 using UnityEditor;
 using UnityEditor.UI;
 

@@ -2,8 +2,8 @@
   "Id": "proptype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "HillsProp",
-  "Icon": "HillsProp",
-  "Art": "HillsProp",
-  "NumChoices": 1
+  "Name": "LavaProp",
+  "Icon": "LavaProp",
+  "Art": "LavaProp",
+  "VariationCount": 8
 }

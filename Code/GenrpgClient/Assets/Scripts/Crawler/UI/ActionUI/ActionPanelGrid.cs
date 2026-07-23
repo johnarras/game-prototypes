@@ -1,6 +1,6 @@
-using Assets.Scripts.UI.Abstractions;
+using OxDb.Client.UI.Abstractions;
 
-namespace Assets.Scripts.Crawler.UI.ActionUI
+namespace OxDb.Client.Crawler.UI.ActionUI
 {
     public class ActionPanelGrid : BaseBehaviour
     {

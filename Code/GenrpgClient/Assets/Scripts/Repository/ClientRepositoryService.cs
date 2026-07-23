@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Repository.Constants;
+using OxDb.Client.Repository.Constants;
 using OxDb.SharedCore.DataStores.Entities;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.Interfaces;
@@ -14,7 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Repository
+namespace OxDb.Client.Repository
 {
 
     public interface IClientRepositoryService : IRepositoryService

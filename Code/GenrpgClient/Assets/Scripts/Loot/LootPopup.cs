@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.ScreenSystem;
+using OxDb.Client.UI.ScreenSystem;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Inventory.PlayerData;
 using System.Collections.Generic;

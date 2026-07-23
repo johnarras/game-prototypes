@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.MapObjects.MapObjectAddons.Constants;
 using OxDb.SharedGame.Quests.Constants;
 using OxDb.SharedGame.Quests.Messages;

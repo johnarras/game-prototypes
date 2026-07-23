@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Brains.Constants;
-using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Brains.Constants;
+using OxDb.Client.Lockstep.Math;
 using Unity.Collections;
 
-namespace Assets.Scripts.Lockstep.Units.Spawns
+namespace OxDb.Client.Lockstep.Units.Spawns
 {
     [GenerateTestsForBurstCompatibility]
     public struct UnitSpawnData

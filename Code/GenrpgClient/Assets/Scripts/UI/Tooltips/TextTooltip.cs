@@ -1,7 +1,7 @@
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.UI.Tooltips
+namespace OxDb.Client.UI.Tooltips
 {
     public class TextTooltip : BaseBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

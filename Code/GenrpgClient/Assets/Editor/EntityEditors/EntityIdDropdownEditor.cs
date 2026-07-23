@@ -1,5 +1,5 @@
 
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;

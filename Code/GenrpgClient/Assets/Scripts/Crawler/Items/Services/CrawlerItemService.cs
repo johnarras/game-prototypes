@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.Crawler.Items.Services
+namespace OxDb.Client.Crawler.Items.Services
 {
     public interface ICrawlerItemService : IInjectable
     {

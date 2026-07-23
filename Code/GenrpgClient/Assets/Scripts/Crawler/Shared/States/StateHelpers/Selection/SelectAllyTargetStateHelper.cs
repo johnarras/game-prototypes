@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Shared.GameEvents;
+using OxDb.Client.Crawler.Shared.GameEvents;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Constants;
@@ -49,7 +49,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Selection
                 return new CrawlerStateData(ECrawlerStates.Error, true) { ExtraData = "Cannot select ally without select action" };
             }
 
-            List<PartyMember> partyMembers = party.ActiveParty;
+            List<PartyMember> partyMembers = party.ActiveParty.OrderBy(x => x.PartySlot).ToList();
 
             bool selectingCaster = false;
             ECrawlerStates nextAction = ECrawlerStates.SelectSpell;

@@ -1,7 +1,7 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Trader.HUD.ClientEvents
+namespace OxDb.Client.Trader.HUD.ClientEvents
 {
     public class ShowTraderDiceRoll : IClientEvent
     {

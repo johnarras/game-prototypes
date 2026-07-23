@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
+﻿using OxDb.Client.Assets.Constants;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
@@ -13,7 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Dungeons.Audio
+namespace OxDb.Client.Dungeons.Audio
 {
 
     public interface IAmbientSoundsService : IInitializable

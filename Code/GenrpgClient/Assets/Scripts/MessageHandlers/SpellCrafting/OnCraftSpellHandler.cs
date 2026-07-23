@@ -3,7 +3,7 @@ using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.SpellCrafting
+namespace OxDb.Client.MessageHandlers.SpellCrafting
 {
     public class OnCraftSpellHandler : BaseClientMapMessageHandler<OnCraftSpell>
     {

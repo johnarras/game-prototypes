@@ -1,3 +1,4 @@
+using MessagePack;
 using Newtonsoft.Json;
 using OxDb.SharedCore.DataStores.Constants;
 using OxDb.SharedCore.Entities.Constants;
@@ -32,7 +33,9 @@ namespace OxDb.SharedGame.MapObjects.Entities
         public string Id { get; set; }
         public string GetId() { return Id; }
         public string Name { get; set; }
-        public IRandom Rand { get; private set; } = new MyRandom();
+        [JsonIgnore]
+        [IgnoreMember]
+        public IRandom Rand { get; set; } = new MyRandom();
         public long EntityTypeId { get; set; }
         public long EntityId { get; set; }
         public float X { get; set; }

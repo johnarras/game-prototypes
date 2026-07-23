@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials
+namespace OxDb.Client.ProcGen.Materials
 {
     public class MaterialGenSettingsData : ScriptableObject
     {

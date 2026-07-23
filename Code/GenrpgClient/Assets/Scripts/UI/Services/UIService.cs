@@ -1,12 +1,12 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.UI.Abstractions;
-using Assets.Scripts.UI.Animations;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
-using Assets.Scripts.UI.Pointers;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Audio.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameObjects;
+using OxDb.Client.UI.Abstractions;
+using OxDb.Client.UI.Animations;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
+using OxDb.Client.UI.Pointers;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -30,7 +30,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Assets.Scripts.UI.Services
+namespace OxDb.Client.UI.Services
 {
     public class UIService : IUIService
     {

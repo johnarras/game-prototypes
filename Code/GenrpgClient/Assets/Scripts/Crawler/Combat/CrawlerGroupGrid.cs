@@ -1,5 +1,5 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Combat.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Combat
+namespace OxDb.Client.Crawler.Combat
 {
     public class CrawlerGroupGrid : BaseBehaviour
     {

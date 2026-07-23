@@ -1,4 +1,4 @@
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.Buildings.Constants;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.States.Constants;

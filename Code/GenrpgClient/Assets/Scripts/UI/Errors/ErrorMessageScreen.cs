@@ -2,7 +2,7 @@ using OxDb.SharedCore.Website.Responses.Errors;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Screens
+namespace OxDb.Client.UI.Screens
 {
     public abstract class ErrorMessageScreen : BaseScreen
     {

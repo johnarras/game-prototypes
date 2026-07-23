@@ -1,10 +1,10 @@
-using Assets.Scripts.TextureLists.Services;
+using OxDb.Client.TextureLists.Services;
 using OxDb.SharedCore.Entities.Assets;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Utils;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Textures
+namespace OxDb.Client.Assets.Textures
 {
     public class AnimatedSprite : BaseBehaviour
     {

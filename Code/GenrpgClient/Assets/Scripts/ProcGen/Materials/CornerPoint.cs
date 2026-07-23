@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Assets.Scripts.ProcGen.Materials
+namespace OxDb.Client.ProcGen.Materials
 {
     public class CornerPoint
     {

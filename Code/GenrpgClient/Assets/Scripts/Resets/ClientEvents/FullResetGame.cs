@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Resets.ClientEvents
+namespace OxDb.Client.Resets.ClientEvents
 {
     public class FullResetGame : IClientEvent
     {

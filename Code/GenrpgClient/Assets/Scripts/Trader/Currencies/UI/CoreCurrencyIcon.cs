@@ -1,4 +1,5 @@
-using Assets.Scripts.Entities.UI;
+using OxDb.Client.Entities.UI;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Core.PlayerData;
@@ -7,12 +8,12 @@ using OxDb.SharedGame.UserEnergy.WebApi;
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.Currencies
+namespace OxDb.Client.Trader.UI.Currencies
 {
     public class CoreCurrencyIcon : EntityIcon
     {
 
-        protected IClientWebService _webService = null;
+        protected IClientWebRequestService _webService = null;
         protected ICoreCurrencyService _coreCurrencyService = null;
 
         public ProgressBar FillBar;
@@ -53,7 +54,7 @@ namespace Assets.Scripts.Trader.UI.Currencies
 
                 if (totalSeconds < 1)
                 {
-                    _webService.SendWebRequest(new UpdateCoreCurrenciesRequest(), GetToken());
+                    _webService.SendMainServerRequest(new UpdateCoreCurrenciesRequest(), GetToken());
                 }
 
                 long finalSeconds = (int)Math.Max(0, totalSeconds);

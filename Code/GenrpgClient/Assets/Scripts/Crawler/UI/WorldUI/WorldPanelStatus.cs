@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class WorldPanelStatus : BaseBehaviour
     {

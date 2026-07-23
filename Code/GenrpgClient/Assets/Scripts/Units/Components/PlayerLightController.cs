@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Buffs.Constants;
@@ -9,7 +9,7 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using UnityEngine;
 
-namespace Assets.Scripts.Controllers
+namespace OxDb.Client.Controllers
 {
     public class PlayerLightController : BaseBehaviour
     {
@@ -23,22 +23,27 @@ namespace Assets.Scripts.Controllers
 
         public Light Headlight;
 
+        public float IntensityDelta = 7f;
+        public float MaxIntensity = 150;
+
         float _currIntensity = 0;
         float _targetIntensity = 0;
 
-        const float IntensityDelta = 7f;
-
-        public float MaxIntensity = 150;
+        public Color LowColor;
+        public Color MidColor;
+        public Color HighColor;
 
         public Vector3 Offset;
+
+        public int CombatDarkenTicks = 10;
+        public float CombatDarkIntensityScale = 0.25f;
 
         private int _maxStableTicks = 5;
         private int _stableTicksLeft = 0;
 
-        public float FlickerSpeed = 0.001f;
+        private int _currentCombatTicks = 0;
 
-        Color _color1;
-        Color _color2;
+        public float FlickerSpeed = 0.001f;
 
         public override void Init()
         {
@@ -50,8 +55,34 @@ namespace Assets.Scripts.Controllers
             {
                 Headlight.intensity = 0;
             }
-            _color1 = Headlight.color;
-            _color2 = Color.orange;
+        }
+
+        private bool UpdateCombatDarkenTicks(bool inCombat)
+        {
+
+            if (inCombat)
+            {
+                if (_currentCombatTicks >= CombatDarkenTicks)
+                {
+                    return false;
+                }
+                _currentCombatTicks++;
+            }
+            else
+            {
+                if (_currentCombatTicks <= 0)
+                {
+                    return false;
+                }
+                _currentCombatTicks--;
+            }
+
+            float combatIntensityPercent = 1.0f * _currentCombatTicks / CombatDarkenTicks;
+
+            Headlight.intensity = MaxIntensity * (1.0f - combatIntensityPercent * 0.75f);
+
+
+            return true;
         }
 
         bool haveSetPosition = false;
@@ -64,7 +95,6 @@ namespace Assets.Scripts.Controllers
 
             PartyData party = _crawlerService.GetParty();
             CrawlerMap map = _crawlerWorldService.GetMap(party.CurrPos.MapId);
-
 
             if (_crawlerMapService.HasMagicBit(party.CurrPos.X, party.CurrPos.Z, MapMagics.Darkness, true))
             {
@@ -79,9 +109,33 @@ namespace Assets.Scripts.Controllers
             }
             haveSetPosition = true;
 
-            float noise = Mathf.PerlinNoise(Time.time * FlickerSpeed, 0.0f);
+            if (party.Combat != null)
+            {
 
-            Headlight.color = Color.Lerp(_color1, _color2, noise);
+                UpdateCombatDarkenTicks(true);
+                return;
+            }
+            else
+            {
+                if (UpdateCombatDarkenTicks(false))
+                {
+                    return;
+                }
+            }
+
+            float colorNoise = Mathf.PerlinNoise(Time.time * FlickerSpeed, 0.0f);
+
+            if (colorNoise < 0.5f)
+            {
+                float localNoise = 2 * colorNoise;
+                Headlight.color = Color.Lerp(LowColor, MidColor, localNoise);
+            }
+            else
+            {
+                // Re-map t from [0.5, 1.0] to [0.0, 1.0] for the lerp
+                float localNoise = (colorNoise - 0.5f) * 2.0f;
+                Headlight.color = Color.Lerp(MidColor, HighColor, localNoise);
+            }
 
             if (_currIntensity != _targetIntensity)
             {

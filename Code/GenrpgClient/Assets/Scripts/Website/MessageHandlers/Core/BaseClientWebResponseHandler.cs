@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Awaitables;
+using OxDb.Client.Awaitables;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -8,7 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Login.Messages.Core
+namespace OxDb.Client.Login.Messages.Core
 {
     public abstract class BaseClientWebResponseHandler<T> : IClientWebResponseHandler where T : class, IWebResponse
     {

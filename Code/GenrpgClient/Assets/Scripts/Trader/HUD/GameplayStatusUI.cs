@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Trader.ClientEvents;
+﻿using OxDb.Client.Trader.ClientEvents;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Calendar.Services;
 using OxDb.SharedGame.Trader.Constants;
 
-namespace Assets.Scripts.Trader.UI.TraderHUD
+namespace OxDb.Client.Trader.UI.TraderHUD
 {
     public class GameplayStatusUI : BaseBehaviour
     {

@@ -21,7 +21,7 @@ namespace OxDb.RequestServer.Resets.Services
         protected IGameData _gameData;
         protected ITimeService _timeService = null;
 
-        private OrderedSetupDictionaryContainer<Type, IDailyResetHelper> _resetHelpers = new OrderedSetupDictionaryContainer<Type, IDailyResetHelper>();
+        private OrderedSetupDictionaryContainer<EDailyResetOrder, IDailyResetHelper> _resetHelpers = new OrderedSetupDictionaryContainer<EDailyResetOrder, IDailyResetHelper>();
         //private List<IResetHelper> _helpers = null;
 
         public async ValueTask DailyReset(WebContext context)

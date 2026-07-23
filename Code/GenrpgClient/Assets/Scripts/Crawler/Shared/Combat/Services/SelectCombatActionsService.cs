@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Shared.Combat.Constants;
+using OxDb.Client.Crawler.Shared.Combat.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -28,7 +28,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Shared.Combat.Services
+namespace OxDb.Client.Crawler.Shared.Combat.Services
 {
     public interface ISelectCombatActionsService : IInjectable
     {

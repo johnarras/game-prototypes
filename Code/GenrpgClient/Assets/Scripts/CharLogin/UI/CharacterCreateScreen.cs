@@ -1,5 +1,6 @@
 
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedGame.Characters.WebApi.CreateChar;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 public class CharacterCreateScreen : BaseScreen
 {
-    private IClientWebService _webNetworkService = null;
+    private IClientWebRequestService _webNetworkService = null;
 
     public GInputField NameInput;
     public GButton CreateButton;
@@ -40,7 +41,7 @@ public class CharacterCreateScreen : BaseScreen
             Name = charName,
         };
 
-        _webNetworkService.SendWebRequest(createCommand, GetToken());
+        _webNetworkService.SendMainServerRequest(createCommand, GetToken());
 
     }
 }

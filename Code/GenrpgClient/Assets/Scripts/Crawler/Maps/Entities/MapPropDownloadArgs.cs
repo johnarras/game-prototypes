@@ -1,7 +1,7 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.GameObjects;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 
-namespace Assets.Scripts.Crawler.Maps.Entities
+namespace OxDb.Client.Crawler.Maps.Entities
 {
     public class MapPropDownloadArgs
     {

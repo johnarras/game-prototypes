@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using UnityEngine.UIElements;
 
-namespace Assets.Scripts.UI.Overrides
+namespace OxDb.Client.UI.Overrides
 {
     [UxmlElement]
     public partial class GScrollView : ScrollView

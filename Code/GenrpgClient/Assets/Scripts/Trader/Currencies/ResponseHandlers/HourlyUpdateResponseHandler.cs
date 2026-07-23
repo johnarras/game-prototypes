@@ -1,6 +1,6 @@
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.Rewards.Services;
-using Assets.Scripts.Trader.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.Rewards.Services;
+using OxDb.Client.Trader.ClientEvents;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Rewards.Constants;
@@ -10,7 +10,7 @@ using OxDb.SharedGame.UserEnergy.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.MessageHandlers.CoreCurrencies
+namespace OxDb.Client.Trader.MessageHandlers.CoreCurrencies
 {
     public class HourlyUpdateResponseHandler : BaseClientWebResponseHandler<HourlyUpdateResponse>
     {

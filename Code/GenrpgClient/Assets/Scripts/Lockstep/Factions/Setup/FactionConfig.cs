@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 
-namespace Assets.Scripts.Lockstep.Factions.Setup
+namespace OxDb.Client.Lockstep.Factions.Setup
 {
     public class FactionConfig
     {

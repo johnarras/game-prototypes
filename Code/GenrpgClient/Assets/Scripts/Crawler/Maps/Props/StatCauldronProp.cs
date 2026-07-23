@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.ProcGen.Materials;
+﻿using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.ProcGen.Materials;
 using OxDb.SharedGame.Stats.Settings.Stats;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.Props
+namespace OxDb.Client.Crawler.Maps.Props
 {
-    public class StatCauldronProp : CrawlerProp
+    public class StatCauldronProp : MapProp
     {
         public override void SetData(CrawlerObjectLoadData loadData)
         {

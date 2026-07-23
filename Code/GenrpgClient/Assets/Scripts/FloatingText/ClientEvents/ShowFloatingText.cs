@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.FloatingText.ClientEvents
+namespace OxDb.Client.FloatingText.ClientEvents
 {
     public enum EFloatingTextArt
     {

@@ -1,12 +1,12 @@
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Crawler.Shared.GameEvents;
-using Assets.Scripts.UI.Animations;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Shared.GameEvents;
+using OxDb.Client.UI.Animations;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Services;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.Crawler.UI.HUD
+namespace OxDb.Client.Crawler.UI.HUD
 {
     public class MovementButtons : BaseBehaviour
     {

@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection;
+using OxDb.Client.Crawler.Shared.States.StateHelpers.Selection;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.Combat.Entities;

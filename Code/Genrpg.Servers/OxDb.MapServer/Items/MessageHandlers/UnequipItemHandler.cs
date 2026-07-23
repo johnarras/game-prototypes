@@ -14,7 +14,7 @@ namespace OxDb.MapServer.Items.MessageHandlers
 
         protected override async ValueTask InnerProcess(Unit unit, UnequipItem message)
         {
-            if (!_inventoryService.UnequipItem(unit, message.ItemId))
+            if (!(await _inventoryService.UnequipItem(unit, message.ItemId)))
             {
                 unit.SendError("That item isn't equipped");
                 return;

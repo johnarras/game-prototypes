@@ -1,6 +1,6 @@
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.GameObjects;
 using OxDb.SharedGame.Constants;
 using System.Threading;
 using UnityEngine;

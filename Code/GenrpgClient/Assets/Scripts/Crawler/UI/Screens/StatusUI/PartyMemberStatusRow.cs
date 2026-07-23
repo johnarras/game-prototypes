@@ -1,7 +1,7 @@
 
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.Crawler.Shared.GameEvents;
-using Assets.Scripts.Crawler.UI.Units;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.Crawler.Shared.GameEvents;
+using OxDb.Client.Crawler.UI.Units;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.GameEvents;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -15,7 +15,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Crawler.StatusUI
+namespace OxDb.Client.UI.Crawler.StatusUI
 {
 
 

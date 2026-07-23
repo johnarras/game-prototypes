@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Minigames.UI;
+﻿using OxDb.Client.Minigames.UI;
 using OxDb.SharedGame.Minigames.Games.Settings;
 
-namespace Assets.Scripts.Minigames.Types.Matches
+namespace OxDb.Client.Minigames.Types.Matches
 {
     public class MatchMinigameUI : BaseMinigameUI
     {

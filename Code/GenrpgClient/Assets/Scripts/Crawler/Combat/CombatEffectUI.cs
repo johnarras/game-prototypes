@@ -1,10 +1,10 @@
 
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.CombatFX;
-using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.Constants;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.CombatFX;
+using OxDb.Client.Crawler.ClientEvents.CombatEvents;
+using OxDb.Client.Crawler.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.GameEvents;
@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Combat
+namespace OxDb.Client.Crawler.Combat
 {
     public class CombatEffectUI : BaseBehaviour
     {

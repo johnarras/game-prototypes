@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Repository.Constants;
+using OxDb.Client.Repository.Constants;
 using OxDb.SharedGame.MapServer.Entities;
 using System;
 using System.IO;

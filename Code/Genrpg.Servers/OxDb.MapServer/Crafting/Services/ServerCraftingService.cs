@@ -19,15 +19,16 @@ using OxDb.SharedGame.Inventory.Settings.ItemTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OxDb.MapServer.Crafting.Services
 {
 
     public interface IServerCraftingService : IInjectable
     {
-        CraftingResult CraftItem(Character ch, CraftingItemData data, bool sendUpdates = false);
-        UseItemResult LearnRecipe(Character ch, Item recipeItem);
-        Item GenerateRecipeReward(Character ch, long level);
+        ValueTask<CraftingResult> CraftItem(Character ch, CraftingItemData data, bool sendUpdates = false);
+        ValueTask<UseItemResult> LearnRecipe(Character ch, Item recipeItem);
+        ValueTask<Item> GenerateRecipeReward(Character ch, long level);
     }
 
     public class ServerCraftingService : IServerCraftingService
@@ -38,13 +39,13 @@ namespace OxDb.MapServer.Crafting.Services
         private ISharedCraftingService _sharedCraftingService = null;
         private IItemGenService _itemGenService = null;
 
-        public CraftingResult CraftItem(Character ch, CraftingItemData data, bool sendUpdates = false)
+        public async ValueTask<CraftingResult> CraftItem(Character ch, CraftingItemData data, bool sendUpdates = false)
         {
-            return _tradeService.SafeModifyObject(ch, delegate { return CraftItemInternal(ch, data, sendUpdates); },
+            return await _tradeService.SafeModifyObjectAsync(ch, () => CraftItemInternal(ch, data, sendUpdates),
                 new CraftingResult());
         }
 
-        private CraftingResult CraftItemInternal(Character ch, CraftingItemData data, bool sendUpdates = false)
+        private async ValueTask<CraftingResult> CraftItemInternal(Character ch, CraftingItemData data, bool sendUpdates = false)
         {
             CraftingResult result = new CraftingResult();
             CraftingStats stats = _sharedCraftingService.CalculateStatsFromReagents(ch, data);
@@ -153,7 +154,7 @@ namespace OxDb.MapServer.Crafting.Services
 
             result.Succeeded = true;
             result.CraftedItem = item;
-            _inventoryService.AddItem(ch, item, true);
+            await _inventoryService.AddItem(ch, item, true);
             return result;
 
         }
@@ -193,14 +194,14 @@ namespace OxDb.MapServer.Crafting.Services
         /// <param name="ps"></param>
         /// <param name="level"></param>
         /// <returns></returns>
-        public Item GenerateRecipeReward(Character ch, long level)
+        public async ValueTask<Item> GenerateRecipeReward(Character ch, long level)
         {
 
             return null;
         }
 
 
-        public UseItemResult LearnRecipe(Character ch, Item recipeItem)
+        public async ValueTask<UseItemResult> LearnRecipe(Character ch, Item recipeItem)
         {
             UseItemResult res = new UseItemResult() { ItemUsed = recipeItem, Success = false };
 

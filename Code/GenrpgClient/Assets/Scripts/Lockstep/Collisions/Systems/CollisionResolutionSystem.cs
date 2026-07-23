@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Buildings.Components;
-using Assets.Scripts.Lockstep.Collisions.Components;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Projectiles.Components;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Buildings.Components;
+using OxDb.Client.Lockstep.Collisions.Components;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Projectiles.Components;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Collisions.Systems
+namespace OxDb.Client.Lockstep.Collisions.Systems
 {
     [DisableAutoCreation]
     [BurstCompile]

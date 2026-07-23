@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Items.Services;
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.Crawler.Items.Services;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedGame.Crawler.Items.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Spells.Settings;
@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Selection
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Selection
 {
 
     public class SelectUsableItemArgs

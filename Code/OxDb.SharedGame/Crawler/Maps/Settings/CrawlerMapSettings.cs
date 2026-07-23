@@ -31,6 +31,11 @@ namespace OxDb.SharedGame.Crawler.Maps.Settings
         public double UnitKeywordChance { get; set; }
         public int MinQuestUnlockDungeonLevel { get; set; }
         public int MinQuestItemDungeonLevel { get; set; }
+        public int MaxLevel { get; set; }
+
+        public int MaxDungeonLevel { get; set; }
+
+        public double OutdoorDungeonChance { get; set; }
     }
 
     public class CrawlerMapType : ChildSettings, IIndexedGameItem
@@ -50,44 +55,22 @@ namespace OxDb.SharedGame.Crawler.Maps.Settings
         public int MinNpcSeparation { get; set; }
         public int MinDistanceToEntrance { get; set; }
         public double RoomIsDifferentZoneTypeChance { get; set; }
+        public long ForcedZoneTypeId { get; set; }
 
     }
 
     public class CrawlerMapGenType : IWeightedItem
     {
         public string Name { get; set; }
-        public int MinWidth { get; set; } = 15;
-        public int MaxWidth { get; set; } = 25;
-        public int MinHeight { get; set; } = 15;
-        public int MaxHeight { get; set; } = 25;
-        public int MinFloors { get; set; } = 1;
-        public int MaxFloors { get; set; } = 1;
+        public int MinWidth { get; set; } 
+        public int MaxWidth { get; set; } 
+        public int MinHeight { get; set; }
+        public int MaxHeight { get; set; }
         public double SpecialTileChance { get; set; }
         public double Weight { get; set; }
-        public double RandomWallsChance { get; set; }
-        public double LoopingChance { get; set; }
-        public double MinWallChance { get; set; }
-        public double MaxWallChance { get; set; }
-        public double MinDoorChance { get; set; }
-        public double MaxDoorChance { get; set; }
         public double TrapTileChance { get; set; }
         public double EffectTileChance { get; set; }
-        public double MinCorridorDensity { get; set; }
-        public double MaxCorridorDensity { get; set; }
-        public double MinBuildingDensity { get; set; }
-        public double MaxBuildingDensity { get; set; }
-        public bool IsIndoors { get; set; }
-        public bool NextLevelIsDown { get; set; }
-        public List<WeightedZoneType> WeightedZones { get; set; } = new List<WeightedZoneType>();
     }
-
-    public class WeightedZoneType : IWeightedItem
-    {
-        public string Name { get; set; }
-        public double Weight { get; set; }
-        public long ZoneTypeId { get; set; }
-    }
-
 
     public class CrawlerMapSettingsDto : ParentSettingsDto<CrawlerMapSettings, CrawlerMapType>
     {

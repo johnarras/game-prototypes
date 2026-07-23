@@ -1,6 +1,6 @@
 using OxDb.SharedGame.Inventory.Messages;
 
-namespace Assets.Scripts.MessageHandlers.Items
+namespace OxDb.Client.MessageHandlers.Items
 {
     public class OnAddItemHandler : DispatchClientMapMessageHandler<OnAddItem> { }
 }

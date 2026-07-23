@@ -1,14 +1,14 @@
-using Assets.Scripts.Assets.Entities;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Assets.Entities;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.ObjectPools
+namespace OxDb.Client.Assets.ObjectPools
 {
     public interface IObjectPool : IInitializable, IClientResetCleanup
     {

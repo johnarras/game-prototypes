@@ -18,7 +18,8 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
         private ITextSerializer _serializer = null;
 
         protected IRepositoryService _repoService = null;
-        public override int Order => 2;
+        public override ECharacterLoadUpdateOrder HelperKey => ECharacterLoadUpdateOrder.Spells;
+
 
         public override async Task Update(WebContext context, Character ch)
         {

@@ -1,5 +1,5 @@
-using Assets.Scripts.Setup.Interfaces;
-using Assets.Scripts.UI.Abstractions;
+using OxDb.Client.Setup.Interfaces;
+using OxDb.Client.UI.Abstractions;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.UI.Interfaces;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Assets.Scripts.UI.Interfaces
+namespace OxDb.Client.UI.Interfaces
 {
     public interface IUIService : IInitializable, IGameTokenService
     {

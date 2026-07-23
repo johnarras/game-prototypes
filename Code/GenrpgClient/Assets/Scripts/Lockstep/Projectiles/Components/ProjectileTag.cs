@@ -1,7 +1,7 @@
 ﻿using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Projectiles.Components
+namespace OxDb.Client.Lockstep.Projectiles.Components
 {
     [GenerateTestsForBurstCompatibility]
     public struct ProjectileTag : IComponentData

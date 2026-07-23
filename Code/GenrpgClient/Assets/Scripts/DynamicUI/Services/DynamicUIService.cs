@@ -1,12 +1,12 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.Doobers.UI;
-using Assets.Scripts.DynamicUI.Interfaces;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.WorldCanvas.GameEvents;
-using Assets.Scripts.WorldCanvas.Interfaces;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.Doobers.UI;
+using OxDb.Client.DynamicUI.Interfaces;
+using OxDb.Client.GameObjects;
+using OxDb.Client.WorldCanvas.GameEvents;
+using OxDb.Client.WorldCanvas.Interfaces;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -19,7 +19,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.DynamicUI.Services
+namespace OxDb.Client.DynamicUI.Services
 {
     public interface IDynamicUIService : IInitializable, IClientResetCleanup
     {

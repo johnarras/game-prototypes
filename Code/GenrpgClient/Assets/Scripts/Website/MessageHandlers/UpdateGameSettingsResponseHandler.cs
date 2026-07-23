@@ -1,11 +1,11 @@
-using Assets.Scripts.ClientEvents.DataUpdates;
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.ClientEvents.DataUpdates;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedCore.GameSettings.WebApi.UpdateGameSettings;
 using OxDb.SharedGame.Characters.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Website.MessageHandlers
+namespace OxDb.Client.Website.MessageHandlers
 {
     public class UpdateGameSettingsResponseHandler : BaseClientWebResponseHandler<UpdateGameSettingsResponse>
     {

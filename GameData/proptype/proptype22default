@@ -1,9 +1,0 @@
-{
-  "Id": "proptype22default",
-  "ParentId": "default",
-  "IdKey": 22,
-  "Name": "OutdoorsProp",
-  "Icon": "OutdoorsProp",
-  "Art": "OutdoorsProp",
-  "NumChoices": 1
-}

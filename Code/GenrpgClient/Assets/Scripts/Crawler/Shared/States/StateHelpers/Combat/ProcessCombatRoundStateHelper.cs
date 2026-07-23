@@ -1,6 +1,6 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.ClientEvents.ActionPanelEvents;
-using Assets.Scripts.Crawler.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.ClientEvents.ActionPanelEvents;
+using OxDb.Client.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Combat.Services;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Loot.Services;

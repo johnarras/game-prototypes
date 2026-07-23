@@ -3,7 +3,7 @@ using OxDb.SharedGame.MapServer.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine; // Needed
-namespace Assets.Scripts.MapTerrain
+namespace OxDb.Client.MapTerrain
 {
 
     public class CoreTerrainData

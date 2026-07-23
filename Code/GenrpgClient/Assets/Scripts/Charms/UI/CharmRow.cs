@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.UI.Charms
+namespace OxDb.Client.UI.Charms
 {
     public class CharmRow : BaseBehaviour
     {

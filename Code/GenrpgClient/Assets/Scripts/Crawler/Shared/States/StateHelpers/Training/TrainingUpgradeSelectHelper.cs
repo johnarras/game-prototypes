@@ -1,6 +1,6 @@
 using OxDb.SharedGame.Crawler.States.Constants;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Training
 {
     public class TrainingUpgradeSelectHelper : BaseTrainingSelectMemberHelper
     {

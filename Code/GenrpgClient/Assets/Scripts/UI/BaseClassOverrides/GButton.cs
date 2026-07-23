@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Assets.ObjectPools;
+using OxDb.Client.Assets.ObjectPools;
 using OxDb.SharedGame.UI.Interfaces;
 using System;
 using System.Threading;

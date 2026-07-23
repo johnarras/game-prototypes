@@ -1,7 +1,7 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.UI.Constants;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Audio.Constants;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.UI.Constants;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Loot.Services;
 using OxDb.SharedGame.Crawler.Loot.Settings;

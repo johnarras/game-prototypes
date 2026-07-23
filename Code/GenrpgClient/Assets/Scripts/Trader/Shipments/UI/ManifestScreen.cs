@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.Shipments.UI
+namespace OxDb.Client.Trader.Shipments.UI
 {
     public class ManifestScreen : BaseScreen
     {

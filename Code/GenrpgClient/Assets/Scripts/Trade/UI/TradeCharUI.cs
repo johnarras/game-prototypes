@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Trade;
+using OxDb.Client.UI.Trade;
 using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Trades.Entities;
 using System.Collections.Generic;

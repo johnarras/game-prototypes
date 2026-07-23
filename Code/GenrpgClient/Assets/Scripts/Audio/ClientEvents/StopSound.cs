@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Audio.ClientEvents
+namespace OxDb.Client.Audio.ClientEvents
 {
     public class StopSound : IClientEvent
     {

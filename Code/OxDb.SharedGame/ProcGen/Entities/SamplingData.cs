@@ -10,8 +10,8 @@ namespace OxDb.SharedGame.ProcGen.Entities
         public double MinSeparation { get; set; }
         public int MaxAttemptsPerItem { get; set; }
         public long Seed { get; set; }
-        public float NoiseAmp { get; set; } = 0.0f;
-        public float NoiseFreq { get; set; } = 1.0f;
+        public float NoiseAmp { get; set; }
+        public float NoiseFreq { get; set; }
         public bool CreateIndexGrid { get; set; }
     }
 }

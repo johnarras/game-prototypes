@@ -1,8 +1,8 @@
-using Assets.Scripts.Assets.Sprites.Services;
+using OxDb.Client.Assets.Sprites.Services;
 using OxDb.SharedCore.Rewards.Entities;
 using System.Threading;
 
-namespace Assets.Scripts.UI.Stores
+namespace OxDb.Client.UI.Stores
 {
     public class StoreRewardPanel : BaseBehaviour
     {

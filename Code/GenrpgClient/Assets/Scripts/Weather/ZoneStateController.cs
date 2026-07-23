@@ -1,7 +1,8 @@
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.MapTerrain;
-using Assets.Scripts.UI.Entities;
 using ClientEvents;
+using OxDb.Client;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.MapTerrain;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -183,7 +184,7 @@ public class ZoneStateController : IZoneStateController
 
     private void TurnOnFogIfValid()
     {
-        RenderSettings.fog = false;
+        RenderSettings.fog = true;
     }
 
     public void SetupSkybox()
@@ -279,7 +280,6 @@ public class ZoneStateController : IZoneStateController
             }
             else if (UseDynamicWeather())
             {
-
                 PartyData party = _crawlerService.GetParty();
                 if (party != null)
                 {
@@ -392,9 +392,9 @@ public class ZoneStateController : IZoneStateController
 
 
         RenderSettings.fogColor = FogColor.Current;
-        RenderSettings.fogMode = FogMode.Linear;
         RenderSettings.fogStartDistance = FogStart.Current;
         RenderSettings.fogEndDistance = FogEnd.Current;
+        RenderSettings.fogDensity = FogDensity.Current;
 
         if (_coreData.SunLight != null)
         {
@@ -407,8 +407,6 @@ public class ZoneStateController : IZoneStateController
         {
             RenderSettings.skybox.SetColor("_Tint", FogColor.Current * 0.5f);
         }
-
-
     }
 
 

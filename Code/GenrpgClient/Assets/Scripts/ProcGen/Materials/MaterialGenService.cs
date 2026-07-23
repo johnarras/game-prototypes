@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Assets.Materials;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Dungeons;
-using Assets.Scripts.ProcGen.Materials.Constants;
-using Assets.Scripts.ProcGen.Materials.MaterialGenHelpers;
+﻿using OxDb.Client.Assets.Materials;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Dungeons;
+using OxDb.Client.ProcGen.Materials.Constants;
+using OxDb.Client.ProcGen.Materials.MaterialGenHelpers;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials
+namespace OxDb.Client.ProcGen.Materials
 {
 
     /// <summary>

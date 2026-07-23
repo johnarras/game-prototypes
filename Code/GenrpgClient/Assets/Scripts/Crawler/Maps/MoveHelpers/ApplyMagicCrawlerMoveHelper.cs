@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Settings;
@@ -10,11 +10,11 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class ApplyMagicCrawlerMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 800;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.ApplyMagic;
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
@@ -57,7 +57,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
 
                 if (await _partyService.CheckIfPartyIsDead(party, token))
                 {
-                    status.MoveIsComplete = true;
+                    status.MoveIsStopped = true;
                 }
             }
         }

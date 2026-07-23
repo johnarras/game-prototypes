@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.MapTerrain;
+﻿using OxDb.Client.MapTerrain;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.WorldMap.Entities
+namespace OxDb.Client.Trader.WorldMap.Entities
 {
 
     public class TraderTerrainPatch : BaseBehaviour, ITerrainContainer

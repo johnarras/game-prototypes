@@ -3,8 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  m_BuildProfilePlayerSettings: {fileID: 0}
-  serializedVersion: 31
+  serializedVersion: 30
   productGUID: a7cd2d8c6a857a74ca09594ad2637ee8
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -858,7 +857,7 @@ PlayerSettings:
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
-    Standalone: 3
+    Standalone: 1
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppLTOMode: {}

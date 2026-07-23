@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Awaitables;
+using OxDb.Client.Awaitables;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.Monsters.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;

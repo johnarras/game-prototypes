@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
+using OxDb.Client.UI.Crawler.CrawlerPanels;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Entities;

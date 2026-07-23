@@ -1,6 +1,6 @@
-﻿namespace Assets.Scripts.Lockstep.Math
+﻿namespace OxDb.Client.Lockstep.Math
 {
-    namespace Assets.Scripts.Lockstep.Math
+    namespace OxDb.Client.Lockstep.Math
     {
         public static class SeedFactory
         {

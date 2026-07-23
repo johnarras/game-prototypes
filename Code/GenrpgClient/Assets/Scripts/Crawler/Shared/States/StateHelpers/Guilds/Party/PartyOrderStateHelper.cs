@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Guilds.Party
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Guilds.Party
 {
 
 

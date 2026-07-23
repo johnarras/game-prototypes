@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Crawler.Quests.ClientEvents
+namespace OxDb.Client.Crawler.Quests.ClientEvents
 {
     public class UpdateQuestUI : IClientEvent
     {

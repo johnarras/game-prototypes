@@ -1,4 +1,4 @@
-using Assets.Scripts.ProcGen.Loading.Utils;
+using OxDb.Client.ProcGen.Loading.Utils;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.ProcGen.Constants;
 using OxDb.SharedGame.ProcGen.Settings.MapWater;

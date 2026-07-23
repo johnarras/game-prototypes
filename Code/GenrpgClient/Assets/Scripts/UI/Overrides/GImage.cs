@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace Assets.Scripts.UI.Overrides
+namespace OxDb.Client.UI.Overrides
 {
     [UxmlElement]
     public partial class GImage : Image
@@ -15,14 +15,14 @@ namespace Assets.Scripts.UI.Overrides
         {
             // This is the equivalent of a RawImage
             this.image = texture;
-            this.sprite = null; // Clear sprite to ensure the texture shows
+            this.sprite = null; // ClearFullCell sprite to ensure the texture shows
         }
 
         public void SetImageData(Sprite sprite)
         {
             // This is the equivalent of a standard Image
             this.sprite = sprite;
-            this.image = null; // Clear texture to ensure the sprite shows
+            this.image = null; // ClearFullCell texture to ensure the sprite shows
         }
 
 

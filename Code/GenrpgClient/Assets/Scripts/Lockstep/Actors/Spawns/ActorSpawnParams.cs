@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 
-namespace Assets.Scripts.Lockstep.Actors.Spawns
+namespace OxDb.Client.Lockstep.Actors.Spawns
 {
     public class ActorSpawnParams
     {

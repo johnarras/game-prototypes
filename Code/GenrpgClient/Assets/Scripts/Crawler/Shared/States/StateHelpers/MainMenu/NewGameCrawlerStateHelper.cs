@@ -4,7 +4,7 @@ using OxDb.SharedGame.Crawler.States.StateHelpers;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.MainMenu
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.MainMenu
 {
     public class NewGameCrawlerStateHelper : BaseStateHelper
     {

@@ -1,5 +1,5 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
@@ -38,7 +38,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 
             _combatService.EndCombat(party);
 
-
+            _moveService.StopMovement();
             _cameraController.SetSaturation(_cameraController.GetDefaultSaturation(), false);
             if (mapData == null)
             {

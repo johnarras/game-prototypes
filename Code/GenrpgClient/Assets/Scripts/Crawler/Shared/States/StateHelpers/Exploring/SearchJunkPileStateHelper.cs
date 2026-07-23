@@ -1,16 +1,16 @@
-﻿using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Encounters.Services;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Entities;
-using OxDb.SharedGame.Crawler.States.StateHelpers;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
+namespace OxDb.SharedGame.Crawler.States.StateHelpers.Exploring
 {
+
     public class SearchJunkPileStateHelper : BaseStateHelper
     {
-        private ICrawlerMapService _mapService = null;
+        private IMapEncounterService _mapEncounterService = null;
 
         public override ECrawlerStates HelperKey => ECrawlerStates.SearchJunkPile;
 
@@ -18,18 +18,22 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
         {
             CrawlerStateData stateData = CreateStateData();
 
-            if (_gs.Rand.NextDouble() < 0.5f)
-            {
+            stateData.AddText("There is a junk pile here.");
+            stateData.AddText("Would you like to search it?");
 
-            }
-
-
-            stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.SearchJunkPile));
+            stateData.Actions.Add(new CrawlerStateAction("Yes", Key.Y, ECrawlerStates.ExploreWorld,
+                () =>
+                {
+                    _ = _mapEncounterService.SearchJunkPile(token);
+                }));
             stateData.Actions.Add(new CrawlerStateAction("No", Key.N, ECrawlerStates.ExploreWorld));
 
             stateData.Actions.Add(new CrawlerStateAction("", Key.Escape, ECrawlerStates.ExploreWorld));
 
+            await Task.CompletedTask;
             return stateData;
         }
     }
 }
+
+

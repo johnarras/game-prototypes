@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Audio.Constants;
+﻿using OxDb.Client.Audio.Constants;
 using OxDb.SharedCore.Client.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Audio.ClientEvents
+namespace OxDb.Client.Audio.ClientEvents
 {
     public class PlaySound : IClientEvent
     {

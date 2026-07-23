@@ -242,81 +242,34 @@
       "Weight": 1.0
     }
   ],
-  "RockTypes": [
+  "LargePropChance": 0.9,
+  "SmallPropChance": 0.3,
+  "MaxSmallPropQuantity": 2,
+  "Props": [
     {
-      "RockTypeId": 1,
       "Weight": 1.0,
-      "BaseColor": {
-        "R": 1.0,
-        "G": 1.0,
-        "B": 1.0,
-        "A": 1.0
-      }
+      "EntityTypeId": 50,
+      "EntityId": 2
     },
     {
-      "RockTypeId": 4,
       "Weight": 1.0,
-      "BaseColor": {}
-    }
-  ],
-  "TreeTypes": [
-    {
-      "TreeTypeId": 45,
-      "Weight": 1.0
+      "EntityTypeId": 50,
+      "EntityId": 5
     },
     {
-      "TreeTypeId": 47,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 88,
+      "EntityId": 2
     },
     {
-      "TreeTypeId": 46,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 97,
+      "EntityId": 1
     },
     {
-      "TreeTypeId": 60,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 48,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 49,
-      "Weight": 1.0
-    }
-  ],
-  "BushTypes": [
-    {
-      "BushTypeId": 12,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 13,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 7,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 14,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 15,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 16,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 17,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 20,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 97,
+      "EntityId": 3
     }
   ],
   "CreatureNamePrefixes": [
@@ -737,19 +690,13 @@
     }
   ],
   "UnitKeyWords": [],
-  "PropChance": 0.5,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 4
-    }
-  ],
   "PlantChoices": "34 35 2 4 8 10",
   "FenceChance": 0.1,
   "WeatherTypeId": 4,
   "MusicTypeId": 6,
   "AmbientMusicTypeId": 11,
   "TraveralTimeScale": 10.0,
-  "ZoneCategoryId": 1
+  "ZoneCategoryId": 1,
+  "IsOutdoors": true,
+  "IsDungeon": true
 }

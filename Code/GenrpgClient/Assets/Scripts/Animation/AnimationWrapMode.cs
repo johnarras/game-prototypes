@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Animation
+namespace OxDb.Client.Animation
 {
     public class AnimationWrapModes
     {

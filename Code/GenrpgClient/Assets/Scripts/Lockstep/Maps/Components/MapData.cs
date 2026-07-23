@@ -1,10 +1,10 @@
 ﻿
-using Assets.Scripts.Lockstep.Math;
+using OxDb.Client.Lockstep.Math;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Assets.Scripts.Lockstep.Maps.Components
+namespace OxDb.Client.Lockstep.Maps.Components
 {
     [GenerateTestsForBurstCompatibility]
     public struct TileData

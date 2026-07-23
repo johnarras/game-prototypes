@@ -1,7 +1,7 @@
 using OxDb.SharedCore.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets
+namespace OxDb.Client.Assets
 {
     public interface ILocalLoadService : IInjectable
     {

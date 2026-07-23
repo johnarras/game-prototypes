@@ -1,10 +1,10 @@
-using Assets.Scripts.Entities.UI;
-using Assets.Scripts.WorldCanvas.Interfaces;
+using OxDb.Client.Entities.UI;
+using OxDb.Client.WorldCanvas.Interfaces;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedCore.Utils;
 using UnityEngine;
 
-namespace Assets.Scripts.Rewards.UI
+namespace OxDb.Client.Rewards.UI
 {
     public class PopupRewardIcon : EntityIcon, IDynamicUIItem
     {

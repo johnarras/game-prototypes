@@ -1,4 +1,5 @@
 
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Client.Contants;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
@@ -18,7 +19,7 @@ using Unity.Services.Core.Environments;
 using UnityEngine;
 using UnityEngine.Purchasing;
 
-namespace Assets.Scripts.Purchasing.Services
+namespace OxDb.Client.Purchasing.Services
 {
 
     public enum EPurchasingInitializationState
@@ -91,7 +92,7 @@ namespace Assets.Scripts.Purchasing.Services
         private IClientConfigContainer _configContainer = null;
         private IClientAppService _appService = null;
         private ILogService _logService = null;
-        private IClientWebService _webService = null;
+        private IClientWebRequestService _webService = null;
         private IRepositoryService _repoService = null;
 
         private EPurchasingInitializationState _state = EPurchasingInitializationState.NotInitialized;
@@ -289,7 +290,7 @@ namespace Assets.Scripts.Purchasing.Services
                 Platform = GetPurchasePlatform(),
             };
 
-            InitiatePurchaseResponse initiateResponse = await _webService.SendWebRequestAsync<InitiatePurchaseResponse>(initializeRequest, token);
+            InitiatePurchaseResponse initiateResponse = await _webService.SendMainServerRequestAsync<InitiatePurchaseResponse>(initializeRequest, token);
 
             if (initiateResponse == null)
             {
@@ -394,7 +395,7 @@ namespace Assets.Scripts.Purchasing.Services
                 ReceiptData = receiptData,
             };
 
-            ValidatePurchaseResponse response = await _webService.SendWebRequestAsync<ValidatePurchaseResponse>(request, token);
+            ValidatePurchaseResponse response = await _webService.SendMainServerRequestAsync<ValidatePurchaseResponse>(request, token);
 
             if (response == null)
             {

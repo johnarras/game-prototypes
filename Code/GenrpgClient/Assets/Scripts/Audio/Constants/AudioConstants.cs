@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Audio.Constants
+namespace OxDb.Client.Audio.Constants
 {
     public class AudioConstants
     {

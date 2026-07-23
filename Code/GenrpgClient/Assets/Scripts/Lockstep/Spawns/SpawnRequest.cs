@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Lockstep.Actors.Constants;
-using Assets.Scripts.Lockstep.Buildings.Spawns;
-using Assets.Scripts.Lockstep.Collisions.Components;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Projectiles.Spawns;
-using Assets.Scripts.Lockstep.Units.Spawns;
+﻿using OxDb.Client.Lockstep.Actors.Constants;
+using OxDb.Client.Lockstep.Buildings.Spawns;
+using OxDb.Client.Lockstep.Collisions.Components;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Projectiles.Spawns;
+using OxDb.Client.Lockstep.Units.Spawns;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Spawns
+namespace OxDb.Client.Lockstep.Spawns
 {
     [GenerateTestsForBurstCompatibility]
     public struct SpawnRequest : IComponentData

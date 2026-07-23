@@ -3,7 +3,7 @@ using OxDb.SharedGame.Achievements.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Achievements
+namespace OxDb.Client.MessageHandlers.Achievements
 {
     public class OnUpdateAchievementHandler : BaseClientMapMessageHandler<OnUpdateAchievement>
     {

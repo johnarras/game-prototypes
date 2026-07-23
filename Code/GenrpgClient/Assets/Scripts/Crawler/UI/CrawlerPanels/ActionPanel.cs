@@ -1,10 +1,10 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.UI.ActionUI;
-using Assets.Scripts.UI.Abstractions;
-using Assets.Scripts.UI.Core;
-using Assets.Scripts.UI.Crawler.ActionUI;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.UI.ActionUI;
+using OxDb.Client.UI.Abstractions;
+using OxDb.Client.UI.Core;
+using OxDb.Client.UI.Crawler.ActionUI;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.Entities;
 using System;
@@ -13,7 +13,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.UI.Crawler.CrawlerPanels
+namespace OxDb.Client.UI.Crawler.CrawlerPanels
 {
     public class TextAction
     {

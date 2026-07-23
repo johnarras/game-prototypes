@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Input.Interfaces;
+﻿using OxDb.Client.Input.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.UI.SmallUIPieces
+namespace OxDb.Client.UI.SmallUIPieces
 {
     public class TabEnterAccelerator : BaseBehaviour, IKeyboardSubsystem
     {

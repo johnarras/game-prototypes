@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.ClientEvents.HUD;
+using OxDb.Client.Crawler.ClientEvents.HUD;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.Currencies
+namespace OxDb.Client.Crawler.UI.Currencies
 {
     public class CrawlerCurrencyUI : BaseBehaviour
     {

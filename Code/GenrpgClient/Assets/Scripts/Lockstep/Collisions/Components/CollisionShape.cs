@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Collisions.Constants;
-using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Collisions.Constants;
+using OxDb.Client.Lockstep.Math;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Collisions.Components
+namespace OxDb.Client.Lockstep.Collisions.Components
 {
     public struct CollisionShape : IComponentData
     {

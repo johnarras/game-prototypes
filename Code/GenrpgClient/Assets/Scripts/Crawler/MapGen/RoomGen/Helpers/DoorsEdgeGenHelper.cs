@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.MapGen.RoomGen.Entities;
+﻿using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.RoomGen.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.MapGen.Constants;
@@ -9,7 +9,7 @@ using OxDb.SharedGame.Zones.Constants;
 using System;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.RoomGen.Helpers
 {
 
     public class DoorsEdgeGenHelper : BaseEdgeGenHelper
@@ -25,6 +25,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
         public override async ValueTask GenerateEdge(RoomEdgeGenArgs edgeArgs, CrawlerMapGenData genData, DungeonLevelGenArgs levelArgs)
         {
 
+            await Task.CompletedTask;
             EdgeStartEndPoints startEndPoints = edgeArgs.Corners.GetStartEndPoints(edgeArgs.DX, edgeArgs.DZ);
 
             Point2I start = startEndPoints.Start;
@@ -113,7 +114,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
                     if (w != startPos + xOffset && w != endPos + xOffset)
                     {
                         levelArgs.RoomIds[x, z] = edgeArgs.RoomId;
-                        map.Set(x, z, CellIndex.Terrain, ZoneTypes.DarkForest);
+                        map.Set(x, z, CellIndex.Terrain, genData.ZoneType.IdKey);
                         if (!canAddRoomRow && h > zOffset)
                         {
                             _mapGenService.SetWallBitsFromDeltas(map, x, z, -edgeArgs.DX, -edgeArgs.DZ, WallTypes.Wall);
@@ -127,11 +128,11 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
                     {
                         if (w == startPos + xOffset)
                         {
-                            _mapGenService.AddRoomWithDoor(levelArgs, x, z, MapDirUtils.GetDirFromDeltas(wallDx, wallDz).Dir, ZoneTypes.DarkForest);
+                            _mapGenService.AddRoomWithDoor(levelArgs, x, z, MapDirUtils.GetDirFromDeltas(wallDx, wallDz).Dir, genData.ZoneType.IdKey);
                         }
                         else if (w == endPos + xOffset)
                         {
-                            _mapGenService.AddRoomWithDoor(levelArgs, x, z, MapDirUtils.GetDirFromDeltas(-wallDx, -wallDz).Dir, ZoneTypes.DarkForest);
+                            _mapGenService.AddRoomWithDoor(levelArgs, x, z, MapDirUtils.GetDirFromDeltas(-wallDx, -wallDz).Dir, genData.ZoneType.IdKey);
                         }
                     }
                 }

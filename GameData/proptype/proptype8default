@@ -1,9 +1,0 @@
-{
-  "Id": "proptype8default",
-  "ParentId": "default",
-  "IdKey": 8,
-  "Name": "SavannahProp",
-  "Icon": "SavannahProp",
-  "Art": "SavannahProp",
-  "NumChoices": 1
-}

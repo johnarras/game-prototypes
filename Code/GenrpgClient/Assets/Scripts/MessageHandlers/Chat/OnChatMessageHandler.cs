@@ -1,7 +1,7 @@
 
 using OxDb.SharedGame.Chat.Messages;
 
-namespace Assets.Scripts.MessageHandlers.Chat
+namespace OxDb.Client.MessageHandlers.Chat
 {
     public class OnChatMessageHandler : DispatchClientMapMessageHandler<OnChatMessage> { }
 

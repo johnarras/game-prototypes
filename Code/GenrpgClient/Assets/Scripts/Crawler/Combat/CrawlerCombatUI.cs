@@ -1,17 +1,17 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Sprites.Services;
-using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.UI.Units;
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.UI.Crawler.CrawlerPanels;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Crawler.ClientEvents.CombatEvents;
+using OxDb.Client.Crawler.UI.Units;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.UI.Crawler.CrawlerPanels;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.Spells.Settings.Elements;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Combat
+namespace OxDb.Client.Crawler.Combat
 {
     public class CrawlerCombatUI : BaseBehaviour
     {
@@ -19,10 +19,11 @@ namespace Assets.Scripts.Crawler.Combat
         private ISpriteService _spriteService = null;
         private IDynamicUIService _dynamicUIService = null;
 
+
         public CrawlerGroupGrid AllyGrid;
         public CrawlerGroupGrid EnemyGrid;
 
-        public PartyStatusPanel StatusPanel;
+        private PartyStatusPanel _statusPanel;
 
         private GameObject GetGroupObject(string groupId)
         {
@@ -33,7 +34,7 @@ namespace Assets.Scripts.Crawler.Combat
             }
             if (go == null)
             {
-                go = StatusPanel.Rows.FirstOrDefault(x => x.GetPartyMember() != null && x.GetPartyMember().Id == groupId)?.gameObject ?? null;
+                go = _statusPanel.Rows.FirstOrDefault(x => x.GetPartyMember() != null && x.GetPartyMember().Id == groupId)?.gameObject ?? null;
             }
 
             return go;
@@ -50,6 +51,8 @@ namespace Assets.Scripts.Crawler.Combat
             _dispatcher.AddListener<ShowCombatBolt>(OnShowCombatBolt, GetToken());
 
             _spriteService.LoadAtlas(AtlasNames.CrawlerCombat, GetToken());
+
+            _statusPanel = _clientEntityService.GetChildComponentOfParent<BaseScreen, PartyStatusPanel>(gameObject);
         }
 
         private void UpdateDataInternal()

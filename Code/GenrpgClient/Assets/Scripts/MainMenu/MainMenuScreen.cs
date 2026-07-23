@@ -1,4 +1,4 @@
-using Assets.Scripts.Auth.Services;
+using OxDb.Client.Auth.Services;
 using System.Threading;
 using System.Threading.Tasks;
 

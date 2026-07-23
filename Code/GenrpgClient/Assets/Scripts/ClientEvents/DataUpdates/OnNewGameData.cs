@@ -1,6 +1,6 @@
 using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.ClientEvents.DataUpdates
+namespace OxDb.Client.ClientEvents.DataUpdates
 {
     public class OnNewGameData : IClientEvent
     {

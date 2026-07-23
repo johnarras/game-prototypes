@@ -51,10 +51,10 @@ namespace OxDb.SharedGame.Crafting.Settings.Recipes
         public string Icon { get; set; }
         public long EntityId { get; set; }
         public long EntityTypeId { get; set; }
-        public int MinQuantity { get; set; } = 1;
-        public int MaxQuantity { get; set; } = 1;
+        public int MinQuantity { get; set; } 
+        public int MaxQuantity { get; set; } 
         public string Art { get; set; }
-        public int ScalingPct { get; set; } = 100;
+        public int ScalingPct { get; set; }
 
 
         /// <summary>

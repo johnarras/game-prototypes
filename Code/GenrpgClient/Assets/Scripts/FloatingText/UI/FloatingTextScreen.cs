@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.FloatingText.ClientEvents;
 using System;
 using System.Collections.Generic;
 using System.Threading;

@@ -1,6 +1,7 @@
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.GameObjects;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Client.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -9,7 +10,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-public class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDestroyCallback, IPooledObject
+public abstract class BaseBehaviour : StubComponent, IInitOnResolve, IExplicitInject, IDestroyCallback, IPooledObject
 {
     protected IClientUpdateService _updateService = null;
     protected IAssetService _assetService = null;

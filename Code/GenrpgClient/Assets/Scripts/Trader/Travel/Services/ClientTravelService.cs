@@ -1,16 +1,17 @@
-﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Doobers.Events;
-using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Rewards.Services;
-using Assets.Scripts.Trader.ClientEvents;
-using Assets.Scripts.Trader.Encounters.Services;
-using Assets.Scripts.Trader.HUD.ClientEvents;
-using Assets.Scripts.Trader.Levels.Services;
-using Assets.Scripts.Trader.Travel.ClientEvents;
-using Assets.Scripts.Trader.UI.Cities;
-using Assets.Scripts.UI.Interfaces;
+﻿using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.Rewards.Services;
+using OxDb.Client.Trader.ClientEvents;
+using OxDb.Client.Trader.Encounters.Services;
+using OxDb.Client.Trader.HUD.ClientEvents;
+using OxDb.Client.Trader.Levels.Services;
+using OxDb.Client.Trader.Travel.ClientEvents;
+using OxDb.Client.Trader.UI.Cities;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -37,7 +38,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Travel.Services
+namespace OxDb.Client.Trader.Travel.Services
 {
     public interface IClientTravelService : IInitializable
     {
@@ -51,7 +52,7 @@ namespace Assets.Scripts.Trader.Travel.Services
         private IClientGameState _gs = null;
         private ITravelService _travelService = null;
         private IDispatcher _dispatcher = null;
-        private IClientWebService _webService = null;
+        private IClientWebRequestService _webService = null;
         private IAwaitableService _awaitableService = null;
         private IRewardService _rewardService = null;
         private ILogService _logService = null;
@@ -60,7 +61,7 @@ namespace Assets.Scripts.Trader.Travel.Services
         private IAttributeService _attributeService = null;
         private ITraderLevelService _traderLevelService = null;
         private IDynamicUIService _dynamicUIService = null;
-        private IClientEncounterService _encounterService = null;
+        private ITravelEncounterService _encounterService = null;
         private ICalcAttributeService _calcAttributeService = null;
         private IAnalyticsService _analyticsService = null;
 
@@ -100,7 +101,7 @@ namespace Assets.Scripts.Trader.Travel.Services
                     TravelRequest req = new TravelRequest();
 
                     _uiService.IncrementButtonBlock();
-                    _webService.SendWebRequest(req, _token);
+                    _webService.SendMainServerRequest(req, _token);
                 }
             }
         }

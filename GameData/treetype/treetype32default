@@ -1,9 +1,0 @@
-{
-  "Id": "treetype32default",
-  "ParentId": "default",
-  "IdKey": 32,
-  "Name": "LondonPlaneWinter",
-  "Art": "LondonPlaneWinter",
-  "Scale": 1.5,
-  "VariationCount": 2
-}

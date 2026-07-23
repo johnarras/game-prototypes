@@ -2,7 +2,7 @@ using OxDb.SharedGame.Movement.Messages;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Movement
+namespace OxDb.Client.MessageHandlers.Movement
 {
     public class OnAddToGridHandler : BaseClientMapMessageHandler<OnAddToGrid>
     {

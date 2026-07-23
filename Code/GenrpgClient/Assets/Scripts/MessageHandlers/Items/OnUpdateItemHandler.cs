@@ -4,7 +4,7 @@ using OxDb.SharedGame.Inventory.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Items
+namespace OxDb.Client.MessageHandlers.Items
 {
     public class OnUpdateItemHandler : BaseClientMapMessageHandler<OnUpdateItem>
     {

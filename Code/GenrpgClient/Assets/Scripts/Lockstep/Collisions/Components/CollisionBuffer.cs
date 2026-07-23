@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Collisions.Components
+namespace OxDb.Client.Lockstep.Collisions.Components
 {
     [InternalBufferCapacity(16)]
     public struct CollisionBuffer : IBufferElementData

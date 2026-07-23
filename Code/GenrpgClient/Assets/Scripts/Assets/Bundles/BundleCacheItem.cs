@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Bundles
+namespace OxDb.Client.Assets.Bundles
 {
     public class BundleCacheItem : MonoBehaviour
     {

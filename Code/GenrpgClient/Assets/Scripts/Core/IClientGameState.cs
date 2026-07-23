@@ -1,7 +1,8 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameSettings.Entities;
-using Assets.Scripts.Logalytics.Services;
-using Assets.Scripts.Options.Services;
+using OxDb.Client;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameSettings.Entities;
+using OxDb.Client.Logalytics.Services;
+using OxDb.Client.Options.Services;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Core.Entities;
 using OxDb.SharedCore.Interfaces;

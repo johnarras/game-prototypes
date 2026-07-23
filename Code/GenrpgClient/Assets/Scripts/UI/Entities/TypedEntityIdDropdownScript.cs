@@ -4,7 +4,7 @@ using OxDb.SharedCore.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.UI.Entities
+namespace OxDb.Client.UI.Entities
 {
     public abstract class TypedEntityIdDropdownScript<TParent, TChild> : EntityIdDropdownList where TParent : ParentSettings<TChild> where TChild : ChildSettings, IIdName, new()
     {

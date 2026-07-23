@@ -1,6 +1,6 @@
 using OxDb.SharedGame.Inventory.PlayerData;
 
-namespace Assets.Scripts.UI.Trade
+namespace OxDb.Client.UI.Trade
 {
     public class TradeItemIcon : BaseBehaviour
     {

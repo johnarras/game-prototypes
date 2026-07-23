@@ -12,7 +12,7 @@ namespace OxDb.MapServer.Trades.MessageHandlers
         private ITradeService _tradeService = null;
         protected override async ValueTask InnerProcess(Character ch, CancelTrade message)
         {
-            _tradeService.HandleCancelTrade(ch, message);
+            await _tradeService.HandleCancelTrade(ch, message);
         }
     }
 }

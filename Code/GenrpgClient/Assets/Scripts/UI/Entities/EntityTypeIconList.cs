@@ -1,13 +1,13 @@
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.ObjectPools;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.ObjectPools;
 using OxDb.SharedCore.Effects.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Entities.UI
+namespace OxDb.Client.Entities.UI
 {
     public class EntityTypeIconList : BaseBehaviour
     {

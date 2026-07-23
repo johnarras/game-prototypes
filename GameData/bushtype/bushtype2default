@@ -2,9 +2,12 @@
   "Id": "bushtype2default",
   "ParentId": "default",
   "IdKey": 2,
-  "Name": "AzaleaPink",
-  "Art": "AzaleaPink",
+  "Name": "BushDry",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "BushDry",
   "Scale": 1.0,
-  "VariationCount": 2,
+  "VariationCount": 4,
   "Flags": 1
 }

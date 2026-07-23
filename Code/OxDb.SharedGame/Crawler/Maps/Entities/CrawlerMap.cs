@@ -1,3 +1,4 @@
+using MessagePack.Formatters;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Buildings.Constants;
@@ -44,13 +45,13 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
             }
             return _analyticsName;
         }
-        public List<ZoneRegion> Regions { get; set; } = null;
+        public List<ZoneRegion> Regions { get; set; } = new List<ZoneRegion>();
+        public List<ZoneEdge> EdgePoints { get; set; } = new List<ZoneEdge>();
         public long CrawlerMapTypeId { get; set; } = CrawlerMapTypes.Dungeon;
         public int Width { get; set; }
         public int Height { get; set; }
-        public long Level { get; set; }
-        public int LevelDelta { get; set; }
-        public long MapFloor { get; set; }
+        public int Level { get; set; }
+        public int MapFloor { get; set; }
         public string FromPlaceName { get; set; }
         public long MapQuestItemId { get; set; }
         public MapEntranceRiddle EntranceRiddle { get; set; }
@@ -69,6 +70,12 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         public bool HasFlag(int flagBits) { return (Flags & flagBits) != 0; }
         public void AddFlags(int flagBits) { Flags |= flagBits; }
         public void RemoveFlags(int flagBits) { Flags &= ~flagBits; }
+
+        public bool IsOutdoorDungeon()
+        {
+            return CrawlerMapTypeId == CrawlerMapTypes.Dungeon &&
+                !HasFlag(CrawlerMapFlags.IsIndoorDungeon);
+        }
 
         public void SetupDataBlocks()
         {
@@ -118,6 +125,14 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
                 return false;
             }
 
+
+            MapDir mapDir = MapDirUtils.GetDirFromDeltas(dx, dz);
+
+            if (mapDir == null)
+            {
+                return false;
+            }
+
             int blockingBits = 0;
             if (dx == 1)
             {
@@ -140,7 +155,7 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
                 return false;
             }
 
-            return !WallTypes.IsBlockingType(blockingBits);
+            return !WallTypes.IsBlockingTypeFromDir(blockingBits, dx, dz);
         }
 
         public void SetEntity(int x, int z, long entityTypeId, long entityId)
@@ -178,6 +193,12 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         }
 
 
+        public ZoneRegion GetRegion(int x, int z)
+        {
+            long regionId = Get(x, z, CellIndex.Region);
+            return Regions.FirstOrDefault(x => x.RegionId == regionId);
+        }
+
         private string _floorName = null;
         public string GetName(int x, int z)
         {
@@ -191,17 +212,26 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
                 return _floorName;
             }
 
+            if (CrawlerMapTypeId != CrawlerMapTypes.Outdoors)
+            {
+                return Name;
+            }
+
             if (Regions == null || Regions.Count < 1)
             {
                 return Name;
             }
 
-            byte ztype = Get(x, z, CellIndex.Region);
+            byte regionId = Get(x, z, CellIndex.Region);
 
-            ZoneRegion region = Regions.FirstOrDefault(x => x.ZoneTypeId == ztype);
+            ZoneRegion region = Regions.FirstOrDefault(x => x.RegionId == regionId);
             if (region != null)
             {
-                return region.Name;
+                return region.Name
+                    
+                     // + " -- " + region.ZoneTypeId
+                    
+                    ;
             }
             return Name;
         }
@@ -217,27 +247,6 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
             }
 
             // Dir must be north or east.
-
-            // Clamp
-            if (HasFlag(CrawlerMapFlags.IsLooping))
-            {
-                if (x < 0)
-                {
-                    x = Width - 1;
-                }
-                if (x >= Width)
-                {
-                    x = 0;
-                }
-                if (z < 0)
-                {
-                    z = Height - 1;
-                }
-                if (z >= Height)
-                {
-                    z = 0;
-                }
-            }
 
             if (x < 0 || z < 0 || x >= Width || z >= Height)
             {
@@ -325,29 +334,6 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
             }
 
             return retval;
-        }
-
-        public long GetMapLevelAtPoint(int x, int z)
-        {
-            if (CrawlerMapTypeId != CrawlerMapTypes.Outdoors ||
-                Regions == null || Regions.Count < 1 || LevelDelta < 1)
-            {
-                return Level;
-            }
-
-            ZoneRegion region = Regions.OrderBy(x => x.Level).First();
-
-            bool smallXStart = region.CenterX < Width / 2;
-            bool smallZStart = region.CenterY < Height / 2;
-
-            float xPercent = (smallXStart ? x : Width - 1 - x) * 1.0f / Width;
-            float zPercent = (smallZStart ? z : Height - 1 - z) * 1.0f / Height;
-
-            float totalPercent = (xPercent + zPercent) / 2;
-
-            totalPercent *= totalPercent;
-
-            return (int)(Level + totalPercent * LevelDelta);
         }
     }
 }

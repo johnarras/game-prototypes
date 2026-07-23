@@ -35,11 +35,6 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelper
             int nx = party.CurrPos.X + dir.X;
             int nz = party.CurrPos.Z + dir.Z;
 
-            if (map.HasFlag(CrawlerMapFlags.IsLooping))
-            {
-                nx = (nx + map.Width) % map.Width;
-                nz = (nz + map.Height) % map.Height;
-            }
 
             if (nx < 0 || nz < 0 || nx >= map.Width || nz >= map.Height)
             {

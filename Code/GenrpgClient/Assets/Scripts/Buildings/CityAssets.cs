@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assets.Scripts.Buildings
+namespace OxDb.Client.Buildings
 {
     public class CityAssets : BaseBehaviour
     {

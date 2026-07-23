@@ -212,7 +212,7 @@ public class QuestGenService : IQuestGenService
                     // For each quest task within a quest
                     // Kill normal mobs, find spawns near spot not set to a type, set them to that mob type.
                     // Kill npc, add npc spawn near a position...create new NPC
-                    // Loot from mob, set mobs to that type, then set the OnEntityTypeId/Key...create new QuestItem
+                    // Loot from mob, set mobs to that type, then set the OnEntityTypeId/Header...create new QuestItem
                     // Loot from zone (ground) check random spots near the desired location and if
                     // the spot is only grass or nothing, and not too close to a road, place an item there.
                     // Also create new QuestItem and use that.

@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ClientEvents.UI;
+﻿using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.Minigames.Games.Settings;
 using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Minigames.Lobby
+namespace OxDb.Client.Minigames.Lobby
 {
     public class MinigameLobbyScreen : BaseScreen
     {

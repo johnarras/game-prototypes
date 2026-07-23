@@ -1,5 +1,6 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Doobers.Events;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Doobers.Events;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.PlayerData;
 using OxDb.SharedGame.Core.PlayerData;
@@ -10,12 +11,12 @@ using OxDb.SharedGame.Trader.Caravans.Services;
 using OxDb.SharedGame.UI.Constants;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Trader.UI.TraderHUD
+namespace OxDb.Client.Trader.UI.TraderHUD
 {
     public class TraderHUDButtons : BaseBehaviour
     {
 
-        protected IClientWebService _webService = null;
+        protected IClientWebRequestService _webService = null;
         protected IScreenService _screenService = null;
         protected ICaravanService _caravanService = null;
 
@@ -65,7 +66,7 @@ namespace Assets.Scripts.Trader.UI.TraderHUD
 
             IReadOnlyList<CoreCurrencyType> ctypes = _gameData.Get<CoreCurrencyTypeSettings>(_gs.ch).GetData();
 
-            _webService.SendWebRequest(new CampRequest(), GetToken());
+            _webService.SendMainServerRequest(new CampRequest(), GetToken());
 
         }
 

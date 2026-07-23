@@ -1,7 +1,7 @@
 
-using Assets.Scripts.Auth.Services;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.UI.Screens;
+using OxDb.Client.Auth.Services;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.UI.Screens;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;

@@ -1,6 +1,6 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Repository;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Repository;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;

@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell53default",
+  "ParentId": "default",
+  "IdKey": 53,
+  "Name": "Summon Monk",
+  "Desc": "Summon a monk.",
+  "BaseCost": 25.0,
+  "TierCost": 5.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 5,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 55,
+      "ElementTypeId": 7,
+      "ProcChance": 100.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  }
+}

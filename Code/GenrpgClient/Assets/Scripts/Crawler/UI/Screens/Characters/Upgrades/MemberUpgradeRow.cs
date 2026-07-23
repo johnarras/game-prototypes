@@ -1,7 +1,7 @@
-using Assets.Scripts.Crawler.UI.WorldUI;
+using OxDb.Client.Crawler.UI.WorldUI;
 using OxDb.SharedGame.Crawler.Upgrades.Settings;
 
-namespace Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades
+namespace OxDb.Client.Crawler.UI.Screens.Characters.Upgrades
 {
     public class MemberUpgradeRow : RolloverInfoRow
     {

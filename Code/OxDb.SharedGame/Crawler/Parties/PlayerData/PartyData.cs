@@ -100,7 +100,7 @@ namespace OxDb.SharedGame.Crawler.Parties.PlayerData
 
         public long TotalUpgradePoints { get; set; }
 
-        public long MaxLevelEntered { get; set; }
+        public int MaxLevelEntered { get; set; }
 
         public long MaxMapIdEntered { get; set; }
 

@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Crawler.Maps.Services.Entities;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Constants;
@@ -9,17 +9,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class RiddleMapMoveHelper : BaseCrawlerMoveHelper
     {
         private IRiddleService _riddleService = null;
 
-        public override int Order => 250;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.Riddles;
+
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            if (!status.MovedPosition || status.MoveIsComplete)
+            if (!status.MovedPosition || status.MoveIsStopped)
             {
                 return;
             }
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 }
 
                 _crawlerService.ChangeState(ECrawlerStates.Riddle, token, status);
-                status.MoveIsComplete = true;
+                status.MoveIsStopped = true;
             }
             await Task.CompletedTask;
         }

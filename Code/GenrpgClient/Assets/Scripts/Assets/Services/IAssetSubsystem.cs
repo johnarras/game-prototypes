@@ -1,7 +1,7 @@
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Services
+namespace OxDb.Client.Assets.Services
 {
     public interface IAssetSubsystem
     {

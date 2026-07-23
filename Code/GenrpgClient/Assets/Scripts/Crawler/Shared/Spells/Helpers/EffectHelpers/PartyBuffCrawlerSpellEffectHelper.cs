@@ -7,7 +7,7 @@ using OxDb.SharedGame.Spells.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Shared.Spells.Helpers.EffectHelpers
+namespace OxDb.Client.Crawler.Shared.Spells.Helpers.EffectHelpers
 {
     public class PartyBuffEffectCrawlerSpellEffectHelper : BaseCrawlerSpellEffectHelper
     {

@@ -1,15 +1,15 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Collisions.Components;
-using Assets.Scripts.Lockstep.Collisions.Constants;
-using Assets.Scripts.Lockstep.Factions.Components;
-using Assets.Scripts.Lockstep.Math;
-using Assets.Scripts.Lockstep.Systems;
-using Assets.Scripts.Lockstep.Systems.Constants;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Collisions.Components;
+using OxDb.Client.Lockstep.Collisions.Constants;
+using OxDb.Client.Lockstep.Factions.Components;
+using OxDb.Client.Lockstep.Math;
+using OxDb.Client.Lockstep.Systems;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Collisions.Systems
+namespace OxDb.Client.Lockstep.Collisions.Systems
 {
     [DisableAutoCreation]
     [BurstCompile]
@@ -22,7 +22,7 @@ namespace Assets.Scripts.Lockstep.Collisions.Systems
         {
             var spatialMapSingleton = SystemAPI.GetSingleton<SpatialHashSingleton>();
 
-            // Clear buffers before detection
+            // ClearFullCell buffers before detection
             state.Dependency = new ClearCollisionBuffersJob().ScheduleParallel(state.Dependency);
 
             // Run Narrow Phase

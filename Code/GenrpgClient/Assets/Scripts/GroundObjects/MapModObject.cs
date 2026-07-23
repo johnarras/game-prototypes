@@ -1,7 +1,7 @@
 using OxDb.SharedGame.MapMods.MapObjects;
 using OxDb.SharedGame.MapObjects.Messages;
 
-namespace Assets.Scripts.GroundObjects
+namespace OxDb.Client.GroundObjects
 {
     public class MapModObject : InteractableObject
     {

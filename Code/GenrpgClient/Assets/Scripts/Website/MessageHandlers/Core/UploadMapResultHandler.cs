@@ -1,9 +1,9 @@
-using Assets.Scripts.Login.Messages.Core;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.MapServer.WebApi.UploadMap;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Login.MessageHandlers.Core
+namespace OxDb.Client.Login.MessageHandlers.Core
 {
     public class UploadMapResultHandler : BaseClientWebResponseHandler<UploadMapResponse>
     {

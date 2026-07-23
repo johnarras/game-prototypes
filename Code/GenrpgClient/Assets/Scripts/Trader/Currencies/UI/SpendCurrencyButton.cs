@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
+﻿using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Trader.CurrencySpend.Settings;
 using OxDb.SharedGame.Trader.CurrencySpend.WebApi;
 using System;
 
-namespace Assets.Scripts.Trader.Currencies.UI
+namespace OxDb.Client.Trader.Currencies.UI
 {
     public class SpendButtonCustomData
     {
@@ -17,7 +18,7 @@ namespace Assets.Scripts.Trader.Currencies.UI
     public class SpendCurrencyButton : BaseBehaviour
     {
 
-        protected IClientWebService _webService = null;
+        protected IClientWebRequestService _webService = null;
         protected ISpriteService _spriteService = null;
         public GImage CurrencyIcon;
         public GText QuantityText;
@@ -79,7 +80,7 @@ namespace Assets.Scripts.Trader.Currencies.UI
                 return;
             }
 
-            _webService.SendWebRequest(request, GetToken());
+            _webService.SendMainServerRequest(request, GetToken());
         }
     }
 }

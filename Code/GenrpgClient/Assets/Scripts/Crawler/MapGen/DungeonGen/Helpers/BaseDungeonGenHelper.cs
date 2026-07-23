@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.MapGen.RoomGen.Services;
-using Assets.Scripts.Crawler.MapGen.Services;
+﻿using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.RoomGen.Services;
+using OxDb.Client.Crawler.MapGen.Services;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.ProcGen.Services;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.MapGen.DungeonGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.DungeonGen.Helpers
 {
     public abstract class BaseDungeonGenHelper : IDungeonGenHelper
     {

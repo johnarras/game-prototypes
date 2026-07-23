@@ -1,0 +1,181 @@
+{
+  "Id": "role13default",
+  "ParentId": "default",
+  "IdKey": 13,
+  "Name": "Conjurer",
+  "Desc": "A wizard that can summon elementals.",
+  "Abbrev": "Co",
+  "RoleCategoryId": 1,
+  "HealthPerLevel": 4,
+  "ManaPerLevel": 10,
+  "MaxArmorScalingTypeId": 1,
+  "TrainingXpScale": 1.4,
+  "TrainingGoldScale": 1.4,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
+  "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 13
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 24
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 29
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 33
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 34
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 35
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 52
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 82
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 92
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 93
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 100
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 105
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 109
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 210
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 211
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 213
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 220
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 221
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 223
+    }
+  ],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Amount": 0.25
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Amount": 0.15
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 5,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 6,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 8,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 12,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 18,
+      "Amount": 1.0
+    }
+  ]
+}

@@ -2,9 +2,12 @@
   "Id": "bushtype1default",
   "ParentId": "default",
   "IdKey": 1,
-  "Name": "Azalea",
-  "Art": "Azalea",
+  "Name": "Bush",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "Bush",
   "Scale": 1.0,
-  "VariationCount": 2,
+  "VariationCount": 4,
   "Flags": 1
 }

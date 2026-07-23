@@ -1,9 +1,0 @@
-{
-  "Id": "treetype40default",
-  "ParentId": "default",
-  "IdKey": 40,
-  "Name": "Baobab",
-  "Art": "Baobab",
-  "Scale": 0.4,
-  "VariationCount": 2
-}

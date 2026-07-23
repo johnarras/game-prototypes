@@ -1,8 +1,8 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.MapTerrain;
-using Assets.Scripts.ProcGen.Loading.Utils;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameObjects;
+using OxDb.Client.MapTerrain;
+using OxDb.Client.ProcGen.Loading.Utils;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;

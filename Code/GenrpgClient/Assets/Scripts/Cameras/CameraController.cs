@@ -1,7 +1,8 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Cameras;
-using Assets.Scripts.Cameras.Constants;
-using Assets.Scripts.UI.Entities;
+using OxDb.Client;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Cameras;
+using OxDb.Client.Cameras.Constants;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Constants;
@@ -65,6 +66,7 @@ public class CameraController : ICameraController
         }
         _saturationLerpSeconds = _initClient.GetCoreClientData().SaturationLerpSeconds;
         _defaultSaturation = _initClient.GetCoreClientData().DefaultSaturation;
+
         _currSaturation = _defaultSaturation;
         _targetSaturation = _defaultSaturation;
 
@@ -633,6 +635,10 @@ public class CameraController : ICameraController
             float lerpPercent = 1.0f * f / totalFrames;
 
             float finalLerpPercent = Mathf.SmoothStep(0, lerpPercent, 1);
+
+            float colorLerpPercent = (_targetSaturation == GraphicsConstants.MaxSaturation ? 1 - finalLerpPercent : finalLerpPercent);
+
+
 
             _currSaturation = finalLerpPercent * _targetSaturation + (1 - finalLerpPercent) * startSaturation;
 

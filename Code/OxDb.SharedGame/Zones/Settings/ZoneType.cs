@@ -5,6 +5,7 @@ using OxDb.SharedGame.Names.Settings;
 using OxDb.SharedGame.ProcGen.Constants;
 using OxDb.SharedGame.Zones.Entities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OxDb.SharedGame.Zones.Settings
 {
@@ -55,9 +56,17 @@ namespace OxDb.SharedGame.Zones.Settings
         
         public List<ZoneBridgeType> BridgeTypes { get; set; } = new List<ZoneBridgeType>();
         public List<ZoneFenceType> FenceTypes { get; set; } = new List<ZoneFenceType>();
-        public List<ZoneRockType> RockTypes { get; set; } = new List<ZoneRockType>();
-        public List<ZoneTreeType> TreeTypes { get; set; } = new List<ZoneTreeType>();
-        public List<ZoneBushType> BushTypes { get; set; } = new List<ZoneBushType>();
+
+        public double LargePropChance { get; set; }
+        public double SmallPropChance { get; set; }
+        public int MaxSmallPropQuantity { get; set; }
+
+        public List<WeightedEntity> Props { get; set; } = new List<WeightedEntity>();
+
+        public List<WeightedEntity> GetPropsOfType(long entityTypeId)
+        {
+            return Props.Where(x => x.EntityTypeId == entityTypeId).ToList();
+        }
 
         public List<WeightedName> CreatureNamePrefixes { get; set; } = new List<WeightedName>();
         public List<WeightedName> CreatureDoubleNamePrefixes { get; set; } = new List<WeightedName>();
@@ -67,8 +76,6 @@ namespace OxDb.SharedGame.Zones.Settings
         public List<ZoneUnitKeyword> UnitKeyWords { get; set; } = new List<ZoneUnitKeyword>();
 
         public int MinSameAdjacentZone { get; set; }
-        public double PropChance { get; set; }
-        public List<WeightedObject> Props { get; set; } = new List<WeightedObject>();
 
         public string PlantChoices { get; set; }
 
@@ -82,9 +89,13 @@ namespace OxDb.SharedGame.Zones.Settings
         public long MusicTypeId { get; set; }
         public long AmbientMusicTypeId { get; set; }
 
-        public double TraveralTimeScale { get; set; } = 1.0;
+        public double TraveralTimeScale { get; set; }
 
         public long ZoneCategoryId { get; set; }
+
+
+        public bool IsOutdoors { get; set; }
+        public bool IsDungeon { get; set; }
 
         public ZoneType()
         {
@@ -121,13 +132,14 @@ namespace OxDb.SharedGame.Zones.Settings
 
             BridgeTypes = new List<ZoneBridgeType>();
             FenceTypes = new List<ZoneFenceType>();
-            RockTypes = new List<ZoneRockType>();
 
             CreatureNamePrefixes = new List<WeightedName>();
             CreatureDoubleNamePrefixes = new List<WeightedName>();
 
             ZoneUnitSpawns = new List<ZoneUnitSpawn>();
             Overrides = new List<ZoneTypeOverride>();
+
+            Props = new List<WeightedEntity>();
         }
     }
 }

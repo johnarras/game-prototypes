@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -16,7 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Exploring
 {
     public class GainStatsStateHelper : BaseStateHelper
     {
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Exploring
                         int index = map.GetIndex(party.CurrPos.X, party.CurrPos.Z);
                         mapStatus.Encounters.SetBitIndex(index);
                         _crawlerStatService.CalcUnitStats(party, pm, false);
-                        _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
+                        _mapService.ClearCellProps(party.CurrPos.X, party.CurrPos.Z);
                         _dispatcher.Dispatch(new ShowFloatingText("+ " + statAdded + " " + statType.Name + "!"));
                     }));
             }

@@ -13,7 +13,7 @@ namespace OxDb.SharedGame.ProcGen.Settings.Rocks
     /// Plants found on the ground used in Unity's grass terrain generator
     /// </summary>
 
-    public class RockType : ChildSettings, IIndexedGameItem
+    public class RockType : ChildSettings, IVariationIndexedGameItem
     {
         public override string Id { get; set; }
         public override string ParentId { get; set; }
@@ -22,25 +22,21 @@ namespace OxDb.SharedGame.ProcGen.Settings.Rocks
         public string Desc { get; set; }
         public string AtlasPrefix { get; set; }
         public string Icon { get; set; }
-
         public string Art { get; set; }
 
         public float ChanceScale { get; set; }
 
         public int MaxPerZone { get; set; }
 
-        public MyColorF BaseColor { get; set; }
-
-        public int MaxIndex { get; set; }
+        public int VariationCount { get; set; }
 
         public RockType()
         {
             ChanceScale = 1.0f;
 
             MaxPerZone = 0;
-            BaseColor = new MyColorF();
 
-            MaxIndex = 1;
+            VariationCount = 1;
         }
 
     }

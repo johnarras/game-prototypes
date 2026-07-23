@@ -1,9 +1,9 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Sprites.Services;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Sprites.Services;
 using OxDb.SharedGame.Inventory.Constants;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.UI.SmallUIPieces
+namespace OxDb.Client.UI.SmallUIPieces
 {
     public class MultiStateIcon : BaseBehaviour
     {

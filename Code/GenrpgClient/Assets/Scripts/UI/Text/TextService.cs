@@ -1,10 +1,10 @@
 
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedGame.UI.Interfaces;
 using TMPro;
 
-namespace Assets.Scripts.UI.Services
+namespace OxDb.Client.UI.Services
 {
     public class TextService : ITextService
     {

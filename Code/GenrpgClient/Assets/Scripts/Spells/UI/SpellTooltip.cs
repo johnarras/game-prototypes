@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedGame.Spells.PlayerData.Spells;
 using System.Collections.Generic;
 using System.Threading;

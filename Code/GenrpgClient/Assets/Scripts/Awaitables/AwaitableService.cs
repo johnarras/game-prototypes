@@ -2,7 +2,7 @@ using OxDb.SharedCore.Interfaces;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Awaitables
+namespace OxDb.Client.Awaitables
 {
     public interface IAwaitableService : IInjectable
     {

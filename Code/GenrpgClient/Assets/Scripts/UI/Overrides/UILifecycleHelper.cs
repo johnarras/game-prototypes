@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine.UIElements;
 
-namespace Assets.Scripts.UI.Overrides
+namespace OxDb.Client.UI.Overrides
 {
     public class UILifecycleHelper
     {

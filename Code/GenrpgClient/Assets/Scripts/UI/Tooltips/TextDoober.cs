@@ -1,7 +1,7 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.WorldCanvas.Interfaces;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.WorldCanvas.Interfaces;
 
-namespace Assets.Scripts.UI.Tooltips
+namespace OxDb.Client.UI.Tooltips
 {
     public class TextDoober : BaseBehaviour, IDynamicUIItem
     {

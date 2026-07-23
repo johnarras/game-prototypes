@@ -1,6 +1,6 @@
 using OxDb.SharedGame.Crawler.Options.Settings;
 
-namespace Assets.Scripts.Crawler.UI.MainMenu
+namespace OxDb.Client.Crawler.UI.MainMenu
 {
     public class NewGameOptionRow : BaseBehaviour
     {

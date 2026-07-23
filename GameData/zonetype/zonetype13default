@@ -14,23 +14,14 @@
   "ZoneAdjectives": [],
   "BridgeTypes": [],
   "FenceTypes": [],
-  "RockTypes": [],
-  "TreeTypes": [],
-  "BushTypes": [],
+  "Props": [],
   "CreatureNamePrefixes": [],
   "CreatureDoubleNamePrefixes": [],
   "Overrides": [],
   "ZoneUnitSpawns": [],
   "UnitKeyWords": [],
-  "PropChance": 0.2,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 13
-    }
-  ],
   "PlantChoices": "",
+  "WeatherTypeId": 9,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0

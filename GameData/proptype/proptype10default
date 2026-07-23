@@ -1,9 +1,0 @@
-{
-  "Id": "proptype10default",
-  "ParentId": "default",
-  "IdKey": 10,
-  "Name": "MountainsProp",
-  "Icon": "MountainsProp",
-  "Art": "MountainsProp",
-  "NumChoices": 1
-}

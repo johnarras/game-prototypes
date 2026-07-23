@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets;
-using Assets.Scripts.ClientEvents;
+using OxDb.Client.Assets;
+using OxDb.Client.ClientEvents;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Info.InfoHelpers;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Info.UI
+namespace OxDb.Client.Info.UI
 {
     public abstract class BaseInfoScreen : BaseScreen
     {

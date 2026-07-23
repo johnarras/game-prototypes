@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Game
+namespace OxDb.Client.Lockstep.Game
 {
     [GenerateTestsForBurstCompatibility]
     public struct LockstepGlobalState : IComponentData

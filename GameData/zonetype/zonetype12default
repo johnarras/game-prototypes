@@ -14,9 +14,7 @@
   "ZoneAdjectives": [],
   "BridgeTypes": [],
   "FenceTypes": [],
-  "RockTypes": [],
-  "TreeTypes": [],
-  "BushTypes": [],
+  "Props": [],
   "CreatureNamePrefixes": [],
   "CreatureDoubleNamePrefixes": [],
   "Overrides": [],
@@ -284,15 +282,8 @@
   ],
   "UnitKeyWords": [],
   "MinSameAdjacentZone": 3,
-  "PropChance": 1.0,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 12
-    }
-  ],
   "PlantChoices": "",
+  "WeatherTypeId": 9,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0,

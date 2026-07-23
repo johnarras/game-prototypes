@@ -1,13 +1,13 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Cameras.Constants;
-using Assets.Scripts.Crawler.ClientEvents.CombatEvents;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Items.Services;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Crawler.Shared.Combat.Constants;
-using Assets.Scripts.Dungeons.Audio;
-using Assets.Scripts.Dungeons.Audio.Constants;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Cameras.Constants;
+using OxDb.Client.Crawler.ClientEvents.CombatEvents;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.Crawler.Items.Services;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Shared.Combat.Constants;
+using OxDb.Client.Dungeons.Audio;
+using OxDb.Client.Dungeons.Audio.Constants;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
@@ -45,6 +45,7 @@ using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Spells.Constants;
 using OxDb.SharedGame.Spells.Interfaces;
 using OxDb.SharedGame.Spells.Settings.Elements;
+using OxDb.SharedGame.Stats.Constants;
 using OxDb.SharedGame.UnitEffects.Constants;
 using OxDb.SharedGame.UnitEffects.Settings;
 using OxDb.SharedGame.Units.Entities;
@@ -139,9 +140,12 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
         public int GetMaxGroupSize(PartyData party, long level, double difficulty = 1.0f)
         {
+
+            difficulty = Math.Max(1.0f, difficulty);
+            level = Math.Max(1, level);
             StartCombatSettings startSettings = _gameData.Get<StartCombatSettings>(_gs.ch);
 
-            double maxGroupSize = Math.Min(startSettings.MaxGroupSize, (startSettings.StartMaxGroupSize + difficulty * startSettings.GroupSizeIncreasePerLevel));
+            double maxGroupSize = Math.Min(startSettings.MaxGroupSize, difficulty * (startSettings.StartMaxGroupSize + level * startSettings.GroupSizeIncreasePerLevel));
 
             if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
             {
@@ -204,6 +208,35 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
             {
                 partyGroup.Units.Add(member);
                 member.CombatGroupId = partyGroup.Id;
+
+                foreach (PartySummon summon in member.Summons)
+                {
+                    CrawlerSpell summonSpell = _gameData.Get<CrawlerSpellSettings>(_gs.ch).GetData().FirstOrDefault(x => x.Effects.Any(x => x.EntityTypeId == EntityTypes.Unit &&
+                    x.EntityId == summon.UnitTypeId));
+
+
+                    if (summonSpell != null)
+                    {
+                        long level = member.Level;
+                        long statBonus = _statService.GetStatBonus(party, member, StatTypes.Willpower);
+                        double tier = _roleService.GetSpellScalingLevel(party, member, summonSpell, true);
+
+                        InitialCombatGroup currGroup = partySummons.FastFirstOrDefault(x => x.UnitTypeId == summon.UnitTypeId);
+                        if (currGroup == null)
+                        {
+                            currGroup = new InitialCombatGroup()
+                            {
+                                FactionTypeId = FactionTypes.Player,
+                                Level = member.Level,
+                                UnitTypeId = summon.UnitTypeId,
+                            };
+                            partySummons.Add(currGroup);
+                        }
+
+                        currGroup.Summoners.Add(member);
+                        currGroup.Quantity++;
+                    }
+                }
             }
 
             if (initialState.CombatGroups.Count < 1)
@@ -214,7 +247,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
 
                 long level = party.InitialCombat.Level;
 
-                double difficulty = (long)Math.Max(1, level * initialState.Difficulty);
+                double difficulty = (long)Math.Max(1, initialState.Difficulty);
 
                 long maxGroupSize = GetMaxGroupSize(party, level, difficulty);
 
@@ -665,6 +698,13 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                     break;
                 }
 
+                CrawlerUnit summoner = null;
+
+                if (i < initial.Summoners.Count)
+                {
+                    summoner = initial.Summoners[i];
+                }
+
                 Monster monster = new Monster()
                 {
                     Id = party.GetNextId("M"),
@@ -681,7 +721,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Services
                     CombatGroupId = group.Id,
                     ExtraKeywords = fullStats.ExtraKeywords,
                     BonusCount = fullStats.BonusCount,
-                    SummonArgs = initial.SummonArgs,
+                    Summoner = summoner,
                 };
                 _statService.CalcUnitStats(party, monster, true);
 

@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Dungeons.Constants
+﻿namespace OxDb.Client.Dungeons.Constants
 {
     public enum EDoorOpenSounds
     {

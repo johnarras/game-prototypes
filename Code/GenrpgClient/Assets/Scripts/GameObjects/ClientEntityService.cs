@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.ObjectPools;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Assets.ObjectPools;
+using OxDb.Client.Awaitables;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using System;
@@ -9,7 +9,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace Assets.Scripts.GameObjects
+namespace OxDb.Client.GameObjects
 {
 
     public interface IClientEntityService : IInjectable
@@ -34,6 +34,8 @@ namespace Assets.Scripts.GameObjects
         void RegisterDestroyCallback(object obj, Action action);
 
         void ReorderSiblings<T>(List<T> objects) where T : UnityEngine.Object;
+
+        TChild GetChildComponentOfParent<TParent, TChild>(object obj) where TChild : class where TParent : class;
     }
 
 
@@ -156,7 +158,7 @@ namespace Assets.Scripts.GameObjects
                 }
             }
 
-            if (go != null && go.activeSelf != value)
+            if (!go.Equals(null) && go.activeSelf != value)
             {
                 go.SetActive(value);
             }
@@ -532,6 +534,14 @@ namespace Assets.Scripts.GameObjects
                     mb.transform.SetSiblingIndex(i);
                 }
             }
+        }
+
+        public TChild GetChildComponentOfParent<TParent, TChild>(object obj)
+            where TParent : class
+            where TChild : class
+        {
+
+            return GetComponent<TChild>(FindInParents<TParent>(obj));
         }
     }
 }

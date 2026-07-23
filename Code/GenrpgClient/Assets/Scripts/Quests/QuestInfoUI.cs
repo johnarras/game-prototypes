@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
 using ClientEvents;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Currencies.Constants;

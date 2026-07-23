@@ -3,7 +3,7 @@ using OxDb.SharedGame.MapObjects.Messages;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Spawns
+namespace OxDb.Client.MessageHandlers.Spawns
 {
     public class DespawnObjectHandler : BaseClientMapMessageHandler<DespawnObject>
     {

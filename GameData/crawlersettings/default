@@ -1,7 +1,7 @@
 {
   "Id": "default",
-  "MaxPartySize": 6,
+  "MaxPartySize": 7,
   "StartGold": 1000,
   "Name": "CrawlerSettings",
-  "SaveTime": "2025-09-14T19:54:34.799Z"
+  "SaveTime": "2026-07-14T13:26:05.928Z"
 }

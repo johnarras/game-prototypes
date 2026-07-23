@@ -1,8 +1,8 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Crawler.Maps.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services.DrawEntityHelpers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -11,13 +11,13 @@ using OxDb.SharedGame.ProcGen.Settings.Trees;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
+namespace OxDb.Client.Crawler.Maps.Services.DrawCellHelpers
 {
     public class TreeDrawCellHelper : BaseCrawlerDrawCellHelper
     {
-        public override int Order => 400;
+        public override ECrawlerDrawCellOrder HelperKey => ECrawlerDrawCellOrder.Trees;
 
-        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, CancellationToken token)
         {
             long treeTypeId = mapRoot.Map.GetEntityId(cell.MapX, cell.MapZ, EntityTypes.Tree);
             if (treeTypeId > 0)

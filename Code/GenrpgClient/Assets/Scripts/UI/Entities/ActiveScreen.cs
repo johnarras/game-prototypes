@@ -1,6 +1,6 @@
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.UI.Interfaces;
 
-namespace Assets.Scripts.UI.Entities
+namespace OxDb.Client.UI.Entities
 {
     public class ActiveScreen
     {

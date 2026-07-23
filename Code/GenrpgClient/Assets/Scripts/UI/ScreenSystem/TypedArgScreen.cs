@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.ScreenSystem
+namespace OxDb.Client.UI.ScreenSystem
 {
     public abstract class TypedArgScreen<T> : BaseScreen where T : class
     {

@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedGame.MapObjects.Entities;
 using System.Threading;
 using UnityEngine;

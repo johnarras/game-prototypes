@@ -11,7 +11,7 @@ namespace OxDb.SharedGame.Inventory.PlayerData
         [Key(1)] public long EntityId { get; set; }
         [Key(2)] public long MinQuantity { get; set; }
         [Key(3)] public long MaxQuantity { get; set; }
-        [Key(4)] public double Chance { get; set; } = 100;
+        [Key(4)] public double Chance { get; set; } 
         [Key(5)] public long MaxCharges { get; set; }
         [Key(6)] public long CurrCharges { get; set; }
         [Key(7)] public long CooldownSeconds { get; set; }

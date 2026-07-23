@@ -20,6 +20,9 @@
   "UnitKeywordChance": 0.25,
   "MinQuestUnlockDungeonLevel": 8,
   "MinQuestItemDungeonLevel": 6,
+  "MaxLevel": 100,
+  "MaxDungeonLevel": 3,
+  "OutdoorDungeonChance": 0.25,
   "Name": "CrawlerMapSettings",
-  "SaveTime": "2026-07-09T19:33:04.456Z"
+  "SaveTime": "2026-07-22T21:46:28.157Z"
 }

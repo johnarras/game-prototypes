@@ -1,0 +1,168 @@
+{
+  "Id": "role14default",
+  "ParentId": "default",
+  "IdKey": 14,
+  "Name": "Zealot",
+  "Desc": "A cleric that can summon fanatical followers.",
+  "Abbrev": "Zl",
+  "RoleCategoryId": 1,
+  "HealthPerLevel": 6,
+  "ManaPerLevel": 8,
+  "MaxArmorScalingTypeId": 1,
+  "TrainingXpScale": 1.3,
+  "TrainingGoldScale": 1.3,
+  "StartSkillPoints": 1,
+  "StartUpgradePoints": 1,
+  "BinaryBonuses": [
+    {
+      "EntityTypeId": 2,
+      "EntityId": 15
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 17
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 21
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 25
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 29
+    },
+    {
+      "EntityTypeId": 2,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 1
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 2
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 3
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 20
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 22
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 24
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 30
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 31
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 39
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 53
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 81
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 83
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 85
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 87
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 88
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 102
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 104
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 110
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 200
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 201
+    },
+    {
+      "EntityTypeId": 100,
+      "EntityId": 203
+    }
+  ],
+  "AmountBonuses": [
+    {
+      "EntityTypeId": 41,
+      "EntityId": 1,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 2,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 3,
+      "Amount": 0.15
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 4,
+      "Amount": 0.25
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 5,
+      "Amount": 0.2
+    },
+    {
+      "EntityTypeId": 41,
+      "EntityId": 6,
+      "Amount": 0.1
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 13,
+      "Amount": 1.0
+    },
+    {
+      "EntityTypeId": 43,
+      "EntityId": 18,
+      "Amount": 1.0
+    }
+  ]
+}

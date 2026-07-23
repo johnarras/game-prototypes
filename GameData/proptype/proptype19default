@@ -1,9 +1,0 @@
-{
-  "Id": "proptype19default",
-  "ParentId": "default",
-  "IdKey": 19,
-  "Name": "ArcaneProp",
-  "Icon": "ArcaneProp",
-  "Art": "ArcaneProp",
-  "NumChoices": 1
-}

@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.Trader.ClientEvents;
+﻿using OxDb.Client.Trader.ClientEvents;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.DataStores.Categories.PlayerData.Units;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.Caravans.Services
+namespace OxDb.Client.Trader.Caravans.Services
 {
     public class ClientCalcAttributeService : CalcAttributeService
     {

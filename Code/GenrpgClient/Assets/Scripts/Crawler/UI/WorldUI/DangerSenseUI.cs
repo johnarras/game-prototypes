@@ -1,5 +1,5 @@
 
-using Assets.Scripts.Assets.Textures;
+using OxDb.Client.Assets.Textures;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
@@ -7,7 +7,7 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.WorldUI
+namespace OxDb.Client.Crawler.UI.WorldUI
 {
     public class DangerSenseUI : PartyBuffUI
     {
@@ -49,12 +49,7 @@ namespace Assets.Scripts.Crawler.UI.WorldUI
 
                 if (cx < 0 || cz < 0 || cx >= map.Width || cz >= map.Height)
                 {
-                    if (!map.HasFlag(CrawlerMapFlags.IsLooping))
-                    {
-                        continue;
-                    }
-                    cx = (cx + map.Width) % map.Width;
-                    cz = (cz + map.Height) % map.Height;
+                    continue;
                 }
 
                 if (party.CurrentMap.Cleansed.HasBitIndex(map.GetIndex(cx, cz)))

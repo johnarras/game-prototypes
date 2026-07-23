@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.UI.ClientEvents
+namespace OxDb.Client.UI.ClientEvents
 {
     public class ShowBackScreen : IClientEvent
     {

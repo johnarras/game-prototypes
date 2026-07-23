@@ -1,7 +1,8 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Services.DrawCellHelpers;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.GameObjects;
+using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -10,7 +11,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
+namespace OxDb.Client.Crawler.Maps.Services.DrawEntityHelpers
 {
     public abstract class BaseCrawlerDrawCellHelper : ICrawlerDrawCellHelper
     {
@@ -21,12 +22,11 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers
         protected ILogService _logService = null;
         protected IAssetService _assetService = null;
         protected ICrawlerMapService _mapService = null;
+        protected IEntityService _entityService = null;
 
-        public abstract int Order { get; }
+        public abstract ECrawlerDrawCellOrder HelperKey { get; }
 
-        public virtual Type HelperKey => GetType();
-
-        public abstract ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token);
+        public abstract ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, CancellationToken token);
 
     }
 }

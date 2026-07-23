@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Math
+﻿namespace OxDb.Client.Lockstep.Math
 {
     public class FixedPointRand
     {

@@ -2,9 +2,11 @@
   "Id": "rocktype3default",
   "ParentId": "default",
   "IdKey": 3,
-  "Name": "RockRed",
-  "Art": "RockRed",
+  "Name": "RockSand",
+  "Desc": "",
+  "AtlasPrefix": "",
+  "Icon": "",
+  "Art": "RockSand",
   "ChanceScale": 1.0,
-  "BaseColor": {},
-  "MaxIndex": 10
+  "VariationCount": 6
 }

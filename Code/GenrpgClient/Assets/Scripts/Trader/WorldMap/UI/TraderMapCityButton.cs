@@ -1,7 +1,7 @@
-using Assets.Scripts.Trader.UI.TradeMapUI;
+using OxDb.Client.Trader.UI.TradeMapUI;
 using OxDb.SharedGame.Trader.Cities.Settings;
 
-namespace Assets.Scripts.Trader.UI.TraderMapUI
+namespace OxDb.Client.Trader.UI.TraderMapUI
 {
     public class TraderMapCityButton : BaseBehaviour
     {

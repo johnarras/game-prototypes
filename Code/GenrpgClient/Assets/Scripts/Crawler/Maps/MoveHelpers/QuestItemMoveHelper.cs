@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Combat.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -9,11 +9,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class QuestItemMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 275;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.QuestItem;
+
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
@@ -42,7 +43,7 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                         WorldQuestItemId = wqi.IdKey,
                     };
                     _crawlerService.ChangeState(ECrawlerStates.StartCombat, token, initialCombatState);
-                    status.MoveIsComplete = true;
+                    status.MoveIsStopped = true;
                 }
                 return;
             }

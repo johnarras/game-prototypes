@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Constants;
+using OxDb.Client.Assets.Constants;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Interfaces;
@@ -244,19 +244,7 @@ public class BushObjectLoader : BaseObjectLoader
             return;
         }
 
-        List<MeshRenderer> renderers = _clientEntityService.GetComponents<MeshRenderer>(go);
-
-        foreach (MeshRenderer renderer in renderers)
-        {
-            List<Material> oldList = new List<Material>();
-            renderer.GetMaterials(oldList);
-            foreach (Material mat in oldList)
-            {
-            }
-        }
-
         go = op.terrManager.AddOrReuseTerrainProtoObject(op.Name, go);
-
 
         op.Prototype.prefab = go;
 
@@ -295,7 +283,7 @@ public class BushObjectLoader : BaseObjectLoader
         _md.zoneBushIds = new Dictionary<long, List<long>>();
         _md.zoneBushIds = new Dictionary<long, List<long>>();
 
-        BushTypeSettings treeSettings = _gameData.Get<BushTypeSettings>(gs.ch);
+        BushTypeSettings bushSettings = _gameData.Get<BushTypeSettings>(gs.ch);
         foreach (IGameSettings settings in _gameData.Get<ZoneTypeSettings>(gs.ch).GetChildren())
         {
             if (settings is ZoneType zoneType)
@@ -304,16 +292,18 @@ public class BushObjectLoader : BaseObjectLoader
 
                 _md.zoneBushIds[zoneType.IdKey] = bushList;
 
-                foreach (ZoneBushType ztt in zoneType.BushTypes)
-                {
-                    BushType treeType = treeSettings.Get(ztt.BushTypeId);
+                List<WeightedEntity> zoneBushes = zoneType.GetPropsOfType(EntityTypes.Bush);
 
-                    if (treeType.HasFlag(BushFlags.IsWaterItem))
+                foreach (WeightedEntity zoneBush in zoneBushes)
+                {
+                    BushType bushType = bushSettings.Get(zoneBush.EntityId);
+
+                    if (bushType.HasFlag(BushFlags.IsWaterItem))
                     {
                         continue;
                     }
 
-                    bushList.Add(treeType.IdKey);
+                    bushList.Add(bushType.IdKey);
                 }
             }
         }

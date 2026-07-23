@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Crawler.UI.Screens.Maps
+namespace OxDb.Client.Crawler.UI.Screens.Maps
 {
     public class CrawlerMapScreenArgs
     {

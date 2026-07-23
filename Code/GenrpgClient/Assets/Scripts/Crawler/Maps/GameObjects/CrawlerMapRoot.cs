@@ -1,14 +1,14 @@
-using Assets.Scripts.Buildings;
-using Assets.Scripts.Crawler.Maps.Services.Helpers;
-using Assets.Scripts.Dungeons;
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.Buildings;
+using OxDb.Client.Crawler.Maps.Services.Helpers;
+using OxDb.Client.Dungeons;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.GameObjects
+namespace OxDb.Client.Crawler.Maps.GameObjects
 {
 
     public class MaterialBlock
@@ -45,6 +45,12 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
     public class CrawlerMapRoot : BaseBehaviour, ITerrainContainer
     {
+
+        public ClientMapCell CellPrefab = null;
+        public GameObject TerrainParent = null;
+        public GameObject AssetRoot = null;
+        public GameObject CellAnchor = null;
+
         public string MapId { get; set; }
 
         public int XZBlockSize { get; set; }
@@ -54,6 +60,8 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         public CoreTerrainData Core { get; set; } = new CoreTerrainData();
 
         private bool[,] _wallsInNECorner = null;
+
+        public bool DidDrawEdgeProps { get; set; }
 
         public bool HasWallInNECorner(int x, int z)
         {
@@ -144,8 +152,6 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         private List<long> _allZoneTypes = null;
 
-        public GameObject TerrainParent = null;
-
         public List<ClientMapCell> GetAllCells()
         {
             return _allCells;
@@ -219,6 +225,8 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
                             _allZoneTypes.Add(zoneTypeId);
                         }
                     }
+
+                    _dungeonZoneTypes = _dungeonZoneTypes.Distinct().ToList();
                 }
 
                 if (Map.ZoneTypeId > 0)
@@ -254,9 +262,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             return new List<ClientMapCell>();
         }
 
-
-
-        public ClientMapCell GetCellAtWorldPos(int worldX, int worldZ, bool createIfNotExist)
+        public ClientMapCell GetCellAtWorldPos(int worldX, int worldZ, bool createIfNotExist, bool clampToMapCoordinates)
         {
 
             string worldKey = worldX + "." + worldZ;
@@ -274,6 +280,12 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             int mapX = (worldX + Map.Width) % Map.Width;
             int mapZ = (worldZ + Map.Height) % Map.Height;
 
+            if (!clampToMapCoordinates)
+            {
+                mapX = worldX;
+                mapZ = worldZ;
+            }
+
             string mapKey = mapX + "." + mapZ;
 
             if (_mapCellCache.TryGetValue(mapKey, out List<ClientMapCell> mapCells))
@@ -287,10 +299,9 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
                 }
             }
 
-            GameObject go = new GameObject() { name = "MapCell-" + mapKey };
-            _clientEntityService.AddToParent(go, gameObject);
-            cell = go.AddComponent<ClientMapCell>();
-            cell.Content = go;
+            cell = _clientEntityService.FullInstantiate(CellPrefab);
+            cell.name = "ClientMapCell" + mapX + "." + mapZ;
+            _clientEntityService.AddToParent(cell, CellAnchor);
             if (!_mapCellList.ContainsKey(mapKey))
             {
                 _mapCellList[mapKey] = new List<ClientMapCell>();
@@ -315,6 +326,11 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
         public void ReturnCell(ClientMapCell cell)
         {
+            if (cell.KeepActive)
+            {
+                return;
+            }
+
             string mapKey = cell.MapX + "." + cell.MapZ;
             string worldKey = cell.WorldX + "." + cell.WorldZ;
 
@@ -353,7 +369,7 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
 
             foreach (MapCellDetail detail in map.Details)
             {
-                GetCellAtWorldPos(detail.X, detail.Z, true).Details.Add(detail);
+                GetCellAtWorldPos(detail.X, detail.Z, true, true).Details.Add(detail);
             }
         }
 
@@ -361,20 +377,20 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
         {
             foreach (ClientMapCell worldCell in _worldCells.Values)
             {
-                worldCell.Clear();
+                worldCell.ClearFullCell();
             }
 
             foreach (List<ClientMapCell> mapCellList in _mapCellCache.Values)
             {
                 foreach (ClientMapCell mapCell in mapCellList)
                 {
-                    mapCell.Clear();
+                    mapCell.ClearFullCell();
                 }
             }
 
             foreach (ClientMapCell mapCell in _allCells)
             {
-                mapCell.Clear();
+                mapCell.ClearFullCell();
             }
 
             _worldCells.Clear();
@@ -413,6 +429,21 @@ namespace Assets.Scripts.Crawler.Maps.GameObjects
             base.OnDestroy();
         }
 
+
+        public void SetCellPropVisibility(int x, int z, float alpha)
+        {
+            if (Map.CrawlerMapTypeId != CrawlerMapTypes.Outdoors)
+            {
+                return;
+            }
+
+            List<ClientMapCell> cells = GetCellsAtMapPos(x, z);
+
+            foreach (ClientMapCell cell in cells)
+            {
+                cell.SetPropAlphas(alpha);
+            }
+        }
     }
 }
 

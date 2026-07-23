@@ -1,7 +1,7 @@
-using Assets.Scripts.Buildings;
-using Assets.Scripts.Crawler.Maps.GameObjects;
+using OxDb.Client.Buildings;
+using OxDb.Client.Crawler.Maps.GameObjects;
 
-namespace Assets.Scripts.Crawler.Maps.Loading
+namespace OxDb.Client.Crawler.Maps.Loading
 {
     public class CrawlerObjectLoadData
     {
@@ -13,6 +13,9 @@ namespace Assets.Scripts.Crawler.Maps.Loading
         public BuildingMats Mats { get; set; }
         public string PrefabName { get; set; }
         public string AssetCategoryNameOverride { get; set; }
+        public float XOffset { get; set; }
+        public float ZOffset { get; set; }
+        public float Scale { get; set; } = 1.0f;
     }
 
 }

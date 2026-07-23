@@ -1,5 +1,5 @@
-using Assets.Scripts.MapTerrain;
-using Assets.Scripts.Minimap.Services;
+using OxDb.Client.MapTerrain;
+using OxDb.Client.Minimap.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.MapServer.Entities;

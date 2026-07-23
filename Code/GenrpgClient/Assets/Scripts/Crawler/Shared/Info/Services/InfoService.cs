@@ -1,6 +1,6 @@
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Entities.Interfaces;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.HelperClasses;
@@ -29,6 +29,13 @@ namespace OxDb.SharedGame.Crawler.Info.Services
         List<ShowInfoPanelArgs> GetOverviewPages();
         string CreateHeaderLine(string headerText, bool makePlural = true);
         IInfoHelper GetInfoHelper(long entityTypeId);
+    }
+
+    public class OverviewPage
+    {
+        public string Header { get; set; }
+        public bool IsListAll { get; set; }
+        public List<string> OtherLines { get; set; }
     }
 
     public class InfoService : IInfoService
@@ -174,118 +181,88 @@ namespace OxDb.SharedGame.Crawler.Info.Services
 
             List<string> currPageLines = new List<string>();
 
-            List<string> overviewKeys = new List<string>();
-            List<string> overviewChildText = new List<string>();
-            string overviewHeader = "";
+            List<OverviewPage> overviewPages = new List<OverviewPage>();
 
+            OverviewPage currPage = null;
             for (int i = 0; i < lines.Count; i++)
             {
-                if (lines[i].IndexOf(pageBreak) == -1 && i != lines.Count - 1)
+                currPage = new OverviewPage();
+
+                while (!lines[i].Contains(pageBreak))
                 {
-                    currPageLines.Add(lines[i]);
+                    continue;
                 }
-                else
+
+                string header = lines[i];
+
+                List<string> infoLines = new List<string>();
+                i++;
+
+                while (i < lines.Count && !lines[i].Contains(pageBreak))
                 {
-                    if (currPageLines.Count < 1)
+
+                    infoLines.Add(lines[i]);
+                    i++;
+                }
+
+                i--;
+
+                if (infoLines.Count < 1)
+                {
+                    continue;
+                }
+
+                bool shouldListAll = header.Contains(listAllText);
+
+                header = header.Replace(listAllText, "").Replace(pageBreak, "").Trim();
+
+                if (shouldListAll)
+                {
+                    IEntityHelper helper = _entityService.GetEntityHelper(header);
+
+
+                    if (helper == null)
                     {
                         continue;
                     }
 
-                    if (overviewChildText.Count > 0)
+                    List<IIdName> children = helper.GetChildList(_gs.ch);
+
+                    if (_infoHelperDict.TryGetValue(helper.HelperKey, out IInfoHelper infoHelper))
                     {
-                        currPageLines.AddRange(overviewChildText);
+                        children = infoHelper.GetInfoChildren();
                     }
 
-                    foreach (string key in overviewKeys)
+
+                    children = children.OrderBy(x => x.Name).ToList();
+
+                    if (infoHelper != null && !infoHelper.OrderByName)
                     {
-                        List<string> newPageLines = new List<string>();
-                        overviewHeader = SanitizeName(key, true);
-                        newPageLines.Add(overviewHeader);
-                        newPageLines.AddRange(currPageLines);
-                        _overviewLines[StrUtils.NormalizeWord(key)] = newPageLines;
+                        children = children.OrderBy(x => x.IdKey).ToList();
                     }
 
-                    if (currPageLines.Count > 0)
+                    if (children.Count > 0)
                     {
-
-                        _overviewPages.Add(new ShowInfoPanelArgs()
+                        StringBuilder sb = new StringBuilder();
+                        for (int c = 0; c < children.Count; c++)
                         {
-                            Header = overviewHeader,
-                            Lines = currPageLines,
-                        });
-                    }
-
-                    overviewChildText.Clear();
-                    overviewKeys.Clear();
-                    overviewHeader = "";
-
-                    currPageLines = new List<string>();
-
-                    string[] words = lines[i].Split(' ');
-
-                    List<string> origWords = new List<string>(words);
-
-                    for (int w = 0; w < words.Length; w++)
-                    {
-                        words[w] = StrUtils.NormalizeWord(words[w]);
-                    }
-
-                    bool shouldListAll = words.FastAny(x => x == listAllText);
-
-                    overviewKeys = origWords.Where(x => x != pageBreak && !StrUtils.NormalizeWord(x).Contains(listAllText)).ToList();
-
-                    // Set up overview + children link.
-                    if (words.Length >= 3 && words.FastAny(x => x == listAllText))
-                    {
-                        for (int w = 1; w < words.Length; w++)
-                        {
-
-                            if (overviewChildText.Count > 0)
-                            {
-                                break;
-                            }
-                            IEntityHelper helper = _entityService.GetEntityHelper(words[w]);
-
-                            if (helper == null)
-                            {
-                                continue;
-                            }
-
-                            List<IIdName> children = helper.GetChildList(_gs.ch);
-
-                            if (_infoHelperDict.TryGetValue(helper.HelperKey, out IInfoHelper infoHelper))
-                            {
-                                children = infoHelper.GetInfoChildren();
-                            }
-
-
-                            children = children.OrderBy(x => x.Name).ToList();
-
-                            if (infoHelper != null && !infoHelper.OrderByName)
-                            {
-                                children = children.OrderBy(x => x.IdKey).ToList();
-                            }
-
-                            if (children.Count > 0)
-                            {
-                                StringBuilder sb = new StringBuilder();
-                                for (int c = 0; c < children.Count; c++)
-                                {
-                                    overviewChildText.Add(" " + CreateInfoLink(children[c]));
-                                }
-                            }
+                            infoLines.Add(" " + CreateInfoLink(children[c]));
                         }
                     }
-                }
-            }
 
-            if (currPageLines.Count > 0)
-            {
+                }
+
+                _overviewLines[StrUtils.NormalizeWord(header)] = infoLines;
+
+                if (shouldListAll)
+                {
+                    header = StrUtils.MakePlural(header);
+                }
 
                 _overviewPages.Add(new ShowInfoPanelArgs()
                 {
-                    Header = overviewHeader,
-                    Lines = currPageLines,
+                    Header = header,
+                    Lines = infoLines,
                 });
             }
         }

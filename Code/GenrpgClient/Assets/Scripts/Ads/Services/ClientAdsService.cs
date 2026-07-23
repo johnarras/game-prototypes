@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.Config;
-using Assets.Scripts.Core.Interfaces;
+﻿using OxDb.Client.Config;
+using OxDb.Client.Core.Interfaces;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Interfaces;
@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Unity.Services.LevelPlay;
 
-namespace Assets.Scripts.Ads.Services
+namespace OxDb.Client.Ads.Services
 {
 
     public interface IClientAdsService : IInitializable, IClientResetCleanup

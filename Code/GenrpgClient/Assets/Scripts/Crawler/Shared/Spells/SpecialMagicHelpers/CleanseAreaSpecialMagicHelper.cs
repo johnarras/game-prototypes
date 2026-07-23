@@ -40,22 +40,14 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Casting.SpecialMagicHelper
 
                 if (nx < 0 || nx >= map.Width)
                 {
-                    if (!map.HasFlag(CrawlerMapFlags.IsLooping))
-                    {
-                        continue;
-                    }
-                    nx = (nx + map.Width) % map.Width;
+                    continue;
                 }
                 for (int z = cz - radius; z <= cz + radius; z++)
                 {
                     int nz = z;
                     if (nz < 0 || nz >= map.Height)
                     {
-                        if (!map.HasFlag(CrawlerMapFlags.IsLooping))
-                        {
-                            continue;
-                        }
-                        nz = (nz + map.Height) % map.Height;
+                        continue;
                     }
 
                     if (map.Get(nx, nz, CellIndex.Terrain) > 0)

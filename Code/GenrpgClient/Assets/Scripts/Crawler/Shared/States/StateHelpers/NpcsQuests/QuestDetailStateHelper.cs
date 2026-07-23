@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.NpcsQuests
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.NpcsQuests
 {
     public class QuestDetailStateHelper : BaseStateHelper
     {

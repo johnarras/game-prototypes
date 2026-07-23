@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 461d1167232d1dd43af72a9e1e418f56, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 461d1167232d1dd43af72a9e1e418f56, type: 3}
       propertyPath: m_LocalScale.y
@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 461d1167232d1dd43af72a9e1e418f56, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 461d1167232d1dd43af72a9e1e418f56, type: 3}
       propertyPath: m_LocalPosition.x
@@ -84,7 +84,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6434681130203226732, guid: 5351083f2ee17c942bec6dd96d750f74, type: 3}
       propertyPath: m_Name
-      value: LavaProp1
+      value: LavaPropSmall1
       objectReference: {fileID: 0}
     - target: {fileID: 7558149681445839087, guid: 5351083f2ee17c942bec6dd96d750f74, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Bundles;
+using OxDb.Client.Assets.Bundles;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.Environments.Constants;
 using System;

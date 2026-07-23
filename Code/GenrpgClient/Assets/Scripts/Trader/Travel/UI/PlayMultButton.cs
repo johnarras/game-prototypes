@@ -1,5 +1,6 @@
-﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.Trader.ClientEvents;
+﻿using OxDb.Client.Awaitables;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.Trader.ClientEvents;
 using OxDb.SharedCore.Client.Interfaces;
 using OxDb.SharedGame.Attributes.Services;
 using OxDb.SharedGame.Core.PlayerData;
@@ -11,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Travel.UI
+namespace OxDb.Client.Trader.Travel.UI
 {
     public class UpdateMaxPlayMult : IClientEvent
     {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Trader.Travel.UI
     {
 
         private ISharedPlayMultService _playMultService = null;
-        private IClientWebService _webService = null;
+        private IClientWebRequestService _webService = null;
         private ICalcAttributeService _calcAttributeService = null;
         private IAwaitableService _awaitableService = null;
 
@@ -76,7 +77,7 @@ namespace Assets.Scripts.Trader.Travel.UI
                 _queuedPlayMult = -1;
             }
             _playMultRequestsSent++;
-            _webService.SendWebRequest(new SetPlayMultRequest() { PlayMult = coreData.Vars[TraderVars.Mult] }, GetToken());
+            _webService.SendMainServerRequest(new SetPlayMultRequest() { PlayMult = coreData.Vars[TraderVars.Mult] }, GetToken());
         }
 
         private void OnSetPlayMultResponse(SetPlayMultResponse response)
@@ -88,7 +89,7 @@ namespace Assets.Scripts.Trader.Travel.UI
                 if (_queuedPlayMult > 0)
                 {
                     _playMultRequestsSent++;
-                    _webService.SendWebRequest(new SetPlayMultRequest() { PlayMult = _queuedPlayMult }, GetToken());
+                    _webService.SendMainServerRequest(new SetPlayMultRequest() { PlayMult = _queuedPlayMult }, GetToken());
                     _queuedPlayMult = 0;
                     return;
                 }

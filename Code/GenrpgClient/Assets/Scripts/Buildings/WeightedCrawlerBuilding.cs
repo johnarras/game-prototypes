@@ -2,7 +2,7 @@ using OxDb.SharedCore.Utils;
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Buildings
+namespace OxDb.Client.Buildings
 {
     [Serializable]
     public class WeightedCrawlerBuilding : IWeightedItem

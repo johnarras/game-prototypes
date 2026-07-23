@@ -11,7 +11,7 @@
 
 using UnityEngine;
 #if !DISABLESTEAMWORKS
-using Assets.Scripts.Steam.Services;
+using OxDb.Client.Steam.Services;
 using Steamworks;
 #endif
 

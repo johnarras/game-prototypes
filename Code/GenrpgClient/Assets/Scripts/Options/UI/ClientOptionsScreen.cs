@@ -1,7 +1,7 @@
-using Assets.Scripts.Audio.Constants;
-using Assets.Scripts.Crawler.Shared.GameEvents;
-using Assets.Scripts.Options.Services;
-using Assets.Scripts.UI.Abstractions;
+using OxDb.Client.Audio.Constants;
+using OxDb.Client.Crawler.Shared.GameEvents;
+using OxDb.Client.Options.Services;
+using OxDb.Client.UI.Abstractions;
 using OxDb.SharedGame.Crawler.Combat.Constants;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Options
+namespace OxDb.Client.Options
 {
     public class ClientOptionsScreen : BaseScreen
     {

@@ -5,7 +5,7 @@ using OxDb.SharedGame.Trader.Constants;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.Info.Services
+namespace OxDb.Client.Trader.Info.Services
 {
     public interface ITraderInfoService : IInjectable
     {

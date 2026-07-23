@@ -1,7 +1,7 @@
 using OxDb.SharedGame.UI.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Abstractions
+namespace OxDb.Client.UI.Abstractions
 {
     public class GAnimator : Animator, IAnimator
     {

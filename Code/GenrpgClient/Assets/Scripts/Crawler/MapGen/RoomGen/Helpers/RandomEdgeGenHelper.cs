@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Crawler.MapGen.RoomGen.Entities;
+﻿using OxDb.Client.Crawler.MapGen.RoomGen.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.MapGen.Constants;
 
-namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.RoomGen.Helpers
 {
     public class RandomEdgeGenHelper : BaseEdgeGenHelper
     {

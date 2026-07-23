@@ -1,5 +1,5 @@
-using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedGame.Crawler.Combat.Settings;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
@@ -8,15 +8,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class RandomCombatCrawlerMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 500;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.RandomCombat;
+
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus status, CancellationToken token)
         {
-            if (status.MoveIsComplete || !status.MovedPosition || !_optionService.HasOption(party, CrawlerOptions.RandomMonsters))
+            if (status.MoveIsStopped || !status.MovedPosition || !_optionService.HasOption(party, CrawlerOptions.RandomMonsters))
             {
                 return;
             }
@@ -37,9 +38,9 @@ namespace Assets.Scripts.Crawler.Maps.MoveHelpers
                 return;
             }
 
-            _moveService.ClearMovement();
+            _moveService.StopMovement();
             _crawlerService.ChangeState(ECrawlerStates.StartCombat, token);
-            status.MoveIsComplete = true;
+            status.MoveIsStopped = true;
             await Task.CompletedTask;
         }
     }

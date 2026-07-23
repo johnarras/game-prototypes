@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Game
+namespace OxDb.Client.Lockstep.Game
 {
     [DisableAutoCreation]
     public partial class LockstepGroup : ComponentSystemGroup

@@ -10,105 +10,14 @@
   "GenTypes": [
     {
       "Name": "Dungeon",
-      "MinWidth": 10,
-      "MaxWidth": 15,
-      "MinHeight": 10,
-      "MaxHeight": 15,
-      "MinFloors": 1,
-      "MaxFloors": 4,
+      "MinWidth": 22,
+      "MaxWidth": 30,
+      "MinHeight": 22,
+      "MaxHeight": 30,
       "SpecialTileChance": 0.05,
       "Weight": 30.0,
-      "RandomWallsChance": 0.5,
-      "LoopingChance": 0.5,
-      "MinWallChance": 0.5,
-      "MaxWallChance": 0.8,
-      "MinDoorChance": 0.3,
-      "MaxDoorChance": 0.5,
       "TrapTileChance": 0.02,
-      "EffectTileChance": 0.02,
-      "MinCorridorDensity": 1.1,
-      "MaxCorridorDensity": 2.0,
-      "MinBuildingDensity": 0.3,
-      "MaxBuildingDensity": 0.6,
-      "IsIndoors": true,
-      "NextLevelIsDown": true,
-      "WeightedZones": [
-        {
-          "Name": "None",
-          "Weight": 1.0,
-          "ZoneTypeId": 16
-        },
-        {
-          "Weight": 1.0,
-          "ZoneTypeId": 15
-        },
-        {
-          "Weight": 1.0,
-          "ZoneTypeId": 20
-        }
-      ]
-    },
-    {
-      "Name": "Tower",
-      "MinWidth": 10,
-      "MaxWidth": 12,
-      "MinHeight": 10,
-      "MaxHeight": 12,
-      "MinFloors": 1,
-      "MaxFloors": 4,
-      "SpecialTileChance": 0.05,
-      "Weight": 20.0,
-      "RandomWallsChance": 1.0,
-      "MinWallChance": 0.5,
-      "MaxWallChance": 0.8,
-      "MinDoorChance": 0.3,
-      "MaxDoorChance": 0.5,
-      "TrapTileChance": 0.02,
-      "EffectTileChance": 0.02,
-      "MinCorridorDensity": 1.2,
-      "MaxCorridorDensity": 2.0,
-      "MinBuildingDensity": 0.1,
-      "MaxBuildingDensity": 0.3,
-      "IsIndoors": true,
-      "WeightedZones": [
-        {
-          "Name": "None",
-          "Weight": 1.0,
-          "ZoneTypeId": 17
-        }
-      ]
-    },
-    {
-      "Name": "Outdoors",
-      "MinWidth": 18,
-      "MaxWidth": 23,
-      "MinHeight": 18,
-      "MaxHeight": 23,
-      "MinFloors": 1,
-      "MaxFloors": 1,
-      "SpecialTileChance": 0.05,
-      "Weight": 10.0,
-      "MinWallChance": 0.4,
-      "MaxWallChance": 0.6,
-      "TrapTileChance": 0.04,
-      "EffectTileChance": 0.02,
-      "MinCorridorDensity": 2.5,
-      "MaxCorridorDensity": 5.0,
-      "WeightedZones": [
-        {
-          "Name": "None",
-          "Weight": 1.0,
-          "ZoneTypeId": 18
-        },
-        {
-          "Weight": 1.0,
-          "ZoneTypeId": 19
-        },
-        {
-          "Weight": 1.0,
-          "ZoneTypeId": 21
-        }
-      ]
+      "EffectTileChance": 0.02
     }
   ],
   "NpcChance": 0.1,
@@ -116,5 +25,5 @@
   "MaxNpcQuantity": 1,
   "MinNpcSeparation": 3,
   "MinDistanceToEntrance": 3,
-  "RoomIsDifferentZoneTypeChance": 0.05
+  "RoomIsDifferentZoneTypeChance": 0.2
 }

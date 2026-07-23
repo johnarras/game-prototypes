@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Minigames.HUD
+namespace OxDb.Client.Minigames.HUD
 {
     public class MinigameHUDScreen : BaseScreen
     {

@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.UI.Interfaces
+namespace OxDb.Client.UI.Interfaces
 {
     public interface IScreen
     {

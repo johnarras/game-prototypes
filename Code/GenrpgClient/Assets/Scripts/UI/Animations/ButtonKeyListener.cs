@@ -1,12 +1,12 @@
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.UI.ClientEvents;
+using OxDb.Client.Awaitables;
+using OxDb.Client.UI.ClientEvents;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.UI.Animations
+namespace OxDb.Client.UI.Animations
 {
     [RequireComponent(typeof(GButton))]
     public class ButtonKeyListener : BaseBehaviour

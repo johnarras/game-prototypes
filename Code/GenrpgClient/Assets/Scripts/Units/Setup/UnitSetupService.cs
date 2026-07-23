@@ -1,7 +1,7 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Setup.Interfaces;
 using ClientEvents;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;

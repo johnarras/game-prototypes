@@ -1,6 +1,6 @@
 using OxDb.SharedGame.MapObjects.Messages;
 
-namespace Assets.Scripts.MessageHandlers.MapObjects
+namespace OxDb.Client.MessageHandlers.MapObjects
 {
     public class OnGetMapObjectStatusHandler : DispatchClientMapMessageHandler<OnGetMapObjectStatus> { }
 }

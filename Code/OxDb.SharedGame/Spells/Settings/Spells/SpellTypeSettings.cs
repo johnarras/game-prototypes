@@ -47,7 +47,7 @@ namespace OxDb.SharedGame.Spells.Settings.Spells
     [MessagePackObject]
     public class SpellEffect
     {
-        [Key(0)] public long SkillTypeId { get; set; } = 1;
+        [Key(0)] public long SkillTypeId { get; set; }
         [Key(1)] public long EntityTypeId { get; set; }
         [Key(2)] public long EntityId { get; set; }
         [Key(3)] public int Radius { get; set; }

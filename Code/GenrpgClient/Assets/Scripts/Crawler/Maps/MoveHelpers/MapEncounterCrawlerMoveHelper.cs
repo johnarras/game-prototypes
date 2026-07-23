@@ -1,20 +1,21 @@
-using Assets.Scripts.Crawler.Maps.EncounterHelpers;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.EncounterHelpers;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.MoveHelpers
+namespace OxDb.Client.Crawler.Maps.MoveHelpers
 {
     public class MapEncounterCrawlerMoveHelper : BaseCrawlerMoveHelper
     {
-        public override int Order => 400;
+        public override ECrawlerMoveOrder HelperKey => ECrawlerMoveOrder.MapEncounters;
+
 
 
         public override async Awaitable Execute(PartyData party, CrawlerMoveStatus moveStatus, CancellationToken token)
         {
-            if (moveStatus.MoveIsComplete || !moveStatus.MovedPosition)
+            if (moveStatus.MoveIsStopped || !moveStatus.MovedPosition)
             {
                 return;
             }

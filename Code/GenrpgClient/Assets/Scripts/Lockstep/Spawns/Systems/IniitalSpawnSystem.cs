@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Spawns.Systems
+﻿namespace OxDb.Client.Lockstep.Spawns.Systems
 {
     internal class IniitalSpawnSystem
     {

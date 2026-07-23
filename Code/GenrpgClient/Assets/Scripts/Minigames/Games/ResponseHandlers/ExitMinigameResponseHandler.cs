@@ -1,13 +1,13 @@
-﻿using Assets.Scripts.DynamicUI.Services;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
+﻿using OxDb.Client.DynamicUI.Services;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedCore.Rewards.Entities;
 using OxDb.SharedGame.Minigames.Games.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Minigames.Games.ResponseHandlers
+namespace OxDb.Client.Minigames.Games.ResponseHandlers
 {
     public class EndMinigameResponseHandler : BaseClientWebResponseHandler<EndMinigameResponse>
     {

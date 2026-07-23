@@ -9,15 +9,9 @@ namespace OxDb.SharedGame.Crawler.Combat.Entities
     public class InitialCombatState
     {
         public long Level { get; set; }
-        public double Difficulty { get; set; } = 1.0f;
+        public double Difficulty { get; set; } 
         public List<InitialCombatGroup> CombatGroups { get; set; } = new List<InitialCombatGroup>();
         public long WorldQuestItemId { get; set; }
-    }
-
-    public class SummonArgs
-    {
-        public double SummonTier { get; set; }
-        public long SummonStatBonus { get; set; }
     }
 
     public class InitialCombatGroup
@@ -28,7 +22,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Entities
         public long Level { get; set; }
         public string BossName { get; set; }
         public long FactionTypeId { get; set; }
-        public SummonArgs SummonArgs { get; set; }       
+        public List<CrawlerUnit> Summoners { get; set; } = new List<CrawlerUnit>();
     }
 
 
@@ -36,7 +30,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Entities
     {
         public int RoundsComplete { get; set; } = 0;
 
-        public long Level { get; set; } = 1;
+        public long Level { get; set; }
 
         public List<CombatGroup> Enemies { get; set; } = new List<CombatGroup>();
 

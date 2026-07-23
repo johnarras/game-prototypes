@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Repository.Constants
+namespace OxDb.Client.Repository.Constants
 {
     public static class ClientRepositoryConstants
     {

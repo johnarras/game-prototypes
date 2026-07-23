@@ -27,8 +27,8 @@ namespace OxDb.RequestServer.PlayerData.Services
     {
 
 
-        OrderedSetupDictionaryContainer<Type, ICharacterLoadUpdater> _characterLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, ICharacterLoadUpdater>();
-        OrderedSetupDictionaryContainer<Type, IUserLoadUpdater> _userLoadUpdateHelpers = new OrderedSetupDictionaryContainer<Type, IUserLoadUpdater>();
+        OrderedSetupDictionaryContainer<ECharacterLoadUpdateOrder, ICharacterLoadUpdater> _characterLoadUpdateHelpers = new OrderedSetupDictionaryContainer<ECharacterLoadUpdateOrder, ICharacterLoadUpdater>();
+        OrderedSetupDictionaryContainer<EUserLoadUpdateOrder, IUserLoadUpdater> _userLoadUpdateHelpers = new OrderedSetupDictionaryContainer<EUserLoadUpdateOrder, IUserLoadUpdater>();
         private IPlayerDataService _playerDataService = null;
         private IHourlyUpdateService _periodicUpdateService = null;
         private IServerGameStatService _statService = null;

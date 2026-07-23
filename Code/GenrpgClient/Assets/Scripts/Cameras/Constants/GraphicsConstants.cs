@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Cameras.Constants
+﻿namespace OxDb.Client.Cameras.Constants
 {
     public class GraphicsConstants
     {

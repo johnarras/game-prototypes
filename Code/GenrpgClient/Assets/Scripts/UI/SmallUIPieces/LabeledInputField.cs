@@ -2,7 +2,7 @@
 using OxDb.SharedGame.UI.Interfaces;
 using System;
 
-namespace Assets.Scripts.UI.Core
+namespace OxDb.Client.UI.Core
 {
     public class LabeledInputField : BaseBehaviour, ILabeledInputField
     {

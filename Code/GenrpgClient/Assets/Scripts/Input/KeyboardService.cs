@@ -1,7 +1,7 @@
-using Assets.Scripts.ClientEvents.DataUpdates;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Input.Interfaces;
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.ClientEvents.DataUpdates;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Input.Interfaces;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -21,7 +21,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Input
+namespace OxDb.Client.Input
 {
     internal class InputContainer
     {

@@ -1,12 +1,12 @@
 
-using Assets.Scripts.Assets.Textures;
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.Crawler.Shared.Crafting.Services;
-using Assets.Scripts.Crawler.UI.Screens.Characters.Upgrades;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Inventory.UI;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Assets.Textures;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.Crawler.Shared.Crafting.Services;
+using OxDb.Client.Crawler.UI.Screens.Characters.Upgrades;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Inventory.UI;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Serialization.Interfaces;
 using OxDb.SharedGame.Crawler.Info.Services;
 using OxDb.SharedGame.Crawler.Loot.Services;
@@ -33,7 +33,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.Screens.Characters
+namespace OxDb.Client.Crawler.UI.Screens.Characters
 {
     public class CrawlerCharacterScreen : CharacterScreen
     {
@@ -195,7 +195,7 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
             base.OnStartClose();
         }
 
-        protected override void TryEquip(Item origItem, long equipSlotId)
+        protected override async ValueTask TryEquipAsync(Item origItem, long equipSlotId)
         {
 
             if (!CanManageInventoryNow())
@@ -207,9 +207,9 @@ namespace Assets.Scripts.Crawler.UI.Screens.Characters
             InventoryData inventoryData = _unit.Get<InventoryData>();
 
             List<Item> equipment = inventoryData.GetAllEquipment();
-            if (_inventoryService.EquipItem(_unit, origItem.Id, equipSlotId, false))
+            if (await _inventoryService.EquipItem(_unit, origItem.Id, equipSlotId, false))
             {
-                _inventoryService.UnequipItem(_unit, origItem.Id, false);
+                await _inventoryService.UnequipItem(_unit, origItem.Id, false);
 
                 Item newItem = _serializer.MakeCopy(origItem);
                 newItem.EquipSlotId = equipSlotId;

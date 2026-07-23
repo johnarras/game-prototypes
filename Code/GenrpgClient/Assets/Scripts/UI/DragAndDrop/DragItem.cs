@@ -1,4 +1,4 @@
-using Assets.Scripts.Assets.Sprites.Services;
+using OxDb.Client.Assets.Sprites.Services;
 using OxDb.SharedCore.Utils;
 using System.Collections.Generic;
 using System.Threading;

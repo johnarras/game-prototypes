@@ -184,85 +184,34 @@
       "Weight": 1.0
     }
   ],
-  "RockTypes": [
+  "LargePropChance": 0.25,
+  "SmallPropChance": 0.2,
+  "MaxSmallPropQuantity": 2,
+  "Props": [
     {
-      "RockTypeId": 1,
       "Weight": 1.0,
-      "BaseColor": {
-        "R": 1.0,
-        "G": 1.0,
-        "B": 1.0,
-        "A": 1.0
-      }
+      "EntityTypeId": 50,
+      "EntityId": 4
     },
     {
-      "RockTypeId": 3,
       "Weight": 1.0,
-      "BaseColor": {}
-    }
-  ],
-  "TreeTypes": [
-    {
-      "TreeTypeId": 15,
-      "Weight": 1.0
+      "EntityTypeId": 50,
+      "EntityId": 6
     },
     {
-      "TreeTypeId": 40,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 88,
+      "EntityId": 2
     },
     {
-      "TreeTypeId": 41,
-      "Weight": 1.0
-    }
-  ],
-  "BushTypes": [
-    {
-      "BushTypeId": 5,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 88,
+      "EntityId": 3
     },
     {
-      "BushTypeId": 6,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 10,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 11,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 9,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 7,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 8,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 14,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 15,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 16,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 19,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 20,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 97,
+      "EntityId": 2
     }
   ],
   "CreatureNamePrefixes": [
@@ -658,14 +607,6 @@
     }
   ],
   "UnitKeyWords": [],
-  "PropChance": 0.2,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 5
-    }
-  ],
   "PlantChoices": "34 35 36 37 38",
   "FenceChance": 0.1,
   "WeatherTypeId": 5,
@@ -675,5 +616,7 @@
   "MusicTypeId": 6,
   "AmbientMusicTypeId": 9,
   "TraveralTimeScale": 5.0,
-  "ZoneCategoryId": 1
+  "ZoneCategoryId": 1,
+  "IsOutdoors": true,
+  "IsDungeon": true
 }

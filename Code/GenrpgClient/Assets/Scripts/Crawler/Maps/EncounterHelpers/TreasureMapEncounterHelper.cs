@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services.Entities;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Loot.Services;
 using OxDb.SharedGame.Crawler.Maps.Constants;
@@ -11,7 +11,7 @@ using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
+namespace OxDb.Client.Crawler.Maps.EncounterHelpers
 {
     public class TreasureMapEncounterHelper : BaseClientMapEncounterHelper
     {
@@ -39,9 +39,9 @@ namespace Assets.Scripts.Crawler.Maps.EncounterHelpers
 
             int index = map.GetIndex(party.CurrPos.X, party.CurrPos.Z);
             mapStatus.Encounters.SetBitIndex(index);
-            _mapService.ClearCellObject(party.CurrPos.X, party.CurrPos.Z);
+            _mapService.ClearCellProps(party.CurrPos.X, party.CurrPos.Z);
             _crawlerService.ChangeState(ECrawlerStates.GiveLoot, token, lootGenData);
-            moveStatus.MoveIsComplete = true;
+            moveStatus.MoveIsStopped = true;
         }
     }
 }

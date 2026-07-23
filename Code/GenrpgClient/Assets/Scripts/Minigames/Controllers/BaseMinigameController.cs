@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.Awaitables;
-using Assets.Scripts.Minigames.Services;
-using Assets.Scripts.Minigames.UI;
+﻿using OxDb.Client.Awaitables;
+using OxDb.Client.Minigames.Services;
+using OxDb.Client.Minigames.UI;
 using OxDb.SharedGame.Minigames.Games.Settings;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Minigames.Controllers
+namespace OxDb.Client.Minigames.Controllers
 {
     public abstract class BaseMinigameController : BaseBehaviour
     {

@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Lockouts.Constants
+namespace OxDb.Client.Lockouts.Constants
 {
     public class RollDiceLocks
     {

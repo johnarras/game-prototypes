@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Shared.States.StateHelpers.Training
+namespace OxDb.Client.Crawler.Shared.States.StateHelpers.Training
 {
     public abstract class BaseTrainingSelectMemberHelper : BaseStateHelper
     {

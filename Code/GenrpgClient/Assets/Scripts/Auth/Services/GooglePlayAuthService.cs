@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Auth.Services
+namespace OxDb.Client.Auth.Services
 {
     public interface IGooglePlayAuthService : IInitializable
     {

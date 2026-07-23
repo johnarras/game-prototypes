@@ -1,7 +1,7 @@
-using Assets.Scripts.WorldCanvas.Interfaces;
+using OxDb.Client.WorldCanvas.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.CombatTexts
+namespace OxDb.Client.UI.CombatTexts
 {
     public class FastCombatText : BaseBehaviour, IDynamicUIItem
     {

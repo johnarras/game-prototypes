@@ -1,5 +1,5 @@
-using Assets.Scripts.ClientEvents.UI;
 using ClientEvents;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;

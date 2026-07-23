@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Dungeons.Audio
+namespace OxDb.Client.Dungeons.Audio
 {
     public class SetAmbientSoundCategory : IClientEvent
     {

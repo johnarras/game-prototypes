@@ -1,5 +1,6 @@
-using Assets.Scripts.FileUploads;
-using Assets.Scripts.Repository.Constants;
+using OxDb.Client.FileUploads;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.Repository.Constants;
 using OxDb.SharedGame.MapServer.Entities;
 using OxDb.SharedGame.MapServer.WebApi.UploadMap;
 using System.Threading;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class UploadMap : BaseZoneGenerator
 {
-    private IClientWebService _webNetworkService = null;
+    private IClientWebRequestService _webNetworkService = null;
     private IClientAppService _appService = null;
     private IClientConfigContainer _configContainer = null;
     public override async Awaitable Generate(CancellationToken token)
@@ -53,7 +54,7 @@ public class UploadMap : BaseZoneGenerator
         _mapProvider.GetSpawns().Id = "UploadedSpawns";
         await _clientRepoService.Save(_mapProvider.GetSpawns());
         _mapProvider.GetSpawns().Id = oldMapId;
-        _webNetworkService.SendWebRequest(update, _token);
+        _webNetworkService.SendMainServerRequest(update, _token);
 
     }
 }

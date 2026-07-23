@@ -1,7 +1,8 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Crawler.Tilemap;
+using NUnit.Framework;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Crawler.Tilemap;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Buildings.Settings;
@@ -13,7 +14,9 @@ using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.Riddles.Services;
+using OxDb.SharedGame.Zones.Constants;
 using OxDb.SharedGame.Zones.Settings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +25,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Assets.Scripts.Crawler.Tilemaps
+namespace OxDb.Client.Crawler.Tilemaps
 {
     public class CrawlerTilemapInitData
     {
@@ -78,6 +81,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
         Sprite _monsterSprite = null;
         Sprite _cauldronSprite = null;
         Sprite _chestSprite = null;
+        Sprite _roadSprite = null;
         private TilemapCell[,,] _tiles;
         private GText[,] _text;
 
@@ -91,7 +95,6 @@ namespace Assets.Scripts.Crawler.Tilemaps
         private CrawlerMap _map = null;
         private PartyData _party = null;
         private CrawlerMapStatus _mapStatus = null;
-        private bool _isBigMap = false;
         private int _mapDepth = TilemapIndexes.Max;
         private int _xCenter = 0;
         private int _zCenter = 0;
@@ -132,11 +135,12 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             int maxSize = Mathf.Max(width, height);
 
+            bool isBigMap = false;
             while (maxSize > 16)
             {
                 _tileSize /= 2;
                 maxSize /= 2;
-                _isBigMap = true;
+                isBigMap = true;
             }
 
             if (PartyImage != null)
@@ -147,7 +151,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
             _clientEntityService.DestroyAllChildren(ImageParent);
 
-            _mapDepth = (_isBigMap ? TilemapIndexes.SimpleMax : TilemapIndexes.Max);
+            _mapDepth = (isBigMap && _map.CrawlerMapTypeId == CrawlerMapTypes.Outdoors ? TilemapIndexes.SimpleMax : TilemapIndexes.Max);
 
             _tiles = new TilemapCell[Width, Height, _mapDepth];
             _text = new GText[Width, Height];
@@ -172,6 +176,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
                     }
                 }
             }
+
         }
 
         private void OnLateUpdate()
@@ -223,6 +228,7 @@ namespace Assets.Scripts.Crawler.Tilemaps
             }
 
             _map = _worldService.GetMap(initData.MapId);
+
 
             _mapStatus = _party.GetMapStatus(_map.IdKey, false);
 
@@ -310,6 +316,14 @@ namespace Assets.Scripts.Crawler.Tilemaps
             _chestSprite = _atlas.GetSprite("Chest");
             _outOfBoundsSprite = _atlas.GetSprite("OutOfBounds");
 
+            if (_spriteCache.TryGetValue(SpriteNameCategories.Terrain + ZoneTypes.Road, out Sprite roadSprite))
+            {
+                _roadSprite = roadSprite;
+            }
+            else
+            {
+                _roadSprite = _outOfBoundsSprite;
+            }
             InitImages(Width, Height, _tileSize);
             ShowMapWithCenter(_xCenter, _zCenter, false);
         }
@@ -323,14 +337,54 @@ namespace Assets.Scripts.Crawler.Tilemaps
             }
         }
 
-        private void ShowOutOfBounds(int x, int z)
+        private void ShowOutOfBounds(int ix, int iz, int mapX, int mapZ)
         {
             for (int l = 0; l < _mapDepth; l++)
             {
-                _tiles[x, z, l].SetSingleSprite(l == 0 ? _outOfBoundsSprite : _blankSprite);
-                _tiles[x, z, l].SetColor(Color.white);
+                _tiles[ix, iz, l].SetSingleSprite(l == 0 ? _outOfBoundsSprite : _blankSprite);
+                _tiles[ix, iz, l].SetColor(Color.white);
             }
-            ShowText(x, z, null);
+            ShowText(ix, iz, null);
+
+            foreach (ZoneEdge edge in _map.EdgePoints)
+            {
+                if (edge.Z == mapZ)
+                {
+                    if (Math.Sign(edge.DX) == Math.Sign(mapX - edge.X))
+                    {
+                        _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(_roadSprite);
+                        _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_blankSprite);
+                        return;
+                    }
+                }
+                else if (edge.X == mapX)
+                {
+                    if (Math.Sign(edge.DZ) == Math.Sign(mapZ - edge.Z))
+                    {
+                        _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(_roadSprite);
+                        _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_blankSprite);
+                        return;
+                    }
+                }
+
+                if (_map.IsOutdoorDungeon())
+                {
+                    long zoneTypeId = _map.ZoneTypeId;
+                    ZoneRegion zr = _map.GetRegion(ix, iz);
+                    if (zr != null)
+                    {
+                        zoneTypeId = zr.ZoneTypeId;
+                    }
+                    if (_spriteCache.TryGetValue(SpriteNameCategories.Terrain + zoneTypeId, out Sprite terrainSprite))
+                    {
+                        _tiles[ix, iz, TilemapIndexes.Terrain].SetSingleSprite(terrainSprite);
+                    }
+                    if (_spriteCache.TryGetValue(SpriteNameCategories.Object + zoneTypeId, out Sprite objSprite))
+                    {
+                        _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(objSprite);
+                    }
+                }
+            }
         }
 
         private void OnShowPartyMinimap(ShowPartyMinimap partyMap)
@@ -443,31 +497,14 @@ namespace Assets.Scripts.Crawler.Tilemaps
             for (int ix = 0; ix < Width; ix++)
             {
                 int x = (ix + xpos - Width / 2);
-                if (_map.HasFlag(CrawlerMapFlags.IsLooping))
-                {
-                    if (x < 0)
-                    {
-                        x += _map.Width;
-                    }
-                    x = x % _map.Width;
-                }
-
+               
                 for (int iz = 0; iz < Height; iz++)
                 {
                     int z = (iz + zpos - Height / 2);
 
-                    if (_map.HasFlag(CrawlerMapFlags.IsLooping))
-                    {
-                        if (z < 0)
-                        {
-                            z += _map.Height;
-                        }
-                        z = z % _map.Height;
-                    }
-
                     if (x < 0 || x >= _map.Width || z < 0 || z >= _map.Height)
                     {
-                        ShowOutOfBounds(ix, iz);
+                        ShowOutOfBounds(ix, iz, x, z);
                         continue;
                     }
 
@@ -497,7 +534,28 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                     Vector3Int pos = new Vector3Int(ix, iz, 0);
 
-                    string terrainName = SpriteNameCategories.Terrain + _map.Get(x, z, CellIndex.Terrain);
+                    long terrainTypeId = _map.Get(x, z, CellIndex.Terrain);
+
+                    if (_map.IsOutdoorDungeon() && terrainTypeId == 0)
+                    {
+                        terrainTypeId = _map.ZoneTypeId;
+                        ZoneRegion region = _map.GetRegion(x, z);
+                        if (region != null)
+                        {
+                            terrainTypeId = region.ZoneTypeId;
+                        }
+                    }
+
+                    bool isEdgePoint = _map.EdgePoints.Any(p => p.X == x && p.Z == z);
+
+                    if (isEdgePoint)
+                    {
+                        terrainTypeId = ZoneTypes.Road;
+                    }
+
+                    string terrainName = SpriteNameCategories.Terrain + terrainTypeId;
+
+
                     if (_spriteCache.TryGetValue(terrainName, out Sprite terrainSprite))
                     {
                         if (terrainSprite != null)
@@ -529,8 +587,8 @@ namespace Assets.Scripts.Crawler.Tilemaps
 
                     bool didSetObject = false;
 
-                    long treeTypeId = _map.GetEntityId(x, z, EntityTypes.Tree);
-                    if (treeTypeId > 0 && _spriteCache.TryGetValue(SpriteNameCategories.Object + treeTypeId, out Sprite objSprite))
+                    long propTypeId = _map.GetEntityId(x, z, EntityTypes.Prop);
+                    if (propTypeId > 0 && _spriteCache.TryGetValue(SpriteNameCategories.Object + terrainTypeId, out Sprite objSprite))
                     {
                         _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(objSprite);
                         didSetObject = true;
@@ -604,13 +662,12 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         }
                     }
 
-                    if (!didSetObject)
+                    if (!didSetObject || isEdgePoint)
                     {
                         _tiles[ix, iz, TilemapIndexes.Object].SetSingleSprite(_blankSprite);
                     }
 
-
-                    if (_mapDepth > TilemapIndexes.Walls)
+                    if (_mapDepth > TilemapIndexes.Walls && !_map.IsOutdoorDungeon())
                     {
                         FullWallTileImage image = _crawlerMapService.GetMinimapWallFilename(_map, x, z);
                         if (image != null && image.RefImage.Filename == "OOOO" + SpriteNameCategories.Wall)
@@ -621,10 +678,6 @@ namespace Assets.Scripts.Crawler.Tilemaps
                         {
                             if (_spriteCache.TryGetValue(image.RefImage.Filename + image.RotAngle, out Sprite wallSprite))
                             {
-                                if (ix == 11 && iz == 1)
-                                {
-                                    _logService.Info("Getting currpos");
-                                }
                                 _tiles[ix, iz, TilemapIndexes.Walls].SetSingleSprite(wallSprite);
 
                                 RectTransform rectTransform = _tiles[ix, iz, TilemapIndexes.Walls].GetComponent<RectTransform>();

@@ -1,7 +1,8 @@
 
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core.Interfaces;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-namespace Assets.Scripts.Auth.Services
+namespace OxDb.Client.Auth.Services
 {
     public interface IClientAuthService : IInitializable, IClientResetCleanup
     {
@@ -41,7 +42,7 @@ namespace Assets.Scripts.Auth.Services
     {
         private const string LocalUserFilename = "LocalUser";
 
-        private IClientWebService _clientWebService = null;
+        private IClientWebRequestService _clientWebService = null;
         private IZoneGenService _zoneGenService = null;
         private IRepositoryService _repoService = null;
         private ILogService _logService = null;
@@ -176,7 +177,7 @@ namespace Assets.Scripts.Auth.Services
                 request.AccountId = GetCurrentAccountId().Result;
             }
 
-            _clientWebService.SendWebRequest(request, token);
+            _clientWebService.SendMainServerRequest(request, token);
         }
 
         public async ValueTask StartNoUser(CancellationToken token)
@@ -239,7 +240,7 @@ namespace Assets.Scripts.Auth.Services
                 ProductId = response.ProductId,
             };
 
-            _clientWebService.SendWebRequest(request, token);
+            _clientWebService.SendMainServerRequest(request, token);
 
         }
 

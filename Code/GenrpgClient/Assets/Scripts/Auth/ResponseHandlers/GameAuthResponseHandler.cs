@@ -1,11 +1,12 @@
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.GameSettings.Entities;
-using Assets.Scripts.Lockstep.Config.Core;
-using Assets.Scripts.Lockstep.Game.Services;
-using Assets.Scripts.Logalytics.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.Minigames.Services;
-using Assets.Scripts.Purchasing.Services;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.GameSettings.Entities;
+using OxDb.Client.Lockstep.Config.Core;
+using OxDb.Client.Lockstep.Game.Services;
+using OxDb.Client.Logalytics.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.Minigames.Services;
+using OxDb.Client.Networking.Services;
+using OxDb.Client.Purchasing.Services;
 using OxDb.SharedCore.Core.Constants;
 using OxDb.SharedCore.GameSettings.Interfaces;
 using OxDb.SharedCore.Logalytics.Constants;
@@ -26,12 +27,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Auth.ResponseHandlers
+namespace OxDb.Client.Auth.ResponseHandlers
 {
     public class GameAuthResponseHandler : BaseClientWebResponseHandler<GameAuthResponse>
     {
         private IScreenService _screenService = null;
-        private IClientWebService _webNetworkService = null;
+        private IClientWebRequestService _webNetworkService = null;
         private IClientPurchasingService _purchasingService = null;
         private IClientMinigameService _clientMinigameService = null;
         private ILockstepGameService _lockstepService = null;
@@ -167,7 +168,7 @@ namespace Assets.Scripts.Auth.ResponseHandlers
             comm.SpawnData = await _repoService.Load<MapSpawnData>("UploadedSpawns");
             comm.Map.Id = mapId;
             comm.SpawnData.Id = mapId;
-            _webNetworkService.SendWebRequest(comm, token);
+            _webNetworkService.SendMainServerRequest(comm, token);
         }
     }
 }

@@ -14,23 +14,13 @@
       "MaxWidth": 110,
       "MinHeight": 80,
       "MaxHeight": 110,
-      "MinFloors": 1,
-      "MaxFloors": 1,
-      "Weight": 1.0,
-      "MinBuildingDensity": 80.0,
-      "MaxBuildingDensity": 130.0,
-      "WeightedZones": [
-        {
-          "Name": "Outdoors",
-          "Weight": 1.0,
-          "ZoneTypeId": 22
-        }
-      ]
+      "Weight": 1.0
     }
   ],
   "NpcChance": 1.0,
   "MinNpcQuantity": 100,
   "MaxNpcQuantity": 100,
   "MinNpcSeparation": 8,
-  "MinDistanceToEntrance": 4
+  "MinDistanceToEntrance": 4,
+  "ForcedZoneTypeId": 22
 }

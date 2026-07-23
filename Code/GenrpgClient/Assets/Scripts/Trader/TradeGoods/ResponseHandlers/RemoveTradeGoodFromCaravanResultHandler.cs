@@ -1,11 +1,11 @@
-﻿using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
+﻿using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
 using OxDb.SharedGame.Trader.TradeGoods.Services;
 using OxDb.SharedGame.Trader.TradeGoods.WebApi;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.TradeGoods.ResponseHandlers
+namespace OxDb.Client.Trader.TradeGoods.ResponseHandlers
 {
     public class RemoveTradeGoodFromCaravanResultHandler : BaseClientWebResponseHandler<RemoveTradeGoodFromCaravanResponse>
     {

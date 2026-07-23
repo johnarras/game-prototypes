@@ -1,8 +1,8 @@
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Crawler.Buffs.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Crawler.Buffs.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.GameObjects;
 using OxDb.SharedGame.Buildings.Constants;
 using OxDb.SharedGame.Crawler.Constants;
 using OxDb.SharedGame.Crawler.Info.Services;
@@ -112,7 +112,7 @@ namespace OxDb.SharedGame.Crawler.States.StateHelpers.Guilds
                         ShowInfoPanelArgs args = _infoService.GetInfoPanelArgs(_textService.GetLinkUnderMouse(gt));
                         if (args.Lines.Count > 0)
                         {
-                            _dispatcher.Dispatch(new Assets.Scripts.ClientEvents.ShowInfoPanelArgs() { EntityTypeId = args.EntityTypeId, EntityId = args.EntityId, Lines = args.Lines });
+                            _dispatcher.Dispatch(new OxDb.Client.ClientEvents.ShowInfoPanelArgs() { EntityTypeId = args.EntityTypeId, EntityId = args.EntityId, Lines = args.Lines });
                         }
                     }
                 },

@@ -269,7 +269,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 80
+          "EntityId": 40
         },
         {
           "EntityTypeId": 100,
@@ -813,7 +813,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 80
+          "EntityId": 40
         },
         {
           "EntityTypeId": 100,
@@ -1464,7 +1464,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 80
+          "EntityId": 40
         },
         {
           "EntityTypeId": 100,
@@ -1703,7 +1703,7 @@
         },
         {
           "EntityTypeId": 100,
-          "EntityId": 80
+          "EntityId": 40
         },
         {
           "EntityTypeId": 100,
@@ -2066,6 +2066,732 @@
       ]
     },
     {
+      "IdKey": 11,
+      "Name": "Warchief",
+      "Desc": "A fighter that can summon other fighters.",
+      "Abbrev": "Wc",
+      "RoleCategoryId": 1,
+      "HealthPerLevel": 10,
+      "ManaPerLevel": 4,
+      "MaxArmorScalingTypeId": 4,
+      "Guardian": true,
+      "TrainingXpScale": 1.1,
+      "TrainingGoldScale": 1.1,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
+      "BinaryBonuses": [
+        {
+          "EntityTypeId": 2,
+          "EntityId": 13
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 14
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 15
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 16
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 17
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 18
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 19
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 21
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 22
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 26
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 27
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 28
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 30
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 5
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 8
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 26
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 50
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 91
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 94
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 101
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 107
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 108
+        }
+      ],
+      "AmountBonuses": [
+        {
+          "EntityTypeId": 41,
+          "EntityId": 1,
+          "Amount": 0.25
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 2,
+          "Amount": 0.15
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 3,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 4,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 5,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 7,
+          "Amount": 0.2
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 11,
+          "Amount": 1.0
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 18,
+          "Amount": 1.0
+        }
+      ]
+    },
+    {
+      "IdKey": 12,
+      "Name": "Beastmaster",
+      "Desc": "A hunter that can summon beasts.",
+      "Abbrev": "Bm",
+      "RoleCategoryId": 1,
+      "HealthPerLevel": 8,
+      "ManaPerLevel": 6,
+      "MaxArmorScalingTypeId": 3,
+      "TrainingXpScale": 1.2,
+      "TrainingGoldScale": 1.2,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
+      "BinaryBonuses": [
+        {
+          "EntityTypeId": 2,
+          "EntityId": 13
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 14
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 16
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 17
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 18
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 19
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 21
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 22
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 26
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 27
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 30
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 4
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 6
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 7
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 9
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 26
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 40
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 51
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 82
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 84
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 89
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 90
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 103
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 106
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 111
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 230
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 231
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 233
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 240
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 241
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 243
+        }
+      ],
+      "AmountBonuses": [
+        {
+          "EntityTypeId": 41,
+          "EntityId": 1,
+          "Amount": 0.15
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 2,
+          "Amount": 0.25
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 3,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 4,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 5,
+          "Amount": 0.2
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 8,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 14,
+          "Amount": 1.0
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 18,
+          "Amount": 1.0
+        }
+      ]
+    },
+    {
+      "IdKey": 13,
+      "Name": "Conjurer",
+      "Desc": "A wizard that can summon elementals.",
+      "Abbrev": "Co",
+      "RoleCategoryId": 1,
+      "HealthPerLevel": 4,
+      "ManaPerLevel": 10,
+      "MaxArmorScalingTypeId": 1,
+      "TrainingXpScale": 1.4,
+      "TrainingGoldScale": 1.4,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
+      "BinaryBonuses": [
+        {
+          "EntityTypeId": 2,
+          "EntityId": 13
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 17
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 21
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 24
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 29
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 31
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 22
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 33
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 34
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 35
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 52
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 82
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 83
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 92
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 93
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 100
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 105
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 109
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 210
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 211
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 213
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 220
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 221
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 223
+        }
+      ],
+      "AmountBonuses": [
+        {
+          "EntityTypeId": 41,
+          "EntityId": 1,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 2,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 3,
+          "Amount": 0.25
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 4,
+          "Amount": 0.15
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 5,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 6,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 8,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 12,
+          "Amount": 1.0
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 18,
+          "Amount": 1.0
+        }
+      ]
+    },
+    {
+      "IdKey": 14,
+      "Name": "Zealot",
+      "Desc": "A cleric that can summon fanatical followers.",
+      "Abbrev": "Zl",
+      "RoleCategoryId": 1,
+      "HealthPerLevel": 6,
+      "ManaPerLevel": 8,
+      "MaxArmorScalingTypeId": 1,
+      "TrainingXpScale": 1.3,
+      "TrainingGoldScale": 1.3,
+      "StartSkillPoints": 1,
+      "StartUpgradePoints": 1,
+      "BinaryBonuses": [
+        {
+          "EntityTypeId": 2,
+          "EntityId": 15
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 17
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 21
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 25
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 29
+        },
+        {
+          "EntityTypeId": 2,
+          "EntityId": 31
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 1
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 2
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 3
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 20
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 22
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 24
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 30
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 31
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 39
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 53
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 81
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 83
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 85
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 87
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 88
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 102
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 104
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 110
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 200
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 201
+        },
+        {
+          "EntityTypeId": 100,
+          "EntityId": 203
+        }
+      ],
+      "AmountBonuses": [
+        {
+          "EntityTypeId": 41,
+          "EntityId": 1,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 2,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 3,
+          "Amount": 0.15
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 4,
+          "Amount": 0.25
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 5,
+          "Amount": 0.2
+        },
+        {
+          "EntityTypeId": 41,
+          "EntityId": 6,
+          "Amount": 0.1
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 13,
+          "Amount": 1.0
+        },
+        {
+          "EntityTypeId": 43,
+          "EntityId": 18,
+          "Amount": 1.0
+        }
+      ]
+    },
+    {
       "IdKey": 100,
       "Name": "Human",
       "Desc": "They make better leaders.",
@@ -2217,5 +2943,5 @@
     "Name": "RoleSettings"
   },
   "Id": "default",
-  "SaveTime": "2026-07-01T23:51:54.619Z"
+  "SaveTime": "2026-07-15T18:26:38.646Z"
 }

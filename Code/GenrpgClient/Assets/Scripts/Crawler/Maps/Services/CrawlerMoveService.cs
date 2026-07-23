@@ -1,13 +1,13 @@
-using Assets.Scripts.Audio.ClientEvents;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.Crawler.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.MoveHelpers;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Maps.Services.Entities;
-using Assets.Scripts.Dungeons;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Options.Services;
+using OxDb.Client.Audio.ClientEvents;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.MoveHelpers;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Maps.Services.Entities;
+using OxDb.Client.Dungeons;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Options.Services;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
@@ -27,13 +27,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Assets.Scripts.Crawler.Services.CrawlerMaps
+namespace OxDb.Client.Crawler.Services.CrawlerMaps
 {
 
     public interface ICrawlerMoveService : IInitializable
     {
         Task AddMovementKeyInput(Key keyChar, CancellationToken token);
-        void ClearMovement();
+        void StopMovement();
         void FinishMove(CrawlerMoveStatus status);
         bool UpdatingMovement();
         Task OnEnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token);
@@ -80,7 +80,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
     }
     public class CrawlerMoveService : ICrawlerMoveService
     {
-        OrderedSetupDictionaryContainer<Type, ICrawlerMoveHelper> _moveHelpers = new OrderedSetupDictionaryContainer<Type, ICrawlerMoveHelper>();
+        OrderedSetupDictionaryContainer<ECrawlerMoveOrder, ICrawlerMoveHelper> _moveHelpers = new OrderedSetupDictionaryContainer<ECrawlerMoveOrder, ICrawlerMoveHelper>();
 
         private List<MovementKeyCode> _movementKeyCodes = new List<MovementKeyCode>();
 
@@ -105,6 +105,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         const int maxQueuedMoves = 2;
         Queue<Key> _movementQueue = new Queue<Key>();
 
+
+        private const int MaxMovementPauseFrames = 4;
+        private int _movementPauseFramesLeft = 0;
+
+        
 
         public async Task Initialize(CancellationToken token)
         {
@@ -177,7 +182,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         public async Task OnEnterMap(PartyData party, EnterCrawlerMapData mapData, CancellationToken token)
         {
-            _movementQueue.Clear();
+            StopMovement();
             _party = party;
             _world = await _worldService.GetWorld(_party.WorldId);
             _partyService.OnEnterMap(_party);
@@ -198,10 +203,11 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
         }
 
 
-        public void ClearMovement()
+        public void StopMovement()
         {
             _movementQueue.Clear();
             _updatingMovement = false;
+            _movementPauseFramesLeft = MaxMovementPauseFrames;
         }
 
         public void SetUpdatingMovement(bool updatingMovement)
@@ -237,6 +243,13 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             while (true)
             {
+
+                if (_movementPauseFramesLeft > 0)
+                {
+                    _movementPauseFramesLeft--;
+                    await Awaitable.NextFrameAsync(token);
+                    continue;
+                }
                 if (!CanMoveNow() || _movementQueue.Count < 1 || _updatingMovement)
                 {
                     await Awaitable.NextFrameAsync(token);
@@ -248,7 +261,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 {
                     if (!CanMoveNow())
                     {
-                        ClearMovement();
+                        StopMovement();
                         break;
                     }
 
@@ -279,9 +292,9 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                         _logService.Exception(ex, "CrawlerMovement");
                     }
 
-                    if (status.MoveIsComplete)
+                    if (status.MoveIsStopped)
                     {
-                        ClearMovement();
+                        StopMovement();
                     }
                 }
                 _updatingMovement = false;
@@ -308,22 +321,22 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
             status.EX = ex;
             status.EZ = ez;
 
+            int dx = ex - sx;
+            int dz = ez - sz;
+
             CrawlerMapRoot mapRoot = _mapService.GetMapRoot();
 
-            if (!mapRoot.Map.HasFlag(CrawlerMapFlags.IsLooping))
+            if (ex < 0 || ex >= mapRoot.Map.Width ||
+                ez < 0 || ez >= mapRoot.Map.Height)
             {
-                if (ex < 0 || ex >= mapRoot.Map.Width ||
-                    ez < 0 || ez >= mapRoot.Map.Height)
-                {
-                    // Bonk
-                    await ShowHittingWall(status, token);
-                    return;
-                }
+                // Bonk
+                await ShowHittingWall(status, token);
+                return;
             }
 
             status.BlockBits = _mapService.GetBlockingBits(mapRoot.Map, sx, sz, ex, ez, true);
 
-            if (WallTypes.IsBlockingType(status.BlockBits))
+            if (WallTypes.IsBlockingTypeFromDir(status.BlockBits, dx, dz))
             {
                 // Bonk
                 await ShowHittingWall(status, token);
@@ -343,8 +356,8 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 frames = frames * 1;
             }
 
-            float dz = endDrawZ - startDrawZ;
-            float dx = endDrawX - startDrawX;
+            float drawDZ = endDrawZ - startDrawZ;
+            float drawDX = endDrawX - startDrawX;
 
             int dxgrid = ex - sx;
             int dzgrid = ez - sz;
@@ -367,14 +380,12 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
             int assetPosition = (openEastDoor ? DungeonAssetPosition.EastWall : DungeonAssetPosition.NorthWall);
 
-
             List<ClientMapCell> allCellsAtMapPos = mapRoot.GetCellsAtMapPos(cx, cz);
 
             List<DungeonAsset> doorsToOpenClose = new List<DungeonAsset>();
 
             foreach (ClientMapCell cmc in allCellsAtMapPos)
             {
-
                 DungeonAsset posAsset = cmc.AssetPositions[assetPosition];
 
                 if (posAsset != null)
@@ -395,11 +406,17 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 await aw;
             }
 
+            List<ClientMapCell> startCells = mapRoot.GetCellsAtMapPos(sx, sz);
+            List<ClientMapCell> endCells = mapRoot.GetCellsAtMapPos(ex, ez);
+
+
             _dispatcher.Dispatch(new PlaySound(CrawlerAudio.Footstep));
-            for (int frame = 1; frame < frames; frame++)
+            for (int frame = 1; frame <= frames; frame++)
             {
-                mapRoot.DrawX = startDrawX + frame * dx / frames;
-                mapRoot.DrawZ = startDrawZ + frame * dz / frames;
+                mapRoot.SetCellPropVisibility(ex, ez, (1.0f - 1.0f * frame / frames));
+
+                mapRoot.DrawX = startDrawX + frame * drawDX / frames;
+                mapRoot.DrawZ = startDrawZ + frame * drawDZ / frames;
 
                 _mapService.UpdateCameraPos(token);
 
@@ -414,6 +431,7 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
                 }
             }
 
+            mapRoot.SetCellPropVisibility(sx, sz, 1.0f);
             openList.Clear();
 
             foreach (DungeonAsset da in doorsToOpenClose)
@@ -436,10 +454,10 @@ namespace Assets.Scripts.Crawler.Services.CrawlerMaps
 
         private async Awaitable ShowHittingWall(CrawlerMoveStatus status, CancellationToken token)
         {
-            status.MoveIsComplete = true;
+            status.MoveIsStopped = true;
             status.MovedPosition = false;
             _dispatcher.Dispatch(new ShowFloatingText("Bonk!", EFloatingTextArt.Error));
-            ClearMovement();
+            StopMovement();
             await Awaitable.NextFrameAsync(token);
         }
 

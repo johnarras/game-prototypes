@@ -27,14 +27,15 @@ using OxDb.SharedGame.Zones.WorldData;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OxDb.MapServer.Vendors.Services
 {
     public interface IVendorService : IInjectable
     {
-        void UpdateItems(MapObject mapObject);
-        void BuyItem(MapObject obj, BuyItem buyItem);
-        void SellItem(MapObject obj, SellItem sellItem);
+        ValueTask UpdateItems(MapObject mapObject);
+        ValueTask BuyItem(MapObject obj, BuyItem buyItem);
+        ValueTask SellItem(MapObject obj, SellItem sellItem);
     }
 
 
@@ -52,7 +53,7 @@ namespace OxDb.MapServer.Vendors.Services
         protected ITextSerializer _serializer = null;
         private IGameData _gameData = null!;
 
-        public void UpdateItems(MapObject mapObject)
+        public async ValueTask UpdateItems(MapObject mapObject)
         {
 
             VendorAddon addon = mapObject.GetAddon<VendorAddon>();
@@ -120,12 +121,12 @@ namespace OxDb.MapServer.Vendors.Services
             }
         }
 
-        public void BuyItem(MapObject obj, BuyItem buyItem)
+        public async ValueTask BuyItem(MapObject obj, BuyItem buyItem)
         {
-            _tradeService.SafeModifyObject(obj, delegate { BuyItemInternal(obj, buyItem); });
+            await _tradeService.SafeModifyObjectAsync(obj, () => BuyItemInternal(obj, buyItem) );
         }
 
-        private void BuyItemInternal(MapObject obj, BuyItem buyItem)
+        private async ValueTask BuyItemInternal(MapObject obj, BuyItem buyItem)
         {
             if (!_objectManager.GetObject(buyItem.UnitId, out MapObject vendor))
             {
@@ -186,18 +187,18 @@ namespace OxDb.MapServer.Vendors.Services
 
             if (vendorItem != null)
             {
-                _ = _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -itemPrice, RewardSources.BuyItem, null, 0, null);
-                _inventoryService.AddItem(ch, vendorItem.Item, true);
+               await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, -itemPrice, RewardSources.BuyItem, null, 0, null);
+               await  _inventoryService.AddItem(ch, vendorItem.Item, true);
                 _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsBought, 1);
             }
         }
 
-        public void SellItem(MapObject obj, SellItem sellItem)
+        public async ValueTask SellItem(MapObject obj, SellItem sellItem)
         {
-            _tradeService.SafeModifyObject(obj, delegate { SellItemInternal(obj, sellItem); });
+            await _tradeService.SafeModifyObjectAsync (obj, () => SellItemInternal(obj, sellItem) );
         }
 
-        private void SellItemInternal(MapObject obj, SellItem sellItem)
+        private async ValueTask SellItemInternal(MapObject obj, SellItem sellItem)
         {
             if (!_objectManager.GetObject(sellItem.UnitId, out MapObject mapObject))
             {
@@ -234,9 +235,9 @@ namespace OxDb.MapServer.Vendors.Services
 
             long money = (long)(item.BuyCost * _gameData.Get<VendorSettings>(obj).SellToVendorPriceMult);
 
-            _inventoryService.RemoveItem(ch, sellItem.ItemId, true);
+            await _inventoryService.RemoveItem(ch, sellItem.ItemId, true);
             _achievementService.UpdateAchievement(ch, AchievementTypes.ItemsSold, 1);
-            _ = _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, money, RewardSources.SellItem, null, 0, null);
+            await _rewardService.GiveReward(ch, EntityTypes.CharCurrency, CharCurrencyTypes.Money, money, RewardSources.SellItem, null, 0, null);
             _achievementService.UpdateAchievement(ch, AchievementTypes.VendorMoney, money);
         }
     }

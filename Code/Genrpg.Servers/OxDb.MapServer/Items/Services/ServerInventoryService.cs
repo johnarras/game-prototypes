@@ -6,6 +6,7 @@ using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Inventory.Services;
 using OxDb.SharedGame.MapMessages.Interfaces;
 using OxDb.SharedGame.MapObjects.Entities;
+using System.Threading.Tasks;
 
 namespace OxDb.MapServer.Items.Services
 {
@@ -15,31 +16,25 @@ namespace OxDb.MapServer.Items.Services
         private IMapMessageService _messageService = null;
         private ITradeService _tradeService = null;
 
-        public override bool AddItem(MapObject obj, Item item, bool forceAdd)
+        public override async ValueTask<bool> AddItem(MapObject obj, Item item, bool forceAdd)
         {
-            return base.AddItem(obj, item, forceAdd);
+            return await base.AddItem(obj, item, forceAdd);
         }
 
-        public override bool UnequipItem(MapObject obj, string itemId, bool calcStatsNow = true)
+        public override async ValueTask<bool> UnequipItem(MapObject obj, string itemId, bool calcStatsNow = true)
         {
-            return _tradeService.SafeModifyObject(obj, delegate { return base.UnequipItem(obj, itemId, calcStatsNow); }, false);
+            return await _tradeService.SafeModifyObjectAsync(obj, () => base.UnequipItem(obj, itemId, calcStatsNow), false);
 
         }
 
-        public override Item RemoveItem(MapObject obj, string itemId, bool destroyItem)
+        public override async ValueTask<Item> RemoveItem(MapObject obj, string itemId, bool destroyItem)
         {
-            return _tradeService.SafeModifyObject(obj, delegate
-            {
-                return base.RemoveItem(obj, itemId, destroyItem);
-            }, null);
+            return await _tradeService.SafeModifyObjectAsync(obj, () => base.RemoveItem(obj, itemId, destroyItem), null);
         }
 
-        public override bool EquipItem(MapObject unit, string itemId, long equipSlotId, bool calcStatsNow = true)
+        public override async ValueTask<bool> EquipItem(MapObject unit, string itemId, long equipSlotId, bool calcStatsNow = true)
         {
-            return _tradeService.SafeModifyObject(unit, delegate
-            {
-                return base.EquipItem(unit, itemId, equipSlotId, calcStatsNow);
-            }, false);
+            return await _tradeService.SafeModifyObjectAsync(unit, () => base.EquipItem(unit, itemId, equipSlotId, calcStatsNow), false);
         }
 
         protected override void AddMessage(MapObject unit, InventoryData idata, Item item, IMapApiMessage message, EDataUpdateTypes dataUpdateType = EDataUpdateTypes.Save)

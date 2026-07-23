@@ -1,14 +1,14 @@
-﻿using Assets.Scripts.Lockstep.Actors.Components;
-using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Systems;
-using Assets.Scripts.Lockstep.Systems.Constants;
+﻿using OxDb.Client.Lockstep.Actors.Components;
+using OxDb.Client.Lockstep.Maps.Components;
+using OxDb.Client.Lockstep.Systems;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Assets.Scripts.Lockstep.Actors.Systems
+namespace OxDb.Client.Lockstep.Actors.Systems
 {
     [BurstCompile]
     public partial struct ActorVisualSystem : ISystem, ISeededSystem

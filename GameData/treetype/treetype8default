@@ -1,9 +1,0 @@
-{
-  "Id": "treetype8default",
-  "ParentId": "default",
-  "IdKey": 8,
-  "Name": "DouglasFir",
-  "Art": "DouglasFir",
-  "Scale": 1.5,
-  "VariationCount": 2
-}

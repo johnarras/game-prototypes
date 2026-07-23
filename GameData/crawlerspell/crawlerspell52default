@@ -1,0 +1,28 @@
+{
+  "Id": "crawlerspell52default",
+  "ParentId": "default",
+  "IdKey": 52,
+  "Name": "Summon Elemental",
+  "Desc": "Summon an earth elemental.",
+  "BaseCost": 25.0,
+  "TierCost": 5.0,
+  "MaxRange": 100,
+  "CombatActionId": 4,
+  "TargetTypeId": 8,
+  "RoleScalingTypeId": 5,
+  "AttackQuantityScale": 1.0,
+  "UnlockTier": 1,
+  "Effects": [
+    {
+      "EntityTypeId": 4,
+      "EntityId": 13,
+      "ElementTypeId": 5,
+      "ProcChance": 100.0
+    }
+  ],
+  "Roles": {
+    "Bits": [
+      0
+    ]
+  }
+}

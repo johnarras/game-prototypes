@@ -1,5 +1,6 @@
-using Assets.Scripts.Config;
 using Newtonsoft.Json;
+using OxDb.Client.Config;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Client.Contants;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Core.Constants;
@@ -7,6 +8,7 @@ using OxDb.SharedCore.DataStores.DataGroups;
 using OxDb.SharedCore.Environments.Constants;
 using OxDb.SharedCore.Names.Entities;
 using OxDb.SharedCore.Utils;
+using OxDb.SharedCore.WebRequests.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -130,7 +132,7 @@ namespace RunBuilds
 
             string authString = System.Convert.ToBase64String(Encoding.ASCII.GetBytes(apiKey + ":"));
 
-            ClientWebService webService = new ClientWebService();
+            ClientWebRequestService webService = new ClientWebRequestService();
 
             SecurityData security = new SecurityData()
             {
@@ -139,7 +141,7 @@ namespace RunBuilds
 
             ResponseEnvelope<string> responseEnvelope = await webService.SendRawWebRequest<string>(mainURL, method, requestData, security);
 
-            return responseEnvelope.ResponseData;
+            return responseEnvelope.Response;
         }
 
         private static async Awaitable CloudBuildWithEnvVars(Dictionary<string, string> envVars)

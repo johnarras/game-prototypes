@@ -5,13 +5,10 @@ namespace OxDb.SharedGame.Crawler.Maps.Entities
         public long ZoneTypeId { get; set; }
         public string Name { get; set; }
         public int CenterX { get; set; }
-        public int CenterY { get; set; }
-        public float SpreadX { get; set; }
-        public float SpreadY { get; set; }
-        public float DirX { get; set; }
-        public float DirY { get; set; }
-        public long Level { get; set; }
+        public int CenterZ { get; set; }
+        public int Level { get; set; }
         public int RegionId { get; set; }
+        public bool IsWaterRegion { get; set; }
     }
 }
 

@@ -1,11 +1,11 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.GameObjects;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.Services.Helpers
+namespace OxDb.Client.Crawler.Maps.Services.Helpers
 {
     public interface ICrawlerMapTypeHelper : ISetupDictionaryItem<long>
     {

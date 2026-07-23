@@ -1,4 +1,4 @@
-using Assets.Scripts.ClientEvents.UI;
+using OxDb.Client.ClientEvents.UI;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.States.Services;
 using OxDb.SharedGame.LoadSave.Services;
@@ -6,7 +6,7 @@ using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.UI.MainMenu
+namespace OxDb.Client.Crawler.UI.MainMenu
 {
     public class CrawlerMainMenuScreen : MainMenuScreen
     {

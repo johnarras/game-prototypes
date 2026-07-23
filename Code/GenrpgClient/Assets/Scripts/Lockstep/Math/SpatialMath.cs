@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Unity.Burst;
 
-namespace Assets.Scripts.Lockstep.Math
+namespace OxDb.Client.Lockstep.Math
 {
     [BurstCompile]
     public static class SpatialMath

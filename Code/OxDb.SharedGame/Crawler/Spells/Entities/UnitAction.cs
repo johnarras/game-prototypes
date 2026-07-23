@@ -30,6 +30,8 @@ namespace OxDb.SharedGame.Crawler.Spells.Entities
 
         public bool DidCast { get; set; }
 
+        public bool NoCost { get; set; }
+
         public Item CastingItem { get; set; }
 
         public FullSpell SpellBeingCast { get; set; }

@@ -1,4 +1,4 @@
-using Assets.Scripts.Cameras;
+using OxDb.Client.Cameras;
 using UnityEngine;
 
 public class CoreClientData : BaseBehaviour

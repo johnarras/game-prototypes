@@ -8,7 +8,7 @@ namespace OxDb.SharedGame.Crawler.Combat.Entities
         public long MinQuantity { get; set; }
         public long MaxQuantity { get; set; }
         public double CritChance { get; set; }
-        public double PowerPercent { get; set; } = 100;
+        public double PowerPercent { get; set; }
     }
 }
 

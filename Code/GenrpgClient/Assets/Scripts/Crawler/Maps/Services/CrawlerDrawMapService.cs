@@ -1,10 +1,13 @@
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Assets.Scripts.Crawler.Maps.Services;
+using OxDb.Client.Awaitables;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Services.DrawCellHelpers;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Crawler.Maps.Constants;
+using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using System;
@@ -12,13 +15,14 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.Services
+namespace OxDb.Client.Crawler.Maps.Services
 {
     public interface ICrawlerDrawMapService : IInjectable
     {
 
         string GetBuildingArtPrefix();
         Awaitable DrawNearbyMap(PartyData _party, CrawlerWorld _world, CrawlerMapRoot _crawlerMapRoot, CancellationToken token);
+
     }
 
 
@@ -26,33 +30,35 @@ namespace Assets.Scripts.Crawler.Maps.Services
     {
         private ICrawlerMapService _mapService = null;
         private ILogService _logService = null;
+        private IAwaitableService _awaitableService = null;
+        private ICrawlerPropService _propService = null;
 
-        private OrderedSetupDictionaryContainer<Type, ICrawlerDrawCellHelper> _drawHelpers = new OrderedSetupDictionaryContainer<Type, ICrawlerDrawCellHelper>();
+        private OrderedSetupDictionaryContainer<ECrawlerDrawCellOrder, ICrawlerDrawCellHelper> _drawHelpers = new OrderedSetupDictionaryContainer<ECrawlerDrawCellOrder, ICrawlerDrawCellHelper>();
 
         public const int ViewRadius = 8;
-        public async Awaitable DrawNearbyMap(PartyData _party, CrawlerWorld _world, CrawlerMapRoot _crawlerMapRoot, CancellationToken token)
+        public async Awaitable DrawNearbyMap(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, CancellationToken token)
         {
             try
             {
-                if (_crawlerMapRoot == null || !_crawlerMapRoot.AssetsAreReady())
+                if (mapRoot == null || !mapRoot.AssetsAreReady())
                 {
                     return;
                 }
 
 
-                int centerX = (int)(_party.CurrPos.X);
-                int centerZ = (int)(_party.CurrPos.Z);
+                int centerX = (int)(party.CurrPos.X);
+                int centerZ = (int)(party.CurrPos.Z);
 
                 int nonLoopExtraRadius = _mapService.InDungeonMap() ? 1 : 0;
 
                 int bigViewRadius = ViewRadius + 1;
 
-                if (_crawlerMapRoot.Map.CrawlerMapTypeId == CrawlerMapTypes.Outdoors)
+                if (mapRoot.Map.CrawlerMapTypeId == CrawlerMapTypes.Outdoors)
                 {
                     bigViewRadius += 2;
                 }
 
-                foreach (ClientMapCell clientCell in _crawlerMapRoot.GetAllCells())
+                foreach (ClientMapCell clientCell in mapRoot.GetAllCells())
                 {
                     clientCell.DidJustDraw = false;
                 }
@@ -66,43 +72,37 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     {
                         int offsetZ = Math.Abs((int)(worldZ - centerZ));
 
-                        int mapCellX = (worldX + _crawlerMapRoot.Map.Width) % _crawlerMapRoot.Map.Width;
-                        int mapCellZ = (worldZ + _crawlerMapRoot.Map.Height) % _crawlerMapRoot.Map.Height;
-
-                        if (!_crawlerMapRoot.Map.HasFlag(CrawlerMapFlags.IsLooping) &&
-
-
-                            (worldX < -nonLoopExtraRadius || worldX >= _crawlerMapRoot.Map.Width + nonLoopExtraRadius ||
-                            worldZ < -nonLoopExtraRadius || worldZ >= _crawlerMapRoot.Map.Height + nonLoopExtraRadius))
+                        if ((worldX < -nonLoopExtraRadius || worldX >= mapRoot.Map.Width + nonLoopExtraRadius ||
+                            worldZ < -nonLoopExtraRadius || worldZ >= mapRoot.Map.Height + nonLoopExtraRadius))
                         {
                             continue;
                         }
 
-                        ClientMapCell cell = _crawlerMapRoot.GetCellAtWorldPos(worldX, worldZ, true);
+                        ClientMapCell cell = mapRoot.GetCellAtWorldPos(worldX, worldZ, true, true);
 
                         if ((offsetX >= ViewRadius + viewBufferSize ||
                             offsetZ >= ViewRadius + viewBufferSize))
                         {
-                            _crawlerMapRoot.ReturnCell(cell);
+                            mapRoot.ReturnCell(cell);
                             continue;
                         }
 
                         cell.DidJustDraw = true;
-                        cell.Content.transform.position = new Vector3(worldX * _crawlerMapRoot.XZBlockSize, 0, worldZ * _crawlerMapRoot.XZBlockSize);
+                        cell.Content.transform.position = new Vector3(worldX * mapRoot.XZBlockSize, 0, worldZ * mapRoot.XZBlockSize);
 
                         if (!cell.DidInit)
                         {
                             cell.DidInit = true;
                             foreach (ICrawlerDrawCellHelper drawHelper in _drawHelpers.OrderedItems())
                             {
-                                await drawHelper.DrawCell(_party, _world, _crawlerMapRoot, cell, worldX, worldZ, mapCellX, mapCellZ, token);
+                                await drawHelper.DrawCell(party, world, mapRoot, cell, token);
                             }
                         }
                     }
                 }
 
                 List<ClientMapCell> removeCells = new List<ClientMapCell>();
-                foreach (ClientMapCell clientCell in _crawlerMapRoot.GetAllCells())
+                foreach (ClientMapCell clientCell in mapRoot.GetAllCells())
                 {
                     if (!clientCell.DidJustDraw)
                     {
@@ -112,12 +112,17 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                 foreach (ClientMapCell clientCell in removeCells)
                 {
-                    _crawlerMapRoot.ReturnCell(clientCell);
+                    mapRoot.ReturnCell(clientCell);
                 }
             }
             catch (Exception ex)
             {
                 _logService.Exception(ex, "DrawNearbyMap");
+            }
+
+            if (!mapRoot.DidDrawEdgeProps)
+            {
+                _awaitableService.ForgetAwaitable(_propService.DrawEdgeProps(party, world, mapRoot, token));
             }
         }
 
@@ -125,7 +130,6 @@ namespace Assets.Scripts.Crawler.Maps.Services
         {
             return "Default";
         }
-
     }
 }
 

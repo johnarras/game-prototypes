@@ -1,7 +1,7 @@
-using Assets.Scripts.Crawler.Maps.Constants;
-using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.Crawler.Maps.Loading;
-using Assets.Scripts.Crawler.Maps.Services.DrawEntityHelpers;
+using OxDb.Client.Crawler.Maps.Constants;
+using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.Crawler.Maps.Loading;
+using OxDb.Client.Crawler.Maps.Services.DrawEntityHelpers;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
@@ -12,13 +12,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
+namespace OxDb.Client.Crawler.Maps.Services.DrawCellHelpers
 {
     public class StairsDrawCellHelper : BaseCrawlerDrawCellHelper
     {
-        public override int Order => 700;
+        public override ECrawlerDrawCellOrder HelperKey => ECrawlerDrawCellOrder.Stairs;
 
-        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, int xpos, int zpos, int realCellX, int realCellZ, CancellationToken token)
+        public override async ValueTask DrawCell(PartyData party, CrawlerWorld world, CrawlerMapRoot mapRoot, ClientMapCell cell, CancellationToken token)
         {
             List<MapCellDetail> cellDetails = mapRoot.Map.Details.Where(d => d.X == cell.MapX && d.Z == cell.MapZ).ToList();
             if (mapRoot.Map.CrawlerMapTypeId == CrawlerMapTypes.Dungeon)
@@ -29,8 +29,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                 if (exitDetails.Count > 0)
                 {
                     MapCellDetail detail = exitDetails.First();
-                    bool showDownStairs =
-                        //mapRoot.Map.HasFlag(CrawlerMapFlags.NextLevelIsDown)  == 
+                    bool showDownStairs = 
                         (detail.EntityId == mapRoot.Map.IdKey + 1);
 
                     CrawlerObjectLoadData loadData = new CrawlerObjectLoadData()
@@ -39,7 +38,7 @@ namespace Assets.Scripts.Crawler.Maps.Services.DrawCellHelpers
                         Cell = cell,
                         MapRoot = mapRoot,
                         Seed = _mapService.GetMapCellHash(mapRoot.Map.IdKey, cell.MapX, cell.MapZ, 1),
-
+                        Scale = (mapRoot.Map.IsOutdoorDungeon() ? 0.5f : 1),
                     };
 
 

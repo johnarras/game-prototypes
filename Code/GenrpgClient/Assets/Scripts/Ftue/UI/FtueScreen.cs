@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedGame.Ftue.Constants;
 using OxDb.SharedGame.Ftue.Services;
 using OxDb.SharedGame.Ftue.Settings.Steps;
@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Blockers
+namespace OxDb.Client.UI.Blockers
 {
     public class FtueScreen : BlockerScreen
     {

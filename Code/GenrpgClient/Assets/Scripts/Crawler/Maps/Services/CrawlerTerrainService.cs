@@ -1,8 +1,9 @@
-﻿using Assets.Scripts.Crawler.Maps.GameObjects;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.MapTerrain;
+﻿using OxDb.Client.Crawler.Maps.GameObjects;
+using OxDb.Client.GameObjects;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
+using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
@@ -10,14 +11,16 @@ using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
 using OxDb.SharedGame.ProcGen.Services;
 using OxDb.SharedGame.ProcGen.Settings.Textures;
+using OxDb.SharedGame.Zones.Constants;
 using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.Mathematics;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.Maps.Services
+namespace OxDb.Client.Crawler.Maps.Services
 {
     public interface ICrawlerTerrainService : IInjectable
     {
@@ -71,6 +74,7 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             mapRoot.Core.TerrainSize = heightMapSize;
             mapRoot.Core.WorldUnitsPerCell = WorldUnitsPerCell;
+
             mapRoot.TerrainParent = new GameObject() { name = "TerrainParent" };
 
             _clientEntityService.AddToParent(mapRoot.TerrainParent, mapRoot);
@@ -108,6 +112,19 @@ namespace Assets.Scripts.Crawler.Maps.Services
                 allZoneTypes.Insert(0, starsZoneType.IdKey);
             }
 
+            if (!allZoneTypes.Contains(ZoneTypes.Road))
+            {
+                allZoneTypes.Insert(0, ZoneTypes.Road);
+            }
+
+            foreach (ZoneEdge edge in mapRoot.Map.EdgePoints)
+            {
+                if (edge.ZoneTypeId > 0 && !allZoneTypes.Contains(edge.ZoneTypeId))
+                {
+                    allZoneTypes.Insert(1, edge.ZoneTypeId);
+                }
+            }
+
             await _terrainTextureManager.SetupTerrainContainerLayers(mapRoot, allZoneTypes, detailTextureTypeIds, token);
 
             while (!mapRoot.Core.IsReady())
@@ -127,24 +144,65 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
             float[,,] textureAlphas1 = new float[alphamapSize, alphamapSize, mapRoot.Core.Layers.Count];
             float[,,] textureAlphas2 = new float[alphamapSize, alphamapSize, mapRoot.Core.Layers.Count];
-            for (int x = 0; x < alphamapSize; x++)
+
+            long forcedZoneTypeId = mapRoot.Map.ZoneTypeId;
+
+            for (int cx = 0; cx < totalMapCellCount; cx++)
             {
-                for (int z = 0; z < alphamapSize; z++)
+                for (int cz = 0; cz < totalMapCellCount; cz++)
                 {
-                    textureAlphas1[x, z, 0] = 1;
-                    textureAlphas2[x, z, 0] = 1;
+                    long currZoneTypeId = forcedZoneTypeId;
+                    int mapX = cx - extraViewRadius;
+                    int mapZ = cz - extraViewRadius;
+
+                    if (mapX < 0 || mapZ < 0 || mapX >= mapRoot.Map.Width || mapZ >= mapRoot.Map.Height)
+                    {
+                        int maxRadius = extraViewRadius+2;
+
+                        ZoneEdge closestEdge = null;
+                        float closestDist = 10000000;
+                        foreach (ZoneEdge zoneEdge in mapRoot.Map.EdgePoints)
+                        {
+                            float dx = zoneEdge.X - mapX;
+                            float dz = zoneEdge.Z - mapZ;
+
+                            if (Mathf.Abs(dx) < maxRadius && Mathf.Abs(dz) < maxRadius)
+                            {
+                                float dist = dx * dx + dz * dz;
+
+                                if (dist < closestDist || closestEdge == null)
+                                {
+                                    closestEdge = zoneEdge;
+                                    closestDist = dist;
+                                }
+                            }
+                        }
+
+                        if (closestEdge != null)
+                        {
+                            currZoneTypeId = closestEdge.ZoneTypeId;
+                        }
+                    }
+                    for (int ix = 0; ix < alphaCellsPerWorldBlock; ix++)
+                    {
+                        int finalX = cx * alphaCellsPerWorldBlock + ix;
+                        for (int iy = 0; iy < alphaCellsPerWorldBlock; iy++)
+                        {
+                            int finalZ = cz * alphaCellsPerWorldBlock + iy;
+
+                            textureAlphas1[finalZ, finalX, 0] = 1;
+                            zoneTypeIds[finalZ, finalX] = currZoneTypeId;
+
+                        }
+                    }
                 }
             }
 
-            bool isLooping = mapRoot.Map.HasFlag(CrawlerMapFlags.IsLooping);
             for (int cx = 0; cx < totalMapCellCount; cx++)
             {
-                if (!isLooping)
+                if (cx < extraViewRadius || cx >= mapWidth + extraViewRadius)
                 {
-                    if (cx < extraViewRadius || cx >= mapWidth + extraViewRadius)
-                    {
-                        continue;
-                    }
+                    continue;
                 }
 
                 int worldX = cx - extraViewRadius;
@@ -157,12 +215,9 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                 for (int cz = 0; cz < totalMapCellCount; cz++)
                 {
-                    if (!isLooping)
+                    if (cz < extraViewRadius || cz >= mapHeight + extraViewRadius)
                     {
-                        if (cz < extraViewRadius || cz >= mapHeight + extraViewRadius)
-                        {
-                            continue;
-                        }
+                        continue;
                     }
 
                     int worldZ = cz - extraViewRadius;
@@ -174,23 +229,66 @@ namespace Assets.Scripts.Crawler.Maps.Services
                     worldZ = worldZ % mapHeight;
 
                     long zoneTypeId = mapRoot.Map.Get(worldX, worldZ, CellIndex.Terrain);
+                    if (zoneTypeId == 0)
+                    {
+                        zoneTypeId = mapRoot.Map.ZoneTypeId;
+                    }
+                    
                     for (int ix = 0; ix < alphaCellsPerWorldBlock; ix++)
                     {
                         int finalX = cx * alphaCellsPerWorldBlock + ix;
                         for (int iy = 0; iy < alphaCellsPerWorldBlock; iy++)
                         {
-                            int finalY = cz * alphaCellsPerWorldBlock + iy;
-                            zoneTypeIds[finalY, finalX] = zoneTypeId;
+                            int finalZ = cz * alphaCellsPerWorldBlock + iy;
+                            zoneTypeIds[finalZ, finalX] = zoneTypeId;
 
                             long seed = world.Seed * 31 + mapRoot.Map.IdKey * 59 +
                                 worldX * 37 + worldZ * 23 + worldZ * ix + worldX * iy +
                                 ix * 43 + iy * 61;
 
-                            seeds[finalY, finalX] = seed;
+                            seeds[finalZ, finalX] = seed;
                         }
                     }
                 }
             }
+
+
+            foreach (ZoneEdge edge in mapRoot.Map.EdgePoints)
+            {
+                if (Math.Abs(edge.DX) + Math.Abs(edge.DZ) == 1)
+                {
+                    int cx = edge.X + extraViewRadius;
+                    int cz = edge.Z + extraViewRadius;
+
+                    while (cx >= 0 && cz >= 0 && cx < totalMapCellCount && cz < totalMapCellCount)
+                    {
+                        for (int ix = 0; ix < alphaCellsPerWorldBlock; ix++)
+                        {
+                            int finalX = cx * alphaCellsPerWorldBlock + ix;
+                            if (finalX >= alphamapSize)
+                            {
+                                continue;
+                            }
+                            for (int iy = 0; iy < alphaCellsPerWorldBlock; iy++)
+                            {
+                                int finalZ = cz * alphaCellsPerWorldBlock + iy;
+                                if (finalZ >= alphamapSize)
+                                {
+                                    break;
+                                }
+                                zoneTypeIds[finalZ, finalX] = ZoneTypes.Road;
+
+                            }
+                        }
+                        cx += edge.DX;
+                        cz += edge.DZ;
+                    }
+                }
+            }
+
+
+
+
 
             mapRoot.Core.SetLayers();
 
@@ -203,7 +301,14 @@ namespace Assets.Scripts.Crawler.Maps.Services
 
                     if (zoneTypeId < 1)
                     {
-                        textureAlphas1[z, x, 0] = 1;
+                        if (!mapRoot.Map.IsOutdoorDungeon())
+                        {
+                            textureAlphas1[z, x, 0] = 1;
+                        }
+                        else
+                        {
+                            textureAlphas1[z, x, 0] = mapRoot.Map.ZoneTypeId;
+                        }
                         continue;
                     }
 

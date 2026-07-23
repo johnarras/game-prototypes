@@ -3,7 +3,7 @@ using OxDb.SharedGame.Crawler.Info.InfoHelpers;
 using OxDb.SharedGame.Trader.TradeGoods.Settings;
 using System.Collections.Generic;
 
-namespace Assets.Scripts.Trader.Info.Helpers
+namespace OxDb.Client.Trader.Info.Helpers
 {
     public class TradeGoodInfoHelper : BaseInfoHelper<TradeGoodSettings, TradeGood>
     {

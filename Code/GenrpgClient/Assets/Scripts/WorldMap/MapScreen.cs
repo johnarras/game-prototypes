@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Minimap.Services;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Minimap.Services;
 using OxDb.SharedGame.MapServer.Services;
 using System.Threading;
 using System.Threading.Tasks;

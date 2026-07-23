@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.ProcGen.Materials.Constants;
+﻿using OxDb.Client.ProcGen.Materials.Constants;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
+namespace OxDb.Client.ProcGen.Materials.MaterialGenHelpers
 {
     public class FlatPlaneMaterialGenHelper : BaseMaterialGenHelper
     {

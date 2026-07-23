@@ -1,14 +1,15 @@
 
-using Assets.Scripts.Assets;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.ClientEvents;
-using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.Crawler.ClientEvents.HUD;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.Crawler.Services.CrawlerMaps;
-using Assets.Scripts.Input.Interfaces;
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.Assets;
+using OxDb.Client.Assets.Scripts.Crawler.Demo.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.ClientEvents;
+using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.Crawler.ClientEvents.HUD;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.Crawler.Services.CrawlerMaps;
+using OxDb.Client.Input.Interfaces;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedCore.DataStores.Interfaces;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.GameSettings;
@@ -100,6 +101,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
         private ICrawlerOptionsService _optionsService = null;
         private IGameData _gameData = null;
         protected IPartyService _partyService = null;
+        private IClientConfigContainer _configContainer = null;
 
         public const string SaveFileSuffix = ".sav";
         public const string StartSaveFileName = "Start" + SaveFileSuffix;
@@ -256,7 +258,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
                 IStateHelper stateHelper = GetStateHelper(action.NextState);
                 if (stateHelper != null)
                 {
-                    //_logService.Info("ChangeState: " + stateHelper.Key.ToString());
+                    //_logService.Info("ChangeState: " + stateHelper.Header.ToString());
                     nextStateData = await stateHelper.Init(currData, action, token);
 
                     if (nextStateData.DoNotTransitionToThisState)
@@ -485,6 +487,23 @@ namespace OxDb.SharedGame.Crawler.States.Services
             {
                 return null;
             }
+
+            if (_configContainer.Config.Flags.HasFlag(ClientPlayerFlags.IsDemo))
+            {
+                List<PartyMember> allMembers = party.ActiveParty.ToList();
+                allMembers.AddRange(party.InGuild);
+
+                foreach (PartyMember member in allMembers)
+                {
+                    member.Level = Math.Min(DemoConstants.MaxLevel, member.Level);
+
+                    foreach (UnitRole unitRole in member.Roles)
+                    {
+                        unitRole.Level = Math.Min(DemoConstants.MaxLevel, member.Level);
+                    }
+                }
+            }
+
             return party;
         }
 
@@ -512,7 +531,7 @@ namespace OxDb.SharedGame.Crawler.States.Services
                     member.ConvertDataBeforeSave();
                 }
 
-                _loadSaveService.Save(_party, _party.SaveSlotId, true);
+                _loadSaveService.Save(_party, _party.SaveSlotId, false);
             }
             await Task.CompletedTask;
         }

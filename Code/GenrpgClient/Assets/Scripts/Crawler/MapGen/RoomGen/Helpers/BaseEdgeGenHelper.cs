@@ -1,6 +1,6 @@
-﻿using Assets.Scripts.Crawler.MapGen.Helpers;
-using Assets.Scripts.Crawler.MapGen.RoomGen.Entities;
-using Assets.Scripts.Crawler.MapGen.Services;
+﻿using OxDb.Client.Crawler.MapGen.Helpers;
+using OxDb.Client.Crawler.MapGen.RoomGen.Entities;
+using OxDb.Client.Crawler.MapGen.Services;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -10,12 +10,15 @@ using OxDb.SharedGame.Zones.Constants;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.RoomGen.Helpers
 {
     public abstract class BaseEdgeGenHelper : IEdgeGenHelper
     {
 
-        public const long ForcedRoomEdgeType = 0;
+#if UNITY_EDITOR
+        private static long _forcedRoomEdgeType { get; set; }
+        public static long ForcedRoomEdgeType => _forcedRoomEdgeType;
+#endif
 
         protected ILogService _logService = null;
         protected ICrawlerMapGenService _mapGenService = null;
@@ -44,6 +47,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
         virtual protected async ValueTask PlaceEdgeRowArgs(EdgeRowArgs rowArgs, RoomEdgeGenArgs edgeArgs, CrawlerMapGenData genData,
             DungeonLevelGenArgs levelArgs)
         {
+            await Task.CompletedTask;
             int maxLengthGone = 0;
             for (int l = 1; l <= rowArgs.Length; l++)
             {
@@ -63,7 +67,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
                 }
 
                 levelArgs.RoomIds[cx, cz] = edgeArgs.RoomId;
-                levelArgs.Map.Set(cx, cz, CellIndex.Terrain, ZoneTypes.Field);
+                levelArgs.Map.Set(cx, cz, CellIndex.Terrain, genData.ZoneType.IdKey);
                 levelArgs.SetFlag(cx, cz, DungeonLevelFlags.EdgeCell);
                 for (int xx = cx - 1; xx <= cx + 1; xx++)
                 {
@@ -89,7 +93,7 @@ namespace Assets.Scripts.Crawler.MapGen.RoomGen.Helpers
                 {
                     MapDir currMapDir = MapDirUtils.GetDirFromDeltas(rowArgs.DX, rowArgs.DZ);
 
-                    _mapGenService.AddRoomWithDoor(levelArgs, nx, nz, currMapDir.OppDir, ZoneTypes.Field);
+                    _mapGenService.AddRoomWithDoor(levelArgs, nx, nz, currMapDir.OppDir, genData.ZoneType.IdKey);
                 }
             }
         }

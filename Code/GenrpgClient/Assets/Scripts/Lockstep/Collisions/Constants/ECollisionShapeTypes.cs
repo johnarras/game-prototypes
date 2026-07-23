@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Collisions.Constants
+﻿namespace OxDb.Client.Lockstep.Collisions.Constants
 {
     public enum ECollisionShapeType : byte
     {

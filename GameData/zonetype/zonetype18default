@@ -179,89 +179,13 @@
       "Weight": 1.0
     }
   ],
-  "RockTypes": [
+  "SmallPropChance": 0.7,
+  "MaxSmallPropQuantity": 5,
+  "Props": [
     {
-      "RockTypeId": 1,
       "Weight": 1.0,
-      "BaseColor": {
-        "R": 1.0,
-        "G": 1.0,
-        "B": 1.0,
-        "A": 1.0
-      }
-    },
-    {
-      "RockTypeId": 2,
-      "Weight": 1.0,
-      "BaseColor": {}
-    }
-  ],
-  "TreeTypes": [
-    {
-      "TreeTypeId": 15,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 6,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 40,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 41,
-      "Weight": 1.0
-    }
-  ],
-  "BushTypes": [
-    {
-      "BushTypeId": 5,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 6,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 10,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 11,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 7,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 8,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 14,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 15,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 16,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 18,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 19,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 20,
-      "Weight": 1.0
+      "EntityTypeId": 11,
+      "EntityId": 3
     }
   ],
   "CreatureNamePrefixes": [
@@ -689,14 +613,6 @@
       "Weight": 100.0
     }
   ],
-  "PropChance": 0.3,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 18
-    }
-  ],
   "PlantChoices": "34 35 36 37 38",
   "FenceChance": 0.1,
   "WeatherTypeId": 9,
@@ -706,5 +622,7 @@
   "MusicTypeId": 5,
   "AmbientMusicTypeId": 9,
   "TraveralTimeScale": 20.0,
-  "ZoneCategoryId": 1
+  "ZoneCategoryId": 1,
+  "IsOutdoors": true,
+  "IsDungeon": true
 }

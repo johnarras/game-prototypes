@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Lockstep.Actors.Systems;
-using Assets.Scripts.Lockstep.Collisions.Systems;
-using Assets.Scripts.Lockstep.Config.Core;
-using Assets.Scripts.Lockstep.Maps.Systems;
-using Assets.Scripts.Lockstep.Spawns.Systems;
-using Assets.Scripts.Lockstep.Systems;
+﻿using OxDb.Client.Lockstep.Actors.Systems;
+using OxDb.Client.Lockstep.Collisions.Systems;
+using OxDb.Client.Lockstep.Config.Core;
+using OxDb.Client.Lockstep.Maps.Systems;
+using OxDb.Client.Lockstep.Spawns.Systems;
+using OxDb.Client.Lockstep.Systems;
 using OxDb.SharedCore.Core.Constants;
 
-namespace Assets.Scripts.Lockstep.Config.Games
+namespace OxDb.Client.Lockstep.Config.Games
 {
     public class LockstepConfig : BaseLockstepConfig
     {

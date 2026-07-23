@@ -1,6 +1,6 @@
 ﻿using OxDb.SharedCore.Client.Interfaces;
 
-namespace Assets.Scripts.Trader.ClientEvents
+namespace OxDb.Client.Trader.ClientEvents
 {
     public class UpdateTraderHUD : IClientEvent
     {

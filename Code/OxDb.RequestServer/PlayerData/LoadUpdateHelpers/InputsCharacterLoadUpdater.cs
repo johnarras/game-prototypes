@@ -9,6 +9,9 @@ namespace OxDb.RequestServer.PlayerData.LoadUpdateHelpers
 {
     public class InputsCharacterLoadUpdater : BaseCharacterLoadUpdater
     {
+
+        public override ECharacterLoadUpdateOrder HelperKey => ECharacterLoadUpdateOrder.Inputs;
+
         private IGameData _gameData = null;
         public override async Task Update(WebContext context, Character ch)
         {

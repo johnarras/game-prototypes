@@ -1,7 +1,7 @@
 using OxDb.SharedGame.Spawns.WorldData;
 using System.Collections.Generic;
 using System.Linq;
-//using TColl = System.Collections.Generic.HashSet<Entities.MapObjects.MapObject>;
+//using TColl = System.Collections.Generic.HashSet<Props.MapObjects.MapObject>;
 
 namespace OxDb.SharedGame.MapObjects.Entities
 {

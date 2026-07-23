@@ -6,7 +6,7 @@ using OxDb.SharedPlatform.Accounts.PublicData;
 using System;
 using System.Threading;
 
-namespace Assets.Scripts.PlayerSearch
+namespace OxDb.Client.PlayerSearch
 {
     public interface IPlayerSearchService : IInjectable
     {

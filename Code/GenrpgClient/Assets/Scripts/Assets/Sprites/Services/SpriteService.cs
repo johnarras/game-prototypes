@@ -1,8 +1,8 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Assets.Entities;
-using Assets.Scripts.Assets.Services;
-using Assets.Scripts.Core.Interfaces;
-using Assets.Scripts.GameObjects;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Assets.Entities;
+using OxDb.Client.Assets.Services;
+using OxDb.Client.Core.Interfaces;
+using OxDb.Client.GameObjects;
 using OxDb.SharedCore.Entities.Assets;
 using OxDb.SharedCore.Entities.Services;
 using OxDb.SharedCore.Interfaces;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
 
-namespace Assets.Scripts.Assets.Sprites.Services
+namespace OxDb.Client.Assets.Sprites.Services
 {
 
     public interface ISpriteService : IInitializable, IClientResetCleanup, IAssetSubsystem

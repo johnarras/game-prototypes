@@ -1,11 +1,11 @@
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedGame.Characters.WebApi.DeleteChar;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Website.MessageHandlers
+namespace OxDb.Client.Website.MessageHandlers
 {
     public class DeleteCharResponseHandler : BaseClientWebResponseHandler<DeleteCharResponse>
     {

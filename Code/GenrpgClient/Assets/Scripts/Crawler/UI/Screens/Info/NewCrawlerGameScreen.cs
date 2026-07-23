@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine.EventSystems;
 
-namespace Assets.Scripts.Crawler.UI.Screens.Info
+namespace OxDb.Client.Crawler.UI.Screens.Info
 {
     public class NewCrawlerGameScreen : BaseScreen, IPointerDownHandler
     {

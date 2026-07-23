@@ -1,10 +1,11 @@
-﻿using Assets.Scripts.Assets.Sprites.Services;
-using Assets.Scripts.Entities.UI;
+﻿using OxDb.Client.Assets.Sprites.Services;
+using OxDb.Client.Entities.UI;
+using OxDb.Client.Networking.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Attributes.Constants;
 using OxDb.SharedGame.Trader.CaravanMembers.Settings;
 
-namespace Assets.Scripts.Trader.Caravans.UI
+namespace OxDb.Client.Trader.Caravans.UI
 {
     public class CaravanMemberInitIconData
     {
@@ -17,7 +18,7 @@ namespace Assets.Scripts.Trader.Caravans.UI
     {
 
         protected ISpriteService _spriteService = null;
-        protected IClientWebService _webService = null;
+        protected IClientWebRequestService _webService = null;
 
         public GImage Icon;
         public GText NameText;

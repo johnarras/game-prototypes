@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.ProcGen.Materials.Constants;
+﻿using OxDb.Client.ProcGen.Materials.Constants;
 using OxDb.SharedCore.LineGen;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.ProcGen.Materials.MaterialGenHelpers
+namespace OxDb.Client.ProcGen.Materials.MaterialGenHelpers
 {
     public class WoodMaterialGenHelper : BaseMaterialGenHelper
     {

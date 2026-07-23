@@ -1,6 +1,6 @@
 ﻿using Unity.Mathematics;
 
-namespace Assets.Scripts.Lockstep.Maps.Systems
+namespace OxDb.Client.Lockstep.Maps.Systems
 {
     public static class TileVisualFactory
     {

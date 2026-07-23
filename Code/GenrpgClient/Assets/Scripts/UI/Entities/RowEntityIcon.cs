@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Entities.UI;
-using Assets.Scripts.UI.Interfaces;
+﻿using OxDb.Client.Entities.UI;
+using OxDb.Client.UI.Interfaces;
 using UnityEngine;
 
-namespace Assets.Scripts.UI.Entities
+namespace OxDb.Client.UI.Entities
 {
     public class RowEntityIcon : EntityIcon
     {

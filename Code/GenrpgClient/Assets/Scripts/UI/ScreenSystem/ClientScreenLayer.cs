@@ -1,4 +1,4 @@
-using Assets.Scripts.UI.Entities;
+using OxDb.Client.UI.Entities;
 using OxDb.SharedGame.UI.Settings;
 using System.Collections.Generic;
 using UnityEngine;

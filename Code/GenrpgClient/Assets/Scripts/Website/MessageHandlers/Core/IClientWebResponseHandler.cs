@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Login.Messages
+namespace OxDb.Client.Login.Messages
 {
     public interface IClientWebResponseHandler : ISetupDictionaryItem<Type>
     {

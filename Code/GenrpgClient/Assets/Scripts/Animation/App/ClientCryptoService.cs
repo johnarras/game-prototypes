@@ -1,4 +1,4 @@
-using Assets.Scripts.Repository.Constants;
+using OxDb.Client.Repository.Constants;
 using OxDb.SharedCore.Interfaces;
 using System;
 using System.Security.Cryptography;

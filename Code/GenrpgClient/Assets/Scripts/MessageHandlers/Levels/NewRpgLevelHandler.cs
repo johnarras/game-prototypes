@@ -1,6 +1,6 @@
 using OxDb.SharedGame.RpgLevels.Messages;
 
-namespace Assets.Scripts.MessageHandlers.Levels
+namespace OxDb.Client.MessageHandlers.Levels
 {
     public class NewRpgLevelHandler : DispatchClientMapMessageHandler<NewRpgLevel> { }
 }

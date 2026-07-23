@@ -1,10 +1,10 @@
-﻿using Assets.Scripts.Trader.HUD.ClientEvents;
+﻿using OxDb.Client.Trader.HUD.ClientEvents;
 using OxDb.SharedCore.Utils;
 using System.Text;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.HUD
+namespace OxDb.Client.Trader.HUD
 {
     public class TraderDiceRollUI : BaseBehaviour
     {

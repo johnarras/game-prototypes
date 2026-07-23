@@ -1,14 +1,14 @@
-﻿using Assets.Scripts.ClientEvents.UI;
-using Assets.Scripts.FloatingText.ClientEvents;
-using Assets.Scripts.Login.Messages.Core;
-using Assets.Scripts.UI.Interfaces;
+﻿using OxDb.Client.ClientEvents.UI;
+using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Login.Messages.Core;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Travel.WebApi;
 using OxDb.SharedGame.UI.Constants;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Trader.MessageHandlers.Travelling
+namespace OxDb.Client.Trader.MessageHandlers.Travelling
 {
     public class TravelResponseHandler : BaseClientWebResponseHandler<TravelResponse>
     {

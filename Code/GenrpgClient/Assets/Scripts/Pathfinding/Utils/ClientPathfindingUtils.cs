@@ -1,8 +1,8 @@
 
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Awaitables;
-using Assets.Scripts.GameObjects;
-using Assets.Scripts.Setup.Interfaces;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Awaitables;
+using OxDb.Client.GameObjects;
+using OxDb.Client.Setup.Interfaces;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedCore.Logalytics.Interfaces;
 using OxDb.SharedGame.Pathfinding.Entities;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 
-namespace Assets.Scripts.Pathfinding.Utils
+namespace OxDb.Client.Pathfinding.Utils
 {
     public interface IClientPathfindingUtils : IMapTokenService, IInjectable
     {

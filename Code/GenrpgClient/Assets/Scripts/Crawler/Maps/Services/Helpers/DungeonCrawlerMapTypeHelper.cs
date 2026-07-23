@@ -1,7 +1,7 @@
 
 using OxDb.SharedGame.Crawler.Maps.Constants;
 
-namespace Assets.Scripts.Crawler.Maps.Services.Helpers
+namespace OxDb.Client.Crawler.Maps.Services.Helpers
 {
 
     public class DungeonCrawlerMapTypeHelper : BaseCrawlerMapTypeHelper

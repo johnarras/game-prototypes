@@ -105,9 +105,16 @@
   "ZoneAdjectives": [],
   "BridgeTypes": [],
   "FenceTypes": [],
-  "RockTypes": [],
-  "TreeTypes": [],
-  "BushTypes": [],
+  "LargePropChance": 0.2,
+  "SmallPropChance": 0.2,
+  "MaxSmallPropQuantity": 2,
+  "Props": [
+    {
+      "Weight": 1.0,
+      "EntityTypeId": 11,
+      "EntityId": 4
+    }
+  ],
   "CreatureNamePrefixes": [],
   "CreatureDoubleNamePrefixes": [],
   "Overrides": [],
@@ -203,18 +210,12 @@
       "Weight": 100.0
     }
   ],
-  "PropChance": 0.3,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 19
-    }
-  ],
   "PlantChoices": "",
   "WeatherTypeId": 9,
   "MusicTypeId": 1,
   "AmbientMusicTypeId": 1,
   "TraveralTimeScale": 1.0,
-  "ZoneCategoryId": 3
+  "ZoneCategoryId": 3,
+  "IsOutdoors": true,
+  "IsDungeon": true
 }

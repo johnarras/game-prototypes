@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Systems
+﻿namespace OxDb.Client.Lockstep.Systems
 {
     public interface ISeededSystem
     {

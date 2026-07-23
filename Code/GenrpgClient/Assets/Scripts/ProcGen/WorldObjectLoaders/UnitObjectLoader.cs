@@ -1,5 +1,5 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.MapTerrain;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.MapTerrain;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Combat.Messages;
 using OxDb.SharedGame.Constants;

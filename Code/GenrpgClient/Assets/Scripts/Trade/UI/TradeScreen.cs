@@ -1,4 +1,4 @@
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedGame.Inventory.Constants;
 using OxDb.SharedGame.Inventory.PlayerData;
 using OxDb.SharedGame.Inventory.Services;

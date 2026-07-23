@@ -1,4 +1,4 @@
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedGame.Crawler.Spells.Settings;
 using OxDb.SharedGame.Crawler.States.Constants;
 using OxDb.SharedGame.Crawler.States.StateHelpers.Selection.Entities;

@@ -1,6 +1,6 @@
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.PlayerFiltering.Interfaces;
-namespace Assets.Scripts.GameSettings.Entities
+namespace OxDb.Client.GameSettings.Entities
 {
     public class ClientGameData : GameData
     {

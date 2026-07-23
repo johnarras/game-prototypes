@@ -1,6 +1,6 @@
 using System;
 
-namespace Assets.Scripts.Assets.ObjectPools
+namespace OxDb.Client.Assets.ObjectPools
 {
 
     public interface IDestroyCallback

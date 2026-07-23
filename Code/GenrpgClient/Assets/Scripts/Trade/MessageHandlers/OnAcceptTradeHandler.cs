@@ -1,7 +1,7 @@
-using Assets.Scripts.MessageHandlers;
+using OxDb.Client.MessageHandlers;
 using OxDb.SharedGame.Trades.Messages;
 
-namespace Assets.Scripts.Trade.MessageHandlers
+namespace OxDb.Client.Trade.MessageHandlers
 {
     public class OnAcceptTradeHandler : DispatchClientMapMessageHandler<OnAcceptTrade>
     {

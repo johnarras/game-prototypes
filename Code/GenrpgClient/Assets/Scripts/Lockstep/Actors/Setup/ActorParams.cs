@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Actors.Setup
+﻿namespace OxDb.Client.Lockstep.Actors.Setup
 {
     public class ActorParams
     {

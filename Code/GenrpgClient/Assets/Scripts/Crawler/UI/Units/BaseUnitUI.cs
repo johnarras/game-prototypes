@@ -1,9 +1,9 @@
-using Assets.Scripts.Crawler.Combat;
-using Assets.Scripts.Crawler.UI.StatusUI;
-using Assets.Scripts.UI.CombatTexts;
+using OxDb.Client.Crawler.Combat;
+using OxDb.Client.Crawler.UI.StatusUI;
+using OxDb.Client.UI.CombatTexts;
 using UnityEngine;
 
-namespace Assets.Scripts.Crawler.UI.Units
+namespace OxDb.Client.Crawler.UI.Units
 {
     public class BaseUnitUI : BaseBehaviour
     {

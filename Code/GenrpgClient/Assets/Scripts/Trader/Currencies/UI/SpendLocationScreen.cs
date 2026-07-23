@@ -13,7 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.Currencies.UI
+namespace OxDb.Client.Trader.Currencies.UI
 {
     public class SpendLocationScreen : BaseScreen
     {

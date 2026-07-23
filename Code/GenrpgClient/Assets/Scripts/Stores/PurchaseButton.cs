@@ -1,10 +1,10 @@
-using Assets.Scripts.Purchasing.Services;
+using OxDb.Client.Purchasing.Services;
 using OxDb.SharedGame.Purchasing.PlayerData;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Stores
+namespace OxDb.Client.Stores
 {
     public class PurchaseButton : BaseBehaviour
     {

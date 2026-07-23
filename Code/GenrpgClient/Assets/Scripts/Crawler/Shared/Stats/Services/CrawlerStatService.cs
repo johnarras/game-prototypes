@@ -1,4 +1,4 @@
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
+using OxDb.Client.Crawler.ClientEvents.StatusPanelEvents;
 using OxDb.SharedCore.Effects.Entities;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.GameSettings;
@@ -12,6 +12,8 @@ using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Options.Services;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Party.Services;
+using OxDb.SharedGame.Crawler.Roles.Constants;
+using OxDb.SharedGame.Crawler.Roles.Services;
 using OxDb.SharedGame.Crawler.Roles.Settings;
 using OxDb.SharedGame.Crawler.Spells.Settings;
 using OxDb.SharedGame.Crawler.Stats.Settings;
@@ -55,6 +57,7 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
         private IDispatcher _dispatcher = null;
         protected IPartyService _partyService = null;
         private ICrawlerOptionsService _optionsService = null;
+        private IRoleService _roleService = null;
 
         public void CalcPartyStats(PartyData party, bool resetCurrStats)
         {
@@ -131,8 +134,9 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
                     }
                 }
 
-                long totalHealth = unit.Level * GetStatBonus(party, member, StatTypes.Stamina);
-                long totalMana = unit.Level * GetStatBonus(party, member, StatTypes.Willpower);
+                long statUnitLevel = unit.Level + 1;
+                long totalHealth = statUnitLevel * GetStatBonus(party, member, StatTypes.Stamina);
+                long totalMana = statUnitLevel * GetStatBonus(party, member, StatTypes.Willpower);
 
                 foreach (Role role in roles)
                 {
@@ -140,8 +144,8 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
 
                     if (unitRole != null)
                     {
-                        totalHealth += unitRole.Level * role.HealthPerLevel;
-                        totalMana += unitRole.Level * role.ManaPerLevel;
+                        totalHealth += statUnitLevel * role.HealthPerLevel;
+                        totalMana += statUnitLevel * role.ManaPerLevel;
                     }
                 }
 
@@ -219,21 +223,25 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
 
                 if (unit.FactionTypeId == FactionTypes.Player)
                 {
-                    if (monster.SummonArgs != null)
+                    if (monster.Summoner != null)
                     {
                         minHealth = (minHealth + maxHealth) / 2;
                         maxHealth = minHealth;
-                    }
 
-                    double qualityPercent = _upgradeService.GetPartyBonus(party, PartyUpgrades.SummonQuality);
+                        double scalingPercent = _upgradeService.GetPartyBonus(party, PartyUpgrades.SummonQuality);
 
-                    healthScale = (1 + qualityPercent / 100.0f);
-                    damageScale = (1 + qualityPercent / 100.0f);
+                        long statBonus = GetStatBonus(party, monster.Summoner, StatTypes.Leadership);
+                        double tier = _roleService.GetRoleScalingLevel(party, monster.Summoner, RoleScalingTypes.Summon);
 
-                    if (!_optionsService.HasOption(party, CrawlerOptions.WholeParty))
-                    {
-                        healthScale *= 1.5f;
-                        damageScale *= 1.5f;
+                        scalingPercent *= tier;
+                        if (unit.Level < monster.Summoner.Level)
+                        {
+                            unit.Level = monster.Summoner.Level;
+                        }
+                        healthScale = (1 + scalingPercent / 100.0f);
+                        damageScale = (1 + scalingPercent / 100.0f);
+
+                        monster.SummonedStatBonus = statBonus;
                     }
                 }
                 else
@@ -259,9 +267,7 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
                 monster.MinDam = (long)(monster.MinDam * damageScale);
                 monster.MaxDam = (long)(monster.MaxDam * damageScale);
 
-
                 long startHealth = 0;
-
 
                 // Narrow health randomness a bit at higher levels.
                 long healthCalcTimes = 2 + monster.Level / 10;
@@ -310,11 +316,7 @@ namespace OxDb.SharedGame.Crawler.Stats.Services
 
             if (unit is Monster monster)
             {
-                if (monster.SummonArgs != null)
-                {
-                    statBonus += monster.SummonArgs.SummonStatBonus;
-                }
-                return statBonus;
+                return statBonus + monster.SummonedStatBonus;
             }
 
             List<Role> roles = _gameData.Get<RoleSettings>(_gs.ch).GetRoles(unit.Roles);

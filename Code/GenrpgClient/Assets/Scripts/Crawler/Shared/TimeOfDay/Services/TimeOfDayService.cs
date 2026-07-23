@@ -1,6 +1,6 @@
-using Assets.Scripts.Crawler.ClientEvents.StatusPanelEvents;
-using Assets.Scripts.Crawler.Maps.Services;
-using Assets.Scripts.FloatingText.ClientEvents;
+using OxDb.Client.Crawler.ClientEvents.StatusPanelEvents;
+using OxDb.Client.Crawler.Maps.Services;
+using OxDb.Client.FloatingText.ClientEvents;
 using OxDb.SharedCore.GameSettings;
 using OxDb.SharedCore.Interfaces;
 using OxDb.SharedGame.Crawler.Buffs.Constants;
@@ -51,14 +51,12 @@ namespace OxDb.SharedGame.Crawler.TimeOfDay.Services
 
             if (type == ECrawlerTimeUpdateTypes.Move)
             {
-
                 long zoneTypeId = map.Get(party.CurrPos.X, party.CurrPos.Z, CellIndex.Terrain);
 
-                long regionTypeId = map.Get(party.CurrPos.X, party.CurrPos.Z, CellIndex.Region);
-
-                if (regionTypeId > 0)
+                ZoneRegion zoneRegion = map.GetRegion(party.CurrPos.X, party.CurrPos.Z);
+                if (zoneRegion != null)
                 {
-                    zoneTypeId = regionTypeId;
+                    zoneTypeId = zoneRegion.RegionId;
                 }
 
                 ZoneType zoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(zoneTypeId);

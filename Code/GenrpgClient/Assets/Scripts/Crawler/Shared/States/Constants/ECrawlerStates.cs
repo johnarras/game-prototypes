@@ -40,7 +40,6 @@ namespace OxDb.SharedGame.Crawler.States.Constants
         LevelMap,
 
 
-        FindJunkPile,
         SearchJunkPile,
 
 

@@ -1,23 +1,31 @@
-using Assets.Scripts.Crawler.MapGen.DungeonGen.Helpers;
+using JetBrains.Annotations;
+using OxDb.Client.Crawler.MapGen.DungeonGen.Helpers;
+using OxDb.Client.Crawler.MapGen.RoomGen.Services;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedCore.HelperClasses;
 using OxDb.SharedCore.Utils;
 using OxDb.SharedCore.Utils.Data;
 using OxDb.SharedGame.Crawler.MapGen.Constants;
 using OxDb.SharedGame.Crawler.MapGen.Entities;
+using OxDb.SharedGame.Crawler.MapGen.Settings;
 using OxDb.SharedGame.Crawler.Maps.Constants;
 using OxDb.SharedGame.Crawler.Maps.Entities;
 using OxDb.SharedGame.Crawler.Maps.Settings;
 using OxDb.SharedGame.Crawler.Options.Constants;
 using OxDb.SharedGame.Crawler.Parties.PlayerData;
 using OxDb.SharedGame.Crawler.Worlds.Entities;
+using OxDb.SharedGame.MapServer.Entities;
+using OxDb.SharedGame.ProcGen.Entities;
+using OxDb.SharedGame.Zones.Constants;
+using OxDb.SharedGame.Zones.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using UnityEngine.XR;
 
-namespace Assets.Scripts.Crawler.MapGen.Helpers
+namespace OxDb.Client.Crawler.MapGen.Helpers
 {
 
     public class DungeonLevelFlags
@@ -41,6 +49,8 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
         public int[,] AdjacentRoomIds { get; set; }
         public int[,] Flags { get; set; }
 
+        public List<SampledPoint> RoomCenters { get; set; } = new List<SampledPoint>();
+
         public SmallIndexBitList OverlappedRoomIds { get; set; } = new SmallIndexBitList();
 
         public bool HasFlag(int x, int z, long flagIndex)
@@ -62,8 +72,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
     {
         public override long HelperKey => CrawlerMapTypes.Dungeon;
 
-
-        int complexMapSize = 36;
         SetupDictionaryContainer<long, IDungeonGenHelper> _dungeonGenHelpers = new SetupDictionaryContainer<long, IDungeonGenHelper>();
 
         public override async Task<NewCrawlerMap> Generate(PartyData party, CrawlerWorld world, CrawlerMapGenData genData, CancellationToken token)
@@ -73,45 +81,43 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 Rand = new MyRandom(genData.World.Seed / 3 + genData.World.GetMaxMapId() * 19 + genData.CurrFloor),
             };
 
+            //genData.ZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.Forest);
+            //genData.ZoneType = _gameData.Get<ZoneTypeSettings>(_gs.ch).Get(ZoneTypes.Dungeon);
+
             CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
             CrawlerMapGenType genType = genData.GenType;
 
-            genData.Looping = levelArgs.Rand.NextDouble() < genType.LoopingChance ? true : false;
-            genData.DungeonTypeId = levelArgs.Rand.NextDouble() < genType.RandomWallsChance ? DungeonTypes.RandomWalls : DungeonTypes.BasicRooms;
-            if (genData.DungeonTypeId != DungeonTypes.RandomWalls)
+            if (genData.ZoneType.IsOutdoors)
             {
-                genData.Looping = false;
+                genData.DungeonTypeId = DungeonTypes.Outdoors;
             }
+            else
+            {
+                genData.DungeonTypeId = DungeonTypes.Indoors;
+            }
+
             int width = RandUtils.IntRange(genType.MinWidth, genType.MaxWidth, levelArgs.Rand);
             int height = RandUtils.IntRange(genType.MinHeight, genType.MaxHeight, levelArgs.Rand);
 
-            genData.DungeonTypeId = DungeonTypes.ComplexRooms;
-            genData.Looping = false;
-            width = complexMapSize;
-            height = complexMapSize;
-            if (genData.DungeonTypeId != DungeonTypes.RandomWalls)
-            {
-                width = (int)(width * mapSettings.CorridorDungeonSizeScale);
-                height = (int)(height * mapSettings.CorridorDungeonSizeScale);
-
-                if (genType.IsIndoors && genType.NextLevelIsDown)
-                {
-                    width = complexMapSize;
-                    height = complexMapSize;
-                    genData.DungeonTypeId = DungeonTypes.ComplexRooms;
-                }
-            }
 
             if (genData.MaxFloor == 0 || genData.PrevMap == null)
             {
-                genData.MaxFloor = RandUtils.IntRange(genType.MinFloors, genType.MaxFloors, levelArgs.Rand);
+
+                if (genData.ZoneType.IsOutdoors)
+                {
+                    genData.MaxFloor = 1;
+                }
+                else
+                {
+                    genData.MaxFloor = mapSettings.MaxDungeonLevel;
+                }
 
                 if (genData.CurrFloor == 0)
                 {
                     genData.CurrFloor = 1;
                 }
-                if (levelArgs.Rand.NextDouble() < 0.2f && genType.MaxFloors > 1)
+                if (levelArgs.Rand.NextDouble() < 0.2f && genData.MaxFloor > 1)
                 {
                     genData.MaxFloor++;
                 }
@@ -158,13 +164,10 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 }
             }
 
-            RemoveBlankMapEdges(levelArgs);
-
-            _mapGenService.AddMapBoundaryWalls(levelArgs.Map);
-
             List<Point2I> entranceExitPoints = new List<Point2I>();
             entranceExitPoints.Add(new Point2I(levelArgs.EnterX, levelArgs.EnterZ));
             entranceExitPoints.Add(new Point2I(levelArgs.ExitX, levelArgs.ExitZ));
+
 
             MarkTilesNearEntrances(party, genData, levelArgs.Map, entranceExitPoints);
 
@@ -217,15 +220,22 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
             AddTeleportSquares(party, genData, levelArgs.Map, validEmptyCells, levelArgs.Rand);
 
-            ModifyZoneTypes(party, genData, levelArgs.Map, levelArgs.RoomIds, levelArgs.Rand);
+            RandomizeZoneTypes(party, genData, levelArgs);
 
             AddRoomDoors(party, genData, levelArgs.Map, levelArgs.RoomIds, levelArgs.Rand);
 
             AddLevelMap(party, genData, levelArgs.Map, validEmptyCells, levelArgs.Rand);
 
+            RemoveBlankMapEdges(levelArgs);
+
+            _mapGenService.RemoveInnerWallsFromOutdoorDungeons(levelArgs.Map);
+
+            _mapGenService.AddMapBoundaryWalls(levelArgs.Map);
 
             return new NewCrawlerMap() { Map = levelArgs.Map, EnterX = levelArgs.EnterX, EnterZ = levelArgs.EnterZ };
         }
+
+        
 
         protected void AddMagicLocations(PartyData party, CrawlerMapGenData genData, CrawlerMap map, List<Point2I> validEmptyCells, IRandom rand)
         {
@@ -479,7 +489,7 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
             {
                 int blockingBits = _crawlerMapService.GetBlockingBits(map, x, z, x + dir.DX, z + dir.DZ, false);
 
-                isBlocked[dir.Index] = WallTypes.IsBlockingType(blockingBits);
+                isBlocked[dir.Index] = WallTypes.IsBlockingTypeFromDir(blockingBits, dir.DX, dir.DZ);
             }
             return isBlocked;
         }
@@ -741,65 +751,60 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
 
             return maps;
         }
-
-
-        private void ModifyZoneTypes(PartyData party, CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
+        
+        private void RandomizeZoneTypes(PartyData party, CrawlerMapGenData genData, DungeonLevelGenArgs levelArgs)
         {
+            bool needOutdoorZones = !levelArgs.Map.HasFlag(CrawlerMapFlags.IsIndoorDungeon);
 
-            List<int> distinctRoomIds = new List<int>();
-            for (int x = 0; x < roomIds.GetLength(0); x++)
-            {
-                for (int z = 0; z < roomIds.GetLength(1); z++)
-                {
-                    if (roomIds[x, z] > 0 && !distinctRoomIds.Contains(roomIds[x, z]))
-                    {
-                        distinctRoomIds.Add(roomIds[x, z]);
-                    }
-                }
-            }
-
-            List<long> zoneTypes = new List<long>();
-
-            foreach (CrawlerMapGenType genType in genData.MapType.GenTypes)
-            {
-                foreach (WeightedZoneType wzt in genType.WeightedZones)
-                {
-                    if (!zoneTypes.Contains(wzt.ZoneTypeId) && wzt.ZoneTypeId != map.ZoneTypeId)
-                    {
-                        zoneTypes.Add(wzt.ZoneTypeId);
-                    }
-                }
-            }
+            List<ZoneType> zoneTypes = _gameData.Get<ZoneTypeSettings>(_gs.ch).GetData().Where(x => 
+            x.IsDungeon
+            && x.IsOutdoors == needOutdoorZones 
+            && x.IdKey != genData.ZoneType.IdKey).ToList();
 
             if (zoneTypes.Count < 1)
             {
                 return;
             }
 
-            long replacementZoneTypeId = zoneTypes[rand.Next() % zoneTypes.Count];
-
             CrawlerMapSettings mapSettings = _gameData.Get<CrawlerMapSettings>(_gs.ch);
 
-            foreach (int roomId in distinctRoomIds)
+            RoomGenSettings roomSettings = _gameData.Get<RoomGenSettings>(_gs.ch);
+
+            foreach (SampledPoint center in levelArgs.RoomCenters)
             {
-                if (zoneTypes.Count < 1)
-                {
-                    break;
-                }
-                if (rand.NextDouble() > genData.MapType.RoomIsDifferentZoneTypeChance)
+                if (levelArgs.Rand.NextDouble() > genData.MapType.RoomIsDifferentZoneTypeChance)
                 {
                     continue;
                 }
 
-                for (int x = 0; x < map.Width; x++)
+                long replacementZoneTypeId = zoneTypes[levelArgs.Rand.Next() % zoneTypes.Count].IdKey;
+
+                int cx = center.X + RandUtils.IntRange(-1, 1, levelArgs.Rand);
+                int cz = center.Z + RandUtils.IntRange(-1, 1, levelArgs.Rand);
+
+                float xrad = RandUtils.FloatRange(roomSettings.MinSize, roomSettings.MaxSize * 1.5f, levelArgs.Rand);
+                float zrad = RandUtils.FloatRange(roomSettings.MinSize, roomSettings.MaxSize * 1.5f, levelArgs.Rand);
+
+                levelArgs.Map.Regions.Add(new ZoneRegion() { RegionId = center.Index, ZoneTypeId = replacementZoneTypeId, CenterX = cx, CenterZ = cz });
+
+                for (int x = 0; x < levelArgs.Map.Width; x++)
                 {
-                    for (int z = 0; z < map.Height; z++)
+                    float dx = (cx - x)/xrad;
+                    for (int z = 0; z < levelArgs.Map.Height; z++)
                     {
-                        if (roomIds[x, z] == roomId)
+                        float dz = (cz - z) / zrad;
+
+                        float dist = dx * dx + dz * dz;
+
+                        float currDist = 1 + RandUtils.DeltaRange(0.1f, levelArgs.Rand);
+
+                        if (dist < currDist)
                         {
-                            if (map.Get(x, z, CellIndex.Terrain) > 0)
+                            levelArgs.Map.Set(x, z, CellIndex.Region, center.Index);
+                            if (levelArgs.Map.Get(x,z,CellIndex.Terrain) > 0 && 
+                                levelArgs.Map.Get(x,z,CellIndex.Terrain) != ZoneTypes.Road)
                             {
-                                map.Set(x, z, CellIndex.Terrain, replacementZoneTypeId);
+                                levelArgs.Map.Set(x, z, CellIndex.Terrain, replacementZoneTypeId);
                             }
                         }
                     }
@@ -810,7 +815,8 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
         // Try to add doors between rooms and non-rooms.
         private void AddRoomDoors(PartyData party, CrawlerMapGenData genData, CrawlerMap map, int[,] roomIds, IRandom rand)
         {
-            if (genData.DungeonTypeId == DungeonTypes.RandomWalls)
+
+            if (!map.HasFlag(CrawlerMapFlags.IsIndoorDungeon))
             {
                 return;
             }
@@ -923,7 +929,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
         {
             CrawlerMap map = args.Map;
 
-
             int minx = 10000;
             int maxx = -1;
             int minz = 10000;
@@ -943,16 +948,23 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 }
             }
 
+            if (map.IsOutdoorDungeon())
+            {
+                int edgeSize = 1;
+                minx = Math.Max(0, minx - edgeSize);
+                maxx = Math.Min(map.Width - 1, maxx + edgeSize);
+                minz = Math.Max(0, minz - edgeSize);
+                maxz = Math.Min(map.Height - 1, maxz + edgeSize);
+            }
+
+
             if (minx != 0 ||
                 minz != 0 ||
                 maxx != map.Width - 1 ||
                 maxz != map.Height - 1)
             {
-
                 int newWidth = maxx - minx + 1;
                 int newHeight = maxz - minz + 1;
-
-
 
                 byte[] newData = new byte[newWidth * newHeight * CellIndex.Max];
 
@@ -965,7 +977,6 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                         {
                             int index = GetDataIndex(x - minx, z - minz, newWidth, newHeight, offset);
                             newData[index] = map.Get(x, z, offset);
-
                         }
                     }
                 }
@@ -977,26 +988,29 @@ namespace Assets.Scripts.Crawler.MapGen.Helpers
                 args.EnterZ -= minz;
                 args.ExitX -= minx;
                 args.ExitZ -= minz;
+
+                foreach (MapCellDetail detail in map.Details)
+                {
+                    detail.X -= minx;
+                    detail.Z -= minz;
+                }
             }
 
-            if (!map.HasFlag(CrawlerMapFlags.IsLooping))
+            for (int x = 0; x < map.Width; x++)
             {
-                for (int x = 0; x < map.Width; x++)
+                if (map.Get(x, 0, CellIndex.Terrain) == 0 &&
+                    map.Get(x, map.Height - 1, CellIndex.Terrain) == 0)
                 {
-                    if (map.Get(x, 0, CellIndex.Terrain) == 0 &&
-                        map.Get(x, map.Height - 1, CellIndex.Terrain) == 0)
-                    {
-                        map.Set(x, map.Height - 1, CellIndex.Walls, map.EastWall(x, map.Height - 1));
-                    }
+                    map.Set(x, map.Height - 1, CellIndex.Walls, map.EastWall(x, map.Height - 1));
                 }
+            }
 
-                for (int z = 0; z < map.Height; z++)
+            for (int z = 0; z < map.Height; z++)
+            {
+                if (map.Get(0, z, CellIndex.Terrain) == 0 &&
+                    map.Get(map.Width - 1, z, CellIndex.Terrain) == 0)
                 {
-                    if (map.Get(0, z, CellIndex.Terrain) == 0 &&
-                        map.Get(map.Width - 1, z, CellIndex.Terrain) == 0)
-                    {
-                        map.Set(map.Width - 1, z, CellIndex.Walls, map.NorthWall(map.Width - 1, z));
-                    }
+                    map.Set(map.Width - 1, z, CellIndex.Walls, map.NorthWall(map.Width - 1, z));
                 }
             }
         }

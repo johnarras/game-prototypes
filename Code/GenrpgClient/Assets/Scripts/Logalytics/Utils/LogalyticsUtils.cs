@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Config;
+﻿using OxDb.Client.Config;
 using OxDb.SharedCore.Config.Constants;
 using OxDb.SharedCore.Utils;
 
-namespace Assets.Scripts.Logalytics.Utils
+namespace OxDb.Client.Logalytics.Utils
 {
     public static class LogalyticsUtils
     {

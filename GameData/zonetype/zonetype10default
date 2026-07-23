@@ -208,92 +208,27 @@
       "Weight": 1.0
     }
   ],
-  "RockTypes": [
+  "LargePropChance": 1.0,
+  "Props": [
     {
-      "RockTypeId": 1,
       "Weight": 1.0,
-      "BaseColor": {
-        "R": 1.0,
-        "G": 1.0,
-        "B": 1.0,
-        "A": 1.0
-      }
-    }
-  ],
-  "TreeTypes": [
-    {
-      "TreeTypeId": 1,
-      "Weight": 1.0
+      "EntityTypeId": 50,
+      "EntityId": 3
     },
     {
-      "TreeTypeId": 2,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 88,
+      "EntityId": 1
     },
     {
-      "TreeTypeId": 5,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 97,
+      "EntityId": 1
     },
     {
-      "TreeTypeId": 7,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 8,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 12,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 16,
-      "Weight": 1.0
-    },
-    {
-      "TreeTypeId": 50,
-      "Weight": 1.0
-    }
-  ],
-  "BushTypes": [
-    {
-      "BushTypeId": 8,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 12,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 13,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 7,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 14,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 15,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 16,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 17,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 18,
-      "Weight": 1.0
-    },
-    {
-      "BushTypeId": 19,
-      "Weight": 1.0
+      "Weight": 1.0,
+      "EntityTypeId": 11,
+      "EntityId": 2
     }
   ],
   "CreatureNamePrefixes": [
@@ -728,14 +663,6 @@
     }
   ],
   "UnitKeyWords": [],
-  "PropChance": 0.2,
-  "Props": [
-    {
-      "Weight": 100.0,
-      "EntityTypeId": 11,
-      "EntityId": 10
-    }
-  ],
   "PlantChoices": "33 10 15 16 26 28 30 31 32 9",
   "FenceChance": 0.1,
   "WeatherTypeId": 3,

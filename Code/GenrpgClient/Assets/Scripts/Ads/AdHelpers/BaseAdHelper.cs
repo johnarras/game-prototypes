@@ -1,13 +1,14 @@
-﻿using Assets.Scripts.FloatingText.ClientEvents;
+﻿using OxDb.Client.FloatingText.ClientEvents;
+using OxDb.Client.Networking.Services;
 using UnityEngine;
 
-namespace Assets.Scripts.Ads.AdHelpers
+namespace OxDb.Client.Ads.AdHelpers
 {
     public abstract class BaseAdHelper : IAdHelper
     {
 
         protected IDispatcher _dispatcher = null;
-        protected IClientWebService _webService = null;
+        protected IClientWebRequestService _webService = null;
 
         public abstract EAdTypes HelperKey { get; }
 

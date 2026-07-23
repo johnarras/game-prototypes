@@ -1,6 +1,6 @@
-using Assets.Scripts.Assets.Constants;
-using Assets.Scripts.Input;
 using ClientEvents;
+using OxDb.Client.Assets.Constants;
+using OxDb.Client.Input;
 using OxDb.SharedGame.Input.Constants;
 using OxDb.SharedGame.Input.PlayerData;
 using OxDb.SharedGame.SpellCrafting.Messages;

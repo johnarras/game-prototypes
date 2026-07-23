@@ -4,7 +4,7 @@ using OxDb.SharedGame.Rewards.Services;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.MessageHandlers.Currency
+namespace OxDb.Client.MessageHandlers.Currency
 {
     public class OnAddQuantityRewardHandler : BaseClientMapMessageHandler<OnAddQuantityReward>
     {

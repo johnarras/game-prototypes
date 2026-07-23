@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8921725379531103111}
   - component: {fileID: 4863368167950978484}
-  - component: {fileID: 2823629916793880307}
   - component: {fileID: 3322435278819286676}
   - component: {fileID: 5229706761178985327}
   m_Layer: 0
@@ -32,12 +31,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6448486171433953464}
-  - {fileID: 7071504509692074874}
-  - {fileID: 4793964436491215531}
-  - {fileID: 9045107019354350338}
-  - {fileID: 2583690922084079796}
-  - {fileID: 5591949376303344892}
+  - {fileID: 4637436042719990822}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -63,30 +57,6 @@ MonoBehaviour:
   StrafeLeftButton: {fileID: 1508525955996673484}
   BackButton: {fileID: 5382625639035068026}
   StrafeRightButton: {fileID: 2662587119765449266}
---- !u!114 &2823629916793880307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7946176613057511607}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ce9d0d6ac6c90847ac3551a708718bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Abstractions.GGridLayoutGroup
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_StartCorner: 0
-  m_StartAxis: 0
-  m_CellSize: {x: 162, y: 162}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 1
-  m_ConstraintCount: 3
 --- !u!222 &3322435278819286676
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -125,13 +95,79 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &8021053179678363855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4637436042719990822}
+  - component: {fileID: 1187567920435283349}
+  m_Layer: 0
+  m_Name: Content
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4637436042719990822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021053179678363855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6448486171433953464}
+  - {fileID: 7071504509692074874}
+  - {fileID: 4793964436491215531}
+  - {fileID: 9045107019354350338}
+  - {fileID: 2583690922084079796}
+  - {fileID: 5591949376303344892}
+  m_Father: {fileID: 8921725379531103111}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 270, y: -162}
+  m_SizeDelta: {x: 162, y: 162}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1187567920435283349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8021053179678363855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce9d0d6ac6c90847ac3551a708718bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.UI.Abstractions.GGridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 162, y: 162}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 1
+  m_ConstraintCount: 3
 --- !u!1001 &1032100887593623478
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8921725379531103111}
+    m_TransformParent: {fileID: 4637436042719990822}
     m_Modifications:
     - target: {fileID: -7187446171224968542, guid: b1e08ac8d0491d946a577cbac544f9a5, type: 3}
       propertyPath: SuppressAction
@@ -264,7 +300,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8921725379531103111}
+    m_TransformParent: {fileID: 4637436042719990822}
     m_Modifications:
     - target: {fileID: -7187446171224968542, guid: b1e08ac8d0491d946a577cbac544f9a5, type: 3}
       propertyPath: SuppressAction
@@ -397,7 +433,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8921725379531103111}
+    m_TransformParent: {fileID: 4637436042719990822}
     m_Modifications:
     - target: {fileID: -7187446171224968542, guid: b1e08ac8d0491d946a577cbac544f9a5, type: 3}
       propertyPath: SuppressAction
@@ -530,7 +566,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8921725379531103111}
+    m_TransformParent: {fileID: 4637436042719990822}
     m_Modifications:
     - target: {fileID: -7187446171224968542, guid: b1e08ac8d0491d946a577cbac544f9a5, type: 3}
       propertyPath: SuppressAction
@@ -663,7 +699,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8921725379531103111}
+    m_TransformParent: {fileID: 4637436042719990822}
     m_Modifications:
     - target: {fileID: -7187446171224968542, guid: b1e08ac8d0491d946a577cbac544f9a5, type: 3}
       propertyPath: SuppressAction
@@ -796,7 +832,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8921725379531103111}
+    m_TransformParent: {fileID: 4637436042719990822}
     m_Modifications:
     - target: {fileID: -7187446171224968542, guid: b1e08ac8d0491d946a577cbac544f9a5, type: 3}
       propertyPath: SuppressAction

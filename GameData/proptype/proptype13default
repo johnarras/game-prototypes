@@ -1,9 +1,0 @@
-{
-  "Id": "proptype13default",
-  "ParentId": "default",
-  "IdKey": 13,
-  "Name": "PointOfInterestProp",
-  "Icon": "PointOfInterestProp",
-  "Art": "PointOfInterestProp",
-  "NumChoices": 1
-}

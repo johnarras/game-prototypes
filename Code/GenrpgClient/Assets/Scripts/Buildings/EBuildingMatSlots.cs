@@ -1,4 +1,4 @@
-namespace Assets.Scripts.Buildings
+namespace OxDb.Client.Buildings
 {
     public enum EBuildingMatSlots
     {

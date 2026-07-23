@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Lockstep.Brains.Constants
+﻿namespace OxDb.Client.Lockstep.Brains.Constants
 {
     public enum EBrainLogic
     {

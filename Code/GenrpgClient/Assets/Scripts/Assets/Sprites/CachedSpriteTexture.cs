@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Assets.Entities
+namespace OxDb.Client.Assets.Entities
 {
     public class CachedSpriteTexture
     {

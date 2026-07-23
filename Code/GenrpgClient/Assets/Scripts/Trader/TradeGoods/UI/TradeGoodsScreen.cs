@@ -1,7 +1,7 @@
-using Assets.Scripts.Trader.Currencies.UI;
-using Assets.Scripts.Trader.UI.Icons;
-using Assets.Scripts.UI.Constants;
-using Assets.Scripts.UI.Interfaces;
+using OxDb.Client.Trader.Currencies.UI;
+using OxDb.Client.Trader.UI.Icons;
+using OxDb.Client.UI.Constants;
+using OxDb.Client.UI.Interfaces;
 using OxDb.SharedCore.Entities.Constants;
 using OxDb.SharedGame.Core.PlayerData;
 using OxDb.SharedGame.Trader.Caravans.PlayerData;
@@ -13,7 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts.Trader.UI.TradeGoods
+namespace OxDb.Client.Trader.UI.TradeGoods
 {
     /// <summary>
     ///  This is a spend location, but also lets you sell.

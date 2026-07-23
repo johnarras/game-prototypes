@@ -1,6 +1,6 @@
 using OxDb.SharedGame.MapServer.Messages;
 
-namespace Assets.Scripts.MessageHandlers.Messaging
+namespace OxDb.Client.MessageHandlers.Messaging
 {
     public class ServerMessageCountsHandler : DispatchClientMapMessageHandler<ServerMessageCounts> { }
 }

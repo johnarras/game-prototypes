@@ -1,8 +1,8 @@
-﻿using Assets.Scripts.Lockstep.Math;
+﻿using OxDb.Client.Lockstep.Math;
 using System.Runtime.InteropServices;
 using Unity.Entities;
 
-namespace Assets.Scripts.Lockstep.Projectiles.Components
+namespace OxDb.Client.Lockstep.Projectiles.Components
 {
     public enum EProjectileTypes : byte
     {

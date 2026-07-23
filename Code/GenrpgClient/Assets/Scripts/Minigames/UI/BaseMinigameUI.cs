@@ -1,7 +1,7 @@
-﻿using Assets.Scripts.Minigames.Services;
+﻿using OxDb.Client.Minigames.Services;
 using OxDb.SharedGame.Minigames.Games.Settings;
 
-namespace Assets.Scripts.Minigames.UI
+namespace OxDb.Client.Minigames.UI
 {
     public class BaseMinigameUI : BaseBehaviour
     {

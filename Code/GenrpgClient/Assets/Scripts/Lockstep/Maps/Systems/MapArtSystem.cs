@@ -1,12 +1,12 @@
-﻿using Assets.Scripts.Lockstep.Maps.Components;
-using Assets.Scripts.Lockstep.Presentation.Services;
-using Assets.Scripts.Lockstep.Systems;
-using Assets.Scripts.Lockstep.Systems.Constants;
+﻿using OxDb.Client.Lockstep.Maps.Components;
+using OxDb.Client.Lockstep.Presentation.Services;
+using OxDb.Client.Lockstep.Systems;
+using OxDb.Client.Lockstep.Systems.Constants;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Assets.Scripts.Lockstep.Maps.Systems
+namespace OxDb.Client.Lockstep.Maps.Systems
 {
     [DisableAutoCreation]
     public partial struct MapArtSystem : ISeededSystem, ISystem
